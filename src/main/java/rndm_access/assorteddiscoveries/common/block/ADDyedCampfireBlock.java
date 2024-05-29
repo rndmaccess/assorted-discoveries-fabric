@@ -1,7 +1,5 @@
 package rndm_access.assorteddiscoveries.common.block;
 
-import java.util.Random;
-
 import javax.annotation.Nullable;
 
 import net.minecraft.block.AbstractBlock;
@@ -14,6 +12,7 @@ import net.minecraft.particle.ParticleEffect;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import rndm_access.assorteddiscoveries.common.block_entity.ADDyedCampfireBlockEntity;
 import rndm_access.assorteddiscoveries.common.core.ADBlockEntityTypes;

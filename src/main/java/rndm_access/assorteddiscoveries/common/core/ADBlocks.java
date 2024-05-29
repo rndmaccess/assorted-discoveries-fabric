@@ -145,7 +145,7 @@ public class ADBlocks {
     public static final Block SMOOTH_QUARTZ_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.SMOOTH_QUARTZ));
     public static final Block STONE_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.STONE));
     public static final Block RED_GLASS = new GlassBlock(AbstractBlock.Settings.copy(Blocks.GLASS));
-    public static final Block RED_GLASS_PANE = new ADPaneBlock(AbstractBlock.Settings.copy(Blocks.GLASS_PANE));
+    public static final Block RED_GLASS_PANE = new PaneBlock(AbstractBlock.Settings.copy(Blocks.GLASS_PANE));
     public static final Block BLUEBERRY_BUSH = new ADBlueberryBushBlock(AbstractBlock.Settings.copy(Blocks.WHEAT));
     public static final Block BOK_CHOY = new ADBokChoyCropBlock(AbstractBlock.Settings.copy(Blocks.WHEAT));
     public static final Block GARLIC = new ADOnionBlock(AbstractBlock.Settings.copy(Blocks.WHEAT), () -> ADItems.GARLIC);
@@ -156,6 +156,7 @@ public class ADBlocks {
     public static final Block JUNGLE_PLANTER_BOX = planterBoxBlock(MapColor.DIRT_BROWN);
     public static final Block ACACIA_PLANTER_BOX = planterBoxBlock(MapColor.ORANGE);
     public static final Block DARK_OAK_PLANTER_BOX = planterBoxBlock(MapColor.BROWN);
+    public static final Block MANGROVE_PLANTER_BOX = planterBoxBlock(MapColor.RED);
     public static final Block CRIMSON_PLANTER_BOX = netherPlanterBoxBlock(MapColor.DULL_PINK);
     public static final Block WARPED_PLANTER_BOX = netherPlanterBoxBlock(MapColor.DARK_AQUA);
     public static final Block OAK_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS));
@@ -164,6 +165,7 @@ public class ADBlocks {
     public static final Block JUNGLE_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.JUNGLE_PLANKS));
     public static final Block ACACIA_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.ACACIA_PLANKS));
     public static final Block DARK_OAK_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.DARK_OAK_PLANKS));
+    public static final Block MANGROVE_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.MANGROVE_PLANKS));
     public static final Block CRIMSON_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.CRIMSON_PLANKS));
     public static final Block WARPED_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.WARPED_PLANKS));
     public static final Block STRIPPED_OAK_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS));
@@ -172,6 +174,7 @@ public class ADBlocks {
     public static final Block STRIPPED_JUNGLE_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.JUNGLE_PLANKS));
     public static final Block STRIPPED_ACACIA_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.ACACIA_PLANKS));
     public static final Block STRIPPED_DARK_OAK_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.DARK_OAK_PLANKS));
+    public static final Block STRIPPED_MANGROVE_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.MANGROVE_PLANKS));
     public static final Block STRIPPED_CRIMSON_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.CRIMSON_PLANKS));
     public static final Block STRIPPED_WARPED_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.WARPED_PLANKS));
     public static final Block OAK_ROPE_LADDER = ropeLadderBlock();
@@ -182,6 +185,7 @@ public class ADBlocks {
     public static final Block DARK_OAK_ROPE_LADDER = ropeLadderBlock();
     public static final Block CRIMSON_ROPE_LADDER = ropeLadderBlock();
     public static final Block WARPED_ROPE_LADDER = ropeLadderBlock();
+    public static final Block MANGROVE_ROPE_LADDER = ropeLadderBlock();
     public static final Block IRON_LADDER = new LadderBlock(AbstractBlock.Settings.of(Material.METAL)
             .strength(0.4F, 5.0F).sounds(BlockSoundGroup.METAL).nonOpaque());
     public static final Block DIRT_SLAB = new ADDirtSlabBlock(AbstractBlock.Settings.copy(Blocks.DIRT).ticksRandomly());
@@ -458,7 +462,7 @@ public class ADBlocks {
             .strength(0.3F).sounds(BlockSoundGroup.GLASS).luminance((state) -> 15));
     public static final Block MAROON_WOOL = new Block(AbstractBlock.Settings.copy(Blocks.RED_WOOL));
     public static final Block MAROON_STAINED_GLASS = new StainedGlassBlock(DyeColor.RED,
-            AbstractBlock.Settings.of(Material.GLASS, MapColor.DARK_RED)
+            AbstractBlock.Settings.of(Material.GLASS, DyeColor.RED)
                     .strength(0.3F).sounds(BlockSoundGroup.GLASS).nonOpaque().allowsSpawning(ADBlocks::never)
                     .solidBlock(ADBlocks::never).suffocates(ADBlocks::never).blockVision(ADBlocks::never));
     public static final Block MAROON_STAINED_GLASS_PANE = new StainedGlassPaneBlock(DyeColor.RED,
@@ -469,9 +473,9 @@ public class ADBlocks {
             .requiresTool().strength(1.8F));
     public static final Block MAROON_CONCRETE_POWDER = new ConcretePowderBlock(MAROON_CONCRETE, AbstractBlock.Settings.of(
             Material.AGGREGATE, MapColor.DARK_RED).strength(0.5F).sounds(BlockSoundGroup.SAND));
+    public static final Block MAROON_CANDLE_CAKE = new CandleCakeBlock(MAROON_CANDLE, AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
     public static final Block WEEPING_HEART = new ADWeepingHeartBlock(AbstractBlock.Settings.of(Material.PLANT).ticksRandomly()
             .breakInstantly().noCollision().sounds(BlockSoundGroup.SPORE_BLOSSOM).luminance((state) -> 10));
-    public static final Block MAROON_CANDLE_CAKE = new CandleCakeBlock(MAROON_CANDLE, AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
     public static final Block MAROON_CANDLE_CHOCOLATE_CAKE = new ADCandleCakeBlock(CHOCOLATE_CAKE, MAROON_CANDLE,
             AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
     public static final Block CANDLE_CHOCOLATE_CAKE = new ADCandleCakeBlock(CHOCOLATE_CAKE, Blocks.CANDLE,
@@ -729,6 +733,7 @@ public class ADBlocks {
         register("jungle_planter_box", JUNGLE_PLANTER_BOX);
         register("acacia_planter_box", ACACIA_PLANTER_BOX);
         register("dark_oak_planter_box", DARK_OAK_PLANTER_BOX);
+        register("mangrove_planter_box", MANGROVE_PLANTER_BOX);
         register("crimson_planter_box", CRIMSON_PLANTER_BOX);
         register("warped_planter_box", WARPED_PLANTER_BOX);
         register("oak_wall", OAK_WALL);
@@ -737,6 +742,7 @@ public class ADBlocks {
         register("jungle_wall", JUNGLE_WALL);
         register("acacia_wall", ACACIA_WALL);
         register("dark_oak_wall", DARK_OAK_WALL);
+        register("mangrove_wall", MANGROVE_WALL);
         register("crimson_wall", CRIMSON_WALL);
         register("warped_wall", WARPED_WALL);
         register("stripped_oak_wall", STRIPPED_OAK_WALL);
@@ -745,6 +751,7 @@ public class ADBlocks {
         register("stripped_jungle_wall", STRIPPED_JUNGLE_WALL);
         register("stripped_acacia_wall", STRIPPED_ACACIA_WALL);
         register("stripped_dark_oak_wall", STRIPPED_DARK_OAK_WALL);
+        register("stripped_mangrove_wall", STRIPPED_MANGROVE_WALL);
         register("stripped_crimson_wall", STRIPPED_CRIMSON_WALL);
         register("stripped_warped_wall", STRIPPED_WARPED_WALL);
         register("oak_rope_ladder", OAK_ROPE_LADDER);
@@ -755,6 +762,7 @@ public class ADBlocks {
         register("dark_oak_rope_ladder", DARK_OAK_ROPE_LADDER);
         register("crimson_rope_ladder", CRIMSON_ROPE_LADDER);
         register("warped_rope_ladder", WARPED_ROPE_LADDER);
+        register("mangrove_rope_ladder", MANGROVE_ROPE_LADDER);
         register("iron_ladder", IRON_LADDER);
         register("dirt_slab", DIRT_SLAB);
         register("grass_slab", GRASS_SLAB);
@@ -980,10 +988,10 @@ public class ADBlocks {
         register("maroon_stained_glass", MAROON_STAINED_GLASS);
         register("maroon_stained_glass_pane", MAROON_STAINED_GLASS_PANE);
         register("maroon_candle", MAROON_CANDLE);
+        register("maroon_candle_cake", MAROON_CANDLE_CAKE);
         register("maroon_concrete", MAROON_CONCRETE);
         register("maroon_concrete_powder", MAROON_CONCRETE_POWDER);
         register("weeping_heart", WEEPING_HEART);
-        register("maroon_candle_cake", MAROON_CANDLE_CAKE);
         register("maroon_candle_chocolate_cake", MAROON_CANDLE_CHOCOLATE_CAKE);
         register("candle_chocolate_cake", CANDLE_CHOCOLATE_CAKE);
         register("white_candle_chocolate_cake", WHITE_CANDLE_CHOCOLATE_CAKE);

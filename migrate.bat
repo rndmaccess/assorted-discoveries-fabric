@@ -1,1 +1,1 @@
-gradlew migrateMappings --mappings "1.18.2+build.4"
+gradlew migrateMappings --mappings "1.19+build.4"

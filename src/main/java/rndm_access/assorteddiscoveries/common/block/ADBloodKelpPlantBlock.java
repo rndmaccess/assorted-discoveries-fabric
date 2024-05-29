@@ -1,9 +1,6 @@
 package rndm_access.assorteddiscoveries.common.block;
 
-import net.minecraft.block.AbstractPlantStemBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.KelpPlantBlock;
+import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.state.StateManager;
 import net.minecraft.util.ActionResult;
@@ -11,16 +8,16 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import rndm_access.assorteddiscoveries.common.core.ADBlocks;
 
 import java.util.Objects;
-import java.util.Random;
 
 public class ADBloodKelpPlantBlock extends KelpPlantBlock implements ADBloodKelp {
-    public ADBloodKelpPlantBlock(Settings settings) {
+    public ADBloodKelpPlantBlock(AbstractBlock.Settings settings) {
         super(settings);
         this.setDefaultState(this.getDefaultState().with(LIT, false));
     }

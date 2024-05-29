@@ -6,11 +6,10 @@ import net.minecraft.block.Fertilizable;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import rndm_access.assorteddiscoveries.common.core.ADBlocks;
-
-import java.util.Random;
 
 public class ADDirtSlabBlock extends SlabBlock implements Fertilizable {
     public ADDirtSlabBlock(AbstractBlock.Settings settings) {

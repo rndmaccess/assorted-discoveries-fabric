@@ -4,6 +4,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.enums.SlabType;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.TestableWorld;
 import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import net.minecraft.world.gen.trunk.TrunkPlacer;
@@ -15,7 +16,6 @@ import rndm_access.assorteddiscoveries.common.core.ADBlockTags;
 import rndm_access.assorteddiscoveries.common.core.ADBlocks;
 import rndm_access.assorteddiscoveries.common.core.CBlockTags;
 
-import java.util.Random;
 import java.util.function.BiConsumer;
 
 @Mixin(TrunkPlacer.class)

@@ -39,8 +39,8 @@ public class ADCattailBlock extends TallFlowerBlock {
         return new ItemStack(ADItems.CATTAIL);
     }
 
+    @SuppressWarnings("depreciation")
     @Override
-    @SuppressWarnings("depreciated")
     public FluidState getFluidState(BlockState state) {
         return state.get(HALF) == DoubleBlockHalf.LOWER ? Fluids.WATER.getStill(false)
                 : Fluids.EMPTY.getDefaultState();

@@ -1,13 +1,12 @@
 package rndm_access.assorteddiscoveries.common.block;
 
-import java.util.Random;
-
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FlowerPotBlock;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 
 public class ADPottedSnapdragonBlock extends FlowerPotBlock {

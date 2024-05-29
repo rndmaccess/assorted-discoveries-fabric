@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.enums.DoubleBlockHalf;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.ProbabilityConfig;
@@ -11,8 +12,6 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 import rndm_access.assorteddiscoveries.common.block.ADCattailBlock;
 import rndm_access.assorteddiscoveries.common.core.ADBlocks;
-
-import java.util.Random;
 
 public class ADCattailFeature extends Feature<ProbabilityConfig> {
     public ADCattailFeature(Codec<ProbabilityConfig> codec) {

@@ -39,7 +39,7 @@ public class AssortedDiscoveries implements ModInitializer {
 		ADScreenHandlerTypes.registerScreenHandlerTypes();
 		ADRecipeTypes.registerRecipeTypes();
 		ADRecipeSerializers.registerSerializers();
-		ADPaintingTypes.registerPaintingMotives();
+		ADPaintingVariants.registerPaintingMotives();
 		ADSoundEvents.registerSoundEvents();
 		AssortedDiscoveries.registerFuel();
 		AssortedDiscoveries.registerCompostables();
@@ -53,7 +53,6 @@ public class AssortedDiscoveries implements ModInitializer {
 
 		// World Generation Registries
 		ADFeature.registerFeatures();
-		ADStructureFeatures.registerStructureFeatures();
 		ADConfiguredFeatures.registerConfiguredFeatures();
 		AssortedDiscoveries.addFeaturesToBiomes();
 	}

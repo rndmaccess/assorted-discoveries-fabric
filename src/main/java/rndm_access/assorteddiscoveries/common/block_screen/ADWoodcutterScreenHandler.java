@@ -76,6 +76,7 @@ public class ADWoodcutterScreenHandler extends ScreenHandler {
                         world.playSound(null, pos, SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundCategory.BLOCKS, 1.0F, 1.0F);
                         ADWoodcutterScreenHandler.this.lastTakeTime = l;
                     }
+
                 });
                 super.onTakeItem(player, stack);
             }
@@ -158,6 +159,7 @@ public class ADWoodcutterScreenHandler extends ScreenHandler {
         } else {
             this.outputSlot.setStack(ItemStack.EMPTY);
         }
+
         this.sendContentUpdates();
     }
 

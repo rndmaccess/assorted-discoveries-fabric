@@ -8,7 +8,6 @@ import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -18,8 +17,7 @@ import rndm_access.assorteddiscoveries.ADReference;
 import rndm_access.assorteddiscoveries.common.block_screen.ADWoodcutterScreenHandler;
 
 public class ADWoodcutterBlock extends StonecutterBlock {
-    private static final Text TITLE = new TranslatableText(
-            "container." + ADReference.MOD_ID + ".woodcutter");
+    private static final Text TITLE = Text.translatable("container." + ADReference.MOD_ID + ".woodcutter");
 
     public ADWoodcutterBlock(AbstractBlock.Settings settings) {
         super(settings);

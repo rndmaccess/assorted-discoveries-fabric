@@ -7,11 +7,10 @@ import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import rndm_access.assorteddiscoveries.common.core.ADItems;
 import rndm_access.assorteddiscoveries.common.core.ADParticleTypes;
-
-import java.util.Random;
 
 public interface ADBloodKelp {
     BooleanProperty LIT = Properties.LIT;
@@ -23,7 +22,7 @@ public interface ADBloodKelp {
     }
 
     static ActionResult pickSeedCluster(World world, PlayerEntity player, BlockState state, BlockPos pos) {
-        Random random = new Random();
+        Random random = Random.create();
 
         if (state.get(LIT)) {
             player.giveItemStack(new ItemStack(ADItems.BLOOD_KELP_SEED_CLUSTER, random.nextInt(3) + 1));

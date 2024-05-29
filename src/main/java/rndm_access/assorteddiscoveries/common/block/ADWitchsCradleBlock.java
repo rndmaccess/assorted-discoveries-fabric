@@ -8,14 +8,13 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.Item;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import rndm_access.assorteddiscoveries.common.core.ADEntityTypeTags;
 import rndm_access.assorteddiscoveries.common.core.ADItems;
 import rndm_access.assorteddiscoveries.common.core.ADParticleTypes;
-
-import java.util.Random;
 
 public class ADWitchsCradleBlock extends ADAbstractBerryBushBlock {
     private static final VoxelShape SMALL_SHAPE = Block.createCuboidShape(3.0D, 0.0D, 3.0D, 13.0D,

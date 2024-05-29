@@ -5,7 +5,7 @@
     "bottom": "assorteddiscoveries:block/woodcutter_bottom",
     "top": "assorteddiscoveries:block/woodcutter_top",
     "side": "assorteddiscoveries:block/woodcutter_side",
-    "saw": "block/stonecutter_saw"
+    "saw": "minecraft:block/stonecutter_saw"
   },
   "elements": [
     {

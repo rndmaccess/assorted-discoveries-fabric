@@ -24,13 +24,12 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import rndm_access.assorteddiscoveries.common.block.state.ADProperties;
 import rndm_access.assorteddiscoveries.common.core.ADEntityTypeTags;
 import rndm_access.assorteddiscoveries.common.core.CBlockTags;
-
-import java.util.Random;
 
 public class ADSnapdragonBlock extends FlowerBlock {
     public static final BooleanProperty CAN_TELEPORT = ADProperties.CAN_TELEPORT;

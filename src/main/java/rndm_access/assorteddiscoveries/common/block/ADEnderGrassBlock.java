@@ -3,12 +3,11 @@ package rndm_access.assorteddiscoveries.common.block;
 import net.minecraft.block.*;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import rndm_access.assorteddiscoveries.common.core.CBlockTags;
-
-import java.util.Random;
 
 public class ADEnderGrassBlock extends PlantBlock {
     protected static final VoxelShape ENDER_GRASS_SHAPE;
@@ -24,9 +23,9 @@ public class ADEnderGrassBlock extends PlantBlock {
 
     @Override
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-        double x = (double) pos.getX() + random.nextFloat();
-        double y = (double) pos.getY() + random.nextFloat();
-        double z = (double) pos.getZ() + random.nextFloat();
+        double x = pos.getX() + random.nextDouble();
+        double y = pos.getY() + random.nextDouble();
+        double z = pos.getZ() + random.nextDouble();
 
         world.addParticle(ParticleTypes.PORTAL, x, y, z, 0.0D, 0.0D, 0.0D);
     }

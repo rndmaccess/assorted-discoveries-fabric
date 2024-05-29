@@ -38,6 +38,7 @@ public class ADBambooFenceBlock extends FenceBlock {
         if(axis.isHorizontal()) {
             state = state.with(FACING_PROPERTIES.get(direction), this.hasNeighborConnection(world, neighborPos, direction));
         }
+
         return state;
     }
 

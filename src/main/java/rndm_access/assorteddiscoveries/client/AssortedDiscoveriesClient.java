@@ -14,9 +14,9 @@ import net.minecraft.client.particle.LavaEmberParticle;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import rndm_access.assorteddiscoveries.client.block_entity.ADDyedCampfireBlockEntityRenderer;
-import rndm_access.assorteddiscoveries.client.particle.ADFallingWeepingHeartNectarParticle;
+import rndm_access.assorteddiscoveries.client.particle.ADFallingNectarParticle;
 import rndm_access.assorteddiscoveries.client.particle.ADSporeParticle;
-import rndm_access.assorteddiscoveries.client.particle.ADWeepingHeartAirNectarParticle;
+import rndm_access.assorteddiscoveries.client.particle.ADAirNectarParticle;
 import rndm_access.assorteddiscoveries.client.screen.ADWoodcutterScreen;
 import rndm_access.assorteddiscoveries.common.core.*;
 
@@ -90,13 +90,13 @@ public class AssortedDiscoveriesClient implements ClientModInitializer {
         factoryRegistry.register(ADParticleTypes.MAROON_FLAME, FlameParticle.Factory::new);
         factoryRegistry.register(ADParticleTypes.BLOOD_KELP_SPORE, ADSporeParticle.Factory::new);
         factoryRegistry.register(ADParticleTypes.WITCHS_CRADLE_SPORE, ADSporeParticle.Factory::new);
-        factoryRegistry.register(ADParticleTypes.FALLING_WEEPING_HEART_NECTAR, ADFallingWeepingHeartNectarParticle.Factory::new);
-        factoryRegistry.register(ADParticleTypes.WEEPING_HEART_AIR_NECTAR, ADWeepingHeartAirNectarParticle.Factory::new);
+        factoryRegistry.register(ADParticleTypes.FALLING_WEEPING_HEART_NECTAR, ADFallingNectarParticle.Factory::new);
+        factoryRegistry.register(ADParticleTypes.WEEPING_HEART_AIR_NECTAR, ADAirNectarParticle.Factory::new);
     }
 
     private void registerRenderLayers() {
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),
-                ADBlocks.RED_GLASS, ADBlocks.RED_GLASS_PANE, ADBlocks.OAK_ROPE_LADDER, ADBlocks.SPRUCE_ROPE_LADDER,
+                ADBlocks.OAK_ROPE_LADDER, ADBlocks.SPRUCE_ROPE_LADDER,
                 ADBlocks.BIRCH_ROPE_LADDER, ADBlocks.JUNGLE_ROPE_LADDER, ADBlocks.ACACIA_ROPE_LADDER,
                 ADBlocks.DARK_OAK_ROPE_LADDER, ADBlocks.WARPED_ROPE_LADDER, ADBlocks.CRIMSON_ROPE_LADDER,
                 ADBlocks.IRON_LADDER, ADBlocks.PURPLE_MUSHROOM, ADBlocks.WOODCUTTER, ADBlocks.WHITE_CAMPFIRE,
@@ -122,7 +122,8 @@ public class AssortedDiscoveriesClient implements ClientModInitializer {
                 ADBlocks.ENDER_GRASS, ADBlocks.ICICLE, ADBlocks.CATTAIL, ADBlocks.POTTED_PURPLE_MUSHROOM,
                 ADBlocks.BLOOD_KELP, ADBlocks.BLOOD_KELP_PLANT, ADBlocks.MANGROVE_ROPE_LADDER, ADBlocks.WEEPING_HEART,
                 ADBlocks.MAROON_CAMPFIRE, ADBlocks.MAROON_TORCH, ADBlocks.MAROON_WALL_TORCH, ADBlocks.MAROON_LANTERN,
-                ADBlocks.DRIED_BAMBOO_FENCE_GATE, ADBlocks.FRESH_BAMBOO_FENCE_GATE);
+                ADBlocks.DRIED_BAMBOO_FENCE_GATE, ADBlocks.FRESH_BAMBOO_FENCE_GATE, ADBlocks.CINDERSNAP_BERRY_BUSH,
+                ADBlocks.FROSTBITE_BERRY_BUSH);
 
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutoutMipped(),
                 ADBlocks.ENDERMAN_PLUSH, ADBlocks.GRASS_SLAB);

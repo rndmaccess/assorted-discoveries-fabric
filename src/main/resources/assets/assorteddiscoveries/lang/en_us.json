@@ -122,8 +122,6 @@
   "block.assorteddiscoveries.quartz_wall": "Quartz Wall",
   "block.assorteddiscoveries.smooth_quartz_wall": "Smooth Quartz Wall",
   "block.assorteddiscoveries.stone_wall": "Stone Wall",
-  "block.assorteddiscoveries.red_glass": "Red Glass",
-  "block.assorteddiscoveries.red_glass_pane": "Red Glass Pane",
   "block.assorteddiscoveries.oak_planter_box": "Oak Planter Box",
   "block.assorteddiscoveries.spruce_planter_box": "Spruce Planter Box",
   "block.assorteddiscoveries.birch_planter_box": "Birch Planter Box",
@@ -408,10 +406,11 @@
   "block.assorteddiscoveries.black_candle_red_velvet_cake": "Black Candle Red Velvet Cake",
   "block.assorteddiscoveries.blueberry_bush": "Blueberry Bush",
   "block.assorteddiscoveries.camel_plush": "Camel Plush",
+  "block.assorteddiscoveries.cindersnap_berry_bush": "Cindersnap Berry Bush",
+  "block.assorteddiscoveries.frostbite_berry_bush": "Frostbite Berry Bush",
 
   "container.assorteddiscoveries.woodcutter": "Woodcutter",
-  
-  "item.assorteddiscoveries.ruby": "Nether Ruby",
+
   "item.assorteddiscoveries.bok_choy_seeds": "Bok Choy Seeds",
   "item.assorteddiscoveries.bok_choy": "Bok Choy",
   "item.assorteddiscoveries.garlic": "Garlic",
@@ -442,6 +441,11 @@
   "item.assorteddiscoveries.weeping_heart_nectar_bucket": "Weeping Heart Nectar Bucket",
   "item.assorteddiscoveries.weeping_heart_seeds": "Weeping Heart Seeds",
   "item.assorteddiscoveries.hoglin_stew": "Hoglin Stew",
+  "item.assorteddiscoveries.cindersnap_berries": "Cindersnap Berries",
+  "item.assorteddiscoveries.frostbite_berries": "Frostbite Berries",
+
+  "painting.assorteddiscoveries.starry_night.title": "Starry Night",
+  "painting.assorteddiscoveries.starry_night.author": "rndm_access",
   
   "advancements.assorteddiscoveries.story.root.title": "Assorted Discoveries",
   "advancements.assorteddiscoveries.story.root.description": "Start the game with assorted discoveries installed",

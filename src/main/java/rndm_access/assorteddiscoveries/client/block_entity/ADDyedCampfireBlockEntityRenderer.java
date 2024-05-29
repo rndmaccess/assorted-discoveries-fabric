@@ -5,7 +5,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
-import net.minecraft.client.render.model.json.ModelTransformation;
+import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.collection.DefaultedList;
@@ -17,10 +17,10 @@ public class ADDyedCampfireBlockEntityRenderer implements BlockEntityRenderer<AD
     public ADDyedCampfireBlockEntityRenderer(BlockEntityRendererFactory.Context context) {}
 
     @Override
-    public void render(ADDyedCampfireBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
-        Direction direction = entity.getCachedState().get(CampfireBlock.FACING);
-        DefaultedList<ItemStack> defaultedList = entity.getItemsBeingCooked();
-        int k = (int)entity.getPos().asLong();
+    public void render(ADDyedCampfireBlockEntity dyedCampfireBlockEntity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
+        Direction direction = dyedCampfireBlockEntity.getCachedState().get(CampfireBlock.FACING);
+        DefaultedList<ItemStack> defaultedList = dyedCampfireBlockEntity.getItemsBeingCooked();
+        int k = (int)dyedCampfireBlockEntity.getPos().asLong();
 
         for(int l = 0; l < defaultedList.size(); ++l) {
             ItemStack itemStack = defaultedList.get(l);
@@ -33,7 +33,8 @@ public class ADDyedCampfireBlockEntityRenderer implements BlockEntityRenderer<AD
                 matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(90.0F));
                 matrices.translate(-0.3125D, -0.3125D, 0.0D);
                 matrices.scale(0.375F, 0.375F, 0.375F);
-                MinecraftClient.getInstance().getItemRenderer().renderItem(itemStack, ModelTransformation.Mode.FIXED, light, overlay, matrices, vertexConsumers, k + l);
+                MinecraftClient.getInstance().getItemRenderer().renderItem(itemStack, ModelTransformationMode.FIXED,
+                        light, overlay, matrices, vertexConsumers, dyedCampfireBlockEntity.getWorld(), k + l);
                 matrices.pop();
             }
         }

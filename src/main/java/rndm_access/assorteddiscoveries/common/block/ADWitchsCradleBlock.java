@@ -3,11 +3,10 @@ package rndm_access.assorteddiscoveries.common.block;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
@@ -31,24 +30,18 @@ public class ADWitchsCradleBlock extends ADAbstractBerryBushBlock {
     }
 
     @Override
-    protected Item berryItem() {
-        return ADItems.WITCHS_CRADLE_BRANCH;
+    protected TagKey<EntityType<?>> mobsImmune() {
+        return ADEntityTypeTags.WITCHS_CRADLE_IMMUNE_ENTITY_TYPES;
     }
 
     @Override
-    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-        if (!entity.getType().isIn(ADEntityTypeTags.WITCHS_CRADLE_IMMUNE_ENTITY_TYPES)) {
-            entity.slowMovement(state, new Vec3d(0.8D, 0.75D, 0.8D));
+    protected boolean bushDamages() {
+        return true;
+    }
 
-            if (!world.isClient() && state.get(AGE) > 0 && (entity.lastRenderX != entity.getX() || entity.lastRenderZ != entity.getZ())) {
-                double d = Math.abs(entity.getX() - entity.lastRenderX);
-                double e = Math.abs(entity.getZ() - entity.lastRenderZ);
-
-                if (d >= 0.003D || e >= 0.003D) {
-                    entity.damage(DamageSource.SWEET_BERRY_BUSH, 1.0F);
-                }
-            }
-        }
+    @Override
+    protected Item berryItem() {
+        return ADItems.WITCHS_CRADLE_BRANCH;
     }
 
     @Override

@@ -5,6 +5,7 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
@@ -18,11 +19,11 @@ import java.util.Objects;
 
 public class ADWoodcuttingRecipe implements Recipe<Inventory> {
     private final Ingredient input;
-    private final ItemStack output;
+    protected final ItemStack output;
     private final RecipeType<?> type;
     private final RecipeSerializer<?> serializer;
     private final Identifier id;
-    private final String group;
+    protected final String group;
 
     public ADWoodcuttingRecipe(Identifier id, String group, Ingredient input, ItemStack output) {
         this.type = ADRecipeTypes.WOODCUTTING;
@@ -59,7 +60,7 @@ public class ADWoodcuttingRecipe implements Recipe<Inventory> {
     }
 
     @Override
-    public ItemStack getOutput() {
+    public ItemStack getOutput(DynamicRegistryManager registryManager) {
         return this.output;
     }
 
@@ -69,9 +70,9 @@ public class ADWoodcuttingRecipe implements Recipe<Inventory> {
 
     @Override
     public DefaultedList<Ingredient> getIngredients() {
-        DefaultedList<Ingredient> defaultedList = DefaultedList.of();
-        defaultedList.add(this.input);
-        return defaultedList;
+        DefaultedList<Ingredient> ingredients = DefaultedList.of();
+        ingredients.add(this.input);
+        return ingredients;
     }
 
     @Override
@@ -85,7 +86,7 @@ public class ADWoodcuttingRecipe implements Recipe<Inventory> {
     }
 
     @Override
-    public ItemStack craft(Inventory inventory) {
+    public ItemStack craft(Inventory inventory, DynamicRegistryManager registryManager) {
         return this.output.copy();
     }
     
@@ -115,9 +116,9 @@ public class ADWoodcuttingRecipe implements Recipe<Inventory> {
 
         @Override
         public void write(PacketByteBuf packetByteBuf, T cuttingRecipe) {
-            packetByteBuf.writeString(cuttingRecipe.getGroup());
+            packetByteBuf.writeString(cuttingRecipe.group);
             cuttingRecipe.getInput().write(packetByteBuf);
-            packetByteBuf.writeItemStack(cuttingRecipe.getOutput());
+            packetByteBuf.writeItemStack(cuttingRecipe.output);
         }
 
         @Override

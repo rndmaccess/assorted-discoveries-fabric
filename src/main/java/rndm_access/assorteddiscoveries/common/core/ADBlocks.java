@@ -7,7 +7,6 @@ import net.minecraft.particle.ParticleEffect;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.BlockPos;
@@ -147,8 +146,6 @@ public class ADBlocks {
     public static final Block QUARTZ_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.QUARTZ_BLOCK));
     public static final Block SMOOTH_QUARTZ_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.SMOOTH_QUARTZ));
     public static final Block STONE_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.STONE));
-    public static final Block RED_GLASS = new GlassBlock(AbstractBlock.Settings.copy(Blocks.GLASS));
-    public static final Block RED_GLASS_PANE = new PaneBlock(AbstractBlock.Settings.copy(Blocks.GLASS_PANE));
     public static final Block BLUEBERRY_BUSH = new ADBlueberryBushBlock(AbstractBlock.Settings.copy(Blocks.WHEAT));
     public static final Block BOK_CHOY = new ADBokChoyCropBlock(AbstractBlock.Settings.copy(Blocks.WHEAT));
     public static final Block GARLIC = new ADOnionBlock(AbstractBlock.Settings.copy(Blocks.WHEAT), () -> ADItems.GARLIC);
@@ -285,10 +282,10 @@ public class ADBlocks {
             .luminance((state) -> 10));
     public static final Block FRESH_BAMBOO_FENCE = bambooFenceBlock(MapColor.DARK_GREEN);
     public static final Block FRESH_BAMBOO_FENCE_GATE = new FenceGateBlock(AbstractBlock.Settings.copy(FRESH_BAMBOO_FENCE),
-            SoundEvents.BLOCK_FENCE_GATE_CLOSE, SoundEvents.BLOCK_FENCE_GATE_OPEN);
+            WoodType.BAMBOO);
     public static final Block DRIED_BAMBOO_FENCE = bambooFenceBlock(MapColor.YELLOW);
     public static final Block DRIED_BAMBOO_FENCE_GATE = new FenceGateBlock(AbstractBlock.Settings.copy(DRIED_BAMBOO_FENCE),
-            SoundEvents.BLOCK_FENCE_GATE_CLOSE, SoundEvents.BLOCK_FENCE_GATE_OPEN);
+            WoodType.BAMBOO);
     public static final Block BAUXITE = new Block(AbstractBlock.Settings.of(Material.STONE, MapColor.SPRUCE_BROWN)
             .strength(0.3F));
     public static final Block BAUXITE_SLAB = new SlabBlock(AbstractBlock.Settings.copy(BAUXITE));
@@ -555,6 +552,9 @@ public class ADBlocks {
     public static final Block BLACK_CANDLE_RED_VELVET_CAKE = new ADCandleCakeBlock(RED_VELVET_CAKE, Blocks.BLACK_CANDLE,
             AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
     public static final Block CAMEL_PLUSH = new ADCamelPlushBlock(AbstractBlock.Settings.copy(ADBlocks.BAT_PLUSH));
+    public static final Block CINDERSNAP_BERRY_BUSH = new ADCindersnapBerryBushBlock(AbstractBlock.Settings.copy(Blocks.SWEET_BERRY_BUSH)
+            .luminance((state) -> 8));
+    public static final Block FROSTBITE_BERRY_BUSH = new ADFrostbiteBerryBushBlock(AbstractBlock.Settings.copy(Blocks.SWEET_BERRY_BUSH));
 
     private static ADBambooFenceBlock bambooFenceBlock(MapColor color) {
         return new ADBambooFenceBlock(AbstractBlock.Settings.of(Material.WOOD, color).strength(1.0F)
@@ -731,8 +731,6 @@ public class ADBlocks {
         register("quartz_wall", QUARTZ_WALL);
         register("smooth_quartz_wall", SMOOTH_QUARTZ_WALL);
         register("stone_wall", STONE_WALL);
-        register("red_glass", RED_GLASS);
-        register("red_glass_pane", RED_GLASS_PANE);
         register("blueberry_bush", BLUEBERRY_BUSH);
         register("bok_choy", BOK_CHOY);
         register("garlic", GARLIC);
@@ -1039,6 +1037,8 @@ public class ADBlocks {
         register("red_candle_red_velvet_cake", RED_CANDLE_RED_VELVET_CAKE);
         register("black_candle_red_velvet_cake", BLACK_CANDLE_RED_VELVET_CAKE);
         register("camel_plush", CAMEL_PLUSH);
+        register("cindersnap_berry_bush", CINDERSNAP_BERRY_BUSH);
+        register("frostbite_berry_bush", FROSTBITE_BERRY_BUSH);
 
         AssortedDiscoveries.LOGGER.info("Registered blocks");
     }

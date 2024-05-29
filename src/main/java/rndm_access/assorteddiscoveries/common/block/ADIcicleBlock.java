@@ -3,7 +3,6 @@ package rndm_access.assorteddiscoveries.common.block;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.FallingBlockEntity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.util.math.BlockPos;
@@ -77,14 +76,14 @@ public class ADIcicleBlock extends FallingBlock {
 
         // Damages the player when underneath the icicle.
         if (player != null) {
-            player.damage(DamageSource.GENERIC, blocksFallen * fallMultiplier);
+            player.damage(world.getDamageSources().fallingStalactite(fallingBlockEntity), blocksFallen * fallMultiplier);
         }
         world.removeBlock(pos, false);
     }
 
-    @Override
     @SuppressWarnings("deprecation")
+    @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-        entity.damage(DamageSource.GENERIC, 0.5F);
+        entity.damage(world.getDamageSources().stalagmite(), 0.5F);
     }
 }

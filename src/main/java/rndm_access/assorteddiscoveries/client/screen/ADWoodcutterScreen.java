@@ -49,10 +49,10 @@ public class ADWoodcutterScreen extends HandledScreen<ADWoodcutterScreenHandler>
         RenderSystem.setShader(GameRenderer::getPositionTexProgram);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, TEXTURE);
-        this.drawTexture(matrices, xOrigin, yOrigin, 0, 0, this.backgroundWidth, this.backgroundHeight);
-        this.drawTexture(matrices, xOrigin + 119, yOrigin + 15 + k, 176 + (this.shouldScroll() ? 0 : 12), 0, 12, 15);
+        drawTexture(matrices, xOrigin, yOrigin, 0, 0, this.backgroundWidth, this.backgroundHeight);
+        drawTexture(matrices, xOrigin + 119, yOrigin + 15 + k, 176 + (this.shouldScroll() ? 0 : 12), 0, 12, 15);
         this.renderRecipeBackground(matrices, mouseX, mouseY, l, m, n);
-        this.renderRecipeIcons(l, m, n);
+        this.renderRecipeIcons(matrices, l, m, n);
     }
 
     @Override
@@ -71,7 +71,9 @@ public class ADWoodcutterScreen extends HandledScreen<ADWoodcutterScreenHandler>
                 int k1 = j + i1 / 4 * 18 + 2;
 
                 if (x >= j1 && x < j1 + 16 && y >= k1 && y < k1 + 18) {
-                    this.renderTooltip(matrices, list.get(l).getOutput(), x, y);
+                    assert this.client != null;
+                    assert this.client.world != null;
+                    this.renderTooltip(matrices, list.get(l).getOutput(this.client.world.getRegistryManager()), x, y);
                 }
             }
         }
@@ -91,11 +93,11 @@ public class ADWoodcutterScreen extends HandledScreen<ADWoodcutterScreenHandler>
                 n += 36;
             }
 
-            this.drawTexture(matrices, k, m - 1, 0, n, 16, 18);
+            drawTexture(matrices, k, m - 1, 0, n, 16, 18);
         }
     }
 
-    private void renderRecipeIcons(int x, int y, int scrollOffset) {
+    private void renderRecipeIcons(MatrixStack matrices, int x, int y, int scrollOffset) {
         List<ADWoodcuttingRecipe> list = this.handler.getAvailableRecipes();
 
         for(int i = this.scrollOffset; i < scrollOffset && i < this.handler.getAvailableRecipeCount(); ++i) {
@@ -104,7 +106,9 @@ public class ADWoodcutterScreen extends HandledScreen<ADWoodcutterScreenHandler>
             int l = j / 4;
             int m = y + l * 18 + 2;
 
-            Objects.requireNonNull(this.client).getItemRenderer().renderInGuiWithOverrides(list.get(i).getOutput(), k, m);
+            assert this.client != null;
+            assert this.client.world != null;
+            Objects.requireNonNull(this.client).getItemRenderer().renderInGuiWithOverrides(matrices, list.get(i).getOutput(this.client.world.getRegistryManager()), k, m);
         }
     }
 

@@ -2,7 +2,7 @@
   "parent": "assorteddiscoveries:block/template_planter_box_three_sides",
   "textures": {
     "material": "minecraft:block/mangrove_planks",
-    "log": "minecraft:block/mangrove_log",
+    "log": "minecraft:block/stripped_mangrove_log",
     "soil": "minecraft:block/farmland_moist"
   }
 }

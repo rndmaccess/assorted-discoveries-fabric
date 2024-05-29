@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import rndm_access.assorteddiscoveries.common.core.ADBlockTags;
+import rndm_access.assorteddiscoveries.core.ADBlockTags;
 
 @Mixin(SproutsBlock.class)
 public class ADSproutsBlockMixin {

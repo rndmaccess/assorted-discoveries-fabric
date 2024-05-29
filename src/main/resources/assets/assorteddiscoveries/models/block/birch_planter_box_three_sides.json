@@ -2,7 +2,7 @@
   "parent": "assorteddiscoveries:block/template_planter_box_three_sides",
   "textures": {
     "material": "block/birch_planks",
-    "log": "block/birch_log",
+    "log": "block/stripped_birch_log",
     "soil": "block/farmland_moist"
   }
 }

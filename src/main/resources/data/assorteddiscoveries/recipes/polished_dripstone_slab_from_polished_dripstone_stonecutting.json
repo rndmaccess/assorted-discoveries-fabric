@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "assorteddiscoveries:polished_dripstone"
+  },
+  "result": "assorteddiscoveries:polished_dripstone_slab",
+  "count": 2
+}

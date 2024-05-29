@@ -10,11 +10,12 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import rndm_access.assorteddiscoveries.common.core.ADBlocks;
-import rndm_access.assorteddiscoveries.common.core.CBlockTags;
+import rndm_access.assorteddiscoveries.core.ADBlocks;
+import rndm_access.assorteddiscoveries.core.CBlockTags;
 
 import java.util.Random;
 
@@ -31,8 +32,7 @@ public abstract class ADBoneMealItemMixin {
         Random random = new Random();
         BlockState blockBoneMealed = world.getBlockState(blockPos);
 
-        // Grow snapdragons and ender grass on blocks in the END_BONE_MEALABLE_BLOCKS
-        // when using bone meal.
+        // Grow snapdragons and ender grass on blocks in the END_BONE_MEALABLE_BLOCKS when using bone meal.
         if (blockBoneMealed.isIn(CBlockTags.END_BONE_MEALABLE_BLOCKS) && world.getBlockState(blockPos.up()).isAir()) {
             if (!world.isClient()) {
                 growEnderPlants(blockPos, random, world);
@@ -43,6 +43,7 @@ public abstract class ADBoneMealItemMixin {
         }
     }
 
+    @Unique
     private static void growEnderPlants(BlockPos blockPos, Random random, World world) {
         for (int i = 0; i < 128; ++i) {
             // Re-center the position on the block bone mealed.

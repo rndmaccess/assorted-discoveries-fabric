@@ -6,12 +6,12 @@
     ]
   },
   "criteria": {
-    "has_dripstone_block": {
+    "has_polished_dripstone": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:dripstone_block"
+              "assorteddiscoveries:polished_dripstone"
             ]
           }
         ]
@@ -27,7 +27,7 @@
   },
   "requirements": [
     [
-      "has_dripstone_block",
+      "has_polished_dripstone",
       "has_the_recipe"
     ]
   ]

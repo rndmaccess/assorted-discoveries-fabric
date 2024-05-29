@@ -7,7 +7,7 @@
       "model": "assorteddiscoveries:block/polished_dripstone_slab_top"
     },
     "type=double": {
-      "model": "assorteddiscoveries:block/polished_dripstone_block"
+      "model": "assorteddiscoveries:block/polished_dripstone"
     }
   }
 }

@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import rndm_access.assorteddiscoveries.common.util.ADBlockStateUtil;
+import rndm_access.assorteddiscoveries.util.ADBlockStateUtil;
 
 @Mixin(SnowyBlock.class)
 public class ADSnowyBlockMixin {

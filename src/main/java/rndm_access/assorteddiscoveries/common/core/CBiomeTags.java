@@ -1,7 +1,7 @@
 package rndm_access.assorteddiscoveries.common.core;
 
-import net.minecraft.tag.TagKey;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.world.biome.Biome;
 import rndm_access.assorteddiscoveries.ADReference;
 
@@ -17,6 +17,6 @@ public class CBiomeTags {
     public static final TagKey<Biome> WEEPING_HEART = of("has_feature/weeping_heart");
 
     private static TagKey<Biome> of(String path) {
-        return TagKey.of(Registry.BIOME_KEY, ADReference.makeCommonId(path));
+        return TagKey.of(RegistryKeys.BIOME, ADReference.makeCommonId(path));
     }
 }

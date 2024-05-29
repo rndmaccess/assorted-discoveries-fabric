@@ -1,8 +1,8 @@
 package rndm_access.assorteddiscoveries.common.core;
 
 import net.minecraft.block.Block;
-import net.minecraft.tag.TagKey;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.tag.TagKey;
 import rndm_access.assorteddiscoveries.ADReference;
 
 public class CBlockTags {
@@ -20,6 +20,6 @@ public class CBlockTags {
      * @return The tag from the location or an empty tag if none exists.
      */
     private static TagKey<Block> of(String path) {
-        return TagKey.of(Registry.BLOCK_KEY, ADReference.makeCommonId(path));
+        return TagKey.of(RegistryKeys.BLOCK, ADReference.makeCommonId(path));
     }
 }

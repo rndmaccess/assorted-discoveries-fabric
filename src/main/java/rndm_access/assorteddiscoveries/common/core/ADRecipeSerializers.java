@@ -3,7 +3,8 @@ package rndm_access.assorteddiscoveries.common.core;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import rndm_access.assorteddiscoveries.ADReference;
 import rndm_access.assorteddiscoveries.common.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.common.item.crafting.ADWoodcuttingRecipe;
@@ -21,6 +22,6 @@ public class ADRecipeSerializers {
      * Called during mod initialization to register every recipe serializer.
      */
     private static <T extends Recipe<Inventory>> void register(String id, RecipeSerializer<T> serializer) {
-        Registry.register(Registry.RECIPE_SERIALIZER, ADReference.makeId(id), serializer);
+        Registry.register(Registries.RECIPE_SERIALIZER, ADReference.makeId(id), serializer);
     }
 }

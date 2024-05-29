@@ -5,17 +5,14 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
-import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
-import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
 import net.minecraft.client.color.world.BiomeColors;
 import net.minecraft.client.color.world.GrassColors;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.particle.FlameParticle;
 import net.minecraft.client.particle.LavaEmberParticle;
 import net.minecraft.client.render.RenderLayer;
-import net.minecraft.screen.PlayerScreenHandler;
-import rndm_access.assorteddiscoveries.ADReference;
+import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import rndm_access.assorteddiscoveries.client.block_entity.ADDyedCampfireBlockEntityRenderer;
 import rndm_access.assorteddiscoveries.client.particle.ADFallingWeepingHeartNectarParticle;
 import rndm_access.assorteddiscoveries.client.particle.ADSporeParticle;
@@ -29,7 +26,6 @@ public class AssortedDiscoveriesClient implements ClientModInitializer {
     public void onInitializeClient() {
         registerBlockColorProviders();
         registerItemColorProviders();
-        registerParticleSprites();
         registerParticleFactories();
         registerRenderLayers();
         registerScreens();
@@ -37,7 +33,7 @@ public class AssortedDiscoveriesClient implements ClientModInitializer {
     }
 
     private void registerBlockEntityRenderers() {
-        BlockEntityRendererRegistry.register(ADBlockEntityTypes.DYED_CAMPFIRE, ADDyedCampfireBlockEntityRenderer::new);
+        BlockEntityRendererFactories.register(ADBlockEntityTypes.DYED_CAMPFIRE, ADDyedCampfireBlockEntityRenderer::new);
     }
 
     private void registerBlockColorProviders() {
@@ -53,50 +49,6 @@ public class AssortedDiscoveriesClient implements ClientModInitializer {
 
     private void registerScreens() {
         HandledScreens.register(ADScreenHandlerTypes.WOODCUTTER, ADWoodcutterScreen::new);
-    }
-
-    private void registerParticleSprites() {
-        registerParticleSprite("white_spark");
-        registerParticleSprite("orange_spark");
-        registerParticleSprite("magenta_spark");
-        registerParticleSprite("light_blue_spark");
-        registerParticleSprite("yellow_spark");
-        registerParticleSprite("lime_spark");
-        registerParticleSprite("pink_spark");
-        registerParticleSprite("gray_spark");
-        registerParticleSprite("light_gray_spark");
-        registerParticleSprite("cyan_spark");
-        registerParticleSprite("purple_spark");
-        registerParticleSprite("blue_spark");
-        registerParticleSprite("brown_spark");
-        registerParticleSprite("green_spark");
-        registerParticleSprite("red_spark");
-        registerParticleSprite("black_spark");
-        registerParticleSprite("maroon_spark");
-        registerParticleSprite("white_flame");
-        registerParticleSprite("orange_flame");
-        registerParticleSprite("magenta_flame");
-        registerParticleSprite("light_blue_flame");
-        registerParticleSprite("yellow_flame");
-        registerParticleSprite("lime_flame");
-        registerParticleSprite("pink_flame");
-        registerParticleSprite("gray_flame");
-        registerParticleSprite("light_gray_flame");
-        registerParticleSprite("cyan_flame");
-        registerParticleSprite("purple_flame");
-        registerParticleSprite("blue_flame");
-        registerParticleSprite("brown_flame");
-        registerParticleSprite("green_flame");
-        registerParticleSprite("red_flame");
-        registerParticleSprite("black_flame");
-        registerParticleSprite("maroon_flame");
-        registerParticleSprite("blood_kelp_spore");
-        registerParticleSprite("witchs_cradle_spore");
-    }
-
-    private static void registerParticleSprite(String id) {
-        ClientSpriteRegistryCallback.event(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE).register((
-                (atlasTexture, registry) -> registry.register(ADReference.makeId("particle/" + id))));
     }
 
     private void registerParticleFactories() {

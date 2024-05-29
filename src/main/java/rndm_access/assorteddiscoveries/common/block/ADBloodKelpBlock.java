@@ -13,9 +13,9 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
+import net.minecraft.world.WorldView;
 import rndm_access.assorteddiscoveries.common.core.ADBlocks;
 
 import java.util.Objects;
@@ -82,7 +82,7 @@ public class ADBloodKelpBlock extends KelpBlock implements ADBloodKelp {
     }
 
     @Override
-    public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
         return !state.get(LIT) && super.isFertilizable(world, pos, state, isClient);
     }
 

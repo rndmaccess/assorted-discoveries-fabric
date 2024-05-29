@@ -4,11 +4,13 @@ import net.minecraft.block.*;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.particle.ParticleEffect;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.BlockView;
 import rndm_access.assorteddiscoveries.ADReference;
 import rndm_access.assorteddiscoveries.common.AssortedDiscoveries;
@@ -118,7 +120,8 @@ public class ADBlocks {
     public static final Block RAVAGER_PLUSH = new ADHoglinPlushBlock(AbstractBlock.Settings.copy(BAT_PLUSH));
     public static final Block SHULKER_PLUSH = new ADShulkerPlushBlock(AbstractBlock.Settings.copy(BAT_PLUSH));
     public static final Block VEX_PLUSH = new ADAllayPlushBlock(AbstractBlock.Settings.copy(GLOW_SQUID_PLUSH));
-    public static final Block NETHER_SMOKY_QUARTZ_ORE = new OreBlock(AbstractBlock.Settings.copy(Blocks.NETHER_QUARTZ_ORE));
+    public static final Block NETHER_SMOKY_QUARTZ_ORE = new ExperienceDroppingBlock(
+            AbstractBlock.Settings.copy(Blocks.NETHER_QUARTZ_ORE));
     public static final Block SMOKY_QUARTZ_BLOCK = new Block(AbstractBlock.Settings.of(Material.STONE, MapColor.BLACK)
             .requiresTool().strength(0.8F));
     public static final Block CHISELED_SMOKY_QUARTZ_BLOCK = new Block(AbstractBlock.Settings.copy(SMOKY_QUARTZ_BLOCK));
@@ -204,8 +207,9 @@ public class ADBlocks {
             AbstractBlock.Settings.copy(SNOW_BRICKS));
     public static final Block PACKED_SNOW_SLAB = new SlabBlock(AbstractBlock.Settings.copy(PACKED_SNOW));
     public static final Block PACKED_SNOW_WALL = new WallBlock(AbstractBlock.Settings.copy(PACKED_SNOW));
-    public static final Block PURPLE_MUSHROOM = new MushroomPlantBlock(AbstractBlock.Settings.copy(Blocks.RED_MUSHROOM),
-            () -> ADConfiguredFeatures.HUGE_PURPLE_MUSHROOM);
+    public static final Block PURPLE_MUSHROOM = new MushroomPlantBlock(AbstractBlock.Settings.of(Material.PLANT, MapColor.PURPLE)
+            .noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS).postProcess(ADBlocks::always),
+            ADConfiguredFeatureKeys.HUGE_PURPLE_MUSHROOM);
     public static final Block PURPLE_MUSHROOM_BLOCK = new ADPurpleMushroomBlock(AbstractBlock.Settings.copy(Blocks.RED_MUSHROOM_BLOCK));
     public static final Block WOODCUTTER = new ADWoodcutterBlock(AbstractBlock.Settings.of(Material.WOOD)
             .strength(2.5F).sounds(BlockSoundGroup.WOOD));
@@ -280,9 +284,11 @@ public class ADBlocks {
     public static final Block WITCHS_CRADLE = new ADWitchsCradleBlock(AbstractBlock.Settings.copy(Blocks.SWEET_BERRY_BUSH)
             .luminance((state) -> 10));
     public static final Block FRESH_BAMBOO_FENCE = bambooFenceBlock(MapColor.DARK_GREEN);
-    public static final Block FRESH_BAMBOO_FENCE_GATE = new FenceGateBlock(AbstractBlock.Settings.copy(FRESH_BAMBOO_FENCE));
-    public static final Block DRIED_BAMBOO_FENCE = bambooFenceBlock(MapColor.PALE_YELLOW);
-    public static final Block DRIED_BAMBOO_FENCE_GATE = new FenceGateBlock(AbstractBlock.Settings.copy(DRIED_BAMBOO_FENCE));
+    public static final Block FRESH_BAMBOO_FENCE_GATE = new FenceGateBlock(AbstractBlock.Settings.copy(FRESH_BAMBOO_FENCE),
+            SoundEvents.BLOCK_FENCE_GATE_CLOSE, SoundEvents.BLOCK_FENCE_GATE_OPEN);
+    public static final Block DRIED_BAMBOO_FENCE = bambooFenceBlock(MapColor.YELLOW);
+    public static final Block DRIED_BAMBOO_FENCE_GATE = new FenceGateBlock(AbstractBlock.Settings.copy(DRIED_BAMBOO_FENCE),
+            SoundEvents.BLOCK_FENCE_GATE_CLOSE, SoundEvents.BLOCK_FENCE_GATE_OPEN);
     public static final Block BAUXITE = new Block(AbstractBlock.Settings.of(Material.STONE, MapColor.SPRUCE_BROWN)
             .strength(0.3F));
     public static final Block BAUXITE_SLAB = new SlabBlock(AbstractBlock.Settings.copy(BAUXITE));
@@ -567,6 +573,10 @@ public class ADBlocks {
         return false;
     }
 
+    private static boolean always(BlockState state, BlockView world, BlockPos pos) {
+        return true;
+    }
+
     private static TorchBlock torchBlock(ParticleEffect flameParticle) {
         return new TorchBlock(AbstractBlock.Settings.copy(Blocks.TORCH), flameParticle);
     }
@@ -594,7 +604,7 @@ public class ADBlocks {
     }
 
     private static void register(String path, Block block) {
-        Registry.register(Registry.BLOCK, ADReference.makeId(path), block);
+        Registry.register(Registries.BLOCK, ADReference.makeId(path), block);
     }
 
     /**

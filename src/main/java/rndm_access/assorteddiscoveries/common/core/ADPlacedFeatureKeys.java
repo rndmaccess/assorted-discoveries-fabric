@@ -1,7 +1,7 @@
 package rndm_access.assorteddiscoveries.common.core;
 
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.world.gen.feature.PlacedFeature;
 import rndm_access.assorteddiscoveries.ADReference;
 
@@ -20,6 +20,6 @@ public class ADPlacedFeatureKeys {
     public static final RegistryKey<PlacedFeature> WEEPING_HEART = of("weeping_heart");
 
     public static RegistryKey<PlacedFeature> of(String path) {
-        return RegistryKey.of(Registry.PLACED_FEATURE_KEY, ADReference.makeId(path));
+        return RegistryKey.of(RegistryKeys.PLACED_FEATURE, ADReference.makeId(path));
     }
 }

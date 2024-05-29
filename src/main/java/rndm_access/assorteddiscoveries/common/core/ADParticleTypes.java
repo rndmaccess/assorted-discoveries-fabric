@@ -2,7 +2,8 @@ package rndm_access.assorteddiscoveries.common.core;
 
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.minecraft.particle.DefaultParticleType;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import rndm_access.assorteddiscoveries.ADReference;
 import rndm_access.assorteddiscoveries.common.AssortedDiscoveries;
 
@@ -47,7 +48,7 @@ public class ADParticleTypes {
     public static final DefaultParticleType WEEPING_HEART_AIR_NECTAR = register("weeping_heart_air_nectar");
 
     private static DefaultParticleType register(String path) {
-        return Registry.register(Registry.PARTICLE_TYPE, ADReference.makeId(path), FabricParticleTypes.simple());
+        return Registry.register(Registries.PARTICLE_TYPE, ADReference.makeId(path), FabricParticleTypes.simple());
     }
 
     /**

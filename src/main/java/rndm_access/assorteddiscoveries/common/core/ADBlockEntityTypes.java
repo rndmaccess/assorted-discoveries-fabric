@@ -3,7 +3,8 @@ package rndm_access.assorteddiscoveries.common.core;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import rndm_access.assorteddiscoveries.ADReference;
 import rndm_access.assorteddiscoveries.common.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.common.block_entity.ADDyedCampfireBlockEntity;
@@ -19,7 +20,7 @@ public class ADBlockEntityTypes {
             ADBlocks.MAROON_CAMPFIRE).build();
 
     private static <T extends BlockEntity> void register(String path, BlockEntityType<T> type) {
-        Registry.register(Registry.BLOCK_ENTITY_TYPE, ADReference.makeId(path), type);
+        Registry.register(Registries.BLOCK_ENTITY_TYPE, ADReference.makeId(path), type);
     }
 
     /**

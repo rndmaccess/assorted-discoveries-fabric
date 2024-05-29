@@ -10,7 +10,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3f;
+import net.minecraft.util.math.RotationAxis;
 import rndm_access.assorteddiscoveries.common.block_entity.ADDyedCampfireBlockEntity;
 
 public class ADDyedCampfireBlockEntityRenderer implements BlockEntityRenderer<ADDyedCampfireBlockEntity> {
@@ -29,8 +29,8 @@ public class ADDyedCampfireBlockEntityRenderer implements BlockEntityRenderer<AD
                 matrices.translate(0.5D, 0.44921875D, 0.5D);
                 Direction direction2 = Direction.fromHorizontal((l + direction.getHorizontal()) % 4);
                 float g = -direction2.asRotation();
-                matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(g));
-                matrices.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(90.0F));
+                matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(g));
+                matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(90.0F));
                 matrices.translate(-0.3125D, -0.3125D, 0.0D);
                 matrices.scale(0.375F, 0.375F, 0.375F);
                 MinecraftClient.getInstance().getItemRenderer().renderItem(itemStack, ModelTransformation.Mode.FIXED, light, overlay, matrices, vertexConsumers, k + l);

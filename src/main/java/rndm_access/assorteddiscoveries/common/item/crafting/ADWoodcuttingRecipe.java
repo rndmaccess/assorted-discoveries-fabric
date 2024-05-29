@@ -5,10 +5,10 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import rndm_access.assorteddiscoveries.common.core.ADBlocks;
 import rndm_access.assorteddiscoveries.common.core.ADRecipeSerializers;
@@ -96,7 +96,7 @@ public class ADWoodcuttingRecipe implements Recipe<Inventory> {
             String group = JsonHelper.getString(jsonObject, "group", "");
             String result = JsonHelper.getString(jsonObject, "result");
             int count = JsonHelper.getInt(jsonObject, "count");
-            ItemStack stack = new ItemStack(Registry.ITEM.get(new Identifier(result)), count);
+            ItemStack stack = new ItemStack(Registries.ITEM.get(new Identifier(result)), count);
             Ingredient ingredient = JsonHelper.hasArray(jsonObject, "ingredient")
                     ? Ingredient.fromJson(JsonHelper.getArray(jsonObject, "ingredient"))
                     : Ingredient.fromJson(JsonHelper.getObject(jsonObject, "ingredient"));

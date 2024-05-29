@@ -32,7 +32,7 @@ public class ADBambooFenceBlock extends FenceBlock {
         Direction.Axis axis = direction.getAxis();
 
         if (isWaterlogged) {
-            world.createAndScheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+            world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
         }
 
         if(axis.isHorizontal()) {

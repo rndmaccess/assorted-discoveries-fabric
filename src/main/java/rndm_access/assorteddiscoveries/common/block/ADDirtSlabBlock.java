@@ -7,8 +7,8 @@ import net.minecraft.block.SlabBlock;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldView;
 import rndm_access.assorteddiscoveries.common.core.ADBlocks;
 
 public class ADDirtSlabBlock extends SlabBlock implements Fertilizable {
@@ -17,7 +17,7 @@ public class ADDirtSlabBlock extends SlabBlock implements Fertilizable {
     }
 
     @Override
-    public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
         return true;
     }
 

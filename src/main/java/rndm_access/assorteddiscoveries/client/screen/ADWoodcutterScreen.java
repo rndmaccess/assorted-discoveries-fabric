@@ -46,7 +46,7 @@ public class ADWoodcutterScreen extends HandledScreen<ADWoodcutterScreenHandler>
         int n = this.scrollOffset + 12;
 
         this.renderBackground(matrices);
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.setShader(GameRenderer::getPositionTexProgram);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, TEXTURE);
         this.drawTexture(matrices, xOrigin, yOrigin, 0, 0, this.backgroundWidth, this.backgroundHeight);

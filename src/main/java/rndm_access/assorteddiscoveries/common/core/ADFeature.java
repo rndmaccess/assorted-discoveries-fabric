@@ -1,6 +1,7 @@
 package rndm_access.assorteddiscoveries.common.core;
 
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.world.gen.ProbabilityConfig;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
@@ -15,7 +16,7 @@ public class ADFeature {
     public static final Feature<DefaultFeatureConfig> BLOOD_KELP = new ADBloodKelpFeature(DefaultFeatureConfig.CODEC);
 
     private static <C extends FeatureConfig, F extends Feature<C>> void register(String path, F feature) {
-        Registry.register(Registry.FEATURE, ADReference.makeId(path), feature);
+        Registry.register(Registries.FEATURE, ADReference.makeId(path), feature);
     }
 
     /**

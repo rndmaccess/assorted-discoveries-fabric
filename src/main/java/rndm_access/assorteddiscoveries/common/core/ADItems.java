@@ -2,7 +2,9 @@ package rndm_access.assorteddiscoveries.common.core;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.*;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.util.math.Direction;
 import rndm_access.assorteddiscoveries.ADReference;
 import rndm_access.assorteddiscoveries.common.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.common.item.*;
@@ -362,32 +364,44 @@ public class ADItems {
     public static final Item CRACKED_DRIPSTONE_BRICK_SLAB = blockItem(ADBlocks.CRACKED_DRIPSTONE_BRICK_SLAB);
     public static final Item CRACKED_DRIPSTONE_BRICK_WALL = blockItem(ADBlocks.CRACKED_DRIPSTONE_BRICK_WALL);
     public static final Item CHISELED_DRIPSTONE_BRICKS = blockItem(ADBlocks.CHISELED_DRIPSTONE_BRICKS);
-    public static final Item BOK_CHOY = new Item(makeSettings(ADFoodComponents.BOK_CHOY));
-    public static final Item BOK_CHOY_SEEDS = new AliasedBlockItem(ADBlocks.BOK_CHOY, makeSettings());
-    public static final Item GARLIC = new AliasedBlockItem(ADBlocks.GARLIC, makeSettings(ADFoodComponents.GARLIC));
-    public static final Item GREEN_ONION = new AliasedBlockItem(ADBlocks.GREEN_ONIONS, makeSettings(ADFoodComponents.GREEN_ONION));
-    public static final Item BLUEBERRIES = new AliasedBlockItem(ADBlocks.BLUEBERRY_BUSH, makeSettings(ADFoodComponents.BLUEBERRIES));
-    public static final Item SWEET_BERRY_JUICE = new ADDrinkContainerItem(makeSettings(ADFoodComponents.SWEET_BERRY_JUICE, 16));
-    public static final Item BLUEBERRY_JUICE = new ADDrinkContainerItem(makeSettings(ADFoodComponents.BLUEBERRY_JUICE, 16));
+    public static final Item BOK_CHOY = new Item(new Item.Settings().food(ADFoodComponents.BOK_CHOY));
+    public static final Item BOK_CHOY_SEEDS = new AliasedBlockItem(ADBlocks.BOK_CHOY, new Item.Settings());
+    public static final Item GARLIC = new AliasedBlockItem(ADBlocks.GARLIC, new Item.Settings()
+            .food(ADFoodComponents.GARLIC));
+    public static final Item GREEN_ONION = new AliasedBlockItem(ADBlocks.GREEN_ONIONS, new Item.Settings()
+            .food(ADFoodComponents.GREEN_ONION));
+    public static final Item BLUEBERRIES = new AliasedBlockItem(ADBlocks.BLUEBERRY_BUSH, new Item.Settings()
+            .food(ADFoodComponents.BLUEBERRIES));
+    public static final Item SWEET_BERRY_JUICE = new ADDrinkContainerItem(new Item.Settings()
+            .food(ADFoodComponents.SWEET_BERRY_JUICE).maxCount(16));
+    public static final Item BLUEBERRY_JUICE = new ADDrinkContainerItem(new Item.Settings()
+            .food(ADFoodComponents.BLUEBERRY_JUICE).maxCount(16));
     public static final Item NOODLES = item();
-    public static final Item NOODLE_SOUP = new ADFoodContainerItem(makeSettings(ADFoodComponents.NOODLE_SOUP, 1));
-    public static final Item PUDDING = new ADFoodContainerItem(makeSettings(ADFoodComponents.PUDDING, 1));
-    public static final Item BERRY_PUDDING = new ADFoodContainerItem(makeSettings(ADFoodComponents.BERRY_PUDDING, 1));
+    public static final Item NOODLE_SOUP = new ADFoodContainerItem(new Item.Settings()
+            .food(ADFoodComponents.NOODLE_SOUP).maxCount(1));
+    public static final Item PUDDING = new ADFoodContainerItem(new Item.Settings()
+            .food(ADFoodComponents.PUDDING).maxCount(1));
+    public static final Item BERRY_PUDDING = new ADFoodContainerItem(new Item.Settings()
+            .food(ADFoodComponents.BERRY_PUDDING).maxCount(1));
     public static final Item SMOKY_QUARTZ = item();
-    public static final Item CARAMEL_APPLE = new ADFoodContainerItem(makeSettings(ADFoodComponents.CARAMEL_APPLE, 1), Items.STICK);
+    public static final Item CARAMEL_APPLE = new ADFoodContainerItem(new Item.Settings()
+            .food(ADFoodComponents.CARAMEL_APPLE).maxCount(1), Items.STICK);
     public static final Item CARAMEL = item();
-    public static final Item SPRUCE_CONE = new Item(makeSettings(ADFoodComponents.SPRUCE_CONE));
-    public static final Item FORESTS_BOUNTY = new ADFoodContainerItem(makeSettings(ADFoodComponents.FORESTS_BOUNTY, 1));
-    public static final Item WITCHS_CRADLE_BRANCH = new AliasedBlockItem(ADBlocks.WITCHS_CRADLE, makeSettings(ADFoodComponents.WITCHS_CRADLE_BRANCH));
-    public static final Item WITCHS_CRADLE_SOUP = new ADFoodContainerItem(makeSettings(ADFoodComponents.WITCHS_CRADLE_SOUP, 1));
-    public static final Item MIXED_SEED_PACKET = new ADMixedSeedPacketItem(makeSettings());
-    public static final Item CATTAIL = new AliasedBlockItem(ADBlocks.CATTAIL, makeSettings());
+    public static final Item SPRUCE_CONE = new Item(new Item.Settings().food(ADFoodComponents.SPRUCE_CONE));
+    public static final Item FORESTS_BOUNTY = new ADFoodContainerItem(new Item.Settings()
+            .food(ADFoodComponents.FORESTS_BOUNTY).maxCount(1));
+    public static final Item WITCHS_CRADLE_BRANCH = new AliasedBlockItem(ADBlocks.WITCHS_CRADLE, new Item.Settings()
+            .food(ADFoodComponents.WITCHS_CRADLE_BRANCH));
+    public static final Item WITCHS_CRADLE_SOUP = new ADFoodContainerItem(new Item.Settings()
+            .food(ADFoodComponents.WITCHS_CRADLE_SOUP).maxCount(1));
+    public static final Item MIXED_SEED_PACKET = new ADMixedSeedPacketItem(new Item.Settings());
+    public static final Item CATTAIL = new AliasedBlockItem(ADBlocks.CATTAIL, new Item.Settings());
     public static final Item DRIED_BAMBOO = item();
-    public static final Item FRIED_EGG = new Item(makeSettings(ADFoodComponents.FRIED_EGG, 16));
-    public static final Item BLOOD_KELP_SEED_CLUSTER = new AliasedBlockItem(ADBlocks.BLOOD_KELP, makeSettings());
+    public static final Item FRIED_EGG = new Item(new Item.Settings().food(ADFoodComponents.FRIED_EGG).maxCount(16));
+    public static final Item BLOOD_KELP_SEED_CLUSTER = new AliasedBlockItem(ADBlocks.BLOOD_KELP, new Item.Settings());
     public static final Item BLOOD_KELP = item();
     public static final Item DRIED_BLOOD_KELP_BLOCK = blockItem(ADBlocks.DRIED_BLOOD_KELP_BLOCK);
-    public static final Item DRIED_BLOOD_KELP = new Item(makeSettings(FoodComponents.DRIED_KELP));
+    public static final Item DRIED_BLOOD_KELP = new Item(new Item.Settings().food(FoodComponents.DRIED_KELP));
     public static final Item BLOOD_KELP_LANTERN = blockItem(ADBlocks.BLOOD_KELP_LANTERN);
     public static final Item MAROON_WOOL = blockItem(ADBlocks.MAROON_WOOL);
     public static final Item MAROON_STAINED_GLASS = blockItem(ADBlocks.MAROON_STAINED_GLASS);
@@ -396,42 +410,31 @@ public class ADItems {
     public static final Item MAROON_CONCRETE = blockItem(ADBlocks.MAROON_CONCRETE);
     public static final Item MAROON_CONCRETE_POWDER = blockItem(ADBlocks.MAROON_CONCRETE_POWDER);
     public static final Item MAROON_DYE = item();
-    public static final Item HOGLIN_STEW = new ADFoodContainerItem(makeSettings(ADFoodComponents.HOGLIN_STEW, 1));
-    public static final Item WEEPING_HEART_NECTAR_BUCKET = new ADDrinkContainerItem(
-            makeSettings(ADFoodComponents.WEEPING_HEART_NECTAR_BUCKET, 1).recipeRemainder(Items.BUCKET), Items.BUCKET);
-    public static final Item WEEPING_HEART_SEEDS = new AliasedBlockItem(ADBlocks.WEEPING_HEART, makeSettings());
+    public static final Item HOGLIN_STEW = new ADFoodContainerItem(new Item.Settings()
+            .food(ADFoodComponents.HOGLIN_STEW).maxCount(1));
+    public static final Item WEEPING_HEART_NECTAR_BUCKET = new ADDrinkContainerItem(new Item.Settings()
+            .food(ADFoodComponents.WEEPING_HEART_NECTAR_BUCKET).maxCount(1).recipeRemainder(Items.BUCKET), Items.BUCKET);
+    public static final Item WEEPING_HEART_SEEDS = new AliasedBlockItem(ADBlocks.WEEPING_HEART, new Item.Settings());
     public static final Item CAMEL_PLUSH = blockItem(ADBlocks.CAMEL_PLUSH);
 
     private static Item item() {
-        return new Item(makeSettings());
+        return new Item(new Item.Settings());
     }
 
     private static Item blockItem(Block block) {
-        return new BlockItem(block, makeSettings());
+        return new BlockItem(block, new Item.Settings());
     }
 
     private static Item wallStandingBlockItem(Block standingBlock, Block wallBlock) {
-        return new WallStandingBlockItem(standingBlock, wallBlock, makeSettings());
+        return new VerticallyAttachableBlockItem(standingBlock, wallBlock, new Item.Settings(), Direction.DOWN);
     }
 
     private static Item ropeLadderBlockItem(Block block) {
-        return new ADRopeLadderBlockItem(block, makeSettings());
-    }
-
-    private static Item.Settings makeSettings() {
-        return new Item.Settings().group(AssortedDiscoveries.MOD_GROUP);
-    }
-
-    private static Item.Settings makeSettings(FoodComponent food, int maxCount) {
-        return new Item.Settings().group(AssortedDiscoveries.MOD_GROUP).maxCount(maxCount).food(food);
-    }
-
-    private static Item.Settings makeSettings(FoodComponent food) {
-        return new Item.Settings().group(AssortedDiscoveries.MOD_GROUP).food(food);
+        return new ADRopeLadderBlockItem(block, new Item.Settings());
     }
 
     private static void register(String path, Item item) {
-        Registry.register(Registry.ITEM, ADReference.makeId(path), item);
+        Registry.register(Registries.ITEM, ADReference.makeId(path), item);
     }
 
     /**

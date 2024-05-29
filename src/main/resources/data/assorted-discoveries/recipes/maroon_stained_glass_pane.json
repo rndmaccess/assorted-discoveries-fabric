@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stained_glass_pane",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "assorted-discoveries:maroon_stained_glass"
+    }
+  },
+  "result": {
+    "count": 16,
+    "item": "assorted-discoveries:maroon_stained_glass_pane"
+  }
+}

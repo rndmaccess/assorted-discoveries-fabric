@@ -90,7 +90,7 @@ public class ADItems {
     public static final Item CRIMSON_ZOMBIE_VILLAGER_PLUSH = blockItem(ADBlocks.CRIMSON_ZOMBIE_VILLAGER_PLUSH);
     public static final Item WARPED_ZOMBIE_VILLAGER_PLUSH = blockItem(ADBlocks.WARPED_ZOMBIE_VILLAGER_PLUSH);
     public static final Item WITCH_PLUSH = blockItem(ADBlocks.WITCH_PLUSH);
-    public static final Item WOLF_PLUSH = blockItem(ADBlocks.WOLF_PLUSH);
+    public static final Item PALE_WOLF_PLUSH = blockItem(ADBlocks.PALE_WOLF_PLUSH);
     public static final Item ZOMBIE_PLUSH = blockItem(ADBlocks.ZOMBIE_PLUSH);
     public static final Item PIGLIN_PLUSH = blockItem(ADBlocks.PIGLIN_PLUSH);
     public static final Item ZOMBIFIED_PIGLIN_PLUSH = blockItem(ADBlocks.ZOMBIFIED_PIGLIN_PLUSH);
@@ -263,8 +263,7 @@ public class ADItems {
     public static final Item WEEPING_NETHERRACK_SLAB = blockItem(ADBlocks.WEEPING_NETHERRACK_SLAB);
     public static final Item WEEPING_NETHERRACK_WALL = blockItem(ADBlocks.WEEPING_NETHERRACK_WALL);
     public static final Item SNAPDRAGON = blockItem(ADBlocks.SNAPDRAGON);
-    public static final Item ENDER_GRASS = blockItem(ADBlocks.ENDER_GRASS);
-    public static final Item ICICLE = blockItem(ADBlocks.ICICLE);
+    public static final Item SHORT_ENDER_GRASS = blockItem(ADBlocks.SHORT_ENDER_GRASS);
     public static final Item CHOCOLATE_CAKE = blockItem(ADBlocks.CHOCOLATE_CAKE);
     public static final Item RED_VELVET_CAKE = blockItem(ADBlocks.RED_VELVET_CAKE);
     public static final Item STONE_TILES = blockItem(ADBlocks.STONE_TILES);
@@ -339,8 +338,8 @@ public class ADItems {
     public static final Item CRACKED_DRIPSTONE_BRICK_SLAB = blockItem(ADBlocks.CRACKED_DRIPSTONE_BRICK_SLAB);
     public static final Item CRACKED_DRIPSTONE_BRICK_WALL = blockItem(ADBlocks.CRACKED_DRIPSTONE_BRICK_WALL);
     public static final Item CHISELED_DRIPSTONE_BRICKS = blockItem(ADBlocks.CHISELED_DRIPSTONE_BRICKS);
-    public static final Item GREEN_ONION = new AliasedBlockItem(ADBlocks.GREEN_ONIONS, new Item.Settings()
-            .food(ADFoodComponents.GREEN_ONION));
+    public static final Item GREEN_ONION_SEEDS = new AliasedBlockItem(ADBlocks.GREEN_ONIONS, new Item.Settings());
+    public static final Item GREEN_ONION = new Item(new Item.Settings().food(ADFoodComponents.GREEN_ONION));
     public static final Item BLUEBERRIES = new AliasedBlockItem(ADBlocks.BLUEBERRY_BUSH, new Item.Settings()
             .food(ADFoodComponents.BLUEBERRIES));
     public static final Item SWEET_BERRY_JUICE = new ADDrinkContainerItem(new Item.Settings()
@@ -365,7 +364,6 @@ public class ADItems {
             .food(ADFoodComponents.WITCHS_CRADLE_BRANCH));
     public static final Item WITCHS_CRADLE_SOUP = new ADFoodContainerItem(new Item.Settings()
             .food(ADFoodComponents.WITCHS_CRADLE_SOUP).maxCount(1));
-    public static final Item MIXED_SEED_PACKET = new ADMixedSeedPacketItem(new Item.Settings());
     public static final Item CATTAIL = new AliasedBlockItem(ADBlocks.CATTAIL, new Item.Settings());
     public static final Item FRIED_EGG = new Item(new Item.Settings().food(ADFoodComponents.FRIED_EGG).maxCount(16));
     public static final Item BLOOD_KELP_SEED_CLUSTER = new AliasedBlockItem(ADBlocks.BLOOD_KELP, new Item.Settings());
@@ -379,13 +377,11 @@ public class ADItems {
     public static final Item MAROON_CANDLE = blockItem(ADBlocks.MAROON_CANDLE);
     public static final Item MAROON_CONCRETE = blockItem(ADBlocks.MAROON_CONCRETE);
     public static final Item MAROON_CONCRETE_POWDER = blockItem(ADBlocks.MAROON_CONCRETE_POWDER);
+    public static final Item CAMEL_PLUSH = blockItem(ADBlocks.CAMEL_PLUSH);
     public static final Item MAROON_DYE = item();
     public static final Item HOGLIN_STEW = new ADFoodContainerItem(new Item.Settings()
             .food(ADFoodComponents.HOGLIN_STEW).maxCount(1));
-    public static final Item WEEPING_HEART_NECTAR_BUCKET = new ADDrinkContainerItem(new Item.Settings()
-            .food(ADFoodComponents.WEEPING_HEART_NECTAR_BUCKET).maxCount(1).recipeRemainder(Items.BUCKET), Items.BUCKET);
-    public static final Item WEEPING_HEART_SEEDS = new AliasedBlockItem(ADBlocks.WEEPING_HEART, new Item.Settings());
-    public static final Item CAMEL_PLUSH = blockItem(ADBlocks.CAMEL_PLUSH);
+    public static final Item BOG_BLOSSOM = blockItem(ADBlocks.BOG_BLOSSOM);
     public static final Item CINDERSNAP_BERRIES = new AliasedBlockItem(ADBlocks.CINDERSNAP_BERRY_BUSH, new Item.Settings()
             .food(ADFoodComponents.NETHER_BERRIES));
     public static final Item FROSTBITE_BERRIES = new AliasedBlockItem(ADBlocks.FROSTBITE_BERRY_BUSH, new Item.Settings()
@@ -405,6 +401,17 @@ public class ADItems {
     public static final Item CALCITE_SLAB = blockItem(ADBlocks.CALCITE_SLAB);
     public static final Item CALCITE_WALL = blockItem(ADBlocks.CALCITE_WALL);
     public static final Item BAMBOO_PLANTER_BOX = blockItem(ADBlocks.BAMBOO_PLANTER_BOX);
+    public static final Item STONE_WALL = blockItem(ADBlocks.STONE_WALL);
+    public static final Item QUARTZ_WALL = blockItem(ADBlocks.QUARTZ_WALL);
+    public static final Item SMOOTH_QUARTZ_WALL = blockItem(ADBlocks.SMOOTH_QUARTZ_WALL);
+    public static final Item GRASS_SLAB = blockItem(ADBlocks.GRASS_SLAB);
+    public static final Item PODZOL_SLAB = blockItem(ADBlocks.PODZOL_SLAB);
+    public static final Item MYCELIUM_SLAB = blockItem(ADBlocks.MYCELIUM_SLAB);
+    public static final Item DIRT_PATH_SLAB = blockItem(ADBlocks.DIRT_PATH_SLAB);
+    public static final Item DIRT_SLAB = blockItem(ADBlocks.DIRT_SLAB);
+    public static final Item COARSE_DIRT_SLAB = blockItem(ADBlocks.COARSE_DIRT_SLAB);
+    public static final Item ROOTED_DIRT_SLAB = blockItem(ADBlocks.ROOTED_DIRT_SLAB);
+    public static final Item WILD_GREEN_ONIONS = blockItem(ADBlocks.WILD_GREEN_ONIONS);
 
     private static Item item() {
         return new Item(new Item.Settings());
@@ -422,394 +429,138 @@ public class ADItems {
         return new ADRopeLadderBlockItem(block, new Item.Settings());
     }
 
-    private static void registerItem(String path, Item item) {
+    /**
+     * Register an item using the passed in name.
+     * @param path The name of this item.
+     * @param item The item to register.
+     */
+    private static void register(String path, Item item) {
         Registry.register(Registries.ITEM, ADReference.makeModId(path), item);
+    }
+
+    /**
+     * Register an item block for every block passed in using the identifier of the block.
+     * @param blockItems The item blocks to register.
+     */
+    private static void register(Item... blockItems) {
+        for(Item item : blockItems) {
+            if(item instanceof BlockItem) {
+                Registry.register(Registries.ITEM, Registries.BLOCK.getId(Block.getBlockFromItem(item)), item);
+            } else {
+                throw new IllegalArgumentException("The passed item must be an instance of an ItemBlock");
+            }
+        }
     }
 
     /**
      * Called during mod initialization to register every item.
      */
     public static void registerItems() {
-        registerItem("bat_plush", BAT_PLUSH);
-        registerItem("blaze_plush", BLAZE_PLUSH);
-        registerItem("cave_spider_plush", CAVE_SPIDER_PLUSH);
-        registerItem("chicken_plush", CHICKEN_PLUSH);
-        registerItem("cow_plush", COW_PLUSH);
-        registerItem("creeper_plush", CREEPER_PLUSH);
-        registerItem("enderman_plush", ENDERMAN_PLUSH);
-        registerItem("ghast_plush", GHAST_PLUSH);
-        registerItem("guardian_plush", GUARDIAN_PLUSH);
-        registerItem("white_horse_plush", WHITE_HORSE_PLUSH);
-        registerItem("gray_horse_plush", GRAY_HORSE_PLUSH);
-        registerItem("light_gray_horse_plush", LIGHT_GRAY_HORSE_PLUSH);
-        registerItem("brown_horse_plush", BROWN_HORSE_PLUSH);
-        registerItem("black_horse_plush", BLACK_HORSE_PLUSH);
-        registerItem("magma_cube_plush", MAGMA_CUBE_PLUSH);
-        registerItem("red_mooshroom_plush", RED_MOOSHROOM_PLUSH);
-        registerItem("brown_mooshroom_plush", BROWN_MOOSHROOM_PLUSH);
-        registerItem("ocelot_plush", OCELOT_PLUSH);
-        registerItem("tabby_cat_plush", TABBY_CAT_PLUSH);
-        registerItem("tuxedo_cat_plush", TUXEDO_CAT_PLUSH);
-        registerItem("red_cat_plush", RED_CAT_PLUSH);
-        registerItem("siamese_cat_plush", SIAMESE_CAT_PLUSH);
-        registerItem("british_shorthair_cat_plush", BRITISH_SHORTHAIR_CAT_PLUSH);
-        registerItem("calico_cat_plush", CALICO_CAT_PLUSH);
-        registerItem("persian_cat_plush", PERSIAN_CAT_PLUSH);
-        registerItem("ragdoll_cat_plush", RAGDOLL_CAT_PLUSH);
-        registerItem("white_cat_plush", WHITE_CAT_PLUSH);
-        registerItem("jellie_cat_plush", JELLIE_CAT_PLUSH);
-        registerItem("black_cat_plush", BLACK_CAT_PLUSH);
-        registerItem("pig_plush", PIG_PLUSH);
-        registerItem("brown_rabbit_plush", BROWN_RABBIT_PLUSH);
-        registerItem("white_rabbit_plush", WHITE_RABBIT_PLUSH);
-        registerItem("black_rabbit_plush", BLACK_RABBIT_PLUSH);
-        registerItem("white_splotched_rabbit_plush", WHITE_SPLOTCHED_RABBIT_PLUSH);
-        registerItem("gold_rabbit_plush", GOLD_RABBIT_PLUSH);
-        registerItem("toast_rabbit_plush", TOAST_RABBIT_PLUSH);
-        registerItem("salt_rabbit_plush", SALT_RABBIT_PLUSH);
-        registerItem("white_sheep_plush", WHITE_SHEEP_PLUSH);
-        registerItem("orange_sheep_plush", ORANGE_SHEEP_PLUSH);
-        registerItem("magenta_sheep_plush", MAGENTA_SHEEP_PLUSH);
-        registerItem("light_blue_sheep_plush", LIGHT_BLUE_SHEEP_PLUSH);
-        registerItem("yellow_sheep_plush", YELLOW_SHEEP_PLUSH);
-        registerItem("lime_sheep_plush", LIME_SHEEP_PLUSH);
-        registerItem("pink_sheep_plush", PINK_SHEEP_PLUSH);
-        registerItem("gray_sheep_plush", GRAY_SHEEP_PLUSH);
-        registerItem("light_gray_sheep_plush", LIGHT_GRAY_SHEEP_PLUSH);
-        registerItem("cyan_sheep_plush", CYAN_SHEEP_PLUSH);
-        registerItem("purple_sheep_plush", PURPLE_SHEEP_PLUSH);
-        registerItem("blue_sheep_plush", BLUE_SHEEP_PLUSH);
-        registerItem("brown_sheep_plush", BROWN_SHEEP_PLUSH);
-        registerItem("green_sheep_plush", GREEN_SHEEP_PLUSH);
-        registerItem("red_sheep_plush", RED_SHEEP_PLUSH);
-        registerItem("black_sheep_plush", BLACK_SHEEP_PLUSH);
-        registerItem("maroon_sheep_plush", MAROON_SHEEP_PLUSH);
-        registerItem("skeleton_plush", SKELETON_PLUSH);
-        registerItem("slime_plush", SLIME_PLUSH);
-        registerItem("spider_plush", SPIDER_PLUSH);
-        registerItem("squid_plush", SQUID_PLUSH);
-        registerItem("glow_squid_plush", GLOW_SQUID_PLUSH);
-        registerItem("bee_plush", BEE_PLUSH);
-        registerItem("plains_villager_plush", PLAINS_VILLAGER_PLUSH);
-        registerItem("desert_villager_plush", DESERT_VILLAGER_PLUSH);
-        registerItem("jungle_villager_plush", JUNGLE_VILLAGER_PLUSH);
-        registerItem("savanna_villager_plush", SAVANNA_VILLAGER_PLUSH);
-        registerItem("snow_villager_plush", SNOW_VILLAGER_PLUSH);
-        registerItem("swamp_villager_plush", SWAMP_VILLAGER_PLUSH);
-        registerItem("taiga_villager_plush", TAIGA_VILLAGER_PLUSH);
-        registerItem("crimson_villager_plush", CRIMSON_VILLAGER_PLUSH);
-        registerItem("warped_villager_plush", WARPED_VILLAGER_PLUSH);
-        registerItem("wandering_trader_plush", WANDERING_TRADER_PLUSH);
-        registerItem("plains_zombie_villager_plush", PLAINS_ZOMBIE_VILLAGER_PLUSH);
-        registerItem("desert_zombie_villager_plush", DESERT_ZOMBIE_VILLAGER_PLUSH);
-        registerItem("jungle_zombie_villager_plush", JUNGLE_ZOMBIE_VILLAGER_PLUSH);
-        registerItem("savanna_zombie_villager_plush", SAVANNA_ZOMBIE_VILLAGER_PLUSH);
-        registerItem("snow_zombie_villager_plush", SNOW_ZOMBIE_VILLAGER_PLUSH);
-        registerItem("swamp_zombie_villager_plush", SWAMP_ZOMBIE_VILLAGER_PLUSH);
-        registerItem("taiga_zombie_villager_plush", TAIGA_ZOMBIE_VILLAGER_PLUSH);
-        registerItem("crimson_zombie_villager_plush", CRIMSON_ZOMBIE_VILLAGER_PLUSH);
-        registerItem("warped_zombie_villager_plush", WARPED_ZOMBIE_VILLAGER_PLUSH);
-        registerItem("witch_plush", WITCH_PLUSH);
-        registerItem("wolf_plush", WOLF_PLUSH);
-        registerItem("zombie_plush", ZOMBIE_PLUSH);
-        registerItem("piglin_plush", PIGLIN_PLUSH);
-        registerItem("zombified_piglin_plush", ZOMBIFIED_PIGLIN_PLUSH);
-        registerItem("pufferfish_plush", PUFFERFISH_PLUSH);
-        registerItem("wither_plush", WITHER_PLUSH);
-        registerItem("strider_plush", STRIDER_PLUSH);
-        registerItem("shivering_strider_plush", SHIVERING_STRIDER_PLUSH);
-        registerItem("phantom_plush", PHANTOM_PLUSH);
-        registerItem("hoglin_plush", HOGLIN_PLUSH);
-        registerItem("zoglin_plush", ZOGLIN_PLUSH);
-        registerItem("polar_bear_plush", POLAR_BEAR_PLUSH);
-        registerItem("allay_plush", ALLAY_PLUSH);
-        registerItem("pillager_plush", PILLAGER_PLUSH);
-        registerItem("vindicator_plush", VINDICATOR_PLUSH);
-        registerItem("evoker_plush", EVOKER_PLUSH);
-        registerItem("ravager_plush", RAVAGER_PLUSH);
-        registerItem("shulker_plush", SHULKER_PLUSH);
-        registerItem("vex_plush", VEX_PLUSH);
-        registerItem("nether_smoky_quartz_ore", NETHER_SMOKY_QUARTZ_ORE);
-        registerItem("smoky_quartz_block", SMOKY_QUARTZ_BLOCK);
-        registerItem("chiseled_smoky_quartz_block", CHISELED_SMOKY_QUARTZ_BLOCK);
-        registerItem("smoky_quartz_bricks", SMOKY_QUARTZ_BRICKS);
-        registerItem("smoky_quartz_brick_stairs", SMOKY_QUARTZ_BRICK_STAIRS);
-        registerItem("smoky_quartz_brick_slab", SMOKY_QUARTZ_BRICK_SLAB);
-        registerItem("smoky_quartz_brick_wall", SMOKY_QUARTZ_BRICK_WALL);
-        registerItem("smoky_quartz_pillar", SMOKY_QUARTZ_PILLAR);
-        registerItem("smoky_quartz_stairs", SMOKY_QUARTZ_STAIRS);
-        registerItem("smoky_quartz_slab", SMOKY_QUARTZ_SLAB);
-        registerItem("smoky_quartz_wall", SMOKY_QUARTZ_WALL);
-        registerItem("smooth_smoky_quartz", SMOOTH_SMOKY_QUARTZ);
-        registerItem("smooth_smoky_quartz_stairs", SMOOTH_SMOKY_QUARTZ_STAIRS);
-        registerItem("smooth_smoky_quartz_slab", SMOOTH_SMOKY_QUARTZ_SLAB);
-        registerItem("smooth_smoky_quartz_wall", SMOOTH_SMOKY_QUARTZ_WALL);
-        registerItem("cracked_stone_brick_stairs", CRACKED_STONE_BRICK_STAIRS);
-        registerItem("cracked_stone_brick_slab", CRACKED_STONE_BRICK_SLAB);
-        registerItem("cracked_stone_brick_wall", CRACKED_STONE_BRICK_WALL);
-        registerItem("oak_planter_box", OAK_PLANTER_BOX);
-        registerItem("spruce_planter_box", SPRUCE_PLANTER_BOX);
-        registerItem("birch_planter_box", BIRCH_PLANTER_BOX);
-        registerItem("jungle_planter_box", JUNGLE_PLANTER_BOX);
-        registerItem("acacia_planter_box", ACACIA_PLANTER_BOX);
-        registerItem("dark_oak_planter_box", DARK_OAK_PLANTER_BOX);
-        registerItem("mangrove_planter_box", MANGROVE_PLANTER_BOX);
-        registerItem("cherry_planter_box", CHERRY_PLANTER_BOX);
-        registerItem("crimson_planter_box", CRIMSON_PLANTER_BOX);
-        registerItem("warped_planter_box", WARPED_PLANTER_BOX);
-        registerItem("oak_wall", OAK_WALL);
-        registerItem("spruce_wall", SPRUCE_WALL);
-        registerItem("birch_wall", BIRCH_WALL);
-        registerItem("jungle_wall", JUNGLE_WALL);
-        registerItem("acacia_wall", ACACIA_WALL);
-        registerItem("dark_oak_wall", DARK_OAK_WALL);
-        registerItem("mangrove_wall", MANGROVE_WALL);
-        registerItem("crimson_wall", CRIMSON_WALL);
-        registerItem("warped_wall", WARPED_WALL);
-        registerItem("cherry_wall", CHERRY_WALL);
-        registerItem("stripped_oak_wall", STRIPPED_OAK_WALL);
-        registerItem("stripped_spruce_wall", STRIPPED_SPRUCE_WALL);
-        registerItem("stripped_birch_wall", STRIPPED_BIRCH_WALL);
-        registerItem("stripped_jungle_wall", STRIPPED_JUNGLE_WALL);
-        registerItem("stripped_acacia_wall", STRIPPED_ACACIA_WALL);
-        registerItem("stripped_dark_oak_wall", STRIPPED_DARK_OAK_WALL);
-        registerItem("stripped_mangrove_wall", STRIPPED_MANGROVE_WALL);
-        registerItem("stripped_crimson_wall", STRIPPED_CRIMSON_WALL);
-        registerItem("stripped_warped_wall", STRIPPED_WARPED_WALL);
-        registerItem("stripped_cherry_wall", STRIPPED_CHERRY_WALL);
-        registerItem("oak_rope_ladder", OAK_ROPE_LADDER);
-        registerItem("spruce_rope_ladder", SPRUCE_ROPE_LADDER);
-        registerItem("birch_rope_ladder", BIRCH_ROPE_LADDER);
-        registerItem("jungle_rope_ladder", JUNGLE_ROPE_LADDER);
-        registerItem("acacia_rope_ladder", ACACIA_ROPE_LADDER);
-        registerItem("dark_oak_rope_ladder", DARK_OAK_ROPE_LADDER);
-        registerItem("crimson_rope_ladder", CRIMSON_ROPE_LADDER);
-        registerItem("warped_rope_ladder", WARPED_ROPE_LADDER);
-        registerItem("mangrove_rope_ladder", MANGROVE_ROPE_LADDER);
-        registerItem("cherry_rope_ladder", CHERRY_ROPE_LADDER);
-        registerItem("iron_ladder", IRON_LADDER);
-        registerItem("snow_bricks", SNOW_BRICKS);
-        registerItem("snow_brick_stairs", SNOW_BRICK_STAIRS);
-        registerItem("snow_brick_slab", SNOW_BRICK_SLAB);
-        registerItem("snow_brick_wall", SNOW_BRICK_WALL);
-        registerItem("packed_snow", PACKED_SNOW);
-        registerItem("packed_snow_stairs", PACKED_SNOW_STAIRS);
-        registerItem("packed_snow_slab", PACKED_SNOW_SLAB);
-        registerItem("packed_snow_wall", PACKED_SNOW_WALL);
-        registerItem("purple_mushroom", PURPLE_MUSHROOM);
-        registerItem("purple_mushroom_block", PURPLE_MUSHROOM_BLOCK);
-        registerItem("woodcutter", WOODCUTTER);
-        registerItem("white_campfire", WHITE_CAMPFIRE);
-        registerItem("orange_campfire", ORANGE_CAMPFIRE);
-        registerItem("magenta_campfire", MAGENTA_CAMPFIRE);
-        registerItem("light_blue_campfire", LIGHT_BLUE_CAMPFIRE);
-        registerItem("yellow_campfire", YELLOW_CAMPFIRE);
-        registerItem("lime_campfire", LIME_CAMPFIRE);
-        registerItem("pink_campfire", PINK_CAMPFIRE);
-        registerItem("gray_campfire", GRAY_CAMPFIRE);
-        registerItem("light_gray_campfire", LIGHT_GRAY_CAMPFIRE);
-        registerItem("cyan_campfire", CYAN_CAMPFIRE);
-        registerItem("purple_campfire", PURPLE_CAMPFIRE);
-        registerItem("blue_campfire", BLUE_CAMPFIRE);
-        registerItem("brown_campfire", BROWN_CAMPFIRE);
-        registerItem("green_campfire", GREEN_CAMPFIRE);
-        registerItem("red_campfire", RED_CAMPFIRE);
-        registerItem("black_campfire", BLACK_CAMPFIRE);
-        registerItem("maroon_campfire", MAROON_CAMPFIRE);
-        registerItem("white_lantern", WHITE_LANTERN);
-        registerItem("orange_lantern", ORANGE_LANTERN);
-        registerItem("magenta_lantern", MAGENTA_LANTERN);
-        registerItem("light_blue_lantern", LIGHT_BLUE_LANTERN);
-        registerItem("yellow_lantern", YELLOW_LANTERN);
-        registerItem("lime_lantern", LIME_LANTERN);
-        registerItem("pink_lantern", PINK_LANTERN);
-        registerItem("gray_lantern", GRAY_LANTERN);
-        registerItem("light_gray_lantern", LIGHT_GRAY_LANTERN);
-        registerItem("cyan_lantern", CYAN_LANTERN);
-        registerItem("purple_lantern", PURPLE_LANTERN);
-        registerItem("blue_lantern", BLUE_LANTERN);
-        registerItem("brown_lantern", BROWN_LANTERN);
-        registerItem("green_lantern", GREEN_LANTERN);
-        registerItem("red_lantern", RED_LANTERN);
-        registerItem("black_lantern", BLACK_LANTERN);
-        registerItem("maroon_lantern", MAROON_LANTERN);
-        registerItem("white_torch", WHITE_TORCH);
-        registerItem("orange_torch", ORANGE_TORCH);
-        registerItem("magenta_torch", MAGENTA_TORCH);
-        registerItem("light_blue_torch", LIGHT_BLUE_TORCH);
-        registerItem("yellow_torch", YELLOW_TORCH);
-        registerItem("lime_torch", LIME_TORCH);
-        registerItem("pink_torch", PINK_TORCH);
-        registerItem("gray_torch", GRAY_TORCH);
-        registerItem("light_gray_torch", LIGHT_GRAY_TORCH);
-        registerItem("cyan_torch", CYAN_TORCH);
-        registerItem("purple_torch", PURPLE_TORCH);
-        registerItem("blue_torch", BLUE_TORCH);
-        registerItem("brown_torch", BROWN_TORCH);
-        registerItem("green_torch", GREEN_TORCH);
-        registerItem("red_torch", RED_TORCH);
-        registerItem("black_torch", BLACK_TORCH);
-        registerItem("maroon_torch", MAROON_TORCH);
-        registerItem("bauxite", BAUXITE);
-        registerItem("bauxite_slab", BAUXITE_SLAB);
-        registerItem("bauxite_stairs", BAUXITE_STAIRS);
-        registerItem("bauxite_wall", BAUXITE_WALL);
-        registerItem("bauxite_bricks", BAUXITE_BRICKS);
-        registerItem("bauxite_brick_stairs", BAUXITE_BRICK_STAIRS);
-        registerItem("bauxite_brick_slab", BAUXITE_BRICK_SLAB);
-        registerItem("bauxite_brick_wall", BAUXITE_BRICK_WALL);
-        registerItem("mossy_bauxite_bricks", MOSSY_BAUXITE_BRICKS);
-        registerItem("mossy_bauxite_brick_stairs", MOSSY_BAUXITE_BRICK_STAIRS);
-        registerItem("mossy_bauxite_brick_slab", MOSSY_BAUXITE_BRICK_SLAB);
-        registerItem("mossy_bauxite_brick_wall", MOSSY_BAUXITE_BRICK_WALL);
-        registerItem("cracked_bauxite_bricks", CRACKED_BAUXITE_BRICKS);
-        registerItem("cracked_bauxite_brick_stairs", CRACKED_BAUXITE_BRICK_STAIRS);
-        registerItem("cracked_bauxite_brick_slab", CRACKED_BAUXITE_BRICK_SLAB);
-        registerItem("cracked_bauxite_brick_wall", CRACKED_BAUXITE_BRICK_WALL);
-        registerItem("twisted_nether_bricks", TWISTED_NETHER_BRICKS);
-        registerItem("twisted_nether_brick_stairs", TWISTED_NETHER_BRICK_STAIRS);
-        registerItem("twisted_nether_brick_slab", TWISTED_NETHER_BRICK_SLAB);
-        registerItem("twisted_nether_brick_wall", TWISTED_NETHER_BRICK_WALL);
-        registerItem("twisted_netherrack", TWISTED_NETHERRACK);
-        registerItem("twisted_netherrack_stairs", TWISTED_NETHERRACK_STAIRS);
-        registerItem("twisted_netherrack_slab", TWISTED_NETHERRACK_SLAB);
-        registerItem("twisted_netherrack_wall", TWISTED_NETHERRACK_WALL);
-        registerItem("weeping_nether_bricks", WEEPING_NETHER_BRICKS);
-        registerItem("weeping_nether_brick_stairs", WEEPING_NETHER_BRICK_STAIRS);
-        registerItem("weeping_nether_brick_slab", WEEPING_NETHER_BRICK_SLAB);
-        registerItem("weeping_nether_brick_wall", WEEPING_NETHER_BRICK_WALL);
-        registerItem("weeping_netherrack", WEEPING_NETHERRACK);
-        registerItem("weeping_netherrack_stairs", WEEPING_NETHERRACK_STAIRS);
-        registerItem("weeping_netherrack_slab", WEEPING_NETHERRACK_SLAB);
-        registerItem("weeping_netherrack_wall", WEEPING_NETHERRACK_WALL);
-        registerItem("snapdragon", SNAPDRAGON);
-        registerItem("ender_grass", ENDER_GRASS);
-        registerItem("icicle", ICICLE);
-        registerItem("chocolate_cake", CHOCOLATE_CAKE);
-        registerItem("red_velvet_cake", RED_VELVET_CAKE);
-        registerItem("stone_tiles", STONE_TILES);
-        registerItem("stone_tile_slab", STONE_TILE_SLAB);
-        registerItem("stone_tile_stairs", STONE_TILE_STAIRS);
-        registerItem("stone_tile_wall", STONE_TILE_WALL);
-        registerItem("mossy_stone_tiles", MOSSY_STONE_TILES);
-        registerItem("mossy_stone_tile_slab", MOSSY_STONE_TILE_SLAB);
-        registerItem("mossy_stone_tile_stairs", MOSSY_STONE_TILE_STAIRS);
-        registerItem("mossy_stone_tile_wall", MOSSY_STONE_TILE_WALL);
-        registerItem("cracked_stone_tiles", CRACKED_STONE_TILES);
-        registerItem("cracked_stone_tile_slab", CRACKED_STONE_TILE_SLAB);
-        registerItem("cracked_stone_tile_stairs", CRACKED_STONE_TILE_STAIRS);
-        registerItem("cracked_stone_tile_wall", CRACKED_STONE_TILE_WALL);
-        registerItem("sweet_berry_pie", SWEET_BERRY_PIE);
-        registerItem("blueberry_pie", BLUEBERRY_PIE);
-        registerItem("blackstone_tiles", BLACKSTONE_TILES);
-        registerItem("blackstone_tile_stairs", BLACKSTONE_TILE_STAIRS);
-        registerItem("blackstone_tile_slab", BLACKSTONE_TILE_SLAB);
-        registerItem("blackstone_tile_wall", BLACKSTONE_TILE_WALL);
-        registerItem("twisted_blackstone_tiles", TWISTED_BLACKSTONE_TILES);
-        registerItem("twisted_blackstone_tile_stairs", TWISTED_BLACKSTONE_TILE_STAIRS);
-        registerItem("twisted_blackstone_tile_slab", TWISTED_BLACKSTONE_TILE_SLAB);
-        registerItem("twisted_blackstone_tile_wall", TWISTED_BLACKSTONE_TILE_WALL);
-        registerItem("weeping_blackstone_tiles", WEEPING_BLACKSTONE_TILES);
-        registerItem("weeping_blackstone_tile_stairs", WEEPING_BLACKSTONE_TILE_STAIRS);
-        registerItem("weeping_blackstone_tile_slab", WEEPING_BLACKSTONE_TILE_SLAB);
-        registerItem("weeping_blackstone_tile_wall", WEEPING_BLACKSTONE_TILE_WALL);
-        registerItem("twisted_polished_blackstone_bricks", TWISTED_POLISHED_BLACKSTONE_BRICKS);
-        registerItem("twisted_polished_blackstone_brick_stairs", TWISTED_POLISHED_BLACKSTONE_BRICK_STAIRS);
-        registerItem("twisted_polished_blackstone_brick_slab", TWISTED_POLISHED_BLACKSTONE_BRICK_SLAB);
-        registerItem("twisted_polished_blackstone_brick_wall", TWISTED_POLISHED_BLACKSTONE_BRICK_WALL);
-        registerItem("weeping_polished_blackstone_bricks", WEEPING_POLISHED_BLACKSTONE_BRICKS);
-        registerItem("weeping_polished_blackstone_brick_stairs", WEEPING_POLISHED_BLACKSTONE_BRICK_STAIRS);
-        registerItem("weeping_polished_blackstone_brick_slab", WEEPING_POLISHED_BLACKSTONE_BRICK_SLAB);
-        registerItem("weeping_polished_blackstone_brick_wall", WEEPING_POLISHED_BLACKSTONE_BRICK_WALL);
-        registerItem("twisted_blackstone", TWISTED_BLACKSTONE);
-        registerItem("twisted_blackstone_stairs", TWISTED_BLACKSTONE_STAIRS);
-        registerItem("twisted_blackstone_slab", TWISTED_BLACKSTONE_SLAB);
-        registerItem("twisted_blackstone_wall", TWISTED_BLACKSTONE_WALL);
-        registerItem("weeping_blackstone", WEEPING_BLACKSTONE);
-        registerItem("weeping_blackstone_stairs", WEEPING_BLACKSTONE_STAIRS);
-        registerItem("weeping_blackstone_slab", WEEPING_BLACKSTONE_SLAB);
-        registerItem("weeping_blackstone_wall", WEEPING_BLACKSTONE_WALL);
-        registerItem("quartz_tiles", QUARTZ_TILES);
-        registerItem("quartz_tile_stairs", QUARTZ_TILE_STAIRS);
-        registerItem("quartz_tile_slab", QUARTZ_TILE_SLAB);
-        registerItem("quartz_tile_wall", QUARTZ_TILE_WALL);
-        registerItem("calcite_bricks", CALCITE_BRICKS);
-        registerItem("calcite_brick_stairs", CALCITE_BRICK_STAIRS);
-        registerItem("calcite_brick_slab", CALCITE_BRICK_SLAB);
-        registerItem("calcite_brick_wall", CALCITE_BRICK_WALL);
-        registerItem("mossy_calcite_bricks", MOSSY_CALCITE_BRICKS);
-        registerItem("mossy_calcite_brick_stairs", MOSSY_CALCITE_BRICK_STAIRS);
-        registerItem("mossy_calcite_brick_slab", MOSSY_CALCITE_BRICK_SLAB);
-        registerItem("mossy_calcite_brick_wall", MOSSY_CALCITE_BRICK_WALL);
-        registerItem("cracked_calcite_bricks", CRACKED_CALCITE_BRICKS);
-        registerItem("cracked_calcite_brick_stairs", CRACKED_CALCITE_BRICK_STAIRS);
-        registerItem("cracked_calcite_brick_slab", CRACKED_CALCITE_BRICK_SLAB);
-        registerItem("cracked_calcite_brick_wall", CRACKED_CALCITE_BRICK_WALL);
-        registerItem("chiseled_calcite_bricks", CHISELED_CALCITE_BRICKS);
-        registerItem("dripstone_bricks", DRIPSTONE_BRICKS);
-        registerItem("dripstone_brick_stairs", DRIPSTONE_BRICK_STAIRS);
-        registerItem("dripstone_brick_slab", DRIPSTONE_BRICK_SLAB);
-        registerItem("dripstone_brick_wall", DRIPSTONE_BRICK_WALL);
-        registerItem("mossy_dripstone_bricks", MOSSY_DRIPSTONE_BRICKS);
-        registerItem("mossy_dripstone_brick_stairs", MOSSY_DRIPSTONE_BRICK_STAIRS);
-        registerItem("mossy_dripstone_brick_slab", MOSSY_DRIPSTONE_BRICK_SLAB);
-        registerItem("mossy_dripstone_brick_wall", MOSSY_DRIPSTONE_BRICK_WALL);
-        registerItem("cracked_dripstone_bricks", CRACKED_DRIPSTONE_BRICKS);
-        registerItem("cracked_dripstone_brick_stairs", CRACKED_DRIPSTONE_BRICK_STAIRS);
-        registerItem("cracked_dripstone_brick_slab", CRACKED_DRIPSTONE_BRICK_SLAB);
-        registerItem("cracked_dripstone_brick_wall", CRACKED_DRIPSTONE_BRICK_WALL);
-        registerItem("chiseled_dripstone_bricks", CHISELED_DRIPSTONE_BRICKS);
-        registerItem("green_onion", GREEN_ONION);
-        registerItem("blueberries", BLUEBERRIES);
-        registerItem("sweet_berry_juice", SWEET_BERRY_JUICE);
-        registerItem("blueberry_juice", BLUEBERRY_JUICE);
-        registerItem("noodles", NOODLES);
-        registerItem("noodle_soup", NOODLE_SOUP);
-        registerItem("pudding", PUDDING);
-        registerItem("berry_pudding", BERRY_PUDDING);
-        registerItem("smoky_quartz", SMOKY_QUARTZ);
-        registerItem("caramel_apple", CARAMEL_APPLE);
-        registerItem("caramel", CARAMEL);
-        registerItem("spruce_cone", SPRUCE_CONE);
-        registerItem("forests_bounty", FORESTS_BOUNTY);
-        registerItem("witchs_cradle_branch", WITCHS_CRADLE_BRANCH);
-        registerItem("witchs_cradle_soup", WITCHS_CRADLE_SOUP);
-        registerItem("mixed_seed_packet", MIXED_SEED_PACKET);
-        registerItem("cattail", CATTAIL);
-        registerItem("fried_egg", FRIED_EGG);
-        registerItem("blood_kelp_seed_cluster", BLOOD_KELP_SEED_CLUSTER);
-        registerItem("blood_kelp", BLOOD_KELP);
-        registerItem("dried_blood_kelp_block", DRIED_BLOOD_KELP_BLOCK);
-        registerItem("dried_blood_kelp", DRIED_BLOOD_KELP);
-        registerItem("blood_kelp_lantern", BLOOD_KELP_LANTERN);
-        registerItem("maroon_wool", MAROON_WOOL);
-        registerItem("maroon_stained_glass", MAROON_STAINED_GLASS);
-        registerItem("maroon_stained_glass_pane", MAROON_STAINED_GLASS_PANE);
-        registerItem("maroon_candle", MAROON_CANDLE);
-        registerItem("maroon_concrete", MAROON_CONCRETE);
-        registerItem("maroon_concrete_powder", MAROON_CONCRETE_POWDER);
-        registerItem("maroon_dye", MAROON_DYE);
-        registerItem("hoglin_stew", HOGLIN_STEW);
-        registerItem("weeping_heart_nectar_bucket", WEEPING_HEART_NECTAR_BUCKET);
-        registerItem("weeping_heart_seeds", WEEPING_HEART_SEEDS);
-        registerItem("camel_plush", CAMEL_PLUSH);
-        registerItem("cindersnap_berries", CINDERSNAP_BERRIES);
-        registerItem("frostbite_berries", FROSTBITE_BERRIES);
-        registerItem("polished_dripstone", POLISHED_DRIPSTONE);
-        registerItem("polished_dripstone_stairs", POLISHED_DRIPSTONE_STAIRS);
-        registerItem("polished_dripstone_slab", POLISHED_DRIPSTONE_SLAB);
-        registerItem("polished_dripstone_wall", POLISHED_DRIPSTONE_WALL);
-        registerItem("polished_calcite", POLISHED_CALCITE);
-        registerItem("polished_calcite_stairs", POLISHED_CALCITE_STAIRS);
-        registerItem("polished_calcite_slab", POLISHED_CALCITE_SLAB);
-        registerItem("polished_calcite_wall", POLISHED_CALCITE_WALL);
-        registerItem("dripstone_stairs", DRIPSTONE_STAIRS);
-        registerItem("dripstone_slab", DRIPSTONE_SLAB);
-        registerItem("dripstone_wall", DRIPSTONE_WALL);
-        registerItem("calcite_stairs", CALCITE_STAIRS);
-        registerItem("calcite_slab", CALCITE_SLAB);
-        registerItem("calcite_wall", CALCITE_WALL);
-        registerItem("bamboo_planter_box", BAMBOO_PLANTER_BOX);
+        register(BAT_PLUSH, BLAZE_PLUSH, CAVE_SPIDER_PLUSH, CHICKEN_PLUSH, COW_PLUSH, CREEPER_PLUSH,
+                ENDERMAN_PLUSH, GHAST_PLUSH, GUARDIAN_PLUSH, WHITE_HORSE_PLUSH, GRAY_HORSE_PLUSH,
+                LIGHT_GRAY_HORSE_PLUSH, BROWN_HORSE_PLUSH, BLACK_HORSE_PLUSH, MAGMA_CUBE_PLUSH, RED_MOOSHROOM_PLUSH,
+                BROWN_MOOSHROOM_PLUSH, OCELOT_PLUSH, TABBY_CAT_PLUSH, TUXEDO_CAT_PLUSH, RED_CAT_PLUSH,
+                SIAMESE_CAT_PLUSH, BRITISH_SHORTHAIR_CAT_PLUSH, CALICO_CAT_PLUSH, PERSIAN_CAT_PLUSH,
+                RAGDOLL_CAT_PLUSH, WHITE_CAT_PLUSH, JELLIE_CAT_PLUSH, BLACK_CAT_PLUSH, PIG_PLUSH,
+                BROWN_RABBIT_PLUSH, WHITE_RABBIT_PLUSH, BLACK_RABBIT_PLUSH, WHITE_SPLOTCHED_RABBIT_PLUSH,
+                GOLD_RABBIT_PLUSH, TOAST_RABBIT_PLUSH, SALT_RABBIT_PLUSH, WHITE_SHEEP_PLUSH, ORANGE_SHEEP_PLUSH,
+                MAGENTA_SHEEP_PLUSH, LIGHT_BLUE_SHEEP_PLUSH, YELLOW_SHEEP_PLUSH, LIME_SHEEP_PLUSH, PINK_SHEEP_PLUSH,
+                GRAY_SHEEP_PLUSH, LIGHT_GRAY_SHEEP_PLUSH, CYAN_SHEEP_PLUSH, PURPLE_SHEEP_PLUSH, BLUE_SHEEP_PLUSH,
+                BROWN_SHEEP_PLUSH, GREEN_SHEEP_PLUSH, RED_SHEEP_PLUSH, BLACK_SHEEP_PLUSH, MAROON_SHEEP_PLUSH,
+                SKELETON_PLUSH, SLIME_PLUSH, SPIDER_PLUSH, SQUID_PLUSH, GLOW_SQUID_PLUSH, BEE_PLUSH,
+                PLAINS_VILLAGER_PLUSH, DESERT_VILLAGER_PLUSH, JUNGLE_VILLAGER_PLUSH, SAVANNA_VILLAGER_PLUSH,
+                SNOW_VILLAGER_PLUSH, SWAMP_VILLAGER_PLUSH, TAIGA_VILLAGER_PLUSH, CRIMSON_VILLAGER_PLUSH,
+                WARPED_VILLAGER_PLUSH, WANDERING_TRADER_PLUSH, PLAINS_ZOMBIE_VILLAGER_PLUSH,
+                DESERT_ZOMBIE_VILLAGER_PLUSH, JUNGLE_ZOMBIE_VILLAGER_PLUSH, SAVANNA_ZOMBIE_VILLAGER_PLUSH,
+                SNOW_ZOMBIE_VILLAGER_PLUSH, SWAMP_ZOMBIE_VILLAGER_PLUSH, TAIGA_ZOMBIE_VILLAGER_PLUSH,
+                CRIMSON_ZOMBIE_VILLAGER_PLUSH, WARPED_ZOMBIE_VILLAGER_PLUSH, WITCH_PLUSH, PALE_WOLF_PLUSH, ZOMBIE_PLUSH,
+                PIGLIN_PLUSH, ZOMBIFIED_PIGLIN_PLUSH, PUFFERFISH_PLUSH, WITHER_PLUSH, STRIDER_PLUSH,
+                SHIVERING_STRIDER_PLUSH, PHANTOM_PLUSH, HOGLIN_PLUSH, ZOGLIN_PLUSH, POLAR_BEAR_PLUSH, ALLAY_PLUSH,
+                PILLAGER_PLUSH, VINDICATOR_PLUSH, EVOKER_PLUSH, RAVAGER_PLUSH, SHULKER_PLUSH, VEX_PLUSH,
+                NETHER_SMOKY_QUARTZ_ORE, SMOKY_QUARTZ_BLOCK, CHISELED_SMOKY_QUARTZ_BLOCK, SMOKY_QUARTZ_BRICKS,
+                SMOKY_QUARTZ_BRICK_STAIRS, SMOKY_QUARTZ_BRICK_SLAB, SMOKY_QUARTZ_BRICK_WALL, SMOKY_QUARTZ_PILLAR,
+                SMOKY_QUARTZ_STAIRS, SMOKY_QUARTZ_SLAB, SMOKY_QUARTZ_WALL, SMOOTH_SMOKY_QUARTZ,
+                SMOOTH_SMOKY_QUARTZ_STAIRS, SMOOTH_SMOKY_QUARTZ_SLAB, SMOOTH_SMOKY_QUARTZ_WALL,
+                CRACKED_STONE_BRICK_STAIRS, CRACKED_STONE_BRICK_SLAB, CRACKED_STONE_BRICK_WALL, OAK_PLANTER_BOX,
+                SPRUCE_PLANTER_BOX, BIRCH_PLANTER_BOX, JUNGLE_PLANTER_BOX, ACACIA_PLANTER_BOX, DARK_OAK_PLANTER_BOX,
+                MANGROVE_PLANTER_BOX, CHERRY_PLANTER_BOX, CRIMSON_PLANTER_BOX, WARPED_PLANTER_BOX, OAK_WALL,
+                SPRUCE_WALL, BIRCH_WALL, JUNGLE_WALL, ACACIA_WALL, DARK_OAK_WALL, MANGROVE_WALL, CRIMSON_WALL,
+                WARPED_WALL, CHERRY_WALL, STRIPPED_OAK_WALL, STRIPPED_SPRUCE_WALL, STRIPPED_BIRCH_WALL,
+                STRIPPED_JUNGLE_WALL, STRIPPED_ACACIA_WALL, STRIPPED_DARK_OAK_WALL, STRIPPED_MANGROVE_WALL,
+                STRIPPED_CRIMSON_WALL, STRIPPED_WARPED_WALL, STRIPPED_CHERRY_WALL, OAK_ROPE_LADDER,
+                SPRUCE_ROPE_LADDER, BIRCH_ROPE_LADDER, JUNGLE_ROPE_LADDER, ACACIA_ROPE_LADDER, DARK_OAK_ROPE_LADDER,
+                CRIMSON_ROPE_LADDER, WARPED_ROPE_LADDER, MANGROVE_ROPE_LADDER, CHERRY_ROPE_LADDER, IRON_LADDER,
+                SNOW_BRICKS, SNOW_BRICK_STAIRS, SNOW_BRICK_SLAB, SNOW_BRICK_WALL, PACKED_SNOW, PACKED_SNOW_STAIRS,
+                PACKED_SNOW_SLAB, PACKED_SNOW_WALL, PURPLE_MUSHROOM, PURPLE_MUSHROOM_BLOCK, WOODCUTTER,
+                WHITE_CAMPFIRE, ORANGE_CAMPFIRE, MAGENTA_CAMPFIRE, LIGHT_BLUE_CAMPFIRE, YELLOW_CAMPFIRE,
+                LIME_CAMPFIRE, PINK_CAMPFIRE, GRAY_CAMPFIRE, LIGHT_GRAY_CAMPFIRE, CYAN_CAMPFIRE,
+                PURPLE_CAMPFIRE, BLUE_CAMPFIRE, BROWN_CAMPFIRE, GREEN_CAMPFIRE, RED_CAMPFIRE, BLACK_CAMPFIRE,
+                MAROON_CAMPFIRE, WHITE_LANTERN, ORANGE_LANTERN, MAGENTA_LANTERN, LIGHT_BLUE_LANTERN, YELLOW_LANTERN,
+                LIME_LANTERN, PINK_LANTERN, GRAY_LANTERN, LIGHT_GRAY_LANTERN, CYAN_LANTERN, PURPLE_LANTERN,
+                BLUE_LANTERN, BROWN_LANTERN, GREEN_LANTERN, RED_LANTERN, BLACK_LANTERN, MAROON_LANTERN, WHITE_TORCH,
+                ORANGE_TORCH, MAGENTA_TORCH, LIGHT_BLUE_TORCH, YELLOW_TORCH, LIME_TORCH, PINK_TORCH, GRAY_TORCH,
+                LIGHT_GRAY_TORCH, CYAN_TORCH, PURPLE_TORCH, BLUE_TORCH, BROWN_TORCH, GREEN_TORCH, RED_TORCH,
+                BLACK_TORCH, MAROON_TORCH, BAUXITE, BAUXITE_SLAB, BAUXITE_STAIRS, BAUXITE_WALL, BAUXITE_BRICKS,
+                BAUXITE_BRICK_STAIRS, BAUXITE_BRICK_SLAB, BAUXITE_BRICK_WALL, MOSSY_BAUXITE_BRICKS,
+                MOSSY_BAUXITE_BRICK_STAIRS, MOSSY_BAUXITE_BRICK_SLAB, MOSSY_BAUXITE_BRICK_WALL,
+                CRACKED_BAUXITE_BRICKS, CRACKED_BAUXITE_BRICK_STAIRS, CRACKED_BAUXITE_BRICK_SLAB,
+                CRACKED_BAUXITE_BRICK_WALL, TWISTED_NETHER_BRICKS, TWISTED_NETHER_BRICK_STAIRS,
+                TWISTED_NETHER_BRICK_SLAB, TWISTED_NETHER_BRICK_WALL, TWISTED_NETHERRACK, TWISTED_NETHERRACK_STAIRS,
+                TWISTED_NETHERRACK_SLAB, TWISTED_NETHERRACK_WALL, WEEPING_NETHER_BRICKS, WEEPING_NETHER_BRICK_STAIRS,
+                WEEPING_NETHER_BRICK_SLAB, WEEPING_NETHER_BRICK_WALL, WEEPING_NETHERRACK, WEEPING_NETHERRACK_STAIRS,
+                WEEPING_NETHERRACK_SLAB, WEEPING_NETHERRACK_WALL, SNAPDRAGON, SHORT_ENDER_GRASS, CHOCOLATE_CAKE,
+                RED_VELVET_CAKE, STONE_TILES, STONE_TILE_SLAB, STONE_TILE_STAIRS, STONE_TILE_WALL, MOSSY_STONE_TILES,
+                MOSSY_STONE_TILE_SLAB, MOSSY_STONE_TILE_STAIRS, MOSSY_STONE_TILE_WALL, CRACKED_STONE_TILES,
+                CRACKED_STONE_TILE_SLAB, CRACKED_STONE_TILE_STAIRS, CRACKED_STONE_TILE_WALL, SWEET_BERRY_PIE,
+                BLUEBERRY_PIE, BLACKSTONE_TILES, BLACKSTONE_TILE_STAIRS, BLACKSTONE_TILE_SLAB, BLACKSTONE_TILE_WALL,
+                TWISTED_BLACKSTONE_TILES, TWISTED_BLACKSTONE_TILE_STAIRS, TWISTED_BLACKSTONE_TILE_SLAB,
+                TWISTED_BLACKSTONE_TILE_WALL, WEEPING_BLACKSTONE_TILES, WEEPING_BLACKSTONE_TILE_STAIRS,
+                WEEPING_BLACKSTONE_TILE_SLAB, WEEPING_BLACKSTONE_TILE_WALL, TWISTED_POLISHED_BLACKSTONE_BRICKS,
+                TWISTED_POLISHED_BLACKSTONE_BRICK_STAIRS, TWISTED_POLISHED_BLACKSTONE_BRICK_SLAB,
+                TWISTED_POLISHED_BLACKSTONE_BRICK_WALL, WEEPING_POLISHED_BLACKSTONE_BRICKS,
+                WEEPING_POLISHED_BLACKSTONE_BRICK_STAIRS, WEEPING_POLISHED_BLACKSTONE_BRICK_SLAB,
+                WEEPING_POLISHED_BLACKSTONE_BRICK_WALL, TWISTED_BLACKSTONE, TWISTED_BLACKSTONE_STAIRS,
+                TWISTED_BLACKSTONE_SLAB, TWISTED_BLACKSTONE_WALL, WEEPING_BLACKSTONE, WEEPING_BLACKSTONE_STAIRS,
+                WEEPING_BLACKSTONE_SLAB, WEEPING_BLACKSTONE_WALL, QUARTZ_TILES, QUARTZ_TILE_STAIRS, QUARTZ_TILE_SLAB,
+                QUARTZ_TILE_WALL, CALCITE_BRICKS, CALCITE_BRICK_STAIRS, CALCITE_BRICK_SLAB, CALCITE_BRICK_WALL,
+                MOSSY_CALCITE_BRICKS, MOSSY_CALCITE_BRICK_STAIRS, MOSSY_CALCITE_BRICK_SLAB, MOSSY_CALCITE_BRICK_WALL,
+                CRACKED_CALCITE_BRICKS, CRACKED_CALCITE_BRICK_STAIRS, CRACKED_CALCITE_BRICK_SLAB,
+                CRACKED_CALCITE_BRICK_WALL, CHISELED_CALCITE_BRICKS, DRIPSTONE_BRICKS, DRIPSTONE_BRICK_STAIRS,
+                DRIPSTONE_BRICK_SLAB, DRIPSTONE_BRICK_WALL, MOSSY_DRIPSTONE_BRICKS, MOSSY_DRIPSTONE_BRICK_STAIRS,
+                MOSSY_DRIPSTONE_BRICK_SLAB, MOSSY_DRIPSTONE_BRICK_WALL, CRACKED_DRIPSTONE_BRICKS,
+                CRACKED_DRIPSTONE_BRICK_STAIRS, CRACKED_DRIPSTONE_BRICK_SLAB, CRACKED_DRIPSTONE_BRICK_WALL,
+                CHISELED_DRIPSTONE_BRICKS, CATTAIL, DRIED_BLOOD_KELP_BLOCK, BLOOD_KELP_LANTERN, CAMEL_PLUSH,
+                MAROON_WOOL, MAROON_STAINED_GLASS, MAROON_STAINED_GLASS_PANE, MAROON_CANDLE, MAROON_CONCRETE,
+                MAROON_CONCRETE_POWDER, POLISHED_DRIPSTONE, POLISHED_DRIPSTONE_STAIRS, POLISHED_DRIPSTONE_SLAB,
+                POLISHED_DRIPSTONE_WALL, POLISHED_CALCITE, POLISHED_CALCITE_STAIRS, POLISHED_CALCITE_SLAB,
+                POLISHED_CALCITE_WALL, DRIPSTONE_STAIRS, DRIPSTONE_SLAB, DRIPSTONE_WALL, CALCITE_STAIRS,
+                CALCITE_SLAB, CALCITE_WALL, BAMBOO_PLANTER_BOX, BOG_BLOSSOM, STONE_WALL, QUARTZ_WALL,
+                SMOOTH_QUARTZ_WALL, GRASS_SLAB, PODZOL_SLAB, MYCELIUM_SLAB, DIRT_PATH_SLAB, DIRT_SLAB,
+                COARSE_DIRT_SLAB, ROOTED_DIRT_SLAB, WILD_GREEN_ONIONS);
+        register("green_onion_seeds", GREEN_ONION_SEEDS);
+        register("green_onion", GREEN_ONION);
+        register("blueberries", BLUEBERRIES);
+        register("sweet_berry_juice", SWEET_BERRY_JUICE);
+        register("blueberry_juice", BLUEBERRY_JUICE);
+        register("noodles", NOODLES);
+        register("noodle_soup", NOODLE_SOUP);
+        register("pudding", PUDDING);
+        register("berry_pudding", BERRY_PUDDING);
+        register("smoky_quartz", SMOKY_QUARTZ);
+        register("caramel_apple", CARAMEL_APPLE);
+        register("caramel", CARAMEL);
+        register("spruce_cone", SPRUCE_CONE);
+        register("forests_bounty", FORESTS_BOUNTY);
+        register("witchs_cradle_branch", WITCHS_CRADLE_BRANCH);
+        register("witchs_cradle_soup", WITCHS_CRADLE_SOUP);
+        register("fried_egg", FRIED_EGG);
+        register("blood_kelp_seed_cluster", BLOOD_KELP_SEED_CLUSTER);
+        register("blood_kelp", BLOOD_KELP);
+        register("dried_blood_kelp", DRIED_BLOOD_KELP);
+        register("maroon_dye", MAROON_DYE);
+        register("hoglin_stew", HOGLIN_STEW);
+        register("cindersnap_berries", CINDERSNAP_BERRIES);
+        register("frostbite_berries", FROSTBITE_BERRIES);
 
         AssortedDiscoveries.LOGGER.info("Registered Items");
     }

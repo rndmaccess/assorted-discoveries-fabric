@@ -16,18 +16,10 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
-import net.minecraft.world.event.GameEvent;
 
 public class ADPieBlock extends Block {
-    public static final IntProperty BITES = Properties.BITES;
-    private static final VoxelShape[] SHAPE_BY_BITE = new VoxelShape[] {
-            Block.createCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 6.0D, 15.0D),
-            Block.createCuboidShape(3.0D, 0.0D, 1.0D, 15.0D, 6.0D, 15.0D),
-            Block.createCuboidShape(5.0D, 0.0D, 1.0D, 15.0D, 6.0D, 15.0D),
-            Block.createCuboidShape(7.0D, 0.0D, 1.0D, 15.0D, 6.0D, 15.0D),
-            Block.createCuboidShape(9.0D, 0.0D, 1.0D, 15.0D, 6.0D, 15.0D),
-            Block.createCuboidShape(11.0D, 0.0D, 1.0D, 15.0D, 6.0D, 15.0D),
-            Block.createCuboidShape(13.0D, 0.0D, 1.0D, 15.0D, 6.0D, 15.0D) };
+    public static final IntProperty BITES;
+    private static final VoxelShape[] SHAPE_BY_BITE;
     private final int nutrition;
     private final float saturationMod;
 
@@ -56,18 +48,10 @@ public class ADPieBlock extends Block {
 
     private ActionResult tryEat(WorldAccess world, BlockPos pos, BlockState state, PlayerEntity player) {
         if (player.canConsume(false)) {
-            int i = state.get(BITES);
+            int bitesTaken = state.get(BITES);
 
             player.getHungerManager().add(this.nutrition, this.saturationMod);
-            world.emitGameEvent(player, GameEvent.EAT, pos);
-
-            if (i < 6) {
-                world.setBlockState(pos, state.with(BITES, i + 1), 3);
-            } else {
-                world.removeBlock(pos, false);
-                world.emitGameEvent(player, GameEvent.BLOCK_DESTROY, pos);
-            }
-            return ActionResult.SUCCESS;
+            return ADCakeBlock.eat(world, pos, state, player, bitesTaken, BITES);
         }
         return ActionResult.PASS;
     }
@@ -75,5 +59,17 @@ public class ADPieBlock extends Block {
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(BITES);
+    }
+
+    static {
+        BITES = Properties.BITES;
+        SHAPE_BY_BITE = new VoxelShape[] {
+                Block.createCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 6.0D, 15.0D),
+                Block.createCuboidShape(3.0D, 0.0D, 1.0D, 15.0D, 6.0D, 15.0D),
+                Block.createCuboidShape(5.0D, 0.0D, 1.0D, 15.0D, 6.0D, 15.0D),
+                Block.createCuboidShape(7.0D, 0.0D, 1.0D, 15.0D, 6.0D, 15.0D),
+                Block.createCuboidShape(9.0D, 0.0D, 1.0D, 15.0D, 6.0D, 15.0D),
+                Block.createCuboidShape(11.0D, 0.0D, 1.0D, 15.0D, 6.0D, 15.0D),
+                Block.createCuboidShape(13.0D, 0.0D, 1.0D, 15.0D, 6.0D, 15.0D) };
     }
 }

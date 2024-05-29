@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "assorteddiscoveries:twisted_blackstone"
-  },
-  "result": "assorteddiscoveries:twisted_blackstone_wall",
-  "count": 1
-}

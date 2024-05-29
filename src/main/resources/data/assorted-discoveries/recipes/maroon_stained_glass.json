@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stained_glass",
+  "pattern": [
+    "###",
+    "#X#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:glass"
+    },
+    "X": {
+      "item": "assorted-discoveries:maroon_dye"
+    }
+  },
+  "result": {
+    "count": 8,
+    "item": "assorted-discoveries:maroon_stained_glass"
+  }
+}

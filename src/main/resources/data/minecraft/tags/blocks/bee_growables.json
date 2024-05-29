@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "assorteddiscoveries:blueberry_bush",
-    "assorteddiscoveries:witchs_cradle"
+    "assorted-discoveries:blueberry_bush",
+    "assorted-discoveries:witchs_cradle"
   ]
 }

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "assorted-discoveries:block/brown_wall_torch"
+    },
+    "facing=north": {
+      "model": "assorted-discoveries:block/brown_wall_torch",
+      "y": 270
+    },
+    "facing=south": {
+      "model": "assorted-discoveries:block/brown_wall_torch",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "assorted-discoveries:block/brown_wall_torch",
+      "y": 180
+    }
+  }
+}

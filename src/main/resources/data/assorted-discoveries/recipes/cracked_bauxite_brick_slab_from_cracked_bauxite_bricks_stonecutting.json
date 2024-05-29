@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "assorted-discoveries:cracked_bauxite_bricks"
+  },
+  "result": "assorted-discoveries:cracked_bauxite_brick_slab",
+  "count": 2
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_wall",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "c:natural_dark_oak_logs"
+    }
+  },
+  "result": {
+    "item": "assorted-discoveries:dark_oak_wall",
+    "count": 6
+  }
+}

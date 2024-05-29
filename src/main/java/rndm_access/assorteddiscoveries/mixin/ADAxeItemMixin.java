@@ -22,7 +22,7 @@ import rndm_access.assorteddiscoveries.core.ADBlocks;
 import java.util.Map;
 
 @Mixin(AxeItem.class)
-public class ADAxeItemMixin {
+public abstract class ADAxeItemMixin {
     @Unique
     private static final Map<Block, Block> STRIPPABLE_WALLS;
 

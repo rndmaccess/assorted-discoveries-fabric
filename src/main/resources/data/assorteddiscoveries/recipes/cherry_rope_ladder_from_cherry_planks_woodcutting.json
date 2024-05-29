@@ -1,8 +1,0 @@
-{
-  "type": "assorteddiscoveries:woodcutting",
-  "ingredient": {
-    "item": "minecraft:cherry_planks"
-  },
-  "result": "assorteddiscoveries:cherry_rope_ladder",
-  "count": 1
-}

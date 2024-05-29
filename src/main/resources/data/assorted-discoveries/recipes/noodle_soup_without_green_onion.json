@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:bowl"
+    },
+    {
+      "item": "assorted-discoveries:noodles"
+    }
+  ],
+  "result": {
+    "item": "assorted-discoveries:noodle_soup"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:and",
+      "values": [
+        {
+          "condition": "fabric:not",
+          "value": {
+            "condition": "assorted-discoveries:config_entry_enabled",
+            "value": "assorted-discoveries:enable_green_onions"
+          }
+        },
+        {
+          "condition": "assorted-discoveries:config_entry_enabled",
+          "value": "assorted-discoveries:enable_noodles"
+        }
+      ]
+    }
+  ]
+}

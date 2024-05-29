@@ -1,8 +1,8 @@
 {
   "replace": false,
   "values": [
-    "#assorteddiscoveries:overgrown_netherracks",
-    "#assorteddiscoveries:overgrown_blackstones",
-    "assorteddiscoveries:nether_smoky_quartz_ore"
+    "#assorted-discoveries:overgrown_netherrack",
+    "#assorted-discoveries:overgrown_blackstones",
+    "assorted-discoveries:nether_smoky_quartz_ore"
   ]
 }

@@ -1,0 +1,56 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "assorted-discoveries:blood_kelp"
+        }
+      ]
+    },
+    {
+      "rolls": 1.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 3.0,
+                "type": "minecraft:uniform"
+              }
+            },
+            {
+              "function": "minecraft:apply_bonus",
+              "enchantment": "minecraft:fortune",
+              "formula": "minecraft:uniform_bonus_count",
+              "parameters": {
+                "bonusMultiplier": 1
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "assorted-discoveries:blood_kelp",
+              "properties": {
+                "lit": "true"
+              }
+            }
+          ],
+          "name": "assorted-discoveries:blood_kelp_seed_cluster"
+        }
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "condition": "minecraft:survives_explosion"
+    }
+  ],
+  "random_sequence": "assorted-discoveries:blocks/blood_kelp"
+}

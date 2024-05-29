@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "assorted-discoveries:blood_kelp"
+  },
+  "result": "assorted-discoveries:dried_blood_kelp",
+  "experience": 0.1,
+  "cookingtime": 100
+}

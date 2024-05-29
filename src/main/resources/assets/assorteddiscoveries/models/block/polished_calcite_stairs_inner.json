@@ -1,8 +1,0 @@
-{
-  "parent": "block/inner_stairs",
-  "textures": {
-    "bottom": "assorteddiscoveries:block/polished_calcite",
-    "top": "assorteddiscoveries:block/polished_calcite",
-    "side": "assorteddiscoveries:block/polished_calcite"
-  }
-}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_glass_pane_post",
+  "textures": {
+    "edge": "assorted-discoveries:block/maroon_stained_glass_pane_top",
+    "pane": "assorted-discoveries:block/maroon_stained_glass"
+  }
+}

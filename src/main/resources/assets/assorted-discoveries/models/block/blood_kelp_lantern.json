@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "assorted-discoveries:block/blood_kelp_lantern_top",
+	"side": "assorted-discoveries:block/blood_kelp_lantern_side"
+  }
+}

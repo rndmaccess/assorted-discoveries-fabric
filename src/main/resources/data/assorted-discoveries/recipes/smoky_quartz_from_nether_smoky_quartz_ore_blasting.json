@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "assorted-discoveries:nether_smoky_quartz_ore"
+  },
+  "result": "assorted-discoveries:smoky_quartz",
+  "experience": 0.2,
+  "cookingtime": 100
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "block/slab_top",
+  "textures": {
+    "bottom": "assorted-discoveries:block/mossy_dripstone_bricks",
+    "top": "assorted-discoveries:block/mossy_dripstone_bricks",
+    "side": "assorted-discoveries:block/mossy_dripstone_bricks"
+  }
+}

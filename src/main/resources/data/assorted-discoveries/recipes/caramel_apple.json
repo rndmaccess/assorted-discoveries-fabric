@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#S#",
+    "#A#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "assorted-discoveries:caramel"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "A": {
+      "item": "minecraft:apple"
+    }
+  },
+  "result": {
+    "item": "assorted-discoveries:caramel_apple"
+  }
+}

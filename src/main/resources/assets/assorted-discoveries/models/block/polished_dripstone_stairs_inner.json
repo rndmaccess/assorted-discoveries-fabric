@@ -1,0 +1,8 @@
+{
+  "parent": "block/inner_stairs",
+  "textures": {
+    "bottom": "assorted-discoveries:block/polished_dripstone",
+    "top": "assorted-discoveries:block/polished_dripstone",
+    "side": "assorted-discoveries:block/polished_dripstone"
+  }
+}

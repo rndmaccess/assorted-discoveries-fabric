@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "assorted-discoveries:twisted_netherrack"
+  },
+  "result": "assorted-discoveries:twisted_netherrack_wall",
+  "count": 1
+}

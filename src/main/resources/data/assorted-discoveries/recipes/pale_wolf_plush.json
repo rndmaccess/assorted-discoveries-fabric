@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WWW",
+    "BIB",
+    "WWW"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:white_wool"
+    },
+    "B": {
+      "item": "minecraft:black_wool"
+    },
+    "I": {
+      "item": "minecraft:bone"
+    }
+  },
+  "result": {
+    "item": "assorted-discoveries:pale_wolf_plush"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_pale_wolf_plush"
+    }
+  ]
+}

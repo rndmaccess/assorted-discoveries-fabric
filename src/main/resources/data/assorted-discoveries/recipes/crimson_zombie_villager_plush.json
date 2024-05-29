@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "zombie_villager_plush",
+  "pattern": [
+    "HHH",
+    "HRH",
+    "CIC"
+  ],
+  "key": {
+    "H": {
+      "item": "minecraft:green_wool"
+    },
+    "C": {
+      "item": "minecraft:red_wool"
+    },
+    "R": {
+      "item": "minecraft:rotten_flesh"
+    },
+    "I": {
+      "item": "minecraft:crimson_fungus"
+    }
+  },
+  "result": {
+    "item": "assorted-discoveries:crimson_zombie_villager_plush"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_zombie_villager_plushies"
+    }
+  ]
+}

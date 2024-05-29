@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "assorted-discoveries:item/light_gray_lantern"
+  }
+}

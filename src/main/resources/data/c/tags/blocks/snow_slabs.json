@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "assorteddiscoveries:snow_brick_slab",
-    "assorteddiscoveries:packed_snow_slab"
+    "assorted-discoveries:snow_brick_slab",
+    "assorted-discoveries:packed_snow_slab"
   ]
 }

@@ -1,8 +1,0 @@
-{
-  "type": "assorteddiscoveries:woodcutting",
-  "ingredient": {
-    "tag": "minecraft:logs"
-  },
-  "result": "minecraft:composter",
-  "count": 1
-}

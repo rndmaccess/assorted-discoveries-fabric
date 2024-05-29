@@ -1,8 +1,0 @@
-{
-  "parent": "block/outer_stairs",
-  "textures": {
-    "bottom": "assorteddiscoveries:block/snow_bricks",
-    "top": "assorteddiscoveries:block/snow_bricks",
-    "side": "assorteddiscoveries:block/snow_bricks"
-  }
-}

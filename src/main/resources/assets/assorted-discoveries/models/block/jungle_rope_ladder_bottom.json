@@ -1,0 +1,6 @@
+{
+  "parent": "assorted-discoveries:block/template_ladder",
+  "textures": {
+    "ladder": "assorted-discoveries:block/jungle_rope_ladder_bottom"
+  }
+}

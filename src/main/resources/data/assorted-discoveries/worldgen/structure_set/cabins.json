@@ -1,0 +1,30 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 724628428,
+    "separation": 8,
+    "spacing": 32
+  },
+  "structures": [
+    {
+      "structure": "assorted-discoveries:cabin_forest",
+      "weight": 1
+    },
+    {
+      "structure": "assorted-discoveries:cabin_taiga",
+      "weight": 1
+    },
+    {
+      "structure": "assorted-discoveries:cabin_dark_forest",
+      "weight": 1
+    },
+    {
+      "structure": "assorted-discoveries:cabin_birch_forest",
+      "weight": 1
+    },
+    {
+      "structure": "assorted-discoveries:cabin_snowy_taiga",
+      "weight": 1
+    }
+  ]
+}

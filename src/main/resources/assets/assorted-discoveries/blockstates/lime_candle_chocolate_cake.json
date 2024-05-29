@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "assorted-discoveries:block/lime_candle_chocolate_cake"
+    },
+    "lit=true": {
+      "model": "assorted-discoveries:block/lime_candle_chocolate_cake_lit"
+    }
+  }
+}

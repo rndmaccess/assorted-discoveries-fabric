@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "bottom": "assorteddiscoveries:block/twisted_netherrack",
-    "top": "assorteddiscoveries:block/twisted_netherrack",
-    "side": "assorteddiscoveries:block/twisted_netherrack"
-  }
-}

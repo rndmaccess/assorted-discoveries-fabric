@@ -11,11 +11,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import rndm_access.assorteddiscoveries.core.ADBlockTags;
 
 @Mixin(CropBlock.class)
-public class ADCropBlockMixin {
+public abstract class ADCropBlockMixin {
     @Inject(method = "canPlantOnTop", at = @At("HEAD"), cancellable = true)
-    private void assorteddiscoveries_plantOnPlanterBoxes(BlockState floor, BlockView world, BlockPos pos,
-                                                         CallbackInfoReturnable<Boolean> info) {
-        if(floor.isIn(ADBlockTags.OVERWORLD_PLANTER_BOXES)) {
+    private void canPlantOnTop(BlockState floor, BlockView world, BlockPos pos,
+                               CallbackInfoReturnable<Boolean> info) {
+        if(floor.isIn(ADBlockTags.CROPS_PLANTABLE_ON)) {
             info.setReturnValue(true);
         }
     }

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "assorted-discoveries:block/twisted_netherrack_slab"
+    },
+    "type=top": {
+      "model": "assorted-discoveries:block/twisted_netherrack_slab_top"
+    },
+    "type=double": {
+      "model": "assorted-discoveries:block/twisted_netherrack"
+    }
+  }
+}

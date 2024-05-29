@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rabbit_plush",
+  "pattern": [
+    "BBB",
+    "GIG",
+    "BBB"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:black_wool"
+    },
+    "G": {
+      "item": "minecraft:gray_wool"
+    },
+    "I": {
+      "item": "minecraft:rabbit"
+    }
+  },
+  "result": {
+    "item": "assorted-discoveries:black_rabbit_plush"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_rabbit_plushies"
+    }
+  ]
+}

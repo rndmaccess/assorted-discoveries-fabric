@@ -1,0 +1,8 @@
+{
+  "parent": "assorted-discoveries:block/template_planter_box_three_sides",
+  "textures": {
+    "material": "block/bamboo_planks",
+    "log": "block/stripped_bamboo_block",
+    "soil": "block/farmland_moist"
+  }
+}

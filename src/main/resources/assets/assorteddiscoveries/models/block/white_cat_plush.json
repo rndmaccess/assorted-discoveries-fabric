@@ -1,7 +1,0 @@
-{
-  "parent": "assorteddiscoveries:block/template_one_colored_cat_plush",
-  "textures": {
-    "body": "block/white_wool",
-    "eyes": "block/black_wool"
-  }
-}

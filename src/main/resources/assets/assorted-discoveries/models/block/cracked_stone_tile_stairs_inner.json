@@ -1,0 +1,8 @@
+{
+  "parent": "block/inner_stairs",
+  "textures": {
+    "bottom": "assorted-discoveries:block/cracked_stone_tiles",
+    "top": "assorted-discoveries:block/cracked_stone_tiles",
+    "side": "assorted-discoveries:block/cracked_stone_tiles"
+  }
+}

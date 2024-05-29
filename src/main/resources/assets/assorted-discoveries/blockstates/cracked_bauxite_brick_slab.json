@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "assorted-discoveries:block/cracked_bauxite_brick_slab"
+    },
+    "type=top": {
+      "model": "assorted-discoveries:block/cracked_bauxite_brick_slab_top"
+    },
+    "type=double": {
+      "model": "assorted-discoveries:block/cracked_bauxite_bricks"
+    }
+  }
+}

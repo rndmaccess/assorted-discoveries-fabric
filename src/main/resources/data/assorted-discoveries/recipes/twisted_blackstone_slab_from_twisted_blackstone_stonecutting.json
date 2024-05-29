@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "assorted-discoveries:twisted_blackstone"
+  },
+  "result": "assorted-discoveries:twisted_blackstone_slab",
+  "count": 2
+}

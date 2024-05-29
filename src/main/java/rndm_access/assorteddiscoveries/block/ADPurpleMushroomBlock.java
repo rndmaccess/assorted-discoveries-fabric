@@ -8,6 +8,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import rndm_access.assorteddiscoveries.core.ADSoundEvents;
@@ -19,38 +20,35 @@ public class ADPurpleMushroomBlock extends MushroomBlock {
 
     @Override
     public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
-        float strength = 0.5F;
-        float height = fallDistance * strength;
         SoundEvent sound = ADSoundEvents.BLOCK_MUSHROOM_BOUNCE;
+        Random random = world.getRandom();
         int x = pos.getX();
         int y = pos.getY();
         int z = pos.getZ();
 
-        if (entity.isSneaking()) {
+        if(entity.isSneaking()) {
             world.playSound(x, y, z, sound, SoundCategory.BLOCKS,
-                    1.0F, 0.8F + world.random.nextFloat() / 0.4F, true);
-            entity.setOnGround(true);
-
+                    1.0F, 0.8F + random.nextFloat() / 0.4F, true);
         } else {
-            Vec3d vector3d = entity.getVelocity();
-
-            // Set a maximum height of 10.
-            if (height >= 10) {
-                height = 10;
-            }
-            // Set a minimum height of 2.
-            if (height <= 2) {
-                height = 2;
-            }
-
-            // Update the entities motion and play the bounce sound.
-            entity.setVelocity(vector3d.x, -vector3d.y + Math.sqrt(0.2 * (height + 0.2F)), vector3d.z);
-            world.playSound(x, y, z, sound, SoundCategory.BLOCKS, 1.0F, 0.8F + world.getRandom().nextFloat() * 0.4F, true);
-            entity.setOnGround(false);
+            world.playSound(x, y, z, sound, SoundCategory.BLOCKS, 1.0F,
+                    0.8F + random.nextFloat() * 0.4F, true);
         }
-        entity.fallDistance = 0;
     }
 
     @Override
-    public void onEntityLand(BlockView world, Entity entity) {}
+    public void onEntityLand(BlockView world, Entity entity) {
+        float jumpHeight = 0.2F;
+
+        if(entity.getVelocity().getY() < -jumpHeight && !entity.isSneaking()) {
+            Vec3d velocity = entity.getVelocity();
+            double minBounce = 2;
+            double bounceHeight = Math.min(15, (entity.fallDistance * jumpHeight) + minBounce);
+            double bounceYVelocity = Math.sqrt(jumpHeight * (bounceHeight + jumpHeight));
+
+            entity.setVelocity(velocity.getX(), -velocity.getY() + bounceYVelocity,
+                    velocity.getZ());
+        } else {
+            entity.setVelocity(entity.getVelocity().multiply(1.0, 0.0, 1.0));
+        }
+    }
 }

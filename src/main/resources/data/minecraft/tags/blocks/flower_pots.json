@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "assorteddiscoveries:potted_snapdragon",
-    "assorteddiscoveries:potted_purple_mushroom"
+    "assorted-discoveries:potted_snapdragon",
+    "assorted-discoveries:potted_purple_mushroom"
   ]
 }

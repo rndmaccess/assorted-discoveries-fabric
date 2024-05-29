@@ -1,0 +1,8 @@
+{
+  "type": "assorted-discoveries:woodcutting",
+  "ingredient": {
+    "tag": "c:stripped_cherry_logs"
+  },
+  "result": "assorted-discoveries:stripped_cherry_wall",
+  "count": 1
+}

@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "assorteddiscoveries:smoky_quartz_bricks"
-  },
-  "result": "assorteddiscoveries:smoky_quartz_brick_stairs",
-  "count": 1
-}

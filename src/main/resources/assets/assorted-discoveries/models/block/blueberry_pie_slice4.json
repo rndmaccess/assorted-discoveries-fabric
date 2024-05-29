@@ -1,0 +1,9 @@
+{
+  "parent": "assorted-discoveries:block/template_pie_slice4",
+  "textures": {
+    "side": "assorted-discoveries:block/pie_side",
+    "bottom": "assorted-discoveries:block/pie_bottom",
+    "top": "assorted-discoveries:block/blueberry_pie_top",
+    "inside": "assorted-discoveries:block/blueberry_pie_inner"
+  }
+}

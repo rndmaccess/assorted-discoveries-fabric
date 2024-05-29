@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "assorted-discoveries:block/weeping_blackstone_top",
+    "side": "assorted-discoveries:block/weeping_blackstone"
+  }
+}

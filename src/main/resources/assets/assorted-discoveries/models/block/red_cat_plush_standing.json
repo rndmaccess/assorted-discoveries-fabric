@@ -1,0 +1,8 @@
+{
+  "parent": "assorted-discoveries:block/template_two_colored_cat_plush_standing",
+  "textures": {
+    "primary_body": "minecraft:block/orange_wool",
+    "eyes": "minecraft:block/green_wool",
+    "secondary_body": "minecraft:block/white_wool"
+  }
+}

@@ -1,8 +1,0 @@
-{
-  "parent": "block/outer_stairs",
-  "textures": {
-    "bottom": "assorteddiscoveries:block/cracked_bauxite_bricks",
-    "top": "assorteddiscoveries:block/cracked_bauxite_bricks",
-    "side": "assorteddiscoveries:block/cracked_bauxite_bricks"
-  }
-}

@@ -44,8 +44,7 @@ public class ADParticleTypes {
     public static final DefaultParticleType MAROON_FLAME = registerParticleType("maroon_flame");
     public static final DefaultParticleType BLOOD_KELP_SPORE = registerParticleType("blood_kelp_spore");
     public static final DefaultParticleType WITCHS_CRADLE_SPORE = registerParticleType("witchs_cradle_spore");
-    public static final DefaultParticleType FALLING_WEEPING_HEART_NECTAR = registerParticleType("falling_weeping_heart_nectar");
-    public static final DefaultParticleType WEEPING_HEART_AIR_NECTAR = registerParticleType("weeping_heart_air_nectar");
+    public static final DefaultParticleType BOG_BLOSSOM_AIR_NECTAR = registerParticleType("bog_blossom_air_nectar");
     public static final DefaultParticleType SOUL_EMBER = registerParticleType("soul_ember");
 
     private static DefaultParticleType registerParticleType(String path) {

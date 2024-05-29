@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "assorted-discoveries:bauxite_brick_stairs_from_bauxite_bricks_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_bauxite_bricks": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "assorted-discoveries:bauxite_bricks"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "assorted-discoveries:bauxite_brick_stairs_from_bauxite_bricks_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_bauxite_bricks",
+      "has_the_recipe"
+    ]
+  ]
+}

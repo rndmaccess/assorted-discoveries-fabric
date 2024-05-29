@@ -1,8 +1,0 @@
-{
-  "parent": "block/slab",
-  "textures": {
-    "bottom": "assorteddiscoveries:block/smoky_quartz_bricks",
-    "top": "assorteddiscoveries:block/smoky_quartz_bricks",
-    "side": "assorteddiscoveries:block/smoky_quartz_bricks"
-  }
-}

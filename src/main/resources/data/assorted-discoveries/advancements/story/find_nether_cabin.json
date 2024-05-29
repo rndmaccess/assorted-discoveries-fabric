@@ -1,0 +1,58 @@
+{
+  "parent": "assorted-discoveries:story/root",
+  "display": {
+    "icon": {
+      "item": "assorted-discoveries:twisted_polished_blackstone_bricks"
+    },
+    "title": {
+      "translate": "advancements.assorted-discoveries.story.find_nether_cabin.title"
+    },
+    "description": {
+      "translate": "advancements.assorted-discoveries.story.find_nether_cabin.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "warped_forest_cabin": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "assorted-discoveries:warped_forest_cabin"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
+    "crimson_forest_cabin": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "assorted-discoveries:crimson_forest_cabin"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    }
+  },
+  "requirements": [
+    [
+      "warped_forest_cabin",
+      "crimson_forest_cabin"
+    ]
+  ]
+}

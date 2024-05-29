@@ -25,7 +25,7 @@ public abstract class ADBoneMealItemMixin {
     public static void createParticles(WorldAccess world, BlockPos pos, int count) {}
 
     @Inject(method = "useOnBlock", at = @At("HEAD"), cancellable = true)
-    private void assorteddiscoveries_boneMealEndBlock(ItemUsageContext context, CallbackInfoReturnable<ActionResult> info) {
+    private void useOnBlock(ItemUsageContext context, CallbackInfoReturnable<ActionResult> info) {
         BlockPos blockPos = context.getBlockPos();
         World world = context.getWorld();
         ItemStack boneMealStack = context.getStack();
@@ -57,12 +57,12 @@ public abstract class ADBoneMealItemMixin {
 
                 if (soilState.isIn(CBlockTags.END_BONE_MEALABLE_BLOCKS) && state.isAir()) {
 
-                    // There is a 40% chance to get a snapdragon and a 60% chance to get some ender grass.
+                    // There is a 40% chance to grow a snapdragon and a 60% chance to grow some ender grass.
                     if(random.nextFloat() <= 0.4) {
                         world.setBlockState(mutablePos, ADBlocks.SNAPDRAGON.getDefaultState());
                     }
                     else {
-                        world.setBlockState(mutablePos, ADBlocks.ENDER_GRASS.getDefaultState());
+                        world.setBlockState(mutablePos, ADBlocks.SHORT_ENDER_GRASS.getDefaultState());
                     }
                 }
             }

@@ -17,18 +17,18 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
-import rndm_access.assorteddiscoveries.util.ADVoxelShapeHelper;
+import rndm_access.assorteddiscoveries.util.ADShapeHelper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class ADPlanterBoxBlock extends Block {
-    public static final BooleanProperty NORTH = Properties.NORTH;
-    public static final BooleanProperty SOUTH = Properties.SOUTH;
-    public static final BooleanProperty WEST = Properties.WEST;
-    public static final BooleanProperty EAST = Properties.EAST;
-    private static final HashMap<List<Boolean>, VoxelShape> SHAPES = collectStateShapes();
+    public static final BooleanProperty NORTH;
+    public static final BooleanProperty SOUTH;
+    public static final BooleanProperty WEST;
+    public static final BooleanProperty EAST;
+    private static final HashMap<List<Boolean>, VoxelShape> SHAPES;
 
     public ADPlanterBoxBlock(AbstractBlock.Settings settings) {
         super(settings);
@@ -42,7 +42,7 @@ public class ADPlanterBoxBlock extends Block {
     private static HashMap<List<Boolean>, VoxelShape> collectStateShapes() {
         VoxelShape bottomShape = Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 15.0, 16.0);
         VoxelShape northBorderShape = Block.createCuboidShape(0.0, 15.0, 13.0, 16.0, 16.0, 16.0);
-        List<VoxelShape> borderShapes = ADVoxelShapeHelper.makeShapeRotationList(northBorderShape);
+        List<VoxelShape> borderShapes = ADShapeHelper.makeShapeRotList(northBorderShape);
         HashMap<List<Boolean>, VoxelShape> shapes = new HashMap<>();
         int borderNum = 4;
         int stateNum = (int) Math.pow(2, borderNum);
@@ -139,5 +139,13 @@ public class ADPlanterBoxBlock extends Block {
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(NORTH, SOUTH, WEST, EAST);
+    }
+
+    static {
+        NORTH = Properties.NORTH;
+        SOUTH = Properties.SOUTH;
+        WEST = Properties.WEST;
+        EAST = Properties.EAST;
+        SHAPES = collectStateShapes();
     }
 }

@@ -1,0 +1,8 @@
+{
+  "parent": "block/stairs",
+  "textures": {
+    "bottom": "assorted-discoveries:block/stone_tiles",
+    "top": "assorted-discoveries:block/stone_tiles",
+    "side": "assorted-discoveries:block/stone_tiles"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "assorted-discoveries:block/blood_kelp_plant_lit"
+  }
+}

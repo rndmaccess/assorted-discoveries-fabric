@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WWW",
+    "GIG",
+    "WWW"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:white_wool"
+    },
+    "G": {
+      "item": "minecraft:gray_wool"
+    },
+    "I": {
+      "item": "minecraft:arrow"
+    }
+  },
+  "result": {
+    "item": "assorted-discoveries:skeleton_plush"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_skeleton_plush"
+    }
+  ]
+}

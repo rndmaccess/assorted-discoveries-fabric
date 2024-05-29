@@ -1,0 +1,8 @@
+{
+  "type": "assorted-discoveries:woodcutting",
+  "ingredient": {
+    "item": "minecraft:birch_planks"
+  },
+  "result": "minecraft:birch_pressure_plate",
+  "count": 1
+}

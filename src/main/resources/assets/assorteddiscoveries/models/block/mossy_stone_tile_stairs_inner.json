@@ -1,8 +1,0 @@
-{
-  "parent": "block/inner_stairs",
-  "textures": {
-    "bottom": "assorteddiscoveries:block/mossy_stone_tiles",
-    "top": "assorteddiscoveries:block/mossy_stone_tiles",
-    "side": "assorteddiscoveries:block/mossy_stone_tiles"
-  }
-}

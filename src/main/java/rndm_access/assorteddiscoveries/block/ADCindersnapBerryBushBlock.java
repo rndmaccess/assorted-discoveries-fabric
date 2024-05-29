@@ -1,26 +1,37 @@
 package rndm_access.assorteddiscoveries.block;
 
+import com.mojang.serialization.MapCodec;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.tag.TagKey;
+import net.minecraft.state.StateManager;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import rndm_access.assorteddiscoveries.core.ADEntityTypeTags;
+import rndm_access.assorteddiscoveries.core.CEntityTypeTags;
 import rndm_access.assorteddiscoveries.core.ADItems;
 import rndm_access.assorteddiscoveries.core.CBlockTags;
 
 public class ADCindersnapBerryBushBlock extends ADAbstractBerryBushBlock {
+    public static final MapCodec<ADCindersnapBerryBushBlock> CODEC;
+
     public ADCindersnapBerryBushBlock(Settings settings) {
         super(settings);
+        this.setDefaultState(this.getStateManager().getDefaultState().with(AGE, 0));
+    }
+
+    @Override
+    protected MapCodec<ADCindersnapBerryBushBlock> getCodec() {
+        return CODEC;
     }
 
     @Override
     protected TagKey<EntityType<?>> mobsImmune() {
-        return ADEntityTypeTags.CINDERSNAP_BERRY_BUSH_IMMUNE_ENTITY_TYPES;
+        return CEntityTypeTags.CINDERSNAP_BERRY_BUSH_IMMUNE_ENTITY_TYPES;
     }
 
     @Override
@@ -53,5 +64,13 @@ public class ADCindersnapBerryBushBlock extends ADAbstractBerryBushBlock {
     @Override
     public boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
         return floor.isIn(CBlockTags.CINDERSNAP_BERRY_BUSH_PLANTABLE_ON);
+    }
+
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        builder.add(AGE);
+    }
+
+    static {
+        CODEC = createCodec(ADCindersnapBerryBushBlock::new);
     }
 }

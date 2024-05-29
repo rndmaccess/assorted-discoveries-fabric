@@ -1,0 +1,8 @@
+{
+  "type": "assorted-discoveries:woodcutting",
+  "ingredient": {
+    "tag": "c:natural_mangrove_logs"
+  },
+  "result": "assorted-discoveries:mangrove_wall",
+  "count": 1
+}

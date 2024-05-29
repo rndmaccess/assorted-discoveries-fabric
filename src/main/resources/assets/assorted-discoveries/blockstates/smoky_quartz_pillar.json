@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "assorted-discoveries:block/smoky_quartz_pillar"
+    },
+    "axis=z": {
+      "model": "assorted-discoveries:block/smoky_quartz_pillar",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "assorted-discoveries:block/smoky_quartz_pillar",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

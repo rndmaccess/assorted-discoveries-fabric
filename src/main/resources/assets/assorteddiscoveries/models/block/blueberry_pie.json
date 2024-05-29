@@ -1,8 +1,0 @@
-{
-  "parent": "assorteddiscoveries:block/template_pie",
-  "textures": {
-    "side": "assorteddiscoveries:block/pie_side",
-    "bottom": "assorteddiscoveries:block/pie_bottom",
-    "top": "assorteddiscoveries:block/blueberry_pie_top"
-  }
-}

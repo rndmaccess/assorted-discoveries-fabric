@@ -12,9 +12,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import rndm_access.assorteddiscoveries.core.CBlockTags;
 
 @Mixin(SpreadableBlock.class)
-public class ADSpreadableBlockMixin {
+public abstract class ADSpreadableBlockMixin {
     @Inject(method = "canSurvive", at = @At("HEAD"), cancellable = true)
-    private static void assorteddiscoveries_canSurvive(BlockState state, WorldView world, BlockPos pos,
+    private static void canSurvive(BlockState state, WorldView world, BlockPos pos,
                                                        CallbackInfoReturnable<Boolean> info) {
         BlockState blockState = world.getBlockState(pos.up());
 

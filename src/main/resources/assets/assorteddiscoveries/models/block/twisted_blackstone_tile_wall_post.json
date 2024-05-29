@@ -1,6 +1,0 @@
-{
-  "parent": "block/template_wall_post",
-  "textures": {
-    "wall": "assorteddiscoveries:block/twisted_blackstone_tiles"
-  }
-}

@@ -1,9 +1,9 @@
 {
   "replace": false,
   "values": [
-    "assorteddiscoveries:blueberry_bush",
-    "assorteddiscoveries:witchs_cradle",
-    "assorteddiscoveries:cindersnap_berry_bush",
-    "assorteddiscoveries:frostbite_berry_bush"
+    "assorted-discoveries:blueberry_bush",
+    "assorted-discoveries:witchs_cradle",
+    "assorted-discoveries:cindersnap_berry_bush",
+    "assorted-discoveries:frostbite_berry_bush"
   ]
 }

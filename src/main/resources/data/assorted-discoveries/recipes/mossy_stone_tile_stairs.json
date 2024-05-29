@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "assorted-discoveries:mossy_stone_tiles"
+    }
+  },
+  "result": {
+    "item": "assorted-discoveries:mossy_stone_tile_stairs",
+    "count": 4
+  }
+}

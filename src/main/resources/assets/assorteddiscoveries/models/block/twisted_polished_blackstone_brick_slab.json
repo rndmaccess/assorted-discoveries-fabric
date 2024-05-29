@@ -1,8 +1,0 @@
-{
-  "parent": "block/slab",
-  "textures": {
-    "bottom": "assorteddiscoveries:block/twisted_polished_blackstone_bricks",
-    "top": "assorteddiscoveries:block/twisted_polished_blackstone_bricks",
-    "side": "assorteddiscoveries:block/twisted_polished_blackstone_bricks"
-  }
-}

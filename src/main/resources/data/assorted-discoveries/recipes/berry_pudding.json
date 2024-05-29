@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "assorted-discoveries:pudding"
+    },
+    {
+      "item": "assorted-discoveries:blueberries"
+    },
+    {
+      "item": "minecraft:sweet_berries"
+    }
+  ],
+  "result": {
+    "item": "assorted-discoveries:berry_pudding"
+  }
+}

@@ -1,6 +1,0 @@
-{
-  "parent": "assorteddiscoveries:block/template_sheep_plush",
-  "textures": {
-    "wool": "block/blue_wool"
-  }
-}

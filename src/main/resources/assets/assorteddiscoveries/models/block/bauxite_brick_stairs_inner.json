@@ -1,8 +1,0 @@
-{
-  "parent": "block/inner_stairs",
-  "textures": {
-    "bottom": "assorteddiscoveries:block/bauxite_bricks",
-    "top": "assorteddiscoveries:block/bauxite_bricks",
-    "side": "assorteddiscoveries:block/bauxite_bricks"
-  }
-}

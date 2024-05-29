@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_wall_post",
+  "textures": {
+    "wall": "assorted-discoveries:block/weeping_netherrack"
+  }
+}

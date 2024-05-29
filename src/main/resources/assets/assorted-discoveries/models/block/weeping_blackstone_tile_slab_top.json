@@ -1,0 +1,8 @@
+{
+  "parent": "block/slab_top",
+  "textures": {
+    "bottom": "assorted-discoveries:block/weeping_blackstone_tiles",
+    "top": "assorted-discoveries:block/weeping_blackstone_tiles",
+    "side": "assorted-discoveries:block/weeping_blackstone_tiles"
+  }
+}

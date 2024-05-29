@@ -1,0 +1,8 @@
+{
+  "type": "assorted-discoveries:woodcutting",
+  "ingredient": {
+    "tag": "c:natural_acacia_logs"
+  },
+  "result": "assorted-discoveries:acacia_wall",
+  "count": 1
+}

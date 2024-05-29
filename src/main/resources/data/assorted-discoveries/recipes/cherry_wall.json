@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_wall",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "c:natural_cherry_logs"
+    }
+  },
+  "result": {
+    "item": "assorted-discoveries:cherry_wall",
+    "count": 6
+  }
+}

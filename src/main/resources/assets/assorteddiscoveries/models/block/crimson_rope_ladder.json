@@ -1,6 +1,0 @@
-{
-  "parent": "assorteddiscoveries:block/template_ladder",
-  "textures": {
-    "ladder": "assorteddiscoveries:block/crimson_rope_ladder"
-  }
-}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:bowl"
+    },
+    {
+      "item": "minecraft:sweet_berries"
+    },
+    {
+      "item": "assorted-discoveries:spruce_cone"
+    }
+  ],
+  "result": {
+    "item": "assorted-discoveries:forests_bounty"
+  }
+}

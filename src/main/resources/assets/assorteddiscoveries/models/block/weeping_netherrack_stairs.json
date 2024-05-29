@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "bottom": "assorteddiscoveries:block/weeping_netherrack",
-    "top": "assorteddiscoveries:block/weeping_netherrack",
-    "side": "assorteddiscoveries:block/weeping_netherrack"
-  }
-}

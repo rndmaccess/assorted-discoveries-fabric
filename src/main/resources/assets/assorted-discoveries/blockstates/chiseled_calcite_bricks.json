@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "assorted-discoveries:block/chiseled_calcite_bricks"
+    },
+    "axis=z": {
+      "model": "assorted-discoveries:block/chiseled_calcite_bricks",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "assorted-discoveries:block/chiseled_calcite_bricks",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

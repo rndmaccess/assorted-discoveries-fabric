@@ -1,8 +1,0 @@
-{
-  "parent": "block/slab_top",
-  "textures": {
-    "bottom": "assorteddiscoveries:block/mossy_bauxite_bricks",
-    "top": "assorteddiscoveries:block/mossy_bauxite_bricks",
-    "side": "assorteddiscoveries:block/mossy_bauxite_bricks"
-  }
-}

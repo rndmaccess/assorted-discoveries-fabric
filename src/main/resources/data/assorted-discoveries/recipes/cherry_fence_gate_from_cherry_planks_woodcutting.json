@@ -1,0 +1,8 @@
+{
+  "type": "assorted-discoveries:woodcutting",
+  "ingredient": {
+    "item": "minecraft:cherry_planks"
+  },
+  "result": "minecraft:cherry_fence_gate",
+  "count": 1
+}

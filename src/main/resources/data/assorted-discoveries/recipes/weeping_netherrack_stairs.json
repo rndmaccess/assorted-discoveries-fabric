@@ -1,0 +1,17 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "assorted-discoveries:weeping_netherrack"
+    }
+  },
+  "result": {
+    "item": "assorted-discoveries:weeping_netherrack_stairs",
+    "count": 4
+  }
+}

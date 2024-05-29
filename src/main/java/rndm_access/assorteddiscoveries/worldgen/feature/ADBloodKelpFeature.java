@@ -19,6 +19,7 @@ public class ADBloodKelpFeature extends Feature<DefaultFeatureConfig> {
         super(configCodec);
     }
 
+    @Override
     public boolean generate(FeatureContext<DefaultFeatureConfig> context) {
         StructureWorldAccess world = context.getWorld();
         BlockPos originPos = context.getOrigin();
@@ -43,18 +44,15 @@ public class ADBloodKelpFeature extends Feature<DefaultFeatureConfig> {
 
         // Place a stalk of blood kelp.
         for (int length = 0; length <= maxLength; ++length) {
-            boolean isAboveEmpty = world.getFluidState(placePos.up()).isEmpty();
+            boolean isEmptyAbove = world.getFluidState(placePos.up()).isEmpty();
 
-            // Top off the blood kelp stalk with a head block.
-            if (isAboveEmpty || length == maxLength) {
+            if (isEmptyAbove || length == maxLength) {
                 world.setBlockState(placePos, stemBlock.getStemState(random, random.nextInt(4) + 20), 2);
                 return true;
+            } else {
+                world.setBlockState(placePos, plantBlock.getPlantState(random), 2);
+                placePos.move(Direction.UP);
             }
-
-            // Place the next blood kelp body block.
-            world.setBlockState(placePos, plantBlock.getPlantState(random), 2);
-
-            placePos.move(Direction.UP);
         }
         return false;
     }

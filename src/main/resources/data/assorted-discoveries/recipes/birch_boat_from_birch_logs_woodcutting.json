@@ -1,0 +1,8 @@
+{
+  "type": "assorted-discoveries:woodcutting",
+  "ingredient": {
+    "tag": "minecraft:birch_logs"
+  },
+  "result": "minecraft:birch_boat",
+  "count": 1
+}

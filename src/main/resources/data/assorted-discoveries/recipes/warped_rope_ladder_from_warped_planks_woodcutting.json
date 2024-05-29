@@ -1,0 +1,8 @@
+{
+  "type": "assorted-discoveries:woodcutting",
+  "ingredient": {
+    "item": "minecraft:warped_planks"
+  },
+  "result": "assorted-discoveries:warped_rope_ladder",
+  "count": 1
+}

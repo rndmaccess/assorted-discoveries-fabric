@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "assorted-discoveries:mossy_stone_tiles"
+  },
+  "result": "assorted-discoveries:mossy_stone_tile_slab",
+  "count": 2
+}

@@ -1,0 +1,32 @@
+{
+  "type": "crafting_shaped",
+  "group": "villager_plush",
+  "pattern": [
+    "HHH",
+    "HEH",
+    "CIC"
+  ],
+  "key": {
+    "H": {
+      "item": "minecraft:terracotta"
+    },
+    "C": {
+      "item": "minecraft:purple_wool"
+    },
+    "E": {
+      "item": "minecraft:emerald"
+    },
+    "I": {
+      "item": "minecraft:lily_pad"
+    }
+  },
+  "result": {
+    "item": "assorted-discoveries:swamp_villager_plush"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_villager_plushies"
+    }
+  ]
+}

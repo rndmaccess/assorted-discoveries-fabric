@@ -1,10 +1,13 @@
 package rndm_access.assorteddiscoveries.block;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.KelpBlock;
+import com.mojang.serialization.MapCodec;
+import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.Fluid;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
+import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.util.ActionResult;
@@ -13,16 +16,20 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
+import org.jetbrains.annotations.Nullable;
 import rndm_access.assorteddiscoveries.core.ADBlocks;
 
-import java.util.Objects;
+public class ADBloodKelpBlock extends AbstractPlantStemBlock implements FluidFillable, ADBloodKelp {
+    public static final MapCodec<ADBloodKelpBlock> CODEC;
+    private static final VoxelShape SHAPE;
 
-public class ADBloodKelpBlock extends KelpBlock implements ADBloodKelp {
     public ADBloodKelpBlock(AbstractBlock.Settings settings) {
-        super(settings);
+        super(settings, Direction.UP, SHAPE, true, 0.14);
         this.setDefaultState(this.getDefaultState().with(LIT, false));
     }
 
@@ -34,8 +41,18 @@ public class ADBloodKelpBlock extends KelpBlock implements ADBloodKelp {
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState,
                                                 WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        return Objects.requireNonNull(super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos))
+        return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos)
                 .with(LIT, state.get(LIT));
+    }
+
+    @Override
+    protected boolean chooseStemState(BlockState state) {
+        return state.isOf(Blocks.WATER);
+    }
+
+    @Override
+    protected MapCodec<ADBloodKelpBlock> getCodec() {
+        return CODEC;
     }
 
     @Override
@@ -47,6 +64,11 @@ public class ADBloodKelpBlock extends KelpBlock implements ADBloodKelp {
             world.setBlockState(pos, this.growStemToPlant(state), 2);
             world.setBlockState(newStemPos, this.getStemState(random, age).cycle(AGE));
         }
+    }
+
+    @Override
+    protected boolean canAttachTo(BlockState state) {
+        return !state.isOf(Blocks.MAGMA_BLOCK);
     }
 
     @Override
@@ -75,6 +97,11 @@ public class ADBloodKelpBlock extends KelpBlock implements ADBloodKelp {
         ADBloodKelp.playParticles(world, state, pos, random);
     }
 
+    @Override
+    protected int getGrowthLength(Random random) {
+        return 1;
+    }
+
     @SuppressWarnings("deprecation")
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
@@ -82,12 +109,40 @@ public class ADBloodKelpBlock extends KelpBlock implements ADBloodKelp {
     }
 
     @Override
-    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
-        return !state.get(LIT) && super.isFertilizable(world, pos, state, isClient);
+    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
+        return !state.get(LIT) && super.isFertilizable(world, pos, state);
     }
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(LIT, AGE);
+    }
+
+    @Override
+    public boolean canFillWithFluid(@Nullable PlayerEntity player, BlockView world, BlockPos pos, BlockState state, Fluid fluid) {
+        return false;
+    }
+
+    @Override
+    public boolean tryFillWithFluid(WorldAccess world, BlockPos pos, BlockState state, FluidState fluidState) {
+        return false;
+    }
+
+    @Nullable
+    @Override
+    public BlockState getPlacementState(ItemPlacementContext ctx) {
+        FluidState fluidState = ctx.getWorld().getFluidState(ctx.getBlockPos());
+        return fluidState.isIn(FluidTags.WATER) && fluidState.getLevel() == 8 ? super.getPlacementState(ctx) : null;
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public FluidState getFluidState(BlockState state) {
+        return Fluids.WATER.getStill(false);
+    }
+
+    static {
+        CODEC = createCodec(ADBloodKelpBlock::new);
+        SHAPE = Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 9.0, 16.0);
     }
 }

@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "assorted-discoveries:grass_slab",
+    "assorted-discoveries:podzol_slab",
+    "assorted-discoveries:mycelium_slab",
+    "assorted-discoveries:dirt_slab",
+    "assorted-discoveries:rooted_dirt_slab",
+    "assorted-discoveries:coarse_dirt_slab"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "block/inner_stairs",
+  "textures": {
+    "bottom": "assorted-discoveries:block/twisted_blackstone_top",
+    "top": "assorted-discoveries:block/twisted_blackstone_top",
+    "side": "assorted-discoveries:block/twisted_blackstone"
+  }
+}

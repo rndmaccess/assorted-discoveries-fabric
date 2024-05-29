@@ -1,8 +1,0 @@
-{
-  "parent": "block/outer_stairs",
-  "textures": {
-    "bottom": "assorteddiscoveries:block/blackstone_tiles",
-    "top": "assorteddiscoveries:block/blackstone_tiles",
-    "side": "assorteddiscoveries:block/blackstone_tiles"
-  }
-}

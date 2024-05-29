@@ -1,15 +1,18 @@
 package rndm_access.assorteddiscoveries.item.crafting;
 
-import com.google.gson.JsonObject;
+import com.mojang.datafixers.Products;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.recipe.*;
+import net.minecraft.recipe.Ingredient;
+import net.minecraft.recipe.Recipe;
+import net.minecraft.recipe.RecipeSerializer;
+import net.minecraft.recipe.RecipeType;
 import net.minecraft.registry.DynamicRegistryManager;
-import net.minecraft.registry.Registries;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.util.dynamic.Codecs;
 import net.minecraft.world.World;
 import rndm_access.assorteddiscoveries.core.ADBlocks;
 import rndm_access.assorteddiscoveries.core.ADRecipeSerializers;
@@ -18,25 +21,23 @@ import rndm_access.assorteddiscoveries.core.ADRecipeTypes;
 import java.util.Objects;
 
 public class ADWoodcuttingRecipe implements Recipe<Inventory> {
-    private final Ingredient input;
-    protected final ItemStack output;
+    protected final Ingredient ingredient;
+    protected final ItemStack result;
+    protected final String group;
     private final RecipeType<?> type;
     private final RecipeSerializer<?> serializer;
-    private final Identifier id;
-    protected final String group;
 
-    public ADWoodcuttingRecipe(Identifier id, String group, Ingredient input, ItemStack output) {
+    public ADWoodcuttingRecipe(String group, Ingredient ingredient, ItemStack result) {
         this.type = ADRecipeTypes.WOODCUTTING;
         this.serializer = ADRecipeSerializers.WOODCUTTING;
-        this.id = id;
         this.group = group;
-        this.input = input;
-        this.output = output;
+        this.ingredient = ingredient;
+        this.result = result;
     }
 
     @Override
     public boolean matches(Inventory inventory, World world) {
-        return this.input.test(inventory.getStack(0));
+        return this.ingredient.test(inventory.getStack(0));
     }
 
     @Override
@@ -50,28 +51,23 @@ public class ADWoodcuttingRecipe implements Recipe<Inventory> {
     }
 
     @Override
-    public Identifier getId() {
-        return this.id;
-    }
-
-    @Override
     public String getGroup() {
         return this.group;
     }
 
     @Override
-    public ItemStack getOutput(DynamicRegistryManager registryManager) {
-        return this.output;
+    public ItemStack getResult(DynamicRegistryManager registryManager) {
+        return this.result;
     }
 
-    public Ingredient getInput() {
-        return this.input;
+    public Ingredient getIngredient() {
+        return this.ingredient;
     }
 
     @Override
     public DefaultedList<Ingredient> getIngredients() {
         DefaultedList<Ingredient> ingredients = DefaultedList.of();
-        ingredients.add(this.input);
+        ingredients.add(this.ingredient);
         return ingredients;
     }
 
@@ -87,52 +83,50 @@ public class ADWoodcuttingRecipe implements Recipe<Inventory> {
 
     @Override
     public ItemStack craft(Inventory inventory, DynamicRegistryManager registryManager) {
-        return this.output.copy();
+        return this.result.copy();
     }
-    
-    public record Serializer<T extends ADWoodcuttingRecipe>(RecipeFactory<T> recipeFactory) implements RecipeSerializer<T> {
 
-        @Override
-        public T read(Identifier identifier, JsonObject jsonObject) {
-            String group = JsonHelper.getString(jsonObject, "group", "");
-            String result = JsonHelper.getString(jsonObject, "result");
-            int count = JsonHelper.getInt(jsonObject, "count");
-            ItemStack stack = new ItemStack(Registries.ITEM.get(new Identifier(result)), count);
-            Ingredient ingredient = JsonHelper.hasArray(jsonObject, "ingredient")
-                    ? Ingredient.fromJson(JsonHelper.getArray(jsonObject, "ingredient"))
-                    : Ingredient.fromJson(JsonHelper.getObject(jsonObject, "ingredient"));
+    public interface RecipeFactory<T extends ADWoodcuttingRecipe> {
+        T create(String group, Ingredient ingredient, ItemStack result);
+    }
 
-            return this.recipeFactory.create(identifier, group, ingredient, stack);
+    public static class Serializer<T extends ADWoodcuttingRecipe> implements RecipeSerializer<T> {
+        private final RecipeFactory<T> recipeFactory;
+        private final Codec<T> codec;
+
+        public Serializer(RecipeFactory<T> recipeFactory) {
+            this.recipeFactory = recipeFactory;
+            this.codec = RecordCodecBuilder.create((instance) -> {
+                Products.P3<RecordCodecBuilder.Mu<T>, String, Ingredient, ItemStack> temp = instance.group(
+                        Codecs.createStrictOptionalFieldCodec(Codec.STRING, "group", "")
+                                .forGetter((recipe) -> recipe.group),
+                        Ingredient.DISALLOW_EMPTY_CODEC.fieldOf("ingredient")
+                                .forGetter((recipe) -> recipe.ingredient),
+                        ItemStack.CUTTING_RECIPE_RESULT_CODEC
+                                .forGetter((recipe) -> recipe.result));
+                Objects.requireNonNull(recipeFactory);
+                return temp.apply(instance, recipeFactory::create);
+            });
         }
 
         @Override
-        public T read(Identifier identifier, PacketByteBuf packetByteBuf) {
+        public Codec<T> codec() {
+            return this.codec;
+        }
+
+        @Override
+        public T read(PacketByteBuf packetByteBuf) {
             String string = packetByteBuf.readString();
             Ingredient ingredient = Ingredient.fromPacket(packetByteBuf);
-            ItemStack stack = packetByteBuf.readItemStack();
-
-            return this.recipeFactory.create(identifier, string, ingredient, stack);
+            ItemStack itemStack = packetByteBuf.readItemStack();
+            return this.recipeFactory.create(string, ingredient, itemStack);
         }
 
         @Override
         public void write(PacketByteBuf packetByteBuf, T cuttingRecipe) {
             packetByteBuf.writeString(cuttingRecipe.group);
-            cuttingRecipe.getInput().write(packetByteBuf);
-            packetByteBuf.writeItemStack(cuttingRecipe.output);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(this.recipeFactory);
-        }
-
-        @Override
-        public String toString() {
-            return "Serializer[recipeFactory=" + this.recipeFactory + ']';
-        }
-
-        public interface RecipeFactory<T extends ADWoodcuttingRecipe> {
-            T create(Identifier id, String group, Ingredient input, ItemStack output);
+            cuttingRecipe.getIngredient().write(packetByteBuf);
+            packetByteBuf.writeItemStack(cuttingRecipe.result);
         }
     }
 }

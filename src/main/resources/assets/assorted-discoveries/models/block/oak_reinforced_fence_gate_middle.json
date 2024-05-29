@@ -1,0 +1,6 @@
+{
+  "parent": "assorted-discoveries:block/template_reinforced_fence_gate_middle",
+  "textures": {
+    "log": "minecraft:block/oak_log"
+  }
+}

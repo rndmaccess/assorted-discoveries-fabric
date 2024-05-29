@@ -1,8 +1,0 @@
-{
-  "parent": "assorteddiscoveries:block/template_planter_box_corner",
-  "textures": {
-    "material": "block/cherry_planks",
-    "log": "block/stripped_cherry_log",
-    "soil": "block/farmland_moist"
-  }
-}

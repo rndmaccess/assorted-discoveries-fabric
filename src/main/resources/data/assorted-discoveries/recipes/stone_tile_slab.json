@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "assorted-discoveries:stone_tiles"
+    }
+  },
+  "result": {
+    "item": "assorted-discoveries:stone_tile_slab",
+    "count": 6
+  }
+}

@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "assorteddiscoveries:block/weeping_netherrack"
-  }
-}

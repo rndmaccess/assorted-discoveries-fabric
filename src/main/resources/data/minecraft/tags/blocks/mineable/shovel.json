@@ -1,13 +1,20 @@
 {
   "replace": false,
   "values": [
-    "assorteddiscoveries:snow_bricks",
-    "assorteddiscoveries:snow_brick_stairs",
-    "assorteddiscoveries:snow_brick_slab",
-    "assorteddiscoveries:maroon_concrete_powder",
-    "assorteddiscoveries:packed_snow",
-    "assorteddiscoveries:packed_snow_stairs",
-    "assorteddiscoveries:packed_snow_slab",
+    "assorted-discoveries:snow_bricks",
+    "assorted-discoveries:snow_brick_stairs",
+    "assorted-discoveries:snow_brick_slab",
+    "assorted-discoveries:maroon_concrete_powder",
+    "assorted-discoveries:packed_snow",
+    "assorted-discoveries:packed_snow_stairs",
+    "assorted-discoveries:packed_snow_slab",
+    "assorted-discoveries:grass_slab",
+    "assorted-discoveries:podzol_slab",
+    "assorted-discoveries:mycelium_slab",
+    "assorted-discoveries:dirt_path_slab",
+    "assorted-discoveries:dirt_slab",
+    "assorted-discoveries:rooted_dirt_slab",
+    "assorted-discoveries:coarse_dirt_slab",
     "#c:snow_walls"
   ]
 }

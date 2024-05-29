@@ -48,10 +48,10 @@ public class ADDyedCampfireBlock extends CampfireBlock {
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
         if (world.isClient()) {
             return state.get(LIT)
-                    ? checkType(type, ADBlockEntityTypes.DYED_CAMPFIRE, ADDyedCampfireBlockEntity::clientTick) : null;
+                    ? validateTicker(type, ADBlockEntityTypes.DYED_CAMPFIRE, ADDyedCampfireBlockEntity::clientTick) : null;
         } else {
-            return state.get(LIT) ? checkType(type, ADBlockEntityTypes.DYED_CAMPFIRE, ADDyedCampfireBlockEntity::litServerTick)
-                    : checkType(type, ADBlockEntityTypes.DYED_CAMPFIRE, ADDyedCampfireBlockEntity::unlitServerTick);
+            return state.get(LIT) ? validateTicker(type, ADBlockEntityTypes.DYED_CAMPFIRE, ADDyedCampfireBlockEntity::litServerTick)
+                    : validateTicker(type, ADBlockEntityTypes.DYED_CAMPFIRE, ADDyedCampfireBlockEntity::unlitServerTick);
         }
     }
 

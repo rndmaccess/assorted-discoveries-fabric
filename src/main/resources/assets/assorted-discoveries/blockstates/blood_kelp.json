@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "assorted-discoveries:block/blood_kelp"
+    },
+    "lit=true": {
+      "model": "assorted-discoveries:block/blood_kelp_lit"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "assorted-discoveries:block/weeping_blackstone_slab"
+    },
+    "type=top": {
+      "model": "assorted-discoveries:block/weeping_blackstone_slab_top"
+    },
+    "type=double": {
+      "model": "assorted-discoveries:block/weeping_blackstone"
+    }
+  }
+}

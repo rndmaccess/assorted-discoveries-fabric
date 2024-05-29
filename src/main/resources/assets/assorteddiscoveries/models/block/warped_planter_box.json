@@ -1,8 +1,0 @@
-{
-  "parent": "assorteddiscoveries:block/template_planter_box",
-  "textures": {
-    "material": "block/warped_planks",
-    "log": "block/stripped_warped_stem",
-    "soil": "block/soul_soil"
-  }
-}

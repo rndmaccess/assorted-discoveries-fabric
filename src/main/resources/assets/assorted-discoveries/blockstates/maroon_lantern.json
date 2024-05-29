@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "assorted-discoveries:block/maroon_lantern"
+    },
+    "hanging=true": {
+      "model": "assorted-discoveries:block/maroon_lantern_hanging"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "assorted-discoveries:block/template_villager_plush",
+  "textures": {
+    "shirt": "block/white_wool",
+    "arms": "block/brown_wool"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "type": "assorted-discoveries:woodcutting",
+  "ingredient": {
+    "tag": "minecraft:cherry_logs"
+  },
+  "result": "minecraft:cherry_planks",
+  "count": 4
+}

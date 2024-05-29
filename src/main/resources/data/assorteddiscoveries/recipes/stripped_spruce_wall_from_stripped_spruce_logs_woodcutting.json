@@ -1,8 +1,0 @@
-{
-  "type": "assorteddiscoveries:woodcutting",
-  "ingredient": {
-    "tag": "c:stripped_spruce_logs"
-  },
-  "result": "assorteddiscoveries:stripped_spruce_wall",
-  "count": 1
-}

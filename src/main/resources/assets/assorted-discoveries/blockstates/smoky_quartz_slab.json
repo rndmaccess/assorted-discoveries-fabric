@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "assorted-discoveries:block/smoky_quartz_slab"
+    },
+    "type=top": {
+      "model": "assorted-discoveries:block/smoky_quartz_slab_top"
+    },
+    "type=double": {
+      "model": "assorted-discoveries:block/smoky_quartz_block"
+    }
+  }
+}

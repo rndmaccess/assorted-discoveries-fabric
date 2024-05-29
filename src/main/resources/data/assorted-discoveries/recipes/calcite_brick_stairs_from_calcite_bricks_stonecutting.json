@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "assorted-discoveries:calcite_bricks"
+  },
+  "result": "assorted-discoveries:calcite_brick_stairs",
+  "count": 1
+}

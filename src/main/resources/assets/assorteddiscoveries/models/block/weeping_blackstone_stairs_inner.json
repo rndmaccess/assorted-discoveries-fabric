@@ -1,8 +1,0 @@
-{
-  "parent": "block/inner_stairs",
-  "textures": {
-    "bottom": "assorteddiscoveries:block/weeping_blackstone_top",
-    "top": "assorteddiscoveries:block/weeping_blackstone_top",
-    "side": "assorteddiscoveries:block/weeping_blackstone"
-  }
-}

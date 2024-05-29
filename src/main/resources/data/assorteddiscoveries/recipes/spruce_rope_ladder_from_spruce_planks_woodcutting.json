@@ -1,8 +1,0 @@
-{
-  "type": "assorteddiscoveries:woodcutting",
-  "ingredient": {
-    "item": "minecraft:spruce_planks"
-  },
-  "result": "assorteddiscoveries:spruce_rope_ladder",
-  "count": 1
-}

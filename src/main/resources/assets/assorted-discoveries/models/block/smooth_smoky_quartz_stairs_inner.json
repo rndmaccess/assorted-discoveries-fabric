@@ -1,0 +1,8 @@
+{
+  "parent": "block/inner_stairs",
+  "textures": {
+    "bottom": "assorted-discoveries:block/smoky_quartz_block_bottom",
+    "top": "assorted-discoveries:block/smoky_quartz_block_bottom",
+    "side": "assorted-discoveries:block/smoky_quartz_block_bottom"
+  }
+}

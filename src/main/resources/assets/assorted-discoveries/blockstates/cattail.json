@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "assorted-discoveries:block/cattail_bottom"
+    },
+    "half=upper": {
+      "model": "assorted-discoveries:block/cattail_top"
+    }
+  }
+}

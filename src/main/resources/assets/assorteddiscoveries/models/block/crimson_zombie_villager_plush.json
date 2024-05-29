@@ -1,7 +1,0 @@
-{
-  "parent": "assorteddiscoveries:block/template_zombie_villager_plush",
-  "textures": {
-    "shirt": "block/red_wool",
-    "sleeves": "block/black_wool"
-  }
-}

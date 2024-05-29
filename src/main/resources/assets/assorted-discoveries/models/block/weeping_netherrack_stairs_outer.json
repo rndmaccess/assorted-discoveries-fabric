@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+	"bottom": "assorted-discoveries:block/weeping_netherrack",
+    "top": "assorted-discoveries:block/weeping_netherrack",
+    "side": "assorted-discoveries:block/weeping_netherrack"
+  }
+}

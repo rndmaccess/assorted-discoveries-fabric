@@ -1,0 +1,8 @@
+{
+  "type": "assorted-discoveries:woodcutting",
+  "ingredient": {
+    "item": "minecraft:mangrove_planks"
+  },
+  "result": "minecraft:mangrove_trapdoor",
+  "count": 1
+}

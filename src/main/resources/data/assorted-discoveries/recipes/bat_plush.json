@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GGG",
+    "BSB",
+    "GGG"
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:light_gray_wool"
+    },
+    "B": {
+      "item": "minecraft:black_wool"
+    },
+    "S": {
+      "tag": "c:natural_stones"
+    }
+  },
+  "result": {
+    "item": "assorted-discoveries:bat_plush"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_bat_plush"
+    }
+  ]
+}

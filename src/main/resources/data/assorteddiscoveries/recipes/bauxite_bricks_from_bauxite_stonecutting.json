@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "assorteddiscoveries:bauxite"
-  },
-  "result": "assorteddiscoveries:bauxite_bricks",
-  "count": 1
-}

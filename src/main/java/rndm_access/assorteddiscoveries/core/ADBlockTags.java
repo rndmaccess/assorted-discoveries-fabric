@@ -6,6 +6,11 @@ import net.minecraft.registry.tag.TagKey;
 import rndm_access.assorteddiscoveries.ADReference;
 
 public class ADBlockTags {
+    public static final TagKey<Block> CROPS_PLANTABLE_ON = of("crops_plantable_on");
+    public static final TagKey<Block> FUNGUS_PLANTABLE_ON = of("fungus_plantable_on");
+    public static final TagKey<Block> NETHER_WART_PLANTABLE_ON = of("nether_wart_plantable_on");
+    public static final TagKey<Block> ROOTS_PLANTABLE_ON = of("roots_plantable_on");
+    public static final TagKey<Block> SPROUTS_PLANTABLE_ON = of("sprouts_plantable_on");
     public static final TagKey<Block> OVERWORLD_PLANTER_BOXES = of("overworld_planter_boxes");
     public static final TagKey<Block> NETHER_PLANTER_BOXES = of("nether_planter_boxes");
 

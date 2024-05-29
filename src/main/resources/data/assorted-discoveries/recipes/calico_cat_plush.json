@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "cat_plush",
+  "pattern": [
+    "BWO",
+    "GFG",
+    "WWW"
+  ],
+  "key": {
+    "O": {
+      "item": "minecraft:orange_wool"
+    },
+    "B": {
+      "item": "minecraft:black_wool"
+    },
+    "W": {
+      "item": "minecraft:white_wool"
+    },
+    "G": {
+      "item": "minecraft:green_wool"
+    },
+    "F": {
+      "tag": "c:raw_fish"
+    }
+  },
+  "result": {
+    "item": "assorted-discoveries:calico_cat_plush"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_calico_cat_plush"
+    }
+  ]
+}

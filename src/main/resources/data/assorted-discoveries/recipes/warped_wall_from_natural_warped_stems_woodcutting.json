@@ -1,0 +1,8 @@
+{
+  "type": "assorted-discoveries:woodcutting",
+  "ingredient": {
+    "tag": "c:natural_warped_stems"
+  },
+  "result": "assorted-discoveries:warped_wall",
+  "count": 1
+}

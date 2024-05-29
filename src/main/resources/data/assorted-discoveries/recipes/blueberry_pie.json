@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BBB",
+    "WWW"
+  ],
+  "key": {
+    "B": [
+      {
+        "item": "assorted-discoveries:blueberries"
+      }
+    ],
+    "W": [
+      {
+        "item": "minecraft:wheat"
+      }
+    ]
+  },
+  "result": {
+    "item": "assorted-discoveries:blueberry_pie"
+  }
+}

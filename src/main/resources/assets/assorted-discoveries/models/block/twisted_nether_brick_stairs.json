@@ -1,0 +1,8 @@
+{
+  "parent": "block/stairs",
+  "textures": {
+    "bottom": "assorted-discoveries:block/twisted_nether_bricks",
+    "top": "assorted-discoveries:block/twisted_nether_bricks",
+    "side": "assorted-discoveries:block/twisted_nether_bricks"
+  }
+}

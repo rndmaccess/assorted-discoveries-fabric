@@ -1,0 +1,35 @@
+{
+  "parent": "assorted-discoveries:story/root",
+  "display": {
+    "icon": {
+      "item": "assorted-discoveries:witchs_cradle_soup"
+    },
+    "title": {
+      "translate": "advancements.assorted-discoveries.story.eat_witchs_cradle_soup.title"
+    },
+    "description": {
+      "translate": "advancements.assorted-discoveries.story.eat_witchs_cradle_soup.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "witchs_cradle_soup": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "assorted-discoveries:witchs_cradle_soup"
+          ]
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "witchs_cradle_soup"
+    ]
+  ]
+}

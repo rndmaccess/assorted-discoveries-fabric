@@ -1,0 +1,6 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "assorted-discoveries:block/cindersnap_berry_bush_stage3"
+  }
+}

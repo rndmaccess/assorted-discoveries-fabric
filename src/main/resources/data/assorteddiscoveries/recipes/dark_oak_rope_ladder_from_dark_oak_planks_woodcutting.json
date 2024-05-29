@@ -1,8 +1,0 @@
-{
-  "type": "assorteddiscoveries:woodcutting",
-  "ingredient": {
-    "item": "minecraft:dark_oak_planks"
-  },
-  "result": "assorteddiscoveries:dark_oak_rope_ladder",
-  "count": 1
-}

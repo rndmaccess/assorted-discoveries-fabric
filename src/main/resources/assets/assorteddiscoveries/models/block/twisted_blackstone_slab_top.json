@@ -1,8 +1,0 @@
-{
-  "parent": "block/slab_top",
-  "textures": {
-    "bottom": "assorteddiscoveries:block/twisted_blackstone_top",
-    "top": "assorteddiscoveries:block/twisted_blackstone_top",
-    "side": "assorteddiscoveries:block/twisted_blackstone"
-  }
-}

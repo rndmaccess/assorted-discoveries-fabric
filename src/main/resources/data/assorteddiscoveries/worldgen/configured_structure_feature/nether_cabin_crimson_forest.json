@@ -1,0 +1,10 @@
+{
+  "type": "assorteddiscoveries:nether_cabin",
+  "config": {
+    "start_pool": "assorteddiscoveries:nether_cabin/crimson_forest/start",
+    "size": 7
+  },
+  "biomes": "#c:has_structure/nether_cabin_crimson_forest",
+  "adapt_noise": true,
+  "spawn_overrides": {}
+}

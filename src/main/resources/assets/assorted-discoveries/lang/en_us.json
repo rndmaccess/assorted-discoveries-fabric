@@ -510,7 +510,10 @@
   "text.autoconfig.assorted-discoveries.option.plushies.enable_shulker_plush": "Enable Shulker Plush",
   "text.autoconfig.assorted-discoveries.option.plushies.enable_camel_plush": "Enable Camel Plush",
 
-  "text.autoconfig.assorted-discoveries.option.food": "Food (Required Restart)",
-  "text.autoconfig.assorted-discoveries.option.food.enable_green_onions": "Enable Green Onions",
-  "text.autoconfig.assorted-discoveries.option.food.enable_noodles": "Enable Noodles"
+  "text.autoconfig.assorted-discoveries.option.farming": "Farming (Required Restart)",
+  "text.autoconfig.assorted-discoveries.option.farming.enable_overworld_planter_boxes": "Enable Overworld Planter Boxes",
+  "text.autoconfig.assorted-discoveries.option.farming.enable_nether_planter_boxes": "Enable Nether Planter Boxes",
+
+  "text.autoconfig.assorted-discoveries.option.farming.enable_green_onions_and_wild_green_onions": "Enable Green Onions & Wild Green Onions",
+  "text.autoconfig.assorted-discoveries.option.farming.enable_noodles_and_noodle_soup": "Enable Noodles & Noodle Soup"
 }

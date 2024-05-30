@@ -16,5 +16,11 @@
   },
   "result": {
     "item": "assorted-discoveries:crimson_planter_box"
-  }
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_nether_planter_boxes"
+    }
+  ]
 }

@@ -40,8 +40,7 @@ public class ADResourceConditions {
     private static void populateEntries() {
         ADConfig config = AutoConfig.getConfigHolder(ADConfig.class).getConfig();
 
-        putEntry("enable_green_onions", config.getFood().getGreenOnionsEnabled());
-        putEntry("enable_noodles", config.getFood().getNoodlesEnabled());
+        // Plush config options
         putEntry("enable_blaze_plush", config.getPlushies().isBlazePlushEnabled());
         putEntry("enable_bat_plush", config.getPlushies().isBatPlushEnabled());
         putEntry("enable_chicken_plush", config.getPlushies().isChickenPlushEnabled());
@@ -93,6 +92,12 @@ public class ADResourceConditions {
         putEntry("enable_ravager_plush", config.getPlushies().isRavagerPlushEnabled());
         putEntry("enable_shulker_plush", config.getPlushies().isShulkerPlushEnabled());
         putEntry("enable_camel_plush", config.getPlushies().isCamelPlushEnabled());
+
+        // Farming config options
+        putEntry("enable_overworld_planter_boxes", config.getFarming().areOverworldPlanterBoxesEnabled());
+        putEntry("enable_nether_planter_boxes", config.getFarming().areNetherPlanterBoxesEnabled());
+        putEntry("enable_green_onions_and_wild_green_onions", config.getFarming().getGreenOnionsAndWildGreenOnionsEnabled());
+        putEntry("enable_noodles_and_noodle_soup", config.getFarming().getNoodlesAndNoodleSoupEnabled());
     }
 
     static {

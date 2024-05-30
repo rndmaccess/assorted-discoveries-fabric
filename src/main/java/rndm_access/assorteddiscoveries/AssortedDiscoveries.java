@@ -107,7 +107,7 @@ public class AssortedDiscoveries implements ModInitializer {
 		BiomeModifications.addFeature(BiomeSelectors.tag(CBiomeTags.PATCH_FROSTBITE_BERRY_BUSH),
 				GenerationStep.Feature.VEGETAL_DECORATION, ADPlacedFeatureKeys.PATCH_FROSTBITE_BERRY_BUSH_RARE);
 
-        if(config.getFood().getGreenOnionsEnabled()) {
+        if(config.getFarming().getGreenOnionsAndWildGreenOnionsEnabled()) {
             BiomeModifications.addFeature(BiomeSelectors.tag(CBiomeTags.PATCH_WILD_GREEN_ONIONS),
                     GenerationStep.Feature.VEGETAL_DECORATION, ADPlacedFeatureKeys.PATCH_WILD_GREEN_ONIONS_COMMON);
             BiomeModifications.addFeature(BiomeSelectors.tag(CBiomeTags.PATCH_WILD_GREEN_ONIONS),
@@ -415,18 +415,22 @@ public class AssortedDiscoveries implements ModInitializer {
 
                     entries.add(ADItems.WOODCUTTER);
 
-					entries.add(ADItems.OAK_PLANTER_BOX);
-					entries.add(ADItems.SPRUCE_PLANTER_BOX);
-					entries.add(ADItems.BIRCH_PLANTER_BOX);
-					entries.add(ADItems.JUNGLE_PLANTER_BOX);
-					entries.add(ADItems.ACACIA_PLANTER_BOX);
-					entries.add(ADItems.DARK_OAK_PLANTER_BOX);
-					entries.add(ADItems.MANGROVE_PLANTER_BOX);
-					entries.add(ADItems.CHERRY_PLANTER_BOX);
-					entries.add(ADItems.BAMBOO_PLANTER_BOX);
+                    if(config.getFarming().areOverworldPlanterBoxesEnabled()) {
+                        entries.add(ADItems.OAK_PLANTER_BOX);
+                        entries.add(ADItems.SPRUCE_PLANTER_BOX);
+                        entries.add(ADItems.BIRCH_PLANTER_BOX);
+                        entries.add(ADItems.JUNGLE_PLANTER_BOX);
+                        entries.add(ADItems.ACACIA_PLANTER_BOX);
+                        entries.add(ADItems.DARK_OAK_PLANTER_BOX);
+                        entries.add(ADItems.MANGROVE_PLANTER_BOX);
+                        entries.add(ADItems.CHERRY_PLANTER_BOX);
+                        entries.add(ADItems.BAMBOO_PLANTER_BOX);
+                    }
 
-                    entries.add(ADItems.CRIMSON_PLANTER_BOX);
-					entries.add(ADItems.WARPED_PLANTER_BOX);
+                    if(config.getFarming().areNetherPlanterBoxesEnabled()) {
+                        entries.add(ADItems.CRIMSON_PLANTER_BOX);
+                        entries.add(ADItems.WARPED_PLANTER_BOX);
+                    }
 
                     entries.add(ADItems.OAK_WALL);
 					entries.add(ADItems.SPRUCE_WALL);
@@ -697,13 +701,13 @@ public class AssortedDiscoveries implements ModInitializer {
 					entries.add(ADItems.SWEET_BERRY_PIE);
 					entries.add(ADItems.BLUEBERRY_PIE);
 
-                    if(config.getFood().getGreenOnionsEnabled()) {
+                    if(config.getFarming().getGreenOnionsAndWildGreenOnionsEnabled()) {
                         entries.add(ADItems.WILD_GREEN_ONIONS);
                         entries.add(ADItems.GREEN_ONION_SEEDS);
                         entries.add(ADItems.GREEN_ONION);
                     }
 
-                    if(config.getFood().getNoodlesEnabled()) {
+                    if(config.getFarming().getNoodlesAndNoodleSoupEnabled()) {
                         entries.add(ADItems.NOODLES);
                         entries.add(ADItems.NOODLE_SOUP);
                     }

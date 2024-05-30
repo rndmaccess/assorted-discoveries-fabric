@@ -12,7 +12,7 @@ public class ADConfig implements ConfigData {
     Plushies plushies = new Plushies();
 
     @ConfigEntry.Gui.CollapsibleObject
-    Food food = new Food();
+    Farming farming = new Farming();
 
     @ConfigEntry.Gui.CollapsibleObject
     Misc misc = new Misc();
@@ -21,8 +21,8 @@ public class ADConfig implements ConfigData {
         return plushies;
     }
 
-    public Food getFood() {
-        return food;
+    public Farming getFarming() {
+        return farming;
     }
 
     public boolean getIsRabbitsSafeFallIncreased() {
@@ -388,21 +388,34 @@ public class ADConfig implements ConfigData {
         }
     }
 
-    public static class Food {
-        @Comment("If disabled noodle soup does not use green onions\nand wild green onions won't spawn.")
+    public static class Farming {
         @ConfigEntry.Gui.RequiresRestart
-        boolean enable_green_onions = true;
+        boolean enable_overworld_planter_boxes = true;
 
-        @Comment("If disabled moodle soup is disabled.")
         @ConfigEntry.Gui.RequiresRestart
-        boolean enable_noodles = true;
+        boolean enable_nether_planter_boxes = true;
 
-        public boolean getGreenOnionsEnabled() {
-            return enable_green_onions;
+        @Comment("If disabled noodle soup does not use green onions.")
+        @ConfigEntry.Gui.RequiresRestart
+        boolean enable_green_onions_and_wild_green_onions = true;
+
+        @ConfigEntry.Gui.RequiresRestart
+        boolean enable_noodles_and_noodle_soup = true;
+
+        public boolean getGreenOnionsAndWildGreenOnionsEnabled() {
+            return enable_green_onions_and_wild_green_onions;
         }
 
-        public boolean getNoodlesEnabled() {
-            return enable_noodles;
+        public boolean getNoodlesAndNoodleSoupEnabled() {
+            return enable_noodles_and_noodle_soup;
+        }
+
+        public boolean areOverworldPlanterBoxesEnabled() {
+            return enable_overworld_planter_boxes;
+        }
+
+        public boolean areNetherPlanterBoxesEnabled() {
+            return enable_nether_planter_boxes;
         }
     }
 

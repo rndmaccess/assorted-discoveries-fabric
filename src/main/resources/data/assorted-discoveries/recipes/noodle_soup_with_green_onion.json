@@ -20,11 +20,11 @@
       "values": [
         {
           "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "assorted-discoveries:enable_green_onions"
+          "value": "assorted-discoveries:enable_green_onions_and_wild_green_onions"
         },
         {
           "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "assorted-discoveries:enable_noodles"
+          "value": "assorted-discoveries:enable_noodles_and_noodle_soup"
         }
       ]
     }

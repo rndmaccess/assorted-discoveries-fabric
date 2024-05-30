@@ -34,7 +34,7 @@
   "fabric:load_conditions": [
     {
       "condition": "assorted-discoveries:config_entry_enabled",
-      "value": "assorted-discoveries:enable_noodles"
+      "value": "assorted-discoveries:enable_noodles_and_noodle_soup"
     }
   ]
 }

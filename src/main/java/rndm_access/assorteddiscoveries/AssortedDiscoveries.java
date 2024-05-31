@@ -1,7 +1,7 @@
 package rndm_access.assorteddiscoveries;
 
 import me.shedaniel.autoconfig.AutoConfig;
-import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
+import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
@@ -40,7 +40,7 @@ public class AssortedDiscoveries implements ModInitializer {
 	@Override
 	public void onInitialize() {
         // Register Config
-        AutoConfig.register(ADConfig.class, GsonConfigSerializer::new);
+        AutoConfig.register(ADConfig.class, JanksonConfigSerializer::new);
         ADResourceConditions.registerResourceConditions();
 
 		// General Registries

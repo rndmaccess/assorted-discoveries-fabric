@@ -6,6 +6,7 @@ import me.shedaniel.autoconfig.annotation.ConfigEntry;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Comment;
 
 @Config(name = "assorted-discoveries")
+@Config.Gui.Background("assorted-discoveries:textures/block/calcite_bricks.png")
 public class ADConfig implements ConfigData {
 
     @ConfigEntry.Gui.CollapsibleObject
@@ -402,20 +403,20 @@ public class ADConfig implements ConfigData {
         @ConfigEntry.Gui.RequiresRestart
         boolean enable_noodles_and_noodle_soup = true;
 
-        public boolean getGreenOnionsAndWildGreenOnionsEnabled() {
-            return enable_green_onions_and_wild_green_onions;
-        }
-
-        public boolean getNoodlesAndNoodleSoupEnabled() {
-            return enable_noodles_and_noodle_soup;
-        }
-
         public boolean areOverworldPlanterBoxesEnabled() {
             return enable_overworld_planter_boxes;
         }
 
         public boolean areNetherPlanterBoxesEnabled() {
             return enable_nether_planter_boxes;
+        }
+
+        public boolean getGreenOnionsAndWildGreenOnionsEnabled() {
+            return enable_green_onions_and_wild_green_onions;
+        }
+
+        public boolean getNoodlesAndNoodleSoupEnabled() {
+            return enable_noodles_and_noodle_soup;
         }
     }
 

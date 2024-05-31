@@ -346,17 +346,17 @@ public class ADItems {
             .food(ADFoodComponents.SWEET_BERRY_JUICE).maxCount(16));
     public static final Item BLUEBERRY_JUICE = new ADDrinkContainerItem(new Item.Settings()
             .food(ADFoodComponents.BLUEBERRY_JUICE).maxCount(16));
-    public static final Item NOODLES = item();
+    public static final Item NOODLES = new Item(new Item.Settings());
     public static final Item NOODLE_SOUP = new ADFoodContainerItem(new Item.Settings()
             .food(ADFoodComponents.NOODLE_SOUP).maxCount(1));
     public static final Item PUDDING = new ADFoodContainerItem(new Item.Settings()
             .food(ADFoodComponents.PUDDING).maxCount(1));
     public static final Item BERRY_PUDDING = new ADFoodContainerItem(new Item.Settings()
             .food(ADFoodComponents.BERRY_PUDDING).maxCount(1));
-    public static final Item SMOKY_QUARTZ = item();
+    public static final Item SMOKY_QUARTZ = new Item(new Item.Settings());
     public static final Item CARAMEL_APPLE = new ADFoodContainerItem(new Item.Settings()
             .food(ADFoodComponents.CARAMEL_APPLE).maxCount(1), Items.STICK);
-    public static final Item CARAMEL = item();
+    public static final Item CARAMEL = new Item(new Item.Settings().food(ADFoodComponents.CARAMEL));
     public static final Item SPRUCE_CONE = new Item(new Item.Settings().food(ADFoodComponents.SPRUCE_CONE));
     public static final Item FORESTS_BOUNTY = new ADFoodContainerItem(new Item.Settings()
             .food(ADFoodComponents.FORESTS_BOUNTY).maxCount(1));
@@ -367,7 +367,7 @@ public class ADItems {
     public static final Item CATTAIL = new AliasedBlockItem(ADBlocks.CATTAIL, new Item.Settings());
     public static final Item FRIED_EGG = new Item(new Item.Settings().food(ADFoodComponents.FRIED_EGG).maxCount(16));
     public static final Item BLOOD_KELP_SEED_CLUSTER = new AliasedBlockItem(ADBlocks.BLOOD_KELP, new Item.Settings());
-    public static final Item BLOOD_KELP = item();
+    public static final Item BLOOD_KELP = new Item(new Item.Settings());
     public static final Item DRIED_BLOOD_KELP_BLOCK = blockItem(ADBlocks.DRIED_BLOOD_KELP_BLOCK);
     public static final Item DRIED_BLOOD_KELP = new Item(new Item.Settings().food(FoodComponents.DRIED_KELP));
     public static final Item BLOOD_KELP_LANTERN = blockItem(ADBlocks.BLOOD_KELP_LANTERN);
@@ -378,7 +378,7 @@ public class ADItems {
     public static final Item MAROON_CONCRETE = blockItem(ADBlocks.MAROON_CONCRETE);
     public static final Item MAROON_CONCRETE_POWDER = blockItem(ADBlocks.MAROON_CONCRETE_POWDER);
     public static final Item CAMEL_PLUSH = blockItem(ADBlocks.CAMEL_PLUSH);
-    public static final Item MAROON_DYE = item();
+    public static final Item MAROON_DYE = new Item(new Item.Settings());
     public static final Item HOGLIN_STEW = new ADFoodContainerItem(new Item.Settings()
             .food(ADFoodComponents.HOGLIN_STEW).maxCount(1));
     public static final Item BOG_BLOSSOM = blockItem(ADBlocks.BOG_BLOSSOM);
@@ -412,10 +412,6 @@ public class ADItems {
     public static final Item COARSE_DIRT_SLAB = blockItem(ADBlocks.COARSE_DIRT_SLAB);
     public static final Item ROOTED_DIRT_SLAB = blockItem(ADBlocks.ROOTED_DIRT_SLAB);
     public static final Item WILD_GREEN_ONIONS = blockItem(ADBlocks.WILD_GREEN_ONIONS);
-
-    private static Item item() {
-        return new Item(new Item.Settings());
-    }
 
     private static Item blockItem(Block block) {
         return new BlockItem(block, new Item.Settings());

@@ -1,6 +1,5 @@
 package rndm_access.assorteddiscoveries.mixin;
 
-import me.shedaniel.autoconfig.AutoConfig;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
@@ -16,10 +15,10 @@ public abstract class ADLivingEntityMixin {
     @Inject(method = "handleFallDamage", at = @At("HEAD"), cancellable = true)
     public void handleFallDamage(float fallDistance, float damageMultiplier, DamageSource damageSource,
                                  CallbackInfoReturnable<Boolean> info) {
-        ADConfig config = AutoConfig.getConfigHolder(ADConfig.class).getConfig();
-
         // This lets rabbits fall 5 blocks before they take damage.
-        if(((ADEntityAccessor) this).getType().equals(EntityType.RABBIT) && config.getIsRabbitsSafeFallIncreased()) {
+        if(((ADEntityAccessor) this).getType().equals(EntityType.RABBIT)
+                && (Boolean) ADConfig.getConfigCategories().get("misc")
+                .getEntry("rabbits_safe_fall_increased").getValue()) {
             fallDistance = Math.max(fallDistance - 4.0F, 0.0F);
 
             if(fallDistance == 0.0F) {

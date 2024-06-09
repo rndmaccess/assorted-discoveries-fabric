@@ -25,7 +25,7 @@ public class ADConfig {
 
     private static boolean rabbitsSafeFallIncreased = true;
 
-    public static ConfigBuilder getAssortedDiscoveriesConfigScreenBuilder() {
+    public static ConfigBuilder getConfigScreenBuilder() {
         HashMap<String, Object> entryValueChanges = new HashMap<>();
 
         ConfigBuilder builder = ConfigBuilder.create()
@@ -462,6 +462,50 @@ public class ADConfig {
         }
     }
 
+    private static void saveConfig() {
+        try {
+            BufferedWriter writer = Files.newBufferedWriter(CONFIG_PATH);
+            JsonObject outerJsonObject = new JsonObject();
+
+            for (ADConfigCategory category : configCategories.values()) {
+                JsonObject innerJsonObject = new JsonObject();
+
+                for(String name : category.getEntryNames()) {
+                    if(category.getEntry(name).getComment() != null) {
+                        innerJsonObject.put(name, new JsonPrimitive(category.getEntry(name).getValue()),
+                                category.getEntry(name).getComment());
+                    } else {
+                        innerJsonObject.put(name, new JsonPrimitive(category.getEntry(name).getValue()));
+                    }
+                }
+                outerJsonObject.put(category.getName(), innerJsonObject);
+            }
+
+            try {
+                writer.write(outerJsonObject.toJson(true, true));
+                writer.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void registerCategory(ADConfigCategory category) {
+        if(!defaultConfigCategories.containsKey(category.getName())) {
+            defaultConfigCategories.put(category.getName(), category);
+        } else {
+            throw new RuntimeException("The category " + category.getName() + " is already registered!");
+        }
+    }
+
+    public static LinkedHashMap<String, ADConfigCategory> getConfigCategories() {
+        return configCategories;
+    }
+
+    // Load and save helper methods:
+
     public static void parseJson(String json) {
         json = clearSpaces(json);
         for(int i = 0; i < json.length() - 1; i++) {
@@ -600,48 +644,6 @@ public class ADConfig {
                 }
             }
         }
-    }
-
-    private static void saveConfig() {
-        try {
-            BufferedWriter writer = Files.newBufferedWriter(CONFIG_PATH);
-            JsonObject outerJsonObject = new JsonObject();
-
-            for (ADConfigCategory category : configCategories.values()) {
-                JsonObject innerJsonObject = new JsonObject();
-
-                for(String name : category.getEntryNames()) {
-                    if(category.getEntry(name).getComment() != null) {
-                        innerJsonObject.put(name, new JsonPrimitive(category.getEntry(name).getValue()),
-                                category.getEntry(name).getComment());
-                    } else {
-                        innerJsonObject.put(name, new JsonPrimitive(category.getEntry(name).getValue()));
-                    }
-                }
-                outerJsonObject.put(category.getName(), innerJsonObject);
-            }
-
-            try {
-                writer.write(outerJsonObject.toJson(true, true));
-                writer.close();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public static void registerCategory(ADConfigCategory category) {
-        if(!defaultConfigCategories.containsKey(category.getName())) {
-            defaultConfigCategories.put(category.getName(), category);
-        } else {
-            throw new RuntimeException("The category " + category.getName() + " is already registered!");
-        }
-    }
-
-    public static LinkedHashMap<String, ADConfigCategory> getConfigCategories() {
-        return configCategories;
     }
 
     static {

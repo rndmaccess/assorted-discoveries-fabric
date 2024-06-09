@@ -19,8 +19,9 @@ import java.nio.file.Path;
 import java.util.*;
 
 public class ADConfig {
-    public static LinkedHashMap<String, ADConfigCategory> configCategories;
     private static final Path CONFIG_PATH;
+    public static LinkedHashMap<String, ADConfigCategory> defaultConfigCategories;
+    public static LinkedHashMap<String, ADConfigCategory> configCategories;
 
     private static boolean rabbitsSafeFallIncreased = true;
 
@@ -448,14 +449,15 @@ public class ADConfig {
                 JsonObject jsonFile = jankson.load(Files.readString(CONFIG_PATH));
                 String json = jsonFile.toJson(true, false);
                 parseJson(json);
-                addMissingEntries();
+                addMissingCategoriesOrEntries();
+
                 // Re-save the config to fix anything that may be missing or incorrect.
                 saveConfig();
             } catch (SyntaxError | IOException e) {
                 throw new RuntimeException(e);
             }
         } else {
-            configCategories = getDefaultConfigCategories();
+            configCategories = new LinkedHashMap<>(defaultConfigCategories);
             saveConfig();
         }
     }
@@ -535,7 +537,7 @@ public class ADConfig {
         String entryName = nameBuilder.toString();
         String entryValue = valueBuilder.toString();
         ADConfigEntry entry = new ADConfigEntry(entryName);
-        ADConfigEntry defaultEntry = ADConfig.getDefaultConfigCategories().get(categoryName).getEntry(entryName);
+        ADConfigEntry defaultEntry = defaultConfigCategories.get(categoryName).getEntry(entryName);
 
         if(defaultEntry.getValue().getClass().equals(Boolean.class)) {
             // Fix boolean config options
@@ -585,8 +587,13 @@ public class ADConfig {
         return i;
     }
 
-    private static void addMissingEntries() {
-        for(ADConfigCategory category : getDefaultConfigCategories().values()) {
+    private static void addMissingCategoriesOrEntries() {
+        for(ADConfigCategory category : defaultConfigCategories.values()) {
+            if(!configCategories.containsKey(category.getName())) {
+                configCategories.put(category.getName(), category);
+                continue;
+            }
+
             for(ADConfigEntry entry : category.getEntries()) {
                 if(!configCategories.get(category.getName()).hasEntry(entry.getName())) {
                     configCategories.get(category.getName()).addEntry(entry);
@@ -625,81 +632,12 @@ public class ADConfig {
         }
     }
 
-    public static LinkedHashMap<String, ADConfigCategory> getDefaultConfigCategories() {
-        ADConfigCategory passivePlushiesCategory = new ADConfigCategory("passive_plushies");
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_allay_plush", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_bat_plush", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_camel_plush", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_tabby_cat_plush", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_tuxedo_cat_plush", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_red_cat_plush", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_siamese_cat_plush", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_british_shorthair_cat_plush", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_calico_cat_plush", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_persian_cat_plush", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_ragdoll_cat_plush", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_white_cat_plush", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_black_cat_plush", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_jellie_cat_plush", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_chicken_plush", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_cow_plush", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_horse_plushies", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_mooshroom_plushies", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_ocelot_plush", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_pig_plush", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_pufferfish_plush", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_rabbit_plushies", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_sheep_plushies", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_squid_plushies", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_strider_plushies", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_villager_plushies", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_wandering_trader_plush", true));
-
-        ADConfigCategory neutralPlushiesCategory = new ADConfigCategory("neutral_plushies");
-        neutralPlushiesCategory.addEntry(new ADConfigEntry("enable_bee_plush", true));
-        neutralPlushiesCategory.addEntry(new ADConfigEntry("enable_cave_spider_plush", true));
-        neutralPlushiesCategory.addEntry(new ADConfigEntry("enable_enderman_plush", true));
-        neutralPlushiesCategory.addEntry(new ADConfigEntry("enable_piglin_plushies", true));
-        neutralPlushiesCategory.addEntry(new ADConfigEntry("enable_polar_bear_plush", true));
-        neutralPlushiesCategory.addEntry(new ADConfigEntry("enable_spider_plush", true));
-        neutralPlushiesCategory.addEntry(new ADConfigEntry("enable_pale_wolf_plush", true));
-
-        ADConfigCategory hostilePlushiesCategory = new ADConfigCategory("hostile_plushies");
-        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_blaze_plush", true));
-        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_creeper_plush", true));
-        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_ghast_plush", true));
-        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_guardian_plush", true));
-        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_hoglin_plushies", true));
-        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_illager_plushies", true));
-        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_magma_cube_plush", true));
-        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_phantom_plush", true));
-        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_ravager_plush", true));
-        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_shulker_plush", true));
-        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_skeleton_plush", true));
-        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_slime_plush", true));
-        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_vex_plush", true));
-        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_witch_plush", true));
-        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_wither_plush", true));
-        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_zombie_plush", true));
-        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_zombie_villager_plushies", true));
-
-        ADConfigCategory farmingCategory = new ADConfigCategory("farming");
-        farmingCategory.addEntry(new ADConfigEntry("enable_overworld_planter_boxes", true));
-        farmingCategory.addEntry(new ADConfigEntry("enable_nether_planter_boxes", true));
-        ADConfigEntry entry = new ADConfigEntry("enable_green_onions_and_wild_green_onions", true);
-        entry.setComment("If disabled noodle soup does not use green onions.");
-        farmingCategory.addEntry(entry);
-        farmingCategory.addEntry(new ADConfigEntry("enable_noodles_and_noodle_soup", true));
-
-        ADConfigCategory miscCategory = new ADConfigCategory("misc");
-        miscCategory.addEntry(new ADConfigEntry("rabbits_safe_fall_increased", true));
-
-        LinkedHashMap<String, ADConfigCategory> categories = new LinkedHashMap<>();
-        categories.put(passivePlushiesCategory.getName(), passivePlushiesCategory);
-        categories.put(neutralPlushiesCategory.getName(), neutralPlushiesCategory);
-        categories.put(hostilePlushiesCategory.getName(), hostilePlushiesCategory);
-        categories.put(farmingCategory.getName(), farmingCategory);
-        return categories;
+    public static void registerCategory(ADConfigCategory category) {
+        if(!defaultConfigCategories.containsKey(category.getName())) {
+            defaultConfigCategories.put(category.getName(), category);
+        } else {
+            throw new RuntimeException("The category " + category.getName() + " is already registered!");
+        }
     }
 
     public static LinkedHashMap<String, ADConfigCategory> getConfigCategories() {
@@ -709,5 +647,6 @@ public class ADConfig {
     static {
         CONFIG_PATH = Utils.getConfigFolder().resolve(ADReference.MOD_ID + ".json5");
         configCategories = new LinkedHashMap<>();
+        defaultConfigCategories = new LinkedHashMap<>();
     }
 }

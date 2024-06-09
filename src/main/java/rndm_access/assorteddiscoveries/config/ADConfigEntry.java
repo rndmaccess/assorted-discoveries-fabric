@@ -11,9 +11,9 @@ public class ADConfigEntry {
     private Object value;
     private String comment;
 
-    public ADConfigEntry(String name, Object value) {
+    public ADConfigEntry(String name, Object defaultValue) {
         this.name = name;
-        this.value = value;
+        this.value = defaultValue;
     }
 
     public ADConfigEntry(String name) {

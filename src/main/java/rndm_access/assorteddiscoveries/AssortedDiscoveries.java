@@ -27,6 +27,8 @@ import net.minecraft.world.gen.GenerationStep;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import rndm_access.assorteddiscoveries.config.ADConfig;
+import rndm_access.assorteddiscoveries.config.ADConfigCategory;
+import rndm_access.assorteddiscoveries.config.ADConfigEntry;
 import rndm_access.assorteddiscoveries.item.crafting.ADResourceConditions;
 import rndm_access.assorteddiscoveries.core.*;
 
@@ -37,9 +39,10 @@ public class AssortedDiscoveries implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-        ADConfig.loadConfig();
 
         // Register Config
+        registerConfigCategoriesAndLoad();
+
         ADResourceConditions.registerResourceConditions();
 
 		// General Registries
@@ -150,6 +153,99 @@ public class AssortedDiscoveries implements ModInitializer {
 			}
 		});
 	}
+
+    private static void registerConfigCategoriesAndLoad() {
+        ADConfig.registerCategory(makePassivePlushiesCategory());
+        ADConfig.registerCategory(makeNeutralPlushiesCategory());
+        ADConfig.registerCategory(makeHostilePlushiesCategory());
+        ADConfig.registerCategory(makeFarmingCategory());
+        ADConfig.registerCategory(makeMiscCategory());
+
+        ADConfig.loadConfig();
+    }
+
+    public static ADConfigCategory makePassivePlushiesCategory() {
+        ADConfigCategory passivePlushiesCategory = new ADConfigCategory("passive_plushies");
+        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_allay_plush", true));
+        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_bat_plush", true));
+        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_camel_plush", true));
+        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_tabby_cat_plush", true));
+        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_tuxedo_cat_plush", true));
+        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_red_cat_plush", true));
+        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_siamese_cat_plush", true));
+        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_british_shorthair_cat_plush", true));
+        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_calico_cat_plush", true));
+        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_persian_cat_plush", true));
+        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_ragdoll_cat_plush", true));
+        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_white_cat_plush", true));
+        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_black_cat_plush", true));
+        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_jellie_cat_plush", true));
+        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_chicken_plush", true));
+        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_cow_plush", true));
+        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_horse_plushies", true));
+        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_mooshroom_plushies", true));
+        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_ocelot_plush", true));
+        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_pig_plush", true));
+        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_pufferfish_plush", true));
+        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_rabbit_plushies", true));
+        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_sheep_plushies", true));
+        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_squid_plushies", true));
+        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_strider_plushies", true));
+        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_villager_plushies", true));
+        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_wandering_trader_plush", true));
+        return passivePlushiesCategory;
+    }
+
+    private static ADConfigCategory makeNeutralPlushiesCategory() {
+        ADConfigCategory neutralPlushiesCategory = new ADConfigCategory("neutral_plushies");
+        neutralPlushiesCategory.addEntry(new ADConfigEntry("enable_bee_plush", true));
+        neutralPlushiesCategory.addEntry(new ADConfigEntry("enable_cave_spider_plush", true));
+        neutralPlushiesCategory.addEntry(new ADConfigEntry("enable_enderman_plush", true));
+        neutralPlushiesCategory.addEntry(new ADConfigEntry("enable_piglin_plushies", true));
+        neutralPlushiesCategory.addEntry(new ADConfigEntry("enable_polar_bear_plush", true));
+        neutralPlushiesCategory.addEntry(new ADConfigEntry("enable_spider_plush", true));
+        neutralPlushiesCategory.addEntry(new ADConfigEntry("enable_pale_wolf_plush", true));
+        return neutralPlushiesCategory;
+    }
+
+    private static ADConfigCategory makeHostilePlushiesCategory() {
+        ADConfigCategory hostilePlushiesCategory = new ADConfigCategory("hostile_plushies");
+        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_blaze_plush", true));
+        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_creeper_plush", true));
+        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_ghast_plush", true));
+        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_guardian_plush", true));
+        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_hoglin_plushies", true));
+        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_illager_plushies", true));
+        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_magma_cube_plush", true));
+        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_phantom_plush", true));
+        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_ravager_plush", true));
+        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_shulker_plush", true));
+        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_skeleton_plush", true));
+        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_slime_plush", true));
+        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_vex_plush", true));
+        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_witch_plush", true));
+        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_wither_plush", true));
+        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_zombie_plush", true));
+        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_zombie_villager_plushies", true));
+        return hostilePlushiesCategory;
+    }
+
+    private static ADConfigCategory makeFarmingCategory() {
+        ADConfigCategory farmingCategory = new ADConfigCategory("farming");
+        farmingCategory.addEntry(new ADConfigEntry("enable_overworld_planter_boxes", true));
+        farmingCategory.addEntry(new ADConfigEntry("enable_nether_planter_boxes", true));
+        ADConfigEntry entry = new ADConfigEntry("enable_green_onions_and_wild_green_onions", true);
+        entry.setComment("If disabled noodle soup does not use green onions.");
+        farmingCategory.addEntry(entry);
+        farmingCategory.addEntry(new ADConfigEntry("enable_noodles_and_noodle_soup", true));
+        return farmingCategory;
+    }
+
+    private static ADConfigCategory makeMiscCategory() {
+        ADConfigCategory miscCategory = new ADConfigCategory("misc");
+        miscCategory.addEntry(new ADConfigEntry("rabbits_safe_fall_increased", true));
+        return miscCategory;
+    }
 
 	private static void addItemGroups() {
 		Registry.register(Registries.ITEM_GROUP, ITEM_GROUP_KEY, FabricItemGroup.builder()

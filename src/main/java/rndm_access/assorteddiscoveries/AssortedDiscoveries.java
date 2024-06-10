@@ -29,6 +29,7 @@ import org.slf4j.LoggerFactory;
 import rndm_access.assorteddiscoveries.config.ADConfig;
 import rndm_access.assorteddiscoveries.config.ADConfigCategory;
 import rndm_access.assorteddiscoveries.config.ADConfigEntry;
+import rndm_access.assorteddiscoveries.config.ADConfigSerializer;
 import rndm_access.assorteddiscoveries.item.crafting.ADResourceConditions;
 import rndm_access.assorteddiscoveries.core.*;
 
@@ -41,7 +42,7 @@ public class AssortedDiscoveries implements ModInitializer {
 	public void onInitialize() {
 
         // Register Config
-        registerConfigCategoriesAndLoad();
+        registerConfigCategoriesAndDeserialize();
 
         ADResourceConditions.registerResourceConditions();
 
@@ -154,14 +155,14 @@ public class AssortedDiscoveries implements ModInitializer {
 		});
 	}
 
-    private static void registerConfigCategoriesAndLoad() {
+    private static void registerConfigCategoriesAndDeserialize() {
         ADConfig.registerCategory(makePassivePlushiesCategory());
         ADConfig.registerCategory(makeNeutralPlushiesCategory());
         ADConfig.registerCategory(makeHostilePlushiesCategory());
         ADConfig.registerCategory(makeFarmingCategory());
         ADConfig.registerCategory(makeMiscCategory());
 
-        ADConfig.loadConfig();
+        ADConfigSerializer.deserializeConfig();
     }
 
     public static ADConfigCategory makePassivePlushiesCategory() {

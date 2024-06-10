@@ -5,14 +5,13 @@ import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Jankson;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.JsonObject;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.JsonPrimitive;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.api.SyntaxError;
-import org.jetbrains.annotations.NotNull;
 import rndm_access.assorteddiscoveries.ADReference;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.LinkedHashMap;
+import java.util.Objects;
 
 public class ADConfigSerializer {
     public static final Path CONFIG_PATH;
@@ -25,7 +24,6 @@ public class ADConfigSerializer {
                 JsonObject jsonFile = jankson.load(Files.readString(CONFIG_PATH));
                 String json = jsonFile.toJson(true, false);
                 parseJson(json);
-                addMissingCategoriesOrEntries();
 
                 // Re-save the config to fix anything that may be missing or incorrect.
                 serializeConfig();
@@ -33,7 +31,6 @@ public class ADConfigSerializer {
                 throw new RuntimeException(e);
             }
         } else {
-            ADConfig.configCategories = new LinkedHashMap<>(ADConfig.defaultConfigCategories);
             serializeConfig();
         }
     }
@@ -43,7 +40,7 @@ public class ADConfigSerializer {
             BufferedWriter writer = Files.newBufferedWriter(CONFIG_PATH);
             JsonObject outerJsonObject = new JsonObject();
 
-            for (ADConfigCategory category : ADConfig.configCategories.values()) {
+            for (ADConfigCategory category : ADConfig.getConfigCategories().values()) {
                 JsonObject innerJsonObject = new JsonObject();
 
                 for(String name : category.getEntryNames()) {
@@ -85,30 +82,10 @@ public class ADConfigSerializer {
 
             ADConfigCategory category = new ADConfigCategory(categoryBuilder.toString());
 
-            // Make the entries
+            // Parse the entries
             while(json.charAt(i) != '}') {
                 StringBuilder nameBuilder = new StringBuilder();
                 StringBuilder valueBuilder = new StringBuilder();
-                StringBuilder commentBuilder = new StringBuilder();
-                int subStrEnd = i + 2;
-
-                // Parse the comment
-                if(subStrEnd <= json.length()) {
-                    String sub = json.substring(i, subStrEnd);
-
-                    // Read the comment for the entry
-                    if(sub.equals("/*")) {
-                        while(!sub.equals("*/")) {
-                            if(json.charAt(i) != '*' && json.charAt(i) != '/') {
-                                commentBuilder.append(json.charAt(i));
-                            }
-                            i++;
-                            subStrEnd = i + 2;
-                            sub = json.substring(i, subStrEnd);
-                        }
-                        i += 2;
-                    }
-                }
 
                 // Parse the entry name
                 while (json.charAt(i) != ':') {
@@ -125,39 +102,41 @@ public class ADConfigSerializer {
                     i++;
                 }
 
-                ADConfigEntry entry = buildEntry(commentBuilder, nameBuilder, valueBuilder, category.getName());
-                category.addEntry(entry);
+                updateEntry(nameBuilder, valueBuilder, category.getName());
 
                 // If there is a comma at the end then skip it and move onto the next entry
                 if(json.charAt(i) == ',') {
                     i++;
                 }
             }
-            ADConfig.configCategories.put(category.getName(), category);
         }
     }
 
-    private static @NotNull ADConfigEntry buildEntry(StringBuilder commentBuilder, StringBuilder nameBuilder,
-                                                     StringBuilder valueBuilder, String categoryName) {
-        String comment = commentBuilder.toString().strip();
+    private static void updateEntry(StringBuilder nameBuilder, StringBuilder valueBuilder,
+                                             String categoryName) {
         String entryName = nameBuilder.toString();
+        ADConfigEntry defaultEntry = ADConfig.getConfigCategories().get(categoryName).getEntry(entryName);
+        Object value = getAndFixValues(defaultEntry, valueBuilder);
+
+        // If the value was changed, change it in the map.
+        if(!Objects.equals(defaultEntry.getValue(), value)) {
+            ADConfig.getConfigCategories().get(categoryName).getEntry(entryName).setValue(value);
+        }
+    }
+
+    private static Object getAndFixValues(ADConfigEntry defaultEntry, StringBuilder valueBuilder) {
         String entryValue = valueBuilder.toString();
-        ADConfigEntry entry = new ADConfigEntry(entryName);
-        ADConfigEntry defaultEntry = ADConfig.defaultConfigCategories.get(categoryName).getEntry(entryName);
 
         if(defaultEntry.getValue().getClass().equals(Boolean.class)) {
             // Fix boolean config options
             if(entryValue.equalsIgnoreCase("true") || entryValue.equalsIgnoreCase("false")) {
-                entry.setValue(Boolean.valueOf(entryValue));
+                return Boolean.valueOf(entryValue);
             } else {
-                entry.setValue(defaultEntry.getValue());
+                return defaultEntry.getValue();
             }
+        } else {
+            throw new RuntimeException("This type is not supported!");
         }
-
-        if(!comment.isEmpty()) {
-            entry.setComment(comment);
-        }
-        return entry;
     }
 
     private static String clearSpaces(String json) {
@@ -167,7 +146,7 @@ public class ADConfigSerializer {
             int subStrEnd = i + 2;
 
             if(subStrEnd <= json.length()) {
-                i = skipCommentSpaces(json, subStrEnd, builder, i);
+                i = skipComment(json, subStrEnd, i);
             }
 
             if(!Character.isWhitespace(json.charAt(i))) {
@@ -177,35 +156,18 @@ public class ADConfigSerializer {
         return builder.toString();
     }
 
-    private static int skipCommentSpaces(String json, int subStrEnd, StringBuilder builder, int i) {
+    private static int skipComment(String json, int subStrEnd, int i) {
         String sub = json.substring(i, subStrEnd);
 
         if(sub.equals("/*")) {
             while (!sub.equals("*/")) {
-                builder.append(json.charAt(i));
                 i++;
                 subStrEnd = i + 2;
                 sub = json.substring(i, subStrEnd);
             }
-            builder.append(sub);
             i += 2;
         }
         return i;
-    }
-
-    private static void addMissingCategoriesOrEntries() {
-        for(ADConfigCategory category : ADConfig.defaultConfigCategories.values()) {
-            if(!ADConfig.configCategories.containsKey(category.getName())) {
-                ADConfig.configCategories.put(category.getName(), category);
-                continue;
-            }
-
-            for(ADConfigEntry entry : category.getEntries()) {
-                if(!ADConfig.configCategories.get(category.getName()).hasEntry(entry.getName())) {
-                    ADConfig.configCategories.get(category.getName()).addEntry(entry);
-                }
-            }
-        }
     }
 
     static {

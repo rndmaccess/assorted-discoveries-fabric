@@ -12,8 +12,7 @@ import java.nio.file.Files;
 import java.util.*;
 
 public class ADConfig {
-    public static LinkedHashMap<String, ADConfigCategory> defaultConfigCategories;
-    public static LinkedHashMap<String, ADConfigCategory> configCategories;
+    private static final LinkedHashMap<String, ADConfigCategory> configCategories;
 
     private static boolean rabbitsSafeFallIncreased = true;
 
@@ -434,8 +433,8 @@ public class ADConfig {
     }
 
     public static void registerCategory(ADConfigCategory category) {
-        if(!defaultConfigCategories.containsKey(category.getName())) {
-            defaultConfigCategories.put(category.getName(), category);
+        if(!configCategories.containsKey(category.getName())) {
+            configCategories.put(category.getName(), category);
         } else {
             throw new RuntimeException("The category " + category.getName() + " is already registered!");
         }
@@ -447,6 +446,5 @@ public class ADConfig {
 
     static {
         configCategories = new LinkedHashMap<>();
-        defaultConfigCategories = new LinkedHashMap<>();
     }
 }

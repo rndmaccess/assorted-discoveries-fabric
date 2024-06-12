@@ -1,6 +1,5 @@
 package rndm_access.assorteddiscoveries.core;
 
-import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.registry.Registries;
@@ -10,7 +9,8 @@ import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.block_entity.ADDyedCampfireBlockEntity;
 
 public class ADBlockEntityTypes {
-    public static final BlockEntityType<ADDyedCampfireBlockEntity> DYED_CAMPFIRE = FabricBlockEntityTypeBuilder.create(ADDyedCampfireBlockEntity::new,
+    public static final BlockEntityType<ADDyedCampfireBlockEntity> DYED_CAMPFIRE =
+            BlockEntityType.Builder.create(ADDyedCampfireBlockEntity::new,
             ADBlocks.WHITE_CAMPFIRE, ADBlocks.ORANGE_CAMPFIRE, ADBlocks.MAGENTA_CAMPFIRE,
             ADBlocks.LIGHT_BLUE_CAMPFIRE, ADBlocks.YELLOW_CAMPFIRE,
             ADBlocks.LIME_CAMPFIRE, ADBlocks.PINK_CAMPFIRE, ADBlocks.GRAY_CAMPFIRE,

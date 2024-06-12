@@ -366,8 +366,6 @@ public class ADConfig {
                         newValue))
                 .requireRestart().setTooltip(Text.literal("If disabled noodle soup does not use green onions."))
                 .build());
-
-        // Farming config options
         farming.addEntry(entryBuilder.startBooleanToggle(
                 makeFarmingOptionText("enable_noodles_and_noodle_soup"),
                         (Boolean) JANKSON_CONFIG_CATEGORIES.get("farming")
@@ -384,8 +382,9 @@ public class ADConfig {
                                 .getEntry("rabbits_safe_fall_increased").getValue()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("rabbits_safe_fall_increased", newValue))
                 .requireRestart().build());
+
         builder.setSavingRunnable(() -> {
-            // When the config is saved make the changes to the categories and save it to the config file.
+            // When the config is saved make the changes to the categories and serialize to the config file.
             for(ADJanksonConfigCategory category : JANKSON_CONFIG_CATEGORIES.values()) {
                 for(String entryName : entryValueChanges.keySet()) {
                     if(category.hasEntry(entryName)) {

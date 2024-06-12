@@ -83,10 +83,6 @@ public class ADJanksonConfigSerializer {
         return (i + 1) < str.length();
     }
 
-    private boolean isValidChar(char c) {
-        return Character.isLetter(c) || c == '_';
-    }
-
     private void parseJson(String json) {
         json = removeWhitespace(json);
         for(int i = 0; i < json.length() - 1; i++) {
@@ -94,11 +90,7 @@ public class ADJanksonConfigSerializer {
 
             // Parse the category
             while(hasNextChar(i, json) && json.charAt(i) != ':' && json.charAt(i + 1) != '{') {
-                char c = json.charAt(i);
-
-                if(isValidChar(c)) {
-                    categoryBuilder.append(json.charAt(i));
-                }
+                i = parseString(categoryBuilder, json, i);
                 i++;
             }
 
@@ -112,22 +104,17 @@ public class ADJanksonConfigSerializer {
 
                 // Parse the entry name
                 while (hasNextChar(i, json) && json.charAt(i) != ':') {
-                    char c = json.charAt(i);
-
-                    if(isValidChar(c)) {
-                        nameBuilder.append(json.charAt(i));
-                    }
+                    i = parseString(nameBuilder, json, i);
                     i++;
                 }
 
                 // Parse the entry value
-                while (hasNextChar(i, json) && json.charAt(i) != ',' && json.charAt(i) != '}') {
-                    char c = json.charAt(i);
-
-                    if(isValidChar(c) || c == '"') {
-                        valueBuilder.append(json.charAt(i));
-                    }
+                if(json.charAt(i) == ':') {
                     i++;
+                    do {
+                        valueBuilder.append(json.charAt(i));
+                        i++;
+                    } while(hasNextChar(i, json) && json.charAt(i) != ',' && json.charAt(i) != '}');
                 }
                 updateEntry(nameBuilder, valueBuilder, category.getName());
             }
@@ -152,14 +139,20 @@ public class ADJanksonConfigSerializer {
         String entryValue = valueBuilder.toString();
 
         if(defaultEntry.getValue().getClass().equals(Boolean.class)) {
-            // Fix boolean config options
             if(entryValue.equalsIgnoreCase("true") || entryValue.equalsIgnoreCase("false")) {
                 return Boolean.valueOf(entryValue);
             } else {
                 return defaultEntry.getValue();
             }
+        } else if(defaultEntry.getValue().getClass().equals(Integer.class)) {
+            for (int i = 0; i < entryValue.length() || entryValue.isEmpty(); i++) {
+                if(!Character.isDigit(entryValue.charAt(i))) {
+                    return defaultEntry.getValue();
+                }
+            }
+            return Integer.parseInt(entryValue);
         } else {
-            throw new RuntimeException("The type " + entryValue.getClass() + " is not supported!");
+            return entryValue;
         }
     }
 
@@ -167,11 +160,37 @@ public class ADJanksonConfigSerializer {
         StringBuilder builder = new StringBuilder();
 
         for(int i = 0; i < json.length(); i++) {
-            if(!Character.isWhitespace(json.charAt(i))) {
+            char c = json.charAt(i);
+
+            // Keep the quotes and spaces within strings
+            if(c == '"') {
+                do {
+                    builder.append(json.charAt(i));
+                    i++;
+                    c = json.charAt(i);
+                } while (c != '"');
+            }
+
+            if(!Character.isWhitespace(c)) {
                 builder.append(json.charAt(i));
             }
         }
         return builder.toString();
+    }
+
+    private int parseString(StringBuilder builder, String inputStr, int i) {
+        char c = inputStr.charAt(i);
+
+        // Strip out the spaces when parsing strings.
+        if(c == '"') {
+            i++;
+            do {
+                builder.append(inputStr.charAt(i));
+                i++;
+                c = inputStr.charAt(i);
+            } while (c != '"');
+        }
+        return i;
     }
 
     static {

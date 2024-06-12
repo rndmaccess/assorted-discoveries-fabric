@@ -8,15 +8,15 @@ import java.util.*;
  *
  * @author rndm_access
  */
-public class ADConfigCategory {
+public class ADJanksonConfigCategory {
     private final String name;
-    private final LinkedHashMap<String, ADConfigEntry> entries = new LinkedHashMap<>();
+    private final LinkedHashMap<String, ADJanksonConfigEntry> entries = new LinkedHashMap<>();
 
-    public ADConfigCategory(String name) {
+    public ADJanksonConfigCategory(String name) {
         this.name = name;
     }
 
-    public void addEntry(ADConfigEntry entry) {
+    public void addEntry(ADJanksonConfigEntry entry) {
         entries.put(entry.getName(), entry);
     }
 
@@ -24,7 +24,7 @@ public class ADConfigCategory {
         return name;
     }
 
-    public ADConfigEntry getEntry(String entryName) {
+    public ADJanksonConfigEntry getEntry(String entryName) {
         if(!this.hasEntry(entryName)) {
             throw new RuntimeException("The category does not have entry " + entryName);
         }
@@ -35,7 +35,7 @@ public class ADConfigCategory {
         return entries.containsKey(entryName);
     }
 
-    public List<ADConfigEntry> getEntries() {
+    public List<ADJanksonConfigEntry> getEntries() {
         return entries.values().stream().toList();
     }
 

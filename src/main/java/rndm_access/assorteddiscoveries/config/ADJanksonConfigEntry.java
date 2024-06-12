@@ -6,18 +6,20 @@ package rndm_access.assorteddiscoveries.config;
  *
  * @author rndm_access
  */
-public class ADConfigEntry {
+public class ADJanksonConfigEntry {
     private final String name;
     private Object value;
     private String comment;
 
-    public ADConfigEntry(String name, Object defaultValue) {
+    public ADJanksonConfigEntry(String name, Object defaultValue) {
         this.name = name;
         this.value = defaultValue;
     }
 
-    public ADConfigEntry(String name) {
+    public ADJanksonConfigEntry(String name, Object defaultValue, String comment) {
         this.name = name;
+        this.value = defaultValue;
+        this.comment = comment;
     }
 
     public String getName() {
@@ -30,10 +32,6 @@ public class ADConfigEntry {
 
     public void setValue(Object value) {
         this.value = value;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
     }
 
     public String getComment() {

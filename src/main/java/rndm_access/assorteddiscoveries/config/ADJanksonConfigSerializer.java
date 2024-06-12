@@ -11,18 +11,24 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.LinkedHashMap;
 import java.util.Objects;
 
-public class ADConfigSerializer {
-    public static final Path CONFIG_PATH;
+public class ADJanksonConfigSerializer {
+    public LinkedHashMap<String, ADJanksonConfigCategory> configCategories;
+    private static final Path CONFIG_PATH;
 
-    public static void deserializeConfig() {
+    public ADJanksonConfigSerializer(LinkedHashMap<String, ADJanksonConfigCategory> configCategories) {
+        this.configCategories = configCategories;
+    }
+
+    public void deserializeConfig() {
         Jankson jankson = Jankson.builder().build();
 
         if (Files.exists(CONFIG_PATH)) {
             try {
                 JsonObject jsonFile = jankson.load(Files.readString(CONFIG_PATH));
-                String json = jsonFile.toJson(true, false);
+                String json = jsonFile.toJson();
                 parseJson(json);
 
                 // Re-save the config to fix anything that may be missing or incorrect.
@@ -35,12 +41,20 @@ public class ADConfigSerializer {
         }
     }
 
-    public static void serializeConfig() {
+    public void serializeConfig() {
+        if(!Files.exists(CONFIG_PATH)) {
+            try {
+                Files.createFile(CONFIG_PATH);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
         try {
             BufferedWriter writer = Files.newBufferedWriter(CONFIG_PATH);
             JsonObject outerJsonObject = new JsonObject();
 
-            for (ADConfigCategory category : ADConfig.getConfigCategories().values()) {
+            for (ADJanksonConfigCategory category : configCategories.values()) {
                 JsonObject innerJsonObject = new JsonObject();
 
                 for(String name : category.getEntryNames()) {
@@ -65,66 +79,76 @@ public class ADConfigSerializer {
         }
     }
 
-    private static void parseJson(String json) {
-        json = clearSpaces(json);
+    private boolean hasNextChar(int i, String str) {
+        return (i + 1) < str.length();
+    }
+
+    private boolean isValidChar(char c) {
+        return Character.isLetter(c) || c == '_';
+    }
+
+    private void parseJson(String json) {
+        json = removeWhitespace(json);
         for(int i = 0; i < json.length() - 1; i++) {
             StringBuilder categoryBuilder = new StringBuilder();
 
             // Parse the category
-            while(json.charAt(i) != ':') {
-                if(json.charAt(i) != '{' && json.charAt(i) != ','
-                        && json.charAt(i) != '"') {
+            while(hasNextChar(i, json) && json.charAt(i) != ':' && json.charAt(i + 1) != '{') {
+                char c = json.charAt(i);
+
+                if(isValidChar(c)) {
                     categoryBuilder.append(json.charAt(i));
                 }
                 i++;
             }
-            i += 2;
 
-            ADConfigCategory category = new ADConfigCategory(categoryBuilder.toString());
+            ADJanksonConfigCategory category = new ADJanksonConfigCategory(categoryBuilder.toString());
 
             // Parse the entries
-            while(json.charAt(i) != '}') {
+            while(hasNextChar(i, json) && json.charAt(i) != '}') {
+                i++;
                 StringBuilder nameBuilder = new StringBuilder();
                 StringBuilder valueBuilder = new StringBuilder();
 
                 // Parse the entry name
-                while (json.charAt(i) != ':') {
-                    if(json.charAt(i) != '"' && json.charAt(i) != '{') {
+                while (hasNextChar(i, json) && json.charAt(i) != ':') {
+                    char c = json.charAt(i);
+
+                    if(isValidChar(c)) {
                         nameBuilder.append(json.charAt(i));
                     }
                     i++;
                 }
-                i++;
 
                 // Parse the entry value
-                while (json.charAt(i) != ',' && json.charAt(i) != '}') {
-                    valueBuilder.append(json.charAt(i));
+                while (hasNextChar(i, json) && json.charAt(i) != ',' && json.charAt(i) != '}') {
+                    char c = json.charAt(i);
+
+                    if(isValidChar(c) || c == '"') {
+                        valueBuilder.append(json.charAt(i));
+                    }
                     i++;
                 }
-
                 updateEntry(nameBuilder, valueBuilder, category.getName());
-
-                // If there is a comma at the end then skip it and move onto the next entry
-                if(json.charAt(i) == ',') {
-                    i++;
-                }
             }
         }
     }
 
-    private static void updateEntry(StringBuilder nameBuilder, StringBuilder valueBuilder,
+    private void updateEntry(StringBuilder nameBuilder, StringBuilder valueBuilder,
                                              String categoryName) {
         String entryName = nameBuilder.toString();
-        ADConfigEntry defaultEntry = ADConfig.getConfigCategories().get(categoryName).getEntry(entryName);
-        Object value = getAndFixValues(defaultEntry, valueBuilder);
 
-        // If the value was changed, change it in the map.
-        if(!Objects.equals(defaultEntry.getValue(), value)) {
-            ADConfig.getConfigCategories().get(categoryName).getEntry(entryName).setValue(value);
+        if(configCategories.get(categoryName).hasEntry(entryName)) {
+            ADJanksonConfigEntry defaultEntry = configCategories.get(categoryName).getEntry(entryName);
+            Object value = getAndFixValue(defaultEntry, valueBuilder);
+
+            if(!Objects.equals(defaultEntry.getValue(), value)) {
+                configCategories.get(categoryName).getEntry(entryName).setValue(value);
+            }
         }
     }
 
-    private static Object getAndFixValues(ADConfigEntry defaultEntry, StringBuilder valueBuilder) {
+    private Object getAndFixValue(ADJanksonConfigEntry defaultEntry, StringBuilder valueBuilder) {
         String entryValue = valueBuilder.toString();
 
         if(defaultEntry.getValue().getClass().equals(Boolean.class)) {
@@ -135,39 +159,19 @@ public class ADConfigSerializer {
                 return defaultEntry.getValue();
             }
         } else {
-            throw new RuntimeException("This type is not supported!");
+            throw new RuntimeException("The type " + entryValue.getClass() + " is not supported!");
         }
     }
 
-    private static String clearSpaces(String json) {
+    private String removeWhitespace(String json) {
         StringBuilder builder = new StringBuilder();
 
         for(int i = 0; i < json.length(); i++) {
-            int subStrEnd = i + 2;
-
-            if(subStrEnd <= json.length()) {
-                i = skipComment(json, subStrEnd, i);
-            }
-
             if(!Character.isWhitespace(json.charAt(i))) {
                 builder.append(json.charAt(i));
             }
         }
         return builder.toString();
-    }
-
-    private static int skipComment(String json, int subStrEnd, int i) {
-        String sub = json.substring(i, subStrEnd);
-
-        if(sub.equals("/*")) {
-            while (!sub.equals("*/")) {
-                i++;
-                subStrEnd = i + 2;
-                sub = json.substring(i, subStrEnd);
-            }
-            i += 2;
-        }
-        return i;
     }
 
     static {

@@ -27,9 +27,6 @@ import net.minecraft.world.gen.GenerationStep;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import rndm_access.assorteddiscoveries.config.ADConfig;
-import rndm_access.assorteddiscoveries.config.ADConfigCategory;
-import rndm_access.assorteddiscoveries.config.ADConfigEntry;
-import rndm_access.assorteddiscoveries.config.ADConfigSerializer;
 import rndm_access.assorteddiscoveries.item.crafting.ADResourceConditions;
 import rndm_access.assorteddiscoveries.core.*;
 
@@ -40,10 +37,7 @@ public class AssortedDiscoveries implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-
-        // Register Config
-        registerConfigCategoriesAndDeserialize();
-
+        ADConfig.JANKSON_CONFIG_SERIALIZER.deserializeConfig();
         ADResourceConditions.registerResourceConditions();
 
 		// General Registries
@@ -108,7 +102,7 @@ public class AssortedDiscoveries implements ModInitializer {
 		BiomeModifications.addFeature(BiomeSelectors.tag(CBiomeTags.PATCH_FROSTBITE_BERRY_BUSH),
 				GenerationStep.Feature.VEGETAL_DECORATION, ADPlacedFeatureKeys.PATCH_FROSTBITE_BERRY_BUSH_RARE);
 
-        if((Boolean) ADConfig.getConfigCategories().get("farming")
+        if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("farming")
                 .getEntry("enable_green_onions_and_wild_green_onions").getValue()) {
             BiomeModifications.addFeature(BiomeSelectors.tag(CBiomeTags.PATCH_WILD_GREEN_ONIONS),
                     GenerationStep.Feature.VEGETAL_DECORATION, ADPlacedFeatureKeys.PATCH_WILD_GREEN_ONIONS_COMMON);
@@ -155,286 +149,193 @@ public class AssortedDiscoveries implements ModInitializer {
 		});
 	}
 
-    private static void registerConfigCategoriesAndDeserialize() {
-        ADConfig.registerCategory(makePassivePlushiesCategory());
-        ADConfig.registerCategory(makeNeutralPlushiesCategory());
-        ADConfig.registerCategory(makeHostilePlushiesCategory());
-        ADConfig.registerCategory(makeFarmingCategory());
-        ADConfig.registerCategory(makeMiscCategory());
-
-        ADConfigSerializer.deserializeConfig();
-    }
-
-    public static ADConfigCategory makePassivePlushiesCategory() {
-        ADConfigCategory passivePlushiesCategory = new ADConfigCategory("passive_plushies");
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_allay_plush", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_bat_plush", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_camel_plush", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_tabby_cat_plush", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_tuxedo_cat_plush", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_red_cat_plush", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_siamese_cat_plush", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_british_shorthair_cat_plush", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_calico_cat_plush", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_persian_cat_plush", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_ragdoll_cat_plush", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_white_cat_plush", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_black_cat_plush", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_jellie_cat_plush", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_chicken_plush", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_cow_plush", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_horse_plushies", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_mooshroom_plushies", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_ocelot_plush", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_pig_plush", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_pufferfish_plush", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_rabbit_plushies", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_sheep_plushies", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_squid_plushies", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_strider_plushies", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_villager_plushies", true));
-        passivePlushiesCategory.addEntry(new ADConfigEntry("enable_wandering_trader_plush", true));
-        return passivePlushiesCategory;
-    }
-
-    private static ADConfigCategory makeNeutralPlushiesCategory() {
-        ADConfigCategory neutralPlushiesCategory = new ADConfigCategory("neutral_plushies");
-        neutralPlushiesCategory.addEntry(new ADConfigEntry("enable_bee_plush", true));
-        neutralPlushiesCategory.addEntry(new ADConfigEntry("enable_cave_spider_plush", true));
-        neutralPlushiesCategory.addEntry(new ADConfigEntry("enable_enderman_plush", true));
-        neutralPlushiesCategory.addEntry(new ADConfigEntry("enable_piglin_plushies", true));
-        neutralPlushiesCategory.addEntry(new ADConfigEntry("enable_polar_bear_plush", true));
-        neutralPlushiesCategory.addEntry(new ADConfigEntry("enable_spider_plush", true));
-        neutralPlushiesCategory.addEntry(new ADConfigEntry("enable_pale_wolf_plush", true));
-        return neutralPlushiesCategory;
-    }
-
-    private static ADConfigCategory makeHostilePlushiesCategory() {
-        ADConfigCategory hostilePlushiesCategory = new ADConfigCategory("hostile_plushies");
-        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_blaze_plush", true));
-        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_creeper_plush", true));
-        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_ghast_plush", true));
-        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_guardian_plush", true));
-        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_hoglin_plushies", true));
-        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_illager_plushies", true));
-        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_magma_cube_plush", true));
-        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_phantom_plush", true));
-        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_ravager_plush", true));
-        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_shulker_plush", true));
-        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_skeleton_plush", true));
-        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_slime_plush", true));
-        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_vex_plush", true));
-        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_witch_plush", true));
-        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_wither_plush", true));
-        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_zombie_plush", true));
-        hostilePlushiesCategory.addEntry(new ADConfigEntry("enable_zombie_villager_plushies", true));
-        return hostilePlushiesCategory;
-    }
-
-    private static ADConfigCategory makeFarmingCategory() {
-        ADConfigCategory farmingCategory = new ADConfigCategory("farming");
-        farmingCategory.addEntry(new ADConfigEntry("enable_overworld_planter_boxes", true));
-        farmingCategory.addEntry(new ADConfigEntry("enable_nether_planter_boxes", true));
-        ADConfigEntry entry = new ADConfigEntry("enable_green_onions_and_wild_green_onions", true);
-        entry.setComment("If disabled noodle soup does not use green onions.");
-        farmingCategory.addEntry(entry);
-        farmingCategory.addEntry(new ADConfigEntry("enable_noodles_and_noodle_soup", true));
-        return farmingCategory;
-    }
-
-    private static ADConfigCategory makeMiscCategory() {
-        ADConfigCategory miscCategory = new ADConfigCategory("misc");
-        miscCategory.addEntry(new ADConfigEntry("rabbits_safe_fall_increased", true));
-        return miscCategory;
-    }
-
 	private static void addItemGroups() {
 		Registry.register(Registries.ITEM_GROUP, ITEM_GROUP_KEY, FabricItemGroup.builder()
 				.displayName(Text.translatable("itemGroup." + ADReference.MOD_ID + ".item_group"))
 				.icon(() -> new ItemStack(ADItems.ENDERMAN_PLUSH))
 				.entries((context, entries) -> {
 
-                    if((Boolean) ADConfig.getConfigCategories().get("hostile_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("hostile_plushies")
                             .getEntry("enable_slime_plush").getValue()) {
                         entries.add(ADItems.SLIME_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("hostile_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("hostile_plushies")
                             .getEntry("enable_magma_cube_plush").getValue()) {
                         entries.add(ADItems.MAGMA_CUBE_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("passive_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("passive_plushies")
                             .getEntry("enable_ocelot_plush").getValue()) {
                         entries.add(ADItems.OCELOT_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("passive_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("passive_plushies")
                             .getEntry("enable_tabby_cat_plush").getValue()) {
                         entries.add(ADItems.TABBY_CAT_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("passive_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("passive_plushies")
                             .getEntry("enable_tuxedo_cat_plush").getValue()) {
                         entries.add(ADItems.TUXEDO_CAT_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("passive_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("passive_plushies")
                             .getEntry("enable_red_cat_plush").getValue()) {
                         entries.add(ADItems.RED_CAT_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("passive_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("passive_plushies")
                             .getEntry("enable_siamese_cat_plush").getValue()) {
                         entries.add(ADItems.SIAMESE_CAT_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("passive_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("passive_plushies")
                             .getEntry("enable_british_shorthair_cat_plush").getValue()) {
                         entries.add(ADItems.BRITISH_SHORTHAIR_CAT_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("passive_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("passive_plushies")
                             .getEntry("enable_calico_cat_plush").getValue()) {
                         entries.add(ADItems.CALICO_CAT_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("passive_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("passive_plushies")
                             .getEntry("enable_persian_cat_plush").getValue()) {
                         entries.add(ADItems.PERSIAN_CAT_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("passive_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("passive_plushies")
                             .getEntry("enable_ragdoll_cat_plush").getValue()) {
                         entries.add(ADItems.RAGDOLL_CAT_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("passive_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("passive_plushies")
                             .getEntry("enable_white_cat_plush").getValue()) {
                         entries.add(ADItems.WHITE_CAT_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("passive_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("passive_plushies")
                             .getEntry("enable_black_cat_plush").getValue()) {
                         entries.add(ADItems.BLACK_CAT_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("passive_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("passive_plushies")
                             .getEntry("enable_jellie_cat_plush").getValue()) {
                         entries.add(ADItems.JELLIE_CAT_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("neutral_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("neutral_plushies")
                             .getEntry("enable_pale_wolf_plush").getValue()) {
                         entries.add(ADItems.PALE_WOLF_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("hostile_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("hostile_plushies")
                             .getEntry("enable_zombie_plush").getValue()) {
                         entries.add(ADItems.ZOMBIE_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("hostile_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("hostile_plushies")
                             .getEntry("enable_skeleton_plush").getValue()) {
                         entries.add(ADItems.SKELETON_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("neutral_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("neutral_plushies")
                             .getEntry("enable_enderman_plush").getValue()) {
                         entries.add(ADItems.ENDERMAN_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("hostile_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("hostile_plushies")
                             .getEntry("enable_creeper_plush").getValue()) {
                         entries.add(ADItems.CREEPER_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("neutral_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("neutral_plushies")
                             .getEntry("enable_spider_plush").getValue()) {
                         entries.add(ADItems.SPIDER_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("neutral_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("neutral_plushies")
                             .getEntry("enable_cave_spider_plush").getValue()) {
                         entries.add(ADItems.CAVE_SPIDER_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("hostile_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("hostile_plushies")
                             .getEntry("enable_guardian_plush").getValue()) {
                         entries.add(ADItems.GUARDIAN_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("hostile_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("hostile_plushies")
                             .getEntry("enable_phantom_plush").getValue()) {
                         entries.add(ADItems.PHANTOM_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("passive_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("passive_plushies")
                             .getEntry("enable_bat_plush").getValue()) {
                         entries.add(ADItems.BAT_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("passive_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("passive_plushies")
                             .getEntry("enable_squid_plushies").getValue()) {
                         entries.add(ADItems.SQUID_PLUSH);
                         entries.add(ADItems.GLOW_SQUID_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("neutral_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("neutral_plushies")
                             .getEntry("enable_bee_plush").getValue()) {
                         entries.add(ADItems.BEE_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("neutral_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("neutral_plushies")
                             .getEntry("enable_piglin_plushies").getValue()) {
                         entries.add(ADItems.PIGLIN_PLUSH);
                         entries.add(ADItems.ZOMBIFIED_PIGLIN_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("hostile_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("hostile_plushies")
                             .getEntry("enable_hoglin_plushies").getValue()) {
                         entries.add(ADItems.HOGLIN_PLUSH);
                         entries.add(ADItems.ZOGLIN_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("hostile_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("hostile_plushies")
                             .getEntry("enable_ghast_plush").getValue()) {
                         entries.add(ADItems.GHAST_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("hostile_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("hostile_plushies")
                             .getEntry("enable_blaze_plush").getValue()) {
                         entries.add(ADItems.BLAZE_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("passive_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("passive_plushies")
                             .getEntry("enable_strider_plushies").getValue()) {
                         entries.add(ADItems.STRIDER_PLUSH);
                         entries.add(ADItems.SHIVERING_STRIDER_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("passive_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("passive_plushies")
                             .getEntry("enable_chicken_plush").getValue()) {
                         entries.add(ADItems.CHICKEN_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("passive_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("passive_plushies")
                             .getEntry("enable_pig_plush").getValue()) {
                         entries.add(ADItems.PIG_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("passive_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("passive_plushies")
                             .getEntry("enable_cow_plush").getValue()) {
                         entries.add(ADItems.COW_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("passive_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("passive_plushies")
                             .getEntry("enable_mooshroom_plushies").getValue()) {
                         entries.add(ADItems.RED_MOOSHROOM_PLUSH);
                         entries.add(ADItems.BROWN_MOOSHROOM_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("passive_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("passive_plushies")
                             .getEntry("enable_sheep_plushies").getValue()) {
                         entries.add(ADItems.WHITE_SHEEP_PLUSH);
                         entries.add(ADItems.ORANGE_SHEEP_PLUSH);
@@ -455,7 +356,7 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ADItems.MAROON_SHEEP_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("passive_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("passive_plushies")
                             .getEntry("enable_horse_plushies").getValue()) {
                         entries.add(ADItems.WHITE_HORSE_PLUSH);
                         entries.add(ADItems.GRAY_HORSE_PLUSH);
@@ -464,7 +365,7 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ADItems.BLACK_HORSE_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("passive_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("passive_plushies")
                             .getEntry("enable_rabbit_plushies").getValue()) {
                         entries.add(ADItems.BROWN_RABBIT_PLUSH);
                         entries.add(ADItems.WHITE_RABBIT_PLUSH);
@@ -475,14 +376,14 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ADItems.SALT_RABBIT_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("hostile_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("hostile_plushies")
                             .getEntry("enable_illager_plushies").getValue()) {
                         entries.add(ADItems.PILLAGER_PLUSH);
                         entries.add(ADItems.VINDICATOR_PLUSH);
                         entries.add(ADItems.EVOKER_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("passive_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("passive_plushies")
                             .getEntry("enable_villager_plushies").getValue()) {
                         entries.add(ADItems.PLAINS_VILLAGER_PLUSH);
                         entries.add(ADItems.DESERT_VILLAGER_PLUSH);
@@ -495,12 +396,12 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ADItems.WARPED_VILLAGER_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("passive_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("passive_plushies")
                             .getEntry("enable_wandering_trader_plush").getValue()) {
                         entries.add(ADItems.WANDERING_TRADER_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("hostile_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("hostile_plushies")
                             .getEntry("enable_zombie_villager_plushies").getValue()) {
                         entries.add(ADItems.PLAINS_ZOMBIE_VILLAGER_PLUSH);
                         entries.add(ADItems.DESERT_ZOMBIE_VILLAGER_PLUSH);
@@ -513,54 +414,54 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ADItems.WARPED_ZOMBIE_VILLAGER_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("hostile_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("hostile_plushies")
                             .getEntry("enable_witch_plush").getValue()) {
                         entries.add(ADItems.WITCH_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("passive_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("passive_plushies")
                             .getEntry("enable_pufferfish_plush").getValue()) {
                         entries.add(ADItems.PUFFERFISH_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("hostile_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("hostile_plushies")
                             .getEntry("enable_wither_plush").getValue()) {
                         entries.add(ADItems.WITHER_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("neutral_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("neutral_plushies")
                             .getEntry("enable_polar_bear_plush").getValue()) {
                         entries.add(ADItems.POLAR_BEAR_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("passive_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("passive_plushies")
                             .getEntry("enable_allay_plush").getValue()) {
                         entries.add(ADItems.ALLAY_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("hostile_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("hostile_plushies")
                             .getEntry("enable_vex_plush").getValue()) {
                         entries.add(ADItems.VEX_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("hostile_plushies")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("hostile_plushies")
                             .getEntry("enable_ravager_plush").getValue()) {
                         entries.add(ADItems.RAVAGER_PLUSH);
                     }
 
-					if((Boolean) ADConfig.getConfigCategories().get("hostile_plushies")
+					if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("hostile_plushies")
                             .getEntry("enable_shulker_plush").getValue()) {
                         entries.add(ADItems.SHULKER_PLUSH);
                     }
 
-					if((Boolean) ADConfig.getConfigCategories().get("passive_plushies")
+					if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("passive_plushies")
                             .getEntry("enable_camel_plush").getValue()) {
                         entries.add(ADItems.CAMEL_PLUSH);
                     }
 
                     entries.add(ADItems.WOODCUTTER);
 
-                    if((Boolean) ADConfig.getConfigCategories().get("farming")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("farming")
                             .getEntry("enable_overworld_planter_boxes").getValue()) {
                         entries.add(ADItems.OAK_PLANTER_BOX);
                         entries.add(ADItems.SPRUCE_PLANTER_BOX);
@@ -573,7 +474,7 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ADItems.BAMBOO_PLANTER_BOX);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("farming")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("farming")
                             .getEntry("enable_nether_planter_boxes").getValue()) {
                         entries.add(ADItems.CRIMSON_PLANTER_BOX);
                         entries.add(ADItems.WARPED_PLANTER_BOX);
@@ -848,14 +749,14 @@ public class AssortedDiscoveries implements ModInitializer {
 					entries.add(ADItems.SWEET_BERRY_PIE);
 					entries.add(ADItems.BLUEBERRY_PIE);
 
-                    if((Boolean) ADConfig.getConfigCategories().get("farming")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("farming")
                             .getEntry("enable_green_onions_and_wild_green_onions").getValue()) {
                         entries.add(ADItems.WILD_GREEN_ONIONS);
                         entries.add(ADItems.GREEN_ONION_SEEDS);
                         entries.add(ADItems.GREEN_ONION);
                     }
 
-                    if((Boolean) ADConfig.getConfigCategories().get("farming")
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("farming")
                             .getEntry("enable_noodles_and_noodle_soup").getValue()) {
                         entries.add(ADItems.NOODLES);
                         entries.add(ADItems.NOODLE_SOUP);

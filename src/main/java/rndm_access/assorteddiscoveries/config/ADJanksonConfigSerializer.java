@@ -145,13 +145,42 @@ public class ADJanksonConfigSerializer {
                 return defaultEntry.getValue();
             }
         } else if(defaultEntry.getValue().getClass().equals(Integer.class)) {
-            for (int i = 0; i < entryValue.length() || entryValue.isEmpty(); i++) {
+            return Integer.parseInt(fixNumber(defaultEntry, entryValue));
+        } else if(defaultEntry.getValue().getClass().equals(Long.class)) {
+            return Long.parseLong(fixNumber(defaultEntry, entryValue));
+        } else if(defaultEntry.getValue().getClass().equals(Double.class)) {
+            return Double.parseDouble(fixDecimalNumber(defaultEntry, entryValue));
+        } else if(defaultEntry.getValue().getClass().equals(Float.class)) {
+            return Float.parseFloat(fixDecimalNumber(defaultEntry, entryValue));
+        } else {
+            return entryValue;
+        }
+    }
+
+    private String fixNumber(ADJanksonConfigEntry defaultEntry, String entryValue) {
+        if(entryValue.isEmpty()) {
+            return String.valueOf(defaultEntry.getValue());
+        } else {
+            for (int i = 0; i < entryValue.length(); i++) {
                 if(!Character.isDigit(entryValue.charAt(i))) {
-                    return defaultEntry.getValue();
+                    return String.valueOf(defaultEntry.getValue());
                 }
             }
-            return Integer.parseInt(entryValue);
+            return entryValue;
+        }
+    }
+
+    private String fixDecimalNumber(ADJanksonConfigEntry defaultEntry, String entryValue) {
+        if(entryValue.isEmpty()) {
+            return String.valueOf(defaultEntry.getValue());
         } else {
+            for (int i = 0; i < entryValue.length(); i++) {
+                char c = entryValue.charAt(i);
+
+                if(!Character.isDigit(c) || c != '.') {
+                    return String.valueOf(defaultEntry.getValue());
+                }
+            }
             return entryValue;
         }
     }
@@ -179,7 +208,6 @@ public class ADJanksonConfigSerializer {
     }
 
     private int parseString(StringBuilder builder, String inputStr, int i) {
-
         // Strip out the spaces when parsing strings.
         if(inputStr.charAt(i) == '"') {
             i++;

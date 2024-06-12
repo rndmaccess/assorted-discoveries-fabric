@@ -179,16 +179,14 @@ public class ADJanksonConfigSerializer {
     }
 
     private int parseString(StringBuilder builder, String inputStr, int i) {
-        char c = inputStr.charAt(i);
 
         // Strip out the spaces when parsing strings.
-        if(c == '"') {
+        if(inputStr.charAt(i) == '"') {
             i++;
-            do {
+            while (inputStr.charAt(i) != '"') {
                 builder.append(inputStr.charAt(i));
                 i++;
-                c = inputStr.charAt(i);
-            } while (c != '"');
+            }
         }
         return i;
     }

@@ -520,6 +520,9 @@
   "text.cloth-config.assorted-discoveries.option.farming.enable_green_onions_and_wild_green_onions": "Enable Green Onions & Wild Green Onions",
   "text.cloth-config.assorted-discoveries.option.farming.enable_noodles_and_noodle_soup": "Enable Noodles & Noodle Soup",
 
+  "text.cloth-config.assorted-discoveries.option.farming.enable_blueberry_pie": "Enable Blueberry Pie",
+  "text.cloth-config.assorted-discoveries.option.farming.enable_blueberry_juice": "Enable Blueberry Juice",
+
   "category.cloth-config.assorted-discoveries.option.misc": "Misc",
   "text.cloth-config.assorted-discoveries.option.misc.rabbits_safe_fall_increased": "Rabbit's Safe Fall Increased"
 }

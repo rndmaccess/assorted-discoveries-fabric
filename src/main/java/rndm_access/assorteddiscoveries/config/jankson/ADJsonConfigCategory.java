@@ -1,22 +1,22 @@
-package rndm_access.assorteddiscoveries.config;
+package rndm_access.assorteddiscoveries.config.jankson;
 
 import java.util.*;
 
 /**
- * Instances of this class serve as different categories within the jankson config file.
+ * Instances of this class serve as different categories within the json config file.
  * This class is designed to be used directly with the cloth config library.
  *
  * @author rndm_access
  */
-public class ADJanksonConfigCategory {
+public class ADJsonConfigCategory {
     private final String name;
-    private final LinkedHashMap<String, ADJanksonConfigEntry> entries = new LinkedHashMap<>();
+    private final LinkedHashMap<String, ADJsonConfigEntry> entries = new LinkedHashMap<>();
 
-    public ADJanksonConfigCategory(String name) {
+    public ADJsonConfigCategory(String name) {
         this.name = name;
     }
 
-    public void addEntry(ADJanksonConfigEntry entry) {
+    public void addEntry(ADJsonConfigEntry entry) {
         entries.put(entry.getName(), entry);
     }
 
@@ -24,7 +24,7 @@ public class ADJanksonConfigCategory {
         return name;
     }
 
-    public ADJanksonConfigEntry getEntry(String entryName) {
+    public ADJsonConfigEntry getEntry(String entryName) {
         if(!this.hasEntry(entryName)) {
             throw new RuntimeException("The category does not have entry " + entryName);
         }
@@ -35,7 +35,7 @@ public class ADJanksonConfigCategory {
         return entries.containsKey(entryName);
     }
 
-    public List<ADJanksonConfigEntry> getEntries() {
+    public List<ADJsonConfigEntry> getEntries() {
         return entries.values().stream().toList();
     }
 

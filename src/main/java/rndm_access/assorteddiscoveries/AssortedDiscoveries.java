@@ -75,11 +75,18 @@ public class AssortedDiscoveries implements ModInitializer {
 				GenerationStep.Feature.UNDERGROUND_ORES, ADPlacedFeatureKeys.ORE_SMOKY_QUARTZ);
 		BiomeModifications.addFeature(BiomeSelectors.tag(CBiomeTags.PATCH_HUGE_PURPLE_MUSHROOM),
 				GenerationStep.Feature.VEGETAL_DECORATION, ADPlacedFeatureKeys.PATCH_HUGE_PURPLE_MUSHROOM);
-		BiomeModifications.addFeature(BiomeSelectors.tag(CBiomeTags.PATCH_BLUEBERRY_BUSH),
-				GenerationStep.Feature.VEGETAL_DECORATION, ADPlacedFeatureKeys.PATCH_BLUEBERRY_COMMON);
-		BiomeModifications.addFeature(BiomeSelectors.tag(CBiomeTags.PATCH_BLUEBERRY_BUSH),
-				GenerationStep.Feature.VEGETAL_DECORATION, ADPlacedFeatureKeys.PATCH_BLUEBERRY_RARE);
-		BiomeModifications.addFeature(BiomeSelectors.tag(CBiomeTags.PATCH_WITCHS_CRADLE),
+
+        if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("farming")
+                .getEntry("enable_blueberry_pie").getValue()
+                || (Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("farming")
+                .getEntry("enable_blueberry_juice").getValue()) {
+            BiomeModifications.addFeature(BiomeSelectors.tag(CBiomeTags.PATCH_BLUEBERRY_BUSH),
+                    GenerationStep.Feature.VEGETAL_DECORATION, ADPlacedFeatureKeys.PATCH_BLUEBERRY_COMMON);
+            BiomeModifications.addFeature(BiomeSelectors.tag(CBiomeTags.PATCH_BLUEBERRY_BUSH),
+                    GenerationStep.Feature.VEGETAL_DECORATION, ADPlacedFeatureKeys.PATCH_BLUEBERRY_RARE);
+        }
+
+        BiomeModifications.addFeature(BiomeSelectors.tag(CBiomeTags.PATCH_WITCHS_CRADLE),
 				GenerationStep.Feature.VEGETAL_DECORATION, ADPlacedFeatureKeys.PATCH_WITCHS_CRADLE_COMMON);
 		BiomeModifications.addFeature(BiomeSelectors.tag(CBiomeTags.PATCH_WITCHS_CRADLE),
 				GenerationStep.Feature.VEGETAL_DECORATION, ADPlacedFeatureKeys.PATCH_WITCHS_CRADLE_RARE);
@@ -116,7 +123,13 @@ public class AssortedDiscoveries implements ModInitializer {
 	}
 
 	private static void registerCompostables() {
-		CompostingChanceRegistry.INSTANCE.add(ADItems.BLUEBERRIES, 0.3F);
+        if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("farming")
+                .getEntry("enable_blueberry_pie").getValue()
+                || (Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("farming")
+                .getEntry("enable_blueberry_juice").getValue()) {
+            CompostingChanceRegistry.INSTANCE.add(ADItems.BLUEBERRIES, 0.3F);
+        }
+
 		CompostingChanceRegistry.INSTANCE.add(ADItems.CINDERSNAP_BERRIES, 0.3F);
 		CompostingChanceRegistry.INSTANCE.add(ADItems.FROSTBITE_BERRIES, 0.3F);
 		CompostingChanceRegistry.INSTANCE.add(ADItems.WITCHS_CRADLE_BRANCH, 0.3F);
@@ -747,7 +760,12 @@ public class AssortedDiscoveries implements ModInitializer {
 					entries.add(ADItems.CHOCOLATE_CAKE);
 					entries.add(ADItems.RED_VELVET_CAKE);
 					entries.add(ADItems.SWEET_BERRY_PIE);
-					entries.add(ADItems.BLUEBERRY_PIE);
+
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("farming")
+                            .getEntry("enable_blueberry_pie").getValue()) {
+                        entries.add(ADItems.BLUEBERRY_PIE);
+                    }
+
 
                     if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("farming")
                             .getEntry("enable_green_onions_and_wild_green_onions").getValue()) {
@@ -762,7 +780,13 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ADItems.NOODLE_SOUP);
                     }
 
-					entries.add(ADItems.BLUEBERRIES);
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("farming")
+                            .getEntry("enable_blueberry_pie").getValue()
+                            || (Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("farming")
+                            .getEntry("enable_blueberry_juice").getValue()) {
+                        entries.add(ADItems.BLUEBERRIES);
+                    }
+
 					entries.add(ADItems.CINDERSNAP_BERRIES);
 					entries.add(ADItems.FROSTBITE_BERRIES);
 					entries.add(ADItems.WITCHS_CRADLE_BRANCH);
@@ -784,7 +808,11 @@ public class AssortedDiscoveries implements ModInitializer {
 					entries.add(ADItems.BERRY_PUDDING);
 					entries.add(ADItems.PUDDING);
 
-					entries.add(ADItems.BLUEBERRY_JUICE);
+                    if((Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES.get("farming")
+                            .getEntry("enable_blueberry_juice").getValue()) {
+                        entries.add(ADItems.BLUEBERRY_JUICE);
+                    }
+
 					entries.add(ADItems.SWEET_BERRY_JUICE);
 					entries.add(ADItems.MAROON_DYE);
 					entries.add(ADItems.SMOKY_QUARTZ);

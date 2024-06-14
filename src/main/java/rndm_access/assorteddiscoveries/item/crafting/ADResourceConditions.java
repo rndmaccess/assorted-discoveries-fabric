@@ -154,6 +154,10 @@ public class ADResourceConditions {
                 .get("farming").getEntry("enable_green_onions_and_wild_green_onions").getValue());
         putEntry("enable_noodles_and_noodle_soup", (Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES
                 .get("farming").getEntry("enable_noodles_and_noodle_soup").getValue());
+        putEntry("enable_blueberry_pie", (Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES
+                .get("farming").getEntry("enable_blueberry_pie").getValue());
+        putEntry("enable_blueberry_juice", (Boolean) ADConfig.JANKSON_CONFIG_CATEGORIES
+                .get("farming").getEntry("enable_blueberry_juice").getValue());
     }
 
     static {

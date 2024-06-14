@@ -1,22 +1,22 @@
-package rndm_access.assorteddiscoveries.config;
+package rndm_access.assorteddiscoveries.config.jankson;
 
 /**
- * Instances of this class serve as different entries within the jankson config file.
+ * Instances of this class serve as different entries within the json config file.
  * This class is designed to be used directly with the cloth config library.
  *
  * @author rndm_access
  */
-public class ADJanksonConfigEntry {
+public class ADJsonConfigEntry {
     private final String name;
     private Object value;
     private String comment;
 
-    public ADJanksonConfigEntry(String name, Object defaultValue) {
+    public ADJsonConfigEntry(String name, Object defaultValue) {
         this.name = name;
         this.value = defaultValue;
     }
 
-    public ADJanksonConfigEntry(String name, Object defaultValue, String comment) {
+    public ADJsonConfigEntry(String name, Object defaultValue, String comment) {
         this.name = name;
         this.value = defaultValue;
         this.comment = comment;

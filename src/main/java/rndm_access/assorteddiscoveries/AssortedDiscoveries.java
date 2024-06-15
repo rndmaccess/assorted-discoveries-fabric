@@ -31,7 +31,7 @@ import rndm_access.assorteddiscoveries.item.crafting.ADResourceConditions;
 import rndm_access.assorteddiscoveries.core.*;
 
 public class AssortedDiscoveries implements ModInitializer {
-	public static final Logger LOGGER = LoggerFactory.getLogger(ADReference.MOD_ID);
+	public static final Logger LOGGER = LoggerFactory.getLogger("AssortedDiscoveries");
 	private static final RegistryKey<ItemGroup> ITEM_GROUP_KEY = RegistryKey.of(
 			RegistryKeys.ITEM_GROUP, ADReference.makeModId("item_group"));
 

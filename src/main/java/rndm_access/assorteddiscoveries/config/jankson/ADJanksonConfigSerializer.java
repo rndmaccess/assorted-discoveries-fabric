@@ -73,35 +73,47 @@ public class ADJanksonConfigSerializer {
         }
     }
 
-    private Object getAndFixValue(ADJsonConfigEntry defaultEntry, String jsonValue) {
+    private Object getAndFixValue(ADJsonConfigEntry defaultEntry, String savedValue) {
         if(defaultEntry.getValue().getClass().equals(Boolean.class)) {
-            if(jsonValue.equalsIgnoreCase("true") || jsonValue.equalsIgnoreCase("false")) {
-                return Boolean.valueOf(jsonValue);
+            if(isBoolean(savedValue)) {
+                return Boolean.valueOf(savedValue);
             } else {
-                warnCorrection(jsonValue, String.valueOf(defaultEntry.getValue()), defaultEntry.getName());
+                if(savedValue.charAt(0) == '"' && savedValue.charAt(savedValue.length() - 1) == '"') {
+                    String fixedValue = savedValue.substring(1, savedValue.length() - 1);
+
+                    if(isBoolean(fixedValue)) {
+                        logCorrectionInfo(savedValue, fixedValue, defaultEntry.getName());
+                        return Boolean.valueOf(fixedValue);
+                    }
+                }
+                logCorrectionInfo(savedValue, String.valueOf(defaultEntry.getValue()), defaultEntry.getName());
                 return defaultEntry.getValue();
             }
         } else if(defaultEntry.getValue().getClass().equals(Integer.class)) {
-            return Integer.parseInt(fixNumber(defaultEntry, jsonValue));
+            return Integer.parseInt(fixNumber(defaultEntry, savedValue));
         } else if(defaultEntry.getValue().getClass().equals(Long.class)) {
-            return Long.parseLong(fixNumber(defaultEntry, jsonValue));
+            return Long.parseLong(fixNumber(defaultEntry, savedValue));
         } else if(defaultEntry.getValue().getClass().equals(Double.class)) {
-            return Double.parseDouble(fixDecimalNumber(defaultEntry, jsonValue));
+            return Double.parseDouble(fixDecimalNumber(defaultEntry, savedValue));
         } else if(defaultEntry.getValue().getClass().equals(Float.class)) {
-            return Float.parseFloat(fixDecimalNumber(defaultEntry, jsonValue));
+            return Float.parseFloat(fixDecimalNumber(defaultEntry, savedValue));
         } else {
-            return jsonValue;
+            return savedValue;
         }
+    }
+
+    private static boolean isBoolean(String value) {
+        return value.equalsIgnoreCase("true") || value.equalsIgnoreCase("false");
     }
 
     private static String fixNumber(ADJsonConfigEntry defaultEntry, String entryValue) {
         if(entryValue.isEmpty()) {
-            warnCorrection(entryValue, String.valueOf(defaultEntry.getValue()), defaultEntry.getName());
+            logCorrectionInfo(entryValue, String.valueOf(defaultEntry.getValue()), defaultEntry.getName());
             return String.valueOf(defaultEntry.getValue());
         } else {
             for (int i = 0; i < entryValue.length(); i++) {
                 if(!Character.isDigit(entryValue.charAt(i))) {
-                    warnCorrection(entryValue, String.valueOf(defaultEntry.getValue()), defaultEntry.getName());
+                    logCorrectionInfo(entryValue, String.valueOf(defaultEntry.getValue()), defaultEntry.getName());
                     return String.valueOf(defaultEntry.getValue());
                 }
             }
@@ -111,14 +123,14 @@ public class ADJanksonConfigSerializer {
 
     private static String fixDecimalNumber(ADJsonConfigEntry defaultEntry, String entryValue) {
         if(entryValue.isEmpty()) {
-            warnCorrection(entryValue, String.valueOf(defaultEntry.getValue()), defaultEntry.getName());
+            logCorrectionInfo(entryValue, String.valueOf(defaultEntry.getValue()), defaultEntry.getName());
             return String.valueOf(defaultEntry.getValue());
         } else {
             for (int i = 0; i < entryValue.length(); i++) {
                 char c = entryValue.charAt(i);
 
                 if(!Character.isDigit(c) || c != '.') {
-                    warnCorrection(entryValue, String.valueOf(defaultEntry.getValue()), defaultEntry.getName());
+                    logCorrectionInfo(entryValue, String.valueOf(defaultEntry.getValue()), defaultEntry.getName());
                     return String.valueOf(defaultEntry.getValue());
                 }
             }
@@ -126,8 +138,9 @@ public class ADJanksonConfigSerializer {
         }
     }
 
-    private static void warnCorrection(String savedValue, String newValue, String entryName) {
-        AssortedDiscoveries.LOGGER.warn("corrected the value {} to {} for entry {}", savedValue, newValue, entryName);
+    private static void logCorrectionInfo(String savedValue, String newValue, String entryName) {
+        AssortedDiscoveries.LOGGER.info("Corrected the value {} to {} for config entry {}",
+                savedValue, newValue, entryName);
     }
 
     public void serializeConfig() {

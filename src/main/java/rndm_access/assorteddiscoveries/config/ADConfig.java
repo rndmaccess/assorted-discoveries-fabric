@@ -3,6 +3,8 @@ package rndm_access.assorteddiscoveries.config;
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigCategory;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import rndm_access.assorteddiscoveries.ADReference;
@@ -16,6 +18,7 @@ public class ADConfig {
     public static final LinkedHashMap<String, ADJsonConfigCategory> JANKSON_CONFIG_CATEGORIES;
     public static final ADJanksonConfigSerializer JANKSON_CONFIG_SERIALIZER;
 
+    @Environment(value = EnvType.CLIENT)
     public static ConfigBuilder getConfigScreenBuilder() {
         HashMap<String, Object> entryValueChanges = new HashMap<>();
 

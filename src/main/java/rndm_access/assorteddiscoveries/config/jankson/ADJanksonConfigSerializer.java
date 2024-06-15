@@ -7,6 +7,7 @@ import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.JsonPrimitiv
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.api.SyntaxError;
 import org.apache.commons.lang3.SerializationException;
 import rndm_access.assorteddiscoveries.ADReference;
+import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -31,10 +32,10 @@ public class ADJanksonConfigSerializer {
             try {
                 JsonObject jsonFile = jankson.load(Files.readString(CONFIG_PATH));
                 ADJsonParser parser = new ADJsonParser(jsonFile);
-                LinkedList<ADJsonConfigCategory> categories = parser.parseJsonFile();
+                LinkedList<ADJsonConfigCategory> savedCategories = parser.parseJsonFile();
 
-                for (ADJsonConfigCategory category : categories) {
-                    updateCategory(category);
+                for (ADJsonConfigCategory savedCategory : savedCategories) {
+                    updateCategory(savedCategory);
                 }
 
                 // Re-save the config to fix anything that may be missing or incorrect.
@@ -53,17 +54,17 @@ public class ADJanksonConfigSerializer {
         if (configCategories.containsKey(savedCategoryName)) {
             ADJsonConfigCategory defaultCategory = configCategories.get(savedCategoryName);
 
-            for (ADJsonConfigEntry defaultEntry : defaultCategory.getEntries()) {
-                if(savedCategory.hasEntry(defaultEntry.getName())) {
-                    updateEntry(defaultEntry, defaultCategory, savedCategory);
+            for (ADJsonConfigEntry savedEntry : savedCategory.getEntries()) {
+                if(defaultCategory.hasEntry(savedEntry.getName())) {
+                    updateEntry(savedEntry, defaultCategory);
                 }
             }
         }
     }
 
-    private void updateEntry(ADJsonConfigEntry defaultEntry, ADJsonConfigCategory defaultCategory,
-                             ADJsonConfigCategory savedCategory) {
-        String savedValue = Objects.toString(savedCategory.getEntry(defaultEntry.getName()).getValue());
+    private void updateEntry(ADJsonConfigEntry savedEntry, ADJsonConfigCategory defaultCategory) {
+        String savedValue = Objects.toString(savedEntry.getValue());
+        ADJsonConfigEntry defaultEntry = defaultCategory.getEntry(savedEntry.getName());
         Object fixedSavedValue = getAndFixValue(defaultEntry, savedValue);
 
         if(!Objects.equals(defaultEntry.getValue(), fixedSavedValue)) {
@@ -73,11 +74,11 @@ public class ADJanksonConfigSerializer {
     }
 
     private Object getAndFixValue(ADJsonConfigEntry defaultEntry, String jsonValue) {
-
         if(defaultEntry.getValue().getClass().equals(Boolean.class)) {
             if(jsonValue.equalsIgnoreCase("true") || jsonValue.equalsIgnoreCase("false")) {
                 return Boolean.valueOf(jsonValue);
             } else {
+                warnCorrection(jsonValue, String.valueOf(defaultEntry.getValue()), defaultEntry.getName());
                 return defaultEntry.getValue();
             }
         } else if(defaultEntry.getValue().getClass().equals(Integer.class)) {
@@ -95,10 +96,12 @@ public class ADJanksonConfigSerializer {
 
     private static String fixNumber(ADJsonConfigEntry defaultEntry, String entryValue) {
         if(entryValue.isEmpty()) {
+            warnCorrection(entryValue, String.valueOf(defaultEntry.getValue()), defaultEntry.getName());
             return String.valueOf(defaultEntry.getValue());
         } else {
             for (int i = 0; i < entryValue.length(); i++) {
                 if(!Character.isDigit(entryValue.charAt(i))) {
+                    warnCorrection(entryValue, String.valueOf(defaultEntry.getValue()), defaultEntry.getName());
                     return String.valueOf(defaultEntry.getValue());
                 }
             }
@@ -108,17 +111,23 @@ public class ADJanksonConfigSerializer {
 
     private static String fixDecimalNumber(ADJsonConfigEntry defaultEntry, String entryValue) {
         if(entryValue.isEmpty()) {
+            warnCorrection(entryValue, String.valueOf(defaultEntry.getValue()), defaultEntry.getName());
             return String.valueOf(defaultEntry.getValue());
         } else {
             for (int i = 0; i < entryValue.length(); i++) {
                 char c = entryValue.charAt(i);
 
                 if(!Character.isDigit(c) || c != '.') {
+                    warnCorrection(entryValue, String.valueOf(defaultEntry.getValue()), defaultEntry.getName());
                     return String.valueOf(defaultEntry.getValue());
                 }
             }
             return entryValue;
         }
+    }
+
+    private static void warnCorrection(String savedValue, String newValue, String entryName) {
+        AssortedDiscoveries.LOGGER.warn("corrected the value {} to {} for entry {}", savedValue, newValue, entryName);
     }
 
     public void serializeConfig() {

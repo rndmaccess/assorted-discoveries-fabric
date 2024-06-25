@@ -42,10 +42,15 @@ public class ADJsonParser {
                 // Parse the entry value
                 if(json.charAt(parseIndex) == ':') {
                     parseIndex++;
-                    do {
-                        valueBuilder.append(json.charAt(parseIndex));
-                        parseIndex++;
-                    } while(hasNextChar() && json.charAt(parseIndex) != ',' && json.charAt(parseIndex) != '}');
+
+                    if(json.charAt(parseIndex) == '"') {
+                        parseString(valueBuilder);
+                    } else {
+                        do {
+                            valueBuilder.append(json.charAt(parseIndex));
+                            parseIndex++;
+                        } while (hasNextChar() && json.charAt(parseIndex) != ',' && json.charAt(parseIndex) != '}');
+                    }
                 }
                 category.addEntry(new ADJsonConfigEntry(nameBuilder.toString(), valueBuilder.toString()));
             }

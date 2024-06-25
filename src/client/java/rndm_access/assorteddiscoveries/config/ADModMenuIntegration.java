@@ -9,6 +9,6 @@ import net.fabricmc.api.Environment;
 public class ADModMenuIntegration implements ModMenuApi {
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
-        return parent -> ADConfig.getConfigScreenBuilder().setParentScreen(parent).build();
+        return parent -> ADConfigScreen.getConfigScreenBuilder().setParentScreen(parent).build();
     }
 }

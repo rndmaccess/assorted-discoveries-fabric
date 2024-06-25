@@ -59,7 +59,7 @@ public class ADJsonParser {
         // Strip out the spaces when parsing strings.
         if(json.charAt(parseIndex) == '"') {
             parseIndex++;
-            while (json.charAt(parseIndex) != '"') {
+            while (hasNextChar() && json.charAt(parseIndex) != '"') {
                 builder.append(json.charAt(parseIndex));
                 parseIndex++;
             }

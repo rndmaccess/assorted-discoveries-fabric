@@ -37,7 +37,7 @@ public class AssortedDiscoveries implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-        ADConfig.JANKSON_CONFIG_SERIALIZER.deserializeConfig();
+        ADConfig.loadOrCreateConfig();
         ADResourceConditions.registerResourceConditions();
 
 		// General Registries

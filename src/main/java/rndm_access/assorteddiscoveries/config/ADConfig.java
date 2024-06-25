@@ -1,16 +1,130 @@
 package rndm_access.assorteddiscoveries.config;
 
+import me.shedaniel.autoconfig.util.Utils;
+import rndm_access.assorteddiscoveries.ADReference;
+import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.jankson.ADJanksonConfigSerializer;
 import rndm_access.assorteddiscoveries.config.jankson.ADJsonConfigCategory;
 import rndm_access.assorteddiscoveries.config.jankson.ADJsonConfigEntry;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
 
 public class ADConfig {
+    private static final Path CONFIG_PATH;
     public static final LinkedHashMap<String, ADJsonConfigCategory> JSON_CONFIG_CATEGORIES;
     public static final ADJanksonConfigSerializer JANKSON_CONFIG_SERIALIZER;
 
+    public static void loadOrCreateConfig() {
+        if (Files.exists(CONFIG_PATH)) {
+            LinkedList<ADJsonConfigCategory> savedCategories = JANKSON_CONFIG_SERIALIZER.deserializeConfig();
 
+            for (ADJsonConfigCategory savedCategory : savedCategories) {
+                updateCategory(savedCategory);
+            }
+
+            // Re-serialize the config to make sure that the loaded data is the same as the serialized data.
+            JANKSON_CONFIG_SERIALIZER.serializeConfig();
+        } else {
+            JANKSON_CONFIG_SERIALIZER.serializeConfig();
+        }
+    }
+
+    private static void updateCategory(ADJsonConfigCategory savedCategory) {
+        String savedCategoryName = savedCategory.getName();
+
+        if (JSON_CONFIG_CATEGORIES.containsKey(savedCategoryName)) {
+            ADJsonConfigCategory defaultCategory = JSON_CONFIG_CATEGORIES.get(savedCategoryName);
+
+            for (ADJsonConfigEntry savedEntry : savedCategory.getEntries()) {
+                if(defaultCategory.hasEntry(savedEntry.getName())) {
+                    updateEntry(savedEntry, defaultCategory);
+                }
+            }
+        }
+    }
+
+    private static void updateEntry(ADJsonConfigEntry savedEntry, ADJsonConfigCategory defaultCategory) {
+        String savedValue = Objects.toString(savedEntry.getValue());
+        ADJsonConfigEntry defaultEntry = defaultCategory.getEntry(savedEntry.getName());
+        Object fixedSavedValue = getCorrectedValue(defaultEntry, savedValue);
+
+        if(!Objects.equals(defaultEntry.getValue(), fixedSavedValue)) {
+            JSON_CONFIG_CATEGORIES.get(defaultCategory.getName()).getEntry(defaultEntry.getName())
+                    .setValue(fixedSavedValue);
+        }
+    }
+
+    private static Object getCorrectedValue(ADJsonConfigEntry defaultEntry, String savedValue) {
+        if(defaultEntry.getValue().getClass().equals(Boolean.class)) {
+            if(isBoolean(savedValue)) {
+                return Boolean.valueOf(savedValue);
+            } else {
+                if(savedValue.charAt(0) == '"' && savedValue.charAt(savedValue.length() - 1) == '"') {
+                    String fixedValue = savedValue.substring(1, savedValue.length() - 1);
+
+                    if(isBoolean(fixedValue)) {
+                        logCorrectionInfo(savedValue, fixedValue, defaultEntry.getName());
+                        return Boolean.valueOf(fixedValue);
+                    }
+                }
+                logCorrectionInfo(savedValue, String.valueOf(defaultEntry.getValue()), defaultEntry.getName());
+                return defaultEntry.getValue();
+            }
+        } else if(defaultEntry.getValue().getClass().equals(Integer.class)) {
+            return Integer.parseInt(correctNumber(defaultEntry, savedValue));
+        } else if(defaultEntry.getValue().getClass().equals(Long.class)) {
+            return Long.parseLong(correctNumber(defaultEntry, savedValue));
+        } else if(defaultEntry.getValue().getClass().equals(Double.class)) {
+            return Double.parseDouble(correctDecimalNumber(defaultEntry, savedValue));
+        } else if(defaultEntry.getValue().getClass().equals(Float.class)) {
+            return Float.parseFloat(correctDecimalNumber(defaultEntry, savedValue));
+        } else {
+            return savedValue;
+        }
+    }
+
+    private static boolean isBoolean(String value) {
+        return value.equalsIgnoreCase("true") || value.equalsIgnoreCase("false");
+    }
+
+    private static String correctNumber(ADJsonConfigEntry defaultEntry, String entryValue) {
+        if(entryValue.isEmpty()) {
+            logCorrectionInfo(entryValue, String.valueOf(defaultEntry.getValue()), defaultEntry.getName());
+            return String.valueOf(defaultEntry.getValue());
+        } else {
+            for (int i = 0; i < entryValue.length(); i++) {
+                if(!Character.isDigit(entryValue.charAt(i))) {
+                    logCorrectionInfo(entryValue, String.valueOf(defaultEntry.getValue()), defaultEntry.getName());
+                    return String.valueOf(defaultEntry.getValue());
+                }
+            }
+            return entryValue;
+        }
+    }
+
+    private static String correctDecimalNumber(ADJsonConfigEntry defaultEntry, String entryValue) {
+        if(entryValue.isEmpty()) {
+            logCorrectionInfo(entryValue, String.valueOf(defaultEntry.getValue()), defaultEntry.getName());
+            return String.valueOf(defaultEntry.getValue());
+        } else {
+            for (int i = 0; i < entryValue.length(); i++) {
+                char c = entryValue.charAt(i);
+
+                if(!Character.isDigit(c) || c != '.') {
+                    logCorrectionInfo(entryValue, String.valueOf(defaultEntry.getValue()), defaultEntry.getName());
+                    return String.valueOf(defaultEntry.getValue());
+                }
+            }
+            return entryValue;
+        }
+    }
+
+    private static void logCorrectionInfo(String savedValue, String newValue, String entryName) {
+        AssortedDiscoveries.LOGGER.info("Corrected the value {} to {} for config entry {}",
+                savedValue, newValue, entryName);
+    }
 
     private static LinkedHashMap<String, ADJsonConfigCategory> getDefaultConfigCategories() {
         ADJsonConfigCategory passivePlushiesCategory = new ADJsonConfigCategory("passive_plushies");
@@ -92,7 +206,8 @@ public class ADConfig {
     }
 
     static {
+        CONFIG_PATH = Utils.getConfigFolder().resolve(ADReference.MOD_ID + ".json5");
         JSON_CONFIG_CATEGORIES = getDefaultConfigCategories();
-        JANKSON_CONFIG_SERIALIZER = new ADJanksonConfigSerializer(JSON_CONFIG_CATEGORIES);
+        JANKSON_CONFIG_SERIALIZER = new ADJanksonConfigSerializer(JSON_CONFIG_CATEGORIES, CONFIG_PATH);
     }
 }

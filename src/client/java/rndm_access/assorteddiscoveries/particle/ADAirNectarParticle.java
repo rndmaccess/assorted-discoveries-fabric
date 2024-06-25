@@ -23,7 +23,7 @@ public class ADAirNectarParticle extends SpriteBillboardParticle {
         this.collidesWithWorld = false;
         this.velocityMultiplier = 1.0F;
         this.gravityStrength = 0.01F;
-        this.setColor(0.8F, 0.6F, 0.3F);
+        this.setColor(1.0F, 0.7F, 0.5F);
     }
 
     @Override

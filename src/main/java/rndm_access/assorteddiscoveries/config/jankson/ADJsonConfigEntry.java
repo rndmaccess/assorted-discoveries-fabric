@@ -30,6 +30,22 @@ public class ADJsonConfigEntry {
         return value;
     }
 
+    public boolean getValueAsBool() {
+        if(this.value.getClass().equals(Boolean.class)) {
+            return (Boolean) value;
+        } else {
+            throw new RuntimeException("Cannot get value as a boolean for entry " + name);
+        }
+    }
+
+    public int getValueAsInt() {
+        if(this.value.getClass().equals(Integer.class)) {
+            return (Integer) value;
+        } else {
+            throw new RuntimeException("Cannot get value as an integer for entry " + name);
+        }
+    }
+
     public void setValue(Object value) {
         this.value = value;
     }

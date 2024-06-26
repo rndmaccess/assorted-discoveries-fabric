@@ -193,6 +193,9 @@ public class ADConfig {
         farmingCategory.addEntry(new ADJsonConfigEntry("enable_blueberry_pie", true));
         farmingCategory.addEntry(new ADJsonConfigEntry("enable_blueberry_juice", true));
 
+        farmingCategory.addEntry(new ADJsonConfigEntry("enable_purple_mushrooms", true));
+        farmingCategory.addEntry(new ADJsonConfigEntry("mushroom_bounce_height", 15));
+
         ADJsonConfigCategory miscCategory = new ADJsonConfigCategory("misc");
         miscCategory.addEntry(new ADJsonConfigEntry("rabbits_safe_fall_increased", true));
 

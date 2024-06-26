@@ -76,10 +76,10 @@ public class AssortedDiscoveries implements ModInitializer {
 		BiomeModifications.addFeature(BiomeSelectors.tag(CBiomeTags.PATCH_HUGE_PURPLE_MUSHROOM),
 				GenerationStep.Feature.VEGETAL_DECORATION, ADPlacedFeatureKeys.PATCH_HUGE_PURPLE_MUSHROOM);
 
-        if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("farming")
-                .getEntry("enable_blueberry_pie").getValue()
-                || (Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("farming")
-                .getEntry("enable_blueberry_juice").getValue()) {
+        if(ADConfig.JSON_CONFIG_CATEGORIES.get("farming")
+                .getEntry("enable_blueberry_pie").getValueAsBool()
+                || ADConfig.JSON_CONFIG_CATEGORIES.get("farming")
+                .getEntry("enable_blueberry_juice").getValueAsBool()) {
             BiomeModifications.addFeature(BiomeSelectors.tag(CBiomeTags.PATCH_BLUEBERRY_BUSH),
                     GenerationStep.Feature.VEGETAL_DECORATION, ADPlacedFeatureKeys.PATCH_BLUEBERRY_COMMON);
             BiomeModifications.addFeature(BiomeSelectors.tag(CBiomeTags.PATCH_BLUEBERRY_BUSH),
@@ -109,8 +109,8 @@ public class AssortedDiscoveries implements ModInitializer {
 		BiomeModifications.addFeature(BiomeSelectors.tag(CBiomeTags.PATCH_FROSTBITE_BERRY_BUSH),
 				GenerationStep.Feature.VEGETAL_DECORATION, ADPlacedFeatureKeys.PATCH_FROSTBITE_BERRY_BUSH_RARE);
 
-        if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("farming")
-                .getEntry("enable_green_onions_and_wild_green_onions").getValue()) {
+        if(ADConfig.JSON_CONFIG_CATEGORIES.get("farming")
+                .getEntry("enable_green_onions_and_wild_green_onions").getValueAsBool()) {
             BiomeModifications.addFeature(BiomeSelectors.tag(CBiomeTags.PATCH_WILD_GREEN_ONIONS),
                     GenerationStep.Feature.VEGETAL_DECORATION, ADPlacedFeatureKeys.PATCH_WILD_GREEN_ONIONS_COMMON);
             BiomeModifications.addFeature(BiomeSelectors.tag(CBiomeTags.PATCH_WILD_GREEN_ONIONS),
@@ -123,10 +123,10 @@ public class AssortedDiscoveries implements ModInitializer {
 	}
 
 	private static void registerCompostables() {
-        if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("farming")
-                .getEntry("enable_blueberry_pie").getValue()
-                || (Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("farming")
-                .getEntry("enable_blueberry_juice").getValue()) {
+        if(ADConfig.JSON_CONFIG_CATEGORIES.get("farming")
+                .getEntry("enable_blueberry_pie").getValueAsBool()
+                || ADConfig.JSON_CONFIG_CATEGORIES.get("farming")
+                .getEntry("enable_blueberry_juice").getValueAsBool()) {
             CompostingChanceRegistry.INSTANCE.add(ADItems.BLUEBERRIES, 0.3F);
         }
 
@@ -168,188 +168,188 @@ public class AssortedDiscoveries implements ModInitializer {
 				.icon(() -> new ItemStack(ADItems.ENDERMAN_PLUSH))
 				.entries((context, entries) -> {
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("hostile_plushies")
-                            .getEntry("enable_slime_plush").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("hostile_plushies")
+                            .getEntry("enable_slime_plush").getValueAsBool()) {
                         entries.add(ADItems.SLIME_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("hostile_plushies")
-                            .getEntry("enable_magma_cube_plush").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("hostile_plushies")
+                            .getEntry("enable_magma_cube_plush").getValueAsBool()) {
                         entries.add(ADItems.MAGMA_CUBE_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
-                            .getEntry("enable_ocelot_plush").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
+                            .getEntry("enable_ocelot_plush").getValueAsBool()) {
                         entries.add(ADItems.OCELOT_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
-                            .getEntry("enable_tabby_cat_plush").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
+                            .getEntry("enable_tabby_cat_plush").getValueAsBool()) {
                         entries.add(ADItems.TABBY_CAT_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
-                            .getEntry("enable_tuxedo_cat_plush").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
+                            .getEntry("enable_tuxedo_cat_plush").getValueAsBool()) {
                         entries.add(ADItems.TUXEDO_CAT_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
-                            .getEntry("enable_red_cat_plush").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
+                            .getEntry("enable_red_cat_plush").getValueAsBool()) {
                         entries.add(ADItems.RED_CAT_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
-                            .getEntry("enable_siamese_cat_plush").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
+                            .getEntry("enable_siamese_cat_plush").getValueAsBool()) {
                         entries.add(ADItems.SIAMESE_CAT_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
-                            .getEntry("enable_british_shorthair_cat_plush").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
+                            .getEntry("enable_british_shorthair_cat_plush").getValueAsBool()) {
                         entries.add(ADItems.BRITISH_SHORTHAIR_CAT_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
-                            .getEntry("enable_calico_cat_plush").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
+                            .getEntry("enable_calico_cat_plush").getValueAsBool()) {
                         entries.add(ADItems.CALICO_CAT_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
-                            .getEntry("enable_persian_cat_plush").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
+                            .getEntry("enable_persian_cat_plush").getValueAsBool()) {
                         entries.add(ADItems.PERSIAN_CAT_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
-                            .getEntry("enable_ragdoll_cat_plush").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
+                            .getEntry("enable_ragdoll_cat_plush").getValueAsBool()) {
                         entries.add(ADItems.RAGDOLL_CAT_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
-                            .getEntry("enable_white_cat_plush").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
+                            .getEntry("enable_white_cat_plush").getValueAsBool()) {
                         entries.add(ADItems.WHITE_CAT_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
-                            .getEntry("enable_black_cat_plush").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
+                            .getEntry("enable_black_cat_plush").getValueAsBool()) {
                         entries.add(ADItems.BLACK_CAT_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
-                            .getEntry("enable_jellie_cat_plush").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
+                            .getEntry("enable_jellie_cat_plush").getValueAsBool()) {
                         entries.add(ADItems.JELLIE_CAT_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("neutral_plushies")
-                            .getEntry("enable_pale_wolf_plush").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("neutral_plushies")
+                            .getEntry("enable_pale_wolf_plush").getValueAsBool()) {
                         entries.add(ADItems.PALE_WOLF_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("hostile_plushies")
-                            .getEntry("enable_zombie_plush").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("hostile_plushies")
+                            .getEntry("enable_zombie_plush").getValueAsBool()) {
                         entries.add(ADItems.ZOMBIE_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("hostile_plushies")
-                            .getEntry("enable_skeleton_plush").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("hostile_plushies")
+                            .getEntry("enable_skeleton_plush").getValueAsBool()) {
                         entries.add(ADItems.SKELETON_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("neutral_plushies")
-                            .getEntry("enable_enderman_plush").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("neutral_plushies")
+                            .getEntry("enable_enderman_plush").getValueAsBool()) {
                         entries.add(ADItems.ENDERMAN_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("hostile_plushies")
-                            .getEntry("enable_creeper_plush").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("hostile_plushies")
+                            .getEntry("enable_creeper_plush").getValueAsBool()) {
                         entries.add(ADItems.CREEPER_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("neutral_plushies")
-                            .getEntry("enable_spider_plush").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("neutral_plushies")
+                            .getEntry("enable_spider_plush").getValueAsBool()) {
                         entries.add(ADItems.SPIDER_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("neutral_plushies")
-                            .getEntry("enable_cave_spider_plush").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("neutral_plushies")
+                            .getEntry("enable_cave_spider_plush").getValueAsBool()) {
                         entries.add(ADItems.CAVE_SPIDER_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("hostile_plushies")
-                            .getEntry("enable_guardian_plush").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("hostile_plushies")
+                            .getEntry("enable_guardian_plush").getValueAsBool()) {
                         entries.add(ADItems.GUARDIAN_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("hostile_plushies")
-                            .getEntry("enable_phantom_plush").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("hostile_plushies")
+                            .getEntry("enable_phantom_plush").getValueAsBool()) {
                         entries.add(ADItems.PHANTOM_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
-                            .getEntry("enable_bat_plush").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
+                            .getEntry("enable_bat_plush").getValueAsBool()) {
                         entries.add(ADItems.BAT_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
-                            .getEntry("enable_squid_plushies").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
+                            .getEntry("enable_squid_plushies").getValueAsBool()) {
                         entries.add(ADItems.SQUID_PLUSH);
                         entries.add(ADItems.GLOW_SQUID_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("neutral_plushies")
-                            .getEntry("enable_bee_plush").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("neutral_plushies")
+                            .getEntry("enable_bee_plush").getValueAsBool()) {
                         entries.add(ADItems.BEE_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("neutral_plushies")
-                            .getEntry("enable_piglin_plushies").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("neutral_plushies")
+                            .getEntry("enable_piglin_plushies").getValueAsBool()) {
                         entries.add(ADItems.PIGLIN_PLUSH);
                         entries.add(ADItems.ZOMBIFIED_PIGLIN_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("hostile_plushies")
-                            .getEntry("enable_hoglin_plushies").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("hostile_plushies")
+                            .getEntry("enable_hoglin_plushies").getValueAsBool()) {
                         entries.add(ADItems.HOGLIN_PLUSH);
                         entries.add(ADItems.ZOGLIN_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("hostile_plushies")
-                            .getEntry("enable_ghast_plush").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("hostile_plushies")
+                            .getEntry("enable_ghast_plush").getValueAsBool()) {
                         entries.add(ADItems.GHAST_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("hostile_plushies")
-                            .getEntry("enable_blaze_plush").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("hostile_plushies")
+                            .getEntry("enable_blaze_plush").getValueAsBool()) {
                         entries.add(ADItems.BLAZE_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
-                            .getEntry("enable_strider_plushies").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
+                            .getEntry("enable_strider_plushies").getValueAsBool()) {
                         entries.add(ADItems.STRIDER_PLUSH);
                         entries.add(ADItems.SHIVERING_STRIDER_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
-                            .getEntry("enable_chicken_plush").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
+                            .getEntry("enable_chicken_plush").getValueAsBool()) {
                         entries.add(ADItems.CHICKEN_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
-                            .getEntry("enable_pig_plush").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
+                            .getEntry("enable_pig_plush").getValueAsBool()) {
                         entries.add(ADItems.PIG_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
-                            .getEntry("enable_cow_plush").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
+                            .getEntry("enable_cow_plush").getValueAsBool()) {
                         entries.add(ADItems.COW_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
-                            .getEntry("enable_mooshroom_plushies").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
+                            .getEntry("enable_mooshroom_plushies").getValueAsBool()) {
                         entries.add(ADItems.RED_MOOSHROOM_PLUSH);
                         entries.add(ADItems.BROWN_MOOSHROOM_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
-                            .getEntry("enable_sheep_plushies").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
+                            .getEntry("enable_sheep_plushies").getValueAsBool()) {
                         entries.add(ADItems.WHITE_SHEEP_PLUSH);
                         entries.add(ADItems.ORANGE_SHEEP_PLUSH);
                         entries.add(ADItems.MAGENTA_SHEEP_PLUSH);
@@ -369,8 +369,8 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ADItems.MAROON_SHEEP_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
-                            .getEntry("enable_horse_plushies").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
+                            .getEntry("enable_horse_plushies").getValueAsBool()) {
                         entries.add(ADItems.WHITE_HORSE_PLUSH);
                         entries.add(ADItems.GRAY_HORSE_PLUSH);
                         entries.add(ADItems.LIGHT_GRAY_HORSE_PLUSH);
@@ -378,8 +378,8 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ADItems.BLACK_HORSE_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
-                            .getEntry("enable_rabbit_plushies").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
+                            .getEntry("enable_rabbit_plushies").getValueAsBool()) {
                         entries.add(ADItems.BROWN_RABBIT_PLUSH);
                         entries.add(ADItems.WHITE_RABBIT_PLUSH);
                         entries.add(ADItems.BLACK_RABBIT_PLUSH);
@@ -389,15 +389,15 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ADItems.SALT_RABBIT_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("hostile_plushies")
-                            .getEntry("enable_illager_plushies").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("hostile_plushies")
+                            .getEntry("enable_illager_plushies").getValueAsBool()) {
                         entries.add(ADItems.PILLAGER_PLUSH);
                         entries.add(ADItems.VINDICATOR_PLUSH);
                         entries.add(ADItems.EVOKER_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
-                            .getEntry("enable_villager_plushies").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
+                            .getEntry("enable_villager_plushies").getValueAsBool()) {
                         entries.add(ADItems.PLAINS_VILLAGER_PLUSH);
                         entries.add(ADItems.DESERT_VILLAGER_PLUSH);
                         entries.add(ADItems.JUNGLE_VILLAGER_PLUSH);
@@ -409,13 +409,13 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ADItems.WARPED_VILLAGER_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
-                            .getEntry("enable_wandering_trader_plush").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
+                            .getEntry("enable_wandering_trader_plush").getValueAsBool()) {
                         entries.add(ADItems.WANDERING_TRADER_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("hostile_plushies")
-                            .getEntry("enable_zombie_villager_plushies").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("hostile_plushies")
+                            .getEntry("enable_zombie_villager_plushies").getValueAsBool()) {
                         entries.add(ADItems.PLAINS_ZOMBIE_VILLAGER_PLUSH);
                         entries.add(ADItems.DESERT_ZOMBIE_VILLAGER_PLUSH);
                         entries.add(ADItems.JUNGLE_ZOMBIE_VILLAGER_PLUSH);
@@ -427,55 +427,55 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ADItems.WARPED_ZOMBIE_VILLAGER_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("hostile_plushies")
-                            .getEntry("enable_witch_plush").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("hostile_plushies")
+                            .getEntry("enable_witch_plush").getValueAsBool()) {
                         entries.add(ADItems.WITCH_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
-                            .getEntry("enable_pufferfish_plush").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
+                            .getEntry("enable_pufferfish_plush").getValueAsBool()) {
                         entries.add(ADItems.PUFFERFISH_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("hostile_plushies")
-                            .getEntry("enable_wither_plush").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("hostile_plushies")
+                            .getEntry("enable_wither_plush").getValueAsBool()) {
                         entries.add(ADItems.WITHER_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("neutral_plushies")
-                            .getEntry("enable_polar_bear_plush").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("neutral_plushies")
+                            .getEntry("enable_polar_bear_plush").getValueAsBool()) {
                         entries.add(ADItems.POLAR_BEAR_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
-                            .getEntry("enable_allay_plush").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
+                            .getEntry("enable_allay_plush").getValueAsBool()) {
                         entries.add(ADItems.ALLAY_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("hostile_plushies")
-                            .getEntry("enable_vex_plush").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("hostile_plushies")
+                            .getEntry("enable_vex_plush").getValueAsBool()) {
                         entries.add(ADItems.VEX_PLUSH);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("hostile_plushies")
-                            .getEntry("enable_ravager_plush").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("hostile_plushies")
+                            .getEntry("enable_ravager_plush").getValueAsBool()) {
                         entries.add(ADItems.RAVAGER_PLUSH);
                     }
 
-					if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("hostile_plushies")
-                            .getEntry("enable_shulker_plush").getValue()) {
+					if(ADConfig.JSON_CONFIG_CATEGORIES.get("hostile_plushies")
+                            .getEntry("enable_shulker_plush").getValueAsBool()) {
                         entries.add(ADItems.SHULKER_PLUSH);
                     }
 
-					if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
-                            .getEntry("enable_camel_plush").getValue()) {
+					if(ADConfig.JSON_CONFIG_CATEGORIES.get("passive_plushies")
+                            .getEntry("enable_camel_plush").getValueAsBool()) {
                         entries.add(ADItems.CAMEL_PLUSH);
                     }
 
                     entries.add(ADItems.WOODCUTTER);
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("farming")
-                            .getEntry("enable_overworld_planter_boxes").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("farming")
+                            .getEntry("enable_overworld_planter_boxes").getValueAsBool()) {
                         entries.add(ADItems.OAK_PLANTER_BOX);
                         entries.add(ADItems.SPRUCE_PLANTER_BOX);
                         entries.add(ADItems.BIRCH_PLANTER_BOX);
@@ -487,8 +487,8 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ADItems.BAMBOO_PLANTER_BOX);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("farming")
-                            .getEntry("enable_nether_planter_boxes").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("farming")
+                            .getEntry("enable_nether_planter_boxes").getValueAsBool()) {
                         entries.add(ADItems.CRIMSON_PLANTER_BOX);
                         entries.add(ADItems.WARPED_PLANTER_BOX);
                     }
@@ -761,29 +761,29 @@ public class AssortedDiscoveries implements ModInitializer {
 					entries.add(ADItems.RED_VELVET_CAKE);
 					entries.add(ADItems.SWEET_BERRY_PIE);
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("farming")
-                            .getEntry("enable_blueberry_pie").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("farming")
+                            .getEntry("enable_blueberry_pie").getValueAsBool()) {
                         entries.add(ADItems.BLUEBERRY_PIE);
                     }
 
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("farming")
-                            .getEntry("enable_green_onions_and_wild_green_onions").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("farming")
+                            .getEntry("enable_green_onions_and_wild_green_onions").getValueAsBool()) {
                         entries.add(ADItems.WILD_GREEN_ONIONS);
                         entries.add(ADItems.GREEN_ONION_SEEDS);
                         entries.add(ADItems.GREEN_ONION);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("farming")
-                            .getEntry("enable_noodles_and_noodle_soup").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("farming")
+                            .getEntry("enable_noodles_and_noodle_soup").getValueAsBool()) {
                         entries.add(ADItems.NOODLES);
                         entries.add(ADItems.NOODLE_SOUP);
                     }
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("farming")
-                            .getEntry("enable_blueberry_pie").getValue()
-                            || (Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("farming")
-                            .getEntry("enable_blueberry_juice").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("farming")
+                            .getEntry("enable_blueberry_pie").getValueAsBool()
+                            || ADConfig.JSON_CONFIG_CATEGORIES.get("farming")
+                            .getEntry("enable_blueberry_juice").getValueAsBool()) {
                         entries.add(ADItems.BLUEBERRIES);
                     }
 
@@ -808,8 +808,8 @@ public class AssortedDiscoveries implements ModInitializer {
 					entries.add(ADItems.BERRY_PUDDING);
 					entries.add(ADItems.PUDDING);
 
-                    if((Boolean) ADConfig.JSON_CONFIG_CATEGORIES.get("farming")
-                            .getEntry("enable_blueberry_juice").getValue()) {
+                    if(ADConfig.JSON_CONFIG_CATEGORIES.get("farming")
+                            .getEntry("enable_blueberry_juice").getValueAsBool()) {
                         entries.add(ADItems.BLUEBERRY_JUICE);
                     }
 

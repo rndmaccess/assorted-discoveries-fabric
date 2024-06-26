@@ -28,9 +28,9 @@ public class ADResourceConditions {
         });
     }
 
-    private static void putEntry(String name, boolean config_entry) {
+    private static void putEntry(String name, boolean configEntry) {
         if(!NAME_TO_CONFIG_ENTRY.containsKey(name)) {
-            NAME_TO_CONFIG_ENTRY.put(ADReference.makeModId(name).toString(), config_entry);
+            NAME_TO_CONFIG_ENTRY.put(ADReference.makeModId(name).toString(), configEntry);
         } else {
             AssortedDiscoveries.LOGGER.error("{} is already registered!", name);
         }

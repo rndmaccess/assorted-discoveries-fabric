@@ -31,7 +31,7 @@ public class ADJanksonConfigSerializer {
                 ADJsonParser parser = new ADJsonParser(jsonFile);
                 return parser.parseJsonFile();
             } catch (SyntaxError | IOException e) {
-                throw new SerializationException(e);
+                throw new SerializationException("Failed to deserialize the file!", e);
             }
         } else {
             throw new SerializationException("Cannot deserialize config because the config file does not exist!");
@@ -67,9 +67,10 @@ public class ADJanksonConfigSerializer {
 
             try {
                 writer.write(outerJsonObject.toJson(true, true));
-                writer.close();
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                throw new RuntimeException("Failed to serialize the file!", e);
+            } finally {
+                writer.close();
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

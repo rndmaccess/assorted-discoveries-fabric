@@ -42,7 +42,7 @@ public class ADPurpleMushroomBlock extends MushroomBlock {
         if(entity.getVelocity().getY() < -jumpHeight && !entity.isSneaking()) {
             Vec3d velocity = entity.getVelocity();
             double minBounce = 2;
-            double bounceHeight = Math.min(15, (entity.fallDistance * jumpHeight) + minBounce);
+            double bounceHeight = (entity.getVelocity().getY() * jumpHeight) + minBounce;
             double bounceYVelocity = Math.sqrt(jumpHeight * (bounceHeight + jumpHeight));
 
             entity.setVelocity(velocity.getX(), -velocity.getY() + bounceYVelocity,

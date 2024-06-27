@@ -26,7 +26,7 @@ public class ADJsonConfigCategory {
 
     public ADJsonConfigEntry getEntry(String entryName) {
         if(!this.hasEntry(entryName)) {
-            throw new RuntimeException("The category does not have entry " + entryName);
+            throw new RuntimeException("The category " + this.name + " does not have entry " + entryName);
         }
         return entries.get(entryName);
     }

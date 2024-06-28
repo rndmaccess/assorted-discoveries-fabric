@@ -17,7 +17,7 @@ public abstract class ADLivingEntityMixin {
                                  CallbackInfoReturnable<Boolean> info) {
         // This lets rabbits fall 5 blocks before they take damage.
         if(((ADEntityAccessor) this).getType().equals(EntityType.RABBIT)
-                && ADConfig.JSON_CONFIG_CATEGORIES.get("misc")
+                && ADConfig.JSON_CONFIG_CATEGORIES.getCategory("misc")
                 .getEntry("rabbits_safe_fall_increased").getValueAsBool()) {
             fallDistance = Math.max(fallDistance - 4.0F, 0.0F);
 

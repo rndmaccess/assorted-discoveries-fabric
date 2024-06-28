@@ -10,14 +10,13 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.LinkedHashMap;
 import java.util.LinkedList;
 
 public class ADJanksonConfigSerializer {
-    private final LinkedHashMap<String, ADJsonConfigCategory> configCategories;
+    private final ADJsonConfig configCategories;
     private final Path configPath;
 
-    public ADJanksonConfigSerializer(LinkedHashMap<String, ADJsonConfigCategory> configCategories, Path configPath) {
+    public ADJanksonConfigSerializer(ADJsonConfig configCategories, Path configPath) {
         this.configCategories = configCategories;
         this.configPath = configPath;
     }
@@ -51,7 +50,7 @@ public class ADJanksonConfigSerializer {
             BufferedWriter writer = Files.newBufferedWriter(configPath);
             JsonObject outerJsonObject = new JsonObject();
 
-            for (ADJsonConfigCategory category : configCategories.values()) {
+            for (ADJsonConfigCategory category : configCategories.getCategories()) {
                 JsonObject innerJsonObject = new JsonObject();
 
                 for(String name : category.getEntryNames()) {

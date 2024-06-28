@@ -25,5 +25,11 @@
   ],
   "result": {
     "item": "assorted-discoveries:witchs_cradle_soup"
-  }
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_witchs_cradle_soup"
+    }
+  ]
 }

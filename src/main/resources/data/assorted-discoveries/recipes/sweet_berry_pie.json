@@ -18,5 +18,11 @@
   },
   "result": {
     "item": "assorted-discoveries:sweet_berry_pie"
-  }
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_sweet_berry_pie"
+    }
+  ]
 }

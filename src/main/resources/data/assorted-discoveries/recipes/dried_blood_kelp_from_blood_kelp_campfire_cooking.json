@@ -5,5 +5,11 @@
   },
   "result": "assorted-discoveries:dried_blood_kelp",
   "experience": 0.1,
-  "cookingtime": 600
+  "cookingtime": 600,
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_blood_kelp"
+    }
+  ]
 }

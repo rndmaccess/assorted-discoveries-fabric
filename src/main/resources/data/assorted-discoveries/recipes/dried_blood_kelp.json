@@ -8,5 +8,11 @@
   "result": {
     "item": "assorted-discoveries:dried_blood_kelp",
     "count": 9
-  }
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_blood_kelp"
+    }
+  ]
 }

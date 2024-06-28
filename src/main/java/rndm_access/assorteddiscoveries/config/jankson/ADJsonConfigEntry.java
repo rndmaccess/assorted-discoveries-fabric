@@ -11,7 +11,17 @@ public class ADJsonConfigEntry {
     private Object value;
     private String comment;
 
-    public ADJsonConfigEntry(String name, Object defaultValue) {
+    public ADJsonConfigEntry(String name, String defaultValue) {
+        this.name = name;
+        this.value = defaultValue;
+    }
+
+    public ADJsonConfigEntry(String name, int defaultValue) {
+        this.name = name;
+        this.value = defaultValue;
+    }
+
+    public ADJsonConfigEntry(String name, boolean defaultValue) {
         this.name = name;
         this.value = defaultValue;
     }

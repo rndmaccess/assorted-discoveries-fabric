@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "assorted-discoveries:berry_pudding"
+      "assorted-discoveries:berry_pudding_with_blueberries"
     ]
   },
   "criteria": {
@@ -20,7 +20,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "assorted-discoveries:berry_pudding"
+        "recipe": "assorted-discoveries:berry_pudding_with_blueberries"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -30,5 +30,20 @@
       "has_pudding",
       "has_the_recipe"
     ]
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:and",
+      "values": [
+        {
+          "condition": "assorted-discoveries:config_entry_enabled",
+          "value": "assorted-discoveries:enable_blueberries"
+        },
+        {
+          "condition": "assorted-discoveries:config_entry_enabled",
+          "value": "assorted-discoveries:enable_pudding"
+        }
+      ]
+    }
   ]
 }

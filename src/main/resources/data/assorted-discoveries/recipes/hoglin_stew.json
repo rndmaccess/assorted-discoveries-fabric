@@ -13,5 +13,11 @@
   ],
   "result": {
     "item": "assorted-discoveries:hoglin_stew"
-  }
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_hoglin_stew"
+    }
+  ]
 }

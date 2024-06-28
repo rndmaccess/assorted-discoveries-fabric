@@ -2,14 +2,14 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "minecraft:bowl"
+      "item": "assorted-discoveries:pudding"
     },
     {
-      "item": "assorted-discoveries:noodles"
+      "item": "minecraft:sweet_berries"
     }
   ],
   "result": {
-    "item": "assorted-discoveries:noodle_soup"
+    "item": "assorted-discoveries:berry_pudding"
   },
   "fabric:load_conditions": [
     {
@@ -19,12 +19,12 @@
           "condition": "fabric:not",
           "value": {
             "condition": "assorted-discoveries:config_entry_enabled",
-            "value": "assorted-discoveries:enable_green_onions"
+            "value": "assorted-discoveries:enable_blueberries"
           }
         },
         {
           "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "assorted-discoveries:enable_and_noodle_soup"
+          "value": "assorted-discoveries:enable_pudding"
         }
       ]
     }

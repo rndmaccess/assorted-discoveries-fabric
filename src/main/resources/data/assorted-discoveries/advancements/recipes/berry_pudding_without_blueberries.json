@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "assorted-discoveries:noodle_soup"
+      "assorted-discoveries:berry_pudding_without_blueberries"
     ]
   },
   "criteria": {
-    "has_bowl": {
+    "has_pudding": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:bowl"
+              "assorted-discoveries:pudding"
             ]
           }
         ]
@@ -20,14 +20,14 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "assorted-discoveries:noodle_soup"
+        "recipe": "assorted-discoveries:berry_pudding_without_blueberries"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_bowl",
+      "has_pudding",
       "has_the_recipe"
     ]
   ],
@@ -36,12 +36,15 @@
       "condition": "fabric:and",
       "values": [
         {
-          "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "assorted-discoveries:enable_green_onions"
+          "condition": "fabric:not",
+          "value": {
+            "condition": "assorted-discoveries:config_entry_enabled",
+            "value": "assorted-discoveries:enable_blueberries"
+          }
         },
         {
           "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "assorted-discoveries:enable_noodle_soup"
+          "value": "assorted-discoveries:enable_pudding"
         }
       ]
     }

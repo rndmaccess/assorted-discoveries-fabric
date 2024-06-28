@@ -4,6 +4,7 @@ import me.shedaniel.autoconfig.util.Utils;
 import rndm_access.assorteddiscoveries.ADReference;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.jankson.ADJanksonConfigSerializer;
+import rndm_access.assorteddiscoveries.config.jankson.ADJsonConfig;
 import rndm_access.assorteddiscoveries.config.jankson.ADJsonConfigCategory;
 import rndm_access.assorteddiscoveries.config.jankson.ADJsonConfigEntry;
 
@@ -13,7 +14,7 @@ import java.util.*;
 
 public class ADConfig {
     private static final Path CONFIG_PATH;
-    public static final LinkedHashMap<String, ADJsonConfigCategory> JSON_CONFIG_CATEGORIES;
+    public static final ADJsonConfig JSON_CONFIG_CATEGORIES;
     public static final ADJanksonConfigSerializer JANKSON_CONFIG_SERIALIZER;
 
     public static void loadOrCreateConfig() {
@@ -34,8 +35,8 @@ public class ADConfig {
     private static void updateCategory(ADJsonConfigCategory savedCategory) {
         String savedCategoryName = savedCategory.getName();
 
-        if (JSON_CONFIG_CATEGORIES.containsKey(savedCategoryName)) {
-            ADJsonConfigCategory defaultCategory = JSON_CONFIG_CATEGORIES.get(savedCategoryName);
+        if (JSON_CONFIG_CATEGORIES.hasCategory(savedCategoryName)) {
+            ADJsonConfigCategory defaultCategory = JSON_CONFIG_CATEGORIES.getCategory(savedCategoryName);
 
             for (ADJsonConfigEntry savedEntry : savedCategory.getEntries()) {
                 if(defaultCategory.hasEntry(savedEntry.getName())) {
@@ -51,7 +52,7 @@ public class ADConfig {
         Object fixedSavedValue = getCorrectedValue(defaultEntry, savedValue);
 
         if(!Objects.equals(defaultEntry.getValue(), fixedSavedValue)) {
-            JSON_CONFIG_CATEGORIES.get(defaultCategory.getName()).getEntry(defaultEntry.getName())
+            JSON_CONFIG_CATEGORIES.getCategory(defaultCategory.getName()).getEntry(defaultEntry.getName())
                     .setValue(fixedSavedValue);
         }
     }
@@ -126,8 +127,10 @@ public class ADConfig {
                 savedValue, newValue, entryName);
     }
 
-    private static LinkedHashMap<String, ADJsonConfigCategory> getDefaultConfigCategories() {
-        ADJsonConfigCategory passivePlushiesCategory = new ADJsonConfigCategory("passive_plushies");
+    private static ADJsonConfig getDefaultConfigCategories() {
+        ADJsonConfig.Builder configBuilder = new ADJsonConfig.Builder();
+
+        ADJsonConfigCategory passivePlushiesCategory = configBuilder.addCategory("passive_plushies");
         passivePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_allay_plush", true));
         passivePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_bat_plush", true));
         passivePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_camel_plush", true));
@@ -156,7 +159,7 @@ public class ADConfig {
         passivePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_villager_plushies", true));
         passivePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_wandering_trader_plush", true));
 
-        ADJsonConfigCategory neutralPlushiesCategory = new ADJsonConfigCategory("neutral_plushies");
+        ADJsonConfigCategory neutralPlushiesCategory = configBuilder.addCategory("neutral_plushies");
         neutralPlushiesCategory.addEntry(new ADJsonConfigEntry("enable_bee_plush", true));
         neutralPlushiesCategory.addEntry(new ADJsonConfigEntry("enable_cave_spider_plush", true));
         neutralPlushiesCategory.addEntry(new ADJsonConfigEntry("enable_enderman_plush", true));
@@ -165,7 +168,7 @@ public class ADConfig {
         neutralPlushiesCategory.addEntry(new ADJsonConfigEntry("enable_spider_plush", true));
         neutralPlushiesCategory.addEntry(new ADJsonConfigEntry("enable_pale_wolf_plush", true));
 
-        ADJsonConfigCategory hostilePlushiesCategory = new ADJsonConfigCategory("hostile_plushies");
+        ADJsonConfigCategory hostilePlushiesCategory = configBuilder.addCategory("hostile_plushies");
         hostilePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_blaze_plush", true));
         hostilePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_creeper_plush", true));
         hostilePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_ghast_plush", true));
@@ -184,28 +187,37 @@ public class ADConfig {
         hostilePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_zombie_plush", true));
         hostilePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_zombie_villager_plushies", true));
 
-        ADJsonConfigCategory farmingCategory = new ADJsonConfigCategory("farming");
+        ADJsonConfigCategory farmingCategory = configBuilder.addCategory("farming");
         farmingCategory.addEntry(new ADJsonConfigEntry("enable_overworld_planter_boxes", true));
         farmingCategory.addEntry(new ADJsonConfigEntry("enable_nether_planter_boxes", true));
-        farmingCategory.addEntry(new ADJsonConfigEntry("enable_green_onions_and_wild_green_onions",
-                true, "If disabled noodle soup does not use green onions."));
-        farmingCategory.addEntry(new ADJsonConfigEntry("enable_noodles_and_noodle_soup", true));
+        farmingCategory.addEntry(new ADJsonConfigEntry("enable_green_onions", true));
+        farmingCategory.addEntry(new ADJsonConfigEntry("enable_noodle_soup", true));
+        farmingCategory.addEntry(new ADJsonConfigEntry("enable_blueberries", true));
         farmingCategory.addEntry(new ADJsonConfigEntry("enable_blueberry_pie", true));
         farmingCategory.addEntry(new ADJsonConfigEntry("enable_blueberry_juice", true));
-
+        farmingCategory.addEntry(new ADJsonConfigEntry("enable_sweet_berry_pie", true));
+        farmingCategory.addEntry(new ADJsonConfigEntry("enable_sweet_berry_juice", true));
+        farmingCategory.addEntry(new ADJsonConfigEntry("enable_chocolate_cake", true));
+        farmingCategory.addEntry(new ADJsonConfigEntry("enable_red_velvet_cake", true));
+        farmingCategory.addEntry(new ADJsonConfigEntry("enable_fried_egg", true));
+        farmingCategory.addEntry(new ADJsonConfigEntry("enable_hoglin_stew", true));
+        farmingCategory.addEntry(new ADJsonConfigEntry("enable_forests_bounty", true));
+        farmingCategory.addEntry(new ADJsonConfigEntry("enable_witchs_cradle_soup", true));
+        farmingCategory.addEntry(new ADJsonConfigEntry("enable_pudding", true));
+        farmingCategory.addEntry(new ADJsonConfigEntry("enable_caramel_apple", true));
+        farmingCategory.addEntry(new ADJsonConfigEntry("enable_nether_berries", true));
         farmingCategory.addEntry(new ADJsonConfigEntry("enable_purple_mushrooms", true));
-        farmingCategory.addEntry(new ADJsonConfigEntry("mushroom_bounce_height", 15));
+        farmingCategory.addEntry(new ADJsonConfigEntry("enable_cattails", true));
+        farmingCategory.addEntry(new ADJsonConfigEntry("enable_bog_blossoms", true));
+        farmingCategory.addEntry(new ADJsonConfigEntry("enable_blood_kelp", true));
+        farmingCategory.addEntry(new ADJsonConfigEntry("enable_ender_plants", true));
 
-        ADJsonConfigCategory miscCategory = new ADJsonConfigCategory("misc");
+        ADJsonConfigCategory buildingCategory = configBuilder.addCategory("building");
+
+        ADJsonConfigCategory miscCategory = configBuilder.addCategory("misc");
         miscCategory.addEntry(new ADJsonConfigEntry("rabbits_safe_fall_increased", true));
 
-        LinkedHashMap<String, ADJsonConfigCategory> jsonConfigCategories = new LinkedHashMap<>();
-        jsonConfigCategories.put(passivePlushiesCategory.getName(), passivePlushiesCategory);
-        jsonConfigCategories.put(neutralPlushiesCategory.getName(), neutralPlushiesCategory);
-        jsonConfigCategories.put(hostilePlushiesCategory.getName(), hostilePlushiesCategory);
-        jsonConfigCategories.put(farmingCategory.getName(), farmingCategory);
-        jsonConfigCategories.put(miscCategory.getName(), miscCategory);
-        return jsonConfigCategories;
+        return configBuilder.build();
     }
 
     static {

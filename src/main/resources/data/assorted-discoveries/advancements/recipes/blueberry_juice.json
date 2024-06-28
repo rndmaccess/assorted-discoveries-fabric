@@ -46,8 +46,17 @@
   ],
   "fabric:load_conditions": [
     {
-      "condition": "assorted-discoveries:config_entry_enabled",
-      "value": "assorted-discoveries:enable_blueberry_juice"
+      "condition": "fabric:and",
+      "values": [
+        {
+          "condition": "assorted-discoveries:config_entry_enabled",
+          "value": "assorted-discoveries:enable_blueberries"
+        },
+        {
+          "condition": "assorted-discoveries:config_entry_enabled",
+          "value": "assorted-discoveries:enable_blueberry_juice"
+        }
+      ]
     }
   ]
 }

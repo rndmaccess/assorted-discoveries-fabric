@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "assorted-discoveries:chocolate_cake"
+      "assorted-discoveries:brown_dye_from_cattail"
     ]
   },
   "criteria": {
-    "has_egg": {
+    "has_cattail": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:egg"
+              "assorted-discoveries:cattail"
             ]
           }
         ]
@@ -20,21 +20,21 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "assorted-discoveries:chocolate_cake"
+        "recipe": "assorted-discoveries:brown_dye_from_cattail"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_egg",
+      "has_cattail",
       "has_the_recipe"
     ]
   ],
   "fabric:load_conditions": [
     {
       "condition": "assorted-discoveries:config_entry_enabled",
-      "value": "assorted-discoveries:enable_chocolate_cake"
+      "value": "assorted-discoveries:enable_ender_plants"
     }
   ]
 }

@@ -34,7 +34,7 @@
   "fabric:load_conditions": [
     {
       "condition": "assorted-discoveries:config_entry_enabled",
-      "value": "assorted-discoveries:enable_nether_planter_boxes"
+      "value": "assorted-discoveries:enable_wooden_planter_boxes"
     }
   ]
 }

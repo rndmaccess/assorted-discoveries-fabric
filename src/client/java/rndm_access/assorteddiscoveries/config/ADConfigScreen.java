@@ -1,16 +1,15 @@
 package rndm_access.assorteddiscoveries.config;
 
-import me.shedaniel.clothconfig2.api.ConfigBuilder;
-import me.shedaniel.clothconfig2.api.ConfigCategory;
-import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
-import me.shedaniel.clothconfig2.api.Requirement;
+import me.shedaniel.clothconfig2.api.*;
 import me.shedaniel.clothconfig2.gui.entries.BooleanListEntry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import rndm_access.assorteddiscoveries.ADReference;
 import rndm_access.assorteddiscoveries.config.jankson.ADJsonConfigCategory;
+import rndm_access.assorteddiscoveries.config.jankson.ADJsonSubCategory;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class ADConfigScreen {
 
@@ -348,16 +347,10 @@ public class ADConfigScreen {
         ConfigCategory farming = builder.getOrCreateCategory(Text.translatable("category.cloth-config." + ADReference.MOD_ID
                 + ".option.farming"));
         farming.addEntry(entryBuilder.startBooleanToggle(
-                        makeFarmingOptionText("enable_overworld_planter_boxes"),
+                        makeFarmingOptionText("enable_wooden_planter_boxes"),
                         ADConfig.JSON_CONFIG_CATEGORIES.getCategory("farming")
-                                .getEntry("enable_overworld_planter_boxes").getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_overworld_planter_boxes", newValue))
-                .requireRestart().build());
-        farming.addEntry(entryBuilder.startBooleanToggle(
-                        makeFarmingOptionText("enable_nether_planter_boxes"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("farming")
-                                .getEntry("enable_nether_planter_boxes").getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_nether_planter_boxes", newValue))
+                                .getEntry("enable_wooden_planter_boxes").getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_wooden_planter_boxes", newValue))
                 .requireRestart().build());
         farming.addEntry(entryBuilder.startBooleanToggle(makeFarmingOptionText("enable_green_onions"),
                         ADConfig.JSON_CONFIG_CATEGORIES.getCategory("farming")
@@ -493,6 +486,25 @@ public class ADConfigScreen {
                 + ADReference.MOD_ID
                 + ".option.building"));
 
+        BooleanListEntry enableWoodenWallsEntry = entryBuilder.startBooleanToggle(
+                        makeBuildingOptionText("enable_wooden_walls"),
+                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("building")
+                                .getSubCategory("walls").getEntry("enable_wooden_walls")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_wooden_walls", newValue))
+                .requireRestart().build();
+        BooleanListEntry enableStrippedWoodenWallsEntry = entryBuilder.startBooleanToggle(
+                        makeBuildingOptionText("enable_stripped_wooden_walls"),
+                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("building")
+                                .getSubCategory("walls")
+                                .getEntry("enable_stripped_wooden_walls")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_stripped_wooden_walls", newValue))
+                .requireRestart().build();
+
+        building.addEntry(entryBuilder.startSubCategory(makeBuildingSubOptionText("walls"),
+                List.of(enableWoodenWallsEntry, enableStrippedWoodenWallsEntry)).build());
+
         // Misc config options
         ConfigCategory misc = builder.getOrCreateCategory(Text.translatable("category.cloth-config."
                 + ADReference.MOD_ID + ".option.misc"));
@@ -507,14 +519,29 @@ public class ADConfigScreen {
             // When the config is saved make the changes to the categories and serialize to the config file.
             for(ADJsonConfigCategory category : ADConfig.JSON_CONFIG_CATEGORIES.getCategories()) {
                 for(String entryName : entryValueChanges.keySet()) {
-                    if(category.hasEntry(entryName)) {
+                    if (category.hasEntry(entryName)) {
                         category.getEntry(entryName).setValue(entryValueChanges.get(entryName));
+                    } else {
+                        saveSubCategoryEntries(category, entryName, entryValueChanges);
                     }
                 }
             }
             ADConfig.JANKSON_CONFIG_SERIALIZER.serializeConfig();
         });
         return builder;
+    }
+
+    private static void saveSubCategoryEntries(ADJsonConfigCategory category, String entryName,
+                                               HashMap<String, Object> entryValueChanges) {
+        for (String subCategoryName : category.getSubCategoryNames()) {
+            if (category.hasSubCategory(subCategoryName)) {
+                ADJsonSubCategory subCategory = category.getSubCategory(subCategoryName);
+
+                if(subCategory.hasEntry(entryName)) {
+                    subCategory.getEntry(entryName).setValue(entryValueChanges.get(entryName));
+                }
+            }
+        }
     }
 
     private static Text makePassiveMobOptionText(String entryName) {
@@ -535,6 +562,15 @@ public class ADConfigScreen {
     private static Text makeFarmingOptionText(String entryName) {
         return Text.translatable("text.cloth-config." + ADReference.MOD_ID
                 + ".option.farming." + entryName);
+    }
+
+    private static Text makeBuildingOptionText(String entryName) {
+        return Text.translatable("text.cloth-config." + ADReference.MOD_ID
+                + ".option.building." + entryName);
+    }
+    private static Text makeBuildingSubOptionText(String entryName) {
+        return Text.translatable("sub-category.cloth-config." + ADReference.MOD_ID
+                + ".option.building." + entryName);
     }
 
     private static Text makeMiscOptionText(String entryName) {

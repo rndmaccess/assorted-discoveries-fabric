@@ -6,34 +6,24 @@ package rndm_access.assorteddiscoveries.config.jankson;
  *
  * @author rndm_access
  */
-public class ADJsonConfigEntry {
-    private final String name;
+public class ADJsonConfigEntry extends ADJsonConfigComponentBase {
     private Object value;
     private String comment;
 
     public ADJsonConfigEntry(String name, String defaultValue) {
-        this.name = name;
-        this.value = defaultValue;
-    }
-
-    public ADJsonConfigEntry(String name, int defaultValue) {
-        this.name = name;
+        super(name);
         this.value = defaultValue;
     }
 
     public ADJsonConfigEntry(String name, boolean defaultValue) {
-        this.name = name;
+        super(name);
         this.value = defaultValue;
     }
 
-    public ADJsonConfigEntry(String name, Object defaultValue, String comment) {
-        this.name = name;
+    public ADJsonConfigEntry(String name, boolean defaultValue, String comment) {
+        super(name);
         this.value = defaultValue;
         this.comment = comment;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public Object getValue() {
@@ -44,15 +34,7 @@ public class ADJsonConfigEntry {
         if(this.value.getClass().equals(Boolean.class)) {
             return (Boolean) value;
         } else {
-            throw new RuntimeException("Cannot get value as a boolean for entry " + name);
-        }
-    }
-
-    public int getValueAsInt() {
-        if(this.value.getClass().equals(Integer.class)) {
-            return (Integer) value;
-        } else {
-            throw new RuntimeException("Cannot get value as an integer for entry " + name);
+            throw new RuntimeException("Cannot get value as a boolean for entry " + this.getName());
         }
     }
 

@@ -146,10 +146,8 @@ public class ADResourceConditions {
                 .getEntry("enable_zombie_villager_plushies").getValueAsBool());
 
         // Farming config options
-        putEntry("enable_overworld_planter_boxes", ADConfig.JSON_CONFIG_CATEGORIES.getCategory("farming")
-                .getEntry("enable_overworld_planter_boxes").getValueAsBool());
-        putEntry("enable_nether_planter_boxes", ADConfig.JSON_CONFIG_CATEGORIES.getCategory("farming")
-                .getEntry("enable_nether_planter_boxes").getValueAsBool());
+        putEntry("enable_wooden_planter_boxes", ADConfig.JSON_CONFIG_CATEGORIES.getCategory("farming")
+                .getEntry("enable_wooden_planter_boxes").getValueAsBool());
         putEntry("enable_green_onions", ADConfig.JSON_CONFIG_CATEGORIES
                 .getCategory("farming").getEntry("enable_green_onions").getValueAsBool());
         putEntry("enable_noodle_soup", ADConfig.JSON_CONFIG_CATEGORIES

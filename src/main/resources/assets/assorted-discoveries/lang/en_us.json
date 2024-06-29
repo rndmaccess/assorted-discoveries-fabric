@@ -515,8 +515,7 @@
   "text.cloth-config.assorted-discoveries.option.hostile_plushies.enable_zombie_villager_plushies": "Enable Zombie Villager Plushies",
 
   "category.cloth-config.assorted-discoveries.option.farming": "Farming",
-  "text.cloth-config.assorted-discoveries.option.farming.enable_overworld_planter_boxes": "Enable Overworld Planter Boxes",
-  "text.cloth-config.assorted-discoveries.option.farming.enable_nether_planter_boxes": "Enable Nether Planter Boxes",
+  "text.cloth-config.assorted-discoveries.option.farming.enable_wooden_planter_boxes": "Enable Wooden Planter Boxes",
   "text.cloth-config.assorted-discoveries.option.farming.enable_green_onions": "Enable Green Onions",
   "text.cloth-config.assorted-discoveries.option.farming.enable_noodle_soup": "Enable Noodle Soup",
   "text.cloth-config.assorted-discoveries.option.farming.enable_blueberries": "Enable Blueberries",

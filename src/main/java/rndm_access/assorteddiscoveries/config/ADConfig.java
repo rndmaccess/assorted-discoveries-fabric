@@ -3,10 +3,7 @@ package rndm_access.assorteddiscoveries.config;
 import me.shedaniel.autoconfig.util.Utils;
 import rndm_access.assorteddiscoveries.ADReference;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
-import rndm_access.assorteddiscoveries.config.jankson.ADJanksonConfigSerializer;
-import rndm_access.assorteddiscoveries.config.jankson.ADJsonConfig;
-import rndm_access.assorteddiscoveries.config.jankson.ADJsonConfigCategory;
-import rndm_access.assorteddiscoveries.config.jankson.ADJsonConfigEntry;
+import rndm_access.assorteddiscoveries.config.jankson.*;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -38,22 +35,50 @@ public class ADConfig {
         if (JSON_CONFIG_CATEGORIES.hasCategory(savedCategoryName)) {
             ADJsonConfigCategory defaultCategory = JSON_CONFIG_CATEGORIES.getCategory(savedCategoryName);
 
-            for (ADJsonConfigEntry savedEntry : savedCategory.getEntries()) {
-                if(defaultCategory.hasEntry(savedEntry.getName())) {
-                    updateEntry(savedEntry, defaultCategory);
+            for (ADJsonConfigComponentBase savedComponent : savedCategory.getComponents()) {
+                if(defaultCategory.hasSubCategory(savedComponent.getName())) {
+                    ADJsonSubCategory savedSubCategory = (ADJsonSubCategory) savedComponent;
+                    ADJsonSubCategory defaultSubCategory = defaultCategory.getSubCategory(savedComponent.getName());
+
+                    updateSubCategoryEntries(savedSubCategory, defaultSubCategory, defaultCategory);
+                } else {
+                    updateCategoryEntries(defaultCategory, savedComponent);
                 }
             }
         }
     }
 
-    private static void updateEntry(ADJsonConfigEntry savedEntry, ADJsonConfigCategory defaultCategory) {
-        String savedValue = Objects.toString(savedEntry.getValue());
-        ADJsonConfigEntry defaultEntry = defaultCategory.getEntry(savedEntry.getName());
-        Object fixedSavedValue = getCorrectedValue(defaultEntry, savedValue);
+    private static void updateSubCategoryEntries(ADJsonSubCategory savedSubCategory,
+                                                 ADJsonSubCategory defaultSubCategory,
+                                                 ADJsonConfigCategory defaultCategory) {
+        for (ADJsonConfigEntry savedEntry : savedSubCategory.getEntries()) {
+            if(defaultSubCategory.hasEntry(savedEntry.getName())) {
+                String savedValue = Objects.toString(savedEntry.getValue());
+                ADJsonConfigEntry defaultEntry = defaultSubCategory.getEntry(savedEntry.getName());
+                Object fixedSavedValue = getCorrectedValue(defaultEntry, savedValue);
 
-        if(!Objects.equals(defaultEntry.getValue(), fixedSavedValue)) {
-            JSON_CONFIG_CATEGORIES.getCategory(defaultCategory.getName()).getEntry(defaultEntry.getName())
-                    .setValue(fixedSavedValue);
+                if(!Objects.equals(defaultEntry.getValue(), fixedSavedValue)) {
+                    JSON_CONFIG_CATEGORIES.getCategory(defaultCategory.getName())
+                            .getSubCategory(defaultSubCategory.getName())
+                            .getEntry(defaultEntry.getName())
+                            .setValue(fixedSavedValue);
+                }
+            }
+        }
+    }
+
+    private static void updateCategoryEntries(ADJsonConfigCategory defaultCategory,
+                                              ADJsonConfigComponentBase savedComponent) {
+        if(defaultCategory.hasEntry(savedComponent.getName())) {
+            ADJsonConfigEntry savedEntry = (ADJsonConfigEntry) savedComponent;
+            String savedValue = Objects.toString(savedEntry.getValue());
+            ADJsonConfigEntry defaultEntry = defaultCategory.getEntry(savedEntry.getName());
+            Object fixedSavedValue = getCorrectedValue(defaultEntry, savedValue);
+
+            if(!Objects.equals(defaultEntry.getValue(), fixedSavedValue)) {
+                JSON_CONFIG_CATEGORIES.getCategory(defaultCategory.getName())
+                        .getEntry(defaultEntry.getName()).setValue(fixedSavedValue);
+            }
         }
     }
 
@@ -188,8 +213,7 @@ public class ADConfig {
         hostilePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_zombie_villager_plushies", true));
 
         ADJsonConfigCategory farmingCategory = configBuilder.addCategory("farming");
-        farmingCategory.addEntry(new ADJsonConfigEntry("enable_overworld_planter_boxes", true));
-        farmingCategory.addEntry(new ADJsonConfigEntry("enable_nether_planter_boxes", true));
+        farmingCategory.addEntry(new ADJsonConfigEntry("enable_wooden_planter_boxes", true));
         farmingCategory.addEntry(new ADJsonConfigEntry("enable_green_onions", true));
         farmingCategory.addEntry(new ADJsonConfigEntry("enable_noodle_soup", true));
         farmingCategory.addEntry(new ADJsonConfigEntry("enable_blueberries", true));
@@ -213,6 +237,10 @@ public class ADConfig {
         farmingCategory.addEntry(new ADJsonConfigEntry("enable_ender_plants", true));
 
         ADJsonConfigCategory buildingCategory = configBuilder.addCategory("building");
+
+        ADJsonSubCategory wallSubCategory = buildingCategory.addSubCategory(new ADJsonSubCategory("walls"));
+        wallSubCategory.addEntry(new ADJsonConfigEntry("enable_wooden_walls", true));
+        wallSubCategory.addEntry(new ADJsonConfigEntry("enable_stripped_wooden_walls", true));
 
         ADJsonConfigCategory miscCategory = configBuilder.addCategory("misc");
         miscCategory.addEntry(new ADJsonConfigEntry("rabbits_safe_fall_increased", true));

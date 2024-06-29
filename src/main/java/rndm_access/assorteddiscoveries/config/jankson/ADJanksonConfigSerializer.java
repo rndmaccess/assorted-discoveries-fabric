@@ -53,12 +53,27 @@ public class ADJanksonConfigSerializer {
             for (ADJsonConfigCategory category : configCategories.getCategories()) {
                 JsonObject innerJsonObject = new JsonObject();
 
-                for(String name : category.getEntryNames()) {
-                    if(category.getEntry(name).getComment() != null) {
-                        innerJsonObject.put(name, new JsonPrimitive(category.getEntry(name).getValue()),
-                                category.getEntry(name).getComment());
+                for(String name : category.getComponentNames()) {
+                    if (category.hasSubCategory(name)) {
+                        JsonObject innermostJsonObject = new JsonObject();
+                        ADJsonSubCategory subCategory = category.getSubCategory(name);
+
+                        for (ADJsonConfigEntry entry : subCategory.getEntries()) {
+                            if (entry.getComment() != null) {
+                                innermostJsonObject.put(entry.getName(), new JsonPrimitive(entry.getValue()),
+                                        entry.getComment());
+                            } else {
+                                innermostJsonObject.put(entry.getName(), new JsonPrimitive(entry.getValue()));
+                            }
+                        }
+                        innerJsonObject.put(subCategory.getName(), innermostJsonObject);
                     } else {
-                        innerJsonObject.put(name, new JsonPrimitive(category.getEntry(name).getValue()));
+                        if (category.getEntry(name).getComment() != null) {
+                            innerJsonObject.put(name, new JsonPrimitive(category.getEntry(name).getValue()),
+                                    category.getEntry(name).getComment());
+                        } else {
+                            innerJsonObject.put(name, new JsonPrimitive(category.getEntry(name).getValue()));
+                        }
                     }
                 }
                 outerJsonObject.put(category.getName(), innerJsonObject);

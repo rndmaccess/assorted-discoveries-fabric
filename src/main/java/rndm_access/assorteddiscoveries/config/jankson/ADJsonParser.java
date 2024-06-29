@@ -33,31 +33,54 @@ public class ADJsonParser {
                 StringBuilder nameBuilder = new StringBuilder();
                 StringBuilder valueBuilder = new StringBuilder();
 
-                // Parse the entry name
-                while (hasNextChar() && json.charAt(parseIndex) != ':') {
-                    parseString(nameBuilder);
-                    parseIndex++;
-                }
+                parseName(nameBuilder);
 
-                // Parse the entry value
-                if(json.charAt(parseIndex) == ':') {
-                    parseIndex++;
+                if(hasNextChar() && json.charAt(parseIndex) == ':' && json.charAt(parseIndex + 1) == '{') {
+                    parseIndex += 2;
+                    ADJsonSubCategory subCategory = new ADJsonSubCategory(nameBuilder.toString());
 
-                    if(json.charAt(parseIndex) == '"') {
-                        parseString(valueBuilder);
-                    } else {
-                        do {
-                            valueBuilder.append(json.charAt(parseIndex));
-                            parseIndex++;
-                        } while (hasNextChar() && json.charAt(parseIndex) != ',' && json.charAt(parseIndex) != '}');
+                    while (hasNextChar() && json.charAt(parseIndex) != '}') {
+                        StringBuilder subNameBuilder = new StringBuilder();
+                        StringBuilder subValueBuilder = new StringBuilder();
+
+                        parseName(subNameBuilder);
+                        parseValue(subValueBuilder);
+                        subCategory.addEntry(new ADJsonConfigEntry(subNameBuilder.toString(),
+                                subValueBuilder.toString()));
+                        parseIndex++;
                     }
+                    category.addSubCategory(subCategory);
+                } else {
+                    parseValue(valueBuilder);
+                    category.addEntry(new ADJsonConfigEntry(nameBuilder.toString(), valueBuilder.toString()));
                 }
-                category.addEntry(new ADJsonConfigEntry(nameBuilder.toString(), valueBuilder.toString()));
             }
             categories.add(category);
             parseIndex++;
         }
         return categories;
+    }
+
+    private void parseName(StringBuilder nameBuilder) {
+        while (hasNextChar() && json.charAt(parseIndex) != ':') {
+            parseString(nameBuilder);
+            parseIndex++;
+        }
+    }
+
+    private void parseValue(StringBuilder valueBuilder) {
+        if(json.charAt(parseIndex) == ':') {
+            parseIndex++;
+
+            if(json.charAt(parseIndex) == '"') {
+                parseString(valueBuilder);
+            } else {
+                do {
+                    valueBuilder.append(json.charAt(parseIndex));
+                    parseIndex++;
+                } while (hasNextChar() && json.charAt(parseIndex) != ',' && json.charAt(parseIndex) != '}');
+            }
+        }
     }
 
     private void parseString(StringBuilder builder) {

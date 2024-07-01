@@ -6,7 +6,6 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import rndm_access.assorteddiscoveries.ADReference;
 import rndm_access.assorteddiscoveries.config.jankson.ADJsonConfigCategory;
-import rndm_access.assorteddiscoveries.config.jankson.ADJsonSubCategory;
 
 import java.util.HashMap;
 import java.util.List;
@@ -519,11 +518,7 @@ public class ADConfigScreen {
             // When the config is saved make the changes to the categories and serialize to the config file.
             for(ADJsonConfigCategory category : ADConfig.JSON_CONFIG_CATEGORIES.getCategories()) {
                 for(String entryName : entryValueChanges.keySet()) {
-                    if (category.hasEntry(entryName)) {
-                        category.getEntry(entryName).setValue(entryValueChanges.get(entryName));
-                    } else {
-                        saveSubCategoryEntries(category, entryName, entryValueChanges);
-                    }
+                    saveEntries(category, entryName, entryValueChanges);
                 }
             }
             ADConfig.JANKSON_CONFIG_SERIALIZER.serializeConfig();
@@ -531,14 +526,14 @@ public class ADConfigScreen {
         return builder;
     }
 
-    private static void saveSubCategoryEntries(ADJsonConfigCategory category, String entryName,
-                                               HashMap<String, Object> entryValueChanges) {
-        for (String subCategoryName : category.getSubCategoryNames()) {
-            if (category.hasSubCategory(subCategoryName)) {
-                ADJsonSubCategory subCategory = category.getSubCategory(subCategoryName);
-
-                if(subCategory.hasEntry(entryName)) {
-                    subCategory.getEntry(entryName).setValue(entryValueChanges.get(entryName));
+    private static void saveEntries(ADJsonConfigCategory category, String entryName,
+                                    HashMap<String, Object> entryValueChanges) {
+        if(category.hasEntry(entryName)) {
+            category.getEntry(entryName).setValue(entryValueChanges.get(entryName));
+        } else {
+            for (String subCategoryName : category.getSubCategoryNames()) {
+                if(category.hasSubCategory(subCategoryName)) {
+                    saveEntries(category.getSubCategory(subCategoryName), entryName, entryValueChanges);
                 }
             }
         }

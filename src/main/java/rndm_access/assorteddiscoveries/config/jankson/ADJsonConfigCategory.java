@@ -8,20 +8,19 @@ import java.util.*;
  *
  * @author rndm_access
  */
-public class ADJsonConfigCategory {
-    private final String name;
+public class ADJsonConfigCategory extends ADJsonConfigComponentBase {
     private final LinkedHashMap<String, ADJsonConfigComponentBase> components = new LinkedHashMap<>();
     private final LinkedList<String> subCategoryNames = new LinkedList<>();
 
     public ADJsonConfigCategory(String name) {
-        this.name = name;
+        super(name);
     }
 
     public void addEntry(ADJsonConfigEntry entry) {
         components.put(entry.getName(), entry);
     }
 
-    public ADJsonSubCategory addSubCategory(ADJsonSubCategory subCategory) {
+    public ADJsonConfigCategory addSubCategory(ADJsonConfigCategory subCategory) {
         components.put(subCategory.getName(), subCategory);
         subCategoryNames.add(subCategory.getName());
         return subCategory;
@@ -31,22 +30,18 @@ public class ADJsonConfigCategory {
         return subCategoryNames;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public ADJsonConfigEntry getEntry(String entryName) {
         if(!this.hasEntry(entryName)) {
-            throw new RuntimeException("The category " + this.name + " does not have entry " + entryName);
+            throw new RuntimeException("The category " + this.getName() + " does not have entry " + entryName);
         }
         return (ADJsonConfigEntry) components.get(entryName);
     }
 
-    public ADJsonSubCategory getSubCategory(String subCategoryName) {
+    public ADJsonConfigCategory getSubCategory(String subCategoryName) {
         if(!this.hasSubCategory(subCategoryName)) {
-            throw new RuntimeException("The category " + this.name + " does not have sub category " + subCategoryName);
+            throw new RuntimeException("The category " + this.getName() + " does not have sub category " + subCategoryName);
         }
-        return (ADJsonSubCategory) components.get(subCategoryName);
+        return (ADJsonConfigCategory) components.get(subCategoryName);
     }
 
     public boolean hasEntry(String entryName) {
@@ -56,7 +51,7 @@ public class ADJsonConfigCategory {
 
     public boolean hasSubCategory(String subCategoryName) {
         return components.containsKey(subCategoryName)
-                && components.get(subCategoryName) instanceof ADJsonSubCategory;
+                && components.get(subCategoryName) instanceof ADJsonConfigCategory;
     }
 
     public List<ADJsonConfigComponentBase> getComponents() {

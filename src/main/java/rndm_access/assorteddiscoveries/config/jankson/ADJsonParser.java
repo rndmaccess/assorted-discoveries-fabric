@@ -19,46 +19,43 @@ public class ADJsonParser {
         while(parseIndex < json.length()) {
             StringBuilder categoryBuilder = new StringBuilder();
 
-            // Parse the category
+            // Parse the main category
             while(hasNextChar() && json.charAt(parseIndex) != ':' && json.charAt(parseIndex + 1) != '{') {
                 parseString(categoryBuilder);
                 parseIndex++;
             }
 
             ADJsonConfigCategory category = new ADJsonConfigCategory(categoryBuilder.toString());
+            parseIndex += 2;
 
-            // Parse the entries
-            while(hasNextChar() && json.charAt(parseIndex) != '}') {
-                parseIndex++;
-                StringBuilder nameBuilder = new StringBuilder();
-                StringBuilder valueBuilder = new StringBuilder();
+            parseSubCategoriesAndEntries(category);
+            categories.add(category);
 
-                parseName(nameBuilder);
+            parseIndex++;
+        }
+        return categories;
+    }
 
-                if(hasNextChar() && json.charAt(parseIndex) == ':' && json.charAt(parseIndex + 1) == '{') {
-                    parseIndex += 2;
-                    ADJsonSubCategory subCategory = new ADJsonSubCategory(nameBuilder.toString());
+    private void parseSubCategoriesAndEntries(ADJsonConfigCategory category) {
+        while (json.charAt(parseIndex) != ',' && json.charAt(parseIndex) != '}') {
+            StringBuilder nameBuilder = new StringBuilder();
+            parseName(nameBuilder);
 
-                    while (hasNextChar() && json.charAt(parseIndex) != '}') {
-                        StringBuilder subNameBuilder = new StringBuilder();
-                        StringBuilder subValueBuilder = new StringBuilder();
-
-                        parseName(subNameBuilder);
-                        parseValue(subValueBuilder);
-                        subCategory.addEntry(new ADJsonConfigEntry(subNameBuilder.toString(),
-                                subValueBuilder.toString()));
-                        parseIndex++;
-                    }
+            if (hasNextChar() && json.charAt(parseIndex) == ':') {
+                if(json.charAt(parseIndex + 1) == '{') {
+                    ADJsonConfigCategory subCategory = new ADJsonConfigCategory(nameBuilder.toString());
                     category.addSubCategory(subCategory);
+                    parseIndex += 2;
+                    parseSubCategoriesAndEntries(subCategory);
                 } else {
+                    StringBuilder valueBuilder = new StringBuilder();
+
                     parseValue(valueBuilder);
                     category.addEntry(new ADJsonConfigEntry(nameBuilder.toString(), valueBuilder.toString()));
                 }
             }
-            categories.add(category);
             parseIndex++;
         }
-        return categories;
     }
 
     private void parseName(StringBuilder nameBuilder) {
@@ -69,9 +66,7 @@ public class ADJsonParser {
     }
 
     private void parseValue(StringBuilder valueBuilder) {
-        if(json.charAt(parseIndex) == ':') {
-            parseIndex++;
-
+        if(matchAndConsume(':')) {
             if(json.charAt(parseIndex) == '"') {
                 parseString(valueBuilder);
             } else {
@@ -84,8 +79,7 @@ public class ADJsonParser {
     }
 
     private void parseString(StringBuilder builder) {
-        if(json.charAt(parseIndex) == '"') {
-            parseIndex++;
+        if (matchAndConsume('"')) {
             while (hasNextChar() && json.charAt(parseIndex) != '"') {
                 builder.append(json.charAt(parseIndex));
                 parseIndex++;
@@ -93,18 +87,14 @@ public class ADJsonParser {
         }
     }
 
-    private boolean hasNextChar() {
-        return (parseIndex + 1) < json.length();
-    }
-
     private static String removeWhitespace(String json) {
         StringBuilder builder = new StringBuilder();
 
-        for(int i = 0; i < json.length(); i++) {
+        for (int i = 0; i < json.length(); i++) {
             char c = json.charAt(i);
 
             // Keep the quotes and spaces within strings
-            if(c == '"') {
+            if (c == '"') {
                 do {
                     builder.append(json.charAt(i));
                     i++;
@@ -112,10 +102,22 @@ public class ADJsonParser {
                 } while (c != '"');
             }
 
-            if(!Character.isWhitespace(c)) {
+            if (!Character.isWhitespace(c)) {
                 builder.append(json.charAt(i));
             }
         }
         return builder.toString();
+    }
+
+    private boolean hasNextChar() {
+        return (parseIndex + 1) < json.length();
+    }
+
+    private boolean matchAndConsume(char c) {
+        if (json.charAt(parseIndex) == c) {
+            parseIndex++;
+            return true;
+        }
+        return false;
     }
 }

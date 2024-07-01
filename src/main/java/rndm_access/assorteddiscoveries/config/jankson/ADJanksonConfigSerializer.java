@@ -48,39 +48,14 @@ public class ADJanksonConfigSerializer {
 
         try {
             BufferedWriter writer = Files.newBufferedWriter(configPath);
-            JsonObject outerJsonObject = new JsonObject();
+            JsonObject jsonObject = new JsonObject();
 
             for (ADJsonConfigCategory category : configCategories.getCategories()) {
-                JsonObject innerJsonObject = new JsonObject();
-
-                for(String name : category.getComponentNames()) {
-                    if (category.hasSubCategory(name)) {
-                        JsonObject innermostJsonObject = new JsonObject();
-                        ADJsonSubCategory subCategory = category.getSubCategory(name);
-
-                        for (ADJsonConfigEntry entry : subCategory.getEntries()) {
-                            if (entry.getComment() != null) {
-                                innermostJsonObject.put(entry.getName(), new JsonPrimitive(entry.getValue()),
-                                        entry.getComment());
-                            } else {
-                                innermostJsonObject.put(entry.getName(), new JsonPrimitive(entry.getValue()));
-                            }
-                        }
-                        innerJsonObject.put(subCategory.getName(), innermostJsonObject);
-                    } else {
-                        if (category.getEntry(name).getComment() != null) {
-                            innerJsonObject.put(name, new JsonPrimitive(category.getEntry(name).getValue()),
-                                    category.getEntry(name).getComment());
-                        } else {
-                            innerJsonObject.put(name, new JsonPrimitive(category.getEntry(name).getValue()));
-                        }
-                    }
-                }
-                outerJsonObject.put(category.getName(), innerJsonObject);
+                writeCategories(category, jsonObject);
             }
 
             try {
-                writer.write(outerJsonObject.toJson(true, true));
+                writer.write(jsonObject.toJson(true, true));
             } catch (IOException e) {
                 throw new RuntimeException("Failed to serialize the file!", e);
             } finally {
@@ -89,5 +64,26 @@ public class ADJanksonConfigSerializer {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private void writeCategories(ADJsonConfigCategory category, JsonObject jsonObject) {
+        JsonObject innerJsonObject = new JsonObject();
+
+        for (ADJsonConfigComponentBase component : category.getComponents()) {
+            if (category.hasEntry(component.getName())) {
+                ADJsonConfigEntry entry = (ADJsonConfigEntry) component;
+
+                if (entry.getComment() != null) {
+                    innerJsonObject.put(entry.getName(), new JsonPrimitive(entry.getValue()),
+                            entry.getComment());
+                } else {
+                    innerJsonObject.put(entry.getName(), new JsonPrimitive(entry.getValue()));
+                }
+            } else {
+                ADJsonConfigCategory subCategory = category.getSubCategory(component.getName());
+                writeCategories(subCategory, innerJsonObject);
+            }
+        }
+        jsonObject.put(category.getName(), innerJsonObject);
     }
 }

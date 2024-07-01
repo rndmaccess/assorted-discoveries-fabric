@@ -536,7 +536,6 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ADItems.STRIPPED_WARPED_WALL);
                     }
 
-                    /*
                     if (buildingCategory.getEntry("enable_wooden_rope_ladders").getValueAsBool()) {
                         entries.add(ADItems.OAK_ROPE_LADDER);
                         entries.add(ADItems.SPRUCE_ROPE_LADDER);
@@ -554,7 +553,9 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ADItems.IRON_LADDER);
                     }
 
-                    if (buildingCategory.getEntry("enable_dyed_campfires").getValueAsBool()) {
+
+                    if (buildingCategory.getSubCategory("dyed")
+                            .getEntry("enable_dyed_campfires").getValueAsBool()) {
                         entries.add(ADItems.WHITE_CAMPFIRE);
                         entries.add(ADItems.ORANGE_CAMPFIRE);
                         entries.add(ADItems.MAGENTA_CAMPFIRE);
@@ -574,7 +575,8 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ADItems.MAROON_CAMPFIRE);
                     }
 
-                    if (buildingCategory.getEntry("enable_dyed_lanterns").getValueAsBool()) {
+                    if (buildingCategory.getSubCategory("dyed")
+                            .getEntry("enable_dyed_lanterns").getValueAsBool()) {
                         entries.add(ADItems.WHITE_LANTERN);
                         entries.add(ADItems.ORANGE_LANTERN);
                         entries.add(ADItems.MAGENTA_LANTERN);
@@ -594,7 +596,8 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ADItems.MAROON_LANTERN);
                     }
 
-                    if (buildingCategory.getEntry("enable_dyed_torches").getValueAsBool()) {
+                    if (buildingCategory.getSubCategory("dyed")
+                            .getEntry("enable_dyed_torches").getValueAsBool()) {
                         entries.add(ADItems.WHITE_TORCH);
                         entries.add(ADItems.ORANGE_TORCH);
                         entries.add(ADItems.MAGENTA_TORCH);
@@ -778,7 +781,6 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ADItems.MOSSY_STONE_TILE_STAIRS);
                         entries.add(ADItems.MOSSY_STONE_TILE_WALL);
                     }
-                    */
 
 
 					entries.add(ADItems.CRACKED_STONE_BRICK_STAIRS);

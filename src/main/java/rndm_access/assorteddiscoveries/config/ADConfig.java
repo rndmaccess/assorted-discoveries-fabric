@@ -35,49 +35,25 @@ public class ADConfig {
         if (JSON_CONFIG_CATEGORIES.hasCategory(savedCategoryName)) {
             ADJsonConfigCategory defaultCategory = JSON_CONFIG_CATEGORIES.getCategory(savedCategoryName);
 
-            for (ADJsonConfigComponentBase savedComponent : savedCategory.getComponents()) {
-                if(defaultCategory.hasSubCategory(savedComponent.getName())) {
-                    ADJsonSubCategory savedSubCategory = (ADJsonSubCategory) savedComponent;
-                    ADJsonSubCategory defaultSubCategory = defaultCategory.getSubCategory(savedComponent.getName());
-
-                    updateSubCategoryEntries(savedSubCategory, defaultSubCategory, defaultCategory);
-                } else {
-                    updateCategoryEntries(defaultCategory, savedComponent);
-                }
-            }
+            updateValues(savedCategory, defaultCategory);
         }
     }
 
-    private static void updateSubCategoryEntries(ADJsonSubCategory savedSubCategory,
-                                                 ADJsonSubCategory defaultSubCategory,
-                                                 ADJsonConfigCategory defaultCategory) {
-        for (ADJsonConfigEntry savedEntry : savedSubCategory.getEntries()) {
-            if(defaultSubCategory.hasEntry(savedEntry.getName())) {
-                String savedValue = Objects.toString(savedEntry.getValue());
-                ADJsonConfigEntry defaultEntry = defaultSubCategory.getEntry(savedEntry.getName());
-                Object fixedSavedValue = getCorrectedValue(defaultEntry, savedValue);
+    private static void updateValues(ADJsonConfigCategory savedCategory,
+                                     ADJsonConfigCategory defaultCategory) {
+        for (ADJsonConfigComponentBase savedComponent : savedCategory.getComponents()) {
+            if(defaultCategory.hasSubCategory(savedComponent.getName())) {
+                updateValues(savedCategory.getSubCategory(savedComponent.getName()),
+                        defaultCategory.getSubCategory(savedComponent.getName()));
+            } else {
+                if(defaultCategory.hasEntry(savedComponent.getName())) {
+                    ADJsonConfigEntry savedEntry = (ADJsonConfigEntry) savedComponent;
+                    String savedValue = Objects.toString(savedEntry.getValue());
+                    ADJsonConfigEntry defaultEntry = defaultCategory.getEntry(savedEntry.getName());
+                    Object fixedSavedValue = getCorrectedValue(defaultEntry, savedValue);
 
-                if(!Objects.equals(defaultEntry.getValue(), fixedSavedValue)) {
-                    JSON_CONFIG_CATEGORIES.getCategory(defaultCategory.getName())
-                            .getSubCategory(defaultSubCategory.getName())
-                            .getEntry(defaultEntry.getName())
-                            .setValue(fixedSavedValue);
+                    defaultCategory.getEntry(savedComponent.getName()).setValue(fixedSavedValue);
                 }
-            }
-        }
-    }
-
-    private static void updateCategoryEntries(ADJsonConfigCategory defaultCategory,
-                                              ADJsonConfigComponentBase savedComponent) {
-        if(defaultCategory.hasEntry(savedComponent.getName())) {
-            ADJsonConfigEntry savedEntry = (ADJsonConfigEntry) savedComponent;
-            String savedValue = Objects.toString(savedEntry.getValue());
-            ADJsonConfigEntry defaultEntry = defaultCategory.getEntry(savedEntry.getName());
-            Object fixedSavedValue = getCorrectedValue(defaultEntry, savedValue);
-
-            if(!Objects.equals(defaultEntry.getValue(), fixedSavedValue)) {
-                JSON_CONFIG_CATEGORIES.getCategory(defaultCategory.getName())
-                        .getEntry(defaultEntry.getName()).setValue(fixedSavedValue);
             }
         }
     }
@@ -87,14 +63,6 @@ public class ADConfig {
             if(isBoolean(savedValue)) {
                 return Boolean.valueOf(savedValue);
             } else {
-                if(savedValue.charAt(0) == '"' && savedValue.charAt(savedValue.length() - 1) == '"') {
-                    String fixedValue = savedValue.substring(1, savedValue.length() - 1);
-
-                    if(isBoolean(fixedValue)) {
-                        logCorrectionInfo(savedValue, fixedValue, defaultEntry.getName());
-                        return Boolean.valueOf(fixedValue);
-                    }
-                }
                 logCorrectionInfo(savedValue, String.valueOf(defaultEntry.getValue()), defaultEntry.getName());
                 return defaultEntry.getValue();
             }
@@ -238,9 +206,43 @@ public class ADConfig {
 
         ADJsonConfigCategory buildingCategory = configBuilder.addCategory("building");
 
-        ADJsonSubCategory wallSubCategory = buildingCategory.addSubCategory(new ADJsonSubCategory("walls"));
+        ADJsonConfigCategory wallSubCategory = buildingCategory.addSubCategory(new ADJsonConfigCategory("walls"));
         wallSubCategory.addEntry(new ADJsonConfigEntry("enable_wooden_walls", true));
         wallSubCategory.addEntry(new ADJsonConfigEntry("enable_stripped_wooden_walls", true));
+
+        buildingCategory.addEntry(new ADJsonConfigEntry("enable_wooden_rope_ladders", true));
+        buildingCategory.addEntry(new ADJsonConfigEntry("enable_iron_ladders", true));
+
+        ADJsonConfigCategory dyedSubCategory = buildingCategory.addSubCategory(new ADJsonConfigCategory("dyed"));
+        dyedSubCategory.addEntry(new ADJsonConfigEntry("enable_dyed_campfires", true));
+        dyedSubCategory.addEntry(new ADJsonConfigEntry("enable_dyed_lanterns", true));
+        dyedSubCategory.addEntry(new ADJsonConfigEntry("enable_dyed_torches", true));
+
+        buildingCategory.addEntry(new ADJsonConfigEntry("enable_twisted_netherrack", true));
+        buildingCategory.addEntry(new ADJsonConfigEntry("enable_weeping_netherrack", true));
+        buildingCategory.addEntry(new ADJsonConfigEntry("enable_twisted_nether_bricks", true));
+        buildingCategory.addEntry(new ADJsonConfigEntry("enable_weeping_nether_bricks", true));
+        buildingCategory.addEntry(new ADJsonConfigEntry("enable_twisted_blackstone", true));
+        buildingCategory.addEntry(new ADJsonConfigEntry("enable_weeping_blackstone", true));
+        buildingCategory.addEntry(new ADJsonConfigEntry(
+                "enable_twisted_polished_blackstone_bricks", true));
+        buildingCategory.addEntry(new ADJsonConfigEntry(
+                "enable_weeping_polished_blackstone_bricks", true));
+        buildingCategory.addEntry(new ADJsonConfigEntry("enable_blackstone_tiles", true));
+        buildingCategory.addEntry(new ADJsonConfigEntry("enable_twisted_blackstone_tiles", true));
+        buildingCategory.addEntry(new ADJsonConfigEntry("enable_weeping_blackstone_tiles", true));
+        buildingCategory.addEntry(new ADJsonConfigEntry("enable_smoky_quartz_blocks", true));
+        buildingCategory.addEntry(new ADJsonConfigEntry("enable_smoky_quartz_bricks", true));
+        buildingCategory.addEntry(new ADJsonConfigEntry("enable_smooth_smoky_quartz", true));
+        buildingCategory.addEntry(new ADJsonConfigEntry("enable_quartz_tiles", true));
+        buildingCategory.addEntry(new ADJsonConfigEntry("enable_quartz_walls", true));
+        buildingCategory.addEntry(new ADJsonConfigEntry("enable_bauxite", true));
+        buildingCategory.addEntry(new ADJsonConfigEntry("enable_bauxite_bricks", true));
+        buildingCategory.addEntry(new ADJsonConfigEntry("enable_cracked_bauxite_bricks", true));
+        buildingCategory.addEntry(new ADJsonConfigEntry("enable_mossy_bauxite_bricks", true));
+        buildingCategory.addEntry(new ADJsonConfigEntry("enable_stone_tiles", true));
+        buildingCategory.addEntry(new ADJsonConfigEntry("enable_cracked_stone_tiles", true));
+        buildingCategory.addEntry(new ADJsonConfigEntry("enable_mossy_stone_tiles", true));
 
         ADJsonConfigCategory miscCategory = configBuilder.addCategory("misc");
         miscCategory.addEntry(new ADJsonConfigEntry("rabbits_safe_fall_increased", true));

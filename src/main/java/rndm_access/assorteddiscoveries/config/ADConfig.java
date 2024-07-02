@@ -18,12 +18,17 @@ public class ADConfig {
         if (Files.exists(CONFIG_PATH)) {
             LinkedList<ADJsonConfigCategory> savedCategories = JANKSON_CONFIG_SERIALIZER.deserializeConfig();
 
-            for (ADJsonConfigCategory savedCategory : savedCategories) {
-                updateCategory(savedCategory);
-            }
+            if(savedCategories.isEmpty()) {
+                AssortedDiscoveries.LOGGER.error("None of the categories could be read! Regenerating the config file!");
+                JANKSON_CONFIG_SERIALIZER.serializeConfig();
+            } else {
+                for (ADJsonConfigCategory savedCategory : savedCategories) {
+                    updateCategory(savedCategory);
+                }
 
-            // Re-serialize the config to make sure that the loaded data is the same as the serialized data.
-            JANKSON_CONFIG_SERIALIZER.serializeConfig();
+                // Re-serialize the config to make sure that the loaded data is the same as the serialized data.
+                JANKSON_CONFIG_SERIALIZER.serializeConfig();
+            }
         } else {
             JANKSON_CONFIG_SERIALIZER.serializeConfig();
         }

@@ -5,13 +5,13 @@ import me.shedaniel.clothconfig2.gui.entries.BooleanListEntry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import rndm_access.assorteddiscoveries.ADReference;
-import rndm_access.assorteddiscoveries.config.jankson.ADJsonConfigCategory;
+import rndm_access.assorteddiscoveries.config.json.ADJsonConfigCategory;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 public class ADConfigScreen {
-
     @SuppressWarnings("UnstableApiUsage")
     public static ConfigBuilder getConfigScreenBuilder() {
         HashMap<String, Object> entryValueChanges = new HashMap<>();
@@ -23,323 +23,492 @@ public class ADConfigScreen {
         builder.setGlobalizedExpanded(false);
         ConfigEntryBuilder entryBuilder = builder.entryBuilder();
 
-        // Passive plush config options
-        ConfigCategory passivePlushies = builder.getOrCreateCategory(Text.translatable("category.cloth-config."
-                + ADReference.MOD_ID + ".option.passive_plushies"));
-        passivePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makePassiveMobOptionText("enable_allay_plush"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("passive_plushies")
-                                .getEntry("enable_allay_plush").getValueAsBool()).setDefaultValue(true)
+        ADJsonConfigCategory buildingCategory = ADConfig.CONFIG.getCategory("building");
+        ADJsonConfigCategory dyedSubcategory = buildingCategory
+                .getSubcategory("dyed");
+        ADJsonConfigCategory passivePlushiesSubcategory = buildingCategory
+                .getSubcategory("passive_plushies");
+        ADJsonConfigCategory neutralPlushiesSubcategory = buildingCategory
+                .getSubcategory("neutral_plushies");
+        ADJsonConfigCategory hostilePlushiesSubcategory = buildingCategory
+                .getSubcategory("hostile_plushies");
+
+        // Building config options
+        ConfigCategory buildingScreenCategory = builder.getOrCreateCategory(makeCategoryText("building"));
+        BooleanListEntry enableDyedCampfires = entryBuilder.startBooleanToggle(
+                        makeDyedEntryText("enable_dyed_campfires"),
+                        dyedSubcategory.getEntry("enable_dyed_campfires")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_dyed_campfires", newValue))
+                .requireRestart().build();
+        BooleanListEntry enableDyedLanterns = entryBuilder.startBooleanToggle(
+                        makeDyedEntryText("enable_dyed_lanterns"),
+                        dyedSubcategory.getEntry("enable_dyed_lanterns")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_dyed_lanterns", newValue))
+                .requireRestart().build();
+        BooleanListEntry enableDyedTorches = entryBuilder.startBooleanToggle(
+                        makeDyedEntryText("enable_dyed_torches"),
+                        dyedSubcategory.getEntry("enable_dyed_torches")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_dyed_torches", newValue))
+                .requireRestart().build();
+
+        buildingScreenCategory.addEntry(entryBuilder.startSubCategory(
+                makeBuildingSubcategoryText("dyed"),
+                List.of(enableDyedCampfires, enableDyedLanterns, enableDyedTorches)).build());
+
+        BooleanListEntry enableAllayPlush = entryBuilder.startBooleanToggle(
+                makePassivePlushiesEntryText("enable_allay_plush"),
+                        passivePlushiesSubcategory.getEntry("enable_allay_plush")
+                                .getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_allay_plush", newValue))
-                .requireRestart().build());
-        passivePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makePassiveMobOptionText("enable_bat_plush"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("passive_plushies")
-                                .getEntry("enable_bat_plush").getValueAsBool()).setDefaultValue(true)
+                .requireRestart().build();
+        BooleanListEntry enableBatPlush = entryBuilder.startBooleanToggle(
+                makePassivePlushiesEntryText("enable_bat_plush"),
+                        passivePlushiesSubcategory.getEntry("enable_bat_plush")
+                                .getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_bat_plush", newValue))
-                .requireRestart().build());
-        passivePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makePassiveMobOptionText("enable_camel_plush"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("passive_plushies")
-                                .getEntry("enable_camel_plush").getValueAsBool()).setDefaultValue(true)
+                .requireRestart().build();
+        BooleanListEntry enableCamelPlush = entryBuilder.startBooleanToggle(
+                makePassivePlushiesEntryText("enable_camel_plush"),
+                        passivePlushiesSubcategory.getEntry("enable_camel_plush")
+                                .getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_camel_plush", newValue))
-                .requireRestart().build());
-        passivePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makePassiveMobOptionText("enable_tabby_cat_plush"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("passive_plushies")
-                                .getEntry("enable_tabby_cat_plush").getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_tabby_cat_plush", newValue))
-                .requireRestart().build());
-        passivePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makePassiveMobOptionText("enable_tuxedo_cat_plush"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("passive_plushies")
-                                .getEntry("enable_tuxedo_cat_plush").getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_tuxedo_cat_plush", newValue))
-                .requireRestart().build());
-        passivePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makePassiveMobOptionText("enable_red_cat_plush"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("passive_plushies")
-                                .getEntry("enable_red_cat_plush").getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_red_cat_plush", newValue))
-                .requireRestart().build());
-        passivePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makePassiveMobOptionText("enable_siamese_cat_plush"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("passive_plushies")
-                                .getEntry("enable_siamese_cat_plush").getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_siamese_cat_plush", newValue))
-                .requireRestart().build());
-        passivePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makePassiveMobOptionText("enable_british_shorthair_cat_plush"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("passive_plushies")
-                                .getEntry("enable_british_shorthair_cat_plush").getValueAsBool())
-                .setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_british_shorthair_cat_plush", newValue))
-                .requireRestart().build());
-        passivePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makePassiveMobOptionText("enable_calico_cat_plush"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("passive_plushies")
-                                .getEntry("enable_calico_cat_plush").getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_calico_cat_plush", newValue))
-                .requireRestart().build());
-        passivePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makePassiveMobOptionText("enable_persian_cat_plush"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("passive_plushies")
-                                .getEntry("enable_persian_cat_plush").getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_persian_cat_plush", newValue))
-                .requireRestart().build());
-        passivePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makePassiveMobOptionText("enable_ragdoll_cat_plush"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("passive_plushies")
-                                .getEntry("enable_ragdoll_cat_plush").getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_ragdoll_cat_plush", newValue))
-                .requireRestart().build());
-        passivePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makePassiveMobOptionText("enable_white_cat_plush"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("passive_plushies")
-                                .getEntry("enable_white_cat_plush").getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_white_cat_plush", newValue))
-                .requireRestart().build());
-        passivePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makePassiveMobOptionText("enable_black_cat_plush"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("passive_plushies")
-                                .getEntry("enable_black_cat_plush").getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_black_cat_plush", newValue))
-                .requireRestart().build());
-        passivePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makePassiveMobOptionText("enable_jellie_cat_plush"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("passive_plushies")
-                                .getEntry("enable_jellie_cat_plush").getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_jellie_cat_plush", newValue))
-                .requireRestart().build());
-        passivePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makePassiveMobOptionText("enable_chicken_plush"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("passive_plushies")
-                                .getEntry("enable_chicken_plush").getValueAsBool()).setDefaultValue(true)
+                .requireRestart().build();
+        BooleanListEntry enableCatPlushies = entryBuilder.startBooleanToggle(
+                makePassivePlushiesEntryText("enable_cat_plushies"),
+                        passivePlushiesSubcategory.getEntry("enable_cat_plushies")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_cat_plushies", newValue))
+                .requireRestart().build();
+        BooleanListEntry enableChickenPlush = entryBuilder.startBooleanToggle(
+                makePassivePlushiesEntryText("enable_chicken_plush"),
+                        passivePlushiesSubcategory.getEntry("enable_chicken_plush")
+                                .getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_chicken_plush", newValue))
-                .requireRestart().build());
-        passivePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makePassiveMobOptionText("enable_cow_plush"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("passive_plushies")
-                                .getEntry("enable_cow_plush").getValueAsBool()).setDefaultValue(true)
+                .requireRestart().build();
+        BooleanListEntry enableCowPlush = entryBuilder.startBooleanToggle(
+                makePassivePlushiesEntryText("enable_cow_plush"),
+                        passivePlushiesSubcategory.getEntry("enable_cow_plush")
+                                .getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_cow_plush", newValue))
-                .requireRestart().build());
-        passivePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makePassiveMobOptionText("enable_horse_plushies"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("passive_plushies")
-                                .getEntry("enable_horse_plushies").getValueAsBool()).setDefaultValue(true)
+                .requireRestart().build();
+        BooleanListEntry enableHorsePlushies = entryBuilder.startBooleanToggle(
+                makePassivePlushiesEntryText("enable_horse_plushies"),
+                        passivePlushiesSubcategory.getEntry("enable_horse_plushies")
+                                .getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_horse_plushies", newValue))
-                .requireRestart().build());
-        passivePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makePassiveMobOptionText("enable_mooshroom_plushies"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("passive_plushies")
-                                .getEntry("enable_mooshroom_plushies").getValueAsBool()).setDefaultValue(true)
+                .requireRestart().build();
+        BooleanListEntry enableMooshroomPlushies = entryBuilder.startBooleanToggle(
+                makePassivePlushiesEntryText("enable_mooshroom_plushies"),
+                        passivePlushiesSubcategory.getEntry("enable_mooshroom_plushies")
+                                .getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_mooshroom_plushies", newValue))
-                .requireRestart().build());
-        passivePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makePassiveMobOptionText("enable_ocelot_plush"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("passive_plushies")
-                                .getEntry("enable_ocelot_plush").getValueAsBool()).setDefaultValue(true)
+                .requireRestart().build();
+        BooleanListEntry enableOcelotPlush = entryBuilder.startBooleanToggle(
+                makePassivePlushiesEntryText("enable_ocelot_plush"),
+                        passivePlushiesSubcategory.getEntry("enable_ocelot_plush")
+                                .getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_ocelot_plush", newValue))
-                .requireRestart().build());
-        passivePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makePassiveMobOptionText("enable_pig_plush"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("passive_plushies")
-                                .getEntry("enable_pig_plush").getValueAsBool()).setDefaultValue(true)
+                .requireRestart().build();
+        BooleanListEntry enablePigPlush = entryBuilder.startBooleanToggle(
+                makePassivePlushiesEntryText("enable_pig_plush"),
+                        passivePlushiesSubcategory.getEntry("enable_pig_plush")
+                                .getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_pig_plush", newValue))
-                .requireRestart().build());
-        passivePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makePassiveMobOptionText("enable_pufferfish_plush"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("passive_plushies")
-                                .getEntry("enable_pufferfish_plush").getValueAsBool()).setDefaultValue(true)
+                .requireRestart().build();
+        BooleanListEntry enablePufferfishPlush = entryBuilder.startBooleanToggle(
+                makePassivePlushiesEntryText("enable_pufferfish_plush"),
+                        passivePlushiesSubcategory.getEntry("enable_pufferfish_plush")
+                                .getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_pufferfish_plush", newValue))
-                .requireRestart().build());
-        passivePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makePassiveMobOptionText("enable_rabbit_plushies"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("passive_plushies")
-                                .getEntry("enable_rabbit_plushies").getValueAsBool()).setDefaultValue(true)
+                .requireRestart().build();
+        BooleanListEntry enableRabbitPlush = entryBuilder.startBooleanToggle(
+                makePassivePlushiesEntryText("enable_rabbit_plushies"),
+                        passivePlushiesSubcategory.getEntry("enable_rabbit_plushies")
+                                .getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_rabbit_plushies", newValue))
-                .requireRestart().build());
-        passivePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makePassiveMobOptionText("enable_sheep_plushies"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("passive_plushies")
-                                .getEntry("enable_sheep_plushies").getValueAsBool()).setDefaultValue(true)
+                .requireRestart().build();
+        BooleanListEntry enableSheepPlush = entryBuilder.startBooleanToggle(
+                makePassivePlushiesEntryText("enable_sheep_plushies"),
+                        passivePlushiesSubcategory.getEntry("enable_sheep_plushies")
+                                .getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_sheep_plushies", newValue))
-                .requireRestart().build());
-        passivePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makePassiveMobOptionText("enable_squid_plushies"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("passive_plushies")
-                                .getEntry("enable_squid_plushies").getValueAsBool()).setDefaultValue(true)
+                .requireRestart().build();
+        BooleanListEntry enableSquidPlushies = entryBuilder.startBooleanToggle(
+                makePassivePlushiesEntryText("enable_squid_plushies"),
+                        passivePlushiesSubcategory.getEntry("enable_squid_plushies")
+                                .getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_squid_plushies", newValue))
-                .requireRestart().build());
-        passivePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makePassiveMobOptionText("enable_strider_plushies"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("passive_plushies")
-                                .getEntry("enable_strider_plushies").getValueAsBool()).setDefaultValue(true)
+                .requireRestart().build();
+        BooleanListEntry enableStriderPlushies = entryBuilder.startBooleanToggle(
+                makePassivePlushiesEntryText("enable_strider_plushies"),
+                        passivePlushiesSubcategory.getEntry("enable_strider_plushies")
+                                .getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_strider_plushies", newValue))
-                .requireRestart().build());
-        passivePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makePassiveMobOptionText("enable_villager_plushies"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("passive_plushies")
-                                .getEntry("enable_villager_plushies").getValueAsBool()).setDefaultValue(true)
+                .requireRestart().build();
+        BooleanListEntry enableVillagerPlushies = entryBuilder.startBooleanToggle(
+                makePassivePlushiesEntryText("enable_villager_plushies"),
+                        passivePlushiesSubcategory.getEntry("enable_villager_plushies")
+                                .getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_villager_plushies", newValue))
-                .requireRestart().build());
-        passivePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makePassiveMobOptionText("enable_wandering_trader_plush"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("passive_plushies")
-                                .getEntry("enable_wandering_trader_plush").getValueAsBool()).setDefaultValue(true)
+                .requireRestart().build();
+        BooleanListEntry enableWanderingTraderPlush = entryBuilder.startBooleanToggle(
+                makePassivePlushiesEntryText("enable_wandering_trader_plush"),
+                        passivePlushiesSubcategory.getEntry("enable_wandering_trader_plush")
+                                .getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_wandering_trader_plush", newValue))
-                .requireRestart().build());
+                .requireRestart().build();
 
-        // Neutral plush config options
-        ConfigCategory neutralPlushies = builder.getOrCreateCategory(Text.translatable("category.cloth-config."
-                + ADReference.MOD_ID + ".option.neutral_plushies"));
-        neutralPlushies.addEntry(entryBuilder.startBooleanToggle(
-                makeNeutralMobOptionText("enable_bee_plush"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("neutral_plushies")
-                                .getEntry("enable_bee_plush").getValueAsBool()).setDefaultValue(true)
+        buildingScreenCategory.addEntry(entryBuilder.startSubCategory(
+                makeBuildingSubcategoryText("passive_plushies"),
+                List.of(enableAllayPlush, enableBatPlush, enableCamelPlush, enableCatPlushies, enableChickenPlush,
+                        enableCowPlush, enableHorsePlushies, enableMooshroomPlushies, enableOcelotPlush,
+                        enablePigPlush, enablePufferfishPlush, enableRabbitPlush, enableSheepPlush,
+                        enableSquidPlushies, enableStriderPlushies, enableVillagerPlushies,
+                        enableWanderingTraderPlush)).build());
+
+        BooleanListEntry enableBeePlush = entryBuilder.startBooleanToggle(
+                makeNeutralPlushiesEntryText("enable_bee_plush"),
+                        neutralPlushiesSubcategory.getEntry("enable_bee_plush")
+                                .getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_bee_plush", newValue))
-                .requireRestart().build());
-        neutralPlushies.addEntry(entryBuilder.startBooleanToggle(
-                makeNeutralMobOptionText("enable_cave_spider_plush"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("neutral_plushies")
-                                .getEntry("enable_cave_spider_plush").getValueAsBool()).setDefaultValue(true)
+                .requireRestart().build();
+        BooleanListEntry enableCaveSpiderPlush = entryBuilder.startBooleanToggle(
+                makeNeutralPlushiesEntryText("enable_cave_spider_plush"),
+                        neutralPlushiesSubcategory.getEntry("enable_cave_spider_plush")
+                                .getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_cave_spider_plush", newValue))
-                .requireRestart().build());
-        neutralPlushies.addEntry(entryBuilder.startBooleanToggle(
-                makeNeutralMobOptionText("enable_enderman_plush"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("neutral_plushies")
-                                .getEntry("enable_enderman_plush").getValueAsBool()).setDefaultValue(true)
+                .requireRestart().build();
+        BooleanListEntry enableEndermanPlush = entryBuilder.startBooleanToggle(
+                makeNeutralPlushiesEntryText("enable_enderman_plush"),
+                        neutralPlushiesSubcategory.getEntry("enable_enderman_plush")
+                                .getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_enderman_plush", newValue))
-                .requireRestart().build());
-        neutralPlushies.addEntry(entryBuilder.startBooleanToggle(
-                makeNeutralMobOptionText("enable_piglin_plushies"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("neutral_plushies")
-                                .getEntry("enable_piglin_plushies").getValueAsBool()).setDefaultValue(true)
+                .requireRestart().build();
+        BooleanListEntry enablePiglinPlushies = entryBuilder.startBooleanToggle(
+                makeNeutralPlushiesEntryText("enable_piglin_plushies"),
+                        neutralPlushiesSubcategory.getEntry("enable_piglin_plushies")
+                                .getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_piglin_plushies", newValue))
-                .requireRestart().build());
-        neutralPlushies.addEntry(entryBuilder.startBooleanToggle(
-                makeNeutralMobOptionText("enable_polar_bear_plush"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("neutral_plushies")
-                                .getEntry("enable_polar_bear_plush").getValueAsBool()).setDefaultValue(true)
+                .requireRestart().build();
+        BooleanListEntry enablePolarBearPlush = entryBuilder.startBooleanToggle(
+                makeNeutralPlushiesEntryText("enable_polar_bear_plush"),
+                        neutralPlushiesSubcategory.getEntry("enable_polar_bear_plush")
+                                .getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_polar_bear_plush", newValue))
-                .requireRestart().build());
-        neutralPlushies.addEntry(entryBuilder.startBooleanToggle(
-                makeNeutralMobOptionText("enable_spider_plush"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("neutral_plushies")
-                                .getEntry("enable_spider_plush").getValueAsBool()).setDefaultValue(true)
+                .requireRestart().build();
+        BooleanListEntry enableSpiderPlush = entryBuilder.startBooleanToggle(
+                makeNeutralPlushiesEntryText("enable_spider_plush"),
+                        neutralPlushiesSubcategory.getEntry("enable_spider_plush")
+                                .getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_spider_plush", newValue))
-                .requireRestart().build());
-        neutralPlushies.addEntry(entryBuilder.startBooleanToggle(
-                makeNeutralMobOptionText("enable_pale_wolf_plush"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("neutral_plushies")
-                                .getEntry("enable_pale_wolf_plush").getValueAsBool()).setDefaultValue(true)
+                .requireRestart().build();
+        BooleanListEntry enablePaleWolfPlush = entryBuilder.startBooleanToggle(
+                makeNeutralPlushiesEntryText("enable_pale_wolf_plush"),
+                        neutralPlushiesSubcategory.getEntry("enable_pale_wolf_plush")
+                                .getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_pale_wolf_plush", newValue))
+                .requireRestart().build();
+
+        buildingScreenCategory.addEntry(entryBuilder.startSubCategory(
+                makeBuildingSubcategoryText("neutral_plushies"),
+                List.of(enableBeePlush, enableCaveSpiderPlush, enableEndermanPlush, enablePiglinPlushies,
+                        enablePolarBearPlush, enableSpiderPlush, enablePaleWolfPlush)).build());
+
+        BooleanListEntry enableBlazePlush = entryBuilder.startBooleanToggle(
+                makeHostilePlushiesEntryText("enable_blaze_plush"),
+                        hostilePlushiesSubcategory.getEntry("enable_blaze_plush")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_blaze_plush", newValue))
+                .requireRestart().build();
+        BooleanListEntry enableCreeperPlush = entryBuilder.startBooleanToggle(
+                makeHostilePlushiesEntryText("enable_creeper_plush"),
+                        hostilePlushiesSubcategory.getEntry("enable_creeper_plush")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_creeper_plush", newValue))
+                .requireRestart().build();
+        BooleanListEntry enableGhastPlush = entryBuilder.startBooleanToggle(
+                makeHostilePlushiesEntryText("enable_ghast_plush"),
+                        hostilePlushiesSubcategory.getEntry("enable_ghast_plush")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_ghast_plush", newValue))
+                .requireRestart().build();
+        BooleanListEntry enableGuardianPlush = entryBuilder.startBooleanToggle(
+                makeHostilePlushiesEntryText("enable_guardian_plush"),
+                        hostilePlushiesSubcategory.getEntry("enable_guardian_plush")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_guardian_plush", newValue))
+                .requireRestart().build();
+        BooleanListEntry enableHoglinPlushies = entryBuilder.startBooleanToggle(
+                makeHostilePlushiesEntryText("enable_hoglin_plushies"),
+                        hostilePlushiesSubcategory.getEntry("enable_hoglin_plushies")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_hoglin_plushies", newValue))
+                .requireRestart().build();
+        BooleanListEntry enableIllagerPlushies = entryBuilder.startBooleanToggle(
+                makeHostilePlushiesEntryText("enable_illager_plushies"),
+                        hostilePlushiesSubcategory.getEntry("enable_illager_plushies")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_illager_plushies", newValue))
+                .requireRestart().build();
+        BooleanListEntry enableMagmaCubePlush = entryBuilder.startBooleanToggle(
+                makeHostilePlushiesEntryText("enable_magma_cube_plush"),
+                        hostilePlushiesSubcategory.getEntry("enable_magma_cube_plush")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_magma_cube_plush", newValue))
+                .requireRestart().build();
+        BooleanListEntry enablePhantomPlush = entryBuilder.startBooleanToggle(
+                makeHostilePlushiesEntryText("enable_phantom_plush"),
+                        hostilePlushiesSubcategory.getEntry("enable_phantom_plush")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_phantom_plush", newValue))
+                .requireRestart().build();
+        BooleanListEntry enableRavagerPlush = entryBuilder.startBooleanToggle(
+                makeHostilePlushiesEntryText("enable_ravager_plush"),
+                        hostilePlushiesSubcategory.getEntry("enable_ravager_plush")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_ravager_plush", newValue))
+                .requireRestart().build();
+        BooleanListEntry enableShulkerPlush = entryBuilder.startBooleanToggle(
+                makeHostilePlushiesEntryText("enable_shulker_plush"),
+                        hostilePlushiesSubcategory.getEntry("enable_shulker_plush")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_shulker_plush", newValue))
+                .requireRestart().build();
+        BooleanListEntry enableSkeletonPlush = entryBuilder.startBooleanToggle(
+                makeHostilePlushiesEntryText("enable_skeleton_plush"),
+                        hostilePlushiesSubcategory.getEntry("enable_skeleton_plush")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_skeleton_plush", newValue))
+                .requireRestart().build();
+        BooleanListEntry enableSlimePlush = entryBuilder.startBooleanToggle(
+                makeHostilePlushiesEntryText("enable_slime_plush"),
+                        hostilePlushiesSubcategory.getEntry("enable_slime_plush")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_slime_plush", newValue))
+                .requireRestart().build();
+        BooleanListEntry enableVexPlush = entryBuilder.startBooleanToggle(
+                makeHostilePlushiesEntryText("enable_vex_plush"),
+                        hostilePlushiesSubcategory.getEntry("enable_vex_plush")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_vex_plush", newValue))
+                .requireRestart().build();
+        BooleanListEntry enableWitchPlush = entryBuilder.startBooleanToggle(
+                makeHostilePlushiesEntryText("enable_witch_plush"),
+                        hostilePlushiesSubcategory.getEntry("enable_witch_plush")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_witch_plush", newValue))
+                .requireRestart().build();
+        BooleanListEntry enableWitherPlush = entryBuilder.startBooleanToggle(
+                makeHostilePlushiesEntryText("enable_wither_plush"),
+                        hostilePlushiesSubcategory.getEntry("enable_wither_plush")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_wither_plush", newValue))
+                .requireRestart().build();
+        BooleanListEntry enableZombiePlush = entryBuilder.startBooleanToggle(
+                makeHostilePlushiesEntryText("enable_zombie_plush"),
+                        hostilePlushiesSubcategory.getEntry("enable_zombie_plush")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_zombie_plush", newValue))
+                .requireRestart().build();
+        BooleanListEntry enableZombieVillagerPlushies = entryBuilder.startBooleanToggle(
+                makeHostilePlushiesEntryText("enable_zombie_villager_plushies"),
+                        hostilePlushiesSubcategory.getEntry("enable_zombie_villager_plushies")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_zombie_villager_plushies", newValue))
+                .requireRestart().build();
+
+        buildingScreenCategory.addEntry(entryBuilder.startSubCategory(
+                makeBuildingSubcategoryText("hostile_plushies"),
+                List.of(enableBlazePlush, enableCreeperPlush, enableGhastPlush, enableGuardianPlush,
+                        enableHoglinPlushies, enableIllagerPlushies, enableMagmaCubePlush,
+                        enablePhantomPlush, enableRavagerPlush, enableShulkerPlush,
+                        enableSkeletonPlush, enableSlimePlush, enableVexPlush,
+                        enableWitchPlush, enableWitherPlush, enableZombiePlush,
+                        enableZombieVillagerPlushies)).build());
+
+        buildingScreenCategory.addEntry(entryBuilder.startBooleanToggle(
+                        makeBuildingEntryText("enable_wooden_walls"),
+                        buildingCategory.getEntry("enable_wooden_walls")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_wooden_walls", newValue))
+                .requireRestart().build());
+        buildingScreenCategory.addEntry(entryBuilder.startBooleanToggle(
+                        makeBuildingEntryText("enable_stripped_wooden_walls"),
+                        buildingCategory.getEntry("enable_stripped_wooden_walls")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_stripped_wooden_walls", newValue))
+                .requireRestart().build());
+        buildingScreenCategory.addEntry(entryBuilder.startBooleanToggle(
+                        makeBuildingEntryText("enable_wooden_rope_ladders"),
+                        buildingCategory.getEntry("enable_wooden_rope_ladders")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_wooden_rope_ladders", newValue))
+                .requireRestart().build());
+        buildingScreenCategory.addEntry(entryBuilder.startBooleanToggle(
+                        makeBuildingEntryText("enable_iron_ladders"),
+                        buildingCategory.getEntry("enable_iron_ladders")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_iron_ladders", newValue))
+                .requireRestart().build());
+        buildingScreenCategory.addEntry(entryBuilder.startBooleanToggle(
+                        makeBuildingEntryText("enable_twisted_blackstone"),
+                        buildingCategory.getEntry("enable_twisted_blackstone")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_twisted_blackstone", newValue))
                 .requireRestart().build());
 
-        // Hostile plush config options
-        ConfigCategory hostilePlushies = builder.getOrCreateCategory(Text.translatable("category.cloth-config."
-                + ADReference.MOD_ID + ".option.hostile_plushies"));
-        hostilePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makeHostileMobOptionText("enable_blaze_plush"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("hostile_plushies")
-                                .getEntry("enable_blaze_plush").getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_blaze_plush", newValue))
+        Text requiresBlackstoneTilesText = Text.literal("Requires blackstone tiles");
+        BooleanListEntry enableBlackstoneTiles = entryBuilder.startBooleanToggle(
+                makeBuildingEntryText("enable_blackstone_tiles"),
+                        buildingCategory.getEntry("enable_blackstone_tiles")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_blackstone_tiles", newValue))
+                .requireRestart().build();
+
+        buildingScreenCategory.addEntry(enableBlackstoneTiles);
+        buildingScreenCategory.addEntry(entryBuilder.startBooleanToggle(
+                        makeBuildingEntryText("enable_twisted_blackstone_tiles"),
+                        buildingCategory.getEntry("enable_twisted_blackstone_tiles")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_twisted_blackstone_tiles", newValue))
+                .setRequirement(Requirement.isTrue(enableBlackstoneTiles))
+                .setTooltipSupplier(() -> makeOptionalToolTip(Requirement.isFalse(enableBlackstoneTiles),
+                        requiresBlackstoneTilesText))
                 .requireRestart().build());
-        hostilePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makeHostileMobOptionText("enable_creeper_plush"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("hostile_plushies")
-                                .getEntry("enable_creeper_plush").getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_creeper_plush", newValue))
+        buildingScreenCategory.addEntry(entryBuilder.startBooleanToggle(
+                        makeBuildingEntryText("enable_weeping_blackstone_tiles"),
+                        buildingCategory.getEntry("enable_weeping_blackstone_tiles")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_weeping_blackstone_tiles", newValue))
+                .setRequirement(Requirement.isTrue(enableBlackstoneTiles))
+                .setTooltipSupplier(() -> makeOptionalToolTip(Requirement.isFalse(enableBlackstoneTiles),
+                        requiresBlackstoneTilesText))
                 .requireRestart().build());
-        hostilePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makeHostileMobOptionText("enable_ghast_plush"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("hostile_plushies")
-                                .getEntry("enable_ghast_plush").getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_ghast_plush", newValue))
+
+        buildingScreenCategory.addEntry(entryBuilder.startBooleanToggle(
+                        makeBuildingEntryText("enable_twisted_netherrack"),
+                        buildingCategory.getEntry("enable_twisted_netherrack")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_twisted_netherrack", newValue))
                 .requireRestart().build());
-        hostilePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makeHostileMobOptionText("enable_guardian_plush"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("hostile_plushies")
-                                .getEntry("enable_guardian_plush").getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_guardian_plush", newValue))
+        buildingScreenCategory.addEntry(entryBuilder.startBooleanToggle(
+                        makeBuildingEntryText("enable_twisted_nether_bricks"),
+                        buildingCategory.getEntry("enable_twisted_nether_bricks")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_twisted_nether_bricks", newValue))
                 .requireRestart().build());
-        hostilePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makeHostileMobOptionText("enable_hoglin_plushies"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("hostile_plushies")
-                                .getEntry("enable_hoglin_plushies").getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_hoglin_plushies", newValue))
+        buildingScreenCategory.addEntry(entryBuilder.startBooleanToggle(
+                        makeBuildingEntryText("enable_twisted_polished_blackstone_bricks"),
+                        buildingCategory.getEntry("enable_twisted_polished_blackstone_bricks")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_twisted_polished_blackstone_bricks", newValue))
                 .requireRestart().build());
-        hostilePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makeHostileMobOptionText("enable_illager_plushies"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("hostile_plushies")
-                                .getEntry("enable_illager_plushies").getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_illager_plushies", newValue))
+        buildingScreenCategory.addEntry(entryBuilder.startBooleanToggle(
+                        makeBuildingEntryText("enable_weeping_netherrack"),
+                        buildingCategory.getEntry("enable_weeping_netherrack")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_weeping_netherrack", newValue))
                 .requireRestart().build());
-        hostilePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makeHostileMobOptionText("enable_magma_cube_plush"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("hostile_plushies")
-                                .getEntry("enable_magma_cube_plush").getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_magma_cube_plush", newValue))
+        buildingScreenCategory.addEntry(entryBuilder.startBooleanToggle(
+                        makeBuildingEntryText("enable_weeping_nether_bricks"),
+                        buildingCategory.getEntry("enable_weeping_nether_bricks")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_weeping_nether_bricks", newValue))
                 .requireRestart().build());
-        hostilePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makeHostileMobOptionText("enable_phantom_plush"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("hostile_plushies")
-                                .getEntry("enable_phantom_plush").getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_phantom_plush", newValue))
+        buildingScreenCategory.addEntry(entryBuilder.startBooleanToggle(
+                        makeBuildingEntryText("enable_weeping_blackstone"),
+                        buildingCategory.getEntry("enable_weeping_blackstone")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_weeping_blackstone", newValue))
                 .requireRestart().build());
-        hostilePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makeHostileMobOptionText("enable_ravager_plush"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("hostile_plushies")
-                                .getEntry("enable_ravager_plush").getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_ravager_plush", newValue))
+        buildingScreenCategory.addEntry(entryBuilder.startBooleanToggle(
+                        makeBuildingEntryText("enable_weeping_polished_blackstone_bricks"),
+                        buildingCategory.getEntry("enable_weeping_polished_blackstone_bricks")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_weeping_polished_blackstone_bricks", newValue))
                 .requireRestart().build());
-        hostilePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makeHostileMobOptionText("enable_shulker_plush"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("hostile_plushies")
-                                .getEntry("enable_shulker_plush").getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_shulker_plush", newValue))
+
+        Text requiresSmokyQuartzBlocksText = Text.literal("Requires smoky quartz blocks");
+        BooleanListEntry enableSmokyQuartzBlocks = entryBuilder.startBooleanToggle(
+                        makeBuildingEntryText("enable_smoky_quartz_blocks"),
+                        buildingCategory.getEntry("enable_smoky_quartz_blocks")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_smoky_quartz_blocks", newValue))
+                .requireRestart().build();
+
+        buildingScreenCategory.addEntry(enableSmokyQuartzBlocks);
+        buildingScreenCategory.addEntry(entryBuilder.startBooleanToggle(
+                        makeBuildingEntryText("enable_smoky_quartz_bricks"),
+                        buildingCategory.getEntry("enable_smoky_quartz_bricks")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_smoky_quartz_bricks", newValue))
+                .setTooltipSupplier(() -> makeOptionalToolTip(Requirement.isFalse(enableSmokyQuartzBlocks),
+                        requiresSmokyQuartzBlocksText))
+                .requireRestart().setRequirement(Requirement.isTrue(enableSmokyQuartzBlocks)).build());
+        buildingScreenCategory.addEntry(entryBuilder.startBooleanToggle(
+                        makeBuildingEntryText("enable_smooth_smoky_quartz"),
+                        buildingCategory.getEntry("enable_smooth_smoky_quartz")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_smooth_smoky_quartz", newValue))
+                .setTooltipSupplier(() -> makeOptionalToolTip(Requirement.isFalse(enableSmokyQuartzBlocks),
+                        requiresSmokyQuartzBlocksText))
+                .requireRestart().setRequirement(Requirement.isTrue(enableSmokyQuartzBlocks)).build());
+        buildingScreenCategory.addEntry(entryBuilder.startBooleanToggle(
+                        makeBuildingEntryText("enable_quartz_tiles"),
+                        buildingCategory.getEntry("enable_quartz_tiles")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_quartz_tiles", newValue))
                 .requireRestart().build());
-        hostilePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makeHostileMobOptionText("enable_skeleton_plush"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("hostile_plushies")
-                                .getEntry("enable_skeleton_plush").getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_skeleton_plush", newValue))
+        buildingScreenCategory.addEntry(entryBuilder.startBooleanToggle(
+                        makeBuildingEntryText("enable_quartz_walls"),
+                        buildingCategory.getEntry("enable_quartz_walls")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_quartz_walls", newValue))
                 .requireRestart().build());
-        hostilePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makeHostileMobOptionText("enable_slime_plush"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("hostile_plushies")
-                                .getEntry("enable_slime_plush").getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_slime_plush", newValue))
+        buildingScreenCategory.addEntry(entryBuilder.startBooleanToggle(
+                        makeBuildingEntryText("enable_bauxite"),
+                        buildingCategory.getEntry("enable_bauxite")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_bauxite", newValue))
                 .requireRestart().build());
-        hostilePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makeHostileMobOptionText("enable_vex_plush"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("hostile_plushies")
-                                .getEntry("enable_vex_plush").getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_vex_plush", newValue))
+        buildingScreenCategory.addEntry(entryBuilder.startBooleanToggle(
+                        makeBuildingEntryText("enable_bauxite_bricks"),
+                        buildingCategory.getEntry("enable_bauxite_bricks")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_bauxite_bricks", newValue))
                 .requireRestart().build());
-        hostilePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makeHostileMobOptionText("enable_witch_plush"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("hostile_plushies")
-                                .getEntry("enable_witch_plush").getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_witch_plush", newValue))
+        buildingScreenCategory.addEntry(entryBuilder.startBooleanToggle(
+                        makeBuildingEntryText("enable_cracked_bauxite_bricks"),
+                        buildingCategory.getEntry("enable_cracked_bauxite_bricks")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_cracked_bauxite_bricks", newValue))
                 .requireRestart().build());
-        hostilePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makeHostileMobOptionText("enable_wither_plush"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("hostile_plushies")
-                                .getEntry("enable_wither_plush").getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_wither_plush", newValue))
+        buildingScreenCategory.addEntry(entryBuilder.startBooleanToggle(
+                        makeBuildingEntryText("enable_mossy_bauxite_bricks"),
+                        buildingCategory.getEntry("enable_mossy_bauxite_bricks")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_mossy_bauxite_bricks", newValue))
                 .requireRestart().build());
-        hostilePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makeHostileMobOptionText("enable_zombie_plush"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("hostile_plushies")
-                                .getEntry("enable_zombie_plush").getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_zombie_plush", newValue))
+        buildingScreenCategory.addEntry(entryBuilder.startBooleanToggle(
+                        makeBuildingEntryText("enable_stone_tiles"),
+                        buildingCategory.getEntry("enable_stone_tiles")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_stone_tiles", newValue))
                 .requireRestart().build());
-        hostilePlushies.addEntry(entryBuilder.startBooleanToggle(
-                makeHostileMobOptionText("enable_zombie_villager_plushies"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("hostile_plushies")
-                                .getEntry("enable_zombie_villager_plushies").getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_zombie_villager_plushies", newValue))
+        buildingScreenCategory.addEntry(entryBuilder.startBooleanToggle(
+                        makeBuildingEntryText("enable_cracked_stone_tiles"),
+                        buildingCategory.getEntry("enable_cracked_stone_tiles")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_cracked_stone_tiles", newValue))
+                .requireRestart().build());
+        buildingScreenCategory.addEntry(entryBuilder.startBooleanToggle(
+                        makeBuildingEntryText("enable_mossy_stone_tiles"),
+                        buildingCategory.getEntry("enable_mossy_stone_tiles")
+                                .getValueAsBool()).setDefaultValue(true)
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_mossy_stone_tiles", newValue))
                 .requireRestart().build());
 
         // Farming config options
@@ -347,25 +516,25 @@ public class ADConfigScreen {
                 + ".option.farming"));
         farming.addEntry(entryBuilder.startBooleanToggle(
                         makeFarmingOptionText("enable_wooden_planter_boxes"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("farming")
+                        ADConfig.CONFIG.getCategory("farming")
                                 .getEntry("enable_wooden_planter_boxes").getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_wooden_planter_boxes", newValue))
                 .requireRestart().build());
         farming.addEntry(entryBuilder.startBooleanToggle(makeFarmingOptionText("enable_green_onions"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("farming")
+                        ADConfig.CONFIG.getCategory("farming")
                                 .getEntry("enable_green_onions")
                                 .getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_green_onions", newValue))
                 .requireRestart().build());
         farming.addEntry(entryBuilder.startBooleanToggle(makeFarmingOptionText("enable_noodle_soup"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("farming")
+                        ADConfig.CONFIG.getCategory("farming")
                                 .getEntry("enable_noodle_soup").getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_noodle_soup", newValue))
                 .requireRestart().build());
 
         BooleanListEntry enableBlueberries = entryBuilder.startBooleanToggle(
                         makeFarmingOptionText("enable_blueberries"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("farming")
+                        ADConfig.CONFIG.getCategory("farming")
                                 .getEntry("enable_blueberries").getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_blueberries", newValue))
                 .requireRestart().build();
@@ -373,150 +542,126 @@ public class ADConfigScreen {
 
         farming.addEntry(entryBuilder.startBooleanToggle(
                         makeFarmingOptionText("enable_blueberry_pie"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("farming")
+                        ADConfig.CONFIG.getCategory("farming")
                                 .getEntry("enable_blueberry_pie").getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_blueberry_pie", newValue))
                 .requireRestart().setRequirement(Requirement.isTrue(enableBlueberries)).build());
         farming.addEntry(entryBuilder.startBooleanToggle(
                         makeFarmingOptionText("enable_blueberry_juice"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("farming")
+                        ADConfig.CONFIG.getCategory("farming")
                                 .getEntry("enable_blueberry_juice").getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_blueberry_juice", newValue))
                 .requireRestart().setRequirement(Requirement.isTrue(enableBlueberries)).build());
         farming.addEntry(entryBuilder.startBooleanToggle(
                         makeFarmingOptionText("enable_sweet_berry_pie"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("farming")
+                        ADConfig.CONFIG.getCategory("farming")
                                 .getEntry("enable_sweet_berry_pie").getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_sweet_berry_pie", newValue))
                 .requireRestart().build());
         farming.addEntry(entryBuilder.startBooleanToggle(
                         makeFarmingOptionText("enable_sweet_berry_juice"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("farming")
+                        ADConfig.CONFIG.getCategory("farming")
                                 .getEntry("enable_sweet_berry_juice").getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_sweet_berry_juice", newValue))
                 .requireRestart().build());
         farming.addEntry(entryBuilder.startBooleanToggle(
                         makeFarmingOptionText("enable_chocolate_cake"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("farming")
+                        ADConfig.CONFIG.getCategory("farming")
                                 .getEntry("enable_chocolate_cake").getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_chocolate_cake", newValue))
                 .requireRestart().build());
         farming.addEntry(entryBuilder.startBooleanToggle(
                         makeFarmingOptionText("enable_red_velvet_cake"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("farming")
+                        ADConfig.CONFIG.getCategory("farming")
                                 .getEntry("enable_red_velvet_cake").getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_red_velvet_cake", newValue))
                 .requireRestart().build());
         farming.addEntry(entryBuilder.startBooleanToggle(
                         makeFarmingOptionText("enable_fried_egg"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("farming")
+                        ADConfig.CONFIG.getCategory("farming")
                                 .getEntry("enable_fried_egg").getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_fried_egg", newValue))
                 .requireRestart().build());
         farming.addEntry(entryBuilder.startBooleanToggle(
                         makeFarmingOptionText("enable_hoglin_stew"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("farming")
+                        ADConfig.CONFIG.getCategory("farming")
                                 .getEntry("enable_hoglin_stew").getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_hoglin_stew", newValue))
                 .requireRestart().build());
         farming.addEntry(entryBuilder.startBooleanToggle(
                         makeFarmingOptionText("enable_forests_bounty"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("farming")
+                        ADConfig.CONFIG.getCategory("farming")
                                 .getEntry("enable_forests_bounty").getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_forests_bounty", newValue))
                 .requireRestart().build());
         farming.addEntry(entryBuilder.startBooleanToggle(
                         makeFarmingOptionText("enable_witchs_cradle_soup"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("farming")
+                        ADConfig.CONFIG.getCategory("farming")
                                 .getEntry("enable_witchs_cradle_soup").getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_witchs_cradle_soup", newValue))
                 .requireRestart().build());
         farming.addEntry(entryBuilder.startBooleanToggle(
                         makeFarmingOptionText("enable_pudding"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("farming")
+                        ADConfig.CONFIG.getCategory("farming")
                                 .getEntry("enable_pudding").getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_pudding", newValue))
                 .requireRestart().build());
         farming.addEntry(entryBuilder.startBooleanToggle(
                         makeFarmingOptionText("enable_caramel_apple"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("farming")
+                        ADConfig.CONFIG.getCategory("farming")
                                 .getEntry("enable_caramel_apple").getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_caramel_apple", newValue))
                 .requireRestart().build());
         farming.addEntry(entryBuilder.startBooleanToggle(
                         makeFarmingOptionText("enable_nether_berries"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("farming")
+                        ADConfig.CONFIG.getCategory("farming")
                                 .getEntry("enable_nether_berries").getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_nether_berries", newValue))
                 .requireRestart().build());
         farming.addEntry(entryBuilder.startBooleanToggle(
                         makeFarmingOptionText("enable_purple_mushrooms"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("farming")
+                        ADConfig.CONFIG.getCategory("farming")
                                 .getEntry("enable_purple_mushrooms").getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_purple_mushrooms", newValue))
                 .requireRestart().build());
         farming.addEntry(entryBuilder.startBooleanToggle(
                 makeFarmingOptionText("enable_cattails"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("farming")
+                        ADConfig.CONFIG.getCategory("farming")
                                 .getEntry("enable_cattails").getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_cattails", newValue))
                 .requireRestart().build());
         farming.addEntry(entryBuilder.startBooleanToggle(
                 makeFarmingOptionText("enable_bog_blossoms"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("farming")
+                        ADConfig.CONFIG.getCategory("farming")
                                 .getEntry("enable_bog_blossoms").getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_bog_blossoms", newValue))
                 .requireRestart().build());
         farming.addEntry(entryBuilder.startBooleanToggle(
                 makeFarmingOptionText("enable_blood_kelp"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("farming")
+                        ADConfig.CONFIG.getCategory("farming")
                                 .getEntry("enable_blood_kelp").getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_blood_kelp", newValue))
                 .requireRestart().build());
         farming.addEntry(entryBuilder.startBooleanToggle(
                         makeFarmingOptionText("enable_ender_plants"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("farming")
+                        ADConfig.CONFIG.getCategory("farming")
                                 .getEntry("enable_ender_plants").getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_ender_plants", newValue))
                 .requireRestart().build());
-
-        // Building config options
-        ConfigCategory building = builder.getOrCreateCategory(Text.translatable("category.cloth-config."
-                + ADReference.MOD_ID
-                + ".option.building"));
-
-        BooleanListEntry enableWoodenWallsEntry = entryBuilder.startBooleanToggle(
-                        makeBuildingOptionText("enable_wooden_walls"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("building")
-                                .getSubCategory("walls").getEntry("enable_wooden_walls")
-                                .getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_wooden_walls", newValue))
-                .requireRestart().build();
-        BooleanListEntry enableStrippedWoodenWallsEntry = entryBuilder.startBooleanToggle(
-                        makeBuildingOptionText("enable_stripped_wooden_walls"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("building")
-                                .getSubCategory("walls")
-                                .getEntry("enable_stripped_wooden_walls")
-                                .getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_stripped_wooden_walls", newValue))
-                .requireRestart().build();
-
-        building.addEntry(entryBuilder.startSubCategory(makeBuildingSubOptionText("walls"),
-                List.of(enableWoodenWallsEntry, enableStrippedWoodenWallsEntry)).build());
 
         // Misc config options
         ConfigCategory misc = builder.getOrCreateCategory(Text.translatable("category.cloth-config."
                 + ADReference.MOD_ID + ".option.misc"));
         misc.addEntry(entryBuilder.startBooleanToggle(
                         makeMiscOptionText("rabbits_safe_fall_increased"),
-                        ADConfig.JSON_CONFIG_CATEGORIES.getCategory("misc")
+                        ADConfig.CONFIG.getCategory("misc")
                                 .getEntry("rabbits_safe_fall_increased").getValueAsBool()).setDefaultValue(true)
                 .setSaveConsumer(newValue -> entryValueChanges.put("rabbits_safe_fall_increased", newValue))
                 .requireRestart().build());
 
         builder.setSavingRunnable(() -> {
             // When the config is saved make the changes to the categories and serialize to the config file.
-            for(ADJsonConfigCategory category : ADConfig.JSON_CONFIG_CATEGORIES.getCategories()) {
+            for(ADJsonConfigCategory category : ADConfig.CONFIG.getCategories()) {
                 for(String entryName : entryValueChanges.keySet()) {
                     saveEntries(category, entryName, entryValueChanges);
                 }
@@ -526,32 +671,25 @@ public class ADConfigScreen {
         return builder;
     }
 
+    @SuppressWarnings("UnstableApiUsage")
+    private static Optional<Text[]> makeOptionalToolTip(Requirement requirement, Text requirementText) {
+        if(requirement.check()) {
+            return Optional.of(requirementText.withoutStyle().toArray(new Text[0]));
+        }
+        return Optional.empty();
+    }
+
     private static void saveEntries(ADJsonConfigCategory category, String entryName,
                                     HashMap<String, Object> entryValueChanges) {
         if(category.hasEntry(entryName)) {
             category.getEntry(entryName).setValue(entryValueChanges.get(entryName));
         } else {
-            for (String subCategoryName : category.getSubCategoryNames()) {
-                if(category.hasSubCategory(subCategoryName)) {
-                    saveEntries(category.getSubCategory(subCategoryName), entryName, entryValueChanges);
+            for (String subcategoryName : category.getSubcategoryNames()) {
+                if(category.hasSubcategory(subcategoryName)) {
+                    saveEntries(category.getSubcategory(subcategoryName), entryName, entryValueChanges);
                 }
             }
         }
-    }
-
-    private static Text makePassiveMobOptionText(String entryName) {
-        return Text.translatable("text.cloth-config." + ADReference.MOD_ID
-                + ".option.passive_plushies." + entryName);
-    }
-
-    private static Text makeNeutralMobOptionText(String entryName) {
-        return Text.translatable("text.cloth-config." + ADReference.MOD_ID
-                + ".option.neutral_plushies." + entryName);
-    }
-
-    private static Text makeHostileMobOptionText(String entryName) {
-        return Text.translatable("text.cloth-config." + ADReference.MOD_ID
-                + ".option.hostile_plushies." + entryName);
     }
 
     private static Text makeFarmingOptionText(String entryName) {
@@ -559,17 +697,56 @@ public class ADConfigScreen {
                 + ".option.farming." + entryName);
     }
 
-    private static Text makeBuildingOptionText(String entryName) {
-        return Text.translatable("text.cloth-config." + ADReference.MOD_ID
-                + ".option.building." + entryName);
-    }
-    private static Text makeBuildingSubOptionText(String entryName) {
-        return Text.translatable("sub-category.cloth-config." + ADReference.MOD_ID
-                + ".option.building." + entryName);
-    }
-
     private static Text makeMiscOptionText(String entryName) {
         return Text.translatable("text.cloth-config." + ADReference.MOD_ID
                 + ".option.misc." + entryName);
+    }
+
+    private static Text makeDyedEntryText(String entryName) {
+        return makeBuildingSubcategoryEntryText("dyed", entryName);
+    }
+
+    private static Text makeHostilePlushiesEntryText(String entryName) {
+        return makeBuildingSubcategoryEntryText("hostile_plushies", entryName);
+    }
+
+    private static Text makeNeutralPlushiesEntryText(String entryName) {
+        return makeBuildingSubcategoryEntryText("neutral_plushies", entryName);
+    }
+
+    private static Text makePassivePlushiesEntryText(String entryName) {
+        return makeBuildingSubcategoryEntryText("passive_plushies", entryName);
+    }
+
+    private static Text makeBuildingSubcategoryEntryText(String subCategoryName, String entryName) {
+        return makeSubCategoryEntryText("building", subCategoryName, entryName);
+    }
+
+    private static Text makeBuildingEntryText(String entryName) {
+        return makeEntryText("building", entryName);
+    }
+
+    private static Text makeEntryText(String categoryName, String entryName) {
+        return Text.translatable("text.cloth-config." + ADReference.MOD_ID
+                + ".option." + categoryName + "." + entryName);
+    }
+
+    private static Text makeCategoryText(String categoryName) {
+        return Text.translatable("category.cloth-config." + ADReference.MOD_ID
+                + ".option." + categoryName);
+    }
+
+    private static Text makeBuildingSubcategoryText(String subCategoryName) {
+        return makeSubcategoryText("building", subCategoryName);
+    }
+
+    private static Text makeSubcategoryText(String categoryName, String subCategoryName) {
+        return Text.translatable("subcategory.cloth-config." + ADReference.MOD_ID
+                + ".option." + categoryName + "." + subCategoryName);
+    }
+
+    private static Text makeSubCategoryEntryText(String categoryName, String subCategoryName, String entryName) {
+        return Text.translatable("text.cloth-config." + ADReference.MOD_ID
+                + ".option." + categoryName + "." + subCategoryName + "." + entryName);
     }
 }

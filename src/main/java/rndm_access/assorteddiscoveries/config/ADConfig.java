@@ -1,9 +1,9 @@
 package rndm_access.assorteddiscoveries.config;
 
-import me.shedaniel.autoconfig.util.Utils;
+import net.fabricmc.loader.api.FabricLoader;
 import rndm_access.assorteddiscoveries.ADReference;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
-import rndm_access.assorteddiscoveries.config.jankson.*;
+import rndm_access.assorteddiscoveries.config.json.*;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -11,7 +11,7 @@ import java.util.*;
 
 public class ADConfig {
     private static final Path CONFIG_PATH;
-    public static final ADJsonConfig JSON_CONFIG_CATEGORIES;
+    public static final ADJsonConfig CONFIG;
     public static final ADJanksonConfigSerializer JANKSON_CONFIG_SERIALIZER;
 
     public static void loadOrCreateConfig() {
@@ -37,8 +37,8 @@ public class ADConfig {
     private static void updateCategory(ADJsonConfigCategory savedCategory) {
         String savedCategoryName = savedCategory.getName();
 
-        if (JSON_CONFIG_CATEGORIES.hasCategory(savedCategoryName)) {
-            ADJsonConfigCategory defaultCategory = JSON_CONFIG_CATEGORIES.getCategory(savedCategoryName);
+        if (CONFIG.hasCategory(savedCategoryName)) {
+            ADJsonConfigCategory defaultCategory = CONFIG.getCategory(savedCategoryName);
 
             updateValues(savedCategory, defaultCategory);
         }
@@ -46,10 +46,10 @@ public class ADConfig {
 
     private static void updateValues(ADJsonConfigCategory savedCategory,
                                      ADJsonConfigCategory defaultCategory) {
-        for (ADJsonConfigComponentBase savedComponent : savedCategory.getComponents()) {
-            if(defaultCategory.hasSubCategory(savedComponent.getName())) {
-                updateValues(savedCategory.getSubCategory(savedComponent.getName()),
-                        defaultCategory.getSubCategory(savedComponent.getName()));
+        for (ADJsonConfigComponent savedComponent : savedCategory.getComponents()) {
+            if(defaultCategory.hasSubcategory(savedComponent.getName())) {
+                updateValues(savedCategory.getSubcategory(savedComponent.getName()),
+                        defaultCategory.getSubcategory(savedComponent.getName()));
             } else {
                 if(defaultCategory.hasEntry(savedComponent.getName())) {
                     ADJsonConfigEntry savedEntry = (ADJsonConfigEntry) savedComponent;
@@ -125,139 +125,134 @@ public class ADConfig {
                 savedValue, newValue, entryName);
     }
 
-    private static ADJsonConfig getDefaultConfigCategories() {
+    private static ADJsonConfig makeConfig() {
         ADJsonConfig.Builder configBuilder = new ADJsonConfig.Builder();
 
-        ADJsonConfigCategory passivePlushiesCategory = configBuilder.addCategory("passive_plushies");
-        passivePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_allay_plush", true));
-        passivePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_bat_plush", true));
-        passivePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_camel_plush", true));
-        passivePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_tabby_cat_plush", true));
-        passivePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_tuxedo_cat_plush", true));
-        passivePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_red_cat_plush", true));
-        passivePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_siamese_cat_plush", true));
-        passivePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_british_shorthair_cat_plush", true));
-        passivePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_calico_cat_plush", true));
-        passivePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_persian_cat_plush", true));
-        passivePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_ragdoll_cat_plush", true));
-        passivePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_white_cat_plush", true));
-        passivePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_black_cat_plush", true));
-        passivePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_jellie_cat_plush", true));
-        passivePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_chicken_plush", true));
-        passivePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_cow_plush", true));
-        passivePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_horse_plushies", true));
-        passivePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_mooshroom_plushies", true));
-        passivePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_ocelot_plush", true));
-        passivePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_pig_plush", true));
-        passivePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_pufferfish_plush", true));
-        passivePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_rabbit_plushies", true));
-        passivePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_sheep_plushies", true));
-        passivePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_squid_plushies", true));
-        passivePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_strider_plushies", true));
-        passivePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_villager_plushies", true));
-        passivePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_wandering_trader_plush", true));
+        ADJsonConfigCategory dyedSubcategory = new ADJsonConfigCategory.Builder("dyed")
+                .addEntry(new ADJsonConfigEntry("enable_dyed_campfires", true))
+                .addEntry(new ADJsonConfigEntry("enable_dyed_lanterns", true))
+                .addEntry(new ADJsonConfigEntry("enable_dyed_torches", true)).build();
 
-        ADJsonConfigCategory neutralPlushiesCategory = configBuilder.addCategory("neutral_plushies");
-        neutralPlushiesCategory.addEntry(new ADJsonConfigEntry("enable_bee_plush", true));
-        neutralPlushiesCategory.addEntry(new ADJsonConfigEntry("enable_cave_spider_plush", true));
-        neutralPlushiesCategory.addEntry(new ADJsonConfigEntry("enable_enderman_plush", true));
-        neutralPlushiesCategory.addEntry(new ADJsonConfigEntry("enable_piglin_plushies", true));
-        neutralPlushiesCategory.addEntry(new ADJsonConfigEntry("enable_polar_bear_plush", true));
-        neutralPlushiesCategory.addEntry(new ADJsonConfigEntry("enable_spider_plush", true));
-        neutralPlushiesCategory.addEntry(new ADJsonConfigEntry("enable_pale_wolf_plush", true));
+        ADJsonConfigCategory passivePlushiesSubcategory = new ADJsonConfigCategory.Builder("passive_plushies")
+                .addEntry(new ADJsonConfigEntry("enable_allay_plush", true))
+                .addEntry(new ADJsonConfigEntry("enable_bat_plush", true))
+                .addEntry(new ADJsonConfigEntry("enable_camel_plush", true))
+                .addEntry(new ADJsonConfigEntry("enable_cat_plushies", true))
+                .addEntry(new ADJsonConfigEntry("enable_chicken_plush", true))
+                .addEntry(new ADJsonConfigEntry("enable_cow_plush", true))
+                .addEntry(new ADJsonConfigEntry("enable_horse_plushies", true))
+                .addEntry(new ADJsonConfigEntry("enable_mooshroom_plushies", true))
+                .addEntry(new ADJsonConfigEntry("enable_ocelot_plush", true))
+                .addEntry(new ADJsonConfigEntry("enable_pig_plush", true))
+                .addEntry(new ADJsonConfigEntry("enable_pufferfish_plush", true))
+                .addEntry(new ADJsonConfigEntry("enable_rabbit_plushies", true))
+                .addEntry(new ADJsonConfigEntry("enable_sheep_plushies", true))
+                .addEntry(new ADJsonConfigEntry("enable_squid_plushies", true))
+                .addEntry(new ADJsonConfigEntry("enable_strider_plushies", true))
+                .addEntry(new ADJsonConfigEntry("enable_villager_plushies", true))
+                .addEntry(new ADJsonConfigEntry("enable_wandering_trader_plush", true)).build();
 
-        ADJsonConfigCategory hostilePlushiesCategory = configBuilder.addCategory("hostile_plushies");
-        hostilePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_blaze_plush", true));
-        hostilePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_creeper_plush", true));
-        hostilePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_ghast_plush", true));
-        hostilePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_guardian_plush", true));
-        hostilePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_hoglin_plushies", true));
-        hostilePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_illager_plushies", true));
-        hostilePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_magma_cube_plush", true));
-        hostilePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_phantom_plush", true));
-        hostilePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_ravager_plush", true));
-        hostilePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_shulker_plush", true));
-        hostilePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_skeleton_plush", true));
-        hostilePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_slime_plush", true));
-        hostilePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_vex_plush", true));
-        hostilePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_witch_plush", true));
-        hostilePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_wither_plush", true));
-        hostilePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_zombie_plush", true));
-        hostilePlushiesCategory.addEntry(new ADJsonConfigEntry("enable_zombie_villager_plushies", true));
+        ADJsonConfigCategory neutralPlushiesSubcategory = new ADJsonConfigCategory.Builder("neutral_plushies")
+                .addEntry(new ADJsonConfigEntry("enable_bee_plush", true))
+                .addEntry(new ADJsonConfigEntry("enable_cave_spider_plush", true))
+                .addEntry(new ADJsonConfigEntry("enable_enderman_plush", true))
+                .addEntry(new ADJsonConfigEntry("enable_piglin_plushies", true))
+                .addEntry(new ADJsonConfigEntry("enable_polar_bear_plush", true))
+                .addEntry(new ADJsonConfigEntry("enable_spider_plush", true))
+                .addEntry(new ADJsonConfigEntry("enable_pale_wolf_plush", true)).build();
 
-        ADJsonConfigCategory farmingCategory = configBuilder.addCategory("farming");
-        farmingCategory.addEntry(new ADJsonConfigEntry("enable_wooden_planter_boxes", true));
-        farmingCategory.addEntry(new ADJsonConfigEntry("enable_green_onions", true));
-        farmingCategory.addEntry(new ADJsonConfigEntry("enable_noodle_soup", true));
-        farmingCategory.addEntry(new ADJsonConfigEntry("enable_blueberries", true));
-        farmingCategory.addEntry(new ADJsonConfigEntry("enable_blueberry_pie", true));
-        farmingCategory.addEntry(new ADJsonConfigEntry("enable_blueberry_juice", true));
-        farmingCategory.addEntry(new ADJsonConfigEntry("enable_sweet_berry_pie", true));
-        farmingCategory.addEntry(new ADJsonConfigEntry("enable_sweet_berry_juice", true));
-        farmingCategory.addEntry(new ADJsonConfigEntry("enable_chocolate_cake", true));
-        farmingCategory.addEntry(new ADJsonConfigEntry("enable_red_velvet_cake", true));
-        farmingCategory.addEntry(new ADJsonConfigEntry("enable_fried_egg", true));
-        farmingCategory.addEntry(new ADJsonConfigEntry("enable_hoglin_stew", true));
-        farmingCategory.addEntry(new ADJsonConfigEntry("enable_forests_bounty", true));
-        farmingCategory.addEntry(new ADJsonConfigEntry("enable_witchs_cradle_soup", true));
-        farmingCategory.addEntry(new ADJsonConfigEntry("enable_pudding", true));
-        farmingCategory.addEntry(new ADJsonConfigEntry("enable_caramel_apple", true));
-        farmingCategory.addEntry(new ADJsonConfigEntry("enable_nether_berries", true));
-        farmingCategory.addEntry(new ADJsonConfigEntry("enable_purple_mushrooms", true));
-        farmingCategory.addEntry(new ADJsonConfigEntry("enable_cattails", true));
-        farmingCategory.addEntry(new ADJsonConfigEntry("enable_bog_blossoms", true));
-        farmingCategory.addEntry(new ADJsonConfigEntry("enable_blood_kelp", true));
-        farmingCategory.addEntry(new ADJsonConfigEntry("enable_ender_plants", true));
+        ADJsonConfigCategory hostilePlushiesSubcategory = new ADJsonConfigCategory.Builder("hostile_plushies")
+                .addEntry(new ADJsonConfigEntry("enable_blaze_plush", true))
+                .addEntry(new ADJsonConfigEntry("enable_creeper_plush", true))
+                .addEntry(new ADJsonConfigEntry("enable_ghast_plush", true))
+                .addEntry(new ADJsonConfigEntry("enable_guardian_plush", true))
+                .addEntry(new ADJsonConfigEntry("enable_hoglin_plushies", true))
+                .addEntry(new ADJsonConfigEntry("enable_illager_plushies", true))
+                .addEntry(new ADJsonConfigEntry("enable_magma_cube_plush", true))
+                .addEntry(new ADJsonConfigEntry("enable_phantom_plush", true))
+                .addEntry(new ADJsonConfigEntry("enable_ravager_plush", true))
+                .addEntry(new ADJsonConfigEntry("enable_shulker_plush", true))
+                .addEntry(new ADJsonConfigEntry("enable_skeleton_plush", true))
+                .addEntry(new ADJsonConfigEntry("enable_slime_plush", true))
+                .addEntry(new ADJsonConfigEntry("enable_vex_plush", true))
+                .addEntry(new ADJsonConfigEntry("enable_witch_plush", true))
+                .addEntry(new ADJsonConfigEntry("enable_wither_plush", true))
+                .addEntry(new ADJsonConfigEntry("enable_zombie_plush", true))
+                .addEntry(new ADJsonConfigEntry("enable_zombie_villager_plushies", true)).build();
 
-        ADJsonConfigCategory buildingCategory = configBuilder.addCategory("building");
+        ADJsonConfigCategory buildingCategory = new ADJsonConfigCategory.Builder("building")
+                .addSubcategory(dyedSubcategory)
+                .addSubcategory(passivePlushiesSubcategory)
+                .addSubcategory(neutralPlushiesSubcategory)
+                .addSubcategory(hostilePlushiesSubcategory)
+                .addEntry(new ADJsonConfigEntry("enable_wooden_walls", true))
+                .addEntry(new ADJsonConfigEntry("enable_stripped_wooden_walls", true))
+                .addEntry(new ADJsonConfigEntry("enable_wooden_rope_ladders", true))
+                .addEntry(new ADJsonConfigEntry("enable_iron_ladders", true))
+                .addEntry(new ADJsonConfigEntry("enable_blackstone_tiles", true))
+                .addEntry(new ADJsonConfigEntry("enable_twisted_blackstone", true))
+                .addEntry(new ADJsonConfigEntry("enable_twisted_blackstone_tiles", true,
+                "Requires blackstone tiles!"))
+                .addEntry(new ADJsonConfigEntry("enable_twisted_netherrack", true))
+                .addEntry(new ADJsonConfigEntry("enable_twisted_nether_bricks", true))
+                .addEntry(new ADJsonConfigEntry(
+                "enable_twisted_polished_blackstone_bricks", true))
+                .addEntry(new ADJsonConfigEntry("enable_weeping_netherrack", true))
+                .addEntry(new ADJsonConfigEntry("enable_weeping_nether_bricks", true))
+                .addEntry(new ADJsonConfigEntry("enable_weeping_blackstone", true))
+                .addEntry(new ADJsonConfigEntry(
+                "enable_weeping_polished_blackstone_bricks", true))
+                .addEntry(new ADJsonConfigEntry("enable_weeping_blackstone_tiles", true,
+                "Requires blackstone tiles!"))
+                .addEntry(new ADJsonConfigEntry("enable_smoky_quartz_blocks", true))
+                .addEntry(new ADJsonConfigEntry("enable_smoky_quartz_bricks", true))
+                .addEntry(new ADJsonConfigEntry("enable_smooth_smoky_quartz", true))
+                .addEntry(new ADJsonConfigEntry("enable_quartz_tiles", true))
+                .addEntry(new ADJsonConfigEntry("enable_quartz_walls", true))
+                .addEntry(new ADJsonConfigEntry("enable_bauxite", true))
+                .addEntry(new ADJsonConfigEntry("enable_bauxite_bricks", true))
+                .addEntry(new ADJsonConfigEntry("enable_cracked_bauxite_bricks", true))
+                .addEntry(new ADJsonConfigEntry("enable_mossy_bauxite_bricks", true))
+                .addEntry(new ADJsonConfigEntry("enable_stone_tiles", true))
+                .addEntry(new ADJsonConfigEntry("enable_cracked_stone_tiles", true))
+                .addEntry(new ADJsonConfigEntry("enable_mossy_stone_tiles", true))
+                .addEntry(new ADJsonConfigEntry("enable_woodcutter", true)).build();
 
-        ADJsonConfigCategory wallSubCategory = buildingCategory.addSubCategory(new ADJsonConfigCategory("walls"));
-        wallSubCategory.addEntry(new ADJsonConfigEntry("enable_wooden_walls", true));
-        wallSubCategory.addEntry(new ADJsonConfigEntry("enable_stripped_wooden_walls", true));
+        //TODO: Give enable_ender_plants a better name!
+        ADJsonConfigCategory farmingCategory = new ADJsonConfigCategory.Builder("farming")
+                .addEntry(new ADJsonConfigEntry("enable_wooden_planter_boxes", true))
+                .addEntry(new ADJsonConfigEntry("enable_green_onions", true))
+                .addEntry(new ADJsonConfigEntry("enable_noodle_soup", true))
+                .addEntry(new ADJsonConfigEntry("enable_blueberries", true))
+                .addEntry(new ADJsonConfigEntry("enable_blueberry_pie", true))
+                .addEntry(new ADJsonConfigEntry("enable_blueberry_juice", true))
+                .addEntry(new ADJsonConfigEntry("enable_sweet_berry_pie", true))
+                .addEntry(new ADJsonConfigEntry("enable_sweet_berry_juice", true))
+                .addEntry(new ADJsonConfigEntry("enable_chocolate_cake", true))
+                .addEntry(new ADJsonConfigEntry("enable_red_velvet_cake", true))
+                .addEntry(new ADJsonConfigEntry("enable_fried_egg", true))
+                .addEntry(new ADJsonConfigEntry("enable_hoglin_stew", true))
+                .addEntry(new ADJsonConfigEntry("enable_forests_bounty", true))
+                .addEntry(new ADJsonConfigEntry("enable_witchs_cradle_soup", true))
+                .addEntry(new ADJsonConfigEntry("enable_pudding", true))
+                .addEntry(new ADJsonConfigEntry("enable_caramel_apple", true))
+                .addEntry(new ADJsonConfigEntry("enable_nether_berries", true))
+                .addEntry(new ADJsonConfigEntry("enable_purple_mushrooms", true))
+                .addEntry(new ADJsonConfigEntry("enable_cattails", true))
+                .addEntry(new ADJsonConfigEntry("enable_bog_blossoms", true))
+                .addEntry(new ADJsonConfigEntry("enable_blood_kelp", true))
+                .addEntry(new ADJsonConfigEntry("enable_ender_plants", true)).build();
 
-        buildingCategory.addEntry(new ADJsonConfigEntry("enable_wooden_rope_ladders", true));
-        buildingCategory.addEntry(new ADJsonConfigEntry("enable_iron_ladders", true));
+        ADJsonConfigCategory miscCategory = new ADJsonConfigCategory.Builder("misc")
+                .addEntry(new ADJsonConfigEntry("rabbits_safe_fall_increased", true)).build();
 
-        ADJsonConfigCategory dyedSubCategory = buildingCategory.addSubCategory(new ADJsonConfigCategory("dyed"));
-        dyedSubCategory.addEntry(new ADJsonConfigEntry("enable_dyed_campfires", true));
-        dyedSubCategory.addEntry(new ADJsonConfigEntry("enable_dyed_lanterns", true));
-        dyedSubCategory.addEntry(new ADJsonConfigEntry("enable_dyed_torches", true));
-
-        buildingCategory.addEntry(new ADJsonConfigEntry("enable_twisted_netherrack", true));
-        buildingCategory.addEntry(new ADJsonConfigEntry("enable_weeping_netherrack", true));
-        buildingCategory.addEntry(new ADJsonConfigEntry("enable_twisted_nether_bricks", true));
-        buildingCategory.addEntry(new ADJsonConfigEntry("enable_weeping_nether_bricks", true));
-        buildingCategory.addEntry(new ADJsonConfigEntry("enable_twisted_blackstone", true));
-        buildingCategory.addEntry(new ADJsonConfigEntry("enable_weeping_blackstone", true));
-        buildingCategory.addEntry(new ADJsonConfigEntry(
-                "enable_twisted_polished_blackstone_bricks", true));
-        buildingCategory.addEntry(new ADJsonConfigEntry(
-                "enable_weeping_polished_blackstone_bricks", true));
-        buildingCategory.addEntry(new ADJsonConfigEntry("enable_blackstone_tiles", true));
-        buildingCategory.addEntry(new ADJsonConfigEntry("enable_twisted_blackstone_tiles", true));
-        buildingCategory.addEntry(new ADJsonConfigEntry("enable_weeping_blackstone_tiles", true));
-        buildingCategory.addEntry(new ADJsonConfigEntry("enable_smoky_quartz_blocks", true));
-        buildingCategory.addEntry(new ADJsonConfigEntry("enable_smoky_quartz_bricks", true));
-        buildingCategory.addEntry(new ADJsonConfigEntry("enable_smooth_smoky_quartz", true));
-        buildingCategory.addEntry(new ADJsonConfigEntry("enable_quartz_tiles", true));
-        buildingCategory.addEntry(new ADJsonConfigEntry("enable_quartz_walls", true));
-        buildingCategory.addEntry(new ADJsonConfigEntry("enable_bauxite", true));
-        buildingCategory.addEntry(new ADJsonConfigEntry("enable_bauxite_bricks", true));
-        buildingCategory.addEntry(new ADJsonConfigEntry("enable_cracked_bauxite_bricks", true));
-        buildingCategory.addEntry(new ADJsonConfigEntry("enable_mossy_bauxite_bricks", true));
-        buildingCategory.addEntry(new ADJsonConfigEntry("enable_stone_tiles", true));
-        buildingCategory.addEntry(new ADJsonConfigEntry("enable_cracked_stone_tiles", true));
-        buildingCategory.addEntry(new ADJsonConfigEntry("enable_mossy_stone_tiles", true));
-
-        ADJsonConfigCategory miscCategory = configBuilder.addCategory("misc");
-        miscCategory.addEntry(new ADJsonConfigEntry("rabbits_safe_fall_increased", true));
-
-        return configBuilder.build();
+        return configBuilder.addCategory(buildingCategory).addCategory(farmingCategory)
+                .addCategory(miscCategory).build();
     }
 
     static {
-        CONFIG_PATH = Utils.getConfigFolder().resolve(ADReference.MOD_ID + ".json5");
-        JSON_CONFIG_CATEGORIES = getDefaultConfigCategories();
-        JANKSON_CONFIG_SERIALIZER = new ADJanksonConfigSerializer(JSON_CONFIG_CATEGORIES, CONFIG_PATH);
+        CONFIG_PATH = FabricLoader.getInstance().getConfigDir().resolve(ADReference.MOD_ID + ".json5");
+        CONFIG = makeConfig();
+        JANKSON_CONFIG_SERIALIZER = new ADJanksonConfigSerializer(CONFIG, CONFIG_PATH);
     }
 }

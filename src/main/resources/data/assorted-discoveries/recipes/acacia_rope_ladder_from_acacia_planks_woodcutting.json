@@ -4,5 +4,11 @@
     "item": "minecraft:acacia_planks"
   },
   "result": "assorted-discoveries:acacia_rope_ladder",
-  "count": 1
+  "count": 1,
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_woodcutter"
+    }
+  ]
 }

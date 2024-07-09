@@ -32,7 +32,7 @@
   "fabric:load_conditions": [
     {
       "condition": "assorted-discoveries:config_entry_enabled",
-      "value": "assorted-discoveries:enable_siamese_cat_plush"
+      "value": "assorted-discoveries:enable_cat_plushies"
     }
   ]
 }

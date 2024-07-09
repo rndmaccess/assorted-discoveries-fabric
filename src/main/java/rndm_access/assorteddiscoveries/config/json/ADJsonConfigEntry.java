@@ -1,12 +1,6 @@
-package rndm_access.assorteddiscoveries.config.jankson;
+package rndm_access.assorteddiscoveries.config.json;
 
-/**
- * Instances of this class serve as different entries within the json config file.
- * This class is designed to be used directly with the cloth config library.
- *
- * @author rndm_access
- */
-public class ADJsonConfigEntry extends ADJsonConfigComponentBase {
+public class ADJsonConfigEntry extends ADJsonConfigComponent {
     private Object value;
     private String comment;
 

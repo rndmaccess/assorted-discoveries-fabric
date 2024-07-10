@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "TTT",
+    "WIW",
+    "TTT"
+  ],
+  "key": {
+    "T": {
+      "item": "minecraft:terracotta"
+    },
+    "W": {
+      "item": "minecraft:white_wool"
+    },
+    "I": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "result": {
+    "item": "assorted-discoveries:piglin_plushie"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_piglin_plushies"
+    }
+  ]
+}

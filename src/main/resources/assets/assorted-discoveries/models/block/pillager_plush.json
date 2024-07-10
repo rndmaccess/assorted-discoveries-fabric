@@ -1,6 +1,0 @@
-{
-  "parent": "assorted-discoveries:block/template_illager_plush",
-  "textures": {
-    "shirt": "assorted-discoveries:block/maroon_wool"
-  }
-}

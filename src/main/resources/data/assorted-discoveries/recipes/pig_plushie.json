@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PPP",
+    "BIB",
+    "PPP"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:black_wool"
+    },
+    "P": {
+      "item": "minecraft:pink_wool"
+    },
+    "I": {
+      "item": "minecraft:porkchop"
+    }
+  },
+  "result": {
+    "item": "assorted-discoveries:pig_plushie"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_pig_plushie"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "assorted-discoveries:rabbit_plushies",
+  "pattern": [
+    "BBB",
+    "bRb",
+    "BBB"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:brown_wool"
+    },
+    "b": {
+      "item": "minecraft:black_wool"
+    },
+    "R": {
+      "item": "minecraft:rabbit"
+    }
+  },
+  "result": {
+    "item": "assorted-discoveries:brown_rabbit_plushie"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_rabbit_plushies"
+    }
+  ]
+}

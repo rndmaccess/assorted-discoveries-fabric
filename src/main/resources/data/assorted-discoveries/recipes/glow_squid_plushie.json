@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "assorted-discoveries:squid_plushies",
+  "pattern": [
+    "BBB",
+    "CIC",
+    "BBB"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:light_blue_wool"
+    },
+    "C": {
+      "item": "minecraft:cyan_wool"
+    },
+    "I": {
+      "item": "minecraft:glow_ink_sac"
+    }
+  },
+  "result": {
+    "item": "assorted-discoveries:glow_squid_plushie"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_squid_plushies"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "assorted-discoveries:cat_plushies",
+  "pattern": [
+    "YYY",
+    "BFB",
+    "YYY"
+  ],
+  "key": {
+    "Y": {
+      "item": "minecraft:yellow_wool"
+    },
+    "B": {
+      "item": "minecraft:black_wool"
+    },
+    "F": {
+      "tag": "c:raw_fish"
+    }
+  },
+  "result": {
+    "item": "assorted-discoveries:persian_cat_plushie"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_cat_plushies"
+    }
+  ]
+}

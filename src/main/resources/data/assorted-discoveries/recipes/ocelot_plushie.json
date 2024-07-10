@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "assorted-discoveries:cat_plushies",
+  "pattern": [
+    "YYb",
+    "BFB",
+    "bYY"
+  ],
+  "key": {
+    "Y": {
+      "item": "minecraft:yellow_wool"
+    },
+    "B": {
+      "item": "minecraft:black_wool"
+    },
+    "b": {
+      "item": "minecraft:brown_wool"
+    },
+    "F": {
+      "tag": "c:raw_fish"
+    }
+  },
+  "result": {
+    "item": "assorted-discoveries:ocelot_plushie"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_ocelot_plushie"
+    }
+  ]
+}

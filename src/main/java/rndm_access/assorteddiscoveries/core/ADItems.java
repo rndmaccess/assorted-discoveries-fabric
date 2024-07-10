@@ -10,105 +10,105 @@ import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.item.*;
 
 public class ADItems {
-    public static final Item BAT_PLUSH = blockItem(ADBlocks.BAT_PLUSH);
-    public static final Item BLAZE_PLUSH = blockItem(ADBlocks.BLAZE_PLUSH);
-    public static final Item CAVE_SPIDER_PLUSH = blockItem(ADBlocks.CAVE_SPIDER_PLUSH);
-    public static final Item CHICKEN_PLUSH = blockItem(ADBlocks.CHICKEN_PLUSH);
-    public static final Item COW_PLUSH = blockItem(ADBlocks.COW_PLUSH);
-    public static final Item CREEPER_PLUSH = blockItem(ADBlocks.CREEPER_PLUSH);
-    public static final Item ENDERMAN_PLUSH = blockItem(ADBlocks.ENDERMAN_PLUSH);
-    public static final Item GHAST_PLUSH = blockItem(ADBlocks.GHAST_PLUSH);
-    public static final Item GUARDIAN_PLUSH = blockItem(ADBlocks.GUARDIAN_PLUSH);
-    public static final Item WHITE_HORSE_PLUSH = blockItem(ADBlocks.WHITE_HORSE_PLUSH);
-    public static final Item GRAY_HORSE_PLUSH = blockItem(ADBlocks.GRAY_HORSE_PLUSH);
-    public static final Item LIGHT_GRAY_HORSE_PLUSH = blockItem(ADBlocks.LIGHT_GRAY_HORSE_PLUSH);
-    public static final Item BROWN_HORSE_PLUSH = blockItem(ADBlocks.BROWN_HORSE_PLUSH);
-    public static final Item BLACK_HORSE_PLUSH = blockItem(ADBlocks.BLACK_HORSE_PLUSH);
-    public static final Item MAGMA_CUBE_PLUSH = blockItem(ADBlocks.MAGMA_CUBE_PLUSH);
-    public static final Item RED_MOOSHROOM_PLUSH = blockItem(ADBlocks.RED_MOOSHROOM_PLUSH);
-    public static final Item BROWN_MOOSHROOM_PLUSH = blockItem(ADBlocks.BROWN_MOOSHROOM_PLUSH);
-    public static final Item OCELOT_PLUSH = blockItem(ADBlocks.OCELOT_PLUSH);
-    public static final Item TABBY_CAT_PLUSH = blockItem(ADBlocks.TABBY_CAT_PLUSH);
-    public static final Item TUXEDO_CAT_PLUSH = blockItem(ADBlocks.TUXEDO_CAT_PLUSH);
-    public static final Item RED_CAT_PLUSH = blockItem(ADBlocks.RED_CAT_PLUSH);
-    public static final Item SIAMESE_CAT_PLUSH = blockItem(ADBlocks.SIAMESE_CAT_PLUSH);
-    public static final Item BRITISH_SHORTHAIR_CAT_PLUSH = blockItem(ADBlocks.BRITISH_SHORTHAIR_CAT_PLUSH);
-    public static final Item CALICO_CAT_PLUSH = blockItem(ADBlocks.CALICO_CAT_PLUSH);
-    public static final Item PERSIAN_CAT_PLUSH = blockItem(ADBlocks.PERSIAN_CAT_PLUSH);
-    public static final Item RAGDOLL_CAT_PLUSH = blockItem(ADBlocks.RAGDOLL_CAT_PLUSH);
-    public static final Item WHITE_CAT_PLUSH = blockItem(ADBlocks.WHITE_CAT_PLUSH);
-    public static final Item JELLIE_CAT_PLUSH = blockItem(ADBlocks.JELLIE_CAT_PLUSH);
-    public static final Item BLACK_CAT_PLUSH = blockItem(ADBlocks.BLACK_CAT_PLUSH);
-    public static final Item PIG_PLUSH = blockItem(ADBlocks.PIG_PLUSH);
-    public static final Item BROWN_RABBIT_PLUSH = blockItem(ADBlocks.BROWN_RABBIT_PLUSH);
-    public static final Item WHITE_RABBIT_PLUSH = blockItem(ADBlocks.WHITE_RABBIT_PLUSH);
-    public static final Item BLACK_RABBIT_PLUSH = blockItem(ADBlocks.BLACK_RABBIT_PLUSH);
-    public static final Item WHITE_SPLOTCHED_RABBIT_PLUSH = blockItem(ADBlocks.WHITE_SPLOTCHED_RABBIT_PLUSH);
-    public static final Item GOLD_RABBIT_PLUSH = blockItem(ADBlocks.GOLD_RABBIT_PLUSH);
-    public static final Item TOAST_RABBIT_PLUSH = blockItem(ADBlocks.TOAST_RABBIT_PLUSH);
-    public static final Item SALT_RABBIT_PLUSH = blockItem(ADBlocks.SALT_RABBIT_PLUSH);
-    public static final Item WHITE_SHEEP_PLUSH = blockItem(ADBlocks.WHITE_SHEEP_PLUSH);
-    public static final Item ORANGE_SHEEP_PLUSH = blockItem(ADBlocks.ORANGE_SHEEP_PLUSH);
-    public static final Item MAGENTA_SHEEP_PLUSH = blockItem(ADBlocks.MAGENTA_SHEEP_PLUSH);
-    public static final Item LIGHT_BLUE_SHEEP_PLUSH = blockItem(ADBlocks.LIGHT_BLUE_SHEEP_PLUSH);
-    public static final Item YELLOW_SHEEP_PLUSH = blockItem(ADBlocks.YELLOW_SHEEP_PLUSH);
-    public static final Item LIME_SHEEP_PLUSH = blockItem(ADBlocks.LIME_SHEEP_PLUSH);
-    public static final Item PINK_SHEEP_PLUSH = blockItem(ADBlocks.PINK_SHEEP_PLUSH);
-    public static final Item GRAY_SHEEP_PLUSH = blockItem(ADBlocks.GRAY_SHEEP_PLUSH);
-    public static final Item LIGHT_GRAY_SHEEP_PLUSH = blockItem(ADBlocks.LIGHT_GRAY_SHEEP_PLUSH);
-    public static final Item CYAN_SHEEP_PLUSH = blockItem(ADBlocks.CYAN_SHEEP_PLUSH);
-    public static final Item PURPLE_SHEEP_PLUSH = blockItem(ADBlocks.PURPLE_SHEEP_PLUSH);
-    public static final Item BLUE_SHEEP_PLUSH = blockItem(ADBlocks.BLUE_SHEEP_PLUSH);
-    public static final Item BROWN_SHEEP_PLUSH = blockItem(ADBlocks.BROWN_SHEEP_PLUSH);
-    public static final Item GREEN_SHEEP_PLUSH = blockItem(ADBlocks.GREEN_SHEEP_PLUSH);
-    public static final Item RED_SHEEP_PLUSH = blockItem(ADBlocks.RED_SHEEP_PLUSH);
-    public static final Item BLACK_SHEEP_PLUSH = blockItem(ADBlocks.BLACK_SHEEP_PLUSH);
-    public static final Item MAROON_SHEEP_PLUSH = blockItem(ADBlocks.MAROON_SHEEP_PLUSH);
-    public static final Item SKELETON_PLUSH = blockItem(ADBlocks.SKELETON_PLUSH);
-    public static final Item SLIME_PLUSH = blockItem(ADBlocks.SLIME_PLUSH);
-    public static final Item SPIDER_PLUSH = blockItem(ADBlocks.SPIDER_PLUSH);
-    public static final Item SQUID_PLUSH = blockItem(ADBlocks.SQUID_PLUSH);
-    public static final Item GLOW_SQUID_PLUSH = blockItem(ADBlocks.GLOW_SQUID_PLUSH);
-    public static final Item BEE_PLUSH = blockItem(ADBlocks.BEE_PLUSH);
-    public static final Item PLAINS_VILLAGER_PLUSH = blockItem(ADBlocks.PLAINS_VILLAGER_PLUSH);
-    public static final Item DESERT_VILLAGER_PLUSH = blockItem(ADBlocks.DESERT_VILLAGER_PLUSH);
-    public static final Item JUNGLE_VILLAGER_PLUSH = blockItem(ADBlocks.JUNGLE_VILLAGER_PLUSH);
-    public static final Item SAVANNA_VILLAGER_PLUSH = blockItem(ADBlocks.SAVANNA_VILLAGER_PLUSH);
-    public static final Item SNOW_VILLAGER_PLUSH = blockItem(ADBlocks.SNOW_VILLAGER_PLUSH);
-    public static final Item SWAMP_VILLAGER_PLUSH = blockItem(ADBlocks.SWAMP_VILLAGER_PLUSH);
-    public static final Item TAIGA_VILLAGER_PLUSH = blockItem(ADBlocks.TAIGA_VILLAGER_PLUSH);
-    public static final Item CRIMSON_VILLAGER_PLUSH = blockItem(ADBlocks.CRIMSON_VILLAGER_PLUSH);
-    public static final Item WARPED_VILLAGER_PLUSH = blockItem(ADBlocks.WARPED_VILLAGER_PLUSH);
-    public static final Item WANDERING_TRADER_PLUSH = blockItem(ADBlocks.WANDERING_TRADER_PLUSH);
-    public static final Item PLAINS_ZOMBIE_VILLAGER_PLUSH = blockItem(ADBlocks.PLAINS_ZOMBIE_VILLAGER_PLUSH);
-    public static final Item DESERT_ZOMBIE_VILLAGER_PLUSH = blockItem(ADBlocks.DESERT_ZOMBIE_VILLAGER_PLUSH);
-    public static final Item JUNGLE_ZOMBIE_VILLAGER_PLUSH = blockItem(ADBlocks.JUNGLE_ZOMBIE_VILLAGER_PLUSH);
-    public static final Item SAVANNA_ZOMBIE_VILLAGER_PLUSH = blockItem(ADBlocks.SAVANNA_ZOMBIE_VILLAGER_PLUSH);
-    public static final Item SNOW_ZOMBIE_VILLAGER_PLUSH = blockItem(ADBlocks.SNOW_ZOMBIE_VILLAGER_PLUSH);
-    public static final Item SWAMP_ZOMBIE_VILLAGER_PLUSH = blockItem(ADBlocks.SWAMP_ZOMBIE_VILLAGER_PLUSH);
-    public static final Item TAIGA_ZOMBIE_VILLAGER_PLUSH = blockItem(ADBlocks.TAIGA_ZOMBIE_VILLAGER_PLUSH);
-    public static final Item CRIMSON_ZOMBIE_VILLAGER_PLUSH = blockItem(ADBlocks.CRIMSON_ZOMBIE_VILLAGER_PLUSH);
-    public static final Item WARPED_ZOMBIE_VILLAGER_PLUSH = blockItem(ADBlocks.WARPED_ZOMBIE_VILLAGER_PLUSH);
-    public static final Item WITCH_PLUSH = blockItem(ADBlocks.WITCH_PLUSH);
-    public static final Item PALE_WOLF_PLUSH = blockItem(ADBlocks.PALE_WOLF_PLUSH);
-    public static final Item ZOMBIE_PLUSH = blockItem(ADBlocks.ZOMBIE_PLUSH);
-    public static final Item PIGLIN_PLUSH = blockItem(ADBlocks.PIGLIN_PLUSH);
-    public static final Item ZOMBIFIED_PIGLIN_PLUSH = blockItem(ADBlocks.ZOMBIFIED_PIGLIN_PLUSH);
-    public static final Item PUFFERFISH_PLUSH = blockItem(ADBlocks.PUFFERFISH_PLUSH);
-    public static final Item WITHER_PLUSH = blockItem(ADBlocks.WITHER_PLUSH);
-    public static final Item STRIDER_PLUSH = blockItem(ADBlocks.STRIDER_PLUSH);
-    public static final Item SHIVERING_STRIDER_PLUSH = blockItem(ADBlocks.SHIVERING_STRIDER_PLUSH);
-    public static final Item PHANTOM_PLUSH = blockItem(ADBlocks.PHANTOM_PLUSH);
-    public static final Item HOGLIN_PLUSH = blockItem(ADBlocks.HOGLIN_PLUSH);
-    public static final Item ZOGLIN_PLUSH = blockItem(ADBlocks.ZOGLIN_PLUSH);
-    public static final Item POLAR_BEAR_PLUSH = blockItem(ADBlocks.POLAR_BEAR_PLUSH);
-    public static final Item ALLAY_PLUSH = blockItem(ADBlocks.ALLAY_PLUSH);
-    public static final Item PILLAGER_PLUSH = blockItem(ADBlocks.PILLAGER_PLUSH);
-    public static final Item VINDICATOR_PLUSH = blockItem(ADBlocks.VINDICATOR_PLUSH);
-    public static final Item EVOKER_PLUSH = blockItem(ADBlocks.EVOKER_PLUSH);
-    public static final Item RAVAGER_PLUSH = blockItem(ADBlocks.RAVAGER_PLUSH);
-    public static final Item SHULKER_PLUSH = blockItem(ADBlocks.SHULKER_PLUSH);
-    public static final Item VEX_PLUSH = blockItem(ADBlocks.VEX_PLUSH);
+    public static final Item BAT_PLUSHIE = blockItem(ADBlocks.BAT_PLUSHIE);
+    public static final Item BLAZE_PLUSHIE = blockItem(ADBlocks.BLAZE_PLUSHIE);
+    public static final Item CAVE_SPIDER_PLUSHIE = blockItem(ADBlocks.CAVE_SPIDER_PLUSHIE);
+    public static final Item CHICKEN_PLUSHIE = blockItem(ADBlocks.CHICKEN_PLUSHIE);
+    public static final Item COW_PLUSHIE = blockItem(ADBlocks.COW_PLUSHIE);
+    public static final Item CREEPER_PLUSHIE = blockItem(ADBlocks.CREEPER_PLUSHIE);
+    public static final Item ENDERMAN_PLUSHIE = blockItem(ADBlocks.ENDERMAN_PLUSHIE);
+    public static final Item GHAST_PLUSHIE = blockItem(ADBlocks.GHAST_PLUSHIE);
+    public static final Item GUARDIAN_PLUSHIE = blockItem(ADBlocks.GUARDIAN_PLUSHIE);
+    public static final Item WHITE_HORSE_PLUSHIE = blockItem(ADBlocks.WHITE_HORSE_PLUSHIE);
+    public static final Item GRAY_HORSE_PLUSHIE = blockItem(ADBlocks.GRAY_HORSE_PLUSHIE);
+    public static final Item LIGHT_GRAY_HORSE_PLUSHIE = blockItem(ADBlocks.LIGHT_GRAY_HORSE_PLUSHIE);
+    public static final Item BROWN_HORSE_PLUSHIE = blockItem(ADBlocks.BROWN_HORSE_PLUSHIE);
+    public static final Item BLACK_HORSE_PLUSHIE = blockItem(ADBlocks.BLACK_HORSE_PLUSHIE);
+    public static final Item MAGMA_CUBE_PLUSHIE = blockItem(ADBlocks.MAGMA_CUBE_PLUSHIE);
+    public static final Item RED_MOOSHROOM_PLUSHIE = blockItem(ADBlocks.RED_MOOSHROOM_PLUSHIE);
+    public static final Item BROWN_MOOSHROOM_PLUSHIE = blockItem(ADBlocks.BROWN_MOOSHROOM_PLUSHIE);
+    public static final Item OCELOT_PLUSHIE = blockItem(ADBlocks.OCELOT_PLUSHIE);
+    public static final Item TABBY_CAT_PLUSHIE = blockItem(ADBlocks.TABBY_CAT_PLUSHIE);
+    public static final Item TUXEDO_CAT_PLUSHIE = blockItem(ADBlocks.TUXEDO_CAT_PLUSHIE);
+    public static final Item RED_CAT_PLUSHIE = blockItem(ADBlocks.RED_CAT_PLUSHIE);
+    public static final Item SIAMESE_CAT_PLUSHIE = blockItem(ADBlocks.SIAMESE_CAT_PLUSHIE);
+    public static final Item BRITISH_SHORTHAIR_CAT_PLUSHIE = blockItem(ADBlocks.BRITISH_SHORTHAIR_CAT_PLUSHIE);
+    public static final Item CALICO_CAT_PLUSHIE = blockItem(ADBlocks.CALICO_CAT_PLUSHIE);
+    public static final Item PERSIAN_CAT_PLUSHIE = blockItem(ADBlocks.PERSIAN_CAT_PLUSHIE);
+    public static final Item RAGDOLL_CAT_PLUSHIE = blockItem(ADBlocks.RAGDOLL_CAT_PLUSHIE);
+    public static final Item WHITE_CAT_PLUSHIE = blockItem(ADBlocks.WHITE_CAT_PLUSHIE);
+    public static final Item JELLIE_CAT_PLUSHIE = blockItem(ADBlocks.JELLIE_CAT_PLUSHIE);
+    public static final Item BLACK_CAT_PLUSHIE = blockItem(ADBlocks.BLACK_CAT_PLUSHIE);
+    public static final Item PIG_PLUSHIE = blockItem(ADBlocks.PIG_PLUSHIE);
+    public static final Item BROWN_RABBIT_PLUSHIE = blockItem(ADBlocks.BROWN_RABBIT_PLUSHIE);
+    public static final Item WHITE_RABBIT_PLUSHIE = blockItem(ADBlocks.WHITE_RABBIT_PLUSHIE);
+    public static final Item BLACK_RABBIT_PLUSHIE = blockItem(ADBlocks.BLACK_RABBIT_PLUSHIE);
+    public static final Item WHITE_SPLOTCHED_RABBIT_PLUSHIE = blockItem(ADBlocks.WHITE_SPLOTCHED_RABBIT_PLUSHIE);
+    public static final Item GOLD_RABBIT_PLUSHIE = blockItem(ADBlocks.GOLD_RABBIT_PLUSHIE);
+    public static final Item TOAST_RABBIT_PLUSHIE = blockItem(ADBlocks.TOAST_RABBIT_PLUSHIE);
+    public static final Item SALT_RABBIT_PLUSHIE = blockItem(ADBlocks.SALT_RABBIT_PLUSHIE);
+    public static final Item WHITE_SHEEP_PLUSHIE = blockItem(ADBlocks.WHITE_SHEEP_PLUSHIE);
+    public static final Item ORANGE_SHEEP_PLUSHIE = blockItem(ADBlocks.ORANGE_SHEEP_PLUSHIE);
+    public static final Item MAGENTA_SHEEP_PLUSHIE = blockItem(ADBlocks.MAGENTA_SHEEP_PLUSHIE);
+    public static final Item LIGHT_BLUE_SHEEP_PLUSHIE = blockItem(ADBlocks.LIGHT_BLUE_SHEEP_PLUSHIE);
+    public static final Item YELLOW_SHEEP_PLUSHIE = blockItem(ADBlocks.YELLOW_SHEEP_PLUSHIE);
+    public static final Item LIME_SHEEP_PLUSHIE = blockItem(ADBlocks.LIME_SHEEP_PLUSHIE);
+    public static final Item PINK_SHEEP_PLUSHIE = blockItem(ADBlocks.PINK_SHEEP_PLUSHIE);
+    public static final Item GRAY_SHEEP_PLUSHIE = blockItem(ADBlocks.GRAY_SHEEP_PLUSHIE);
+    public static final Item LIGHT_GRAY_SHEEP_PLUSHIE = blockItem(ADBlocks.LIGHT_GRAY_SHEEP_PLUSHIE);
+    public static final Item CYAN_SHEEP_PLUSHIE = blockItem(ADBlocks.CYAN_SHEEP_PLUSHIE);
+    public static final Item PURPLE_SHEEP_PLUSHIE = blockItem(ADBlocks.PURPLE_SHEEP_PLUSHIE);
+    public static final Item BLUE_SHEEP_PLUSHIE = blockItem(ADBlocks.BLUE_SHEEP_PLUSHIE);
+    public static final Item BROWN_SHEEP_PLUSHIE = blockItem(ADBlocks.BROWN_SHEEP_PLUSHIE);
+    public static final Item GREEN_SHEEP_PLUSHIE = blockItem(ADBlocks.GREEN_SHEEP_PLUSHIE);
+    public static final Item RED_SHEEP_PLUSHIE = blockItem(ADBlocks.RED_SHEEP_PLUSHIE);
+    public static final Item BLACK_SHEEP_PLUSHIE = blockItem(ADBlocks.BLACK_SHEEP_PLUSHIE);
+    public static final Item MAROON_SHEEP_PLUSHIE = blockItem(ADBlocks.MAROON_SHEEP_PLUSHIE);
+    public static final Item SKELETON_PLUSHIE = blockItem(ADBlocks.SKELETON_PLUSHIE);
+    public static final Item SLIME_PLUSHIE = blockItem(ADBlocks.SLIME_PLUSHIE);
+    public static final Item SPIDER_PLUSHIE = blockItem(ADBlocks.SPIDER_PLUSHIE);
+    public static final Item SQUID_PLUSHIE = blockItem(ADBlocks.SQUID_PLUSHIE);
+    public static final Item GLOW_SQUID_PLUSHIE = blockItem(ADBlocks.GLOW_SQUID_PLUSHIE);
+    public static final Item BEE_PLUSHIE = blockItem(ADBlocks.BEE_PLUSHIE);
+    public static final Item PLAINS_VILLAGER_PLUSHIE = blockItem(ADBlocks.PLAINS_VILLAGER_PLUSHIE);
+    public static final Item DESERT_VILLAGER_PLUSHIE = blockItem(ADBlocks.DESERT_VILLAGER_PLUSHIE);
+    public static final Item JUNGLE_VILLAGER_PLUSHIE = blockItem(ADBlocks.JUNGLE_VILLAGER_PLUSHIE);
+    public static final Item SAVANNA_VILLAGER_PLUSHIE = blockItem(ADBlocks.SAVANNA_VILLAGER_PLUSHIE);
+    public static final Item SNOW_VILLAGER_PLUSHIE = blockItem(ADBlocks.SNOW_VILLAGER_PLUSHIE);
+    public static final Item SWAMP_VILLAGER_PLUSHIE = blockItem(ADBlocks.SWAMP_VILLAGER_PLUSHIE);
+    public static final Item TAIGA_VILLAGER_PLUSHIE = blockItem(ADBlocks.TAIGA_VILLAGER_PLUSHIE);
+    public static final Item CRIMSON_VILLAGER_PLUSHIE = blockItem(ADBlocks.CRIMSON_VILLAGER_PLUSHIE);
+    public static final Item WARPED_VILLAGER_PLUSHIE = blockItem(ADBlocks.WARPED_VILLAGER_PLUSHIE);
+    public static final Item WANDERING_TRADER_PLUSHIE = blockItem(ADBlocks.WANDERING_TRADER_PLUSHIE);
+    public static final Item PLAINS_ZOMBIE_VILLAGER_PLUSHIE = blockItem(ADBlocks.PLAINS_ZOMBIE_VILLAGER_PLUSHIE);
+    public static final Item DESERT_ZOMBIE_VILLAGER_PLUSHIE = blockItem(ADBlocks.DESERT_ZOMBIE_VILLAGER_PLUSHIE);
+    public static final Item JUNGLE_ZOMBIE_VILLAGER_PLUSHIE = blockItem(ADBlocks.JUNGLE_ZOMBIE_VILLAGER_PLUSHIE);
+    public static final Item SAVANNA_ZOMBIE_VILLAGER_PLUSHIE = blockItem(ADBlocks.SAVANNA_ZOMBIE_VILLAGER_PLUSHIE);
+    public static final Item SNOW_ZOMBIE_VILLAGER_PLUSHIE = blockItem(ADBlocks.SNOW_ZOMBIE_VILLAGER_PLUSHIE);
+    public static final Item SWAMP_ZOMBIE_VILLAGER_PLUSHIE = blockItem(ADBlocks.SWAMP_ZOMBIE_VILLAGER_PLUSHIE);
+    public static final Item TAIGA_ZOMBIE_VILLAGER_PLUSHIE = blockItem(ADBlocks.TAIGA_ZOMBIE_VILLAGER_PLUSHIE);
+    public static final Item CRIMSON_ZOMBIE_VILLAGER_PLUSHIE = blockItem(ADBlocks.CRIMSON_ZOMBIE_VILLAGER_PLUSHIE);
+    public static final Item WARPED_ZOMBIE_VILLAGER_PLUSHIE = blockItem(ADBlocks.WARPED_ZOMBIE_VILLAGER_PLUSHIE);
+    public static final Item WITCH_PLUSHIE = blockItem(ADBlocks.WITCH_PLUSHIE);
+    public static final Item PALE_WOLF_PLUSHIE = blockItem(ADBlocks.PALE_WOLF_PLUSHIE);
+    public static final Item ZOMBIE_PLUSHIE = blockItem(ADBlocks.ZOMBIE_PLUSHIE);
+    public static final Item PIGLIN_PLUSHIE = blockItem(ADBlocks.PIGLIN_PLUSHIE);
+    public static final Item ZOMBIFIED_PIGLIN_PLUSHIE = blockItem(ADBlocks.ZOMBIFIED_PIGLIN_PLUSHIE);
+    public static final Item PUFFERFISH_PLUSHIE = blockItem(ADBlocks.PUFFERFISH_PLUSHIE);
+    public static final Item WITHER_PLUSHIE = blockItem(ADBlocks.WITHER_PLUSHIE);
+    public static final Item STRIDER_PLUSHIE = blockItem(ADBlocks.STRIDER_PLUSHIE);
+    public static final Item SHIVERING_STRIDER_PLUSHIE = blockItem(ADBlocks.SHIVERING_STRIDER_PLUSHIE);
+    public static final Item PHANTOM_PLUSHIE = blockItem(ADBlocks.PHANTOM_PLUSHIE);
+    public static final Item HOGLIN_PLUSHIE = blockItem(ADBlocks.HOGLIN_PLUSHIE);
+    public static final Item ZOGLIN_PLUSHIE = blockItem(ADBlocks.ZOGLIN_PLUSHIE);
+    public static final Item POLAR_BEAR_PLUSHIE = blockItem(ADBlocks.POLAR_BEAR_PLUSHIE);
+    public static final Item ALLAY_PLUSHIE = blockItem(ADBlocks.ALLAY_PLUSHIE);
+    public static final Item PILLAGER_PLUSHIE = blockItem(ADBlocks.PILLAGER_PLUSHIE);
+    public static final Item VINDICATOR_PLUSHIE = blockItem(ADBlocks.VINDICATOR_PLUSHIE);
+    public static final Item EVOKER_PLUSHIE = blockItem(ADBlocks.EVOKER_PLUSHIE);
+    public static final Item RAVAGER_PLUSHIE = blockItem(ADBlocks.RAVAGER_PLUSHIE);
+    public static final Item SHULKER_PLUSHIE = blockItem(ADBlocks.SHULKER_PLUSHIE);
+    public static final Item VEX_PLUSHIE = blockItem(ADBlocks.VEX_PLUSHIE);
     public static final Item NETHER_SMOKY_QUARTZ_ORE = blockItem(ADBlocks.NETHER_SMOKY_QUARTZ_ORE);
     public static final Item SMOKY_QUARTZ_BLOCK = blockItem(ADBlocks.SMOKY_QUARTZ_BLOCK);
     public static final Item CHISELED_SMOKY_QUARTZ_BLOCK = blockItem(ADBlocks.CHISELED_SMOKY_QUARTZ_BLOCK);
@@ -377,7 +377,7 @@ public class ADItems {
     public static final Item MAROON_CANDLE = blockItem(ADBlocks.MAROON_CANDLE);
     public static final Item MAROON_CONCRETE = blockItem(ADBlocks.MAROON_CONCRETE);
     public static final Item MAROON_CONCRETE_POWDER = blockItem(ADBlocks.MAROON_CONCRETE_POWDER);
-    public static final Item CAMEL_PLUSH = blockItem(ADBlocks.CAMEL_PLUSH);
+    public static final Item CAMEL_PLUSHIE = blockItem(ADBlocks.CAMEL_PLUSHIE);
     public static final Item MAROON_DYE = new Item(new Item.Settings());
     public static final Item HOGLIN_STEW = new ADFoodContainerItem(new Item.Settings()
             .food(ADFoodComponents.HOGLIN_STEW).maxCount(1));
@@ -452,31 +452,32 @@ public class ADItems {
      * Called during mod initialization to register every item.
      */
     public static void registerItems() {
-        register(BAT_PLUSH, BLAZE_PLUSH, CAVE_SPIDER_PLUSH, CHICKEN_PLUSH, COW_PLUSH, CREEPER_PLUSH,
-                ENDERMAN_PLUSH, GHAST_PLUSH, GUARDIAN_PLUSH, WHITE_HORSE_PLUSH, GRAY_HORSE_PLUSH,
-                LIGHT_GRAY_HORSE_PLUSH, BROWN_HORSE_PLUSH, BLACK_HORSE_PLUSH, MAGMA_CUBE_PLUSH, RED_MOOSHROOM_PLUSH,
-                BROWN_MOOSHROOM_PLUSH, OCELOT_PLUSH, TABBY_CAT_PLUSH, TUXEDO_CAT_PLUSH, RED_CAT_PLUSH,
-                SIAMESE_CAT_PLUSH, BRITISH_SHORTHAIR_CAT_PLUSH, CALICO_CAT_PLUSH, PERSIAN_CAT_PLUSH,
-                RAGDOLL_CAT_PLUSH, WHITE_CAT_PLUSH, JELLIE_CAT_PLUSH, BLACK_CAT_PLUSH, PIG_PLUSH,
-                BROWN_RABBIT_PLUSH, WHITE_RABBIT_PLUSH, BLACK_RABBIT_PLUSH, WHITE_SPLOTCHED_RABBIT_PLUSH,
-                GOLD_RABBIT_PLUSH, TOAST_RABBIT_PLUSH, SALT_RABBIT_PLUSH, WHITE_SHEEP_PLUSH, ORANGE_SHEEP_PLUSH,
-                MAGENTA_SHEEP_PLUSH, LIGHT_BLUE_SHEEP_PLUSH, YELLOW_SHEEP_PLUSH, LIME_SHEEP_PLUSH, PINK_SHEEP_PLUSH,
-                GRAY_SHEEP_PLUSH, LIGHT_GRAY_SHEEP_PLUSH, CYAN_SHEEP_PLUSH, PURPLE_SHEEP_PLUSH, BLUE_SHEEP_PLUSH,
-                BROWN_SHEEP_PLUSH, GREEN_SHEEP_PLUSH, RED_SHEEP_PLUSH, BLACK_SHEEP_PLUSH, MAROON_SHEEP_PLUSH,
-                SKELETON_PLUSH, SLIME_PLUSH, SPIDER_PLUSH, SQUID_PLUSH, GLOW_SQUID_PLUSH, BEE_PLUSH,
-                PLAINS_VILLAGER_PLUSH, DESERT_VILLAGER_PLUSH, JUNGLE_VILLAGER_PLUSH, SAVANNA_VILLAGER_PLUSH,
-                SNOW_VILLAGER_PLUSH, SWAMP_VILLAGER_PLUSH, TAIGA_VILLAGER_PLUSH, CRIMSON_VILLAGER_PLUSH,
-                WARPED_VILLAGER_PLUSH, WANDERING_TRADER_PLUSH, PLAINS_ZOMBIE_VILLAGER_PLUSH,
-                DESERT_ZOMBIE_VILLAGER_PLUSH, JUNGLE_ZOMBIE_VILLAGER_PLUSH, SAVANNA_ZOMBIE_VILLAGER_PLUSH,
-                SNOW_ZOMBIE_VILLAGER_PLUSH, SWAMP_ZOMBIE_VILLAGER_PLUSH, TAIGA_ZOMBIE_VILLAGER_PLUSH,
-                CRIMSON_ZOMBIE_VILLAGER_PLUSH, WARPED_ZOMBIE_VILLAGER_PLUSH, WITCH_PLUSH, PALE_WOLF_PLUSH, ZOMBIE_PLUSH,
-                PIGLIN_PLUSH, ZOMBIFIED_PIGLIN_PLUSH, PUFFERFISH_PLUSH, WITHER_PLUSH, STRIDER_PLUSH,
-                SHIVERING_STRIDER_PLUSH, PHANTOM_PLUSH, HOGLIN_PLUSH, ZOGLIN_PLUSH, POLAR_BEAR_PLUSH, ALLAY_PLUSH,
-                PILLAGER_PLUSH, VINDICATOR_PLUSH, EVOKER_PLUSH, RAVAGER_PLUSH, SHULKER_PLUSH, VEX_PLUSH,
-                NETHER_SMOKY_QUARTZ_ORE, SMOKY_QUARTZ_BLOCK, CHISELED_SMOKY_QUARTZ_BLOCK, SMOKY_QUARTZ_BRICKS,
-                SMOKY_QUARTZ_BRICK_STAIRS, SMOKY_QUARTZ_BRICK_SLAB, SMOKY_QUARTZ_BRICK_WALL, SMOKY_QUARTZ_PILLAR,
-                SMOKY_QUARTZ_STAIRS, SMOKY_QUARTZ_SLAB, SMOKY_QUARTZ_WALL, SMOOTH_SMOKY_QUARTZ,
-                SMOOTH_SMOKY_QUARTZ_STAIRS, SMOOTH_SMOKY_QUARTZ_SLAB, SMOOTH_SMOKY_QUARTZ_WALL,
+        register(BAT_PLUSHIE, BLAZE_PLUSHIE, CAVE_SPIDER_PLUSHIE, CHICKEN_PLUSHIE, COW_PLUSHIE, CREEPER_PLUSHIE,
+                ENDERMAN_PLUSHIE, GHAST_PLUSHIE, GUARDIAN_PLUSHIE, WHITE_HORSE_PLUSHIE, GRAY_HORSE_PLUSHIE,
+                LIGHT_GRAY_HORSE_PLUSHIE, BROWN_HORSE_PLUSHIE, BLACK_HORSE_PLUSHIE, MAGMA_CUBE_PLUSHIE,
+                RED_MOOSHROOM_PLUSHIE, BROWN_MOOSHROOM_PLUSHIE, OCELOT_PLUSHIE, TABBY_CAT_PLUSHIE, TUXEDO_CAT_PLUSHIE,
+                RED_CAT_PLUSHIE, SIAMESE_CAT_PLUSHIE, BRITISH_SHORTHAIR_CAT_PLUSHIE, CALICO_CAT_PLUSHIE,
+                PERSIAN_CAT_PLUSHIE, RAGDOLL_CAT_PLUSHIE, WHITE_CAT_PLUSHIE, JELLIE_CAT_PLUSHIE, BLACK_CAT_PLUSHIE,
+                PIG_PLUSHIE, BROWN_RABBIT_PLUSHIE, WHITE_RABBIT_PLUSHIE, BLACK_RABBIT_PLUSHIE,
+                WHITE_SPLOTCHED_RABBIT_PLUSHIE, GOLD_RABBIT_PLUSHIE, TOAST_RABBIT_PLUSHIE, SALT_RABBIT_PLUSHIE,
+                WHITE_SHEEP_PLUSHIE, ORANGE_SHEEP_PLUSHIE, MAGENTA_SHEEP_PLUSHIE, LIGHT_BLUE_SHEEP_PLUSHIE,
+                YELLOW_SHEEP_PLUSHIE, LIME_SHEEP_PLUSHIE, PINK_SHEEP_PLUSHIE, GRAY_SHEEP_PLUSHIE,
+                LIGHT_GRAY_SHEEP_PLUSHIE, CYAN_SHEEP_PLUSHIE, PURPLE_SHEEP_PLUSHIE, BLUE_SHEEP_PLUSHIE,
+                BROWN_SHEEP_PLUSHIE, GREEN_SHEEP_PLUSHIE, RED_SHEEP_PLUSHIE, BLACK_SHEEP_PLUSHIE, MAROON_SHEEP_PLUSHIE,
+                SKELETON_PLUSHIE, SLIME_PLUSHIE, SPIDER_PLUSHIE, SQUID_PLUSHIE, GLOW_SQUID_PLUSHIE, BEE_PLUSHIE,
+                PLAINS_VILLAGER_PLUSHIE, DESERT_VILLAGER_PLUSHIE, JUNGLE_VILLAGER_PLUSHIE, SAVANNA_VILLAGER_PLUSHIE,
+                SNOW_VILLAGER_PLUSHIE, SWAMP_VILLAGER_PLUSHIE, TAIGA_VILLAGER_PLUSHIE, CRIMSON_VILLAGER_PLUSHIE,
+                WARPED_VILLAGER_PLUSHIE, WANDERING_TRADER_PLUSHIE, PLAINS_ZOMBIE_VILLAGER_PLUSHIE,
+                DESERT_ZOMBIE_VILLAGER_PLUSHIE, JUNGLE_ZOMBIE_VILLAGER_PLUSHIE, SAVANNA_ZOMBIE_VILLAGER_PLUSHIE,
+                SNOW_ZOMBIE_VILLAGER_PLUSHIE, SWAMP_ZOMBIE_VILLAGER_PLUSHIE, TAIGA_ZOMBIE_VILLAGER_PLUSHIE,
+                CRIMSON_ZOMBIE_VILLAGER_PLUSHIE, WARPED_ZOMBIE_VILLAGER_PLUSHIE, WITCH_PLUSHIE, PALE_WOLF_PLUSHIE,
+                ZOMBIE_PLUSHIE, PIGLIN_PLUSHIE, ZOMBIFIED_PIGLIN_PLUSHIE, PUFFERFISH_PLUSHIE, WITHER_PLUSHIE,
+                STRIDER_PLUSHIE, SHIVERING_STRIDER_PLUSHIE, PHANTOM_PLUSHIE, HOGLIN_PLUSHIE, ZOGLIN_PLUSHIE,
+                POLAR_BEAR_PLUSHIE, ALLAY_PLUSHIE, PILLAGER_PLUSHIE, VINDICATOR_PLUSHIE, EVOKER_PLUSHIE,
+                RAVAGER_PLUSHIE, SHULKER_PLUSHIE, VEX_PLUSHIE, NETHER_SMOKY_QUARTZ_ORE, SMOKY_QUARTZ_BLOCK,
+                CHISELED_SMOKY_QUARTZ_BLOCK, SMOKY_QUARTZ_BRICKS, SMOKY_QUARTZ_BRICK_STAIRS, SMOKY_QUARTZ_BRICK_SLAB,
+                SMOKY_QUARTZ_BRICK_WALL, SMOKY_QUARTZ_PILLAR, SMOKY_QUARTZ_STAIRS, SMOKY_QUARTZ_SLAB, SMOKY_QUARTZ_WALL,
+                SMOOTH_SMOKY_QUARTZ, SMOOTH_SMOKY_QUARTZ_STAIRS, SMOOTH_SMOKY_QUARTZ_SLAB, SMOOTH_SMOKY_QUARTZ_WALL,
                 CRACKED_STONE_BRICK_STAIRS, CRACKED_STONE_BRICK_SLAB, CRACKED_STONE_BRICK_WALL, OAK_PLANTER_BOX,
                 SPRUCE_PLANTER_BOX, BIRCH_PLANTER_BOX, JUNGLE_PLANTER_BOX, ACACIA_PLANTER_BOX, DARK_OAK_PLANTER_BOX,
                 MANGROVE_PLANTER_BOX, CHERRY_PLANTER_BOX, CRIMSON_PLANTER_BOX, WARPED_PLANTER_BOX, OAK_WALL,
@@ -525,7 +526,7 @@ public class ADItems {
                 DRIPSTONE_BRICK_SLAB, DRIPSTONE_BRICK_WALL, MOSSY_DRIPSTONE_BRICKS, MOSSY_DRIPSTONE_BRICK_STAIRS,
                 MOSSY_DRIPSTONE_BRICK_SLAB, MOSSY_DRIPSTONE_BRICK_WALL, CRACKED_DRIPSTONE_BRICKS,
                 CRACKED_DRIPSTONE_BRICK_STAIRS, CRACKED_DRIPSTONE_BRICK_SLAB, CRACKED_DRIPSTONE_BRICK_WALL,
-                CHISELED_DRIPSTONE_BRICKS, CATTAIL, DRIED_BLOOD_KELP_BLOCK, BLOOD_KELP_LANTERN, CAMEL_PLUSH,
+                CHISELED_DRIPSTONE_BRICKS, CATTAIL, DRIED_BLOOD_KELP_BLOCK, BLOOD_KELP_LANTERN, CAMEL_PLUSHIE,
                 MAROON_WOOL, MAROON_STAINED_GLASS, MAROON_STAINED_GLASS_PANE, MAROON_CANDLE, MAROON_CONCRETE,
                 MAROON_CONCRETE_POWDER, POLISHED_DRIPSTONE, POLISHED_DRIPSTONE_STAIRS, POLISHED_DRIPSTONE_SLAB,
                 POLISHED_DRIPSTONE_WALL, POLISHED_CALCITE, POLISHED_CALCITE_STAIRS, POLISHED_CALCITE_SLAB,

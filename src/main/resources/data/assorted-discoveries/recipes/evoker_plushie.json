@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "assorted-discoveries:illager_plushies",
+  "pattern": [
+    "HHH",
+    "BEB",
+    "BBB"
+  ],
+  "key": {
+    "H": {
+      "item": "minecraft:cyan_terracotta"
+    },
+    "B": {
+      "item": "minecraft:black_wool"
+    },
+    "E": {
+      "item": "minecraft:emerald"
+    }
+  },
+  "result": {
+    "item": "assorted-discoveries:evoker_plushie"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_illager_plushies"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "assorted-discoveries:block/template_one_colored_cat_plushie_standing",
+  "textures": {
+    "body": "minecraft:block/white_wool",
+    "eyes": "minecraft:block/black_wool"
+  }
+}

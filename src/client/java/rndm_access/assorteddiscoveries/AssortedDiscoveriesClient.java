@@ -35,12 +35,12 @@ public class AssortedDiscoveriesClient implements ClientModInitializer {
     private void registerBlockColorProviders() {
         ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> ((tintIndex == 1) && (view != null))
                 ? BiomeColors.getGrassColor(view, pos)
-                : -1, ADBlocks.ENDERMAN_PLUSH, ADBlocks.GRASS_SLAB);
+                : -1, ADBlocks.ENDERMAN_PLUSHIE, ADBlocks.GRASS_SLAB);
     }
 
     private void registerItemColorProviders() {
         ColorProviderRegistry.ITEM.register((stack, tintIndex) -> GrassColors.getColor(0.5D, 1.0D),
-                ADItems.ENDERMAN_PLUSH, ADBlocks.GRASS_SLAB);
+                ADItems.ENDERMAN_PLUSHIE, ADBlocks.GRASS_SLAB);
     }
 
     private void registerScreens() {
@@ -122,7 +122,7 @@ public class AssortedDiscoveriesClient implements ClientModInitializer {
                 ADBlocks.POTTED_CATTAIL, ADBlocks.WILD_GREEN_ONIONS);
 
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutoutMipped(),
-                ADBlocks.ENDERMAN_PLUSH, ADBlocks.GRASS_SLAB);
+                ADBlocks.ENDERMAN_PLUSHIE, ADBlocks.GRASS_SLAB);
 
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(),
                 ADBlocks.MAROON_STAINED_GLASS, ADBlocks.MAROON_STAINED_GLASS_PANE);

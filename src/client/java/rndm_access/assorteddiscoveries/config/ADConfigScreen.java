@@ -59,22 +59,22 @@ public class ADConfigScreen {
                 List.of(enableDyedCampfires, enableDyedLanterns, enableDyedTorches)).build());
 
         BooleanListEntry enableAllayPlush = entryBuilder.startBooleanToggle(
-                makePassivePlushiesEntryText("enable_allay_plush"),
-                        passivePlushiesSubcategory.getEntry("enable_allay_plush")
+                makePassivePlushiesEntryText("enable_allay_plushie"),
+                        passivePlushiesSubcategory.getEntry("enable_allay_plushie")
                                 .getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_allay_plush", newValue))
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_allay_plushie", newValue))
                 .requireRestart().build();
         BooleanListEntry enableBatPlush = entryBuilder.startBooleanToggle(
-                makePassivePlushiesEntryText("enable_bat_plush"),
-                        passivePlushiesSubcategory.getEntry("enable_bat_plush")
+                makePassivePlushiesEntryText("enable_bat_plushie"),
+                        passivePlushiesSubcategory.getEntry("enable_bat_plushie")
                                 .getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_bat_plush", newValue))
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_bat_plushie", newValue))
                 .requireRestart().build();
         BooleanListEntry enableCamelPlush = entryBuilder.startBooleanToggle(
-                makePassivePlushiesEntryText("enable_camel_plush"),
-                        passivePlushiesSubcategory.getEntry("enable_camel_plush")
+                makePassivePlushiesEntryText("enable_camel_plushie"),
+                        passivePlushiesSubcategory.getEntry("enable_camel_plushie")
                                 .getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_camel_plush", newValue))
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_camel_plushie", newValue))
                 .requireRestart().build();
         BooleanListEntry enableCatPlushies = entryBuilder.startBooleanToggle(
                 makePassivePlushiesEntryText("enable_cat_plushies"),
@@ -83,16 +83,16 @@ public class ADConfigScreen {
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_cat_plushies", newValue))
                 .requireRestart().build();
         BooleanListEntry enableChickenPlush = entryBuilder.startBooleanToggle(
-                makePassivePlushiesEntryText("enable_chicken_plush"),
-                        passivePlushiesSubcategory.getEntry("enable_chicken_plush")
+                makePassivePlushiesEntryText("enable_chicken_plushie"),
+                        passivePlushiesSubcategory.getEntry("enable_chicken_plushie")
                                 .getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_chicken_plush", newValue))
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_chicken_plushie", newValue))
                 .requireRestart().build();
         BooleanListEntry enableCowPlush = entryBuilder.startBooleanToggle(
-                makePassivePlushiesEntryText("enable_cow_plush"),
-                        passivePlushiesSubcategory.getEntry("enable_cow_plush")
+                makePassivePlushiesEntryText("enable_cow_plushie"),
+                        passivePlushiesSubcategory.getEntry("enable_cow_plushie")
                                 .getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_cow_plush", newValue))
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_cow_plushie", newValue))
                 .requireRestart().build();
         BooleanListEntry enableHorsePlushies = entryBuilder.startBooleanToggle(
                 makePassivePlushiesEntryText("enable_horse_plushies"),
@@ -107,22 +107,22 @@ public class ADConfigScreen {
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_mooshroom_plushies", newValue))
                 .requireRestart().build();
         BooleanListEntry enableOcelotPlush = entryBuilder.startBooleanToggle(
-                makePassivePlushiesEntryText("enable_ocelot_plush"),
-                        passivePlushiesSubcategory.getEntry("enable_ocelot_plush")
+                makePassivePlushiesEntryText("enable_ocelot_plushie"),
+                        passivePlushiesSubcategory.getEntry("enable_ocelot_plushie")
                                 .getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_ocelot_plush", newValue))
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_ocelot_plushie", newValue))
                 .requireRestart().build();
         BooleanListEntry enablePigPlush = entryBuilder.startBooleanToggle(
-                makePassivePlushiesEntryText("enable_pig_plush"),
-                        passivePlushiesSubcategory.getEntry("enable_pig_plush")
+                makePassivePlushiesEntryText("enable_pig_plushie"),
+                        passivePlushiesSubcategory.getEntry("enable_pig_plushie")
                                 .getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_pig_plush", newValue))
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_pig_plushie", newValue))
                 .requireRestart().build();
         BooleanListEntry enablePufferfishPlush = entryBuilder.startBooleanToggle(
-                makePassivePlushiesEntryText("enable_pufferfish_plush"),
-                        passivePlushiesSubcategory.getEntry("enable_pufferfish_plush")
+                makePassivePlushiesEntryText("enable_pufferfish_plushie"),
+                        passivePlushiesSubcategory.getEntry("enable_pufferfish_plushie")
                                 .getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_pufferfish_plush", newValue))
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_pufferfish_plushie", newValue))
                 .requireRestart().build();
         BooleanListEntry enableRabbitPlush = entryBuilder.startBooleanToggle(
                 makePassivePlushiesEntryText("enable_rabbit_plushies"),
@@ -155,10 +155,10 @@ public class ADConfigScreen {
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_villager_plushies", newValue))
                 .requireRestart().build();
         BooleanListEntry enableWanderingTraderPlush = entryBuilder.startBooleanToggle(
-                makePassivePlushiesEntryText("enable_wandering_trader_plush"),
-                        passivePlushiesSubcategory.getEntry("enable_wandering_trader_plush")
+                makePassivePlushiesEntryText("enable_wandering_trader_plushie"),
+                        passivePlushiesSubcategory.getEntry("enable_wandering_trader_plushie")
                                 .getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_wandering_trader_plush", newValue))
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_wandering_trader_plushie", newValue))
                 .requireRestart().build();
 
         buildingScreenCategory.addEntry(entryBuilder.startSubCategory(
@@ -170,22 +170,22 @@ public class ADConfigScreen {
                         enableWanderingTraderPlush)).build());
 
         BooleanListEntry enableBeePlush = entryBuilder.startBooleanToggle(
-                makeNeutralPlushiesEntryText("enable_bee_plush"),
-                        neutralPlushiesSubcategory.getEntry("enable_bee_plush")
+                makeNeutralPlushiesEntryText("enable_bee_plushie"),
+                        neutralPlushiesSubcategory.getEntry("enable_bee_plushie")
                                 .getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_bee_plush", newValue))
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_bee_plushie", newValue))
                 .requireRestart().build();
         BooleanListEntry enableCaveSpiderPlush = entryBuilder.startBooleanToggle(
-                makeNeutralPlushiesEntryText("enable_cave_spider_plush"),
-                        neutralPlushiesSubcategory.getEntry("enable_cave_spider_plush")
+                makeNeutralPlushiesEntryText("enable_cave_spider_plushie"),
+                        neutralPlushiesSubcategory.getEntry("enable_cave_spider_plushie")
                                 .getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_cave_spider_plush", newValue))
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_cave_spider_plushie", newValue))
                 .requireRestart().build();
         BooleanListEntry enableEndermanPlush = entryBuilder.startBooleanToggle(
-                makeNeutralPlushiesEntryText("enable_enderman_plush"),
-                        neutralPlushiesSubcategory.getEntry("enable_enderman_plush")
+                makeNeutralPlushiesEntryText("enable_enderman_plushie"),
+                        neutralPlushiesSubcategory.getEntry("enable_enderman_plushie")
                                 .getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_enderman_plush", newValue))
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_enderman_plushie", newValue))
                 .requireRestart().build();
         BooleanListEntry enablePiglinPlushies = entryBuilder.startBooleanToggle(
                 makeNeutralPlushiesEntryText("enable_piglin_plushies"),
@@ -194,22 +194,22 @@ public class ADConfigScreen {
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_piglin_plushies", newValue))
                 .requireRestart().build();
         BooleanListEntry enablePolarBearPlush = entryBuilder.startBooleanToggle(
-                makeNeutralPlushiesEntryText("enable_polar_bear_plush"),
-                        neutralPlushiesSubcategory.getEntry("enable_polar_bear_plush")
+                makeNeutralPlushiesEntryText("enable_polar_bear_plushie"),
+                        neutralPlushiesSubcategory.getEntry("enable_polar_bear_plushie")
                                 .getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_polar_bear_plush", newValue))
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_polar_bear_plushie", newValue))
                 .requireRestart().build();
         BooleanListEntry enableSpiderPlush = entryBuilder.startBooleanToggle(
-                makeNeutralPlushiesEntryText("enable_spider_plush"),
-                        neutralPlushiesSubcategory.getEntry("enable_spider_plush")
+                makeNeutralPlushiesEntryText("enable_spider_plushie"),
+                        neutralPlushiesSubcategory.getEntry("enable_spider_plushie")
                                 .getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_spider_plush", newValue))
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_spider_plushie", newValue))
                 .requireRestart().build();
         BooleanListEntry enablePaleWolfPlush = entryBuilder.startBooleanToggle(
-                makeNeutralPlushiesEntryText("enable_pale_wolf_plush"),
-                        neutralPlushiesSubcategory.getEntry("enable_pale_wolf_plush")
+                makeNeutralPlushiesEntryText("enable_pale_wolf_plushie"),
+                        neutralPlushiesSubcategory.getEntry("enable_pale_wolf_plushie")
                                 .getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_pale_wolf_plush", newValue))
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_pale_wolf_plushie", newValue))
                 .requireRestart().build();
 
         buildingScreenCategory.addEntry(entryBuilder.startSubCategory(
@@ -218,28 +218,28 @@ public class ADConfigScreen {
                         enablePolarBearPlush, enableSpiderPlush, enablePaleWolfPlush)).build());
 
         BooleanListEntry enableBlazePlush = entryBuilder.startBooleanToggle(
-                makeHostilePlushiesEntryText("enable_blaze_plush"),
-                        hostilePlushiesSubcategory.getEntry("enable_blaze_plush")
+                makeHostilePlushiesEntryText("enable_blaze_plushie"),
+                        hostilePlushiesSubcategory.getEntry("enable_blaze_plushie")
                                 .getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_blaze_plush", newValue))
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_blaze_plushie", newValue))
                 .requireRestart().build();
         BooleanListEntry enableCreeperPlush = entryBuilder.startBooleanToggle(
-                makeHostilePlushiesEntryText("enable_creeper_plush"),
-                        hostilePlushiesSubcategory.getEntry("enable_creeper_plush")
+                makeHostilePlushiesEntryText("enable_creeper_plushie"),
+                        hostilePlushiesSubcategory.getEntry("enable_creeper_plushie")
                                 .getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_creeper_plush", newValue))
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_creeper_plushie", newValue))
                 .requireRestart().build();
         BooleanListEntry enableGhastPlush = entryBuilder.startBooleanToggle(
-                makeHostilePlushiesEntryText("enable_ghast_plush"),
-                        hostilePlushiesSubcategory.getEntry("enable_ghast_plush")
+                makeHostilePlushiesEntryText("enable_ghast_plushie"),
+                        hostilePlushiesSubcategory.getEntry("enable_ghast_plushie")
                                 .getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_ghast_plush", newValue))
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_ghast_plushie", newValue))
                 .requireRestart().build();
         BooleanListEntry enableGuardianPlush = entryBuilder.startBooleanToggle(
-                makeHostilePlushiesEntryText("enable_guardian_plush"),
-                        hostilePlushiesSubcategory.getEntry("enable_guardian_plush")
+                makeHostilePlushiesEntryText("enable_guardian_plushie"),
+                        hostilePlushiesSubcategory.getEntry("enable_guardian_plushie")
                                 .getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_guardian_plush", newValue))
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_guardian_plushie", newValue))
                 .requireRestart().build();
         BooleanListEntry enableHoglinPlushies = entryBuilder.startBooleanToggle(
                 makeHostilePlushiesEntryText("enable_hoglin_plushies"),
@@ -254,64 +254,64 @@ public class ADConfigScreen {
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_illager_plushies", newValue))
                 .requireRestart().build();
         BooleanListEntry enableMagmaCubePlush = entryBuilder.startBooleanToggle(
-                makeHostilePlushiesEntryText("enable_magma_cube_plush"),
-                        hostilePlushiesSubcategory.getEntry("enable_magma_cube_plush")
+                makeHostilePlushiesEntryText("enable_magma_cube_plushie"),
+                        hostilePlushiesSubcategory.getEntry("enable_magma_cube_plushie")
                                 .getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_magma_cube_plush", newValue))
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_magma_cube_plushie", newValue))
                 .requireRestart().build();
         BooleanListEntry enablePhantomPlush = entryBuilder.startBooleanToggle(
-                makeHostilePlushiesEntryText("enable_phantom_plush"),
-                        hostilePlushiesSubcategory.getEntry("enable_phantom_plush")
+                makeHostilePlushiesEntryText("enable_phantom_plushie"),
+                        hostilePlushiesSubcategory.getEntry("enable_phantom_plushie")
                                 .getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_phantom_plush", newValue))
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_phantom_plushie", newValue))
                 .requireRestart().build();
         BooleanListEntry enableRavagerPlush = entryBuilder.startBooleanToggle(
-                makeHostilePlushiesEntryText("enable_ravager_plush"),
-                        hostilePlushiesSubcategory.getEntry("enable_ravager_plush")
+                makeHostilePlushiesEntryText("enable_ravager_plushie"),
+                        hostilePlushiesSubcategory.getEntry("enable_ravager_plushie")
                                 .getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_ravager_plush", newValue))
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_ravager_plushie", newValue))
                 .requireRestart().build();
         BooleanListEntry enableShulkerPlush = entryBuilder.startBooleanToggle(
-                makeHostilePlushiesEntryText("enable_shulker_plush"),
-                        hostilePlushiesSubcategory.getEntry("enable_shulker_plush")
+                makeHostilePlushiesEntryText("enable_shulker_plushie"),
+                        hostilePlushiesSubcategory.getEntry("enable_shulker_plushie")
                                 .getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_shulker_plush", newValue))
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_shulker_plushie", newValue))
                 .requireRestart().build();
         BooleanListEntry enableSkeletonPlush = entryBuilder.startBooleanToggle(
-                makeHostilePlushiesEntryText("enable_skeleton_plush"),
-                        hostilePlushiesSubcategory.getEntry("enable_skeleton_plush")
+                makeHostilePlushiesEntryText("enable_skeleton_plushie"),
+                        hostilePlushiesSubcategory.getEntry("enable_skeleton_plushie")
                                 .getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_skeleton_plush", newValue))
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_skeleton_plushie", newValue))
                 .requireRestart().build();
         BooleanListEntry enableSlimePlush = entryBuilder.startBooleanToggle(
-                makeHostilePlushiesEntryText("enable_slime_plush"),
-                        hostilePlushiesSubcategory.getEntry("enable_slime_plush")
+                makeHostilePlushiesEntryText("enable_slime_plushie"),
+                        hostilePlushiesSubcategory.getEntry("enable_slime_plushie")
                                 .getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_slime_plush", newValue))
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_slime_plushie", newValue))
                 .requireRestart().build();
         BooleanListEntry enableVexPlush = entryBuilder.startBooleanToggle(
-                makeHostilePlushiesEntryText("enable_vex_plush"),
-                        hostilePlushiesSubcategory.getEntry("enable_vex_plush")
+                makeHostilePlushiesEntryText("enable_vex_plushie"),
+                        hostilePlushiesSubcategory.getEntry("enable_vex_plushie")
                                 .getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_vex_plush", newValue))
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_vex_plushie", newValue))
                 .requireRestart().build();
         BooleanListEntry enableWitchPlush = entryBuilder.startBooleanToggle(
-                makeHostilePlushiesEntryText("enable_witch_plush"),
-                        hostilePlushiesSubcategory.getEntry("enable_witch_plush")
+                makeHostilePlushiesEntryText("enable_witch_plushie"),
+                        hostilePlushiesSubcategory.getEntry("enable_witch_plushie")
                                 .getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_witch_plush", newValue))
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_witch_plushie", newValue))
                 .requireRestart().build();
         BooleanListEntry enableWitherPlush = entryBuilder.startBooleanToggle(
-                makeHostilePlushiesEntryText("enable_wither_plush"),
-                        hostilePlushiesSubcategory.getEntry("enable_wither_plush")
+                makeHostilePlushiesEntryText("enable_wither_plushie"),
+                        hostilePlushiesSubcategory.getEntry("enable_wither_plushie")
                                 .getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_wither_plush", newValue))
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_wither_plushie", newValue))
                 .requireRestart().build();
         BooleanListEntry enableZombiePlush = entryBuilder.startBooleanToggle(
-                makeHostilePlushiesEntryText("enable_zombie_plush"),
-                        hostilePlushiesSubcategory.getEntry("enable_zombie_plush")
+                makeHostilePlushiesEntryText("enable_zombie_plushie"),
+                        hostilePlushiesSubcategory.getEntry("enable_zombie_plushie")
                                 .getValueAsBool()).setDefaultValue(true)
-                .setSaveConsumer(newValue -> entryValueChanges.put("enable_zombie_plush", newValue))
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_zombie_plushie", newValue))
                 .requireRestart().build();
         BooleanListEntry enableZombieVillagerPlushies = entryBuilder.startBooleanToggle(
                 makeHostilePlushiesEntryText("enable_zombie_villager_plushies"),

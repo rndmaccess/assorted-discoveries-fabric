@@ -1,7 +1,0 @@
-{
-  "parent": "assorted-discoveries:block/template_one_colored_cat_plush_sitting",
-  "textures": {
-    "body": "minecraft:block/black_wool",
-    "eyes": "minecraft:block/orange_wool"
-  }
-}

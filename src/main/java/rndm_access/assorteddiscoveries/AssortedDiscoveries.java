@@ -212,7 +212,7 @@ public class AssortedDiscoveries implements ModInitializer {
 	private static void addItemGroups() {
 		Registry.register(Registries.ITEM_GROUP, ITEM_GROUP_KEY, FabricItemGroup.builder()
 				.displayName(Text.translatable("itemGroup." + ADReference.MOD_ID + ".item_group"))
-				.icon(() -> new ItemStack(ADItems.ENDERMAN_PLUSH))
+				.icon(() -> new ItemStack(ADItems.ENDERMAN_PLUSHIE))
 				.entries((context, entries) -> {
                     ADJsonConfigCategory buildingCategory = ADConfig.CONFIG
                             .getCategory("building");
@@ -227,226 +227,226 @@ public class AssortedDiscoveries implements ModInitializer {
                     ADJsonConfigCategory farmingCategory = ADConfig.CONFIG
                             .getCategory("farming");
 
-                    if (hostilePlushiesSubcategory.getEntry("enable_slime_plush").getValueAsBool()) {
-                        entries.add(ADItems.SLIME_PLUSH);
+                    if (hostilePlushiesSubcategory.getEntry("enable_slime_plushie").getValueAsBool()) {
+                        entries.add(ADItems.SLIME_PLUSHIE);
                     }
 
-                    if (hostilePlushiesSubcategory.getEntry("enable_magma_cube_plush").getValueAsBool()) {
-                        entries.add(ADItems.MAGMA_CUBE_PLUSH);
+                    if (hostilePlushiesSubcategory.getEntry("enable_magma_cube_plushie").getValueAsBool()) {
+                        entries.add(ADItems.MAGMA_CUBE_PLUSHIE);
                     }
 
-                    if (passivePlushiesSubcategory.getEntry("enable_ocelot_plush").getValueAsBool()) {
-                        entries.add(ADItems.OCELOT_PLUSH);
+                    if (passivePlushiesSubcategory.getEntry("enable_ocelot_plushie").getValueAsBool()) {
+                        entries.add(ADItems.OCELOT_PLUSHIE);
                     }
 
                     if (passivePlushiesSubcategory.getEntry("enable_cat_plushies").getValueAsBool()) {
-                        entries.add(ADItems.TABBY_CAT_PLUSH);
-                        entries.add(ADItems.TUXEDO_CAT_PLUSH);
-                        entries.add(ADItems.RED_CAT_PLUSH);
-                        entries.add(ADItems.SIAMESE_CAT_PLUSH);
-                        entries.add(ADItems.BRITISH_SHORTHAIR_CAT_PLUSH);
-                        entries.add(ADItems.CALICO_CAT_PLUSH);
-                        entries.add(ADItems.PERSIAN_CAT_PLUSH);
-                        entries.add(ADItems.RAGDOLL_CAT_PLUSH);
-                        entries.add(ADItems.BLACK_CAT_PLUSH);
-                        entries.add(ADItems.JELLIE_CAT_PLUSH);
+                        entries.add(ADItems.TABBY_CAT_PLUSHIE);
+                        entries.add(ADItems.TUXEDO_CAT_PLUSHIE);
+                        entries.add(ADItems.RED_CAT_PLUSHIE);
+                        entries.add(ADItems.SIAMESE_CAT_PLUSHIE);
+                        entries.add(ADItems.BRITISH_SHORTHAIR_CAT_PLUSHIE);
+                        entries.add(ADItems.CALICO_CAT_PLUSHIE);
+                        entries.add(ADItems.PERSIAN_CAT_PLUSHIE);
+                        entries.add(ADItems.RAGDOLL_CAT_PLUSHIE);
+                        entries.add(ADItems.BLACK_CAT_PLUSHIE);
+                        entries.add(ADItems.JELLIE_CAT_PLUSHIE);
                     }
 
-                    if (neutralPlushiesSubcategory.getEntry("enable_pale_wolf_plush").getValueAsBool()) {
-                        entries.add(ADItems.PALE_WOLF_PLUSH);
+                    if (neutralPlushiesSubcategory.getEntry("enable_pale_wolf_plushie").getValueAsBool()) {
+                        entries.add(ADItems.PALE_WOLF_PLUSHIE);
                     }
 
-                    if (hostilePlushiesSubcategory.getEntry("enable_zombie_plush").getValueAsBool()) {
-                        entries.add(ADItems.ZOMBIE_PLUSH);
+                    if (hostilePlushiesSubcategory.getEntry("enable_zombie_plushie").getValueAsBool()) {
+                        entries.add(ADItems.ZOMBIE_PLUSHIE);
                     }
 
-                    if (hostilePlushiesSubcategory.getEntry("enable_skeleton_plush").getValueAsBool()) {
-                        entries.add(ADItems.SKELETON_PLUSH);
+                    if (hostilePlushiesSubcategory.getEntry("enable_skeleton_plushie").getValueAsBool()) {
+                        entries.add(ADItems.SKELETON_PLUSHIE);
                     }
 
-                    if (neutralPlushiesSubcategory.getEntry("enable_enderman_plush").getValueAsBool()) {
-                        entries.add(ADItems.ENDERMAN_PLUSH);
+                    if (neutralPlushiesSubcategory.getEntry("enable_enderman_plushie").getValueAsBool()) {
+                        entries.add(ADItems.ENDERMAN_PLUSHIE);
                     }
 
-                    if (hostilePlushiesSubcategory.getEntry("enable_creeper_plush").getValueAsBool()) {
-                        entries.add(ADItems.CREEPER_PLUSH);
+                    if (hostilePlushiesSubcategory.getEntry("enable_creeper_plushie").getValueAsBool()) {
+                        entries.add(ADItems.CREEPER_PLUSHIE);
                     }
 
-                    if (neutralPlushiesSubcategory.getEntry("enable_spider_plush").getValueAsBool()) {
-                        entries.add(ADItems.SPIDER_PLUSH);
+                    if (neutralPlushiesSubcategory.getEntry("enable_spider_plushie").getValueAsBool()) {
+                        entries.add(ADItems.SPIDER_PLUSHIE);
                     }
 
-                    if (neutralPlushiesSubcategory.getEntry("enable_cave_spider_plush").getValueAsBool()) {
-                        entries.add(ADItems.CAVE_SPIDER_PLUSH);
+                    if (neutralPlushiesSubcategory.getEntry("enable_cave_spider_plushie").getValueAsBool()) {
+                        entries.add(ADItems.CAVE_SPIDER_PLUSHIE);
                     }
 
-                    if (hostilePlushiesSubcategory.getEntry("enable_guardian_plush").getValueAsBool()) {
-                        entries.add(ADItems.GUARDIAN_PLUSH);
+                    if (hostilePlushiesSubcategory.getEntry("enable_guardian_plushie").getValueAsBool()) {
+                        entries.add(ADItems.GUARDIAN_PLUSHIE);
                     }
 
-                    if (hostilePlushiesSubcategory.getEntry("enable_phantom_plush").getValueAsBool()) {
-                        entries.add(ADItems.PHANTOM_PLUSH);
+                    if (hostilePlushiesSubcategory.getEntry("enable_phantom_plushie").getValueAsBool()) {
+                        entries.add(ADItems.PHANTOM_PLUSHIE);
                     }
 
-                    if (passivePlushiesSubcategory.getEntry("enable_bat_plush").getValueAsBool()) {
-                        entries.add(ADItems.BAT_PLUSH);
+                    if (passivePlushiesSubcategory.getEntry("enable_bat_plushie").getValueAsBool()) {
+                        entries.add(ADItems.BAT_PLUSHIE);
                     }
 
                     if (passivePlushiesSubcategory.getEntry("enable_squid_plushies").getValueAsBool()) {
-                        entries.add(ADItems.SQUID_PLUSH);
-                        entries.add(ADItems.GLOW_SQUID_PLUSH);
+                        entries.add(ADItems.SQUID_PLUSHIE);
+                        entries.add(ADItems.GLOW_SQUID_PLUSHIE);
                     }
 
-                    if (neutralPlushiesSubcategory.getEntry("enable_bee_plush").getValueAsBool()) {
-                        entries.add(ADItems.BEE_PLUSH);
+                    if (neutralPlushiesSubcategory.getEntry("enable_bee_plushie").getValueAsBool()) {
+                        entries.add(ADItems.BEE_PLUSHIE);
                     }
 
                     if (neutralPlushiesSubcategory.getEntry("enable_piglin_plushies").getValueAsBool()) {
-                        entries.add(ADItems.PIGLIN_PLUSH);
-                        entries.add(ADItems.ZOMBIFIED_PIGLIN_PLUSH);
+                        entries.add(ADItems.PIGLIN_PLUSHIE);
+                        entries.add(ADItems.ZOMBIFIED_PIGLIN_PLUSHIE);
                     }
 
                     if (hostilePlushiesSubcategory.getEntry("enable_hoglin_plushies").getValueAsBool()) {
-                        entries.add(ADItems.HOGLIN_PLUSH);
-                        entries.add(ADItems.ZOGLIN_PLUSH);
+                        entries.add(ADItems.HOGLIN_PLUSHIE);
+                        entries.add(ADItems.ZOGLIN_PLUSHIE);
                     }
 
-                    if (hostilePlushiesSubcategory.getEntry("enable_ghast_plush").getValueAsBool()) {
-                        entries.add(ADItems.GHAST_PLUSH);
+                    if (hostilePlushiesSubcategory.getEntry("enable_ghast_plushie").getValueAsBool()) {
+                        entries.add(ADItems.GHAST_PLUSHIE);
                     }
 
-                    if (hostilePlushiesSubcategory.getEntry("enable_blaze_plush").getValueAsBool()) {
-                        entries.add(ADItems.BLAZE_PLUSH);
+                    if (hostilePlushiesSubcategory.getEntry("enable_blaze_plushie").getValueAsBool()) {
+                        entries.add(ADItems.BLAZE_PLUSHIE);
                     }
 
                     if (passivePlushiesSubcategory.getEntry("enable_strider_plushies").getValueAsBool()) {
-                        entries.add(ADItems.STRIDER_PLUSH);
-                        entries.add(ADItems.SHIVERING_STRIDER_PLUSH);
+                        entries.add(ADItems.STRIDER_PLUSHIE);
+                        entries.add(ADItems.SHIVERING_STRIDER_PLUSHIE);
                     }
 
-                    if (passivePlushiesSubcategory.getEntry("enable_chicken_plush").getValueAsBool()) {
-                        entries.add(ADItems.CHICKEN_PLUSH);
+                    if (passivePlushiesSubcategory.getEntry("enable_chicken_plushie").getValueAsBool()) {
+                        entries.add(ADItems.CHICKEN_PLUSHIE);
                     }
 
-                    if (passivePlushiesSubcategory.getEntry("enable_pig_plush").getValueAsBool()) {
-                        entries.add(ADItems.PIG_PLUSH);
+                    if (passivePlushiesSubcategory.getEntry("enable_pig_plushie").getValueAsBool()) {
+                        entries.add(ADItems.PIG_PLUSHIE);
                     }
 
-                    if (passivePlushiesSubcategory.getEntry("enable_cow_plush").getValueAsBool()) {
-                        entries.add(ADItems.COW_PLUSH);
+                    if (passivePlushiesSubcategory.getEntry("enable_cow_plushie").getValueAsBool()) {
+                        entries.add(ADItems.COW_PLUSHIE);
                     }
 
                     if (passivePlushiesSubcategory.getEntry("enable_mooshroom_plushies").getValueAsBool()) {
-                        entries.add(ADItems.RED_MOOSHROOM_PLUSH);
-                        entries.add(ADItems.BROWN_MOOSHROOM_PLUSH);
+                        entries.add(ADItems.RED_MOOSHROOM_PLUSHIE);
+                        entries.add(ADItems.BROWN_MOOSHROOM_PLUSHIE);
                     }
 
                     if (passivePlushiesSubcategory.getEntry("enable_sheep_plushies").getValueAsBool()) {
-                        entries.add(ADItems.WHITE_SHEEP_PLUSH);
-                        entries.add(ADItems.ORANGE_SHEEP_PLUSH);
-                        entries.add(ADItems.MAGENTA_SHEEP_PLUSH);
-                        entries.add(ADItems.LIGHT_BLUE_SHEEP_PLUSH);
-                        entries.add(ADItems.YELLOW_SHEEP_PLUSH);
-                        entries.add(ADItems.LIME_SHEEP_PLUSH);
-                        entries.add(ADItems.PINK_SHEEP_PLUSH);
-                        entries.add(ADItems.GRAY_SHEEP_PLUSH);
-                        entries.add(ADItems.LIGHT_GRAY_SHEEP_PLUSH);
-                        entries.add(ADItems.CYAN_SHEEP_PLUSH);
-                        entries.add(ADItems.PURPLE_SHEEP_PLUSH);
-                        entries.add(ADItems.BLUE_SHEEP_PLUSH);
-                        entries.add(ADItems.BROWN_SHEEP_PLUSH);
-                        entries.add(ADItems.RED_SHEEP_PLUSH);
-                        entries.add(ADItems.GREEN_SHEEP_PLUSH);
-                        entries.add(ADItems.BLACK_SHEEP_PLUSH);
-                        entries.add(ADItems.MAROON_SHEEP_PLUSH);
+                        entries.add(ADItems.WHITE_SHEEP_PLUSHIE);
+                        entries.add(ADItems.ORANGE_SHEEP_PLUSHIE);
+                        entries.add(ADItems.MAGENTA_SHEEP_PLUSHIE);
+                        entries.add(ADItems.LIGHT_BLUE_SHEEP_PLUSHIE);
+                        entries.add(ADItems.YELLOW_SHEEP_PLUSHIE);
+                        entries.add(ADItems.LIME_SHEEP_PLUSHIE);
+                        entries.add(ADItems.PINK_SHEEP_PLUSHIE);
+                        entries.add(ADItems.GRAY_SHEEP_PLUSHIE);
+                        entries.add(ADItems.LIGHT_GRAY_SHEEP_PLUSHIE);
+                        entries.add(ADItems.CYAN_SHEEP_PLUSHIE);
+                        entries.add(ADItems.PURPLE_SHEEP_PLUSHIE);
+                        entries.add(ADItems.BLUE_SHEEP_PLUSHIE);
+                        entries.add(ADItems.BROWN_SHEEP_PLUSHIE);
+                        entries.add(ADItems.RED_SHEEP_PLUSHIE);
+                        entries.add(ADItems.GREEN_SHEEP_PLUSHIE);
+                        entries.add(ADItems.BLACK_SHEEP_PLUSHIE);
+                        entries.add(ADItems.MAROON_SHEEP_PLUSHIE);
                     }
 
                     if (passivePlushiesSubcategory.getEntry("enable_horse_plushies").getValueAsBool()) {
-                        entries.add(ADItems.WHITE_HORSE_PLUSH);
-                        entries.add(ADItems.GRAY_HORSE_PLUSH);
-                        entries.add(ADItems.LIGHT_GRAY_HORSE_PLUSH);
-                        entries.add(ADItems.BROWN_HORSE_PLUSH);
-                        entries.add(ADItems.BLACK_HORSE_PLUSH);
+                        entries.add(ADItems.WHITE_HORSE_PLUSHIE);
+                        entries.add(ADItems.GRAY_HORSE_PLUSHIE);
+                        entries.add(ADItems.LIGHT_GRAY_HORSE_PLUSHIE);
+                        entries.add(ADItems.BROWN_HORSE_PLUSHIE);
+                        entries.add(ADItems.BLACK_HORSE_PLUSHIE);
                     }
 
                     if (passivePlushiesSubcategory.getEntry("enable_rabbit_plushies").getValueAsBool()) {
-                        entries.add(ADItems.BROWN_RABBIT_PLUSH);
-                        entries.add(ADItems.WHITE_RABBIT_PLUSH);
-                        entries.add(ADItems.BLACK_RABBIT_PLUSH);
-                        entries.add(ADItems.WHITE_SPLOTCHED_RABBIT_PLUSH);
-                        entries.add(ADItems.GOLD_RABBIT_PLUSH);
-                        entries.add(ADItems.TOAST_RABBIT_PLUSH);
-                        entries.add(ADItems.SALT_RABBIT_PLUSH);
+                        entries.add(ADItems.BROWN_RABBIT_PLUSHIE);
+                        entries.add(ADItems.WHITE_RABBIT_PLUSHIE);
+                        entries.add(ADItems.BLACK_RABBIT_PLUSHIE);
+                        entries.add(ADItems.WHITE_SPLOTCHED_RABBIT_PLUSHIE);
+                        entries.add(ADItems.GOLD_RABBIT_PLUSHIE);
+                        entries.add(ADItems.TOAST_RABBIT_PLUSHIE);
+                        entries.add(ADItems.SALT_RABBIT_PLUSHIE);
                     }
 
                     if (hostilePlushiesSubcategory.getEntry("enable_illager_plushies").getValueAsBool()) {
-                        entries.add(ADItems.PILLAGER_PLUSH);
-                        entries.add(ADItems.VINDICATOR_PLUSH);
-                        entries.add(ADItems.EVOKER_PLUSH);
+                        entries.add(ADItems.PILLAGER_PLUSHIE);
+                        entries.add(ADItems.VINDICATOR_PLUSHIE);
+                        entries.add(ADItems.EVOKER_PLUSHIE);
                     }
 
                     if (passivePlushiesSubcategory.getEntry("enable_villager_plushies").getValueAsBool()) {
-                        entries.add(ADItems.PLAINS_VILLAGER_PLUSH);
-                        entries.add(ADItems.DESERT_VILLAGER_PLUSH);
-                        entries.add(ADItems.JUNGLE_VILLAGER_PLUSH);
-                        entries.add(ADItems.SAVANNA_VILLAGER_PLUSH);
-                        entries.add(ADItems.SNOW_VILLAGER_PLUSH);
-                        entries.add(ADItems.SWAMP_VILLAGER_PLUSH);
-                        entries.add(ADItems.TAIGA_VILLAGER_PLUSH);
-                        entries.add(ADItems.CRIMSON_VILLAGER_PLUSH);
-                        entries.add(ADItems.WARPED_VILLAGER_PLUSH);
+                        entries.add(ADItems.PLAINS_VILLAGER_PLUSHIE);
+                        entries.add(ADItems.DESERT_VILLAGER_PLUSHIE);
+                        entries.add(ADItems.JUNGLE_VILLAGER_PLUSHIE);
+                        entries.add(ADItems.SAVANNA_VILLAGER_PLUSHIE);
+                        entries.add(ADItems.SNOW_VILLAGER_PLUSHIE);
+                        entries.add(ADItems.SWAMP_VILLAGER_PLUSHIE);
+                        entries.add(ADItems.TAIGA_VILLAGER_PLUSHIE);
+                        entries.add(ADItems.CRIMSON_VILLAGER_PLUSHIE);
+                        entries.add(ADItems.WARPED_VILLAGER_PLUSHIE);
                     }
 
-                    if (passivePlushiesSubcategory.getEntry("enable_wandering_trader_plush").getValueAsBool()) {
-                        entries.add(ADItems.WANDERING_TRADER_PLUSH);
+                    if (passivePlushiesSubcategory.getEntry("enable_wandering_trader_plushie").getValueAsBool()) {
+                        entries.add(ADItems.WANDERING_TRADER_PLUSHIE);
                     }
 
                     if (hostilePlushiesSubcategory.getEntry("enable_zombie_villager_plushies").getValueAsBool()) {
-                        entries.add(ADItems.PLAINS_ZOMBIE_VILLAGER_PLUSH);
-                        entries.add(ADItems.DESERT_ZOMBIE_VILLAGER_PLUSH);
-                        entries.add(ADItems.JUNGLE_ZOMBIE_VILLAGER_PLUSH);
-                        entries.add(ADItems.SAVANNA_ZOMBIE_VILLAGER_PLUSH);
-                        entries.add(ADItems.SNOW_ZOMBIE_VILLAGER_PLUSH);
-                        entries.add(ADItems.SWAMP_ZOMBIE_VILLAGER_PLUSH);
-                        entries.add(ADItems.TAIGA_ZOMBIE_VILLAGER_PLUSH);
-                        entries.add(ADItems.CRIMSON_ZOMBIE_VILLAGER_PLUSH);
-                        entries.add(ADItems.WARPED_ZOMBIE_VILLAGER_PLUSH);
+                        entries.add(ADItems.PLAINS_ZOMBIE_VILLAGER_PLUSHIE);
+                        entries.add(ADItems.DESERT_ZOMBIE_VILLAGER_PLUSHIE);
+                        entries.add(ADItems.JUNGLE_ZOMBIE_VILLAGER_PLUSHIE);
+                        entries.add(ADItems.SAVANNA_ZOMBIE_VILLAGER_PLUSHIE);
+                        entries.add(ADItems.SNOW_ZOMBIE_VILLAGER_PLUSHIE);
+                        entries.add(ADItems.SWAMP_ZOMBIE_VILLAGER_PLUSHIE);
+                        entries.add(ADItems.TAIGA_ZOMBIE_VILLAGER_PLUSHIE);
+                        entries.add(ADItems.CRIMSON_ZOMBIE_VILLAGER_PLUSHIE);
+                        entries.add(ADItems.WARPED_ZOMBIE_VILLAGER_PLUSHIE);
                     }
 
-                    if (hostilePlushiesSubcategory.getEntry("enable_witch_plush").getValueAsBool()) {
-                        entries.add(ADItems.WITCH_PLUSH);
+                    if (hostilePlushiesSubcategory.getEntry("enable_witch_plushie").getValueAsBool()) {
+                        entries.add(ADItems.WITCH_PLUSHIE);
                     }
 
-                    if (passivePlushiesSubcategory.getEntry("enable_pufferfish_plush").getValueAsBool()) {
-                        entries.add(ADItems.PUFFERFISH_PLUSH);
+                    if (passivePlushiesSubcategory.getEntry("enable_pufferfish_plushie").getValueAsBool()) {
+                        entries.add(ADItems.PUFFERFISH_PLUSHIE);
                     }
 
-                    if (hostilePlushiesSubcategory.getEntry("enable_wither_plush").getValueAsBool()) {
-                        entries.add(ADItems.WITHER_PLUSH);
+                    if (hostilePlushiesSubcategory.getEntry("enable_wither_plushie").getValueAsBool()) {
+                        entries.add(ADItems.WITHER_PLUSHIE);
                     }
 
-                    if (neutralPlushiesSubcategory.getEntry("enable_polar_bear_plush").getValueAsBool()) {
-                        entries.add(ADItems.POLAR_BEAR_PLUSH);
+                    if (neutralPlushiesSubcategory.getEntry("enable_polar_bear_plushie").getValueAsBool()) {
+                        entries.add(ADItems.POLAR_BEAR_PLUSHIE);
                     }
 
-                    if (passivePlushiesSubcategory.getEntry("enable_allay_plush").getValueAsBool()) {
-                        entries.add(ADItems.ALLAY_PLUSH);
+                    if (passivePlushiesSubcategory.getEntry("enable_allay_plushie").getValueAsBool()) {
+                        entries.add(ADItems.ALLAY_PLUSHIE);
                     }
 
-                    if (hostilePlushiesSubcategory.getEntry("enable_vex_plush").getValueAsBool()) {
-                        entries.add(ADItems.VEX_PLUSH);
+                    if (hostilePlushiesSubcategory.getEntry("enable_vex_plushie").getValueAsBool()) {
+                        entries.add(ADItems.VEX_PLUSHIE);
                     }
 
-                    if (hostilePlushiesSubcategory.getEntry("enable_ravager_plush").getValueAsBool()) {
-                        entries.add(ADItems.RAVAGER_PLUSH);
+                    if (hostilePlushiesSubcategory.getEntry("enable_ravager_plushie").getValueAsBool()) {
+                        entries.add(ADItems.RAVAGER_PLUSHIE);
                     }
 
-					if (hostilePlushiesSubcategory.getEntry("enable_shulker_plush").getValueAsBool()) {
-                        entries.add(ADItems.SHULKER_PLUSH);
+					if (hostilePlushiesSubcategory.getEntry("enable_shulker_plushie").getValueAsBool()) {
+                        entries.add(ADItems.SHULKER_PLUSHIE);
                     }
 
-					if (passivePlushiesSubcategory.getEntry("enable_camel_plush").getValueAsBool()) {
-                        entries.add(ADItems.CAMEL_PLUSH);
+					if (passivePlushiesSubcategory.getEntry("enable_camel_plushie").getValueAsBool()) {
+                        entries.add(ADItems.CAMEL_PLUSHIE);
                     }
 
                     if (farmingCategory.getEntry("enable_wooden_planter_boxes").getValueAsBool()) {

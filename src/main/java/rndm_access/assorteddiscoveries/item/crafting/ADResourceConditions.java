@@ -47,28 +47,28 @@ public class ADResourceConditions {
         ADJsonConfigCategory hostilePlushiesSubcategory = buildingCategory
                 .getSubcategory("hostile_plushies");
 
-        registerEntry("enable_allay_plush", passivePlushiesSubcategory
-                .getEntry("enable_allay_plush").getValueAsBool());
-        registerEntry("enable_bat_plush", passivePlushiesSubcategory
-                .getEntry("enable_bat_plush").getValueAsBool());
-        registerEntry("enable_camel_plush", passivePlushiesSubcategory
-                .getEntry("enable_camel_plush").getValueAsBool());
+        registerEntry("enable_allay_plushie", passivePlushiesSubcategory
+                .getEntry("enable_allay_plushie").getValueAsBool());
+        registerEntry("enable_bat_plushie", passivePlushiesSubcategory
+                .getEntry("enable_bat_plushie").getValueAsBool());
+        registerEntry("enable_camel_plushie", passivePlushiesSubcategory
+                .getEntry("enable_camel_plushie").getValueAsBool());
         registerEntry("enable_cat_plushies", passivePlushiesSubcategory
                 .getEntry("enable_cat_plushies").getValueAsBool());
-        registerEntry("enable_chicken_plush", passivePlushiesSubcategory
-                .getEntry("enable_chicken_plush").getValueAsBool());
-        registerEntry("enable_cow_plush", passivePlushiesSubcategory
-                .getEntry("enable_cow_plush").getValueAsBool());
+        registerEntry("enable_chicken_plushie", passivePlushiesSubcategory
+                .getEntry("enable_chicken_plushie").getValueAsBool());
+        registerEntry("enable_cow_plushie", passivePlushiesSubcategory
+                .getEntry("enable_cow_plushie").getValueAsBool());
         registerEntry("enable_horse_plushies", passivePlushiesSubcategory
                 .getEntry("enable_horse_plushies").getValueAsBool());
         registerEntry("enable_mooshroom_plushies", passivePlushiesSubcategory
                 .getEntry("enable_mooshroom_plushies").getValueAsBool());
-        registerEntry("enable_ocelot_plush", passivePlushiesSubcategory
-                .getEntry("enable_ocelot_plush").getValueAsBool());
-        registerEntry("enable_pig_plush", passivePlushiesSubcategory
-                .getEntry("enable_pig_plush").getValueAsBool());
-        registerEntry("enable_pufferfish_plush", passivePlushiesSubcategory
-                .getEntry("enable_pufferfish_plush").getValueAsBool());
+        registerEntry("enable_ocelot_plushie", passivePlushiesSubcategory
+                .getEntry("enable_ocelot_plushie").getValueAsBool());
+        registerEntry("enable_pig_plushie", passivePlushiesSubcategory
+                .getEntry("enable_pig_plushie").getValueAsBool());
+        registerEntry("enable_pufferfish_plushie", passivePlushiesSubcategory
+                .getEntry("enable_pufferfish_plushie").getValueAsBool());
         registerEntry("enable_rabbit_plushies", passivePlushiesSubcategory
                 .getEntry("enable_rabbit_plushies").getValueAsBool());
         registerEntry("enable_sheep_plushies", passivePlushiesSubcategory
@@ -79,54 +79,54 @@ public class ADResourceConditions {
                 .getEntry("enable_strider_plushies").getValueAsBool());
         registerEntry("enable_villager_plushies", passivePlushiesSubcategory
                 .getEntry("enable_villager_plushies").getValueAsBool());
-        registerEntry("enable_wandering_trader_plush", passivePlushiesSubcategory
-                .getEntry("enable_wandering_trader_plush").getValueAsBool());
-        registerEntry("enable_bee_plush", neutralPlushiesSubcategory
-                .getEntry("enable_bee_plush").getValueAsBool());
-        registerEntry("enable_cave_spider_plush", neutralPlushiesSubcategory
-                .getEntry("enable_cave_spider_plush").getValueAsBool());
-        registerEntry("enable_enderman_plush", neutralPlushiesSubcategory
-                .getEntry("enable_enderman_plush").getValueAsBool());
+        registerEntry("enable_wandering_trader_plushie", passivePlushiesSubcategory
+                .getEntry("enable_wandering_trader_plushie").getValueAsBool());
+        registerEntry("enable_bee_plushie", neutralPlushiesSubcategory
+                .getEntry("enable_bee_plushie").getValueAsBool());
+        registerEntry("enable_cave_spider_plushie", neutralPlushiesSubcategory
+                .getEntry("enable_cave_spider_plushie").getValueAsBool());
+        registerEntry("enable_enderman_plushie", neutralPlushiesSubcategory
+                .getEntry("enable_enderman_plushie").getValueAsBool());
         registerEntry("enable_piglin_plushies", neutralPlushiesSubcategory
                 .getEntry("enable_piglin_plushies").getValueAsBool());
-        registerEntry("enable_polar_bear_plush", neutralPlushiesSubcategory
-                .getEntry("enable_polar_bear_plush").getValueAsBool());
-        registerEntry("enable_spider_plush", neutralPlushiesSubcategory
-                .getEntry("enable_spider_plush").getValueAsBool());
-        registerEntry("enable_pale_wolf_plush", neutralPlushiesSubcategory
-                .getEntry("enable_pale_wolf_plush").getValueAsBool());
-        registerEntry("enable_blaze_plush", hostilePlushiesSubcategory
-                .getEntry("enable_blaze_plush").getValueAsBool());
-        registerEntry("enable_creeper_plush", hostilePlushiesSubcategory
-                .getEntry("enable_creeper_plush").getValueAsBool());
-        registerEntry("enable_ghast_plush", hostilePlushiesSubcategory
-                .getEntry("enable_ghast_plush").getValueAsBool());
-        registerEntry("enable_guardian_plush", hostilePlushiesSubcategory
-                .getEntry("enable_guardian_plush").getValueAsBool());
+        registerEntry("enable_polar_bear_plushie", neutralPlushiesSubcategory
+                .getEntry("enable_polar_bear_plushie").getValueAsBool());
+        registerEntry("enable_spider_plushie", neutralPlushiesSubcategory
+                .getEntry("enable_spider_plushie").getValueAsBool());
+        registerEntry("enable_pale_wolf_plushie", neutralPlushiesSubcategory
+                .getEntry("enable_pale_wolf_plushie").getValueAsBool());
+        registerEntry("enable_blaze_plushie", hostilePlushiesSubcategory
+                .getEntry("enable_blaze_plushie").getValueAsBool());
+        registerEntry("enable_creeper_plushie", hostilePlushiesSubcategory
+                .getEntry("enable_creeper_plushie").getValueAsBool());
+        registerEntry("enable_ghast_plushie", hostilePlushiesSubcategory
+                .getEntry("enable_ghast_plushie").getValueAsBool());
+        registerEntry("enable_guardian_plushie", hostilePlushiesSubcategory
+                .getEntry("enable_guardian_plushie").getValueAsBool());
         registerEntry("enable_hoglin_plushies", hostilePlushiesSubcategory
                 .getEntry("enable_hoglin_plushies").getValueAsBool());
         registerEntry("enable_illager_plushies", hostilePlushiesSubcategory
                 .getEntry("enable_illager_plushies").getValueAsBool());
-        registerEntry("enable_magma_cube_plush", hostilePlushiesSubcategory
-                .getEntry("enable_magma_cube_plush").getValueAsBool());
-        registerEntry("enable_phantom_plush", hostilePlushiesSubcategory
-                .getEntry("enable_phantom_plush").getValueAsBool());
-        registerEntry("enable_ravager_plush", hostilePlushiesSubcategory
-                .getEntry("enable_ravager_plush").getValueAsBool());
-        registerEntry("enable_shulker_plush", hostilePlushiesSubcategory
-                .getEntry("enable_shulker_plush").getValueAsBool());
-        registerEntry("enable_skeleton_plush", hostilePlushiesSubcategory
-                .getEntry("enable_skeleton_plush").getValueAsBool());
-        registerEntry("enable_slime_plush", hostilePlushiesSubcategory
-                .getEntry("enable_slime_plush").getValueAsBool());
-        registerEntry("enable_vex_plush", hostilePlushiesSubcategory
-                .getEntry("enable_vex_plush").getValueAsBool());
-        registerEntry("enable_witch_plush", hostilePlushiesSubcategory
-                .getEntry("enable_witch_plush").getValueAsBool());
-        registerEntry("enable_wither_plush", hostilePlushiesSubcategory
-                .getEntry("enable_wither_plush").getValueAsBool());
-        registerEntry("enable_zombie_plush", hostilePlushiesSubcategory
-                .getEntry("enable_zombie_plush").getValueAsBool());
+        registerEntry("enable_magma_cube_plushie", hostilePlushiesSubcategory
+                .getEntry("enable_magma_cube_plushie").getValueAsBool());
+        registerEntry("enable_phantom_plushie", hostilePlushiesSubcategory
+                .getEntry("enable_phantom_plushie").getValueAsBool());
+        registerEntry("enable_ravager_plushie", hostilePlushiesSubcategory
+                .getEntry("enable_ravager_plushie").getValueAsBool());
+        registerEntry("enable_shulker_plushie", hostilePlushiesSubcategory
+                .getEntry("enable_shulker_plushie").getValueAsBool());
+        registerEntry("enable_skeleton_plushie", hostilePlushiesSubcategory
+                .getEntry("enable_skeleton_plushie").getValueAsBool());
+        registerEntry("enable_slime_plushie", hostilePlushiesSubcategory
+                .getEntry("enable_slime_plushie").getValueAsBool());
+        registerEntry("enable_vex_plushie", hostilePlushiesSubcategory
+                .getEntry("enable_vex_plushie").getValueAsBool());
+        registerEntry("enable_witch_plushie", hostilePlushiesSubcategory
+                .getEntry("enable_witch_plushie").getValueAsBool());
+        registerEntry("enable_wither_plushie", hostilePlushiesSubcategory
+                .getEntry("enable_wither_plushie").getValueAsBool());
+        registerEntry("enable_zombie_plushie", hostilePlushiesSubcategory
+                .getEntry("enable_zombie_plushie").getValueAsBool());
         registerEntry("enable_zombie_villager_plushies", hostilePlushiesSubcategory
                 .getEntry("enable_zombie_villager_plushies").getValueAsBool());
         registerEntry("enable_smoky_quartz_blocks", buildingCategory

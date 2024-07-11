@@ -25,7 +25,7 @@
       "rndm_access.assorteddiscoveries.AssortedDiscoveriesClient"
     ],
     "modmenu": [
-      "rndm_access.assorteddiscoveries.config.ADModMenuIntegration"
+      "rndm_access.assorteddiscoveries.config.ModMenuIntegration"
     ]
   },
   "mixins": [

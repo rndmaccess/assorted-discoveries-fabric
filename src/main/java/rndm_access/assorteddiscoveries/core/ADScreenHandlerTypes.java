@@ -9,16 +9,19 @@ import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.block_screen.ADWoodcutterScreenHandler;
 
 public class ADScreenHandlerTypes {
-    public static final ScreenHandlerType<ADWoodcutterScreenHandler> WOODCUTTER =
-            new ScreenHandlerType<>(ADWoodcutterScreenHandler::new, FeatureSet.empty());
+    public static final ScreenHandlerType<ADWoodcutterScreenHandler> WOODCUTTER;
 
-    private static void registerScreenHandlerType(String path, ScreenHandlerType<?> type) {
+    private static void register(String path, ScreenHandlerType<?> type) {
         Registry.register(Registries.SCREEN_HANDLER, ADReference.makeModId(path), type);
     }
 
     public static void registerScreenHandlerTypes() {
-        registerScreenHandlerType("woodcutter", WOODCUTTER);
+        register("woodcutter", WOODCUTTER);
 
         AssortedDiscoveries.LOGGER.info("Registered screen handler types.");
+    }
+
+    static {
+        WOODCUTTER = new ScreenHandlerType<>(ADWoodcutterScreenHandler::new, FeatureSet.empty());
     }
 }

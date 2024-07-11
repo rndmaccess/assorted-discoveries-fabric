@@ -22,562 +22,435 @@ import rndm_access.assorteddiscoveries.block.*;
 import java.util.function.ToIntFunction;
 
 public class ADBlocks {
-    public static final Block BAT_PLUSHIE = new ADBatPlushieBlock(AbstractBlock.Settings.create().burnable()
-            .mapColor(MapColor.CLEAR).strength(0.2F).sounds(BlockSoundGroup.WOOL));
-    public static final Block BLAZE_PLUSHIE = new ADBlazePlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block CAVE_SPIDER_PLUSHIE = new ADCaveSpiderPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block CHICKEN_PLUSHIE = new ADChickenPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block COW_PLUSHIE = new ADCowPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block CREEPER_PLUSHIE = new ADCreeperPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block ENDERMAN_PLUSHIE = new ADEndermanPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block GHAST_PLUSHIE = new ADGhastPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block GUARDIAN_PLUSHIE = new ADGuardianPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block WHITE_HORSE_PLUSHIE = new ADHorsePlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block GRAY_HORSE_PLUSHIE = new ADHorsePlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block LIGHT_GRAY_HORSE_PLUSHIE = new ADHorsePlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block BROWN_HORSE_PLUSHIE = new ADHorsePlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block BLACK_HORSE_PLUSHIE = new ADHorsePlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block MAGMA_CUBE_PLUSHIE = new ADCubePlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE)
-            .pistonBehavior(PistonBehavior.DESTROY));
-    public static final Block RED_MOOSHROOM_PLUSHIE = new ADMooshroomPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block BROWN_MOOSHROOM_PLUSHIE = new ADMooshroomPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block OCELOT_PLUSHIE = new ADCatPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block TABBY_CAT_PLUSHIE = new ADCatPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block TUXEDO_CAT_PLUSHIE = new ADCatPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block RED_CAT_PLUSHIE = new ADCatPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block SIAMESE_CAT_PLUSHIE = new ADCatPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block BRITISH_SHORTHAIR_CAT_PLUSHIE = new ADCatPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block CALICO_CAT_PLUSHIE = new ADCatPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block PERSIAN_CAT_PLUSHIE = new ADCatPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block RAGDOLL_CAT_PLUSHIE = new ADCatPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block WHITE_CAT_PLUSHIE = new ADCatPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block JELLIE_CAT_PLUSHIE = new ADCatPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block BLACK_CAT_PLUSHIE = new ADCatPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block PIG_PLUSHIE = new ADPigPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block BROWN_RABBIT_PLUSHIE = new ADRabbitPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block WHITE_RABBIT_PLUSHIE = new ADRabbitPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block BLACK_RABBIT_PLUSHIE = new ADRabbitPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block WHITE_SPLOTCHED_RABBIT_PLUSHIE = new ADRabbitPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block GOLD_RABBIT_PLUSHIE = new ADRabbitPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block TOAST_RABBIT_PLUSHIE = new ADRabbitPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block SALT_RABBIT_PLUSHIE = new ADRabbitPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block WHITE_SHEEP_PLUSHIE = new ADSheepPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block ORANGE_SHEEP_PLUSHIE = new ADSheepPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block MAGENTA_SHEEP_PLUSHIE = new ADSheepPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block LIGHT_BLUE_SHEEP_PLUSHIE = new ADSheepPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block YELLOW_SHEEP_PLUSHIE = new ADSheepPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block LIME_SHEEP_PLUSHIE = new ADSheepPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block PINK_SHEEP_PLUSHIE = new ADSheepPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block GRAY_SHEEP_PLUSHIE = new ADSheepPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block LIGHT_GRAY_SHEEP_PLUSHIE = new ADSheepPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block CYAN_SHEEP_PLUSHIE = new ADSheepPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block PURPLE_SHEEP_PLUSHIE = new ADSheepPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block BLUE_SHEEP_PLUSHIE = new ADSheepPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block BROWN_SHEEP_PLUSHIE = new ADSheepPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block GREEN_SHEEP_PLUSHIE = new ADSheepPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block RED_SHEEP_PLUSHIE = new ADSheepPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block BLACK_SHEEP_PLUSHIE = new ADSheepPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block MAROON_SHEEP_PLUSHIE = new ADSheepPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block SKELETON_PLUSHIE = new ADSkeletonPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block SLIME_PLUSHIE = new ADCubePlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE)
-            .pistonBehavior(PistonBehavior.DESTROY));
-    public static final Block SPIDER_PLUSHIE = new ADSpiderPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block SQUID_PLUSHIE = new ADSquidPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block GLOW_SQUID_PLUSHIE = new ADSquidPlushieBlock(AbstractBlock.Settings.create().burnable()
-            .mapColor(MapColor.CLEAR).strength(0.2F).sounds(BlockSoundGroup.WOOL).luminance((state) -> 10));
-    public static final Block BEE_PLUSHIE = new ADBeePlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block PLAINS_VILLAGER_PLUSHIE = new ADVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block DESERT_VILLAGER_PLUSHIE = new ADDesertVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block JUNGLE_VILLAGER_PLUSHIE = new ADVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block SAVANNA_VILLAGER_PLUSHIE = new ADVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block SNOW_VILLAGER_PLUSHIE = new ADShortHatVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block SWAMP_VILLAGER_PLUSHIE = new ADShortHatVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block TAIGA_VILLAGER_PLUSHIE = new ADVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block CRIMSON_VILLAGER_PLUSHIE = new ADVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block WARPED_VILLAGER_PLUSHIE = new ADVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block WANDERING_TRADER_PLUSHIE = new ADShortHatVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block PLAINS_ZOMBIE_VILLAGER_PLUSHIE = new ADZombieVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block DESERT_ZOMBIE_VILLAGER_PLUSHIE = new ADDesertZombieVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block JUNGLE_ZOMBIE_VILLAGER_PLUSHIE = new ADZombieVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block SAVANNA_ZOMBIE_VILLAGER_PLUSHIE = new ADZombieVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block SNOW_ZOMBIE_VILLAGER_PLUSHIE = new ADShortHatZombieVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block SWAMP_ZOMBIE_VILLAGER_PLUSHIE = new ADShortHatZombieVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block TAIGA_ZOMBIE_VILLAGER_PLUSHIE = new ADZombieVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block CRIMSON_ZOMBIE_VILLAGER_PLUSHIE = new ADZombieVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block WARPED_ZOMBIE_VILLAGER_PLUSHIE = new ADZombieVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block WITCH_PLUSHIE = new ADWitchPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block PALE_WOLF_PLUSHIE = new ADWolfPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block ZOMBIE_PLUSHIE = new ADZombiePlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block PIGLIN_PLUSHIE = new ADPiglinPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block ZOMBIFIED_PIGLIN_PLUSHIE = new ADZombiePlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block PUFFERFISH_PLUSHIE = new ADPufferfishPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block WITHER_PLUSHIE = new ADWitherPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block STRIDER_PLUSHIE = new ADStriderPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block SHIVERING_STRIDER_PLUSHIE = new ADStriderPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block PHANTOM_PLUSHIE = new ADPhantomPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block HOGLIN_PLUSHIE = new ADHoglinPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block ZOGLIN_PLUSHIE = new ADHoglinPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block POLAR_BEAR_PLUSHIE = new ADPolarBearPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block ALLAY_PLUSHIE = new ADAllayPlushieBlock(AbstractBlock.Settings.copy(GLOW_SQUID_PLUSHIE));
-    public static final Block PILLAGER_PLUSHIE = new ADVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block VINDICATOR_PLUSHIE = new ADVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block EVOKER_PLUSHIE = new ADVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block RAVAGER_PLUSHIE = new ADHoglinPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block SHULKER_PLUSHIE = new ADShulkerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
-    public static final Block VEX_PLUSHIE = new ADAllayPlushieBlock(AbstractBlock.Settings.copy(GLOW_SQUID_PLUSHIE));
-    public static final Block NETHER_SMOKY_QUARTZ_ORE = new ExperienceDroppingBlock(UniformIntProvider.create(2, 5),
-            AbstractBlock.Settings.copy(Blocks.NETHER_QUARTZ_ORE));
-    public static final Block SMOKY_QUARTZ_BLOCK = new Block(AbstractBlock.Settings.create().mapColor(MapColor.BLACK)
-            .requiresTool().strength(0.8F));
-    public static final Block CHISELED_SMOKY_QUARTZ_BLOCK = new Block(AbstractBlock.Settings.copy(SMOKY_QUARTZ_BLOCK));
-    public static final Block SMOKY_QUARTZ_BRICKS = new Block(AbstractBlock.Settings.copy(SMOKY_QUARTZ_BLOCK));
-    public static final Block SMOKY_QUARTZ_BRICK_STAIRS = new StairsBlock(SMOKY_QUARTZ_BLOCK.getDefaultState(),
-            AbstractBlock.Settings.copy(SMOKY_QUARTZ_BLOCK));
-    public static final Block SMOKY_QUARTZ_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(SMOKY_QUARTZ_BLOCK));
-    public static final Block SMOKY_QUARTZ_BRICK_WALL = new WallBlock(AbstractBlock.Settings.copy(SMOKY_QUARTZ_BLOCK));
-    public static final Block SMOKY_QUARTZ_PILLAR = new PillarBlock(AbstractBlock.Settings.copy(SMOKY_QUARTZ_BLOCK));
-    public static final Block SMOKY_QUARTZ_STAIRS = new StairsBlock(SMOKY_QUARTZ_BLOCK.getDefaultState(),
-            AbstractBlock.Settings.copy(SMOKY_QUARTZ_BLOCK));
-    public static final Block SMOKY_QUARTZ_SLAB = new SlabBlock(AbstractBlock.Settings.copy(SMOKY_QUARTZ_BLOCK));
-    public static final Block SMOKY_QUARTZ_WALL = new WallBlock(AbstractBlock.Settings.copy(SMOKY_QUARTZ_BLOCK));
-    public static final Block SMOOTH_SMOKY_QUARTZ = new Block(AbstractBlock.Settings.copy(SMOKY_QUARTZ_BLOCK));
-    public static final Block SMOOTH_SMOKY_QUARTZ_STAIRS = new StairsBlock(SMOKY_QUARTZ_BLOCK.getDefaultState(),
-            AbstractBlock.Settings.copy(SMOKY_QUARTZ_BLOCK));
-    public static final Block SMOOTH_SMOKY_QUARTZ_SLAB = new SlabBlock(AbstractBlock.Settings.copy(SMOKY_QUARTZ_BLOCK));
-    public static final Block SMOOTH_SMOKY_QUARTZ_WALL = new WallBlock(AbstractBlock.Settings.copy(SMOKY_QUARTZ_BLOCK));
-    public static final Block CRACKED_STONE_BRICK_STAIRS = new StairsBlock(Blocks.CRACKED_STONE_BRICKS.getDefaultState(),
-            AbstractBlock.Settings.copy(Blocks.CRACKED_STONE_BRICKS));
-    public static final Block CRACKED_STONE_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(Blocks.CRACKED_STONE_BRICKS));
-    public static final Block CRACKED_STONE_BRICK_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.CRACKED_STONE_BRICKS));
-    public static final Block BLUEBERRY_BUSH = new ADBlueberryBushBlock(AbstractBlock.Settings.copy(Blocks.WHEAT));
-    public static final Block GREEN_ONIONS = new ADGreenOnionsBlock(AbstractBlock.Settings.copy(Blocks.WHEAT));
-    public static final Block OAK_PLANTER_BOX = planterBoxBlock(Blocks.OAK_PLANKS.getDefaultMapColor(),
-            BlockSoundGroup.WOOD);
-    public static final Block SPRUCE_PLANTER_BOX = planterBoxBlock(Blocks.SPRUCE_PLANKS.getDefaultMapColor(),
-            BlockSoundGroup.WOOD);
-    public static final Block BIRCH_PLANTER_BOX = planterBoxBlock(Blocks.BIRCH_PLANKS.getDefaultMapColor(),
-            BlockSoundGroup.WOOD);
-    public static final Block JUNGLE_PLANTER_BOX = planterBoxBlock(Blocks.JUNGLE_PLANKS.getDefaultMapColor(),
-            BlockSoundGroup.WOOD);
-    public static final Block ACACIA_PLANTER_BOX = planterBoxBlock(Blocks.ACACIA_PLANKS.getDefaultMapColor(),
-            BlockSoundGroup.WOOD);
-    public static final Block DARK_OAK_PLANTER_BOX = planterBoxBlock(Blocks.DARK_OAK_PLANKS.getDefaultMapColor(),
-            BlockSoundGroup.WOOD);
-    public static final Block MANGROVE_PLANTER_BOX = planterBoxBlock(Blocks.MANGROVE_PLANKS.getDefaultMapColor(),
-            BlockSoundGroup.WOOD);
-    public static final Block CHERRY_PLANTER_BOX = planterBoxBlock(Blocks.CHERRY_PLANKS.getDefaultMapColor(),
-            BlockSoundGroup.CHERRY_WOOD);
-    public static final Block CRIMSON_PLANTER_BOX = netherPlanterBoxBlock(Blocks.CRIMSON_PLANKS.getDefaultMapColor());
-    public static final Block WARPED_PLANTER_BOX = netherPlanterBoxBlock(Blocks.WARPED_PLANKS.getDefaultMapColor());
-    public static final Block OAK_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS));
-    public static final Block SPRUCE_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.SPRUCE_PLANKS));
-    public static final Block BIRCH_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.BIRCH_PLANKS));
-    public static final Block JUNGLE_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.JUNGLE_PLANKS));
-    public static final Block ACACIA_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.ACACIA_PLANKS));
-    public static final Block DARK_OAK_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.DARK_OAK_PLANKS));
-    public static final Block MANGROVE_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.MANGROVE_PLANKS));
-    public static final Block CRIMSON_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.CRIMSON_PLANKS));
-    public static final Block WARPED_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.WARPED_PLANKS));
-    public static final Block CHERRY_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.CHERRY_PLANKS));
-    public static final Block STRIPPED_OAK_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS));
-    public static final Block STRIPPED_SPRUCE_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.SPRUCE_PLANKS));
-    public static final Block STRIPPED_BIRCH_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.BIRCH_PLANKS));
-    public static final Block STRIPPED_JUNGLE_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.JUNGLE_PLANKS));
-    public static final Block STRIPPED_ACACIA_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.ACACIA_PLANKS));
-    public static final Block STRIPPED_DARK_OAK_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.DARK_OAK_PLANKS));
-    public static final Block STRIPPED_MANGROVE_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.MANGROVE_PLANKS));
-    public static final Block STRIPPED_CRIMSON_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.CRIMSON_PLANKS));
-    public static final Block STRIPPED_WARPED_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.WARPED_PLANKS));
-    public static final Block STRIPPED_CHERRY_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.CHERRY_PLANKS));
-    public static final Block OAK_ROPE_LADDER = ropeLadderBlock();
-    public static final Block SPRUCE_ROPE_LADDER = ropeLadderBlock();
-    public static final Block BIRCH_ROPE_LADDER = ropeLadderBlock();
-    public static final Block JUNGLE_ROPE_LADDER = ropeLadderBlock();
-    public static final Block ACACIA_ROPE_LADDER = ropeLadderBlock();
-    public static final Block DARK_OAK_ROPE_LADDER = ropeLadderBlock();
-    public static final Block CRIMSON_ROPE_LADDER = ropeLadderBlock();
-    public static final Block WARPED_ROPE_LADDER = ropeLadderBlock();
-    public static final Block MANGROVE_ROPE_LADDER = ropeLadderBlock();
-    public static final Block CHERRY_ROPE_LADDER = ropeLadderBlock();
-    public static final Block IRON_LADDER = new LadderBlock(AbstractBlock.Settings.create().mapColor(MapColor.IRON_GRAY)
-            .requiresTool().strength(5.0F).sounds(BlockSoundGroup.METAL).nonOpaque());
-    public static final Block SNOW_BRICKS = new Block(AbstractBlock.Settings.create().mapColor(MapColor.WHITE)
-            .strength(0.4F).requiresTool().sounds(BlockSoundGroup.SNOW));
-    public static final Block SNOW_BRICK_STAIRS = new StairsBlock(ADBlocks.SNOW_BRICKS.getDefaultState(),
-            AbstractBlock.Settings.copy(SNOW_BRICKS));
-    public static final Block SNOW_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(SNOW_BRICKS));
-    public static final Block SNOW_BRICK_WALL = new WallBlock(AbstractBlock.Settings.copy(SNOW_BRICKS));
-    public static final Block PACKED_SNOW = new Block(AbstractBlock.Settings.create().mapColor(MapColor.WHITE)
-            .strength(0.6F).requiresTool().sounds(BlockSoundGroup.SNOW));
-    public static final Block PACKED_SNOW_STAIRS = new StairsBlock(ADBlocks.PACKED_SNOW.getDefaultState(),
-            AbstractBlock.Settings.copy(SNOW_BRICKS));
-    public static final Block PACKED_SNOW_SLAB = new SlabBlock(AbstractBlock.Settings.copy(PACKED_SNOW));
-    public static final Block PACKED_SNOW_WALL = new WallBlock(AbstractBlock.Settings.copy(PACKED_SNOW));
-    public static final Block PURPLE_MUSHROOM = new MushroomPlantBlock(ADTreeConfiguredFeatures.HUGE_PURPLE_MUSHROOM,
-            AbstractBlock.Settings.create().mapColor(MapColor.PURPLE).pistonBehavior(PistonBehavior.DESTROY)
-                    .noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS)
-                    .postProcess(ADBlocks::always));
-    public static final Block PURPLE_MUSHROOM_BLOCK = new ADPurpleMushroomBlock(AbstractBlock.Settings.copy(Blocks.RED_MUSHROOM_BLOCK));
-    public static final Block WOODCUTTER = new ADWoodcutterBlock(AbstractBlock.Settings.create()
-            .mapColor(MapColor.OAK_TAN).strength(2.5F).sounds(BlockSoundGroup.WOOD).burnable());
-    public static final Block WHITE_CAMPFIRE = dyedCampfireBlock(ADParticleTypes.WHITE_EMBER);
-    public static final Block ORANGE_CAMPFIRE = dyedCampfireBlock(ADParticleTypes.ORANGE_EMBER);
-    public static final Block MAGENTA_CAMPFIRE = dyedCampfireBlock(ADParticleTypes.MAGENTA_EMBER);
-    public static final Block LIGHT_BLUE_CAMPFIRE = dyedCampfireBlock(ADParticleTypes.LIGHT_BLUE_EMBER);
-    public static final Block YELLOW_CAMPFIRE = dyedCampfireBlock(ADParticleTypes.YELLOW_EMBER);
-    public static final Block LIME_CAMPFIRE = dyedCampfireBlock(ADParticleTypes.LIME_EMBER);
-    public static final Block PINK_CAMPFIRE = dyedCampfireBlock(ADParticleTypes.PINK_EMBER);
-    public static final Block GRAY_CAMPFIRE = dyedCampfireBlock(ADParticleTypes.GRAY_EMBER);
-    public static final Block LIGHT_GRAY_CAMPFIRE = dyedCampfireBlock(ADParticleTypes.LIGHT_GRAY_EMBER);
-    public static final Block CYAN_CAMPFIRE = dyedCampfireBlock(ADParticleTypes.CYAN_EMBER);
-    public static final Block PURPLE_CAMPFIRE = dyedCampfireBlock(ADParticleTypes.PURPLE_EMBER);
-    public static final Block BLUE_CAMPFIRE = dyedCampfireBlock(ADParticleTypes.BLUE_EMBER);
-    public static final Block BROWN_CAMPFIRE = dyedCampfireBlock(ADParticleTypes.BROWN_EMBER);
-    public static final Block GREEN_CAMPFIRE = dyedCampfireBlock(ADParticleTypes.GREEN_EMBER);
-    public static final Block RED_CAMPFIRE = dyedCampfireBlock(ADParticleTypes.RED_EMBER);
-    public static final Block BLACK_CAMPFIRE = dyedCampfireBlock(ADParticleTypes.BLACK_EMBER);
-    public static final Block MAROON_CAMPFIRE = dyedCampfireBlock(ADParticleTypes.MAROON_EMBER);
-    public static final Block WHITE_LANTERN = lanternBlock();
-    public static final Block ORANGE_LANTERN = lanternBlock();
-    public static final Block MAGENTA_LANTERN = lanternBlock();
-    public static final Block LIGHT_BLUE_LANTERN = lanternBlock();
-    public static final Block YELLOW_LANTERN = lanternBlock();
-    public static final Block LIME_LANTERN = lanternBlock();
-    public static final Block PINK_LANTERN = lanternBlock();
-    public static final Block GRAY_LANTERN = lanternBlock();
-    public static final Block LIGHT_GRAY_LANTERN = lanternBlock();
-    public static final Block CYAN_LANTERN = lanternBlock();
-    public static final Block PURPLE_LANTERN = lanternBlock();
-    public static final Block BLUE_LANTERN = lanternBlock();
-    public static final Block BROWN_LANTERN = lanternBlock();
-    public static final Block GREEN_LANTERN = lanternBlock();
-    public static final Block RED_LANTERN = lanternBlock();
-    public static final Block BLACK_LANTERN = lanternBlock();
-    public static final Block MAROON_LANTERN = lanternBlock();
-    public static final Block WHITE_WALL_TORCH = wallTorchBlock(ADParticleTypes.WHITE_FLAME);
-    public static final Block ORANGE_WALL_TORCH = wallTorchBlock(ADParticleTypes.ORANGE_FLAME);
-    public static final Block MAGENTA_WALL_TORCH = wallTorchBlock(ADParticleTypes.MAGENTA_FLAME);
-    public static final Block LIGHT_BLUE_WALL_TORCH = wallTorchBlock(ADParticleTypes.LIGHT_BLUE_FLAME);
-    public static final Block YELLOW_WALL_TORCH = wallTorchBlock(ADParticleTypes.YELLOW_FLAME);
-    public static final Block LIME_WALL_TORCH = wallTorchBlock(ADParticleTypes.LIME_FLAME);
-    public static final Block PINK_WALL_TORCH = wallTorchBlock(ADParticleTypes.PINK_FLAME);
-    public static final Block GRAY_WALL_TORCH = wallTorchBlock(ADParticleTypes.GRAY_FLAME);
-    public static final Block LIGHT_GRAY_WALL_TORCH = wallTorchBlock(ADParticleTypes.LIGHT_GRAY_FLAME);
-    public static final Block CYAN_WALL_TORCH = wallTorchBlock(ADParticleTypes.CYAN_FLAME);
-    public static final Block PURPLE_WALL_TORCH = wallTorchBlock(ADParticleTypes.PURPLE_FLAME);
-    public static final Block BLUE_WALL_TORCH = wallTorchBlock(ADParticleTypes.BLUE_FLAME);
-    public static final Block BROWN_WALL_TORCH = wallTorchBlock(ADParticleTypes.BROWN_FLAME);
-    public static final Block GREEN_WALL_TORCH = wallTorchBlock(ADParticleTypes.GREEN_FLAME);
-    public static final Block RED_WALL_TORCH = wallTorchBlock(ADParticleTypes.RED_FLAME);
-    public static final Block BLACK_WALL_TORCH = wallTorchBlock(ADParticleTypes.BLACK_FLAME);
-    public static final Block MAROON_WALL_TORCH = wallTorchBlock(ADParticleTypes.MAROON_FLAME);
-    public static final Block WHITE_TORCH = torchBlock(ADParticleTypes.WHITE_FLAME);
-    public static final Block ORANGE_TORCH = torchBlock(ADParticleTypes.ORANGE_FLAME);
-    public static final Block MAGENTA_TORCH = torchBlock(ADParticleTypes.MAGENTA_FLAME);
-    public static final Block LIGHT_BLUE_TORCH = torchBlock(ADParticleTypes.LIGHT_BLUE_FLAME);
-    public static final Block YELLOW_TORCH = torchBlock(ADParticleTypes.YELLOW_FLAME);
-    public static final Block LIME_TORCH = torchBlock(ADParticleTypes.LIME_FLAME);
-    public static final Block PINK_TORCH = torchBlock(ADParticleTypes.PINK_FLAME);
-    public static final Block GRAY_TORCH = torchBlock(ADParticleTypes.GRAY_FLAME);
-    public static final Block LIGHT_GRAY_TORCH = torchBlock(ADParticleTypes.LIGHT_GRAY_FLAME);
-    public static final Block CYAN_TORCH = torchBlock(ADParticleTypes.CYAN_FLAME);
-    public static final Block PURPLE_TORCH = torchBlock(ADParticleTypes.PURPLE_FLAME);
-    public static final Block BLUE_TORCH = torchBlock(ADParticleTypes.BLUE_FLAME);
-    public static final Block BROWN_TORCH = torchBlock(ADParticleTypes.BROWN_FLAME);
-    public static final Block GREEN_TORCH = torchBlock(ADParticleTypes.GREEN_FLAME);
-    public static final Block RED_TORCH = torchBlock(ADParticleTypes.RED_FLAME);
-    public static final Block BLACK_TORCH = torchBlock(ADParticleTypes.BLACK_FLAME);
-    public static final Block MAROON_TORCH = torchBlock(ADParticleTypes.MAROON_FLAME);
-    public static final Block WITCHS_CRADLE = new ADWitchsCradleBlock(AbstractBlock.Settings.copy(Blocks.SWEET_BERRY_BUSH)
-            .luminance((state) -> 10));
-    public static final Block BAUXITE = new Block(AbstractBlock.Settings.create()
-            .mapColor(MapColor.SPRUCE_BROWN).strength(0.3F));
-    public static final Block BAUXITE_SLAB = new SlabBlock(AbstractBlock.Settings.copy(BAUXITE));
-    public static final Block BAUXITE_STAIRS = new StairsBlock(BAUXITE.getDefaultState(),
-            AbstractBlock.Settings.copy(BAUXITE));
-    public static final Block BAUXITE_WALL = new WallBlock(AbstractBlock.Settings.copy(BAUXITE));
-    public static final Block BAUXITE_BRICKS = new Block(AbstractBlock.Settings.create()
-            .mapColor(MapColor.SPRUCE_BROWN).strength(0.4F).sounds(BlockSoundGroup.STONE));
-    public static final Block BAUXITE_BRICK_STAIRS = new StairsBlock(BAUXITE_BRICKS.getDefaultState(),
-            AbstractBlock.Settings.copy(BAUXITE_BRICKS));
-    public static final Block BAUXITE_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(BAUXITE_BRICKS));
-    public static final Block BAUXITE_BRICK_WALL = new WallBlock(AbstractBlock.Settings.copy(BAUXITE_BRICKS));
-    public static final Block MOSSY_BAUXITE_BRICKS = new Block(AbstractBlock.Settings.copy(BAUXITE_BRICKS));
-    public static final Block MOSSY_BAUXITE_BRICK_STAIRS = new StairsBlock(MOSSY_BAUXITE_BRICKS.getDefaultState(),
-            AbstractBlock.Settings.copy(BAUXITE_BRICKS));
-    public static final Block MOSSY_BAUXITE_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(BAUXITE_BRICKS));
-    public static final Block MOSSY_BAUXITE_BRICK_WALL = new WallBlock(AbstractBlock.Settings.copy(BAUXITE_BRICKS));
-    public static final Block CRACKED_BAUXITE_BRICKS = new Block(AbstractBlock.Settings.copy(BAUXITE_BRICKS));
-    public static final Block CRACKED_BAUXITE_BRICK_STAIRS = new StairsBlock(BAUXITE_BRICKS.getDefaultState(),
-            AbstractBlock.Settings.copy(BAUXITE_BRICKS));
-    public static final Block CRACKED_BAUXITE_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(BAUXITE_BRICKS));
-    public static final Block CRACKED_BAUXITE_BRICK_WALL = new WallBlock(AbstractBlock.Settings.copy(BAUXITE_BRICKS));
-    public static final Block TWISTED_NETHER_BRICKS = new Block(AbstractBlock.Settings.copy(Blocks.NETHER_BRICKS));
-    public static final Block TWISTED_NETHER_BRICK_STAIRS = new StairsBlock(TWISTED_NETHER_BRICKS.getDefaultState(),
-            AbstractBlock.Settings.copy(TWISTED_NETHER_BRICKS));
-    public static final Block TWISTED_NETHER_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(TWISTED_NETHER_BRICKS));
-    public static final Block TWISTED_NETHER_BRICK_WALL = new WallBlock(AbstractBlock.Settings.copy(TWISTED_NETHER_BRICKS));
-    public static final Block TWISTED_NETHERRACK = new Block(AbstractBlock.Settings.copy(Blocks.NETHERRACK));
-    public static final Block TWISTED_NETHERRACK_STAIRS = new StairsBlock(TWISTED_NETHERRACK.getDefaultState(),
-            AbstractBlock.Settings.copy(TWISTED_NETHERRACK));
-    public static final Block TWISTED_NETHERRACK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(TWISTED_NETHERRACK));
-    public static final Block TWISTED_NETHERRACK_WALL = new WallBlock(AbstractBlock.Settings.copy(TWISTED_NETHERRACK));
-    public static final Block WEEPING_NETHER_BRICKS = new Block(AbstractBlock.Settings.copy(Blocks.NETHER_BRICKS));
-    public static final Block WEEPING_NETHER_BRICK_STAIRS = new StairsBlock(WEEPING_NETHER_BRICKS.getDefaultState(),
-            AbstractBlock.Settings.copy(WEEPING_NETHER_BRICKS));
-    public static final Block WEEPING_NETHER_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(WEEPING_NETHER_BRICKS));
-    public static final Block WEEPING_NETHER_BRICK_WALL = new WallBlock(AbstractBlock.Settings.copy(WEEPING_NETHER_BRICKS));
-    public static final Block WEEPING_NETHERRACK = new Block(AbstractBlock.Settings.copy(Blocks.NETHERRACK));
-    public static final Block WEEPING_NETHERRACK_STAIRS = new StairsBlock(WEEPING_NETHERRACK.getDefaultState(),
-            AbstractBlock.Settings.copy(WEEPING_NETHERRACK));
-    public static final Block WEEPING_NETHERRACK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(WEEPING_NETHERRACK));
-    public static final Block WEEPING_NETHERRACK_WALL = new WallBlock(AbstractBlock.Settings.copy(WEEPING_NETHERRACK));
-    public static final Block SNAPDRAGON = new ADSnapdragonBlock(StatusEffects.LUCK, 8,
-            AbstractBlock.Settings.copy(Blocks.POPPY).luminance((state) -> 7));
-    public static final Block POTTED_SNAPDRAGON = new ADPottedSnapdragonBlock(ADBlocks.SNAPDRAGON,
-            AbstractBlock.Settings.copy(Blocks.POTTED_POPPY).luminance((state) -> 7));
-    public static final Block POTTED_PURPLE_MUSHROOM = new FlowerPotBlock(ADBlocks.PURPLE_MUSHROOM,
-            AbstractBlock.Settings.copy(Blocks.POTTED_RED_MUSHROOM));
-    public static final Block SHORT_ENDER_GRASS = new ADShortEnderGrassBlock(AbstractBlock.Settings.copy(Blocks.SHORT_GRASS)
-            .luminance((state) -> 7));
-    public static final Block CATTAIL = new ADCattailBlock(AbstractBlock.Settings.create().mapColor(MapColor.BROWN)
-            .noCollision().nonOpaque().sounds(BlockSoundGroup.WET_GRASS));
-    public static final Block CHOCOLATE_CAKE = new ADCakeBlock(AbstractBlock.Settings.copy(Blocks.CAKE));
-    public static final Block RED_VELVET_CAKE = new ADCakeBlock(AbstractBlock.Settings.copy(Blocks.CAKE));
-    public static final Block STONE_TILES = new Block(AbstractBlock.Settings.copy(Blocks.STONE)
-            .sounds(BlockSoundGroup.DEEPSLATE_TILES));
-    public static final Block STONE_TILE_SLAB = new SlabBlock(AbstractBlock.Settings.copy(STONE_TILES));
-    public static final Block STONE_TILE_STAIRS = new StairsBlock(STONE_TILES.getDefaultState(),
-            AbstractBlock.Settings.copy(STONE_TILES));
-    public static final Block STONE_TILE_WALL = new WallBlock(AbstractBlock.Settings.copy(STONE_TILES));
-    public static final Block MOSSY_STONE_TILES = new Block(AbstractBlock.Settings.copy(STONE_TILES));
-    public static final Block MOSSY_STONE_TILE_SLAB = new SlabBlock(AbstractBlock.Settings.copy(STONE_TILES));
-    public static final Block MOSSY_STONE_TILE_STAIRS = new StairsBlock(MOSSY_STONE_TILES.getDefaultState(),
-            AbstractBlock.Settings.copy(STONE_TILES));
-    public static final Block MOSSY_STONE_TILE_WALL = new WallBlock(AbstractBlock.Settings.copy(STONE_TILES));
-    public static final Block CRACKED_STONE_TILES = new Block(AbstractBlock.Settings.copy(STONE_TILES));
-    public static final Block CRACKED_STONE_TILE_SLAB = new SlabBlock(AbstractBlock.Settings.copy(STONE_TILES));
-    public static final Block CRACKED_STONE_TILE_STAIRS = new StairsBlock(CRACKED_STONE_TILES.getDefaultState(),
-            AbstractBlock.Settings.copy(STONE_TILES));
-    public static final Block CRACKED_STONE_TILE_WALL = new WallBlock(AbstractBlock.Settings.copy(STONE_TILES));
-    public static final Block SWEET_BERRY_PIE = new ADPieBlock(AbstractBlock.Settings.copy(Blocks.CAKE), 3,
-            0.6F);
-    public static final Block BLUEBERRY_PIE = new ADPieBlock(AbstractBlock.Settings.copy(Blocks.CAKE), 3,
-            0.6F);
-    public static final Block BLACKSTONE_TILES = new Block(AbstractBlock.Settings.copy(Blocks.BLACKSTONE)
-            .sounds(BlockSoundGroup.DEEPSLATE_TILES));
-    public static final Block BLACKSTONE_TILE_STAIRS = new StairsBlock(BLACKSTONE_TILES.getDefaultState(),
-            AbstractBlock.Settings.copy(BLACKSTONE_TILES));
-    public static final Block BLACKSTONE_TILE_SLAB = new SlabBlock(AbstractBlock.Settings.copy(BLACKSTONE_TILES));
-    public static final Block BLACKSTONE_TILE_WALL = new WallBlock(AbstractBlock.Settings.copy(BLACKSTONE_TILES));
-    public static final Block TWISTED_BLACKSTONE_TILES = new Block(AbstractBlock.Settings.copy(BLACKSTONE_TILES));
-    public static final Block TWISTED_BLACKSTONE_TILE_STAIRS = new StairsBlock(BLACKSTONE_TILES.getDefaultState(),
-            AbstractBlock.Settings.copy(BLACKSTONE_TILES));
-    public static final Block TWISTED_BLACKSTONE_TILE_SLAB = new SlabBlock(AbstractBlock.Settings.copy(BLACKSTONE_TILES));
-    public static final Block TWISTED_BLACKSTONE_TILE_WALL = new WallBlock(AbstractBlock.Settings.copy(BLACKSTONE_TILES));
-    public static final Block WEEPING_BLACKSTONE_TILES = new Block(AbstractBlock.Settings.copy(BLACKSTONE_TILES));
-    public static final Block WEEPING_BLACKSTONE_TILE_STAIRS = new StairsBlock(BLACKSTONE_TILES.getDefaultState(),
-            AbstractBlock.Settings.copy(BLACKSTONE_TILES));
-    public static final Block WEEPING_BLACKSTONE_TILE_SLAB = new SlabBlock(AbstractBlock.Settings.copy(BLACKSTONE_TILES));
-    public static final Block WEEPING_BLACKSTONE_TILE_WALL = new WallBlock(AbstractBlock.Settings.copy(BLACKSTONE_TILES));
-    public static final Block TWISTED_POLISHED_BLACKSTONE_BRICKS = new Block(AbstractBlock.Settings.copy(Blocks.POLISHED_BLACKSTONE_BRICKS));
-    public static final Block TWISTED_POLISHED_BLACKSTONE_BRICK_STAIRS = new StairsBlock(
-            Blocks.POLISHED_BLACKSTONE_BRICKS.getDefaultState(), AbstractBlock.Settings.copy(Blocks.POLISHED_BLACKSTONE_BRICKS));
-    public static final Block TWISTED_POLISHED_BLACKSTONE_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(Blocks.POLISHED_BLACKSTONE_BRICKS));
-    public static final Block TWISTED_POLISHED_BLACKSTONE_BRICK_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.POLISHED_BLACKSTONE_BRICKS));
-    public static final Block WEEPING_POLISHED_BLACKSTONE_BRICKS = new Block(AbstractBlock.Settings.copy(Blocks.POLISHED_BLACKSTONE_BRICKS));
-    public static final Block WEEPING_POLISHED_BLACKSTONE_BRICK_STAIRS = new StairsBlock(
-            Blocks.POLISHED_BLACKSTONE_BRICKS.getDefaultState(), AbstractBlock.Settings.copy(Blocks.POLISHED_BLACKSTONE_BRICKS));
-    public static final Block WEEPING_POLISHED_BLACKSTONE_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(Blocks.POLISHED_BLACKSTONE_BRICKS));
-    public static final Block WEEPING_POLISHED_BLACKSTONE_BRICK_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.POLISHED_BLACKSTONE_BRICKS));
-    public static final Block TWISTED_BLACKSTONE = new Block(AbstractBlock.Settings.copy(Blocks.BLACKSTONE));
-    public static final Block TWISTED_BLACKSTONE_STAIRS = new StairsBlock(Blocks.BLACKSTONE.getDefaultState(),
-            AbstractBlock.Settings.copy(Blocks.BLACKSTONE));
-    public static final Block TWISTED_BLACKSTONE_SLAB = new SlabBlock(AbstractBlock.Settings.copy(Blocks.BLACKSTONE));
-    public static final Block TWISTED_BLACKSTONE_WALL = new WallBlock(AbstractBlock.Settings.copy(TWISTED_BLACKSTONE));
-    public static final Block WEEPING_BLACKSTONE = new Block(AbstractBlock.Settings.copy(Blocks.BLACKSTONE));
-    public static final Block WEEPING_BLACKSTONE_STAIRS = new StairsBlock(
-            Blocks.BLACKSTONE.getDefaultState(), AbstractBlock.Settings.copy(Blocks.BLACKSTONE));
-    public static final Block WEEPING_BLACKSTONE_SLAB = new SlabBlock(AbstractBlock.Settings.copy(Blocks.BLACKSTONE));
-    public static final Block WEEPING_BLACKSTONE_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.BLACKSTONE));
-    public static final Block QUARTZ_TILES = new Block(AbstractBlock.Settings.copy(Blocks.QUARTZ_BLOCK)
-            .sounds(BlockSoundGroup.DEEPSLATE_TILES));
-    public static final Block QUARTZ_TILE_STAIRS = new StairsBlock(QUARTZ_TILES.getDefaultState(),
-            AbstractBlock.Settings.copy(QUARTZ_TILES));
-    public static final Block QUARTZ_TILE_SLAB = new SlabBlock(AbstractBlock.Settings.copy(QUARTZ_TILES));
-    public static final Block QUARTZ_TILE_WALL = new WallBlock(AbstractBlock.Settings.copy(QUARTZ_TILES));
-    public static final Block CALCITE_BRICKS = new Block(AbstractBlock.Settings.copy(Blocks.CALCITE));
-    public static final Block CALCITE_BRICK_STAIRS = new StairsBlock(Blocks.CALCITE.getDefaultState(),
-            AbstractBlock.Settings.copy(Blocks.CALCITE));
-    public static final Block CALCITE_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(Blocks.CALCITE));
-    public static final Block CALCITE_BRICK_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.CALCITE));
-    public static final Block MOSSY_CALCITE_BRICKS = new Block(AbstractBlock.Settings.copy(Blocks.CALCITE));
-    public static final Block MOSSY_CALCITE_BRICK_STAIRS = new StairsBlock(Blocks.CALCITE.getDefaultState(),
-            AbstractBlock.Settings.copy(Blocks.CALCITE));
-    public static final Block MOSSY_CALCITE_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(Blocks.CALCITE));
-    public static final Block MOSSY_CALCITE_BRICK_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.CALCITE));
-    public static final Block CRACKED_CALCITE_BRICKS = new Block(AbstractBlock.Settings.copy(Blocks.CALCITE));
-    public static final Block CRACKED_CALCITE_BRICK_STAIRS = new StairsBlock(
-            CRACKED_CALCITE_BRICKS.getDefaultState(), AbstractBlock.Settings.copy(CRACKED_CALCITE_BRICKS));
-    public static final Block CRACKED_CALCITE_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(CRACKED_CALCITE_BRICKS));
-    public static final Block CRACKED_CALCITE_BRICK_WALL = new WallBlock(AbstractBlock.Settings.copy(CRACKED_CALCITE_BRICKS));
-    public static final Block CHISELED_CALCITE_BRICKS = new PillarBlock(AbstractBlock.Settings.copy(Blocks.CALCITE));
-    public static final Block DRIPSTONE_BRICKS = new Block(AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK));
-    public static final Block DRIPSTONE_BRICK_STAIRS = new StairsBlock(Blocks.DRIPSTONE_BLOCK.getDefaultState(),
-            AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK));
-    public static final Block DRIPSTONE_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK));
-    public static final Block DRIPSTONE_BRICK_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK));
-    public static final Block MOSSY_DRIPSTONE_BRICKS = new Block(AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK));
-    public static final Block MOSSY_DRIPSTONE_BRICK_STAIRS = new StairsBlock(Blocks.DRIPSTONE_BLOCK.getDefaultState(),
-            AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK));
-    public static final Block MOSSY_DRIPSTONE_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK));
-    public static final Block MOSSY_DRIPSTONE_BRICK_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK));
-    public static final Block CRACKED_DRIPSTONE_BRICKS = new Block(AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK));
-    public static final Block CRACKED_DRIPSTONE_BRICK_STAIRS = new StairsBlock(Blocks.DRIPSTONE_BLOCK.getDefaultState(),
-            AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK));
-    public static final Block CRACKED_DRIPSTONE_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK));
-    public static final Block CRACKED_DRIPSTONE_BRICK_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK));
-    public static final Block CHISELED_DRIPSTONE_BRICKS = new Block(AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK));
-    public static final Block BLOOD_KELP = new ADBloodKelpBlock(AbstractBlock.Settings.copy(Blocks.KELP)
-            .luminance(getLuminanceFromState()));
-    public static final Block BLOOD_KELP_PLANT = new ADBloodKelpPlantBlock(AbstractBlock.Settings.copy(Blocks.KELP_PLANT)
-            .luminance(getLuminanceFromState()));
-    public static final Block DRIED_BLOOD_KELP_BLOCK = new Block(AbstractBlock.Settings.copy(Blocks.DRIED_KELP_BLOCK));
-    public static final Block BLOOD_KELP_LANTERN = new PillarBlock(AbstractBlock.Settings.create()
-            .mapColor(MapColor.PALE_YELLOW).strength(0.3F).sounds(BlockSoundGroup.GLASS).luminance((state) -> 15));
-    public static final Block MAROON_WOOL = new Block(AbstractBlock.Settings.copy(Blocks.RED_WOOL));
-    public static final Block MAROON_STAINED_GLASS = new StainedGlassBlock(DyeColor.RED,
-            AbstractBlock.Settings.create().mapColor(DyeColor.RED).strength(0.3F).sounds(BlockSoundGroup.GLASS)
-                    .nonOpaque().allowsSpawning(ADBlocks::never).solidBlock(ADBlocks::never).suffocates(ADBlocks::never)
-                    .blockVision(ADBlocks::never));
-    public static final Block MAROON_STAINED_GLASS_PANE = new StainedGlassPaneBlock(DyeColor.RED,
-            AbstractBlock.Settings.create().instrument(Instrument.HAT).strength(0.3F).sounds(BlockSoundGroup.GLASS)
-                    .nonOpaque());
-    public static final Block MAROON_CANDLE = new CandleBlock(AbstractBlock.Settings.create()
-            .mapColor(MapColor.DARK_RED).nonOpaque().strength(0.1F)
-            .sounds(BlockSoundGroup.CANDLE).luminance(CandleBlock.STATE_TO_LUMINANCE)
-            .pistonBehavior(PistonBehavior.DESTROY));
-    public static final Block MAROON_CONCRETE = new Block(AbstractBlock.Settings.create().mapColor(MapColor.DARK_RED)
-            .requiresTool().strength(1.8F).instrument(Instrument.BASEDRUM).sounds(BlockSoundGroup.STONE));
-    public static final Block MAROON_CONCRETE_POWDER = new ConcretePowderBlock(MAROON_CONCRETE,
-            AbstractBlock.Settings.create().instrument(Instrument.SNARE).mapColor(MapColor.DARK_RED)
-                    .strength(0.5F).sounds(BlockSoundGroup.SAND));
-    public static final Block MAROON_CANDLE_CAKE = new CandleCakeBlock(MAROON_CANDLE, AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
-    public static final Block BOG_BLOSSOM = new ADBogBlossomBlock(AbstractBlock.Settings.create()
-            .mapColor(MapColor.DARK_GREEN).breakInstantly().noCollision().sounds(BlockSoundGroup.SPORE_BLOSSOM)
-            .pistonBehavior(PistonBehavior.DESTROY).luminance((state) -> 10));
-    public static final Block MAROON_CANDLE_CHOCOLATE_CAKE = new ADCandleCakeBlock(CHOCOLATE_CAKE, MAROON_CANDLE,
-            AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
-    public static final Block CANDLE_CHOCOLATE_CAKE = new ADCandleCakeBlock(CHOCOLATE_CAKE, Blocks.CANDLE,
-            AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
-    public static final Block WHITE_CANDLE_CHOCOLATE_CAKE = new ADCandleCakeBlock(CHOCOLATE_CAKE, Blocks.WHITE_CANDLE,
-            AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
-    public static final Block ORANGE_CANDLE_CHOCOLATE_CAKE = new ADCandleCakeBlock(CHOCOLATE_CAKE, Blocks.ORANGE_CANDLE,
-            AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
-    public static final Block MAGENTA_CANDLE_CHOCOLATE_CAKE = new ADCandleCakeBlock(CHOCOLATE_CAKE, Blocks.MAGENTA_CANDLE,
-            AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
-    public static final Block LIGHT_BLUE_CANDLE_CHOCOLATE_CAKE = new ADCandleCakeBlock(CHOCOLATE_CAKE, Blocks.LIGHT_BLUE_CANDLE,
-            AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
-    public static final Block YELLOW_CANDLE_CHOCOLATE_CAKE = new ADCandleCakeBlock(CHOCOLATE_CAKE, Blocks.YELLOW_CANDLE,
-            AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
-    public static final Block LIME_CANDLE_CHOCOLATE_CAKE = new ADCandleCakeBlock(CHOCOLATE_CAKE, Blocks.LIME_CANDLE,
-            AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
-    public static final Block PINK_CANDLE_CHOCOLATE_CAKE = new ADCandleCakeBlock(CHOCOLATE_CAKE, Blocks.PINK_CANDLE,
-            AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
-    public static final Block GRAY_CANDLE_CHOCOLATE_CAKE = new ADCandleCakeBlock(CHOCOLATE_CAKE, Blocks.GRAY_CANDLE,
-            AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
-    public static final Block LIGHT_GRAY_CANDLE_CHOCOLATE_CAKE = new ADCandleCakeBlock(CHOCOLATE_CAKE, Blocks.LIGHT_GRAY_CANDLE,
-            AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
-    public static final Block CYAN_CANDLE_CHOCOLATE_CAKE = new ADCandleCakeBlock(CHOCOLATE_CAKE, Blocks.CYAN_CANDLE,
-            AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
-    public static final Block PURPLE_CANDLE_CHOCOLATE_CAKE = new ADCandleCakeBlock(CHOCOLATE_CAKE, Blocks.PURPLE_CANDLE,
-            AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
-    public static final Block BLUE_CANDLE_CHOCOLATE_CAKE = new ADCandleCakeBlock(CHOCOLATE_CAKE, Blocks.BLUE_CANDLE,
-            AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
-    public static final Block BROWN_CANDLE_CHOCOLATE_CAKE = new ADCandleCakeBlock(CHOCOLATE_CAKE, Blocks.BROWN_CANDLE,
-            AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
-    public static final Block GREEN_CANDLE_CHOCOLATE_CAKE = new ADCandleCakeBlock(CHOCOLATE_CAKE, Blocks.GREEN_CANDLE,
-            AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
-    public static final Block RED_CANDLE_CHOCOLATE_CAKE = new ADCandleCakeBlock(CHOCOLATE_CAKE, Blocks.RED_CANDLE,
-            AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
-    public static final Block BLACK_CANDLE_CHOCOLATE_CAKE = new ADCandleCakeBlock(CHOCOLATE_CAKE, Blocks.BLACK_CANDLE,
-            AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
-    public static final Block MAROON_CANDLE_RED_VELVET_CAKE = new ADCandleCakeBlock(RED_VELVET_CAKE, MAROON_CANDLE,
-            AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
-    public static final Block CANDLE_RED_VELVET_CAKE = new ADCandleCakeBlock(RED_VELVET_CAKE, Blocks.CANDLE,
-            AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
-    public static final Block WHITE_CANDLE_RED_VELVET_CAKE = new ADCandleCakeBlock(RED_VELVET_CAKE, Blocks.WHITE_CANDLE,
-            AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
-    public static final Block ORANGE_CANDLE_RED_VELVET_CAKE = new ADCandleCakeBlock(RED_VELVET_CAKE, Blocks.ORANGE_CANDLE,
-            AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
-    public static final Block MAGENTA_CANDLE_RED_VELVET_CAKE = new ADCandleCakeBlock(RED_VELVET_CAKE, Blocks.MAGENTA_CANDLE,
-            AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
-    public static final Block LIGHT_BLUE_CANDLE_RED_VELVET_CAKE = new ADCandleCakeBlock(RED_VELVET_CAKE, Blocks.LIGHT_BLUE_CANDLE,
-            AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
-    public static final Block YELLOW_CANDLE_RED_VELVET_CAKE = new ADCandleCakeBlock(RED_VELVET_CAKE, Blocks.YELLOW_CANDLE,
-            AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
-    public static final Block LIME_CANDLE_RED_VELVET_CAKE = new ADCandleCakeBlock(RED_VELVET_CAKE, Blocks.LIME_CANDLE,
-            AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
-    public static final Block PINK_CANDLE_RED_VELVET_CAKE = new ADCandleCakeBlock(RED_VELVET_CAKE, Blocks.PINK_CANDLE,
-            AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
-    public static final Block GRAY_CANDLE_RED_VELVET_CAKE = new ADCandleCakeBlock(RED_VELVET_CAKE, Blocks.GRAY_CANDLE,
-            AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
-    public static final Block LIGHT_GRAY_CANDLE_RED_VELVET_CAKE = new ADCandleCakeBlock(RED_VELVET_CAKE, Blocks.LIGHT_GRAY_CANDLE,
-            AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
-    public static final Block CYAN_CANDLE_RED_VELVET_CAKE = new ADCandleCakeBlock(RED_VELVET_CAKE, Blocks.CYAN_CANDLE,
-            AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
-    public static final Block PURPLE_CANDLE_RED_VELVET_CAKE = new ADCandleCakeBlock(RED_VELVET_CAKE, Blocks.PURPLE_CANDLE,
-            AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
-    public static final Block BLUE_CANDLE_RED_VELVET_CAKE = new ADCandleCakeBlock(RED_VELVET_CAKE, Blocks.BLUE_CANDLE,
-            AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
-    public static final Block BROWN_CANDLE_RED_VELVET_CAKE = new ADCandleCakeBlock(RED_VELVET_CAKE, Blocks.BROWN_CANDLE,
-            AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
-    public static final Block GREEN_CANDLE_RED_VELVET_CAKE = new ADCandleCakeBlock(RED_VELVET_CAKE, Blocks.GREEN_CANDLE,
-            AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
-    public static final Block RED_CANDLE_RED_VELVET_CAKE = new ADCandleCakeBlock(RED_VELVET_CAKE, Blocks.RED_CANDLE,
-            AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
-    public static final Block BLACK_CANDLE_RED_VELVET_CAKE = new ADCandleCakeBlock(RED_VELVET_CAKE, Blocks.BLACK_CANDLE,
-            AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
-    public static final Block CAMEL_PLUSHIE = new ADCamelPlushieBlock(AbstractBlock.Settings.copy(ADBlocks.BAT_PLUSHIE));
-    public static final Block CINDERSNAP_BERRY_BUSH = new ADCindersnapBerryBushBlock(AbstractBlock.Settings.create()
-            .mapColor(MapColor.DARK_CRIMSON).ticksRandomly().noCollision().sounds(BlockSoundGroup.NETHER_SPROUTS)
-            .pistonBehavior(PistonBehavior.DESTROY).luminance((state) -> 8));
-    public static final Block FROSTBITE_BERRY_BUSH = new ADFrostbiteBerryBushBlock(AbstractBlock.Settings.create()
-            .mapColor(MapColor.CYAN).ticksRandomly().noCollision().sounds(BlockSoundGroup.NETHER_SPROUTS)
-            .pistonBehavior(PistonBehavior.DESTROY).luminance((state) -> 5));
-    public static final Block POLISHED_DRIPSTONE = new Block(AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK));
-    public static final Block POLISHED_DRIPSTONE_STAIRS = new StairsBlock(Blocks.DRIPSTONE_BLOCK.getDefaultState(),
-            AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK));
-    public static final Block POLISHED_DRIPSTONE_SLAB = new SlabBlock(AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK));
-    public static final Block POLISHED_DRIPSTONE_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK));
-    public static final Block POLISHED_CALCITE = new Block(AbstractBlock.Settings.copy(Blocks.CALCITE));
-    public static final Block POLISHED_CALCITE_STAIRS = new StairsBlock(Blocks.CALCITE.getDefaultState(),
-            AbstractBlock.Settings.copy(Blocks.CALCITE));
-    public static final Block POLISHED_CALCITE_SLAB = new SlabBlock(AbstractBlock.Settings.copy(Blocks.CALCITE));
-    public static final Block POLISHED_CALCITE_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.CALCITE));
-    public static final Block DRIPSTONE_STAIRS = new StairsBlock(Blocks.DRIPSTONE_BLOCK.getDefaultState(),
-            AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK));
-    public static final Block DRIPSTONE_SLAB = new SlabBlock(AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK));
-    public static final Block DRIPSTONE_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK));
-    public static final Block CALCITE_STAIRS = new StairsBlock(Blocks.CALCITE.getDefaultState(),
-            AbstractBlock.Settings.copy(Blocks.CALCITE));
-    public static final Block CALCITE_SLAB = new SlabBlock(AbstractBlock.Settings.copy(Blocks.CALCITE));
-    public static final Block CALCITE_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.CALCITE));
-    public static final Block BAMBOO_PLANTER_BOX = planterBoxBlock(Blocks.BAMBOO_PLANKS.getDefaultMapColor(),
-            BlockSoundGroup.BAMBOO_WOOD);
-    public static final Block POTTED_CATTAIL = new FlowerPotBlock(ADBlocks.CATTAIL,
-            AbstractBlock.Settings.copy(Blocks.POTTED_RED_MUSHROOM));
-    public static final Block STONE_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.STONE));
-    public static final Block QUARTZ_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.QUARTZ_BLOCK));
-    public static final Block SMOOTH_QUARTZ_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.SMOOTH_QUARTZ));
-    public static final Block GRASS_SLAB = new ADSnowySlabBlock(AbstractBlock.Settings.copy(Blocks.GRASS_BLOCK));
-    public static final Block PODZOL_SLAB = new ADSnowySlabBlock(AbstractBlock.Settings.copy(Blocks.PODZOL));
-    public static final Block MYCELIUM_SLAB = new ADSnowySlabBlock(AbstractBlock.Settings.copy(Blocks.MYCELIUM));
-    public static final Block DIRT_PATH_SLAB = new ADDirtPathSlabBlock(AbstractBlock.Settings.copy(Blocks.DIRT_PATH));
-    public static final Block DIRT_SLAB = new ADDirtSlabBlock(AbstractBlock.Settings.copy(Blocks.DIRT));
-    public static final Block COARSE_DIRT_SLAB = new SlabBlock(AbstractBlock.Settings.copy(Blocks.COARSE_DIRT));
-    public static final Block ROOTED_DIRT_SLAB = new SlabBlock(AbstractBlock.Settings.copy(Blocks.ROOTED_DIRT));
-    public static final Block WILD_GREEN_ONIONS = new ADWildGreenOnionsBlock(AbstractBlock.Settings.copy(Blocks.WHEAT));
+    public static final Block BAT_PLUSHIE;
+    public static final Block BLAZE_PLUSHIE;
+    public static final Block CAVE_SPIDER_PLUSHIE;
+    public static final Block CHICKEN_PLUSHIE;
+    public static final Block COW_PLUSHIE;
+    public static final Block CREEPER_PLUSHIE;
+    public static final Block ENDERMAN_PLUSHIE;
+    public static final Block GHAST_PLUSHIE;
+    public static final Block GUARDIAN_PLUSHIE;
+    public static final Block WHITE_HORSE_PLUSHIE;
+    public static final Block GRAY_HORSE_PLUSHIE;
+    public static final Block LIGHT_GRAY_HORSE_PLUSHIE;
+    public static final Block BROWN_HORSE_PLUSHIE;
+    public static final Block BLACK_HORSE_PLUSHIE;
+    public static final Block MAGMA_CUBE_PLUSHIE;
+    public static final Block RED_MOOSHROOM_PLUSHIE;
+    public static final Block BROWN_MOOSHROOM_PLUSHIE;
+    public static final Block OCELOT_PLUSHIE;
+    public static final Block TABBY_CAT_PLUSHIE;
+    public static final Block TUXEDO_CAT_PLUSHIE;
+    public static final Block RED_CAT_PLUSHIE;
+    public static final Block SIAMESE_CAT_PLUSHIE;
+    public static final Block BRITISH_SHORTHAIR_CAT_PLUSHIE;
+    public static final Block CALICO_CAT_PLUSHIE;
+    public static final Block PERSIAN_CAT_PLUSHIE;
+    public static final Block RAGDOLL_CAT_PLUSHIE;
+    public static final Block WHITE_CAT_PLUSHIE;
+    public static final Block JELLIE_CAT_PLUSHIE;
+    public static final Block BLACK_CAT_PLUSHIE;
+    public static final Block PIG_PLUSHIE;
+    public static final Block BROWN_RABBIT_PLUSHIE;
+    public static final Block WHITE_RABBIT_PLUSHIE;
+    public static final Block BLACK_RABBIT_PLUSHIE;
+    public static final Block WHITE_SPLOTCHED_RABBIT_PLUSHIE;
+    public static final Block GOLD_RABBIT_PLUSHIE;
+    public static final Block TOAST_RABBIT_PLUSHIE;
+    public static final Block SALT_RABBIT_PLUSHIE;
+    public static final Block WHITE_SHEEP_PLUSHIE;
+    public static final Block ORANGE_SHEEP_PLUSHIE;
+    public static final Block MAGENTA_SHEEP_PLUSHIE;
+    public static final Block LIGHT_BLUE_SHEEP_PLUSHIE;
+    public static final Block YELLOW_SHEEP_PLUSHIE;
+    public static final Block LIME_SHEEP_PLUSHIE;
+    public static final Block PINK_SHEEP_PLUSHIE;
+    public static final Block GRAY_SHEEP_PLUSHIE;
+    public static final Block LIGHT_GRAY_SHEEP_PLUSHIE;
+    public static final Block CYAN_SHEEP_PLUSHIE;
+    public static final Block PURPLE_SHEEP_PLUSHIE;
+    public static final Block BLUE_SHEEP_PLUSHIE;
+    public static final Block BROWN_SHEEP_PLUSHIE;
+    public static final Block GREEN_SHEEP_PLUSHIE;
+    public static final Block RED_SHEEP_PLUSHIE;
+    public static final Block BLACK_SHEEP_PLUSHIE;
+    public static final Block MAROON_SHEEP_PLUSHIE;
+    public static final Block SKELETON_PLUSHIE;
+    public static final Block SLIME_PLUSHIE;
+    public static final Block SPIDER_PLUSHIE;
+    public static final Block SQUID_PLUSHIE;
+    public static final Block GLOW_SQUID_PLUSHIE;
+    public static final Block BEE_PLUSHIE;
+    public static final Block PLAINS_VILLAGER_PLUSHIE;
+    public static final Block DESERT_VILLAGER_PLUSHIE;
+    public static final Block JUNGLE_VILLAGER_PLUSHIE;
+    public static final Block SAVANNA_VILLAGER_PLUSHIE;
+    public static final Block SNOW_VILLAGER_PLUSHIE;
+    public static final Block SWAMP_VILLAGER_PLUSHIE;
+    public static final Block TAIGA_VILLAGER_PLUSHIE;
+    public static final Block CRIMSON_VILLAGER_PLUSHIE;
+    public static final Block WARPED_VILLAGER_PLUSHIE;
+    public static final Block WANDERING_TRADER_PLUSHIE;
+    public static final Block PLAINS_ZOMBIE_VILLAGER_PLUSHIE;
+    public static final Block DESERT_ZOMBIE_VILLAGER_PLUSHIE;
+    public static final Block JUNGLE_ZOMBIE_VILLAGER_PLUSHIE;
+    public static final Block SAVANNA_ZOMBIE_VILLAGER_PLUSHIE;
+    public static final Block SNOW_ZOMBIE_VILLAGER_PLUSHIE;
+    public static final Block SWAMP_ZOMBIE_VILLAGER_PLUSHIE;
+    public static final Block TAIGA_ZOMBIE_VILLAGER_PLUSHIE;
+    public static final Block CRIMSON_ZOMBIE_VILLAGER_PLUSHIE;
+    public static final Block WARPED_ZOMBIE_VILLAGER_PLUSHIE;
+    public static final Block WITCH_PLUSHIE;
+    public static final Block PALE_WOLF_PLUSHIE;
+    public static final Block ZOMBIE_PLUSHIE;
+    public static final Block PIGLIN_PLUSHIE;
+    public static final Block ZOMBIFIED_PIGLIN_PLUSHIE;
+    public static final Block PUFFERFISH_PLUSHIE;
+    public static final Block WITHER_PLUSHIE;
+    public static final Block STRIDER_PLUSHIE;
+    public static final Block SHIVERING_STRIDER_PLUSHIE;
+    public static final Block PHANTOM_PLUSHIE;
+    public static final Block HOGLIN_PLUSHIE;
+    public static final Block ZOGLIN_PLUSHIE;
+    public static final Block POLAR_BEAR_PLUSHIE;
+    public static final Block ALLAY_PLUSHIE;
+    public static final Block PILLAGER_PLUSHIE;
+    public static final Block VINDICATOR_PLUSHIE;
+    public static final Block EVOKER_PLUSHIE;
+    public static final Block RAVAGER_PLUSHIE;
+    public static final Block SHULKER_PLUSHIE;
+    public static final Block VEX_PLUSHIE;
+    public static final Block CAMEL_PLUSHIE;
+    public static final Block NETHER_SMOKY_QUARTZ_ORE;
+    public static final Block SMOKY_QUARTZ_BLOCK;
+    public static final Block CHISELED_SMOKY_QUARTZ_BLOCK;
+    public static final Block SMOKY_QUARTZ_BRICKS;
+    public static final Block SMOKY_QUARTZ_BRICK_STAIRS;
+    public static final Block SMOKY_QUARTZ_BRICK_SLAB;
+    public static final Block SMOKY_QUARTZ_BRICK_WALL;
+    public static final Block SMOKY_QUARTZ_PILLAR;
+    public static final Block SMOKY_QUARTZ_STAIRS;
+    public static final Block SMOKY_QUARTZ_SLAB;
+    public static final Block SMOKY_QUARTZ_WALL;
+    public static final Block SMOOTH_SMOKY_QUARTZ;
+    public static final Block SMOOTH_SMOKY_QUARTZ_STAIRS;
+    public static final Block SMOOTH_SMOKY_QUARTZ_SLAB;
+    public static final Block SMOOTH_SMOKY_QUARTZ_WALL;
+    public static final Block CRACKED_STONE_BRICK_STAIRS;
+    public static final Block CRACKED_STONE_BRICK_SLAB;
+    public static final Block CRACKED_STONE_BRICK_WALL;
+    public static final Block BLUEBERRY_BUSH;
+    public static final Block GREEN_ONIONS;
+    public static final Block OAK_PLANTER_BOX;
+    public static final Block SPRUCE_PLANTER_BOX;
+    public static final Block BIRCH_PLANTER_BOX;
+    public static final Block JUNGLE_PLANTER_BOX;
+    public static final Block ACACIA_PLANTER_BOX;
+    public static final Block DARK_OAK_PLANTER_BOX;
+    public static final Block MANGROVE_PLANTER_BOX;
+    public static final Block CHERRY_PLANTER_BOX;
+    public static final Block CRIMSON_PLANTER_BOX;
+    public static final Block WARPED_PLANTER_BOX;
+    public static final Block OAK_WALL;
+    public static final Block SPRUCE_WALL;
+    public static final Block BIRCH_WALL;
+    public static final Block JUNGLE_WALL;
+    public static final Block ACACIA_WALL;
+    public static final Block DARK_OAK_WALL;
+    public static final Block MANGROVE_WALL;
+    public static final Block CRIMSON_WALL;
+    public static final Block WARPED_WALL;
+    public static final Block CHERRY_WALL;
+    public static final Block STRIPPED_OAK_WALL;
+    public static final Block STRIPPED_SPRUCE_WALL;
+    public static final Block STRIPPED_BIRCH_WALL;
+    public static final Block STRIPPED_JUNGLE_WALL;
+    public static final Block STRIPPED_ACACIA_WALL;
+    public static final Block STRIPPED_DARK_OAK_WALL;
+    public static final Block STRIPPED_MANGROVE_WALL;
+    public static final Block STRIPPED_CRIMSON_WALL;
+    public static final Block STRIPPED_WARPED_WALL;
+    public static final Block STRIPPED_CHERRY_WALL;
+    public static final Block OAK_ROPE_LADDER;
+    public static final Block SPRUCE_ROPE_LADDER;
+    public static final Block BIRCH_ROPE_LADDER;
+    public static final Block JUNGLE_ROPE_LADDER;
+    public static final Block ACACIA_ROPE_LADDER;
+    public static final Block DARK_OAK_ROPE_LADDER;
+    public static final Block CRIMSON_ROPE_LADDER;
+    public static final Block WARPED_ROPE_LADDER;
+    public static final Block MANGROVE_ROPE_LADDER;
+    public static final Block CHERRY_ROPE_LADDER;
+    public static final Block IRON_LADDER;
+    public static final Block SNOW_BRICKS;
+    public static final Block SNOW_BRICK_STAIRS;
+    public static final Block SNOW_BRICK_SLAB;
+    public static final Block SNOW_BRICK_WALL;
+    public static final Block PACKED_SNOW;
+    public static final Block PACKED_SNOW_STAIRS;
+    public static final Block PACKED_SNOW_SLAB;
+    public static final Block PACKED_SNOW_WALL;
+    public static final Block PURPLE_MUSHROOM;
+    public static final Block PURPLE_MUSHROOM_BLOCK;
+    public static final Block WOODCUTTER;
+    public static final Block WHITE_CAMPFIRE;
+    public static final Block ORANGE_CAMPFIRE;
+    public static final Block MAGENTA_CAMPFIRE;
+    public static final Block LIGHT_BLUE_CAMPFIRE;
+    public static final Block YELLOW_CAMPFIRE;
+    public static final Block LIME_CAMPFIRE;
+    public static final Block PINK_CAMPFIRE;
+    public static final Block GRAY_CAMPFIRE;
+    public static final Block LIGHT_GRAY_CAMPFIRE;
+    public static final Block CYAN_CAMPFIRE;
+    public static final Block PURPLE_CAMPFIRE;
+    public static final Block BLUE_CAMPFIRE;
+    public static final Block BROWN_CAMPFIRE;
+    public static final Block GREEN_CAMPFIRE;
+    public static final Block RED_CAMPFIRE;
+    public static final Block BLACK_CAMPFIRE;
+    public static final Block MAROON_CAMPFIRE;
+    public static final Block WHITE_LANTERN;
+    public static final Block ORANGE_LANTERN;
+    public static final Block MAGENTA_LANTERN;
+    public static final Block LIGHT_BLUE_LANTERN;
+    public static final Block YELLOW_LANTERN;
+    public static final Block LIME_LANTERN;
+    public static final Block PINK_LANTERN;
+    public static final Block GRAY_LANTERN;
+    public static final Block LIGHT_GRAY_LANTERN;
+    public static final Block CYAN_LANTERN;
+    public static final Block PURPLE_LANTERN;
+    public static final Block BLUE_LANTERN;
+    public static final Block BROWN_LANTERN;
+    public static final Block GREEN_LANTERN;
+    public static final Block RED_LANTERN;
+    public static final Block BLACK_LANTERN;
+    public static final Block MAROON_LANTERN;
+    public static final Block WHITE_WALL_TORCH;
+    public static final Block ORANGE_WALL_TORCH;
+    public static final Block MAGENTA_WALL_TORCH;
+    public static final Block LIGHT_BLUE_WALL_TORCH;
+    public static final Block YELLOW_WALL_TORCH;
+    public static final Block LIME_WALL_TORCH;
+    public static final Block PINK_WALL_TORCH;
+    public static final Block GRAY_WALL_TORCH;
+    public static final Block LIGHT_GRAY_WALL_TORCH;
+    public static final Block CYAN_WALL_TORCH;
+    public static final Block PURPLE_WALL_TORCH;
+    public static final Block BLUE_WALL_TORCH;
+    public static final Block BROWN_WALL_TORCH;
+    public static final Block GREEN_WALL_TORCH;
+    public static final Block RED_WALL_TORCH;
+    public static final Block BLACK_WALL_TORCH;
+    public static final Block MAROON_WALL_TORCH;
+    public static final Block WHITE_TORCH;
+    public static final Block ORANGE_TORCH;
+    public static final Block MAGENTA_TORCH;
+    public static final Block LIGHT_BLUE_TORCH;
+    public static final Block YELLOW_TORCH;
+    public static final Block LIME_TORCH;
+    public static final Block PINK_TORCH;
+    public static final Block GRAY_TORCH;
+    public static final Block LIGHT_GRAY_TORCH;
+    public static final Block CYAN_TORCH;
+    public static final Block PURPLE_TORCH;
+    public static final Block BLUE_TORCH;
+    public static final Block BROWN_TORCH;
+    public static final Block GREEN_TORCH;
+    public static final Block RED_TORCH;
+    public static final Block BLACK_TORCH;
+    public static final Block MAROON_TORCH;
+    public static final Block WITCHS_CRADLE;
+    public static final Block BAUXITE;
+    public static final Block BAUXITE_SLAB;
+    public static final Block BAUXITE_STAIRS;
+    public static final Block BAUXITE_WALL;
+    public static final Block BAUXITE_BRICKS;
+    public static final Block BAUXITE_BRICK_STAIRS;
+    public static final Block BAUXITE_BRICK_SLAB;
+    public static final Block BAUXITE_BRICK_WALL;
+    public static final Block MOSSY_BAUXITE_BRICKS;
+    public static final Block MOSSY_BAUXITE_BRICK_STAIRS;
+    public static final Block MOSSY_BAUXITE_BRICK_SLAB;
+    public static final Block MOSSY_BAUXITE_BRICK_WALL;
+    public static final Block CRACKED_BAUXITE_BRICKS;
+    public static final Block CRACKED_BAUXITE_BRICK_STAIRS;
+    public static final Block CRACKED_BAUXITE_BRICK_SLAB;
+    public static final Block CRACKED_BAUXITE_BRICK_WALL;
+    public static final Block TWISTED_NETHER_BRICKS;
+    public static final Block TWISTED_NETHER_BRICK_STAIRS;
+    public static final Block TWISTED_NETHER_BRICK_SLAB;
+    public static final Block TWISTED_NETHER_BRICK_WALL;
+    public static final Block TWISTED_NETHERRACK;
+    public static final Block TWISTED_NETHERRACK_STAIRS;
+    public static final Block TWISTED_NETHERRACK_SLAB;
+    public static final Block TWISTED_NETHERRACK_WALL;
+    public static final Block WEEPING_NETHER_BRICKS;
+    public static final Block WEEPING_NETHER_BRICK_STAIRS;
+    public static final Block WEEPING_NETHER_BRICK_SLAB;
+    public static final Block WEEPING_NETHER_BRICK_WALL;
+    public static final Block WEEPING_NETHERRACK;
+    public static final Block WEEPING_NETHERRACK_STAIRS;
+    public static final Block WEEPING_NETHERRACK_SLAB;
+    public static final Block WEEPING_NETHERRACK_WALL;
+    public static final Block SNAPDRAGON;
+    public static final Block POTTED_SNAPDRAGON;
+    public static final Block POTTED_PURPLE_MUSHROOM;
+    public static final Block SHORT_ENDER_GRASS;
+    public static final Block CATTAIL;
+    public static final Block CHOCOLATE_CAKE;
+    public static final Block RED_VELVET_CAKE;
+    public static final Block STONE_TILES;
+    public static final Block STONE_TILE_SLAB;
+    public static final Block STONE_TILE_STAIRS;
+    public static final Block STONE_TILE_WALL;
+    public static final Block MOSSY_STONE_TILES;
+    public static final Block MOSSY_STONE_TILE_SLAB;
+    public static final Block MOSSY_STONE_TILE_STAIRS;
+    public static final Block MOSSY_STONE_TILE_WALL;
+    public static final Block CRACKED_STONE_TILES;
+    public static final Block CRACKED_STONE_TILE_SLAB;
+    public static final Block CRACKED_STONE_TILE_STAIRS;
+    public static final Block CRACKED_STONE_TILE_WALL;
+    public static final Block SWEET_BERRY_PIE;
+    public static final Block BLUEBERRY_PIE;
+    public static final Block BLACKSTONE_TILES;
+    public static final Block BLACKSTONE_TILE_STAIRS;
+    public static final Block BLACKSTONE_TILE_SLAB;
+    public static final Block BLACKSTONE_TILE_WALL;
+    public static final Block TWISTED_BLACKSTONE_TILES;
+    public static final Block TWISTED_BLACKSTONE_TILE_STAIRS;
+    public static final Block TWISTED_BLACKSTONE_TILE_SLAB;
+    public static final Block TWISTED_BLACKSTONE_TILE_WALL;
+    public static final Block WEEPING_BLACKSTONE_TILES;
+    public static final Block WEEPING_BLACKSTONE_TILE_STAIRS;
+    public static final Block WEEPING_BLACKSTONE_TILE_SLAB;
+    public static final Block WEEPING_BLACKSTONE_TILE_WALL;
+    public static final Block TWISTED_POLISHED_BLACKSTONE_BRICKS;
+    public static final Block TWISTED_POLISHED_BLACKSTONE_BRICK_STAIRS;
+    public static final Block TWISTED_POLISHED_BLACKSTONE_BRICK_SLAB;
+    public static final Block TWISTED_POLISHED_BLACKSTONE_BRICK_WALL;
+    public static final Block WEEPING_POLISHED_BLACKSTONE_BRICKS;
+    public static final Block WEEPING_POLISHED_BLACKSTONE_BRICK_STAIRS;
+    public static final Block WEEPING_POLISHED_BLACKSTONE_BRICK_SLAB;
+    public static final Block WEEPING_POLISHED_BLACKSTONE_BRICK_WALL;
+    public static final Block TWISTED_BLACKSTONE;
+    public static final Block TWISTED_BLACKSTONE_STAIRS;
+    public static final Block TWISTED_BLACKSTONE_SLAB;
+    public static final Block TWISTED_BLACKSTONE_WALL;
+    public static final Block WEEPING_BLACKSTONE;
+    public static final Block WEEPING_BLACKSTONE_STAIRS;
+    public static final Block WEEPING_BLACKSTONE_SLAB;
+    public static final Block WEEPING_BLACKSTONE_WALL;
+    public static final Block QUARTZ_TILES;
+    public static final Block QUARTZ_TILE_STAIRS;
+    public static final Block QUARTZ_TILE_SLAB;
+    public static final Block QUARTZ_TILE_WALL;
+    public static final Block CALCITE_BRICKS;
+    public static final Block CALCITE_BRICK_STAIRS;
+    public static final Block CALCITE_BRICK_SLAB;
+    public static final Block CALCITE_BRICK_WALL;
+    public static final Block MOSSY_CALCITE_BRICKS;
+    public static final Block MOSSY_CALCITE_BRICK_STAIRS;
+    public static final Block MOSSY_CALCITE_BRICK_SLAB;
+    public static final Block MOSSY_CALCITE_BRICK_WALL;
+    public static final Block CRACKED_CALCITE_BRICKS;
+    public static final Block CRACKED_CALCITE_BRICK_STAIRS;
+    public static final Block CRACKED_CALCITE_BRICK_SLAB;
+    public static final Block CRACKED_CALCITE_BRICK_WALL;
+    public static final Block CHISELED_CALCITE_BRICKS;
+    public static final Block DRIPSTONE_BRICKS;
+    public static final Block DRIPSTONE_BRICK_STAIRS;
+    public static final Block DRIPSTONE_BRICK_SLAB;
+    public static final Block DRIPSTONE_BRICK_WALL;
+    public static final Block MOSSY_DRIPSTONE_BRICKS;
+    public static final Block MOSSY_DRIPSTONE_BRICK_STAIRS;
+    public static final Block MOSSY_DRIPSTONE_BRICK_SLAB;
+    public static final Block MOSSY_DRIPSTONE_BRICK_WALL;
+    public static final Block CRACKED_DRIPSTONE_BRICKS;
+    public static final Block CRACKED_DRIPSTONE_BRICK_STAIRS;
+    public static final Block CRACKED_DRIPSTONE_BRICK_SLAB;
+    public static final Block CRACKED_DRIPSTONE_BRICK_WALL;
+    public static final Block CHISELED_DRIPSTONE_BRICKS;
+    public static final Block BLOOD_KELP;
+    public static final Block BLOOD_KELP_PLANT;
+    public static final Block DRIED_BLOOD_KELP_BLOCK;
+    public static final Block BLOOD_KELP_LANTERN;
+    public static final Block MAROON_WOOL;
+    public static final Block MAROON_STAINED_GLASS;
+    public static final Block MAROON_STAINED_GLASS_PANE;
+    public static final Block MAROON_CANDLE;
+    public static final Block MAROON_CONCRETE;
+    public static final Block MAROON_CONCRETE_POWDER;
+    public static final Block MAROON_CANDLE_CAKE;
+    public static final Block BOG_BLOSSOM;
+    public static final Block MAROON_CANDLE_CHOCOLATE_CAKE;
+    public static final Block CANDLE_CHOCOLATE_CAKE;
+    public static final Block WHITE_CANDLE_CHOCOLATE_CAKE;
+    public static final Block ORANGE_CANDLE_CHOCOLATE_CAKE;
+    public static final Block MAGENTA_CANDLE_CHOCOLATE_CAKE;
+    public static final Block LIGHT_BLUE_CANDLE_CHOCOLATE_CAKE;
+    public static final Block YELLOW_CANDLE_CHOCOLATE_CAKE;
+    public static final Block LIME_CANDLE_CHOCOLATE_CAKE;
+    public static final Block PINK_CANDLE_CHOCOLATE_CAKE;
+    public static final Block GRAY_CANDLE_CHOCOLATE_CAKE;
+    public static final Block LIGHT_GRAY_CANDLE_CHOCOLATE_CAKE;
+    public static final Block CYAN_CANDLE_CHOCOLATE_CAKE;
+    public static final Block PURPLE_CANDLE_CHOCOLATE_CAKE;
+    public static final Block BLUE_CANDLE_CHOCOLATE_CAKE;
+    public static final Block BROWN_CANDLE_CHOCOLATE_CAKE;
+    public static final Block GREEN_CANDLE_CHOCOLATE_CAKE;
+    public static final Block RED_CANDLE_CHOCOLATE_CAKE;
+    public static final Block BLACK_CANDLE_CHOCOLATE_CAKE;
+    public static final Block MAROON_CANDLE_RED_VELVET_CAKE;
+    public static final Block CANDLE_RED_VELVET_CAKE;
+    public static final Block WHITE_CANDLE_RED_VELVET_CAKE;
+    public static final Block ORANGE_CANDLE_RED_VELVET_CAKE;
+    public static final Block MAGENTA_CANDLE_RED_VELVET_CAKE;
+    public static final Block LIGHT_BLUE_CANDLE_RED_VELVET_CAKE;
+    public static final Block YELLOW_CANDLE_RED_VELVET_CAKE;
+    public static final Block LIME_CANDLE_RED_VELVET_CAKE;
+    public static final Block PINK_CANDLE_RED_VELVET_CAKE;
+    public static final Block GRAY_CANDLE_RED_VELVET_CAKE;
+    public static final Block LIGHT_GRAY_CANDLE_RED_VELVET_CAKE;
+    public static final Block CYAN_CANDLE_RED_VELVET_CAKE;
+    public static final Block PURPLE_CANDLE_RED_VELVET_CAKE;
+    public static final Block BLUE_CANDLE_RED_VELVET_CAKE;
+    public static final Block BROWN_CANDLE_RED_VELVET_CAKE;
+    public static final Block GREEN_CANDLE_RED_VELVET_CAKE;
+    public static final Block RED_CANDLE_RED_VELVET_CAKE;
+    public static final Block BLACK_CANDLE_RED_VELVET_CAKE;
+    public static final Block CINDERSNAP_BERRY_BUSH;
+    public static final Block FROSTBITE_BERRY_BUSH;
+    public static final Block POLISHED_DRIPSTONE;
+    public static final Block POLISHED_DRIPSTONE_STAIRS;
+    public static final Block POLISHED_DRIPSTONE_SLAB;
+    public static final Block POLISHED_DRIPSTONE_WALL;
+    public static final Block POLISHED_CALCITE;
+    public static final Block POLISHED_CALCITE_STAIRS;
+    public static final Block POLISHED_CALCITE_SLAB;
+    public static final Block POLISHED_CALCITE_WALL;
+    public static final Block DRIPSTONE_STAIRS;
+    public static final Block DRIPSTONE_SLAB;
+    public static final Block DRIPSTONE_WALL;
+    public static final Block CALCITE_STAIRS;
+    public static final Block CALCITE_SLAB;
+    public static final Block CALCITE_WALL;
+    public static final Block BAMBOO_PLANTER_BOX;
+    public static final Block POTTED_CATTAIL;
+    public static final Block STONE_WALL;
+    public static final Block QUARTZ_WALL;
+    public static final Block SMOOTH_QUARTZ_WALL;
+    public static final Block GRASS_SLAB;
+    public static final Block PODZOL_SLAB;
+    public static final Block MYCELIUM_SLAB;
+    public static final Block DIRT_PATH_SLAB;
+    public static final Block DIRT_SLAB;
+    public static final Block COARSE_DIRT_SLAB;
+    public static final Block ROOTED_DIRT_SLAB;
+    public static final Block WILD_GREEN_ONIONS;
 
     private static WallTorchBlock wallTorchBlock(DefaultParticleType flameParticle) {
         return new WallTorchBlock(flameParticle, AbstractBlock.Settings.copy(Blocks.WALL_TORCH));
@@ -1064,5 +937,564 @@ public class ADBlocks {
         register("wild_green_onions", WILD_GREEN_ONIONS);
 
         AssortedDiscoveries.LOGGER.info("Registered blocks");
+    }
+
+    static {
+        BAT_PLUSHIE = new ADBatPlushieBlock(AbstractBlock.Settings.create().burnable().mapColor(MapColor.CLEAR)
+                .strength(0.2F).sounds(BlockSoundGroup.WOOL));
+        BLAZE_PLUSHIE = new ADBlazePlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        CAVE_SPIDER_PLUSHIE = new ADCaveSpiderPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        CHICKEN_PLUSHIE = new ADChickenPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        COW_PLUSHIE = new ADCowPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        CREEPER_PLUSHIE = new ADCreeperPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        ENDERMAN_PLUSHIE = new ADEndermanPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        GHAST_PLUSHIE = new ADGhastPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        GUARDIAN_PLUSHIE = new ADGuardianPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        WHITE_HORSE_PLUSHIE = new ADHorsePlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        GRAY_HORSE_PLUSHIE = new ADHorsePlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        LIGHT_GRAY_HORSE_PLUSHIE = new ADHorsePlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        BROWN_HORSE_PLUSHIE = new ADHorsePlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        BLACK_HORSE_PLUSHIE = new ADHorsePlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        MAGMA_CUBE_PLUSHIE = new ADCubePlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE)
+                .pistonBehavior(PistonBehavior.DESTROY));
+        RED_MOOSHROOM_PLUSHIE = new ADMooshroomPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        BROWN_MOOSHROOM_PLUSHIE = new ADMooshroomPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        OCELOT_PLUSHIE = new ADCatPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        TABBY_CAT_PLUSHIE = new ADCatPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        TUXEDO_CAT_PLUSHIE = new ADCatPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        RED_CAT_PLUSHIE = new ADCatPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        SIAMESE_CAT_PLUSHIE = new ADCatPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        BRITISH_SHORTHAIR_CAT_PLUSHIE = new ADCatPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        CALICO_CAT_PLUSHIE = new ADCatPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        PERSIAN_CAT_PLUSHIE = new ADCatPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        RAGDOLL_CAT_PLUSHIE = new ADCatPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        WHITE_CAT_PLUSHIE = new ADCatPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        JELLIE_CAT_PLUSHIE = new ADCatPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        BLACK_CAT_PLUSHIE = new ADCatPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        PIG_PLUSHIE = new ADPigPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        BROWN_RABBIT_PLUSHIE = new ADRabbitPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        WHITE_RABBIT_PLUSHIE = new ADRabbitPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        BLACK_RABBIT_PLUSHIE = new ADRabbitPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        WHITE_SPLOTCHED_RABBIT_PLUSHIE = new ADRabbitPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        GOLD_RABBIT_PLUSHIE = new ADRabbitPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        TOAST_RABBIT_PLUSHIE = new ADRabbitPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        SALT_RABBIT_PLUSHIE = new ADRabbitPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        WHITE_SHEEP_PLUSHIE = new ADSheepPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        ORANGE_SHEEP_PLUSHIE = new ADSheepPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        MAGENTA_SHEEP_PLUSHIE = new ADSheepPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        LIGHT_BLUE_SHEEP_PLUSHIE = new ADSheepPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        YELLOW_SHEEP_PLUSHIE = new ADSheepPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        LIME_SHEEP_PLUSHIE = new ADSheepPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        PINK_SHEEP_PLUSHIE = new ADSheepPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        GRAY_SHEEP_PLUSHIE = new ADSheepPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        LIGHT_GRAY_SHEEP_PLUSHIE = new ADSheepPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        CYAN_SHEEP_PLUSHIE = new ADSheepPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        PURPLE_SHEEP_PLUSHIE = new ADSheepPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        BLUE_SHEEP_PLUSHIE = new ADSheepPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        BROWN_SHEEP_PLUSHIE = new ADSheepPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        GREEN_SHEEP_PLUSHIE = new ADSheepPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        RED_SHEEP_PLUSHIE = new ADSheepPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        BLACK_SHEEP_PLUSHIE = new ADSheepPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        MAROON_SHEEP_PLUSHIE = new ADSheepPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        SKELETON_PLUSHIE = new ADSkeletonPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        SLIME_PLUSHIE = new ADCubePlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE)
+                .pistonBehavior(PistonBehavior.DESTROY));
+        SPIDER_PLUSHIE = new ADSpiderPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        SQUID_PLUSHIE = new ADSquidPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        GLOW_SQUID_PLUSHIE = new ADSquidPlushieBlock(AbstractBlock.Settings.create().burnable()
+                .mapColor(MapColor.CLEAR).strength(0.2F).sounds(BlockSoundGroup.WOOL).luminance((state) -> 10));
+        BEE_PLUSHIE = new ADBeePlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        PLAINS_VILLAGER_PLUSHIE = new ADVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        DESERT_VILLAGER_PLUSHIE = new ADDesertVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        JUNGLE_VILLAGER_PLUSHIE = new ADVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        SAVANNA_VILLAGER_PLUSHIE = new ADVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        SNOW_VILLAGER_PLUSHIE = new ADShortHatVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        SWAMP_VILLAGER_PLUSHIE = new ADShortHatVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        TAIGA_VILLAGER_PLUSHIE = new ADVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        CRIMSON_VILLAGER_PLUSHIE = new ADVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        WARPED_VILLAGER_PLUSHIE = new ADVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        WANDERING_TRADER_PLUSHIE = new ADShortHatVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        PLAINS_ZOMBIE_VILLAGER_PLUSHIE = new ADZombieVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        DESERT_ZOMBIE_VILLAGER_PLUSHIE = new ADDesertZombieVillagerPlushieBlock(
+                AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        JUNGLE_ZOMBIE_VILLAGER_PLUSHIE = new ADZombieVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        SAVANNA_ZOMBIE_VILLAGER_PLUSHIE = new ADZombieVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        SNOW_ZOMBIE_VILLAGER_PLUSHIE = new ADShortHatZombieVillagerPlushieBlock(
+                AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        SWAMP_ZOMBIE_VILLAGER_PLUSHIE = new ADShortHatZombieVillagerPlushieBlock(
+                AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        TAIGA_ZOMBIE_VILLAGER_PLUSHIE = new ADZombieVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        CRIMSON_ZOMBIE_VILLAGER_PLUSHIE = new ADZombieVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        WARPED_ZOMBIE_VILLAGER_PLUSHIE = new ADZombieVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        WITCH_PLUSHIE = new ADWitchPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        PALE_WOLF_PLUSHIE = new ADWolfPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        ZOMBIE_PLUSHIE = new ADZombiePlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        PIGLIN_PLUSHIE = new ADPiglinPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        ZOMBIFIED_PIGLIN_PLUSHIE = new ADZombiePlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        PUFFERFISH_PLUSHIE = new ADPufferfishPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        WITHER_PLUSHIE = new ADWitherPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        STRIDER_PLUSHIE = new ADStriderPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        SHIVERING_STRIDER_PLUSHIE = new ADStriderPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        PHANTOM_PLUSHIE = new ADPhantomPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        HOGLIN_PLUSHIE = new ADHoglinPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        ZOGLIN_PLUSHIE = new ADHoglinPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        POLAR_BEAR_PLUSHIE = new ADPolarBearPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        ALLAY_PLUSHIE = new ADAllayPlushieBlock(AbstractBlock.Settings.copy(GLOW_SQUID_PLUSHIE));
+        PILLAGER_PLUSHIE = new ADVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        VINDICATOR_PLUSHIE = new ADVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        EVOKER_PLUSHIE = new ADVillagerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        RAVAGER_PLUSHIE = new ADHoglinPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        SHULKER_PLUSHIE = new ADShulkerPlushieBlock(AbstractBlock.Settings.copy(BAT_PLUSHIE));
+        VEX_PLUSHIE = new ADAllayPlushieBlock(AbstractBlock.Settings.copy(GLOW_SQUID_PLUSHIE));
+        CAMEL_PLUSHIE = new ADCamelPlushieBlock(AbstractBlock.Settings.copy(ADBlocks.BAT_PLUSHIE));
+        NETHER_SMOKY_QUARTZ_ORE = new ExperienceDroppingBlock(UniformIntProvider.create(2, 5),
+                AbstractBlock.Settings.copy(Blocks.NETHER_QUARTZ_ORE));
+        SMOKY_QUARTZ_BLOCK = new Block(AbstractBlock.Settings.create().mapColor(MapColor.BLACK)
+                .requiresTool().strength(0.8F));
+        CHISELED_SMOKY_QUARTZ_BLOCK = new Block(AbstractBlock.Settings.copy(SMOKY_QUARTZ_BLOCK));
+        SMOKY_QUARTZ_BRICKS = new Block(AbstractBlock.Settings.copy(SMOKY_QUARTZ_BLOCK));
+        SMOKY_QUARTZ_BRICK_STAIRS = new StairsBlock(SMOKY_QUARTZ_BLOCK.getDefaultState(),
+                AbstractBlock.Settings.copy(SMOKY_QUARTZ_BLOCK));
+        SMOKY_QUARTZ_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(SMOKY_QUARTZ_BLOCK));
+        SMOKY_QUARTZ_BRICK_WALL = new WallBlock(AbstractBlock.Settings.copy(SMOKY_QUARTZ_BLOCK));
+        SMOKY_QUARTZ_PILLAR = new PillarBlock(AbstractBlock.Settings.copy(SMOKY_QUARTZ_BLOCK));
+        SMOKY_QUARTZ_STAIRS = new StairsBlock(SMOKY_QUARTZ_BLOCK.getDefaultState(),
+                AbstractBlock.Settings.copy(SMOKY_QUARTZ_BLOCK));
+        SMOKY_QUARTZ_SLAB = new SlabBlock(AbstractBlock.Settings.copy(SMOKY_QUARTZ_BLOCK));
+        SMOKY_QUARTZ_WALL = new WallBlock(AbstractBlock.Settings.copy(SMOKY_QUARTZ_BLOCK));
+        SMOOTH_SMOKY_QUARTZ = new Block(AbstractBlock.Settings.copy(SMOKY_QUARTZ_BLOCK));
+        SMOOTH_SMOKY_QUARTZ_STAIRS = new StairsBlock(SMOKY_QUARTZ_BLOCK.getDefaultState(),
+                AbstractBlock.Settings.copy(SMOKY_QUARTZ_BLOCK));
+        SMOOTH_SMOKY_QUARTZ_SLAB = new SlabBlock(AbstractBlock.Settings.copy(SMOKY_QUARTZ_BLOCK));
+        SMOOTH_SMOKY_QUARTZ_WALL = new WallBlock(AbstractBlock.Settings.copy(SMOKY_QUARTZ_BLOCK));
+        CRACKED_STONE_BRICK_STAIRS = new StairsBlock(Blocks.CRACKED_STONE_BRICKS.getDefaultState(),
+                AbstractBlock.Settings.copy(Blocks.CRACKED_STONE_BRICKS));
+        CRACKED_STONE_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(Blocks.CRACKED_STONE_BRICKS));
+        CRACKED_STONE_BRICK_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.CRACKED_STONE_BRICKS));
+        BLUEBERRY_BUSH = new ADBlueberryBushBlock(AbstractBlock.Settings.copy(Blocks.WHEAT));
+        GREEN_ONIONS = new ADGreenOnionsBlock(AbstractBlock.Settings.copy(Blocks.WHEAT));
+        OAK_PLANTER_BOX = planterBoxBlock(Blocks.OAK_PLANKS.getDefaultMapColor(), BlockSoundGroup.WOOD);
+        SPRUCE_PLANTER_BOX = planterBoxBlock(Blocks.SPRUCE_PLANKS.getDefaultMapColor(), BlockSoundGroup.WOOD);
+        BIRCH_PLANTER_BOX = planterBoxBlock(Blocks.BIRCH_PLANKS.getDefaultMapColor(), BlockSoundGroup.WOOD);
+        JUNGLE_PLANTER_BOX = planterBoxBlock(Blocks.JUNGLE_PLANKS.getDefaultMapColor(), BlockSoundGroup.WOOD);
+        ACACIA_PLANTER_BOX = planterBoxBlock(Blocks.ACACIA_PLANKS.getDefaultMapColor(), BlockSoundGroup.WOOD);
+        DARK_OAK_PLANTER_BOX = planterBoxBlock(Blocks.DARK_OAK_PLANKS.getDefaultMapColor(), BlockSoundGroup.WOOD);
+        MANGROVE_PLANTER_BOX = planterBoxBlock(Blocks.MANGROVE_PLANKS.getDefaultMapColor(), BlockSoundGroup.WOOD);
+        CHERRY_PLANTER_BOX = planterBoxBlock(Blocks.CHERRY_PLANKS.getDefaultMapColor(), BlockSoundGroup.CHERRY_WOOD);
+        CRIMSON_PLANTER_BOX = netherPlanterBoxBlock(Blocks.CRIMSON_PLANKS.getDefaultMapColor());
+        WARPED_PLANTER_BOX = netherPlanterBoxBlock(Blocks.WARPED_PLANKS.getDefaultMapColor());
+        OAK_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS));
+        SPRUCE_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.SPRUCE_PLANKS));
+        BIRCH_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.BIRCH_PLANKS));
+        JUNGLE_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.JUNGLE_PLANKS));
+        ACACIA_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.ACACIA_PLANKS));
+        DARK_OAK_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.DARK_OAK_PLANKS));
+        MANGROVE_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.MANGROVE_PLANKS));
+        CRIMSON_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.CRIMSON_PLANKS));
+        WARPED_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.WARPED_PLANKS));
+        CHERRY_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.CHERRY_PLANKS));
+        STRIPPED_OAK_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS));
+        STRIPPED_SPRUCE_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.SPRUCE_PLANKS));
+        STRIPPED_BIRCH_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.BIRCH_PLANKS));
+        STRIPPED_JUNGLE_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.JUNGLE_PLANKS));
+        STRIPPED_ACACIA_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.ACACIA_PLANKS));
+        STRIPPED_DARK_OAK_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.DARK_OAK_PLANKS));
+        STRIPPED_MANGROVE_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.MANGROVE_PLANKS));
+        STRIPPED_CRIMSON_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.CRIMSON_PLANKS));
+        STRIPPED_WARPED_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.WARPED_PLANKS));
+        STRIPPED_CHERRY_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.CHERRY_PLANKS));
+        OAK_ROPE_LADDER = ropeLadderBlock();
+        SPRUCE_ROPE_LADDER = ropeLadderBlock();
+        BIRCH_ROPE_LADDER = ropeLadderBlock();
+        JUNGLE_ROPE_LADDER = ropeLadderBlock();
+        ACACIA_ROPE_LADDER = ropeLadderBlock();
+        DARK_OAK_ROPE_LADDER = ropeLadderBlock();
+        CRIMSON_ROPE_LADDER = ropeLadderBlock();
+        WARPED_ROPE_LADDER = ropeLadderBlock();
+        MANGROVE_ROPE_LADDER = ropeLadderBlock();
+        CHERRY_ROPE_LADDER = ropeLadderBlock();
+        IRON_LADDER = new LadderBlock(AbstractBlock.Settings.create().mapColor(MapColor.IRON_GRAY)
+                .requiresTool().strength(5.0F).sounds(BlockSoundGroup.METAL).nonOpaque());
+        SNOW_BRICKS = new Block(AbstractBlock.Settings.create().mapColor(MapColor.WHITE)
+                .strength(0.4F).requiresTool().sounds(BlockSoundGroup.SNOW));
+        SNOW_BRICK_STAIRS = new StairsBlock(ADBlocks.SNOW_BRICKS.getDefaultState(),
+                AbstractBlock.Settings.copy(SNOW_BRICKS));
+        SNOW_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(SNOW_BRICKS));
+        SNOW_BRICK_WALL = new WallBlock(AbstractBlock.Settings.copy(SNOW_BRICKS));
+        PACKED_SNOW = new Block(AbstractBlock.Settings.create().mapColor(MapColor.WHITE)
+                .strength(0.6F).requiresTool().sounds(BlockSoundGroup.SNOW));
+        PACKED_SNOW_STAIRS = new StairsBlock(ADBlocks.PACKED_SNOW.getDefaultState(),
+                AbstractBlock.Settings.copy(SNOW_BRICKS));
+        PACKED_SNOW_SLAB = new SlabBlock(AbstractBlock.Settings.copy(PACKED_SNOW));
+        PACKED_SNOW_WALL = new WallBlock(AbstractBlock.Settings.copy(PACKED_SNOW));
+        PURPLE_MUSHROOM = new MushroomPlantBlock(ADTreeConfiguredFeatures.HUGE_PURPLE_MUSHROOM,
+                AbstractBlock.Settings.create().mapColor(MapColor.PURPLE).pistonBehavior(PistonBehavior.DESTROY)
+                        .noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS)
+                        .postProcess(ADBlocks::always));
+        PURPLE_MUSHROOM_BLOCK = new ADPurpleMushroomBlock(AbstractBlock.Settings.copy(Blocks.RED_MUSHROOM_BLOCK));
+        WOODCUTTER = new ADWoodcutterBlock(AbstractBlock.Settings.create()
+                .mapColor(MapColor.OAK_TAN).strength(2.5F).sounds(BlockSoundGroup.WOOD).burnable());
+        WHITE_CAMPFIRE = dyedCampfireBlock(ADParticleTypes.WHITE_EMBER);
+        ORANGE_CAMPFIRE = dyedCampfireBlock(ADParticleTypes.ORANGE_EMBER);
+        MAGENTA_CAMPFIRE = dyedCampfireBlock(ADParticleTypes.MAGENTA_EMBER);
+        LIGHT_BLUE_CAMPFIRE = dyedCampfireBlock(ADParticleTypes.LIGHT_BLUE_EMBER);
+        YELLOW_CAMPFIRE = dyedCampfireBlock(ADParticleTypes.YELLOW_EMBER);
+        LIME_CAMPFIRE = dyedCampfireBlock(ADParticleTypes.LIME_EMBER);
+        PINK_CAMPFIRE = dyedCampfireBlock(ADParticleTypes.PINK_EMBER);
+        GRAY_CAMPFIRE = dyedCampfireBlock(ADParticleTypes.GRAY_EMBER);
+        LIGHT_GRAY_CAMPFIRE = dyedCampfireBlock(ADParticleTypes.LIGHT_GRAY_EMBER);
+        CYAN_CAMPFIRE = dyedCampfireBlock(ADParticleTypes.CYAN_EMBER);
+        PURPLE_CAMPFIRE = dyedCampfireBlock(ADParticleTypes.PURPLE_EMBER);
+        BLUE_CAMPFIRE = dyedCampfireBlock(ADParticleTypes.BLUE_EMBER);
+        BROWN_CAMPFIRE = dyedCampfireBlock(ADParticleTypes.BROWN_EMBER);
+        GREEN_CAMPFIRE = dyedCampfireBlock(ADParticleTypes.GREEN_EMBER);
+        RED_CAMPFIRE = dyedCampfireBlock(ADParticleTypes.RED_EMBER);
+        BLACK_CAMPFIRE = dyedCampfireBlock(ADParticleTypes.BLACK_EMBER);
+        MAROON_CAMPFIRE = dyedCampfireBlock(ADParticleTypes.MAROON_EMBER);
+        WHITE_LANTERN = lanternBlock();
+        ORANGE_LANTERN = lanternBlock();
+        MAGENTA_LANTERN = lanternBlock();
+        LIGHT_BLUE_LANTERN = lanternBlock();
+        YELLOW_LANTERN = lanternBlock();
+        LIME_LANTERN = lanternBlock();
+        PINK_LANTERN = lanternBlock();
+        GRAY_LANTERN = lanternBlock();
+        LIGHT_GRAY_LANTERN = lanternBlock();
+        CYAN_LANTERN = lanternBlock();
+        PURPLE_LANTERN = lanternBlock();
+        BLUE_LANTERN = lanternBlock();
+        BROWN_LANTERN = lanternBlock();
+        GREEN_LANTERN = lanternBlock();
+        RED_LANTERN = lanternBlock();
+        BLACK_LANTERN = lanternBlock();
+        MAROON_LANTERN = lanternBlock();
+        WHITE_WALL_TORCH = wallTorchBlock(ADParticleTypes.WHITE_FLAME);
+        ORANGE_WALL_TORCH = wallTorchBlock(ADParticleTypes.ORANGE_FLAME);
+        MAGENTA_WALL_TORCH = wallTorchBlock(ADParticleTypes.MAGENTA_FLAME);
+        LIGHT_BLUE_WALL_TORCH = wallTorchBlock(ADParticleTypes.LIGHT_BLUE_FLAME);
+        YELLOW_WALL_TORCH = wallTorchBlock(ADParticleTypes.YELLOW_FLAME);
+        LIME_WALL_TORCH = wallTorchBlock(ADParticleTypes.LIME_FLAME);
+        PINK_WALL_TORCH = wallTorchBlock(ADParticleTypes.PINK_FLAME);
+        GRAY_WALL_TORCH = wallTorchBlock(ADParticleTypes.GRAY_FLAME);
+        LIGHT_GRAY_WALL_TORCH = wallTorchBlock(ADParticleTypes.LIGHT_GRAY_FLAME);
+        CYAN_WALL_TORCH = wallTorchBlock(ADParticleTypes.CYAN_FLAME);
+        PURPLE_WALL_TORCH = wallTorchBlock(ADParticleTypes.PURPLE_FLAME);
+        BLUE_WALL_TORCH = wallTorchBlock(ADParticleTypes.BLUE_FLAME);
+        BROWN_WALL_TORCH = wallTorchBlock(ADParticleTypes.BROWN_FLAME);
+        GREEN_WALL_TORCH = wallTorchBlock(ADParticleTypes.GREEN_FLAME);
+        RED_WALL_TORCH = wallTorchBlock(ADParticleTypes.RED_FLAME);
+        BLACK_WALL_TORCH = wallTorchBlock(ADParticleTypes.BLACK_FLAME);
+        MAROON_WALL_TORCH = wallTorchBlock(ADParticleTypes.MAROON_FLAME);
+        WHITE_TORCH = torchBlock(ADParticleTypes.WHITE_FLAME);
+        ORANGE_TORCH = torchBlock(ADParticleTypes.ORANGE_FLAME);
+        MAGENTA_TORCH = torchBlock(ADParticleTypes.MAGENTA_FLAME);
+        LIGHT_BLUE_TORCH = torchBlock(ADParticleTypes.LIGHT_BLUE_FLAME);
+        YELLOW_TORCH = torchBlock(ADParticleTypes.YELLOW_FLAME);
+        LIME_TORCH = torchBlock(ADParticleTypes.LIME_FLAME);
+        PINK_TORCH = torchBlock(ADParticleTypes.PINK_FLAME);
+        GRAY_TORCH = torchBlock(ADParticleTypes.GRAY_FLAME);
+        LIGHT_GRAY_TORCH = torchBlock(ADParticleTypes.LIGHT_GRAY_FLAME);
+        CYAN_TORCH = torchBlock(ADParticleTypes.CYAN_FLAME);
+        PURPLE_TORCH = torchBlock(ADParticleTypes.PURPLE_FLAME);
+        BLUE_TORCH = torchBlock(ADParticleTypes.BLUE_FLAME);
+        BROWN_TORCH = torchBlock(ADParticleTypes.BROWN_FLAME);
+        GREEN_TORCH = torchBlock(ADParticleTypes.GREEN_FLAME);
+        RED_TORCH = torchBlock(ADParticleTypes.RED_FLAME);
+        BLACK_TORCH = torchBlock(ADParticleTypes.BLACK_FLAME);
+        MAROON_TORCH = torchBlock(ADParticleTypes.MAROON_FLAME);
+        WITCHS_CRADLE = new ADWitchsCradleBlock(AbstractBlock.Settings.copy(Blocks.SWEET_BERRY_BUSH)
+                .luminance((state) -> 10));
+        BAUXITE = new Block(AbstractBlock.Settings.create()
+                .mapColor(MapColor.SPRUCE_BROWN).strength(0.3F));
+        BAUXITE_SLAB = new SlabBlock(AbstractBlock.Settings.copy(BAUXITE));
+        BAUXITE_STAIRS = new StairsBlock(BAUXITE.getDefaultState(),
+                AbstractBlock.Settings.copy(BAUXITE));
+        BAUXITE_WALL = new WallBlock(AbstractBlock.Settings.copy(BAUXITE));
+        BAUXITE_BRICKS = new Block(AbstractBlock.Settings.create()
+                .mapColor(MapColor.SPRUCE_BROWN).strength(0.4F).sounds(BlockSoundGroup.STONE));
+        BAUXITE_BRICK_STAIRS = new StairsBlock(BAUXITE_BRICKS.getDefaultState(),
+                AbstractBlock.Settings.copy(BAUXITE_BRICKS));
+        BAUXITE_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(BAUXITE_BRICKS));
+        BAUXITE_BRICK_WALL = new WallBlock(AbstractBlock.Settings.copy(BAUXITE_BRICKS));
+        MOSSY_BAUXITE_BRICKS = new Block(AbstractBlock.Settings.copy(BAUXITE_BRICKS));
+        MOSSY_BAUXITE_BRICK_STAIRS = new StairsBlock(MOSSY_BAUXITE_BRICKS.getDefaultState(),
+                AbstractBlock.Settings.copy(BAUXITE_BRICKS));
+        MOSSY_BAUXITE_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(BAUXITE_BRICKS));
+        MOSSY_BAUXITE_BRICK_WALL = new WallBlock(AbstractBlock.Settings.copy(BAUXITE_BRICKS));
+        CRACKED_BAUXITE_BRICKS = new Block(AbstractBlock.Settings.copy(BAUXITE_BRICKS));
+        CRACKED_BAUXITE_BRICK_STAIRS = new StairsBlock(BAUXITE_BRICKS.getDefaultState(),
+                AbstractBlock.Settings.copy(BAUXITE_BRICKS));
+        CRACKED_BAUXITE_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(BAUXITE_BRICKS));
+        CRACKED_BAUXITE_BRICK_WALL = new WallBlock(AbstractBlock.Settings.copy(BAUXITE_BRICKS));
+        TWISTED_NETHER_BRICKS = new Block(AbstractBlock.Settings.copy(Blocks.NETHER_BRICKS));
+        TWISTED_NETHER_BRICK_STAIRS = new StairsBlock(TWISTED_NETHER_BRICKS.getDefaultState(),
+                AbstractBlock.Settings.copy(TWISTED_NETHER_BRICKS));
+        TWISTED_NETHER_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(TWISTED_NETHER_BRICKS));
+        TWISTED_NETHER_BRICK_WALL = new WallBlock(AbstractBlock.Settings.copy(TWISTED_NETHER_BRICKS));
+        TWISTED_NETHERRACK = new Block(AbstractBlock.Settings.copy(Blocks.NETHERRACK));
+        TWISTED_NETHERRACK_STAIRS = new StairsBlock(TWISTED_NETHERRACK.getDefaultState(),
+                AbstractBlock.Settings.copy(TWISTED_NETHERRACK));
+        TWISTED_NETHERRACK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(TWISTED_NETHERRACK));
+        TWISTED_NETHERRACK_WALL = new WallBlock(AbstractBlock.Settings.copy(TWISTED_NETHERRACK));
+        WEEPING_NETHER_BRICKS = new Block(AbstractBlock.Settings.copy(Blocks.NETHER_BRICKS));
+        WEEPING_NETHER_BRICK_STAIRS = new StairsBlock(WEEPING_NETHER_BRICKS.getDefaultState(),
+                AbstractBlock.Settings.copy(WEEPING_NETHER_BRICKS));
+        WEEPING_NETHER_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(WEEPING_NETHER_BRICKS));
+        WEEPING_NETHER_BRICK_WALL = new WallBlock(AbstractBlock.Settings.copy(WEEPING_NETHER_BRICKS));
+        WEEPING_NETHERRACK = new Block(AbstractBlock.Settings.copy(Blocks.NETHERRACK));
+        WEEPING_NETHERRACK_STAIRS = new StairsBlock(WEEPING_NETHERRACK.getDefaultState(),
+                AbstractBlock.Settings.copy(WEEPING_NETHERRACK));
+        WEEPING_NETHERRACK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(WEEPING_NETHERRACK));
+        WEEPING_NETHERRACK_WALL = new WallBlock(AbstractBlock.Settings.copy(WEEPING_NETHERRACK));
+        SNAPDRAGON = new ADSnapdragonBlock(StatusEffects.LUCK, 8,
+                AbstractBlock.Settings.copy(Blocks.POPPY).luminance((state) -> 7));
+        POTTED_SNAPDRAGON = new ADPottedSnapdragonBlock(ADBlocks.SNAPDRAGON,
+                AbstractBlock.Settings.copy(Blocks.POTTED_POPPY).luminance((state) -> 7));
+        POTTED_PURPLE_MUSHROOM = new FlowerPotBlock(ADBlocks.PURPLE_MUSHROOM,
+                AbstractBlock.Settings.copy(Blocks.POTTED_RED_MUSHROOM));
+        SHORT_ENDER_GRASS = new ADShortEnderGrassBlock(AbstractBlock.Settings.copy(Blocks.SHORT_GRASS)
+                .luminance((state) -> 7));
+        CATTAIL = new ADCattailBlock(AbstractBlock.Settings.create().mapColor(MapColor.BROWN)
+                .noCollision().nonOpaque().sounds(BlockSoundGroup.WET_GRASS));
+        CHOCOLATE_CAKE = new ADCakeBlock(AbstractBlock.Settings.copy(Blocks.CAKE));
+        RED_VELVET_CAKE = new ADCakeBlock(AbstractBlock.Settings.copy(Blocks.CAKE));
+        STONE_TILES = new Block(AbstractBlock.Settings.copy(Blocks.STONE)
+                .sounds(BlockSoundGroup.DEEPSLATE_TILES));
+        STONE_TILE_SLAB = new SlabBlock(AbstractBlock.Settings.copy(STONE_TILES));
+        STONE_TILE_STAIRS = new StairsBlock(STONE_TILES.getDefaultState(),
+                AbstractBlock.Settings.copy(STONE_TILES));
+        STONE_TILE_WALL = new WallBlock(AbstractBlock.Settings.copy(STONE_TILES));
+        MOSSY_STONE_TILES = new Block(AbstractBlock.Settings.copy(STONE_TILES));
+        MOSSY_STONE_TILE_SLAB = new SlabBlock(AbstractBlock.Settings.copy(STONE_TILES));
+        MOSSY_STONE_TILE_STAIRS = new StairsBlock(MOSSY_STONE_TILES.getDefaultState(),
+                AbstractBlock.Settings.copy(STONE_TILES));
+        MOSSY_STONE_TILE_WALL = new WallBlock(AbstractBlock.Settings.copy(STONE_TILES));
+        CRACKED_STONE_TILES = new Block(AbstractBlock.Settings.copy(STONE_TILES));
+        CRACKED_STONE_TILE_SLAB = new SlabBlock(AbstractBlock.Settings.copy(STONE_TILES));
+        CRACKED_STONE_TILE_STAIRS = new StairsBlock(CRACKED_STONE_TILES.getDefaultState(),
+                AbstractBlock.Settings.copy(STONE_TILES));
+        CRACKED_STONE_TILE_WALL = new WallBlock(AbstractBlock.Settings.copy(STONE_TILES));
+        SWEET_BERRY_PIE = new ADPieBlock(AbstractBlock.Settings.copy(Blocks.CAKE), 3, 0.6F);
+        BLUEBERRY_PIE = new ADPieBlock(AbstractBlock.Settings.copy(Blocks.CAKE), 3, 0.6F);
+        BLACKSTONE_TILES = new Block(AbstractBlock.Settings.copy(Blocks.BLACKSTONE)
+                .sounds(BlockSoundGroup.DEEPSLATE_TILES));
+        BLACKSTONE_TILE_STAIRS = new StairsBlock(BLACKSTONE_TILES.getDefaultState(),
+                AbstractBlock.Settings.copy(BLACKSTONE_TILES));
+        BLACKSTONE_TILE_SLAB = new SlabBlock(AbstractBlock.Settings.copy(BLACKSTONE_TILES));
+        BLACKSTONE_TILE_WALL = new WallBlock(AbstractBlock.Settings.copy(BLACKSTONE_TILES));
+        TWISTED_BLACKSTONE_TILES = new Block(AbstractBlock.Settings.copy(BLACKSTONE_TILES));
+        TWISTED_BLACKSTONE_TILE_STAIRS = new StairsBlock(BLACKSTONE_TILES.getDefaultState(),
+                AbstractBlock.Settings.copy(BLACKSTONE_TILES));
+        TWISTED_BLACKSTONE_TILE_SLAB = new SlabBlock(AbstractBlock.Settings.copy(BLACKSTONE_TILES));
+        TWISTED_BLACKSTONE_TILE_WALL = new WallBlock(AbstractBlock.Settings.copy(BLACKSTONE_TILES));
+        WEEPING_BLACKSTONE_TILES = new Block(AbstractBlock.Settings.copy(BLACKSTONE_TILES));
+        WEEPING_BLACKSTONE_TILE_STAIRS = new StairsBlock(BLACKSTONE_TILES.getDefaultState(),
+                AbstractBlock.Settings.copy(BLACKSTONE_TILES));
+        WEEPING_BLACKSTONE_TILE_SLAB = new SlabBlock(AbstractBlock.Settings.copy(BLACKSTONE_TILES));
+        WEEPING_BLACKSTONE_TILE_WALL = new WallBlock(AbstractBlock.Settings.copy(BLACKSTONE_TILES));
+        TWISTED_POLISHED_BLACKSTONE_BRICKS = new Block(
+                AbstractBlock.Settings.copy(Blocks.POLISHED_BLACKSTONE_BRICKS));
+        TWISTED_POLISHED_BLACKSTONE_BRICK_STAIRS = new StairsBlock(
+                Blocks.POLISHED_BLACKSTONE_BRICKS.getDefaultState(),
+                AbstractBlock.Settings.copy(Blocks.POLISHED_BLACKSTONE_BRICKS));
+        TWISTED_POLISHED_BLACKSTONE_BRICK_SLAB = new SlabBlock(
+                AbstractBlock.Settings.copy(Blocks.POLISHED_BLACKSTONE_BRICKS));
+        TWISTED_POLISHED_BLACKSTONE_BRICK_WALL = new WallBlock(
+                AbstractBlock.Settings.copy(Blocks.POLISHED_BLACKSTONE_BRICKS));
+        WEEPING_POLISHED_BLACKSTONE_BRICKS = new Block(
+                AbstractBlock.Settings.copy(Blocks.POLISHED_BLACKSTONE_BRICKS));
+        WEEPING_POLISHED_BLACKSTONE_BRICK_STAIRS = new StairsBlock(
+                Blocks.POLISHED_BLACKSTONE_BRICKS.getDefaultState(),
+                AbstractBlock.Settings.copy(Blocks.POLISHED_BLACKSTONE_BRICKS));
+        WEEPING_POLISHED_BLACKSTONE_BRICK_SLAB = new SlabBlock(
+                AbstractBlock.Settings.copy(Blocks.POLISHED_BLACKSTONE_BRICKS));
+        WEEPING_POLISHED_BLACKSTONE_BRICK_WALL = new WallBlock(
+                AbstractBlock.Settings.copy(Blocks.POLISHED_BLACKSTONE_BRICKS));
+        TWISTED_BLACKSTONE = new Block(AbstractBlock.Settings.copy(Blocks.BLACKSTONE));
+        TWISTED_BLACKSTONE_STAIRS = new StairsBlock(Blocks.BLACKSTONE.getDefaultState(),
+                AbstractBlock.Settings.copy(Blocks.BLACKSTONE));
+        TWISTED_BLACKSTONE_SLAB = new SlabBlock(AbstractBlock.Settings.copy(Blocks.BLACKSTONE));
+        TWISTED_BLACKSTONE_WALL = new WallBlock(AbstractBlock.Settings.copy(TWISTED_BLACKSTONE));
+        WEEPING_BLACKSTONE = new Block(AbstractBlock.Settings.copy(Blocks.BLACKSTONE));
+        WEEPING_BLACKSTONE_STAIRS = new StairsBlock(
+                Blocks.BLACKSTONE.getDefaultState(), AbstractBlock.Settings.copy(Blocks.BLACKSTONE));
+        WEEPING_BLACKSTONE_SLAB = new SlabBlock(AbstractBlock.Settings.copy(Blocks.BLACKSTONE));
+        WEEPING_BLACKSTONE_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.BLACKSTONE));
+        QUARTZ_TILES = new Block(AbstractBlock.Settings.copy(Blocks.QUARTZ_BLOCK)
+                .sounds(BlockSoundGroup.DEEPSLATE_TILES));
+        QUARTZ_TILE_STAIRS = new StairsBlock(QUARTZ_TILES.getDefaultState(),
+                AbstractBlock.Settings.copy(QUARTZ_TILES));
+        QUARTZ_TILE_SLAB = new SlabBlock(AbstractBlock.Settings.copy(QUARTZ_TILES));
+        QUARTZ_TILE_WALL = new WallBlock(AbstractBlock.Settings.copy(QUARTZ_TILES));
+        CALCITE_BRICKS = new Block(AbstractBlock.Settings.copy(Blocks.CALCITE));
+        CALCITE_BRICK_STAIRS = new StairsBlock(Blocks.CALCITE.getDefaultState(),
+                AbstractBlock.Settings.copy(Blocks.CALCITE));
+        CALCITE_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(Blocks.CALCITE));
+        CALCITE_BRICK_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.CALCITE));
+        MOSSY_CALCITE_BRICKS = new Block(AbstractBlock.Settings.copy(Blocks.CALCITE));
+        MOSSY_CALCITE_BRICK_STAIRS = new StairsBlock(Blocks.CALCITE.getDefaultState(),
+                AbstractBlock.Settings.copy(Blocks.CALCITE));
+        MOSSY_CALCITE_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(Blocks.CALCITE));
+        MOSSY_CALCITE_BRICK_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.CALCITE));
+        CRACKED_CALCITE_BRICKS = new Block(AbstractBlock.Settings.copy(Blocks.CALCITE));
+        CRACKED_CALCITE_BRICK_STAIRS = new StairsBlock(
+                CRACKED_CALCITE_BRICKS.getDefaultState(), AbstractBlock.Settings.copy(CRACKED_CALCITE_BRICKS));
+        CRACKED_CALCITE_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(CRACKED_CALCITE_BRICKS));
+        CRACKED_CALCITE_BRICK_WALL = new WallBlock(AbstractBlock.Settings.copy(CRACKED_CALCITE_BRICKS));
+        CHISELED_CALCITE_BRICKS = new PillarBlock(AbstractBlock.Settings.copy(Blocks.CALCITE));
+        DRIPSTONE_BRICKS = new Block(AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK));
+        DRIPSTONE_BRICK_STAIRS = new StairsBlock(Blocks.DRIPSTONE_BLOCK.getDefaultState(),
+                AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK));
+        DRIPSTONE_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK));
+        DRIPSTONE_BRICK_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK));
+        MOSSY_DRIPSTONE_BRICKS = new Block(AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK));
+        MOSSY_DRIPSTONE_BRICK_STAIRS = new StairsBlock(Blocks.DRIPSTONE_BLOCK.getDefaultState(),
+                AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK));
+        MOSSY_DRIPSTONE_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK));
+        MOSSY_DRIPSTONE_BRICK_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK));
+        CRACKED_DRIPSTONE_BRICKS = new Block(AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK));
+        CRACKED_DRIPSTONE_BRICK_STAIRS = new StairsBlock(Blocks.DRIPSTONE_BLOCK.getDefaultState(),
+                AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK));
+        CRACKED_DRIPSTONE_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK));
+        CRACKED_DRIPSTONE_BRICK_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK));
+        CHISELED_DRIPSTONE_BRICKS = new Block(AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK));
+        BLOOD_KELP = new ADBloodKelpBlock(AbstractBlock.Settings.copy(Blocks.KELP)
+                .luminance(getLuminanceFromState()));
+        BLOOD_KELP_PLANT = new ADBloodKelpPlantBlock(AbstractBlock.Settings.copy(Blocks.KELP_PLANT)
+                .luminance(getLuminanceFromState()));
+        DRIED_BLOOD_KELP_BLOCK = new Block(AbstractBlock.Settings.copy(Blocks.DRIED_KELP_BLOCK));
+        BLOOD_KELP_LANTERN = new PillarBlock(AbstractBlock.Settings.create()
+                .mapColor(MapColor.PALE_YELLOW).strength(0.3F).sounds(BlockSoundGroup.GLASS).luminance((state) -> 15));
+        MAROON_WOOL = new Block(AbstractBlock.Settings.copy(Blocks.RED_WOOL));
+        MAROON_STAINED_GLASS = new StainedGlassBlock(DyeColor.RED,
+                AbstractBlock.Settings.create().mapColor(DyeColor.RED).strength(0.3F).sounds(BlockSoundGroup.GLASS)
+                        .nonOpaque().allowsSpawning(ADBlocks::never).solidBlock(ADBlocks::never).suffocates(ADBlocks::never)
+                        .blockVision(ADBlocks::never));
+        MAROON_STAINED_GLASS_PANE = new StainedGlassPaneBlock(DyeColor.RED,
+                AbstractBlock.Settings.create().instrument(Instrument.HAT).strength(0.3F).sounds(BlockSoundGroup.GLASS)
+                        .nonOpaque());
+        MAROON_CANDLE = new CandleBlock(AbstractBlock.Settings.create()
+                .mapColor(MapColor.DARK_RED).nonOpaque().strength(0.1F)
+                .sounds(BlockSoundGroup.CANDLE).luminance(CandleBlock.STATE_TO_LUMINANCE)
+                .pistonBehavior(PistonBehavior.DESTROY));
+        MAROON_CONCRETE = new Block(AbstractBlock.Settings.create().mapColor(MapColor.DARK_RED)
+                .requiresTool().strength(1.8F).instrument(Instrument.BASEDRUM).sounds(BlockSoundGroup.STONE));
+        MAROON_CONCRETE_POWDER = new ConcretePowderBlock(MAROON_CONCRETE,
+                AbstractBlock.Settings.create().instrument(Instrument.SNARE).mapColor(MapColor.DARK_RED)
+                        .strength(0.5F).sounds(BlockSoundGroup.SAND));
+        MAROON_CANDLE_CAKE = new CandleCakeBlock(MAROON_CANDLE, AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
+        BOG_BLOSSOM = new ADBogBlossomBlock(AbstractBlock.Settings.create()
+                .mapColor(MapColor.DARK_GREEN).breakInstantly().noCollision().sounds(BlockSoundGroup.SPORE_BLOSSOM)
+                .pistonBehavior(PistonBehavior.DESTROY).luminance((state) -> 10));
+        MAROON_CANDLE_CHOCOLATE_CAKE = new ADCandleCakeBlock(CHOCOLATE_CAKE, MAROON_CANDLE,
+                AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
+        CANDLE_CHOCOLATE_CAKE = new ADCandleCakeBlock(CHOCOLATE_CAKE, Blocks.CANDLE,
+                AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
+        WHITE_CANDLE_CHOCOLATE_CAKE = new ADCandleCakeBlock(CHOCOLATE_CAKE, Blocks.WHITE_CANDLE,
+                AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
+        ORANGE_CANDLE_CHOCOLATE_CAKE = new ADCandleCakeBlock(CHOCOLATE_CAKE, Blocks.ORANGE_CANDLE,
+                AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
+        MAGENTA_CANDLE_CHOCOLATE_CAKE = new ADCandleCakeBlock(CHOCOLATE_CAKE, Blocks.MAGENTA_CANDLE,
+                AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
+        LIGHT_BLUE_CANDLE_CHOCOLATE_CAKE = new ADCandleCakeBlock(CHOCOLATE_CAKE, Blocks.LIGHT_BLUE_CANDLE,
+                AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
+        YELLOW_CANDLE_CHOCOLATE_CAKE = new ADCandleCakeBlock(CHOCOLATE_CAKE, Blocks.YELLOW_CANDLE,
+                AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
+        LIME_CANDLE_CHOCOLATE_CAKE = new ADCandleCakeBlock(CHOCOLATE_CAKE, Blocks.LIME_CANDLE,
+                AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
+        PINK_CANDLE_CHOCOLATE_CAKE = new ADCandleCakeBlock(CHOCOLATE_CAKE, Blocks.PINK_CANDLE,
+                AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
+        GRAY_CANDLE_CHOCOLATE_CAKE = new ADCandleCakeBlock(CHOCOLATE_CAKE, Blocks.GRAY_CANDLE,
+                AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
+        LIGHT_GRAY_CANDLE_CHOCOLATE_CAKE = new ADCandleCakeBlock(CHOCOLATE_CAKE, Blocks.LIGHT_GRAY_CANDLE,
+                AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
+        CYAN_CANDLE_CHOCOLATE_CAKE = new ADCandleCakeBlock(CHOCOLATE_CAKE, Blocks.CYAN_CANDLE,
+                AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
+        PURPLE_CANDLE_CHOCOLATE_CAKE = new ADCandleCakeBlock(CHOCOLATE_CAKE, Blocks.PURPLE_CANDLE,
+                AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
+        BLUE_CANDLE_CHOCOLATE_CAKE = new ADCandleCakeBlock(CHOCOLATE_CAKE, Blocks.BLUE_CANDLE,
+                AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
+        BROWN_CANDLE_CHOCOLATE_CAKE = new ADCandleCakeBlock(CHOCOLATE_CAKE, Blocks.BROWN_CANDLE,
+                AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
+        GREEN_CANDLE_CHOCOLATE_CAKE = new ADCandleCakeBlock(CHOCOLATE_CAKE, Blocks.GREEN_CANDLE,
+                AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
+        RED_CANDLE_CHOCOLATE_CAKE = new ADCandleCakeBlock(CHOCOLATE_CAKE, Blocks.RED_CANDLE,
+                AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
+        BLACK_CANDLE_CHOCOLATE_CAKE = new ADCandleCakeBlock(CHOCOLATE_CAKE, Blocks.BLACK_CANDLE,
+                AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
+        MAROON_CANDLE_RED_VELVET_CAKE = new ADCandleCakeBlock(RED_VELVET_CAKE, MAROON_CANDLE,
+                AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
+        CANDLE_RED_VELVET_CAKE = new ADCandleCakeBlock(RED_VELVET_CAKE, Blocks.CANDLE,
+                AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
+        WHITE_CANDLE_RED_VELVET_CAKE = new ADCandleCakeBlock(RED_VELVET_CAKE, Blocks.WHITE_CANDLE,
+                AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
+        ORANGE_CANDLE_RED_VELVET_CAKE = new ADCandleCakeBlock(RED_VELVET_CAKE, Blocks.ORANGE_CANDLE,
+                AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
+        MAGENTA_CANDLE_RED_VELVET_CAKE = new ADCandleCakeBlock(RED_VELVET_CAKE, Blocks.MAGENTA_CANDLE,
+                AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
+        LIGHT_BLUE_CANDLE_RED_VELVET_CAKE = new ADCandleCakeBlock(RED_VELVET_CAKE, Blocks.LIGHT_BLUE_CANDLE,
+                AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
+        YELLOW_CANDLE_RED_VELVET_CAKE = new ADCandleCakeBlock(RED_VELVET_CAKE, Blocks.YELLOW_CANDLE,
+                AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
+        LIME_CANDLE_RED_VELVET_CAKE = new ADCandleCakeBlock(RED_VELVET_CAKE, Blocks.LIME_CANDLE,
+                AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
+        PINK_CANDLE_RED_VELVET_CAKE = new ADCandleCakeBlock(RED_VELVET_CAKE, Blocks.PINK_CANDLE,
+                AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
+        GRAY_CANDLE_RED_VELVET_CAKE = new ADCandleCakeBlock(RED_VELVET_CAKE, Blocks.GRAY_CANDLE,
+                AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
+        LIGHT_GRAY_CANDLE_RED_VELVET_CAKE = new ADCandleCakeBlock(RED_VELVET_CAKE, Blocks.LIGHT_GRAY_CANDLE,
+                AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
+        CYAN_CANDLE_RED_VELVET_CAKE = new ADCandleCakeBlock(RED_VELVET_CAKE, Blocks.CYAN_CANDLE,
+                AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
+        PURPLE_CANDLE_RED_VELVET_CAKE = new ADCandleCakeBlock(RED_VELVET_CAKE, Blocks.PURPLE_CANDLE,
+                AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
+        BLUE_CANDLE_RED_VELVET_CAKE = new ADCandleCakeBlock(RED_VELVET_CAKE, Blocks.BLUE_CANDLE,
+                AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
+        BROWN_CANDLE_RED_VELVET_CAKE = new ADCandleCakeBlock(RED_VELVET_CAKE, Blocks.BROWN_CANDLE,
+                AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
+        GREEN_CANDLE_RED_VELVET_CAKE = new ADCandleCakeBlock(RED_VELVET_CAKE, Blocks.GREEN_CANDLE,
+                AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
+        RED_CANDLE_RED_VELVET_CAKE = new ADCandleCakeBlock(RED_VELVET_CAKE, Blocks.RED_CANDLE,
+                AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
+        BLACK_CANDLE_RED_VELVET_CAKE = new ADCandleCakeBlock(RED_VELVET_CAKE, Blocks.BLACK_CANDLE,
+                AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
+        CINDERSNAP_BERRY_BUSH = new ADCindersnapBerryBushBlock(AbstractBlock.Settings.create()
+                .mapColor(MapColor.DARK_CRIMSON).ticksRandomly().noCollision().sounds(BlockSoundGroup.NETHER_SPROUTS)
+                .pistonBehavior(PistonBehavior.DESTROY).luminance((state) -> 8));
+        FROSTBITE_BERRY_BUSH = new ADFrostbiteBerryBushBlock(AbstractBlock.Settings.create()
+                .mapColor(MapColor.CYAN).ticksRandomly().noCollision().sounds(BlockSoundGroup.NETHER_SPROUTS)
+                .pistonBehavior(PistonBehavior.DESTROY).luminance((state) -> 5));
+        POLISHED_DRIPSTONE = new Block(AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK));
+        POLISHED_DRIPSTONE_STAIRS = new StairsBlock(Blocks.DRIPSTONE_BLOCK.getDefaultState(),
+                AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK));
+        POLISHED_DRIPSTONE_SLAB = new SlabBlock(AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK));
+        POLISHED_DRIPSTONE_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK));
+        POLISHED_CALCITE = new Block(AbstractBlock.Settings.copy(Blocks.CALCITE));
+        POLISHED_CALCITE_STAIRS = new StairsBlock(Blocks.CALCITE.getDefaultState(),
+                AbstractBlock.Settings.copy(Blocks.CALCITE));
+        POLISHED_CALCITE_SLAB = new SlabBlock(AbstractBlock.Settings.copy(Blocks.CALCITE));
+        POLISHED_CALCITE_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.CALCITE));
+        DRIPSTONE_STAIRS = new StairsBlock(Blocks.DRIPSTONE_BLOCK.getDefaultState(),
+                AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK));
+        DRIPSTONE_SLAB = new SlabBlock(AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK));
+        DRIPSTONE_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK));
+        CALCITE_STAIRS = new StairsBlock(Blocks.CALCITE.getDefaultState(),
+                AbstractBlock.Settings.copy(Blocks.CALCITE));
+        CALCITE_SLAB = new SlabBlock(AbstractBlock.Settings.copy(Blocks.CALCITE));
+        CALCITE_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.CALCITE));
+        BAMBOO_PLANTER_BOX = planterBoxBlock(Blocks.BAMBOO_PLANKS.getDefaultMapColor(),
+                BlockSoundGroup.BAMBOO_WOOD);
+        POTTED_CATTAIL = new FlowerPotBlock(ADBlocks.CATTAIL, AbstractBlock.Settings.copy(Blocks.POTTED_RED_MUSHROOM));
+        STONE_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.STONE));
+        QUARTZ_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.QUARTZ_BLOCK));
+        SMOOTH_QUARTZ_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.SMOOTH_QUARTZ));
+        GRASS_SLAB = new ADSnowySlabBlock(AbstractBlock.Settings.copy(Blocks.GRASS_BLOCK));
+        PODZOL_SLAB = new ADSnowySlabBlock(AbstractBlock.Settings.copy(Blocks.PODZOL));
+        MYCELIUM_SLAB = new ADSnowySlabBlock(AbstractBlock.Settings.copy(Blocks.MYCELIUM));
+        DIRT_PATH_SLAB = new ADDirtPathSlabBlock(AbstractBlock.Settings.copy(Blocks.DIRT_PATH));
+        DIRT_SLAB = new ADDirtSlabBlock(AbstractBlock.Settings.copy(Blocks.DIRT));
+        COARSE_DIRT_SLAB = new SlabBlock(AbstractBlock.Settings.copy(Blocks.COARSE_DIRT));
+        ROOTED_DIRT_SLAB = new SlabBlock(AbstractBlock.Settings.copy(Blocks.ROOTED_DIRT));
+        WILD_GREEN_ONIONS = new ADWildGreenOnionsBlock(AbstractBlock.Settings.copy(Blocks.WHEAT));
     }
 }

@@ -13,12 +13,10 @@ import rndm_access.assorteddiscoveries.ADReference;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 
 public class ADVillagerProfessions {
-    public static final VillagerProfession LUMBERJACK = registerVillagerProfession(ADReference.makeModId("lumberjack"),
-            ADPointOfInterestTypes.LUMBERJACK, ADSoundEvents.UI_WOODCUTTER_TAKE_RESULT);
+    public static final VillagerProfession LUMBERJACK;
 
-    private static VillagerProfession registerVillagerProfession(Identifier id, RegistryKey<PointOfInterestType> workstation,
-                                                                 @Nullable SoundEvent workSound) {
-        return Registry.register(Registries.VILLAGER_PROFESSION, id, createVillagerProfession(id, workstation, workSound));
+    private static VillagerProfession register(Identifier id, VillagerProfession profession) {
+        return Registry.register(Registries.VILLAGER_PROFESSION, id, profession);
     }
 
     private static VillagerProfession createVillagerProfession(Identifier id, RegistryKey<PointOfInterestType> workstation,
@@ -28,6 +26,13 @@ public class ADVillagerProfessions {
     }
 
     public static void registerVillagerProfessions() {
+        register(ADReference.makeModId("lumberjack"), LUMBERJACK);
+
         AssortedDiscoveries.LOGGER.info("Registered villager professions");
+    }
+
+    static {
+        LUMBERJACK = createVillagerProfession(ADReference.makeModId("lumberjack"),
+                ADPointOfInterestTypes.LUMBERJACK, ADSoundEvents.UI_WOODCUTTER_TAKE_RESULT);
     }
 }

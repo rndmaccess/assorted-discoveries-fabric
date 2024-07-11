@@ -13,11 +13,11 @@ import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 
 public class ADVillagerTypes {
 
-    private static void registerVillagerType(String path, RegistryKey<Biome> biome) {
-        registerVillagerType(path, ImmutableList.of(biome));
+    private static void register(String path, RegistryKey<Biome> biome) {
+        register(path, ImmutableList.of(biome));
     }
 
-    private static void registerVillagerType(String path, ImmutableList<RegistryKey<Biome>> biomes) {
+    private static void register(String path, ImmutableList<RegistryKey<Biome>> biomes) {
         VillagerType type = createVillagerType(ADReference.makeModId(path));
 
         // Add the villager type to each biome listed.
@@ -31,9 +31,9 @@ public class ADVillagerTypes {
     }
 
     public static void registerVillagerTypes() {
-        registerVillagerType("crimson", BiomeKeys.CRIMSON_FOREST);
-        registerVillagerType("warped", BiomeKeys.WARPED_FOREST);
-        registerVillagerType("forest", ImmutableList.of(BiomeKeys.FOREST, BiomeKeys.FLOWER_FOREST,
+        register("crimson", BiomeKeys.CRIMSON_FOREST);
+        register("warped", BiomeKeys.WARPED_FOREST);
+        register("forest", ImmutableList.of(BiomeKeys.FOREST, BiomeKeys.FLOWER_FOREST,
                 BiomeKeys.BIRCH_FOREST, BiomeKeys.OLD_GROWTH_BIRCH_FOREST, BiomeKeys.DARK_FOREST));
 
         AssortedDiscoveries.LOGGER.info("Registered villager types.");

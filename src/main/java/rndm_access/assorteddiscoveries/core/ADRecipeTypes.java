@@ -9,17 +9,26 @@ import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.item.crafting.ADWoodcuttingRecipe;
 
 public class ADRecipeTypes {
-    public static final RecipeType<ADWoodcuttingRecipe> WOODCUTTING = registerRecipeType("woodcutting");
+    public static final RecipeType<ADWoodcuttingRecipe> WOODCUTTING;
 
     public static void registerRecipeTypes() {
+        register("woodcutting", WOODCUTTING);
         AssortedDiscoveries.LOGGER.info("Registered recipe types.");
     }
 
-    private static <T extends Recipe<?>> RecipeType<T> registerRecipeType(String path) {
-        return Registry.register(Registries.RECIPE_TYPE, ADReference.makeModId(path), new RecipeType<T>() {
+    private static <T extends Recipe<?>> void register(String path, RecipeType<T> recipe) {
+        Registry.register(Registries.RECIPE_TYPE, ADReference.makeModId(path), recipe);
+    }
+
+    private static <T extends Recipe<?>> RecipeType<T> makeRecipe(String path) {
+        return new RecipeType<>() {
             public String toString() {
                 return ADReference.makeModId(path).toString();
             }
-        });
+        };
+    }
+
+    static {
+        WOODCUTTING = makeRecipe("woodcutting");
     }
 }

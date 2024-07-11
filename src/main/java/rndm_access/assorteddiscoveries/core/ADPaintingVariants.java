@@ -7,15 +7,19 @@ import rndm_access.assorteddiscoveries.ADReference;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 
 public class ADPaintingVariants {
-    public static final PaintingVariant STARRY_NIGHT = new PaintingVariant(32, 32);
+    public static final PaintingVariant STARRY_NIGHT;
 
-    private static void registerPaintingVariant(String path, PaintingVariant variant) {
+    private static void register(String path, PaintingVariant variant) {
         Registry.register(Registries.PAINTING_VARIANT, ADReference.makeModId(path), variant);
     }
 
     public static void registerPaintingVariants() {
-        registerPaintingVariant("starry_night", STARRY_NIGHT);
+        register("starry_night", STARRY_NIGHT);
 
         AssortedDiscoveries.LOGGER.info("Registered painting variants");
+    }
+
+    static {
+        STARRY_NIGHT = new PaintingVariant(32, 32);
     }
 }

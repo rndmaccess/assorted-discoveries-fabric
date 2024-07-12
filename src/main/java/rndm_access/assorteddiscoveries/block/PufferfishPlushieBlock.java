@@ -15,7 +15,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import rndm_access.assorteddiscoveries.block.state.BlockStateProperties;
+import rndm_access.assorteddiscoveries.block.state.ModBlockStateProperties;
 import rndm_access.assorteddiscoveries.util.ShapeHelper;
 
 import java.util.HashMap;
@@ -78,7 +78,7 @@ public class PufferfishPlushieBlock extends AbstractPlushieBlock {
 
     static {
         CODEC = createCodec(PufferfishPlushieBlock::new);
-        PUFFED = BlockStateProperties.PUFFED;
+        PUFFED = ModBlockStateProperties.PUFFED;
         SMALL_NORTH_SHAPE = Block.createCuboidShape(4.0D, 0.0D, 3.0D, 12.0D, 6.0D,
                 14.0D);
         MEDIUM_NORTH_SHAPE = Block.createCuboidShape(1.5D, 0.0D, 2.5D, 14.5D, 8.5D,

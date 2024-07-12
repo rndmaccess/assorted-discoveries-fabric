@@ -14,7 +14,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
-import rndm_access.assorteddiscoveries.block.state.BlockStateProperties;
+import rndm_access.assorteddiscoveries.block.state.ModBlockStateProperties;
 
 public class RopeLadderBlock extends LadderBlock {
     public static final IntProperty LENGTH;
@@ -141,7 +141,7 @@ public class RopeLadderBlock extends LadderBlock {
     }
 
     static {
-        LENGTH = BlockStateProperties.LENGTH;
+        LENGTH = ModBlockStateProperties.LENGTH;
         DOWN = Properties.DOWN;
     }
 }

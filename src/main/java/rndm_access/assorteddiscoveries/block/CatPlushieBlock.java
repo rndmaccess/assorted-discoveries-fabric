@@ -13,7 +13,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.World;
-import rndm_access.assorteddiscoveries.block.state.BlockStateProperties;
+import rndm_access.assorteddiscoveries.block.state.ModBlockStateProperties;
 
 public class CatPlushieBlock extends AbstractSimplePlushieBlock {
     public static final BooleanProperty IS_SITTING;
@@ -54,7 +54,7 @@ public class CatPlushieBlock extends AbstractSimplePlushieBlock {
     }
 
     static {
-        IS_SITTING = BlockStateProperties.IS_SITTING;
+        IS_SITTING = ModBlockStateProperties.IS_SITTING;
         CODEC = createCodec(CatPlushieBlock::new);
     }
 }

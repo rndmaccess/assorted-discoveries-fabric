@@ -20,7 +20,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
-import rndm_access.assorteddiscoveries.block.state.BlockStateProperties;
+import rndm_access.assorteddiscoveries.block.state.ModBlockStateProperties;
 import rndm_access.assorteddiscoveries.util.ShapeHelper;
 
 import java.util.HashMap;
@@ -176,7 +176,7 @@ public class CubePlushieBlock extends AbstractPlushieBlock {
 
     static {
         CODEC = createCodec(CubePlushieBlock::new);
-        STACK_SIZE = BlockStateProperties.STACK_SIZE;
+        STACK_SIZE = ModBlockStateProperties.STACK_SIZE;
         HALF = Properties.DOUBLE_BLOCK_HALF;
         NORTH_BOTTOM_SHAPE = Block.createCuboidShape(2.5D, 0.0D, 2.5D, 13.5D, 9.5D,
                 13.5D);

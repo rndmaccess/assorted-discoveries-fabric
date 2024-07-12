@@ -28,7 +28,8 @@ public class JsonConfigEntry extends JsonConfigObject {
         if(this.value.getClass().equals(Boolean.class)) {
             return (Boolean) value;
         } else {
-            throw new RuntimeException("Cannot get value as a boolean for entry " + this.getName());
+            throw new RuntimeException("Cannot get value as a boolean for entry "
+                    + this.getName());
         }
     }
 

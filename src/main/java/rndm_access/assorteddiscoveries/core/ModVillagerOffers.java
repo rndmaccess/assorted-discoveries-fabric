@@ -48,8 +48,10 @@ public class ModVillagerOffers {
                     5, 20, 0.05F));
         });
         TradeOfferHelper.registerVillagerOffers(ModVillagerProfessions.LUMBERJACK, 5, factories -> {
-            factories.add(new MasterFactory(1, new ItemStack(Blocks.NOTE_BLOCK), 10, 0.05F));
-            factories.add(new MasterFactory(5, new ItemStack(Blocks.JUKEBOX), 5, 0.05F));
+            factories.add(new MasterFactory(1, new ItemStack(Blocks.NOTE_BLOCK),
+                    10, 0.05F));
+            factories.add(new MasterFactory(5, new ItemStack(Blocks.JUKEBOX),
+                    5, 0.05F));
         });
     }
 

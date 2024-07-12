@@ -1013,16 +1013,20 @@ public class ModBlocks {
         TAIGA_VILLAGER_PLUSHIE = new VillagerPlushieBlock(AbstractBlock.Settings.copy(ModBlocks.BAT_PLUSHIE));
         CRIMSON_VILLAGER_PLUSHIE = new VillagerPlushieBlock(AbstractBlock.Settings.copy(ModBlocks.BAT_PLUSHIE));
         WARPED_VILLAGER_PLUSHIE = new VillagerPlushieBlock(AbstractBlock.Settings.copy(ModBlocks.BAT_PLUSHIE));
-        WANDERING_TRADER_PLUSHIE = new ShortHatVillagerPlushieBlock(AbstractBlock.Settings.copy(ModBlocks.BAT_PLUSHIE));
-        PLAINS_ZOMBIE_VILLAGER_PLUSHIE = new ZombieVillagerPlushieBlock(AbstractBlock.Settings.copy(ModBlocks.BAT_PLUSHIE));
-        DESERT_ZOMBIE_VILLAGER_PLUSHIE = new DesertZombieVillagerPlushieBlock(
-                AbstractBlock.Settings.copy(ModBlocks.BAT_PLUSHIE));
-        JUNGLE_ZOMBIE_VILLAGER_PLUSHIE = new ZombieVillagerPlushieBlock(AbstractBlock.Settings.copy(ModBlocks.BAT_PLUSHIE));
-        SAVANNA_ZOMBIE_VILLAGER_PLUSHIE = new ZombieVillagerPlushieBlock(AbstractBlock.Settings.copy(ModBlocks.BAT_PLUSHIE));
-        SNOW_ZOMBIE_VILLAGER_PLUSHIE = new ShortHatZombieVillagerPlushieBlock(
-                AbstractBlock.Settings.copy(ModBlocks.BAT_PLUSHIE));
-        SWAMP_ZOMBIE_VILLAGER_PLUSHIE = new ShortHatZombieVillagerPlushieBlock(
-                AbstractBlock.Settings.copy(ModBlocks.BAT_PLUSHIE));
+        WANDERING_TRADER_PLUSHIE
+                = new ShortHatVillagerPlushieBlock(AbstractBlock.Settings.copy(ModBlocks.BAT_PLUSHIE));
+        PLAINS_ZOMBIE_VILLAGER_PLUSHIE
+                = new ZombieVillagerPlushieBlock(AbstractBlock.Settings.copy(ModBlocks.BAT_PLUSHIE));
+        DESERT_ZOMBIE_VILLAGER_PLUSHIE
+                = new DesertZombieVillagerPlushieBlock(AbstractBlock.Settings.copy(ModBlocks.BAT_PLUSHIE));
+        JUNGLE_ZOMBIE_VILLAGER_PLUSHIE
+                = new ZombieVillagerPlushieBlock(AbstractBlock.Settings.copy(ModBlocks.BAT_PLUSHIE));
+        SAVANNA_ZOMBIE_VILLAGER_PLUSHIE
+                = new ZombieVillagerPlushieBlock(AbstractBlock.Settings.copy(ModBlocks.BAT_PLUSHIE));
+        SNOW_ZOMBIE_VILLAGER_PLUSHIE
+                = new ShortHatZombieVillagerPlushieBlock(AbstractBlock.Settings.copy(ModBlocks.BAT_PLUSHIE));
+        SWAMP_ZOMBIE_VILLAGER_PLUSHIE
+                = new ShortHatZombieVillagerPlushieBlock(AbstractBlock.Settings.copy(ModBlocks.BAT_PLUSHIE));
         TAIGA_ZOMBIE_VILLAGER_PLUSHIE = new ZombieVillagerPlushieBlock(AbstractBlock.Settings.copy(ModBlocks.BAT_PLUSHIE));
         CRIMSON_ZOMBIE_VILLAGER_PLUSHIE = new ZombieVillagerPlushieBlock(AbstractBlock.Settings.copy(ModBlocks.BAT_PLUSHIE));
         WARPED_ZOMBIE_VILLAGER_PLUSHIE = new ZombieVillagerPlushieBlock(AbstractBlock.Settings.copy(ModBlocks.BAT_PLUSHIE));

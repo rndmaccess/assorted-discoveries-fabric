@@ -43,17 +43,18 @@ public class PufferfishPlushieBlock extends AbstractPlushieBlock {
 
     @Override
     @SuppressWarnings("deprecation")
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player,
+                              Hand hand, BlockHitResult hit) {
         int puffedLevel = state.get(PUFFED);
         float pitch = 0.8F + world.getRandom().nextFloat() * 0.4F;
 
         if (puffedLevel < 2) {
-            world.playSound(null, pos, SoundEvents.ENTITY_PUFFER_FISH_BLOW_UP, SoundCategory.BLOCKS,
-                    1.0F, pitch);
+            world.playSound(null, pos, SoundEvents.ENTITY_PUFFER_FISH_BLOW_UP,
+                    SoundCategory.BLOCKS, 1.0F, pitch);
             world.setBlockState(pos, state.with(PUFFED, puffedLevel + 1));
         } else {
-            world.playSound(null, pos, SoundEvents.ENTITY_PUFFER_FISH_BLOW_OUT, SoundCategory.BLOCKS,
-                    1.0F, pitch);
+            world.playSound(null, pos, SoundEvents.ENTITY_PUFFER_FISH_BLOW_OUT,
+                    SoundCategory.BLOCKS, 1.0F, pitch);
             world.setBlockState(pos, state.with(PUFFED, 0));
         }
         return ActionResult.success(world.isClient());
@@ -61,7 +62,8 @@ public class PufferfishPlushieBlock extends AbstractPlushieBlock {
 
     @Override
     @SuppressWarnings("deprecation")
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos,
+                                      ShapeContext context) {
         Direction direction = state.get(FACING);
 
         return switch (state.get(PUFFED)) {
@@ -79,12 +81,12 @@ public class PufferfishPlushieBlock extends AbstractPlushieBlock {
     static {
         CODEC = createCodec(PufferfishPlushieBlock::new);
         PUFFED = ModBlockStateProperties.PUFFED;
-        SMALL_NORTH_SHAPE = Block.createCuboidShape(4.0D, 0.0D, 3.0D, 12.0D, 6.0D,
-                14.0D);
-        MEDIUM_NORTH_SHAPE = Block.createCuboidShape(1.5D, 0.0D, 2.5D, 14.5D, 8.5D,
-                11.5D);
-        LARGE_NORTH_SHAPE = Block.createCuboidShape(0.5D, 0.0D, 1.5D, 15.5D, 9.5D,
-                12.5D);
+        SMALL_NORTH_SHAPE = Block.createCuboidShape(4.0D, 0.0D, 3.0D, 12.0D,
+                6.0D, 14.0D);
+        MEDIUM_NORTH_SHAPE = Block.createCuboidShape(1.5D, 0.0D, 2.5D, 14.5D,
+                8.5D, 11.5D);
+        LARGE_NORTH_SHAPE = Block.createCuboidShape(0.5D, 0.0D, 1.5D, 15.5D,
+                9.5D, 12.5D);
         SMALL_SHAPES = ShapeHelper.makeShapeRotMap(SMALL_NORTH_SHAPE);
         MEDIUM_SHAPES = ShapeHelper.makeShapeRotMap(MEDIUM_NORTH_SHAPE);
         LARGE_SHAPES = ShapeHelper.makeShapeRotMap(LARGE_NORTH_SHAPE);

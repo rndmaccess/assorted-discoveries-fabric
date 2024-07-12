@@ -35,7 +35,8 @@ public class SnowySlabBlock extends SlabBlock {
 
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState,
                                                 WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        return direction == Direction.UP ? state.with(SNOWY, isSnow(world, state, neighborPos, neighborState)) : state;
+        return direction == Direction.UP ? state.with(SNOWY, isSnow(world, state, neighborPos, neighborState))
+                : state;
     }
 
     public BlockState getPlacementState(ItemPlacementContext ctx) {
@@ -47,7 +48,8 @@ public class SnowySlabBlock extends SlabBlock {
         return state != null ? state.with(SNOWY, isSnow(world, state, neighborPos, neighborState)) : null;
     }
 
-    private static boolean isSnow(WorldView world, BlockState state, BlockPos neighborPos, BlockState neighborState) {
+    private static boolean isSnow(WorldView world, BlockState state, BlockPos neighborPos,
+                                  BlockState neighborState) {
         return (neighborState.isIn(BlockTags.SNOW) && !isBottom(state)) ||
                 (neighborState.isIn(CommonBlockTags.SNOW_STAIRS) && !isBottom(state) &&
                         isCovered(world, neighborPos, neighborState)) ||

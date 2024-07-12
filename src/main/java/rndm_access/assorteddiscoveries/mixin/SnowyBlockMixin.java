@@ -41,7 +41,7 @@ public abstract class SnowyBlockMixin {
     @Unique
     private boolean isSnowSlabOrStairs(WorldAccess world, BlockPos pos, BlockState state) {
         boolean isCovered = state.isSideSolidFullSquare(world, pos, Direction.DOWN);
-        return state.isIn(CommonBlockTags.SNOW_STAIRS) && isCovered || state.isIn(CommonBlockTags.SNOW_SLABS)
-                && isCovered;
+        return (state.isIn(CommonBlockTags.SNOW_STAIRS) && isCovered)
+                || (state.isIn(CommonBlockTags.SNOW_SLABS) && isCovered);
     }
 }

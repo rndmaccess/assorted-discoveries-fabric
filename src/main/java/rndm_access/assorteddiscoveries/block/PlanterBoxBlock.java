@@ -40,8 +40,10 @@ public class PlanterBoxBlock extends Block {
      * Makes a map of all shapes that the planter box can take according to its state.
      */
     private static HashMap<List<Boolean>, VoxelShape> collectStateShapes() {
-        VoxelShape bottomShape = Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 15.0, 16.0);
-        VoxelShape northBorderShape = Block.createCuboidShape(0.0, 15.0, 13.0, 16.0, 16.0, 16.0);
+        VoxelShape bottomShape = Block.createCuboidShape(0.0, 0.0, 0.0, 16.0,
+                15.0, 16.0);
+        VoxelShape northBorderShape = Block.createCuboidShape(0.0, 15.0, 13.0, 16.0,
+                16.0, 16.0);
         List<VoxelShape> borderShapes = ShapeHelper.makeShapeRotList(northBorderShape);
         HashMap<List<Boolean>, VoxelShape> shapes = new HashMap<>();
         int borderNum = 4;

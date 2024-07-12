@@ -35,6 +35,7 @@ public class BeePlushieBlock extends AbstractSimplePlushieBlock {
 
     static {
         CODEC = createCodec(BeePlushieBlock::new);
-        NORTH_SHAPE = Block.createCuboidShape(3.0D, 0.0D, 2.5D, 13.5D, 7.0D, 14.5D);
+        NORTH_SHAPE = Block.createCuboidShape(3.0D, 0.0D, 2.5D, 13.5D,
+                7.0D, 14.5D);
     }
 }

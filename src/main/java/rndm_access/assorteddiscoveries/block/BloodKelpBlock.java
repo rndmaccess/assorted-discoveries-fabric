@@ -104,7 +104,8 @@ public class BloodKelpBlock extends AbstractPlantStemBlock implements FluidFilla
 
     @SuppressWarnings("deprecation")
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand,
+                              BlockHitResult hit) {
         return BloodKelp.pickSeedCluster(world, player, state, pos);
     }
 
@@ -119,7 +120,8 @@ public class BloodKelpBlock extends AbstractPlantStemBlock implements FluidFilla
     }
 
     @Override
-    public boolean canFillWithFluid(@Nullable PlayerEntity player, BlockView world, BlockPos pos, BlockState state, Fluid fluid) {
+    public boolean canFillWithFluid(@Nullable PlayerEntity player, BlockView world, BlockPos pos,
+                                    BlockState state, Fluid fluid) {
         return false;
     }
 

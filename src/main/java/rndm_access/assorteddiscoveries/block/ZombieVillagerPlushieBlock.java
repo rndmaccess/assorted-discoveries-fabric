@@ -35,6 +35,7 @@ public class ZombieVillagerPlushieBlock extends AbstractSimplePlushieBlock {
 
     static {
         CODEC = createCodec(ZombieVillagerPlushieBlock::new);
-        NORTH_SHAPE = Block.createCuboidShape(3.0D, 0.0D, 3.0D, 13.5D, 12.5D, 13.5D);
+        NORTH_SHAPE = Block.createCuboidShape(3.0D, 0.0D, 3.0D, 13.5D,
+                12.5D, 13.5D);
     }
 }

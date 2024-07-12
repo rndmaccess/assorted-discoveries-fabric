@@ -13,7 +13,8 @@ import rndm_access.assorteddiscoveries.core.CommonBlockTags;
 
 public class SnapdragonBlock extends FlowerBlock {
 
-    public SnapdragonBlock(StatusEffect suspiciousStewEffect, int effectDuration, AbstractBlock.Settings settings) {
+    public SnapdragonBlock(StatusEffect suspiciousStewEffect, int effectDuration,
+                           AbstractBlock.Settings settings) {
         super(suspiciousStewEffect, effectDuration, settings);
     }
 
@@ -28,6 +29,7 @@ public class SnapdragonBlock extends FlowerBlock {
         double y = (double) pos.getY() + random.nextFloat();
         double z = (double) pos.getZ() + random.nextFloat();
 
-        world.addParticle(ParticleTypes.PORTAL, x, y, z, 0.0D, 0.0D, 0.0D);
+        world.addParticle(ParticleTypes.PORTAL, x, y, z, 0.0D,
+                0.0D, 0.0D);
     }
 }

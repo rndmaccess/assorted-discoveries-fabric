@@ -36,7 +36,8 @@ public class WoodcutterScreenHandler extends ScreenHandler {
         this(syncId, playerInventory, ScreenHandlerContext.EMPTY);
     }
 
-    public WoodcutterScreenHandler(int syncId, PlayerInventory playerInventory, ScreenHandlerContext context) {
+    public WoodcutterScreenHandler(int syncId, PlayerInventory playerInventory,
+                                   ScreenHandlerContext context) {
         super(ModScreenHandlerTypes.WOODCUTTER, syncId);
         this.selectedRecipe = Property.create();
         this.availableRecipes = Lists.newArrayList();
@@ -65,6 +66,7 @@ public class WoodcutterScreenHandler extends ScreenHandler {
                 stack.onCraftByPlayer(player.getWorld(), player, stack.getCount());
                 WoodcutterScreenHandler.this.output.unlockLastRecipe(player, this.getInputStacks());
                 ItemStack itemStack = WoodcutterScreenHandler.this.inputSlot.takeStack(1);
+
                 if (!itemStack.isEmpty()) {
                     WoodcutterScreenHandler.this.populateResult();
                 }
@@ -76,7 +78,6 @@ public class WoodcutterScreenHandler extends ScreenHandler {
                                 SoundCategory.BLOCKS, 1.0F, 1.0F);
                         WoodcutterScreenHandler.this.lastTakeTime = l;
                     }
-
                 });
                 super.onTakeItem(player, stack);
             }
@@ -94,7 +95,8 @@ public class WoodcutterScreenHandler extends ScreenHandler {
     private void addPlayerInventorySlots(PlayerInventory playerInventory) {
         for(int i = 0; i < 3; ++i) {
             for(int j = 0; j < 9; ++j) {
-                this.addSlot(new Slot(playerInventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
+                this.addSlot(new Slot(playerInventory, j + i * 9 + 9, 8 + j * 18,
+                        84 + i * 18));
             }
         }
     }
@@ -153,15 +155,18 @@ public class WoodcutterScreenHandler extends ScreenHandler {
         this.selectedRecipe.set(-1);
         this.outputSlot.setStack(ItemStack.EMPTY);
         if (!stack.isEmpty()) {
-            this.availableRecipes = this.world.getRecipeManager().getAllMatches(ModRecipeTypes.WOODCUTTING, input, this.world);
+            this.availableRecipes = this.world.getRecipeManager()
+                    .getAllMatches(ModRecipeTypes.WOODCUTTING, input, this.world);
         }
     }
 
     public void populateResult() {
         if (!this.availableRecipes.isEmpty() && this.isInBounds(this.selectedRecipe.get())) {
-            RecipeEntry<WoodcuttingRecipe> woodcuttingRecipe = this.availableRecipes.get(this.selectedRecipe.get());
+            RecipeEntry<WoodcuttingRecipe> woodcuttingRecipe = this.availableRecipes
+                    .get(this.selectedRecipe.get());
             this.output.setLastRecipe(woodcuttingRecipe);
-            this.outputSlot.setStack(woodcuttingRecipe.value().craft(this.input, this.world.getRegistryManager()));
+            this.outputSlot.setStack(woodcuttingRecipe.value()
+                    .craft(this.input, this.world.getRegistryManager()));
         } else {
             this.outputSlot.setStack(ItemStack.EMPTY);
         }
@@ -211,7 +216,8 @@ public class WoodcutterScreenHandler extends ScreenHandler {
                 if (!this.insertItem(itemStack2, 29, 38, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (index >= 29 && index < 38 && !this.insertItem(itemStack2, 2, 29, false)) {
+            } else if (index >= 29 && index < 38 && !this.insertItem(itemStack2, 2,
+                    29, false)) {
                 return ItemStack.EMPTY;
             }
 

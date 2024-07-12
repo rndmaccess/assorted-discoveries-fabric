@@ -34,6 +34,7 @@ public class ShulkerPlushieBlock extends AbstractSimplePlushieBlock {
 
     static {
         CODEC = createCodec(ShulkerPlushieBlock::new);
-        NORTH_SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 12.0D, 14.0D);
+        NORTH_SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D,
+                12.0D, 14.0D);
     }
 }

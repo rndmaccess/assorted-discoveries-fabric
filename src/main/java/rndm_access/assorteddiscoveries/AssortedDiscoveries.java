@@ -214,18 +214,18 @@ public class AssortedDiscoveries implements ModInitializer {
 				.displayName(Text.translatable("itemGroup." + ADReference.MOD_ID + ".item_group"))
 				.icon(() -> new ItemStack(ModItems.ENDERMAN_PLUSHIE))
 				.entries((context, entries) -> {
-                    JsonConfigCategory buildingCategory = ModConfig.CONFIG
-                            .getCategory("building");
-                    JsonConfigCategory dyedSubcategory = buildingCategory
-                            .getSubcategory("dyed");
-                    JsonConfigCategory hostilePlushiesSubcategory = buildingCategory
-                            .getSubcategory("hostile_plushies");
-                    JsonConfigCategory passivePlushiesSubcategory = buildingCategory
-                            .getSubcategory("passive_plushies");
-                    JsonConfigCategory neutralPlushiesSubcategory = buildingCategory
-                            .getSubcategory("neutral_plushies");
-                    JsonConfigCategory farmingCategory = ModConfig.CONFIG
-                            .getCategory("farming");
+                    JsonConfigCategory buildingCategory
+                            = ModConfig.CONFIG.getCategory("building");
+                    JsonConfigCategory dyedSubcategory
+                            = buildingCategory.getSubcategory("dyed");
+                    JsonConfigCategory hostilePlushiesSubcategory
+                            = buildingCategory.getSubcategory("hostile_plushies");
+                    JsonConfigCategory passivePlushiesSubcategory
+                            = buildingCategory.getSubcategory("passive_plushies");
+                    JsonConfigCategory neutralPlushiesSubcategory
+                            = buildingCategory.getSubcategory("neutral_plushies");
+                    JsonConfigCategory farmingCategory
+                            = ModConfig.CONFIG.getCategory("farming");
 
                     if (hostilePlushiesSubcategory.getEntry("enable_slime_plushie").getValueAsBool()) {
                         entries.add(ModItems.SLIME_PLUSHIE);
@@ -397,11 +397,13 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ModItems.WARPED_VILLAGER_PLUSHIE);
                     }
 
-                    if (passivePlushiesSubcategory.getEntry("enable_wandering_trader_plushie").getValueAsBool()) {
+                    if (passivePlushiesSubcategory.getEntry("enable_wandering_trader_plushie")
+                            .getValueAsBool()) {
                         entries.add(ModItems.WANDERING_TRADER_PLUSHIE);
                     }
 
-                    if (hostilePlushiesSubcategory.getEntry("enable_zombie_villager_plushies").getValueAsBool()) {
+                    if (hostilePlushiesSubcategory.getEntry("enable_zombie_villager_plushies")
+                            .getValueAsBool()) {
                         entries.add(ModItems.PLAINS_ZOMBIE_VILLAGER_PLUSHIE);
                         entries.add(ModItems.DESERT_ZOMBIE_VILLAGER_PLUSHIE);
                         entries.add(ModItems.JUNGLE_ZOMBIE_VILLAGER_PLUSHIE);
@@ -651,12 +653,12 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ModItems.WEEPING_BLACKSTONE_TILE_WALL);
                     }
 
-                    boolean enableSmokyQuartzBlocks = buildingCategory.getEntry("enable_smoky_quartz_blocks")
-                            .getValueAsBool();
-                    boolean enableSmokyQuartzBricks = buildingCategory.getEntry("enable_smoky_quartz_bricks")
-                            .getValueAsBool();
-                    boolean enableSmoothSmokyQuartz = buildingCategory.getEntry("enable_smooth_smoky_quartz")
-                            .getValueAsBool();
+                    boolean enableSmokyQuartzBlocks
+                            = buildingCategory.getEntry("enable_smoky_quartz_blocks").getValueAsBool();
+                    boolean enableSmokyQuartzBricks
+                            = buildingCategory.getEntry("enable_smoky_quartz_bricks").getValueAsBool();
+                    boolean enableSmoothSmokyQuartz
+                            = buildingCategory.getEntry("enable_smooth_smoky_quartz").getValueAsBool();
 
                     if (enableSmokyQuartzBlocks) {
                         entries.add(ModItems.NETHER_SMOKY_QUARTZ_ORE);

@@ -62,7 +62,8 @@ public class ModdedCandleCakeBlock extends AbstractCandleBlock {
                 extinguish(player, state, world, pos);
                 return ActionResult.success(world.isClient());
             } else {
-                ActionResult actionResult = ModdedCakeBlock.tryEatCake(world, pos, this.cake.getDefaultState(), player);
+                ActionResult actionResult = ModdedCakeBlock.tryEatCake(world, pos,
+                        this.cake.getDefaultState(), player);
 
                 if (actionResult.isAccepted()) {
                     dropStacks(state, world, pos);
@@ -100,7 +101,8 @@ public class ModdedCandleCakeBlock extends AbstractCandleBlock {
     }
 
     @SuppressWarnings("deprecation")
-    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
+    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState,
+                                                WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         return direction == Direction.DOWN && !state.canPlaceAt(world, pos) ? Blocks.AIR.getDefaultState() : state;
     }
 
@@ -134,8 +136,10 @@ public class ModdedCandleCakeBlock extends AbstractCandleBlock {
                Registries.BLOCK.getCodec().fieldOf("candle").forGetter((item) -> item.candle),
                createSettingsCodec()).apply(instance, ModdedCandleCakeBlock::new));
         LIT = AbstractCandleBlock.LIT;
-        CAKE_SHAPE = Block.createCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D);
-        CANDLE_SHAPE = Block.createCuboidShape(7.0D, 8.0D, 7.0D, 9.0D, 14.0D, 9.0D);
+        CAKE_SHAPE = Block.createCuboidShape(1.0D, 0.0D, 1.0D, 15.0D,
+                8.0D, 15.0D);
+        CANDLE_SHAPE = Block.createCuboidShape(7.0D, 8.0D, 7.0D, 9.0D,
+                14.0D, 9.0D);
         SHAPE = VoxelShapes.union(CAKE_SHAPE, CANDLE_SHAPE);
         CANDLES_TO_CANDLE_CAKES = Maps.newHashMap();
     }

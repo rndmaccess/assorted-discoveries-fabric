@@ -35,6 +35,7 @@ public class BatPlushieBlock extends AbstractSimplePlushieBlock {
 
     static {
         CODEC = createCodec(BatPlushieBlock::new);
-        NORTH_SHAPE = Block.createCuboidShape(1.0D, 0.0D, 4.0D, 15.0D, 12.0D, 12.0D);
+        NORTH_SHAPE = Block.createCuboidShape(1.0D, 0.0D, 4.0D, 15.0D,
+                12.0D, 12.0D);
     }
 }

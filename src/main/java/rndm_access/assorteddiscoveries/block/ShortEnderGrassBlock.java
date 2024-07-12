@@ -39,12 +39,14 @@ public class ShortEnderGrassBlock extends PlantBlock {
 
     @SuppressWarnings("deprecation")
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos,
+                                      ShapeContext context) {
         return ENDER_GRASS_SHAPE;
     }
 
     static {
         CODEC = createCodec(ShortEnderGrassBlock::new);
-        ENDER_GRASS_SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 10.0D, 16.0D);
+        ENDER_GRASS_SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D,
+                10.0D, 16.0D);
     }
 }

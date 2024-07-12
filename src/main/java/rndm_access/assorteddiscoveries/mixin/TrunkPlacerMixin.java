@@ -28,8 +28,8 @@ public abstract class TrunkPlacerMixin {
 
     @Unique
     private static boolean isPlanterBox(TestableWorld world, BlockPos pos) {
-        return world.testBlockState(pos, (state) ->
-                   state.isIn(ModBlockTags.OVERWORLD_PLANTER_BOXES)
-                || state.isIn(ModBlockTags.NETHER_PLANTER_BOXES));
+        return world.testBlockState(pos,
+                (state) -> state.isIn(ModBlockTags.OVERWORLD_PLANTER_BOXES)
+                        || state.isIn(ModBlockTags.NETHER_PLANTER_BOXES));
     }
 }

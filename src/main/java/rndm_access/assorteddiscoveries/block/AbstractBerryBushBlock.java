@@ -106,7 +106,8 @@ public abstract class AbstractBerryBushBlock extends PlantBlock implements Ferti
 
     @SuppressWarnings("deprecation")
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player,
+                              Hand hand, BlockHitResult hit) {
         boolean isHoldingBoneMeal = player.getStackInHand(hand).isOf(Items.BONE_MEAL);
         int age = state.get(AGE);
 

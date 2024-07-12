@@ -24,7 +24,8 @@ public class ModdedCakeBlock extends CakeBlock {
         super(settings);
     }
 
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand,
+                              BlockHitResult hit) {
         ItemStack heldStack = player.getStackInHand(hand);
 
         if (state.get(BITES) == 0) {
@@ -38,12 +39,14 @@ public class ModdedCakeBlock extends CakeBlock {
         return this.eatCake(world, player, pos, heldStack, state);
     }
 
-    private ActionResult placeCandleCake(World world, PlayerEntity player, BlockPos pos, ItemStack itemStack, Block block, Item item) {
+    private ActionResult placeCandleCake(World world, PlayerEntity player, BlockPos pos, ItemStack itemStack,
+                                         Block block, Item item) {
         if (!player.isCreative()) {
             itemStack.decrement(1);
         }
 
-        world.playSound(null, pos, SoundEvents.BLOCK_CAKE_ADD_CANDLE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+        world.playSound(null, pos, SoundEvents.BLOCK_CAKE_ADD_CANDLE, SoundCategory.BLOCKS,
+                1.0F, 1.0F);
         world.setBlockState(pos, ModdedCandleCakeBlock.getCandleCake(this, block));
         world.emitGameEvent(player, GameEvent.BLOCK_CHANGE, pos);
         player.incrementStat(Stats.USED.getOrCreateStat(item));
@@ -78,8 +81,8 @@ public class ModdedCakeBlock extends CakeBlock {
     }
 
     @NotNull
-    public static ActionResult eat(WorldAccess world, BlockPos pos, BlockState state, PlayerEntity player, int bitesTaken,
-                                   IntProperty property) {
+    public static ActionResult eat(WorldAccess world, BlockPos pos, BlockState state, PlayerEntity player,
+                                   int bitesTaken, IntProperty property) {
         world.emitGameEvent(player, GameEvent.EAT, pos);
 
         if (bitesTaken < 6) {

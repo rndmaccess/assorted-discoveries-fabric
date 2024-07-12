@@ -34,6 +34,7 @@ public class AllayPlushieBlock extends AbstractSimplePlushieBlock {
 
     static {
         CODEC = createCodec(AllayPlushieBlock::new);
-        NORTH_SHAPE = Block.createCuboidShape(3.0D, 0.0D, 3.0D, 13.0D, 10.0D, 13.0D);
+        NORTH_SHAPE = Block.createCuboidShape(3.0D, 0.0D, 3.0D, 13.0D,
+                10.0D, 13.0D);
     }
 }

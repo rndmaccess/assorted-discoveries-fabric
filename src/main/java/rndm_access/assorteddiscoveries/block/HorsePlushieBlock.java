@@ -14,8 +14,8 @@ public class HorsePlushieBlock extends AbstractSimplePlushieBlock {
 
     public HorsePlushieBlock(AbstractBlock.Settings settings) {
         super(settings);
-        this.setDefaultState(this.getStateManager().getDefaultState().with(WATERLOGGED, false)
-                .with(FACING, Direction.NORTH));
+        this.setDefaultState(this.getStateManager().getDefaultState()
+                .with(WATERLOGGED, false).with(FACING, Direction.NORTH));
     }
 
     @Override
@@ -35,6 +35,7 @@ public class HorsePlushieBlock extends AbstractSimplePlushieBlock {
 
     static {
         CODEC = createCodec(HorsePlushieBlock::new);
-        NORTH_SHAPE = Block.createCuboidShape(4.5D, 0.0D, 0.5D, 11.5D, 12.5, 15.5D);
+        NORTH_SHAPE = Block.createCuboidShape(4.5D, 0.0D, 0.5D, 11.5D,
+                12.5, 15.5D);
     }
 }

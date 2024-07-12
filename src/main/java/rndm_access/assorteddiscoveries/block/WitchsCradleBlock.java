@@ -65,11 +65,13 @@ public class WitchsCradleBlock extends AbstractBerryBushBlock {
         double y = pos.getY() + random.nextDouble();
         double z = pos.getZ() + random.nextDouble();
 
-        world.addParticle(ModParticleTypes.WITCHS_CRADLE_SPORE, x, y, z, 0.0D, 0.0D, 0.0D);
+        world.addParticle(ModParticleTypes.WITCHS_CRADLE_SPORE, x, y, z, 0.0D,
+                0.0D, 0.0D);
     }
 
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos,
+                                      ShapeContext context) {
         return switch (state.get(AGE)) {
             case 0 -> SMALL_SHAPE;
             case 1 -> MEDIUM_SHAPE;
@@ -80,9 +82,13 @@ public class WitchsCradleBlock extends AbstractBerryBushBlock {
 
     static {
         CODEC = createCodec(WitchsCradleBlock::new);
-        SMALL_SHAPE = Block.createCuboidShape(3.0D, 0.0D, 3.0D, 13.0D, 9.0D, 13.0D);
-        MEDIUM_SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 11.0D, 14.0D);
-        LARGE_SHAPE = Block.createCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 11.0D, 15.0D);
-        GIANT_SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D);
+        SMALL_SHAPE = Block.createCuboidShape(3.0D, 0.0D, 3.0D, 13.0D,
+                9.0D, 13.0D);
+        MEDIUM_SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D,
+                11.0D, 14.0D);
+        LARGE_SHAPE = Block.createCuboidShape(1.0D, 0.0D, 1.0D, 15.0D,
+                11.0D, 15.0D);
+        GIANT_SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D,
+                12.0D, 16.0D);
     }
 }

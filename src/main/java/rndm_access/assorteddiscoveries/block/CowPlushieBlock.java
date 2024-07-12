@@ -35,6 +35,7 @@ public class CowPlushieBlock extends AbstractSimplePlushieBlock {
 
     static {
         CODEC = createCodec(CowPlushieBlock::new);
-        NORTH_SHAPE = Block.createCuboidShape(3.5D, 0.0D, 1.0D, 12.5D, 12.0D, 15.0D);
+        NORTH_SHAPE = Block.createCuboidShape(3.5D, 0.0D, 1.0D, 12.5D,
+                12.0D, 15.0D);
     }
 }

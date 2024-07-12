@@ -99,7 +99,7 @@ public class CubePlushieBlock extends AbstractPlushieBlock {
     private boolean canStay(BlockState state, BlockState neighborState, Direction direction) {
         if(this.isTripleStacked(state) && (direction == Direction.DOWN && isUpperHalf(state)
                 || direction == Direction.UP && isLowerHalf(state))) {
-            return isCubePlush(neighborState);
+            return this.isCubePlush(neighborState);
         } else {
             return true;
         }
@@ -107,7 +107,8 @@ public class CubePlushieBlock extends AbstractPlushieBlock {
 
     public BlockState onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         // Prevents items from being dropped when breaking a 3-tier plush in creative.
-        if ((!world.isClient() && (player.isCreative() || !player.canHarvest(state))) && this.isUpperHalf(state)) {
+        if ((!world.isClient() && (player.isCreative() || !player.canHarvest(state)))
+                && this.isUpperHalf(state)) {
             BlockPos belowPos = pos.down();
             BlockState belowState = world.getBlockState(belowPos);
             if (this.isCubePlush(belowState) && this.isLowerHalf(belowState)) {

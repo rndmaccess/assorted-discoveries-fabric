@@ -40,7 +40,8 @@ public class CattailBlock extends TallPlantBlock implements Fertilizable {
 
     @Override
     protected boolean canPlantOnTop(BlockState floorState, BlockView world, BlockPos floorPos) {
-        return floorState.isSideSolidFullSquare(world, floorPos, Direction.UP) && !floorState.isOf(Blocks.MAGMA_BLOCK);
+        return floorState.isSideSolidFullSquare(world, floorPos, Direction.UP)
+                && !floorState.isOf(Blocks.MAGMA_BLOCK);
     }
 
     @Nullable
@@ -114,8 +115,10 @@ public class CattailBlock extends TallPlantBlock implements Fertilizable {
         return Blocks.AIR.getDefaultState();
     }
 
-    private boolean canStay(BlockState state, BlockState neighborState, Direction direction, WorldAccess world, BlockPos pos) {
-        // Break the other half when the bottom is broken. We don't check the top here so tall plants can be replaced!
+    private boolean canStay(BlockState state, BlockState neighborState, Direction direction,
+                            WorldAccess world, BlockPos pos) {
+        // Break the other half when the bottom is broken.
+        // We don't check the top here so tall plants can be replaced!
         if(direction == Direction.DOWN && isUpperHalf(state)) {
             return neighborState.isOf(state.getBlock());
         } else {

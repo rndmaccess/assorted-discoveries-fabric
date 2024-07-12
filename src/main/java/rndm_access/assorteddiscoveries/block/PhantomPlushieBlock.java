@@ -34,6 +34,7 @@ public class PhantomPlushieBlock extends AbstractSimplePlushieBlock {
 
     static {
         CODEC = createCodec(PhantomPlushieBlock::new);
-        NORTH_SHAPE = Block.createCuboidShape(2.5, 0.0, 0.0, 13.5, 5.0, 14.0);
+        NORTH_SHAPE = Block.createCuboidShape(2.5, 0.0, 0.0, 13.5,
+                5.0, 14.0);
     }
 }

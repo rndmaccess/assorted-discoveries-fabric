@@ -35,6 +35,7 @@ public class EndermanPlushieBlock extends AbstractSimplePlushieBlock {
 
     static {
         CODEC = createCodec(EndermanPlushieBlock::new);
-        NORTH_SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 13.0D, 12.5D, 14.0D);
+        NORTH_SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 13.0D,
+                12.5D, 14.0D);
     }
 }

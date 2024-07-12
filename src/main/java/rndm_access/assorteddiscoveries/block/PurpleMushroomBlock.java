@@ -19,7 +19,8 @@ public class PurpleMushroomBlock extends MushroomBlock {
     }
 
     @Override
-    public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
+    public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity,
+                             float fallDistance) {
         SoundEvent sound = ModSoundEvents.BLOCK_MUSHROOM_BOUNCE;
         Random random = world.getRandom();
         int x = pos.getX();

@@ -35,6 +35,7 @@ public class BlazePlushieBlock extends AbstractSimplePlushieBlock {
 
     static {
         CODEC = createCodec(BlazePlushieBlock::new);
-        NORTH_SHAPE = Block.createCuboidShape(2.0D, 0.0D, 3.0D, 13.5D, 15.5D, 12.0D);
+        NORTH_SHAPE = Block.createCuboidShape(2.0D, 0.0D, 3.0D, 13.5D,
+                15.5D, 12.0D);
     }
 }

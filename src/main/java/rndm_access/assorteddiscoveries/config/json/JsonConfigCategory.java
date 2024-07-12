@@ -18,14 +18,16 @@ public class JsonConfigCategory extends JsonConfigObject {
 
     public JsonConfigEntry getEntry(String entryName) {
         if(!this.hasEntry(entryName)) {
-            throw new RuntimeException("The category " + this.getName() + " does not have entry " + entryName);
+            throw new RuntimeException("The category " + this.getName() + " does not have entry "
+                    + entryName);
         }
         return (JsonConfigEntry) jsonConfigObjects.get(entryName);
     }
 
     public JsonConfigCategory getSubcategory(String subCategoryName) {
         if(!this.hasSubcategory(subCategoryName)) {
-            throw new RuntimeException("The category " + this.getName() + " does not have sub category " + subCategoryName);
+            throw new RuntimeException("The category " + this.getName()
+                    + " does not have sub category " + subCategoryName);
         }
         return (JsonConfigCategory) jsonConfigObjects.get(subCategoryName);
     }

@@ -19,14 +19,16 @@ public class ModConfig {
             LinkedList<JsonConfigCategory> savedCategories = JANKSON_CONFIG_SERIALIZER.deserializeConfig();
 
             if(savedCategories.isEmpty()) {
-                AssortedDiscoveries.LOGGER.error("None of the categories could be loaded! Regenerating the config file!");
+                AssortedDiscoveries.LOGGER.error("None of the categories could be loaded! "
+                        + "Regenerating the config file!");
                 JANKSON_CONFIG_SERIALIZER.serializeConfig();
             } else {
                 for (JsonConfigCategory savedCategory : savedCategories) {
                     updateCategory(savedCategory);
                 }
 
-                // Re-serialize the config to make sure that the loaded data is the same as the serialized data.
+                // Re-serialize the config to make sure that the loaded data
+                // is the same as the serialized data.
                 JANKSON_CONFIG_SERIALIZER.serializeConfig();
             }
         } else {
@@ -85,17 +87,20 @@ public class ModConfig {
     }
 
     private static boolean isBoolean(String value) {
-        return value.equalsIgnoreCase("true") || value.equalsIgnoreCase("false");
+        return value.equalsIgnoreCase("true")
+                || value.equalsIgnoreCase("false");
     }
 
     private static String correctNumber(JsonConfigEntry defaultEntry, String entryValue) {
         if(entryValue.isEmpty()) {
-            logCorrectionInfo(entryValue, String.valueOf(defaultEntry.getValue()), defaultEntry.getName());
+            logCorrectionInfo(entryValue, String.valueOf(defaultEntry.getValue()),
+                    defaultEntry.getName());
             return String.valueOf(defaultEntry.getValue());
         } else {
             for (int i = 0; i < entryValue.length(); i++) {
                 if(!Character.isDigit(entryValue.charAt(i))) {
-                    logCorrectionInfo(entryValue, String.valueOf(defaultEntry.getValue()), defaultEntry.getName());
+                    logCorrectionInfo(entryValue, String.valueOf(defaultEntry.getValue()),
+                            defaultEntry.getName());
                     return String.valueOf(defaultEntry.getValue());
                 }
             }
@@ -105,14 +110,16 @@ public class ModConfig {
 
     private static String correctDecimalNumber(JsonConfigEntry defaultEntry, String entryValue) {
         if(entryValue.isEmpty()) {
-            logCorrectionInfo(entryValue, String.valueOf(defaultEntry.getValue()), defaultEntry.getName());
+            logCorrectionInfo(entryValue, String.valueOf(defaultEntry.getValue()),
+                    defaultEntry.getName());
             return String.valueOf(defaultEntry.getValue());
         } else {
             for (int i = 0; i < entryValue.length(); i++) {
                 char c = entryValue.charAt(i);
 
                 if(!Character.isDigit(c) || c != '.') {
-                    logCorrectionInfo(entryValue, String.valueOf(defaultEntry.getValue()), defaultEntry.getName());
+                    logCorrectionInfo(entryValue, String.valueOf(defaultEntry.getValue()),
+                            defaultEntry.getName());
                     return String.valueOf(defaultEntry.getValue());
                 }
             }
@@ -251,7 +258,8 @@ public class ModConfig {
     }
 
     static {
-        CONFIG_PATH = FabricLoader.getInstance().getConfigDir().resolve(ADReference.MOD_ID + ".json5");
+        CONFIG_PATH = FabricLoader.getInstance().getConfigDir()
+                .resolve(ADReference.MOD_ID + ".json5");
         CONFIG = makeConfig();
         JANKSON_CONFIG_SERIALIZER = new JanksonConfigSerializer(CONFIG, CONFIG_PATH);
     }

@@ -35,6 +35,7 @@ public class WitherPlushieBlock extends AbstractSimplePlushieBlock {
 
     static {
         CODEC = createCodec(WitherPlushieBlock::new);
-        NORTH_SHAPE = Block.createCuboidShape(2.5, 0.0, 3.5, 13.5, 13.5, 12.5);
+        NORTH_SHAPE = Block.createCuboidShape(2.5, 0.0, 3.5, 13.5,
+                13.5, 12.5);
     }
 }

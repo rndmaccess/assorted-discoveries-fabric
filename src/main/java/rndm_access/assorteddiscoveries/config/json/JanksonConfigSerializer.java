@@ -28,7 +28,8 @@ public class JanksonConfigSerializer {
                 throw new SerializationException("Failed to deserialize the file!", e);
             }
         } else {
-            throw new SerializationException("Cannot deserialize config because the config file does not exist!");
+            throw new SerializationException("Cannot deserialize config because the config"
+                    + " file does not exist!");
         }
     }
 

@@ -919,13 +919,13 @@ public class ModItems {
         MAROON_CONCRETE_POWDER = blockItem(ModBlocks.MAROON_CONCRETE_POWDER);
         CAMEL_PLUSHIE = blockItem(ModBlocks.CAMEL_PLUSHIE);
         MAROON_DYE = new Item(new Item.Settings());
-        HOGLIN_STEW = new FoodContainerItem(new Item.Settings()
-                .food(ModFoodComponents.HOGLIN_STEW).maxCount(1));
+        HOGLIN_STEW
+                = new FoodContainerItem(new Item.Settings().food(ModFoodComponents.HOGLIN_STEW).maxCount(1));
         BOG_BLOSSOM = blockItem(ModBlocks.BOG_BLOSSOM);
-        CINDERSNAP_BERRIES = new AliasedBlockItem(ModBlocks.CINDERSNAP_BERRY_BUSH, new Item.Settings()
-                .food(ModFoodComponents.NETHER_BERRIES));
-        FROSTBITE_BERRIES = new AliasedBlockItem(ModBlocks.FROSTBITE_BERRY_BUSH, new Item.Settings()
-                .food(ModFoodComponents.NETHER_BERRIES));
+        CINDERSNAP_BERRIES = new AliasedBlockItem(ModBlocks.CINDERSNAP_BERRY_BUSH,
+                new Item.Settings().food(ModFoodComponents.NETHER_BERRIES));
+        FROSTBITE_BERRIES = new AliasedBlockItem(ModBlocks.FROSTBITE_BERRY_BUSH,
+                new Item.Settings().food(ModFoodComponents.NETHER_BERRIES));
         POLISHED_DRIPSTONE = blockItem(ModBlocks.POLISHED_DRIPSTONE);
         POLISHED_DRIPSTONE_STAIRS = blockItem(ModBlocks.POLISHED_DRIPSTONE_STAIRS);
         POLISHED_DRIPSTONE_SLAB = blockItem(ModBlocks.POLISHED_DRIPSTONE_SLAB);

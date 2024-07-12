@@ -56,7 +56,8 @@ public class WoodcutterBlock extends Block {
 
     @SuppressWarnings("deprecation")
     @Override
-    public NamedScreenHandlerFactory createScreenHandlerFactory(BlockState state, World world, BlockPos pos) {
+    public NamedScreenHandlerFactory createScreenHandlerFactory(BlockState state, World world,
+                                                                BlockPos pos) {
         return new SimpleNamedScreenHandlerFactory(
                 (syncId, playerInventory, player) -> new WoodcutterScreenHandler(syncId, playerInventory,
                         ScreenHandlerContext.create(world, pos)), TITLE);
@@ -64,7 +65,8 @@ public class WoodcutterBlock extends Block {
 
     @SuppressWarnings("deprecation")
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos,
+                                      ShapeContext context) {
         return SHAPE;
     }
 
@@ -94,7 +96,8 @@ public class WoodcutterBlock extends Block {
 
     @SuppressWarnings("deprecation")
     @Override
-    public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
+    public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos,
+                                      NavigationType type) {
         return false;
     }
 
@@ -107,6 +110,7 @@ public class WoodcutterBlock extends Block {
         CODEC = createCodec(WoodcutterBlock::new);
         TITLE = Text.translatable("container." + ADReference.MOD_ID + ".woodcutter");
         FACING = HorizontalFacingBlock.FACING;
-        SHAPE = Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 9.0, 16.0);
+        SHAPE = Block.createCuboidShape(0.0, 0.0, 0.0, 16.0,
+                9.0, 16.0);
     }
 }

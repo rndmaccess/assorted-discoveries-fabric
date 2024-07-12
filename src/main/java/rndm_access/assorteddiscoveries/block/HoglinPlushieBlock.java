@@ -14,8 +14,8 @@ public class HoglinPlushieBlock extends AbstractSimplePlushieBlock {
 
     public HoglinPlushieBlock(AbstractBlock.Settings settings) {
         super(settings);
-        this.setDefaultState(this.getStateManager().getDefaultState().with(WATERLOGGED, false)
-                .with(FACING, Direction.NORTH));
+        this.setDefaultState(this.getStateManager().getDefaultState()
+                .with(WATERLOGGED, false).with(FACING, Direction.NORTH));
     }
 
     @Override
@@ -35,6 +35,7 @@ public class HoglinPlushieBlock extends AbstractSimplePlushieBlock {
 
     static {
         CODEC = createCodec(HoglinPlushieBlock::new);
-        NORTH_SHAPE = Block.createCuboidShape(3.0, 0.0, 1.0, 12.0, 9.0, 15.0);
+        NORTH_SHAPE = Block.createCuboidShape(3.0, 0.0, 1.0, 12.0,
+                9.0, 15.0);
     }
 }

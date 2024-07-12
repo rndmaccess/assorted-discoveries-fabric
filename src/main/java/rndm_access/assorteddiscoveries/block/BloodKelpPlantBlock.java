@@ -57,7 +57,8 @@ public class BloodKelpPlantBlock extends AbstractPlantBlock implements FluidFill
 
     @SuppressWarnings("deprecation")
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand,
+                              BlockHitResult hit) {
         return BloodKelp.pickSeedCluster(world, player, state, pos);
     }
 
@@ -73,16 +74,12 @@ public class BloodKelpPlantBlock extends AbstractPlantBlock implements FluidFill
     }
 
     @Override
-    protected boolean canAttachTo(BlockState state) {
-        return true;
-    }
-
-    @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(LIT);
     }
 
-    public boolean canFillWithFluid(@Nullable PlayerEntity player, BlockView world, BlockPos pos, BlockState state, Fluid fluid) {
+    public boolean canFillWithFluid(@Nullable PlayerEntity player, BlockView world, BlockPos pos,
+                                    BlockState state, Fluid fluid) {
         return false;
     }
 

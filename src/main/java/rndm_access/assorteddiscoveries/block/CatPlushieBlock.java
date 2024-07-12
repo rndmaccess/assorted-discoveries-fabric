@@ -19,8 +19,8 @@ public class CatPlushieBlock extends AbstractSimplePlushieBlock {
     public static final BooleanProperty IS_SITTING;
     public static final MapCodec<CatPlushieBlock> CODEC;
 
-    private static final VoxelShape NORTH_SHAPE = Block.createCuboidShape(4.5D, 0.0D, 1.0D, 11.5D,
-            9.5D, 14.5D);
+    private static final VoxelShape NORTH_SHAPE = Block.createCuboidShape(4.5D, 0.0D, 1.0D,
+            11.5D, 9.5D, 14.5D);
 
     public CatPlushieBlock(Settings settings) {
         super(settings);

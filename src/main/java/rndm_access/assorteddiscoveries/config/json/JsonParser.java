@@ -48,16 +48,15 @@ public class JsonParser {
                                  JsonConfigCategory.Builder subCategoryBuilder) {
         while (hasNextToken() && token != ',' && token != '}') {
             this.skipComment();
-            StringBuilder keyNameBuilder = new StringBuilder();
-            parseString(keyNameBuilder);
+            String key = parseKey();
 
             if (require(':')) {
                 consumeToken();
+
                 if (token == '{') {
                     require('{');
                     consumeToken();
-                    JsonConfigCategory.Builder tempCategoryBuilder = new JsonConfigCategory
-                            .Builder(keyNameBuilder.toString());
+                    JsonConfigCategory.Builder tempCategoryBuilder = new JsonConfigCategory.Builder(key);
 
                     if(subCategoryBuilder != null) {
                         parseJsonObject(subCategoryBuilder, tempCategoryBuilder);
@@ -65,24 +64,20 @@ public class JsonParser {
                         parseJsonObject(categoryBuilder, tempCategoryBuilder);
                     }
                 } else {
+                    int lineCopy = this.line;
+                    int columnCopy = this.column;
+                    char tokenCopy = this.token;
                     String value = parseValue();
-                    JsonConfigEntry entry = new JsonConfigEntry(keyNameBuilder.toString(), value);
 
-                    if (subCategoryBuilder != null) {
-                        subCategoryBuilder.addEntry(entry);
+                    if(token == ':') {
+                        // We are trying to parse a category here, but we are actually parsing it as an entry.
+                        // This is an error!
+                        throw new JsonSyntaxException("Expected {"
+                                + " but found " + tokenCopy
+                                + " at line " + (lineCopy + 1)
+                                + " and column " + (columnCopy + 1));
                     } else {
-                        categoryBuilder.addEntry(entry);
-                    }
-
-                    while (token == ',') {
-                        consumeToken();
-                        this.skipComment();
-                        keyNameBuilder = new StringBuilder();
-                        parseString(keyNameBuilder);
-                        require(':');
-                        consumeToken();
-                        value = parseValue();
-                        entry = new JsonConfigEntry(keyNameBuilder.toString(), value);
+                        JsonConfigEntry entry = new JsonConfigEntry(key, value);
 
                         if (subCategoryBuilder != null) {
                             subCategoryBuilder.addEntry(entry);
@@ -90,15 +85,8 @@ public class JsonParser {
                             categoryBuilder.addEntry(entry);
                         }
                     }
-
-                    require('}');
-                    consumeToken();
-
-                    if(token != '}') {
-                        require(',');
-                        consumeToken();
-                    }
                 }
+                consumeToken();
             }
         }
 
@@ -116,6 +104,12 @@ public class JsonParser {
                 advanceLine();
             }
         }
+    }
+
+    private String parseKey() {
+        StringBuilder keyNameBuilder = new StringBuilder();
+        parseString(keyNameBuilder);
+        return keyNameBuilder.toString();
     }
 
     private String parseValue() {

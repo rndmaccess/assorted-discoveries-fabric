@@ -7,14 +7,12 @@ public class JsonParser {
     private final LinkedList<String> json;
     private int column;
     private int line;
-    private int depth; // TODO: Add exceptions for when there are missing curly braces using this!
     private char token;
 
     public JsonParser(List<String> json) {
-        this.json = stripWhitespaceAndComments(json);
+        this.json = stripWhitespace(json);
         column = 0;
-        line = 1;
-        depth = 0;
+        line = 0;
         token = this.json.get(0).charAt(0);
     }
 
@@ -23,18 +21,20 @@ public class JsonParser {
 
         while (hasNextToken()) {
             StringBuilder categoryNameBuilder = new StringBuilder();
-            parseString(categoryNameBuilder);
 
-            if (token == ':') {
-                consumeToken();
-                if (token == '{') {
+            if(token == '"') {
+                parseString(categoryNameBuilder);
+
+                if (require(':')) {
                     consumeToken();
-                    depth++;
-                    JsonConfigCategory.Builder category = new JsonConfigCategory
-                            .Builder(categoryNameBuilder.toString());
+                    if (require('{')) {
+                        consumeToken();
+                        JsonConfigCategory.Builder category = new JsonConfigCategory
+                                .Builder(categoryNameBuilder.toString());
 
-                    parseJsonObject(category, null);
-                    categories.add(category.build());
+                        parseJsonObject(category, null);
+                        categories.add(category.build());
+                    }
                 }
             }
             consumeToken();
@@ -45,16 +45,17 @@ public class JsonParser {
     private void parseJsonObject(JsonConfigCategory.Builder categoryBuilder,
                                  JsonConfigCategory.Builder subCategoryBuilder) {
         while (hasNextToken() && token != ',' && token != '}') {
+            this.skipComment();
             StringBuilder keyNameBuilder = new StringBuilder();
             parseString(keyNameBuilder);
 
-            if (token == ':') {
+            if (require(':')) {
                 consumeToken();
                 if (token == '{') {
+                    require('{');
                     consumeToken();
                     JsonConfigCategory.Builder tempCategoryBuilder = new JsonConfigCategory
                             .Builder(keyNameBuilder.toString());
-                    depth++;
 
                     if(subCategoryBuilder != null) {
                         parseJsonObject(subCategoryBuilder, tempCategoryBuilder);
@@ -71,16 +72,36 @@ public class JsonParser {
                         categoryBuilder.addEntry(entry);
                     }
                 }
+            }
 
-                if(token == '}') {
-                    depth--;
+            if(this.token != '}') {
+                require(',');
+                consumeToken();
+            } else {
+                require('}');
+                consumeToken();
+
+                if((line + 1) == json.size()) {
+                    require('}');
+                } else {
+                    require(',');
                 }
             }
-            consumeToken();
         }
 
         if(subCategoryBuilder != null) {
             categoryBuilder.addSubcategory(subCategoryBuilder.build());
+        }
+    }
+
+    private void skipComment() {
+        if (token == '/') {
+            consumeToken();
+
+            if (token == '/') {
+                consumeToken();
+                advanceLine();
+            }
         }
     }
 
@@ -93,47 +114,69 @@ public class JsonParser {
             do {
                 valueBuilder.append(token);
                 consumeToken();
-            } while (hasNextToken() && token != ',' && token != '}');
+            } while (hasNextToken() && isNotSpecialCharacter());
         }
         return valueBuilder.toString();
     }
 
     private void parseString(StringBuilder builder) {
         if (token == '"') {
+            require('"');
             consumeToken();
 
-            while (hasNextToken() && token != '"') {
+            while (hasNextToken() && isNotSpecialCharacter()) {
                 builder.append(token);
                 consumeToken();
             }
+            require('"');
             consumeToken();
         }
     }
 
     private boolean hasNextToken() {
-        if(line == json.size()) {
-            return column < json.get(line - 1).length();
+        if((line + 1) == json.size()) {
+            return column < json.get(line).length();
         }
         return line < json.size();
     }
 
+    private boolean require(char token) {
+        if(this.token != token) {
+            throw new JsonSyntaxException("Expected " + token
+                    + " but found " + this.token
+                    + " at line " + (this.line + 1)
+                    + " and column " + (this.column + 1));
+        }
+        return true;
+    }
+
     private void consumeToken() {
-        String jsonLine = json.get(line - 1);
+        String jsonLine = json.get(line);
         column++;
 
         if (column < jsonLine.length()) {
             token = jsonLine.charAt(column);
         } else {
-            if(line < json.size()) {
-                line++;
-                column = 0;
-                jsonLine = json.get(line - 1);
-                token = jsonLine.charAt(column);
+            if(line < json.size() - 1) {
+                advanceLine();
             }
         }
     }
 
-    private static LinkedList<String> stripWhitespaceAndComments(List<String> jsonFileLines) {
+    private void advanceLine() {
+        line++;
+        column = 0;
+        String jsonLine = json.get(line);
+        token = jsonLine.charAt(column);
+    }
+
+    private boolean isNotSpecialCharacter() {
+        return token != '"' && token != ':' && token != ','
+                && token != '{' && token != '}'
+                && token != '[' && token != ']';
+    }
+
+    private static LinkedList<String> stripWhitespace(List<String> jsonFileLines) {
         LinkedList<String> jsonLines = new LinkedList<>();
 
         for (String jsonFileLine : jsonFileLines) {
@@ -148,17 +191,9 @@ public class JsonParser {
                         jsonLine.append(jsonFileLine.charAt(i));
                         i++;
                         token = jsonFileLine.charAt(i);
-                    } while (token != '"');
-                }
-
-                // Skip lines with comments!
-                if (token == '/') {
-                    i++;
-                    token = jsonFileLine.charAt(i);
-
-                    if (token == '/') {
-                        break;
-                    }
+                    } while (token != '"' && token != ':' && token != ','
+                            && token != '{' && token != '}'
+                            && token != '[' && token != ']');
                 }
 
                 if (!Character.isWhitespace(token)) {
@@ -169,6 +204,7 @@ public class JsonParser {
             // The comments are skipped, so they're empty lines,
             // and we do not need to add them to the line list!
             if(!jsonLine.isEmpty()) {
+                //jsonLine.append('\n');
                 jsonLines.add(jsonLine.toString());
             }
         }

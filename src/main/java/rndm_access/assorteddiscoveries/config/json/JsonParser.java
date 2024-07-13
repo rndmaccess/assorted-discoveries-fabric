@@ -18,6 +18,8 @@ public class JsonParser {
 
     public LinkedList<JsonConfigCategory> parseJsonFile() {
         LinkedList<JsonConfigCategory> categories = new LinkedList<>();
+        require('{');
+        consumeToken();
 
         while (hasNextToken()) {
             StringBuilder categoryNameBuilder = new StringBuilder();
@@ -71,20 +73,31 @@ public class JsonParser {
                     } else {
                         categoryBuilder.addEntry(entry);
                     }
-                }
-            }
 
-            if(this.token != '}') {
-                require(',');
-                consumeToken();
-            } else {
-                require('}');
-                consumeToken();
+                    while (token == ',') {
+                        consumeToken();
+                        this.skipComment();
+                        keyNameBuilder = new StringBuilder();
+                        parseString(keyNameBuilder);
+                        require(':');
+                        consumeToken();
+                        value = parseValue();
+                        entry = new JsonConfigEntry(keyNameBuilder.toString(), value);
 
-                if((line + 1) == json.size()) {
+                        if (subCategoryBuilder != null) {
+                            subCategoryBuilder.addEntry(entry);
+                        } else {
+                            categoryBuilder.addEntry(entry);
+                        }
+                    }
+
                     require('}');
-                } else {
-                    require(',');
+                    consumeToken();
+
+                    if(token != '}') {
+                        require(',');
+                        consumeToken();
+                    }
                 }
             }
         }
@@ -120,8 +133,7 @@ public class JsonParser {
     }
 
     private void parseString(StringBuilder builder) {
-        if (token == '"') {
-            require('"');
+        if (require('"')) {
             consumeToken();
 
             while (hasNextToken() && isNotSpecialCharacter()) {

@@ -52,7 +52,7 @@ public class JsonParser {
         while (tokenList.hasNextToken() && !tokenList.get().match(TokenType.COMMA)
                 && !tokenList.get().match(TokenType.RIGHT_CURLY)) {
             JsonToken keyToken = tokenList.consumeToken();
-            requireToken(TokenType.STRING, keyToken, "a string");
+            requireToken(TokenType.STRING, keyToken, "string");
 
             if(requireToken(TokenType.COLON, tokenList.get(), ":")) {
                 tokenList.consumeToken();

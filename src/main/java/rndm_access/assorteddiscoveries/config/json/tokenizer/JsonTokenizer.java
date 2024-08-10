@@ -40,7 +40,7 @@ public class JsonTokenizer {
         while (hasNextChar()) {
             consumeComment();
             if (isNotSpecialCharacter()) {
-                String value = scanValue();
+                String value = scanObject();
 
                 if(!value.isEmpty()) {
                     jsonTokens.add(new JsonToken(TokenType.OBJECT, value, line, column));
@@ -116,20 +116,16 @@ public class JsonTokenizer {
         }
     }
 
-    private String scanValue() {
-        StringBuilder valueBuilder = new StringBuilder();
+    private String scanObject() {
+        StringBuilder objectBuilder = new StringBuilder();
 
-        if (curChar == '"') {
-            scanString(valueBuilder);
-        } else {
-            while (hasNextChar() && isNotSpecialCharacter()) {
-                if(!Character.isWhitespace(curChar)) {
-                    valueBuilder.append(curChar);
-                }
-                consumeChar();
+        while (hasNextChar() && isNotSpecialCharacter()) {
+            if(!Character.isWhitespace(curChar)) {
+                objectBuilder.append(curChar);
             }
+            consumeChar();
         }
-        return valueBuilder.toString();
+        return objectBuilder.toString();
     }
 
     private void scanString(StringBuilder builder) {

@@ -8,7 +8,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import rndm_access.assorteddiscoveries.config.ModConfig;
-import rndm_access.assorteddiscoveries.config.json.JsonConfigBoolEntry;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
@@ -17,8 +16,8 @@ public abstract class LivingEntityMixin {
     public void handleFallDamage(float fallDistance, float damageMultiplier, DamageSource damageSource,
                                  CallbackInfoReturnable<Boolean> info) {
         boolean isRabbit = ((EntityAccessor) this).getType().equals(EntityType.RABBIT);
-        boolean isSafeFallDistanceIncreased = ((JsonConfigBoolEntry) ModConfig.CONFIG.getCategory("misc")
-                .getEntry("rabbits_safe_fall_increased")).getValue();
+        boolean isSafeFallDistanceIncreased = ModConfig.CONFIG.getCategory("misc")
+                .getBooleanEntry("rabbits_safe_fall_increased").getValue();
 
         // This lets rabbits fall 5 blocks before they take damage.
         if(isRabbit && isSafeFallDistanceIncreased) {

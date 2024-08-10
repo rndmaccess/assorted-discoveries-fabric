@@ -1,5 +1,9 @@
 package rndm_access.assorteddiscoveries.config.json;
 
+import rndm_access.assorteddiscoveries.config.json.parser.entries.AbstractJsonConfigEntry;
+import rndm_access.assorteddiscoveries.config.json.parser.JsonConfigCategory;
+import rndm_access.assorteddiscoveries.config.json.parser.JsonConfigObject;
+
 import java.util.Collection;
 import java.util.LinkedHashMap;
 
@@ -35,7 +39,7 @@ public class JsonConfig {
             int i = 0;
             for (JsonConfigCategory category : this.getCategories()) {
                 builder.append('\n');
-                writeCategories(category, builder, indent);
+                writeCategory(category, builder, indent);
 
                 if(i + 1 < this.getCategories().size()) {
                     builder.append(',');
@@ -48,7 +52,7 @@ public class JsonConfig {
         return builder.toString();
     }
 
-    private void writeCategories(JsonConfigCategory category, StringBuilder builder, int depth) {
+    private void writeCategory(JsonConfigCategory category, StringBuilder builder, int depth) {
         indent(builder, depth);
         depth++;
         builder.append('\"');
@@ -61,28 +65,11 @@ public class JsonConfig {
             JsonConfigObject component = category.getJsonObjects().get(i);
 
             if (category.hasEntry(component.getName())) {
-                JsonConfigEntry entry = (JsonConfigEntry) component;
-
-                if(entry.getComment() != null) {
-                    writeComment(builder, entry, depth);
-                }
-
-                indent(builder, depth);
-                builder.append('\"');
-                builder.append(entry.getName());
-                builder.append('\"');
-                builder.append(": ");
-
-                if(entry.getValue().getClass().equals(String.class)) {
-                    builder.append('\"');
-                    builder.append(entry.getValue());
-                    builder.append('\"');
-                } else {
-                    builder.append(entry.getValue());
-                }
+                AbstractJsonConfigEntry<?> entry = (AbstractJsonConfigEntry<?>) component;
+                writeEntry(category, entry, builder, depth);
             } else {
                 JsonConfigCategory subCategory = category.getSubcategory(component.getName());
-                writeCategories(subCategory, builder, depth);
+                writeCategory(subCategory, builder, depth);
             }
 
             if (i + 1 < category.getJsonObjects().size()) {
@@ -97,7 +84,28 @@ public class JsonConfig {
         }
     }
 
-    private void writeComment(StringBuilder builder, JsonConfigEntry entry, int depth) {
+    private void writeEntry(JsonConfigCategory category, AbstractJsonConfigEntry<?> entry,
+                            StringBuilder builder, int depth) {
+        if (entry.getComment() != null) {
+            writeComment(builder, entry, depth);
+        }
+
+        indent(builder, depth);
+        builder.append('\"');
+        builder.append(entry.getName());
+        builder.append('\"');
+        builder.append(": ");
+
+        if (category.hasStringEntry(entry.getName())) {
+            builder.append('\"');
+            builder.append(entry.getValue());
+            builder.append('\"');
+        } else {
+            builder.append(entry.getValue());
+        }
+    }
+
+    private void writeComment(StringBuilder builder, AbstractJsonConfigEntry<?> entry, int depth) {
         indent(builder, depth);
         builder.append("// ");
 

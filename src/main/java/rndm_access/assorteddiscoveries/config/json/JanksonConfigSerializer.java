@@ -1,29 +1,29 @@
 package rndm_access.assorteddiscoveries.config.json;
 
 import org.apache.commons.lang3.SerializationException;
+import rndm_access.assorteddiscoveries.config.json.parser.JsonParser;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.LinkedList;
 import java.util.List;
 
 public class JanksonConfigSerializer {
-    private final JsonConfig configCategories;
+    private final JsonConfig config;
     private final Path configPath;
 
-    public JanksonConfigSerializer(JsonConfig configCategories, Path configPath) {
-        this.configCategories = configCategories;
+    public JanksonConfigSerializer(JsonConfig config, Path configPath) {
+        this.config = config;
         this.configPath = configPath;
     }
 
-    public LinkedList<JsonConfigCategory> deserializeConfig() {
+    public void deserializeConfig() {
         if(Files.exists(configPath)) {
             try {
                 List<String> jsonFileLines = Files.readAllLines(configPath);
-                JsonParser parser = new JsonParser(jsonFileLines);
-                return parser.parseJsonFile();
+                JsonParser parser = new JsonParser(jsonFileLines, config);
+                parser.parse();
             } catch (IOException e) {
                 throw new SerializationException("Failed to deserialize the file!", e);
             }
@@ -43,7 +43,7 @@ public class JanksonConfigSerializer {
         }
 
         try (BufferedWriter writer = Files.newBufferedWriter(configPath)) {
-            writer.write(configCategories.toJson());
+            writer.write(config.toJson());
         } catch (IOException e) {
             throw new RuntimeException("Failed to serialize the file!", e);
         }

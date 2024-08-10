@@ -32,4 +32,8 @@ public class JsonTokenList {
     public boolean hasNextToken() {
         return position < tokenList.size();
     }
+
+    public boolean isEmpty() {
+        return tokenList.isEmpty();
+    }
 }

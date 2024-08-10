@@ -23,6 +23,11 @@ public class JsonParser {
     }
 
     public void parse() {
+        // The file is empty! So we should exit before trying to load data!
+        if(tokenList.isEmpty()) {
+            return;
+        }
+
         requireToken(TokenType.LEFT_CURLY, tokenList.get(), "{");
         tokenList.consumeToken();
 
@@ -30,6 +35,7 @@ public class JsonParser {
             JsonToken token = tokenList.consumeToken();
 
             if(tokenList.hasNextToken() && tokenList.get().match(TokenType.COLON)) {
+                requireToken(TokenType.STRING, token, "string");
                 tokenList.consumeToken();
 
                 if (requireToken(TokenType.LEFT_CURLY, tokenList.get(), "{")) {
@@ -58,7 +64,7 @@ public class JsonParser {
                 } else {
                     JsonToken valueToken = tokenList.consumeToken();
 
-                    // We are trying to parse a category here, but we are actually parsing it as an entry.
+                    // We are trying to parse a category here, but we are actually parsing an entry.
                     // This is an error!
                     if (tokenList.get().match(TokenType.COLON)) {
                         throw new JsonSyntaxException("Expected {"

@@ -31,6 +31,7 @@ public class JsonTokenizer {
     public JsonTokenList tokenize() {
         JsonTokenList jsonTokens = new JsonTokenList();
 
+        // If the first character was not found then the file is empty!
         if (curChar == null) {
             return jsonTokens;
         }

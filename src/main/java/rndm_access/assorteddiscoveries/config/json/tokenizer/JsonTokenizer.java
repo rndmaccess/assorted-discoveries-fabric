@@ -9,13 +9,13 @@ public class JsonTokenizer {
     private int line;
     private int column;
     private Character curChar;
-    private List<String> source;
+    private final List<String> source;
 
     public JsonTokenizer(List<String> source) {
         this.line = 0;
         this.column = 0;
-        this.source = source;
-        this.curChar = findFirstChar(source);
+        this.source = consumeWhitespace(source);
+        this.curChar = findFirstChar(this.source);
     }
 
     private Character findFirstChar(List<String> source) {
@@ -36,16 +36,10 @@ public class JsonTokenizer {
             return jsonTokens;
         }
 
-        source = consumeWhitespace();
         while (hasNextChar()) {
             consumeComment();
-            if (isNotSpecialCharacter()) {
-                String value = scanObject();
 
-                if(!value.isEmpty()) {
-                    jsonTokens.add(new JsonToken(TokenType.OBJECT, value, line, column));
-                }
-            } else if (curChar == '"') {
+            if (curChar == '"') {
                 StringBuilder stringBuilder = new StringBuilder();
                 scanString(stringBuilder);
                 jsonTokens.add(new JsonToken(TokenType.STRING, stringBuilder.toString(), line, column));
@@ -64,15 +58,29 @@ public class JsonTokenizer {
             } else if (curChar == ']') {
                 jsonTokens.add(new JsonToken(TokenType.RIGHT_BRACKET, String.valueOf(curChar), line, column));
                 consumeChar();
-            } else {
+            } else if (curChar == ',') {
                 jsonTokens.add(new JsonToken(TokenType.COMMA, String.valueOf(curChar), line, column));
                 consumeChar();
+            } else {
+                String value = scanObject();
+
+                if(value.isEmpty()) {
+                    continue;
+                }
+
+                if (value.equalsIgnoreCase("true") || value.equalsIgnoreCase("false")) {
+                    jsonTokens.add(new JsonToken(TokenType.BOOL, value.toLowerCase(), line, column));
+                } else if (isInteger(value)) {
+                    jsonTokens.add(new JsonToken(TokenType.INT, value, line, column));
+                } else {
+                    jsonTokens.add(new JsonToken(TokenType.ERROR, value, line, column));
+                }
             }
         }
         return jsonTokens;
     }
 
-    private List<String> consumeWhitespace() {
+    private List<String> consumeWhitespace(List<String> source) {
         List<String> newSource = new LinkedList<>();
         boolean isQuoted = false; // This allows strings to span multiple lines!
 
@@ -181,22 +189,37 @@ public class JsonTokenizer {
         if (column < jsonLine.length()) {
             curChar = jsonLine.charAt(column);
         } else {
-            if(line < source.size() - 1) {
-                advanceLine();
-            }
+            advanceLine();
         }
     }
 
     private void advanceLine() {
         line++;
         column = 0;
-        String jsonLine = source.get(line);
-        curChar = jsonLine.charAt(column);
+
+        if(line < source.size() - 1) {
+            String jsonLine = source.get(line);
+
+            if(!jsonLine.isEmpty()) {
+                curChar = jsonLine.charAt(column);
+            } else {
+                advanceLine();
+            }
+        }
     }
 
     private boolean isNotSpecialCharacter() {
         return curChar != '"' && curChar != ':' && curChar != ','
                 && curChar != '{' && curChar != '}'
                 && curChar != '[' && curChar != ']';
+    }
+
+    private boolean isInteger(String value) {
+        for (int i = 0; i < value.length(); i++) {
+            if(!Character.isDigit(value.charAt(i)) && value.charAt(0) != '-') {
+                return false;
+            }
+        }
+        return true;
     }
 }

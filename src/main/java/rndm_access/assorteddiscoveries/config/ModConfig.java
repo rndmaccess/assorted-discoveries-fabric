@@ -10,7 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class ModConfig {
-    private static final Path CONFIG_PATH;
+    public static final Path CONFIG_PATH;
     public static final JsonConfig CONFIG;
     public static final JanksonConfigSerializer JANKSON_CONFIG_SERIALIZER;
 

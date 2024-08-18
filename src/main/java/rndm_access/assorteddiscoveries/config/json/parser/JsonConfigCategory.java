@@ -21,6 +21,14 @@ public class JsonConfigCategory extends JsonConfigObject {
         return subcategoryNames;
     }
 
+    public AbstractJsonConfigEntry<?> getEntry(String entryName) {
+        if(!this.hasEntry(entryName)) {
+            throw new RuntimeException("The category " + this.getName() + " does not have the entry "
+                    + entryName);
+        }
+        return (AbstractJsonConfigEntry<?>) jsonConfigObjects.get(entryName);
+    }
+
     public JsonBooleanConfigEntry getBooleanEntry(String entryName) {
         if(!this.hasBooleanEntry(entryName)) {
             throw new RuntimeException("The category " + this.getName() + " does not have the boolean entry "

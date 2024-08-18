@@ -4,6 +4,7 @@ import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.ModConfig;
 import rndm_access.assorteddiscoveries.config.json.JsonConfig;
 import rndm_access.assorteddiscoveries.config.json.JsonSyntaxException;
+import rndm_access.assorteddiscoveries.config.json.parser.entries.AbstractJsonConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.parser.entries.JsonBooleanConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.parser.entries.JsonIntegerConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.parser.entries.JsonStringConfigEntry;
@@ -75,8 +76,10 @@ public class JsonParser {
                     JsonToken valueToken = tokenList.get();
 
                     if (tokenList.match(TokenType.ERROR)) {
-                        AssortedDiscoveries.LOGGER.error("Could not load the value {} for entry {}.",
-                                valueToken.value(), keyToken.value());
+                        AbstractJsonConfigEntry<?> entry = category.getEntry(keyToken.value());
+
+                        AssortedDiscoveries.LOGGER.warn("Could not load the value {} for entry {} resetting to {}.",
+                                valueToken.value(), keyToken.value(), entry.getValue());
                     } else {
                         if (category.hasBooleanEntry(keyToken.value())) {
                             requireToken(TokenType.BOOL);

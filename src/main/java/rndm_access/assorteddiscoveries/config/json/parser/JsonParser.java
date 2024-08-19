@@ -36,18 +36,27 @@ public class JsonParser {
         tokenList.consumeToken();
 
         while (tokenList.hasNextToken()) {
+            JsonToken keyToken = tokenList.get();
 
-            if(tokenList.hasNextToken() && tokenList.matchNext(TokenType.COLON)) {
-                requireToken(TokenType.STRING);
-                JsonToken keyToken = tokenList.consumeToken();
+            if(tokenList.match(TokenType.STRING)) {
+                tokenList.consumeToken();
+                requireToken(TokenType.COLON);
                 tokenList.consumeToken();
 
                 if (requireToken(TokenType.LEFT_CURLY)) {
                     tokenList.consumeToken();
+                    String categoryName = keyToken.value();
+                    int categoryLine = keyToken.line();
+                    int categoryColumn = keyToken.column();
 
-                    JsonConfigCategory category = config.getCategory(keyToken.value());
+                    if(!config.hasCategory(categoryName)) {
+                        throw new JsonConfigException("The config does not have category " + categoryName
+                                + " at line " + categoryLine + 1
+                                + ", column " + categoryColumn + 1);
+                    }
 
-                    parseJsonObject(category, keyToken.line(), keyToken.column());
+                    JsonConfigCategory category = config.getCategory(categoryName);
+                    parseJsonObject(category, categoryLine, categoryColumn);
                 }
             } else {
                 tokenList.consumeToken();
@@ -125,12 +134,12 @@ public class JsonParser {
 
     private String getSubcategoryErrorMessage(String categoryName, int categoryLine, int categoryColumn,
                                               String subcategoryName, int subcategoryLine, int subcategoryColumn) {
-        return "The category \"" + categoryName + "\"" +
-                " at line " + (categoryLine + 1) +
-                ", column " + (categoryColumn + 1) +
-                " does not have subcategory \"" + subcategoryName + "\"" +
-                " at line " + (subcategoryLine + 1) +
-                ", column " + (subcategoryColumn + 1) + ".";
+        return "The category \"" + categoryName + "\""
+                + " at line " + (categoryLine + 1)
+                + ", column " + (categoryColumn + 1)
+                + " does not have subcategory \"" + subcategoryName + "\""
+                + " at line " + (subcategoryLine + 1)
+                + ", column " + (subcategoryColumn + 1) + ".";
     }
 
     private String getSyntaxErrorMessage(TokenType... types) {

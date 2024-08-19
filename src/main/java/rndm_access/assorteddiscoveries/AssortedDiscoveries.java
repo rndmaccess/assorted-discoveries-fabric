@@ -466,8 +466,7 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ModItems.WARPED_PLANTER_BOX);
                     }
 
-                    if (isEntryEnabled(buildingCategory.getBooleanEntry("enable_woodcutter")
-                            )) {
+                    if (isEntryEnabled(buildingCategory.getBooleanEntry("enable_woodcutter"))) {
                         entries.add(ModItems.WOODCUTTER);
                     }
 

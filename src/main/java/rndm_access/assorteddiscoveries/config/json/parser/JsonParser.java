@@ -64,7 +64,7 @@ public class JsonParser {
         }
     }
 
-    public void parseJsonObject(JsonConfigCategory category, int categoryLine, int categoryColumn) {
+    private void parseJsonObject(JsonConfigCategory category, int categoryLine, int categoryColumn) {
         do {
             requireToken(TokenType.STRING);
             JsonToken keyToken = tokenList.consumeToken();
@@ -93,32 +93,42 @@ public class JsonParser {
                 } else {
                     JsonToken valueToken = tokenList.get();
 
-                    if (tokenList.match(TokenType.ERROR)) {
-                        AbstractJsonConfigEntry<?> entry = category.getEntry(keyToken.value());
-
-                        AssortedDiscoveries.LOGGER.warn("Could not load the value {} for entry {} resetting to {}.",
-                                valueToken.value(), keyToken.value(), entry.getValue());
-                    } else {
-                        if (category.hasBooleanEntry(keyToken.value())) {
-                            requireToken(TokenType.BOOL);
-                            JsonBooleanConfigEntry entry = category.getBooleanEntry(keyToken.value());
-                            entry.setValue(Boolean.valueOf(valueToken.value()));
-                        } else if (category.hasIntegerEntry(keyToken.value())) {
-                            requireToken(TokenType.INT);
-                            JsonIntegerConfigEntry entry = category.getIntegerEntry(keyToken.value());
-                            entry.setValue(Integer.valueOf(valueToken.value()));
-                        } else if (category.hasStringEntry(keyToken.value())) {
-                            requireToken(TokenType.STRING);
-                            JsonStringConfigEntry entry = category.getStringEntry(keyToken.value());
-                            entry.setValue(valueToken.value());
-                        }
-                    }
-                    tokenList.consumeToken();
-
-                    requireToken(TokenType.COMMA, TokenType.RIGHT_CURLY);
+                    parseEntry(keyToken, valueToken, category);
                 }
             }
         } while (tokenList.hasNextToken() && tokenList.matchAndConsume(TokenType.COMMA));
+    }
+
+    private void parseEntry(JsonToken keyToken, JsonToken valueToken, JsonConfigCategory category) {
+        if (tokenList.match(TokenType.ERROR)) {
+            if(category.hasEntry(keyToken.value())) {
+                AbstractJsonConfigEntry<?> entry = category.getEntry(keyToken.value());
+
+                AssortedDiscoveries.LOGGER.warn("Could not load the value {} for entry {} resetting to {}.",
+                        valueToken.value(), keyToken.value(), entry.getValue());
+            } else {
+                logInvalidConfigEntry(keyToken);
+            }
+        } else {
+            if (category.hasBooleanEntry(keyToken.value())) {
+                requireToken(TokenType.BOOL);
+                JsonBooleanConfigEntry entry = category.getBooleanEntry(keyToken.value());
+                entry.setValue(Boolean.valueOf(valueToken.value()));
+            } else if (category.hasIntegerEntry(keyToken.value())) {
+                requireToken(TokenType.INT);
+                JsonIntegerConfigEntry entry = category.getIntegerEntry(keyToken.value());
+                entry.setValue(Integer.valueOf(valueToken.value()));
+            } else if (category.hasStringEntry(keyToken.value())) {
+                requireToken(TokenType.STRING);
+                JsonStringConfigEntry entry = category.getStringEntry(keyToken.value());
+                entry.setValue(valueToken.value());
+            } else {
+                logInvalidConfigEntry(keyToken);
+            }
+        }
+        tokenList.consumeToken();
+
+        requireToken(TokenType.COMMA, TokenType.RIGHT_CURLY);
     }
 
     public boolean requireToken(TokenType... types) {
@@ -130,6 +140,10 @@ public class JsonParser {
             throw new JsonSyntaxException(getSyntaxErrorMessage(types));
         }
         return true;
+    }
+
+    private void logInvalidConfigEntry(JsonToken keyToken) {
+        AssortedDiscoveries.LOGGER.warn("Skipping invalid config entry {}", keyToken.value());
     }
 
     private String getSubcategoryErrorMessage(String categoryName, int categoryLine, int categoryColumn,

@@ -3,6 +3,7 @@ package rndm_access.assorteddiscoveries.config.json.parser;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.ModConfig;
 import rndm_access.assorteddiscoveries.config.json.JsonConfig;
+import rndm_access.assorteddiscoveries.config.json.JsonConfigException;
 import rndm_access.assorteddiscoveries.config.json.JsonSyntaxException;
 import rndm_access.assorteddiscoveries.config.json.parser.entries.AbstractJsonConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.parser.entries.JsonBooleanConfigEntry;
@@ -46,7 +47,7 @@ public class JsonParser {
 
                     JsonConfigCategory category = config.getCategory(keyToken.value());
 
-                    parseJsonObject(category);
+                    parseJsonObject(category, keyToken.line(), keyToken.column());
                 }
             } else {
                 tokenList.consumeToken();
@@ -54,7 +55,7 @@ public class JsonParser {
         }
     }
 
-    public void parseJsonObject(JsonConfigCategory category) {
+    public void parseJsonObject(JsonConfigCategory category, int categoryLine, int categoryColumn) {
         do {
             requireToken(TokenType.STRING);
             JsonToken keyToken = tokenList.consumeToken();
@@ -64,8 +65,16 @@ public class JsonParser {
 
                 if (tokenList.match(TokenType.LEFT_CURLY)) {
                     tokenList.consumeToken();
+                    String subcategoryName = keyToken.value();
 
-                    parseJsonObject(category.getSubcategory(keyToken.value()));
+                    if (category.hasSubcategory(subcategoryName)) {
+                        JsonConfigCategory subcategory = category.getSubcategory(keyToken.value());
+
+                        parseJsonObject(subcategory, keyToken.line(), keyToken.column());
+                    } else {
+                        throw new JsonConfigException(getSubcategoryErrorMessage(category.getName(), categoryLine, categoryColumn,
+                                keyToken.value(), keyToken.line(), keyToken.column()));
+                    }
 
                     requireToken(TokenType.RIGHT_CURLY);
                     tokenList.consumeToken();
@@ -105,16 +114,26 @@ public class JsonParser {
 
     public boolean requireToken(TokenType... types) {
         if (!tokenList.hasNextToken()) {
-            throw new JsonSyntaxException(getErrorMessage(types));
+            throw new JsonSyntaxException(getSyntaxErrorMessage(types));
         }
 
         if (!tokenList.match(types)) {
-            throw new JsonSyntaxException(getErrorMessage(types));
+            throw new JsonSyntaxException(getSyntaxErrorMessage(types));
         }
         return true;
     }
 
-    private String getErrorMessage(TokenType... types) {
+    private String getSubcategoryErrorMessage(String categoryName, int categoryLine, int categoryColumn,
+                                              String subcategoryName, int subcategoryLine, int subcategoryColumn) {
+        return "The category \"" + categoryName + "\"" +
+                " at line " + (categoryLine + 1) +
+                ", column " + (categoryColumn + 1) +
+                " does not have subcategory \"" + subcategoryName + "\"" +
+                " at line " + (subcategoryLine + 1) +
+                ", column " + (subcategoryColumn + 1) + ".";
+    }
+
+    private String getSyntaxErrorMessage(TokenType... types) {
         StringBuilder message = new StringBuilder();
 
         for (int i = 0; i < types.length; i++) {

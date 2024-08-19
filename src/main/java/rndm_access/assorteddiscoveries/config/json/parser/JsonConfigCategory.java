@@ -1,5 +1,6 @@
 package rndm_access.assorteddiscoveries.config.json.parser;
 
+import rndm_access.assorteddiscoveries.config.json.JsonConfigException;
 import rndm_access.assorteddiscoveries.config.json.parser.entries.AbstractJsonConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.parser.entries.JsonBooleanConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.parser.entries.JsonIntegerConfigEntry;
@@ -23,7 +24,7 @@ public class JsonConfigCategory extends JsonConfigObject {
 
     public AbstractJsonConfigEntry<?> getEntry(String entryName) {
         if(!this.hasEntry(entryName)) {
-            throw new RuntimeException("The category " + this.getName() + " does not have the entry "
+            throw new JsonConfigException("The category " + this.getName() + " does not have the entry "
                     + entryName);
         }
         return (AbstractJsonConfigEntry<?>) jsonConfigObjects.get(entryName);
@@ -31,7 +32,7 @@ public class JsonConfigCategory extends JsonConfigObject {
 
     public JsonBooleanConfigEntry getBooleanEntry(String entryName) {
         if(!this.hasBooleanEntry(entryName)) {
-            throw new RuntimeException("The category " + this.getName() + " does not have the boolean entry "
+            throw new JsonConfigException("The category " + this.getName() + " does not have the boolean entry "
                     + entryName);
         }
         return (JsonBooleanConfigEntry) jsonConfigObjects.get(entryName);
@@ -39,7 +40,7 @@ public class JsonConfigCategory extends JsonConfigObject {
 
     public JsonIntegerConfigEntry getIntegerEntry(String entryName) {
         if(!this.hasIntegerEntry(entryName)) {
-            throw new RuntimeException("The category " + this.getName() + " does not have the integer entry "
+            throw new JsonConfigException("The category " + this.getName() + " does not have the integer entry "
                     + entryName);
         }
         return (JsonIntegerConfigEntry) jsonConfigObjects.get(entryName);
@@ -47,7 +48,7 @@ public class JsonConfigCategory extends JsonConfigObject {
 
     public JsonStringConfigEntry getStringEntry(String entryName) {
         if(!this.hasStringEntry(entryName)) {
-            throw new RuntimeException("The category " + this.getName() + " does not have the string entry "
+            throw new JsonConfigException("The category " + this.getName() + " does not have the string entry "
                     + entryName);
         }
         return (JsonStringConfigEntry) jsonConfigObjects.get(entryName);
@@ -55,7 +56,7 @@ public class JsonConfigCategory extends JsonConfigObject {
 
     public JsonConfigCategory getSubcategory(String subCategoryName) {
         if(!this.hasSubcategory(subCategoryName)) {
-            throw new RuntimeException("The category " + this.getName()
+            throw new JsonConfigException("The category " + this.getName()
                     + " does not have sub category " + subCategoryName);
         }
         return (JsonConfigCategory) jsonConfigObjects.get(subCategoryName);

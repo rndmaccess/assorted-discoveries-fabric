@@ -51,7 +51,8 @@ public class ModConfig {
                 .addBooleanEntry(new JsonBooleanConfigEntry("enable_squid_plushies", true))
                 .addBooleanEntry(new JsonBooleanConfigEntry("enable_strider_plushies", true))
                 .addBooleanEntry(new JsonBooleanConfigEntry("enable_villager_plushies", true))
-                .addBooleanEntry(new JsonBooleanConfigEntry("enable_wandering_trader_plushie", true)).build();
+                .addBooleanEntry(new JsonBooleanConfigEntry("enable_wandering_trader_plushie", true))
+                .build();
 
         JsonConfigCategory neutralPlushiesSubcategory = new JsonConfigCategory.Builder("neutral_plushies")
                 .addBooleanEntry(new JsonBooleanConfigEntry("enable_bee_plushie", true))
@@ -60,7 +61,8 @@ public class ModConfig {
                 .addBooleanEntry(new JsonBooleanConfigEntry("enable_piglin_plushies", true))
                 .addBooleanEntry(new JsonBooleanConfigEntry("enable_polar_bear_plushie", true))
                 .addBooleanEntry(new JsonBooleanConfigEntry("enable_spider_plushie", true))
-                .addBooleanEntry(new JsonBooleanConfigEntry("enable_pale_wolf_plushie", true)).build();
+                .addBooleanEntry(new JsonBooleanConfigEntry("enable_pale_wolf_plushie", true))
+                .build();
 
         JsonConfigCategory hostilePlushiesSubcategory = new JsonConfigCategory.Builder("hostile_plushies")
                 .addBooleanEntry(new JsonBooleanConfigEntry("enable_blaze_plushie", true))
@@ -79,7 +81,8 @@ public class ModConfig {
                 .addBooleanEntry(new JsonBooleanConfigEntry("enable_witch_plushie", true))
                 .addBooleanEntry(new JsonBooleanConfigEntry("enable_wither_plushie", true))
                 .addBooleanEntry(new JsonBooleanConfigEntry("enable_zombie_plushie", true))
-                .addBooleanEntry(new JsonBooleanConfigEntry("enable_zombie_villager_plushies", true)).build();
+                .addBooleanEntry(new JsonBooleanConfigEntry("enable_zombie_villager_plushies", true))
+                .build();
 
         JsonConfigCategory buildingCategory = new JsonConfigCategory.Builder("building")
                 .addSubcategory(dyedSubcategory)
@@ -117,7 +120,8 @@ public class ModConfig {
                 .addBooleanEntry(new JsonBooleanConfigEntry("enable_stone_tiles", true))
                 .addBooleanEntry(new JsonBooleanConfigEntry("enable_cracked_stone_tiles", true))
                 .addBooleanEntry(new JsonBooleanConfigEntry("enable_mossy_stone_tiles", true))
-                .addBooleanEntry(new JsonBooleanConfigEntry("enable_woodcutter", true)).build();
+                .addBooleanEntry(new JsonBooleanConfigEntry("enable_woodcutter", true))
+                .build();
 
         //TODO: Give enable_ender_plants a better name!
         JsonConfigCategory farmingCategory = new JsonConfigCategory.Builder("farming")
@@ -142,7 +146,8 @@ public class ModConfig {
                 .addBooleanEntry(new JsonBooleanConfigEntry("enable_cattails", true))
                 .addBooleanEntry(new JsonBooleanConfigEntry("enable_bog_blossoms", true))
                 .addBooleanEntry(new JsonBooleanConfigEntry("enable_blood_kelp", true))
-                .addBooleanEntry(new JsonBooleanConfigEntry("enable_ender_plants", true)).build();
+                .addBooleanEntry(new JsonBooleanConfigEntry("enable_ender_plants", true,
+                        "Whether patches of ender grass and snapdragons should spawn!")).build();
 
         JsonConfigCategory miscCategory = new JsonConfigCategory.Builder("misc")
                 .addBooleanEntry(new JsonBooleanConfigEntry("rabbits_safe_fall_increased", true))

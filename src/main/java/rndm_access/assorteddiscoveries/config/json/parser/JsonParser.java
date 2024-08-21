@@ -76,14 +76,13 @@ public class JsonParser {
                     tokenList.consumeToken();
                     String subcategoryName = keyToken.value();
 
-                    if (category.hasSubcategory(subcategoryName)) {
-                        JsonConfigCategory subcategory = category.getSubcategory(keyToken.value());
-
-                        parseJsonObject(subcategory, keyToken.line(), keyToken.column());
-                    } else {
-                        throw new JsonConfigException(getSubcategoryErrorMessage(category.getName(), categoryLine, categoryColumn,
-                                keyToken.value(), keyToken.line(), keyToken.column()));
+                    if (!category.hasSubcategory(subcategoryName)) {
+                        throw new JsonConfigException(getSubcategoryErrorMessage(category.getName(), categoryLine,
+                                categoryColumn, keyToken.value(), keyToken.line(), keyToken.column()));
                     }
+
+                    JsonConfigCategory subcategory = category.getSubcategory(keyToken.value());
+                    parseJsonObject(subcategory, keyToken.line(), keyToken.column());
 
                     requireToken(TokenType.RIGHT_CURLY);
                     tokenList.consumeToken();

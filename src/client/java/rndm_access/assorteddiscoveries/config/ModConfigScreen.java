@@ -500,10 +500,16 @@ public class ModConfigScreen {
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_cracked_stone_tiles", newValue))
                 .setDefaultValue(true).requireRestart().build());
         buildingScreenCategory.addEntry(entryBuilder.startBooleanToggle(
-                        makeBuildingEntryText("enable_mossy_stone_tiles"),
+                makeBuildingEntryText("enable_mossy_stone_tiles"),
                         buildingCategory.getBooleanEntry("enable_mossy_stone_tiles")
                                 .getValue())
                 .setSaveConsumer(newValue -> entryValueChanges.put("enable_mossy_stone_tiles", newValue))
+                .setDefaultValue(true).requireRestart().build());
+        buildingScreenCategory.addEntry(entryBuilder.startBooleanToggle(
+                makeBuildingEntryText("enable_woodcutter"),
+                buildingCategory.getBooleanEntry("enable_woodcutter")
+                                .getValue())
+                .setSaveConsumer(newValue -> entryValueChanges.put("enable_woodcutter", newValue))
                 .setDefaultValue(true).requireRestart().build());
 
         // Farming config options

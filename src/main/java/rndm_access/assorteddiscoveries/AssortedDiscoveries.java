@@ -470,8 +470,7 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ModItems.WOODCUTTER);
                     }
 
-                    if (isEntryEnabled(buildingCategory.getBooleanEntry("enable_wooden_walls")
-                            )) {
+                    if (isEntryEnabled(buildingCategory.getBooleanEntry("enable_wooden_walls"))) {
                         entries.add(ModItems.OAK_WALL);
                         entries.add(ModItems.SPRUCE_WALL);
                         entries.add(ModItems.BIRCH_WALL);

@@ -131,11 +131,7 @@ public class JsonParser {
     }
 
     public boolean requireToken(TokenType... types) {
-        if (!tokenList.hasNextToken()) {
-            throw new JsonSyntaxException(getSyntaxErrorMessage(types));
-        }
-
-        if (!tokenList.match(types)) {
+        if (!tokenList.hasNextToken() || !tokenList.match(types)) {
             throw new JsonSyntaxException(getSyntaxErrorMessage(types));
         }
         return true;

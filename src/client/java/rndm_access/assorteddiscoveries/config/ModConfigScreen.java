@@ -542,7 +542,7 @@ public class ModConfigScreen {
                     saveEntries(category, entryName, entryValueChanges);
                 }
             }
-            ModConfig.JANKSON_CONFIG_SERIALIZER.serializeConfig();
+            ModConfig.CONFIG.save();
         });
         return builder;
     }
@@ -574,28 +574,34 @@ public class ModConfigScreen {
     }
 
     @SuppressWarnings("rawtypes")
-    public static List<AbstractConfigListEntry> makePassivePlushieEntryList(JsonConfigCategory buildingCategory,
+    public static List<AbstractConfigListEntry> makePassivePlushieEntryList(JsonConfigCategory category,
                                                                             ConfigEntryBuilder entryBuilder) {
         List<AbstractConfigListEntry> list = new LinkedList<>();
-        List<String> passivePlushieNames = List.of("enable_allay_plushie", "enable_bat_plushie",
+        List<String> boolEntryNames = List.of("enable_allay_plushie", "enable_bat_plushie",
                 "enable_camel_plushie", "enable_cat_plushies", "enable_chicken_plushie", "enable_cow_plushie",
                 "enable_horse_plushies", "enable_mooshroom_plushies", "enable_ocelot_plushie", "enable_pig_plushie",
                 "enable_pufferfish_plushie", "enable_rabbit_plushies", "enable_sheep_plushies", "enable_squid_plushies",
                 "enable_strider_plushies", "enable_villager_plushies", "enable_wandering_trader_plushie");
+        JsonConfigCategory subCategory = category.getSubcategory("passive_plushies");
 
-        for (String name : passivePlushieNames) {
-            list.add(makePassivePlushieEntry(buildingCategory, entryBuilder, name));
+        for (String name : boolEntryNames) {
+            Text displayName = makePassivePlushieEntryText(name);
+
+            list.add(makeBooleanEntry(subCategory, entryBuilder, name, displayName));
         }
         return list;
     }
 
-    private static BooleanListEntry makePassivePlushieEntry(JsonConfigCategory buildingCategory,
-                                                            ConfigEntryBuilder entryBuilder, String entryName) {
-        JsonConfigCategory passivePlushiesSubcategory = buildingCategory
-                .getSubcategory("passive_plushies");
-
-        return entryBuilder.startBooleanToggle(makePassivePlushiesEntryText(entryName),
-                        passivePlushiesSubcategory.getBooleanEntry(entryName).getValue())
+    /**
+     * @param subCategory The subcategory that this entry is in.
+     * @param entryBuilder An entry builder.
+     * @param entryName The name of this entry from the config.
+     * @param displayName The text that is displayed in the config screen for this entry.
+     * @return A new boolean entry list element
+     */
+    private static BooleanListEntry makeBooleanEntry(JsonConfigCategory subCategory, ConfigEntryBuilder entryBuilder,
+                                                     String entryName, Text displayName) {
+        return entryBuilder.startBooleanToggle(displayName, subCategory.getBooleanEntry(entryName).getValue())
                 .setSaveConsumer(newValue -> entryValueChanges.put(entryName, newValue))
                 .setDefaultValue(true).requireRestart().build();
     }
@@ -644,7 +650,7 @@ public class ModConfigScreen {
         return makeBuildingSubcategoryEntryText("neutral_plushies", entryName);
     }
 
-    private static Text makePassivePlushiesEntryText(String entryName) {
+    private static Text makePassivePlushieEntryText(String entryName) {
         return makeBuildingSubcategoryEntryText("passive_plushies", entryName);
     }
 
@@ -661,13 +667,13 @@ public class ModConfigScreen {
                 + ".option." + categoryName + "." + entryName);
     }
 
+    private static Text makeBuildingSubcategoryText(String subCategoryName) {
+        return makeSubcategoryText("building", subCategoryName);
+    }
+
     private static Text makeCategoryText(String categoryName) {
         return Text.translatable("category.cloth-config." + ADReference.MOD_ID
                 + ".option." + categoryName);
-    }
-
-    private static Text makeBuildingSubcategoryText(String subCategoryName) {
-        return makeSubcategoryText("building", subCategoryName);
     }
 
     private static Text makeSubcategoryText(String categoryName, String subCategoryName) {

@@ -40,7 +40,7 @@ public class AssortedDiscoveries implements ModInitializer {
 	@Override
 	public void onInitialize() {
         // Config
-        ModConfig.loadOrCreateConfig();
+        ModConfig.initializeConfig();
         ModResourceConditions.registerResourceConditions();
 
 		// General Registries

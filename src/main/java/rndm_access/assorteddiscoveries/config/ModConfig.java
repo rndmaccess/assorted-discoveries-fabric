@@ -1,33 +1,26 @@
 package rndm_access.assorteddiscoveries.config;
 
-import net.fabricmc.loader.api.FabricLoader;
 import rndm_access.assorteddiscoveries.ADReference;
 import rndm_access.assorteddiscoveries.config.json.*;
 import rndm_access.assorteddiscoveries.config.json.parser.entries.JsonBooleanConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.parser.JsonConfigCategory;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-
 public class ModConfig {
-    public static final Path CONFIG_PATH;
     public static final JsonConfig CONFIG;
-    public static final JanksonConfigSerializer JANKSON_CONFIG_SERIALIZER;
 
-    public static void loadOrCreateConfig() {
-        if (Files.exists(CONFIG_PATH)) {
-            JANKSON_CONFIG_SERIALIZER.deserializeConfig();
-
-            // Re-serialize the config to make sure that the loaded data
-            // is the same as the serialized data.
-            JANKSON_CONFIG_SERIALIZER.serializeConfig();
+    public static void initializeConfig() {
+        if (CONFIG.configExists()) {
+            CONFIG.load();
         } else {
-            JANKSON_CONFIG_SERIALIZER.serializeConfig();
+            CONFIG.save();
         }
     }
 
+    /**
+     * @return A config with all entries set to their default values!
+     */
     private static JsonConfig makeConfig() {
-        JsonConfig.Builder configBuilder = new JsonConfig.Builder();
+        JsonConfig.Builder configBuilder = new JsonConfig.Builder(ADReference.MOD_ID);
 
         JsonConfigCategory dyedSubcategory = new JsonConfigCategory.Builder("dyed")
                 .addBooleanEntry(new JsonBooleanConfigEntry("enable_dyed_campfires", true))
@@ -121,6 +114,8 @@ public class ModConfig {
                 .addBooleanEntry(new JsonBooleanConfigEntry("enable_cracked_stone_tiles", true))
                 .addBooleanEntry(new JsonBooleanConfigEntry("enable_mossy_stone_tiles", true))
                 .addBooleanEntry(new JsonBooleanConfigEntry("enable_woodcutter", true))
+                .addBooleanEntry(new JsonBooleanConfigEntry("enable_cabins", true))
+                .addBooleanEntry(new JsonBooleanConfigEntry("enable_nether_cabins", true))
                 .build();
 
         //TODO: Give enable_ender_plants a better name!
@@ -158,9 +153,6 @@ public class ModConfig {
     }
 
     static {
-        CONFIG_PATH = FabricLoader.getInstance().getConfigDir()
-                .resolve(ADReference.MOD_ID + ".json5");
         CONFIG = makeConfig();
-        JANKSON_CONFIG_SERIALIZER = new JanksonConfigSerializer(CONFIG, CONFIG_PATH);
     }
 }

@@ -1,7 +1,6 @@
 package rndm_access.assorteddiscoveries.config.json.parser;
 
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
-import rndm_access.assorteddiscoveries.config.ModConfig;
 import rndm_access.assorteddiscoveries.config.json.JsonConfig;
 import rndm_access.assorteddiscoveries.config.json.JsonConfigException;
 import rndm_access.assorteddiscoveries.config.json.JsonSyntaxException;
@@ -170,7 +169,7 @@ public class JsonParser {
             message.append(" at line ").append(currentToken.line() + 1);
             message.append(", column ").append(currentToken.column() + 1);
         }
-        message.append(". Config path: ").append(ModConfig.CONFIG_PATH);
+        message.append(". Config path: ").append(config.getConfigPath());
 
         return message.toString();
     }

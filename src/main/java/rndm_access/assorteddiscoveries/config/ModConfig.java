@@ -1,26 +1,47 @@
 package rndm_access.assorteddiscoveries.config;
 
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
+import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.util.WorldSavePath;
 import rndm_access.assorteddiscoveries.ADReference;
 import rndm_access.assorteddiscoveries.config.json.*;
 import rndm_access.assorteddiscoveries.config.json.parser.entries.JsonBooleanConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.parser.JsonConfigCategory;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 public class ModConfig {
+    public static final Path GLOBAL_PATH;
+    public static Path worldConfigPath;
     public static final JsonConfig CONFIG;
 
     public static void initializeConfig() {
-        if (CONFIG.configExists()) {
-            CONFIG.load();
+        if (Files.exists(GLOBAL_PATH)) {
+            CONFIG.load(GLOBAL_PATH);
         } else {
-            CONFIG.save();
+            CONFIG.save(GLOBAL_PATH);
         }
+
+        // When loading the world load the config for that world if there is one!
+        ServerWorldEvents.LOAD.register((phase, listener) -> {
+            worldConfigPath = Path.of(phase.getSavePath(WorldSavePath.ROOT).getParent().toString() + "/config/")
+                    .resolve(ADReference.MOD_ID + ".json5");
+
+            if (Files.exists(worldConfigPath)) {
+                CONFIG.load(worldConfigPath);
+            }
+        });
+
+        // After unloading the world reload the global config!
+        ServerWorldEvents.UNLOAD.register((phase, listener) -> CONFIG.load(GLOBAL_PATH));
     }
 
     /**
      * @return A config with all entries set to their default values!
      */
     private static JsonConfig makeConfig() {
-        JsonConfig.Builder configBuilder = new JsonConfig.Builder(ADReference.MOD_ID);
+        JsonConfig.Builder configBuilder = new JsonConfig.Builder();
 
         JsonConfigCategory dyedSubcategory = new JsonConfigCategory.Builder("dyed")
                 .addBooleanEntry(new JsonBooleanConfigEntry("enable_dyed_campfires", true))
@@ -153,6 +174,8 @@ public class ModConfig {
     }
 
     static {
+        GLOBAL_PATH = FabricLoader.getInstance().getConfigDir().resolve(ADReference.MOD_ID + ".json5");
+        worldConfigPath = null;
         CONFIG = makeConfig();
     }
 }

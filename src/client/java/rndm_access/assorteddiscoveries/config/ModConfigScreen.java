@@ -8,6 +8,7 @@ import rndm_access.assorteddiscoveries.ADReference;
 import rndm_access.assorteddiscoveries.config.json.parser.entries.JsonBooleanConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.parser.JsonConfigCategory;
 
+import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -537,12 +538,17 @@ public class ModConfigScreen {
 
         builder.setSavingRunnable(() -> {
             // When the config is saved make the changes to the categories and serialize to the config file.
-            for(JsonConfigCategory category : ModConfig.CONFIG.getCategories()) {
-                for(String entryName : entryValueChanges.keySet()) {
+            for (JsonConfigCategory category : ModConfig.CONFIG.getCategories()) {
+                for (String entryName : entryValueChanges.keySet()) {
                     saveEntries(category, entryName, entryValueChanges);
                 }
             }
-            ModConfig.CONFIG.save();
+
+            if (ModConfig.worldConfigPath != null && Files.exists(ModConfig.worldConfigPath)) {
+                ModConfig.CONFIG.save(ModConfig.worldConfigPath);
+            } else {
+                ModConfig.CONFIG.save(ModConfig.GLOBAL_PATH);
+            }
         });
         return builder;
     }

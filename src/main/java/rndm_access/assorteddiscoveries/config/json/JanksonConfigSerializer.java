@@ -22,7 +22,7 @@ public class JanksonConfigSerializer {
         if(Files.exists(configPath)) {
             try {
                 List<String> jsonFileLines = Files.readAllLines(configPath);
-                JsonParser parser = new JsonParser(jsonFileLines, config);
+                JsonParser parser = new JsonParser(jsonFileLines, config, configPath);
                 parser.parse();
             } catch (IOException e) {
                 throw new SerializationException("Failed to deserialize the file!", e);

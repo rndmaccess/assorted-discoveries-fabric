@@ -13,15 +13,18 @@ import rndm_access.assorteddiscoveries.config.json.tokenizer.JsonTokenList;
 import rndm_access.assorteddiscoveries.config.json.tokenizer.JsonTokenizer;
 import rndm_access.assorteddiscoveries.config.json.tokenizer.TokenType;
 
+import java.nio.file.Path;
 import java.util.*;
 
 public class JsonParser {
     private final JsonConfig config;
     private final JsonTokenList tokenList;
+    private final Path configPath;
 
-    public JsonParser(List<String> source, JsonConfig config) {
+    public JsonParser(List<String> source, JsonConfig config, Path configPath) {
         this.tokenList = new JsonTokenizer(source).tokenize();
         this.config = config;
+        this.configPath = configPath;
     }
 
     public void parse() {
@@ -169,7 +172,7 @@ public class JsonParser {
             message.append(" at line ").append(currentToken.line() + 1);
             message.append(", column ").append(currentToken.column() + 1);
         }
-        message.append(". Config path: ").append(config.getConfigPath());
+        message.append(". Config path: ").append(configPath);
 
         return message.toString();
     }

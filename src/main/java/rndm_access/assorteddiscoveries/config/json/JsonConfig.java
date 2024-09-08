@@ -1,6 +1,5 @@
 package rndm_access.assorteddiscoveries.config.json;
 
-import net.fabricmc.loader.api.FabricLoader;
 import rndm_access.assorteddiscoveries.config.json.parser.entries.AbstractJsonConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.parser.JsonConfigCategory;
 import rndm_access.assorteddiscoveries.config.json.parser.JsonConfigObject;
@@ -12,11 +11,9 @@ import java.util.LinkedHashMap;
 
 public class JsonConfig {
     private final LinkedHashMap<String, JsonConfigCategory> nameToCategories;
-    private final Path configPath;
 
     protected JsonConfig(Builder builder) {
         this.nameToCategories = builder.configCategories;
-        this.configPath = FabricLoader.getInstance().getConfigDir().resolve(builder.configName + ".json5");
     }
 
     public JsonConfigCategory getCategory(String categoryName) {
@@ -34,8 +31,8 @@ public class JsonConfig {
         return nameToCategories.values();
     }
 
-    public void load() {
-        if (!configExists()) {
+    public void load(Path configPath) {
+        if (!Files.exists(configPath)) {
             throw new JsonConfigException("Couldn't load the config because it does not exist!");
         }
 
@@ -45,17 +42,9 @@ public class JsonConfig {
         serializer.serializeConfig(); // Correct any data that could not be loaded!
     }
 
-    public void save() {
+    public void save(Path configPath) {
         JanksonConfigSerializer serializer = new JanksonConfigSerializer(this, configPath);
         serializer.serializeConfig();
-    }
-
-    public boolean configExists() {
-        return Files.exists(configPath);
-    }
-
-    public Path getConfigPath() {
-        return configPath;
     }
 
     public String toJson() {
@@ -158,11 +147,6 @@ public class JsonConfig {
 
     public static class Builder {
         public LinkedHashMap<String, JsonConfigCategory> configCategories = new LinkedHashMap<>();
-        public String configName;
-
-        public Builder(String configName) {
-            this.configName = configName;
-        }
 
         public Builder addCategory(JsonConfigCategory category) {
             configCategories.put(category.getName(), category);

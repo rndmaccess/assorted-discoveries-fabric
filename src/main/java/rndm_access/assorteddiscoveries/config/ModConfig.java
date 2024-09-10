@@ -65,7 +65,6 @@ public class ModConfig {
                 .addBooleanEntry(new JsonBooleanConfigEntry("enable_squid_plushies", true))
                 .addBooleanEntry(new JsonBooleanConfigEntry("enable_strider_plushies", true))
                 .addBooleanEntry(new JsonBooleanConfigEntry("enable_villager_plushies", true))
-                .addBooleanEntry(new JsonBooleanConfigEntry("enable_wandering_trader_plushie", true))
                 .build();
 
         JsonConfigCategory neutralPlushiesSubcategory = new JsonConfigCategory.Builder("neutral_plushies")

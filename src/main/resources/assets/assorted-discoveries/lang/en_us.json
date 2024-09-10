@@ -481,7 +481,6 @@
   "text.cloth-config.assorted-discoveries.option.building.passive_plushies.enable_squid_plushies": "Enable Squid Plushies",
   "text.cloth-config.assorted-discoveries.option.building.passive_plushies.enable_strider_plushies": "Enable Strider Plushies",
   "text.cloth-config.assorted-discoveries.option.building.passive_plushies.enable_villager_plushies": "Enable Villager Plushies",
-  "text.cloth-config.assorted-discoveries.option.building.passive_plushies.enable_wandering_trader_plushie": "Enable Wandering Trader Plushie",
 
   "subcategory.cloth-config.assorted-discoveries.option.building.neutral_plushies": "Neutral Plushies",
   "text.cloth-config.assorted-discoveries.option.building.neutral_plushies.enable_bee_plushie": "Enable Bee Plushie",
@@ -528,7 +527,9 @@
   "text.cloth-config.assorted-discoveries.option.building.enable_weeping_blackstone_tiles": "Enable Weeping Blackstone Tiles",
   "text.cloth-config.assorted-discoveries.option.building.enable_smoky_quartz_blocks": "Enable Smoky Quartz Blocks",
   "text.cloth-config.assorted-discoveries.option.building.enable_smoky_quartz_bricks": "Enable Smoky Quartz Bricks",
+  "requirement.cloth-config.assorted-discoveries.option.building.enable_smoky_quartz_bricks": "Requires Smoky Quartz Blocks",
   "text.cloth-config.assorted-discoveries.option.building.enable_smooth_smoky_quartz": "Enable Smooth Smoky Quartz",
+  "requirement.cloth-config.assorted-discoveries.option.building.enable_smooth_smoky_quartz": "Requires Smoky Quartz Blocks",
   "text.cloth-config.assorted-discoveries.option.building.enable_quartz_tiles": "Enable Quartz Tiles",
   "text.cloth-config.assorted-discoveries.option.building.enable_quartz_walls": "Enable Quartz Walls",
   "text.cloth-config.assorted-discoveries.option.building.enable_bauxite": "Enable Bauxite",

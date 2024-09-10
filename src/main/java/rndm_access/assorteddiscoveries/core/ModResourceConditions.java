@@ -79,8 +79,6 @@ public class ModResourceConditions {
                 .getBooleanEntry("enable_strider_plushies").getValue());
         registerEntry("enable_villager_plushies", passivePlushiesSubcategory
                 .getBooleanEntry("enable_villager_plushies").getValue());
-        registerEntry("enable_wandering_trader_plushie", passivePlushiesSubcategory
-                .getBooleanEntry("enable_wandering_trader_plushie").getValue());
         registerEntry("enable_bee_plushie", neutralPlushiesSubcategory
                 .getBooleanEntry("enable_bee_plushie").getValue());
         registerEntry("enable_cave_spider_plushie", neutralPlushiesSubcategory

@@ -22,6 +22,10 @@ public class JsonConfigCategory extends JsonConfigObject {
         return subcategoryNames;
     }
 
+    public List<String> getEntryNames() {
+        return jsonConfigObjects.keySet().stream().toList();
+    }
+
     public AbstractJsonConfigEntry<?> getEntry(String entryName) {
         if(!this.hasEntry(entryName)) {
             throw new JsonConfigException("The category " + this.getName() + " does not have the entry "

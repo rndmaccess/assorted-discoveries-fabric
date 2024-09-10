@@ -396,10 +396,6 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ModItems.TAIGA_VILLAGER_PLUSHIE);
                         entries.add(ModItems.CRIMSON_VILLAGER_PLUSHIE);
                         entries.add(ModItems.WARPED_VILLAGER_PLUSHIE);
-                    }
-
-                    if (isEntryEnabled(passivePlushiesSubcategory
-                            .getBooleanEntry("enable_wandering_trader_plushie"))) {
                         entries.add(ModItems.WANDERING_TRADER_PLUSHIE);
                     }
 

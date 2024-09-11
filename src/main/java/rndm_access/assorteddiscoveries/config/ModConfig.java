@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.util.WorldSavePath;
 import rndm_access.assorteddiscoveries.ADReference;
+import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.json.*;
 import rndm_access.assorteddiscoveries.config.json.parser.entries.JsonBooleanConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.parser.JsonConfigCategory;
@@ -19,22 +20,34 @@ public class ModConfig {
     public static void initializeConfig() {
         if (Files.exists(GLOBAL_PATH)) {
             CONFIG.load(GLOBAL_PATH);
+            AssortedDiscoveries.LOGGER.info("Loaded global config");
         } else {
             CONFIG.save(GLOBAL_PATH);
+            AssortedDiscoveries.LOGGER.info("Created global config");
         }
+        CONFIG.setConfigType(ConfigType.GLOBAL);
 
         // When loading the world load the config for that world if there is one!
         ServerWorldEvents.LOAD.register((phase, listener) -> {
-            worldConfigPath = Path.of(phase.getSavePath(WorldSavePath.ROOT).getParent().toString() + "/config/")
+            Path worldPath = phase.getSavePath(WorldSavePath.ROOT).getParent();
+            worldConfigPath = Path.of(worldPath.toString() + "/config/")
                     .resolve(ADReference.MOD_ID + ".json5");
 
-            if (Files.exists(worldConfigPath)) {
+            if (CONFIG.getConfigType().equals(ConfigType.GLOBAL) && Files.exists(worldConfigPath)) {
                 CONFIG.load(worldConfigPath);
+                CONFIG.setConfigType(ConfigType.LOCAL);
+                AssortedDiscoveries.LOGGER.info("Loaded world config for {}", worldPath.getFileName());
             }
         });
 
         // After unloading the world reload the global config!
-        ServerWorldEvents.UNLOAD.register((phase, listener) -> CONFIG.load(GLOBAL_PATH));
+        ServerWorldEvents.UNLOAD.register((phase, listener) -> {
+            if (CONFIG.getConfigType().equals(ConfigType.LOCAL)) {
+                CONFIG.load(GLOBAL_PATH);
+                CONFIG.setConfigType(ConfigType.GLOBAL);
+                AssortedDiscoveries.LOGGER.info("Loaded global config");
+            }
+        });
     }
 
     /**

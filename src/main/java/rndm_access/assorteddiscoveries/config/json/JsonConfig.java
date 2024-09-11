@@ -11,9 +11,19 @@ import java.util.LinkedHashMap;
 
 public class JsonConfig {
     private final LinkedHashMap<String, JsonConfigCategory> nameToCategories;
+    private ConfigType configType;
 
     protected JsonConfig(Builder builder) {
         this.nameToCategories = builder.configCategories;
+        this.configType = ConfigType.NONE;
+    }
+
+    public ConfigType getConfigType() {
+        return configType;
+    }
+
+    public void setConfigType(ConfigType configType) {
+        this.configType = configType;
     }
 
     public JsonConfigCategory getCategory(String categoryName) {

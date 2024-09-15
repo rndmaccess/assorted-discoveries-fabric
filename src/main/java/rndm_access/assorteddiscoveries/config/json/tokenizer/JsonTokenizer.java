@@ -2,7 +2,6 @@ package rndm_access.assorteddiscoveries.config.json.tokenizer;
 
 import rndm_access.assorteddiscoveries.config.json.JsonSyntaxException;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public class JsonTokenizer {
@@ -14,7 +13,7 @@ public class JsonTokenizer {
     public JsonTokenizer(List<String> source) {
         this.line = 0;
         this.column = 0;
-        this.source = consumeWhitespace(source);
+        this.source = source;
         this.curChar = findFirstChar(this.source);
     }
 
@@ -37,6 +36,7 @@ public class JsonTokenizer {
         }
 
         while (hasNextChar()) {
+            consumeWhitespace();
             consumeComment();
 
             if (curChar == '"') {
@@ -64,10 +64,6 @@ public class JsonTokenizer {
             } else {
                 String value = scanObject();
 
-                if(value.isEmpty()) {
-                    continue;
-                }
-
                 if (value.equalsIgnoreCase("true") || value.equalsIgnoreCase("false")) {
                     jsonTokens.add(new JsonToken(TokenType.BOOL, value.toLowerCase(), line, column));
                 } else if (isInteger(value)) {
@@ -80,47 +76,21 @@ public class JsonTokenizer {
         return jsonTokens;
     }
 
-    private List<String> consumeWhitespace(List<String> source) {
-        List<String> newSource = new LinkedList<>();
-        boolean isQuoted = false; // This allows strings to span multiple lines!
-
-        for (String line : source) {
-            StringBuilder finishedLine = new StringBuilder();
-
-            for (int i = 0; i < line.length(); i++) {
-                if(line.charAt(i) == '"' || isQuoted) {
-                    isQuoted = true;
-
-                    do {
-                        finishedLine.append(line.charAt(i));
-                        i++;
-                    } while (i < line.length() && line.charAt(i) != '"');
-
-                    if (i < line.length()) {
-                        finishedLine.append(line.charAt(i));
-                    }
-
-                    if (i < line.length() && line.charAt(i) == '"') {
-                        isQuoted = false;
-                    }
-                } else {
-                    if (!Character.isWhitespace(line.charAt(i))) {
-                        finishedLine.append(line.charAt(i));
-                    }
-                }
-            }
-            newSource.add(finishedLine.toString());
-        }
-        return newSource;
-    }
-
     private void consumeComment() {
         if (curChar == '/') {
             consumeChar();
+            consumeWhitespace();
 
             if (curChar == '/') {
                 advanceLine();
+                consumeWhitespace();
             }
+        }
+    }
+
+    private void consumeWhitespace() {
+        while (Character.isWhitespace(curChar)) {
+            consumeChar();
         }
     }
 

@@ -137,16 +137,15 @@ public class JsonTokenizer {
     }
 
     private void scanString(StringBuilder builder) {
-        if (require('"')) {
-            consumeChar();
+        require('"');
+        consumeChar();
 
-            while (hasNextChar() && isNotSpecialCharacter()) {
-                builder.append(curChar);
-                consumeChar();
-            }
-            require('"');
+        while (hasNextChar() && isNotSpecialCharacter()) {
+            builder.append(curChar);
             consumeChar();
         }
+        require('"');
+        consumeChar();
     }
 
     private boolean hasNextChar() {
@@ -156,14 +155,13 @@ public class JsonTokenizer {
         return line < source.size();
     }
 
-    private boolean require(char character) {
+    private void require(char character) {
         if(this.curChar != character) {
             throw new JsonSyntaxException("Expected " + character
                     + " but found " + this.curChar
                     + " at line " + (this.line + 1)
                     + " and column " + (this.column + 1));
         }
-        return true;
     }
 
     public Character peek() {
@@ -197,7 +195,7 @@ public class JsonTokenizer {
         line++;
         column = 0;
 
-        if(line < source.size() - 1) {
+        if(line < source.size()) {
             String jsonLine = source.get(line);
 
             if(!jsonLine.isEmpty()) {

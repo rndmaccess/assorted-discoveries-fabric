@@ -147,8 +147,6 @@ public class ModConfig {
                 .addBooleanEntry(new JsonBooleanConfigEntry("enable_cracked_stone_tiles", true))
                 .addBooleanEntry(new JsonBooleanConfigEntry("enable_mossy_stone_tiles", true))
                 .addBooleanEntry(new JsonBooleanConfigEntry("enable_woodcutter", true))
-                .addBooleanEntry(new JsonBooleanConfigEntry("enable_cabins", true))
-                .addBooleanEntry(new JsonBooleanConfigEntry("enable_nether_cabins", true))
                 .build();
 
         //TODO: Give enable_ender_plants a better name!

@@ -31,25 +31,27 @@ public class ModConfigScreen {
 
         // Building config options
         ConfigCategory buildingScreenCategory = builder.getOrCreateCategory(makeCategoryText("building"));
+        String dyedCategoryName = "dyed";
+        String passivePlushiesCategoryName = "passive_plushies";
+        String neutralPlushiesCategoryName = "neutral_plushies";
+        String hostilePlushiesCategoryName = "hostile_plushies";
 
         buildingScreenCategory.addEntry(entryBuilder.startSubCategory(
-                makeBuildingSubcategoryText("dyed"),
-                makeDyedEntryList(entryBuilder)).build());
+                makeBuildingSubcategoryText(dyedCategoryName),
+                makeBuildingSubEntryList(entryBuilder, dyedCategoryName)).build());
         buildingScreenCategory.addEntry(entryBuilder.startSubCategory(
-                makeBuildingSubcategoryText("passive_plushies"),
-                makePassivePlushieEntryList(entryBuilder)).build());
+                makeBuildingSubcategoryText(passivePlushiesCategoryName),
+                makeBuildingSubEntryList(entryBuilder, passivePlushiesCategoryName)).build());
         buildingScreenCategory.addEntry(entryBuilder.startSubCategory(
-                makeBuildingSubcategoryText("neutral_plushies"),
-                makeNeutralPlushieEntryList(entryBuilder)).build());
+                makeBuildingSubcategoryText(neutralPlushiesCategoryName),
+                makeBuildingSubEntryList(entryBuilder, neutralPlushiesCategoryName)).build());
         buildingScreenCategory.addEntry(entryBuilder.startSubCategory(
-                makeBuildingSubcategoryText("hostile_plushies"),
-                makeHostilePlushieEntryList(entryBuilder)).build());
+                makeBuildingSubcategoryText(hostilePlushiesCategoryName),
+                makeBuildingSubEntryList(entryBuilder, hostilePlushiesCategoryName)).build());
 
-        buildingScreenCategory.addEntry(entryBuilder.startBooleanToggle(
-                        makeBuildingEntryText("enable_wooden_walls"),
-                        buildingCategory.getBooleanEntry("enable_wooden_walls").getValue())
-                .setSaveConsumer(newValue -> ENTRY_VALUE_CHANGES.put("enable_wooden_walls", newValue))
-                .setDefaultValue(true).requireRestart().build());
+        buildingScreenCategory.addEntry(makeBooleanEntry(buildingCategory, entryBuilder,
+                "enable_wooden_walls", makeBuildingEntryText("enable_wooden_walls")));
+
         buildingScreenCategory.addEntry(entryBuilder.startBooleanToggle(
                         makeBuildingEntryText("enable_stripped_wooden_walls"),
                         buildingCategory.getBooleanEntry("enable_stripped_wooden_walls")
@@ -174,10 +176,6 @@ public class ModConfigScreen {
                 "enable_mossy_stone_tiles"));
         buildingScreenCategory.addEntry(makeBooleanBuildingEntry(buildingCategory, entryBuilder,
                 "enable_woodcutter"));
-        buildingScreenCategory.addEntry(makeBooleanBuildingEntry(buildingCategory, entryBuilder,
-                "enable_cabins"));
-        buildingScreenCategory.addEntry(makeBooleanBuildingEntry(buildingCategory, entryBuilder,
-                "enable_nether_cabins"));
 
         // Farming config options
         ConfigCategory farming = builder.getOrCreateCategory(Text.translatable("category.cloth-config." + ADReference.MOD_ID
@@ -344,53 +342,16 @@ public class ModConfigScreen {
     }
 
     @SuppressWarnings("rawtypes")
-    private static List<AbstractConfigListEntry> makeDyedEntryList(ConfigEntryBuilder entryBuilder) {
+    public static List<AbstractConfigListEntry> makeBuildingSubEntryList(ConfigEntryBuilder entryBuilder,
+                                                                         String subCategoryName) {
         List<AbstractConfigListEntry> list = new LinkedList<>();
-        JsonConfigCategory dyedSubcategory = ModConfig.CONFIG.getCategory("building")
-                .getSubcategory("dyed");
-
-        for (String name : dyedSubcategory.getEntryNames()) {
-            Text displayName = makeDyedEntryText(name);
-            list.add(makeBooleanEntry(dyedSubcategory, entryBuilder, name, displayName));
-        }
-        return list;
-    }
-
-    @SuppressWarnings("rawtypes")
-    public static List<AbstractConfigListEntry> makePassivePlushieEntryList(ConfigEntryBuilder entryBuilder) {
-        List<AbstractConfigListEntry> list = new LinkedList<>();
-        JsonConfigCategory passivePlushieCategory = ModConfig.CONFIG.getCategory("building")
-                .getSubcategory("passive_plushies");
+        String buildingCategoryName = "building";
+        JsonConfigCategory passivePlushieCategory = ModConfig.CONFIG.getCategory(buildingCategoryName)
+                .getSubcategory(subCategoryName);
 
         for (String name : passivePlushieCategory.getEntryNames()) {
-            Text displayName = makePassivePlushieEntryText(name);
+            Text displayName = makeSubCategoryEntryText(buildingCategoryName, subCategoryName, name);
             list.add(makeBooleanEntry(passivePlushieCategory, entryBuilder, name, displayName));
-        }
-        return list;
-    }
-
-    @SuppressWarnings("rawtypes")
-    public static List<AbstractConfigListEntry> makeNeutralPlushieEntryList(ConfigEntryBuilder entryBuilder) {
-        List<AbstractConfigListEntry> list = new LinkedList<>();
-        JsonConfigCategory neutralPlushieCategory = ModConfig.CONFIG.getCategory("building")
-                .getSubcategory("neutral_plushies");
-
-        for (String name : neutralPlushieCategory.getEntryNames()) {
-            Text displayName = makeNeutralPlushiesEntryText(name);
-            list.add(makeBooleanEntry(neutralPlushieCategory, entryBuilder, name, displayName));
-        }
-        return list;
-    }
-
-    @SuppressWarnings("rawtypes")
-    public static List<AbstractConfigListEntry> makeHostilePlushieEntryList(ConfigEntryBuilder entryBuilder) {
-        List<AbstractConfigListEntry> list = new LinkedList<>();
-        JsonConfigCategory neutralPlushieCategory = ModConfig.CONFIG.getCategory("building")
-                .getSubcategory("hostile_plushies");
-
-        for (String name : neutralPlushieCategory.getEntryNames()) {
-            Text displayName = makeHostilePlushiesEntryText(name);
-            list.add(makeBooleanEntry(neutralPlushieCategory, entryBuilder, name, displayName));
         }
         return list;
     }
@@ -470,26 +431,6 @@ public class ModConfigScreen {
     private static Text makeMiscOptionText(String entryName) {
         return Text.translatable("text.cloth-config." + ADReference.MOD_ID
                 + ".option.misc." + entryName);
-    }
-
-    private static Text makeDyedEntryText(String entryName) {
-        return makeBuildingSubcategoryEntryText("dyed", entryName);
-    }
-
-    private static Text makeHostilePlushiesEntryText(String entryName) {
-        return makeBuildingSubcategoryEntryText("hostile_plushies", entryName);
-    }
-
-    private static Text makeNeutralPlushiesEntryText(String entryName) {
-        return makeBuildingSubcategoryEntryText("neutral_plushies", entryName);
-    }
-
-    private static Text makePassivePlushieEntryText(String entryName) {
-        return makeBuildingSubcategoryEntryText("passive_plushies", entryName);
-    }
-
-    private static Text makeBuildingSubcategoryEntryText(String subCategoryName, String entryName) {
-        return makeSubCategoryEntryText("building", subCategoryName, entryName);
     }
 
     private static Text makeBuildingEntryText(String entryName) {

@@ -37,6 +37,7 @@ public class ModResourceConditions {
         }
     }
 
+    // TODO: Structures currently can not be loaded conditionally. Add config entries for this when fabric adds support!
     private static void registerConfigEntryConditions() {
         JsonConfigCategory buildingCategory = ModConfig.CONFIG.getCategory("building");
         JsonConfigCategory farmingCategory = ModConfig.CONFIG.getCategory("farming");
@@ -133,10 +134,6 @@ public class ModResourceConditions {
                 .getBooleanEntry("enable_smoky_quartz_bricks").getValue());
         registerEntry("enable_woodcutter", buildingCategory
                 .getBooleanEntry("enable_woodcutter").getValue());
-        registerEntry("enable_cabins", buildingCategory
-                .getBooleanEntry("enable_cabins").getValue());
-        registerEntry("enable_nether_cabins", buildingCategory
-                .getBooleanEntry("enable_nether_cabins").getValue());
 
         registerEntry("enable_wooden_planter_boxes", farmingCategory
                 .getBooleanEntry("enable_wooden_planter_boxes").getValue());

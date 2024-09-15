@@ -35,11 +35,12 @@ public class JsonParser {
 
         requireToken(TokenType.LEFT_CURLY);
         while (tokenList.hasNextToken()) {
-            parseJsonObject(null, 0, 0);
+            // Before parsing the category, line, and col are unknown!
+            parseCategory(null, 0, 0);
         }
     }
 
-    private void parseJsonObject(JsonConfigCategory category, int categoryLine, int categoryCol) {
+    private void parseCategory(JsonConfigCategory category, int categoryLine, int categoryCol) {
         do {
             JsonToken keyToken = requireToken(TokenType.STRING);
             requireToken(TokenType.COLON);
@@ -58,10 +59,10 @@ public class JsonParser {
                     }
                     category = config.getCategory(categoryName);
                 } else {
+                    int subcategoryLine = keyToken.line();
+                    int subcategoryCol = keyToken.column();
+
                     if (!category.hasSubcategory(categoryName)) {
-                        int subcategoryLine = keyToken.line();
-                        int subcategoryCol = keyToken.column();
-                        // TODO: For the main category it lists the wrong line and column!
                         String subcategoryErrorMsg = "The category \"" + category.getName() + "\""
                                 + " at line " + (categoryLine + 1)
                                 + ", column " + (categoryCol + 1)
@@ -72,7 +73,7 @@ public class JsonParser {
                         throw new JsonConfigException(subcategoryErrorMsg);
                     }
                     JsonConfigCategory subcategory = category.getSubcategory(categoryName);
-                    parseJsonObject(subcategory, categoryLine, categoryCol);
+                    parseCategory(subcategory, subcategoryLine, subcategoryCol);
                 }
             } else {
                 if (category != null) {

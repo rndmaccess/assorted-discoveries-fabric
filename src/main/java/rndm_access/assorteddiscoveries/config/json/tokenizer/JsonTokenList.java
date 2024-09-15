@@ -45,7 +45,17 @@ public class JsonTokenList {
         return Objects.equals(this.getNext().type(), tokenType);
     }
 
+    /**
+     * @param tokenTypes The token types to match
+     * @return true if the at least one of the token types match the current token.
+     *         If the current index is greater than the number of elements
+     *         in the list then false.
+     */
     public boolean match(TokenType... tokenTypes) {
+        if(position >= tokenList.size()) {
+            return false;
+        }
+
         for (TokenType tokenType : tokenTypes) {
             if(Objects.equals(tokenList.get(position).type(), tokenType)) {
                 return true;

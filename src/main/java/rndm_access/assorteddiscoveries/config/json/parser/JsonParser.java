@@ -34,56 +34,71 @@ public class JsonParser {
         }
 
         requireToken(TokenType.LEFT_CURLY);
-        while (tokenList.hasNextToken()) {
-            // Before parsing the category, line, and col are unknown!
-            parseCategory(null, 0, 0);
-        }
+        parseObjects();
     }
 
-    private void parseCategory(JsonConfigCategory category, int categoryLine, int categoryCol) {
+    private void parseObjects() {
+        Stack<JsonToken> categoryTokens = new Stack<>();
+        Stack<JsonConfigCategory> categories = new Stack<>();
+
         do {
             JsonToken keyToken = requireToken(TokenType.STRING);
             requireToken(TokenType.COLON);
 
             if (tokenList.matchAndConsume(TokenType.LEFT_CURLY)) {
-                String categoryName = keyToken.value();
-
-                if(category == null) {
-                    categoryLine = keyToken.line();
-                    categoryCol = keyToken.column();
-
-                    if(!config.hasCategory(categoryName)) {
-                        throw new JsonConfigException("The config does not have category " + categoryName
-                                + " at line " + categoryLine + 1
-                                + ", column " + categoryCol + 1);
-                    }
-                    category = config.getCategory(categoryName);
-                } else {
-                    int subcategoryLine = keyToken.line();
-                    int subcategoryCol = keyToken.column();
-
-                    if (!category.hasSubcategory(categoryName)) {
-                        String subcategoryErrorMsg = "The category \"" + category.getName() + "\""
-                                + " at line " + (categoryLine + 1)
-                                + ", column " + (categoryCol + 1)
-                                + " does not have subcategory \"" + categoryName + "\""
-                                + " at line " + (subcategoryLine + 1)
-                                + ", column " + (subcategoryCol + 1) + ".";
-
-                        throw new JsonConfigException(subcategoryErrorMsg);
-                    }
-                    JsonConfigCategory subcategory = category.getSubcategory(categoryName);
-                    parseCategory(subcategory, subcategoryLine, subcategoryCol);
-                }
+                parseCategory(keyToken, categoryTokens, categories);
             } else {
-                if (category != null) {
-                    parseEntry(keyToken, category);
+                if(!categoryTokens.isEmpty()) {
+                    parseEntry(keyToken, categories.peek());
+
+                    if(tokenList.match(TokenType.RIGHT_CURLY)) {
+                        categories.pop();
+                        categoryTokens.pop();
+                        requireToken(TokenType.COMMA, TokenType.RIGHT_CURLY);
+                    }
+                    requireToken(TokenType.COMMA, TokenType.RIGHT_CURLY);
                 } else {
                     requireToken(TokenType.LEFT_CURLY);
                 }
             }
-        } while (tokenList.hasNextToken() && !tokenList.match(TokenType.COMMA, TokenType.RIGHT_CURLY));
-        requireToken(TokenType.COMMA, TokenType.RIGHT_CURLY);
+        } while (tokenList.hasNextToken());
+    }
+
+    private void parseCategory(JsonToken categoryToken, Stack<JsonToken> categoryTokens, Stack<JsonConfigCategory> categories) {
+        if (categoryTokens.isEmpty()) {
+            String categoryName = categoryToken.value();
+            int categoryLine = categoryToken.line();
+            int categoryCol = categoryToken.column();
+
+            if (!config.hasCategory(categoryName)) {
+                throw new JsonConfigException("The config does not have category " + categoryName
+                        + " at line " + (categoryLine + 1)
+                        + ", column " + (categoryCol + 1));
+            }
+            categoryTokens.push(categoryToken);
+            categories.push(config.getCategory(categoryName));
+        } else {
+            JsonConfigCategory category = categories.peek();
+            String categoryName = categoryTokens.peek().value();
+            int categoryLine = categoryTokens.peek().line();
+            int categoryCol = categoryTokens.peek().column();
+            String subcategoryName = categoryToken.value();
+            int subcategoryLine = categoryToken.line();
+            int subcategoryCol = categoryToken.column();
+
+            if (!category.hasSubcategory(subcategoryName)) {
+                String subcategoryErrorMsg = "The category \"" + categoryName + "\""
+                        + " at line " + (categoryLine + 1)
+                        + ", column " + (categoryCol + 1)
+                        + " does not have subcategory \"" + subcategoryName + "\""
+                        + " at line " + (subcategoryLine + 1)
+                        + ", column " + (subcategoryCol + 1) + ".";
+
+                throw new JsonConfigException(subcategoryErrorMsg);
+            }
+            categoryTokens.push(categoryToken);
+            categories.push(category.getSubcategory(subcategoryName));
+        }
     }
 
     private void parseEntry(JsonToken keyToken, JsonConfigCategory category) {
@@ -92,7 +107,7 @@ public class JsonParser {
         if (tokenList.match(TokenType.ERROR)) {
             String errorValue = tokenList.consumeToken().value();
 
-            if(category.hasEntry(entryName)) {
+            if (category.hasEntry(entryName)) {
                 Object defaultValue = category.getEntry(entryName).getValue();
 
                 AssortedDiscoveries.LOGGER.warn("Could not load the value {} for entry {} resetting to {}.",
@@ -118,7 +133,6 @@ public class JsonParser {
                 tokenList.consumeToken();
             }
         }
-        requireToken(TokenType.COMMA, TokenType.RIGHT_CURLY);
     }
 
     public JsonToken requireToken(TokenType... types) {

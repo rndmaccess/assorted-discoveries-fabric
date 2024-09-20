@@ -6,13 +6,13 @@ import java.util.List;
 
 public class JsonTokenizer {
     private int line;
-    private int column;
+    private int index;
     private Character curChar;
     private final List<String> source;
 
     public JsonTokenizer(List<String> source) {
         this.line = 0;
-        this.column = 0;
+        this.index = 0;
         this.source = source;
         this.curChar = findFirstChar(this.source);
     }
@@ -41,36 +41,42 @@ public class JsonTokenizer {
 
             if (curChar == '"') {
                 StringBuilder stringBuilder = new StringBuilder();
-                scanString(stringBuilder);
-                jsonTokens.add(new JsonToken(TokenType.STRING, stringBuilder.toString(), line, column));
+                JsonToken token = scanString(stringBuilder);
+                jsonTokens.add(token);
             } else if (curChar == ':') {
-                jsonTokens.add(new JsonToken(TokenType.COLON, String.valueOf(curChar), line, column));
+                JsonToken token = new JsonToken.Builder().setType(TokenType.COLON)
+                        .setValue(String.valueOf(curChar)).setLine(line).setStart(index).setEnd(index).build();
+                jsonTokens.add(token);
                 consumeChar();
             } else if (curChar == '{') {
-                jsonTokens.add(new JsonToken(TokenType.LEFT_CURLY, String.valueOf(curChar), line, column));
+                JsonToken token = new JsonToken.Builder().setType(TokenType.LEFT_CURLY)
+                        .setValue(String.valueOf(curChar)).setLine(line).setStart(index).setEnd(index).build();
+                jsonTokens.add(token);
                 consumeChar();
             } else if (curChar == '}') {
-                jsonTokens.add(new JsonToken(TokenType.RIGHT_CURLY, String.valueOf(curChar), line, column));
+                JsonToken token = new JsonToken.Builder().setType(TokenType.RIGHT_CURLY)
+                        .setValue(String.valueOf(curChar)).setLine(line).setStart(index).setEnd(index).build();
+                jsonTokens.add(token);
                 consumeChar();
             } else if (curChar == '[') {
-                jsonTokens.add(new JsonToken(TokenType.LEFT_BRACKET, String.valueOf(curChar), line, column));
+                JsonToken token = new JsonToken.Builder().setType(TokenType.LEFT_BRACKET)
+                        .setValue(String.valueOf(curChar)).setLine(line).setStart(index).setEnd(index).build();
+                jsonTokens.add(token);
                 consumeChar();
             } else if (curChar == ']') {
-                jsonTokens.add(new JsonToken(TokenType.RIGHT_BRACKET, String.valueOf(curChar), line, column));
+                JsonToken token = new JsonToken.Builder().setType(TokenType.RIGHT_BRACKET)
+                        .setValue(String.valueOf(curChar)).setLine(line).setStart(index).setEnd(index).build();
+                jsonTokens.add(token);
                 consumeChar();
             } else if (curChar == ',') {
-                jsonTokens.add(new JsonToken(TokenType.COMMA, String.valueOf(curChar), line, column));
+                JsonToken token = new JsonToken.Builder().setType(TokenType.COMMA)
+                        .setValue(String.valueOf(curChar)).setLine(line).setStart(index).setEnd(index).build();
+                jsonTokens.add(token);
                 consumeChar();
             } else {
-                String value = scanObject();
+                JsonToken token = scanObject();
 
-                if (value.equalsIgnoreCase("true") || value.equalsIgnoreCase("false")) {
-                    jsonTokens.add(new JsonToken(TokenType.BOOL, value.toLowerCase(), line, column));
-                } else if (isInteger(value)) {
-                    jsonTokens.add(new JsonToken(TokenType.INT, value, line, column));
-                } else {
-                    jsonTokens.add(new JsonToken(TokenType.ERROR, value, line, column));
-                }
+                jsonTokens.add(token);
             }
         }
         return jsonTokens;
@@ -94,19 +100,33 @@ public class JsonTokenizer {
         }
     }
 
-    private String scanObject() {
+    private JsonToken scanObject() {
+        JsonToken.Builder tokenBuilder = new JsonToken.Builder();
         StringBuilder objectBuilder = new StringBuilder();
 
+        tokenBuilder.setLine(line);
+        tokenBuilder.setStart(index);
         while (hasNextChar() && isNotSpecialCharacter()) {
             if(!Character.isWhitespace(curChar)) {
                 objectBuilder.append(curChar);
             }
             consumeChar();
         }
-        return objectBuilder.toString();
+        tokenBuilder.setEnd(index);
+        String value = objectBuilder.toString();
+
+        if (value.equalsIgnoreCase("true") || value.equalsIgnoreCase("false")) {
+            return tokenBuilder.setType(TokenType.BOOL).setValue(value.toLowerCase()).build();
+        } else if (isInteger(value)) {
+            return tokenBuilder.setType(TokenType.INT).setValue(value).build();
+        } else {
+            return tokenBuilder.setType(TokenType.ERROR).setValue(value).build();
+        }
     }
 
-    private void scanString(StringBuilder builder) {
+    private JsonToken scanString(StringBuilder builder) {
+        JsonToken.Builder token = new JsonToken.Builder().setType(TokenType.STRING).setLine(line);
+        token.setStart(index);
         require('"');
         consumeChar();
 
@@ -114,13 +134,16 @@ public class JsonTokenizer {
             builder.append(curChar);
             consumeChar();
         }
+        token.setEnd(index);
         require('"');
         consumeChar();
+        token.setValue(builder.toString());
+        return token.build();
     }
 
     private boolean hasNextChar() {
         if((line + 1) == source.size()) {
-            return column < source.get(line).length();
+            return index < source.get(line).length();
         }
         return line < source.size();
     }
@@ -130,13 +153,13 @@ public class JsonTokenizer {
             throw new JsonSyntaxException("Expected " + character
                     + " but found " + this.curChar
                     + " at line " + (this.line + 1)
-                    + " and column " + (this.column + 1));
+                    + " and column " + (this.index + 1));
         }
     }
 
     public Character peek() {
         String jsonLine = source.get(line);
-        int nextColumn = column + 1;
+        int nextColumn = index + 1;
 
         if(nextColumn < jsonLine.length()) {
             return jsonLine.charAt(nextColumn);
@@ -152,10 +175,10 @@ public class JsonTokenizer {
 
     private void consumeChar() {
         String jsonLine = source.get(line);
-        column++;
+        index++;
 
-        if (column < jsonLine.length()) {
-            curChar = jsonLine.charAt(column);
+        if (index < jsonLine.length()) {
+            curChar = jsonLine.charAt(index);
         } else {
             advanceLine();
         }
@@ -163,13 +186,13 @@ public class JsonTokenizer {
 
     private void advanceLine() {
         line++;
-        column = 0;
+        index = 0;
 
         if(line < source.size()) {
             String jsonLine = source.get(line);
 
             if(!jsonLine.isEmpty()) {
-                curChar = jsonLine.charAt(column);
+                curChar = jsonLine.charAt(index);
             } else {
                 advanceLine();
             }

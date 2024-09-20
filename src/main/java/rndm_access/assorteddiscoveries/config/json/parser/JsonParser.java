@@ -2,7 +2,6 @@ package rndm_access.assorteddiscoveries.config.json.parser;
 
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.json.JsonConfig;
-import rndm_access.assorteddiscoveries.config.json.JsonConfigException;
 import rndm_access.assorteddiscoveries.config.json.JsonSyntaxException;
 import rndm_access.assorteddiscoveries.config.json.parser.entries.JsonBooleanConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.parser.entries.JsonIntegerConfigEntry;
@@ -19,6 +18,7 @@ public class JsonParser {
     private final JsonConfig config;
     private final JsonTokenList tokenList;
     private final Path configPath;
+    private int depth = 0;
 
     public JsonParser(List<String> source, JsonConfig config, Path configPath) {
         this.tokenList = new JsonTokenizer(source).tokenize();
@@ -27,6 +27,8 @@ public class JsonParser {
     }
 
     public void parse() {
+        Stack<JsonConfigCategory> categories = new Stack<>();
+
         // The file is empty! So we should exit before trying to load data!
         if(tokenList.isEmpty()) {
             AssortedDiscoveries.LOGGER.error("Could not load the config file because it was empty!");
@@ -34,26 +36,19 @@ public class JsonParser {
         }
 
         requireToken(TokenType.LEFT_CURLY);
-        parseObjects();
-    }
-
-    private void parseObjects() {
-        Stack<JsonToken> categoryTokens = new Stack<>();
-        Stack<JsonConfigCategory> categories = new Stack<>();
-
         do {
             JsonToken keyToken = requireToken(TokenType.STRING);
             requireToken(TokenType.COLON);
 
             if (tokenList.matchAndConsume(TokenType.LEFT_CURLY)) {
-                parseCategory(keyToken, categoryTokens, categories);
+                parseCategory(keyToken, categories);
             } else {
-                if(!categoryTokens.isEmpty()) {
+                if(!categories.isEmpty()) {
                     parseEntry(keyToken, categories.peek());
 
                     if(tokenList.match(TokenType.RIGHT_CURLY)) {
+                        depth--;
                         categories.pop();
-                        categoryTokens.pop();
                         requireToken(TokenType.COMMA, TokenType.RIGHT_CURLY);
                     }
                     requireToken(TokenType.COMMA, TokenType.RIGHT_CURLY);
@@ -62,56 +57,51 @@ public class JsonParser {
                 }
             }
         } while (tokenList.hasNextToken());
+
+        // If the depth is greater than 0 we have an unclosed curly brace!
+        if (depth > 0) {
+            throw new JsonSyntaxException(getSyntaxErrorMessage(TokenType.COMMA, TokenType.RIGHT_CURLY));
+        }
+
+        // TODO: Correct the file for each value error! Use a substring of 0, start + defaultValue + end, end of line!
     }
 
-    private void parseCategory(JsonToken categoryToken, Stack<JsonToken> categoryTokens, Stack<JsonConfigCategory> categories) {
-        if (categoryTokens.isEmpty()) {
-            String categoryName = categoryToken.value();
-            int categoryLine = categoryToken.line();
-            int categoryCol = categoryToken.column();
+    private void parseCategory(JsonToken categoryToken, Stack<JsonConfigCategory> categories) {
+        if (categories.isEmpty()) {
+            String categoryName = categoryToken.getValue();
+            depth++;
 
-            if (!config.hasCategory(categoryName)) {
-                throw new JsonConfigException("The config does not have category " + categoryName
-                        + " at line " + (categoryLine + 1)
-                        + ", column " + (categoryCol + 1));
+            if (config.hasCategory(categoryName)) {
+                categories.push(config.getCategory(categoryName));
+            } else {
+                logInvalidConfigCategory(categoryName);
             }
-            categoryTokens.push(categoryToken);
-            categories.push(config.getCategory(categoryName));
         } else {
             JsonConfigCategory category = categories.peek();
-            String categoryName = categoryTokens.peek().value();
-            int categoryLine = categoryTokens.peek().line();
-            int categoryCol = categoryTokens.peek().column();
-            String subcategoryName = categoryToken.value();
-            int subcategoryLine = categoryToken.line();
-            int subcategoryCol = categoryToken.column();
+            String categoryName = category.getName();
+            String subcategoryName = categoryToken.getValue();
+            depth++;
 
-            if (!category.hasSubcategory(subcategoryName)) {
-                String subcategoryErrorMsg = "The category \"" + categoryName + "\""
-                        + " at line " + (categoryLine + 1)
-                        + ", column " + (categoryCol + 1)
-                        + " does not have subcategory \"" + subcategoryName + "\""
-                        + " at line " + (subcategoryLine + 1)
-                        + ", column " + (subcategoryCol + 1) + ".";
-
-                throw new JsonConfigException(subcategoryErrorMsg);
+            if (category.hasSubcategory(subcategoryName)) {
+                categories.push(category.getSubcategory(subcategoryName));
+            } else {
+                logInvalidConfigSubcategory(subcategoryName, categoryName);
             }
-            categoryTokens.push(categoryToken);
-            categories.push(category.getSubcategory(subcategoryName));
         }
     }
 
     private void parseEntry(JsonToken keyToken, JsonConfigCategory category) {
-        String entryName = keyToken.value();
+        String entryName = keyToken.getValue();
 
         if (tokenList.match(TokenType.ERROR)) {
-            String errorValue = tokenList.consumeToken().value();
+            String errorValue = tokenList.consumeToken().getValue();
 
             if (category.hasEntry(entryName)) {
                 Object defaultValue = category.getEntry(entryName).getValue();
 
-                AssortedDiscoveries.LOGGER.warn("Could not load the value {} for entry {} resetting to {}.",
+                AssortedDiscoveries.LOGGER.warn("Could not load the value {} for entry {} correcting to {}.",
                         errorValue, entryName, defaultValue);
+                // TODO: Add each value error to a list to update the config later!
             } else {
                 logInvalidConfigEntry(entryName);
             }
@@ -119,15 +109,15 @@ public class JsonParser {
             if (category.hasBooleanEntry(entryName)) {
                 JsonToken boolToken = requireToken(TokenType.BOOL);
                 JsonBooleanConfigEntry entry = category.getBooleanEntry(entryName);
-                entry.setValue(Boolean.valueOf(boolToken.value()));
+                entry.setValue(Boolean.valueOf(boolToken.getValue()));
             } else if (category.hasIntegerEntry(entryName)) {
                 JsonToken intToken = requireToken(TokenType.INT);
                 JsonIntegerConfigEntry entry = category.getIntegerEntry(entryName);
-                entry.setValue(Integer.valueOf(intToken.value()));
+                entry.setValue(Integer.valueOf(intToken.getValue()));
             } else if (category.hasStringEntry(entryName)) {
                 JsonToken stringToken = requireToken(TokenType.STRING);
                 JsonStringConfigEntry entry = category.getStringEntry(entryName);
-                entry.setValue(stringToken.value());
+                entry.setValue(stringToken.getValue());
             } else {
                 logInvalidConfigEntry(entryName);
                 tokenList.consumeToken();
@@ -143,7 +133,16 @@ public class JsonParser {
     }
 
     private void logInvalidConfigEntry(String entryName) {
-        AssortedDiscoveries.LOGGER.warn("Skipping invalid config entry {}", entryName);
+        AssortedDiscoveries.LOGGER.error("Skipping invalid config entry {}.", entryName);
+    }
+
+    private void logInvalidConfigCategory(String categoryName) {
+        AssortedDiscoveries.LOGGER.error("Skipping invalid category {}", categoryName);
+    }
+
+    private void logInvalidConfigSubcategory(String subcategoryName, String categoryName) {
+        AssortedDiscoveries.LOGGER.error("Skipping invalid subcategory {} for category {}",
+                subcategoryName, categoryName);
     }
 
     private String getSyntaxErrorMessage(TokenType... types) {
@@ -161,9 +160,9 @@ public class JsonParser {
         if (tokenList.hasNextToken()) {
             JsonToken currentToken = tokenList.get();
 
-            message.append(", got '").append(currentToken.value()).append("'");
-            message.append(" at line ").append(currentToken.line() + 1);
-            message.append(", column ").append(currentToken.column() + 1);
+            message.append(", got '").append(currentToken.getValue()).append("'");
+            message.append(" at line ").append(currentToken.getLine() + 1);
+            message.append(", column ").append(currentToken.getStart() + 1);
         }
         message.append(". Config path: ").append(configPath);
 

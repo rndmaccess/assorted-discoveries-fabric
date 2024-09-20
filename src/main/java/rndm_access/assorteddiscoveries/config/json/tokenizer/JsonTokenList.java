@@ -42,7 +42,7 @@ public class JsonTokenList {
         if(this.getNext() == null) {
             return false;
         }
-        return Objects.equals(this.getNext().type(), tokenType);
+        return Objects.equals(this.getNext().getType(), tokenType);
     }
 
     /**
@@ -57,7 +57,7 @@ public class JsonTokenList {
         }
 
         for (TokenType tokenType : tokenTypes) {
-            if(Objects.equals(tokenList.get(position).type(), tokenType)) {
+            if(Objects.equals(tokenList.get(position).getType(), tokenType)) {
                 return true;
             }
         }

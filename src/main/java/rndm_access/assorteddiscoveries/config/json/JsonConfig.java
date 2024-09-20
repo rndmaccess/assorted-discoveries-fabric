@@ -47,9 +47,7 @@ public class JsonConfig {
         }
 
         JanksonConfigSerializer serializer = new JanksonConfigSerializer(this, configPath);
-
         serializer.deserializeConfig();
-        serializer.serializeConfig(); // Correct any data that could not be loaded!
     }
 
     public void save(Path configPath) {

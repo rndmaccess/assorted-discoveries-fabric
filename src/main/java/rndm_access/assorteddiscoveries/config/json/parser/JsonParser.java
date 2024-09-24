@@ -43,18 +43,17 @@ public class JsonParser {
             if (tokenList.matchAndConsume(TokenType.LEFT_CURLY)) {
                 parseCategory(keyToken, categories);
             } else {
-                if(!categories.isEmpty()) {
-                    parseEntry(keyToken, categories.peek());
-
-                    if(tokenList.match(TokenType.RIGHT_CURLY)) {
-                        depth--;
-                        categories.pop();
-                        requireToken(TokenType.COMMA, TokenType.RIGHT_CURLY);
-                    }
-                    requireToken(TokenType.COMMA, TokenType.RIGHT_CURLY);
-                } else {
+                if(categories.isEmpty()) {
                     requireToken(TokenType.LEFT_CURLY);
                 }
+                parseEntry(keyToken, categories.peek());
+
+                if(tokenList.match(TokenType.RIGHT_CURLY)) {
+                    depth--;
+                    categories.pop();
+                    requireToken(TokenType.COMMA, TokenType.RIGHT_CURLY);
+                }
+                requireToken(TokenType.COMMA, TokenType.RIGHT_CURLY);
             }
         } while (tokenList.hasNextToken());
 

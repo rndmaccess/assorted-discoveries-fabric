@@ -133,15 +133,15 @@ public class JsonParser {
     }
 
     private void logInvalidConfigEntry(String entryName) {
-        AssortedDiscoveries.LOGGER.error("Skipping because {} is not a known config entry!", entryName);
+        AssortedDiscoveries.LOGGER.error("Skipping {} because it is not a known config entry!", entryName);
     }
 
     private void logInvalidConfigCategory(String categoryName) {
-        AssortedDiscoveries.LOGGER.error("Skipping because {} is not a known config category!", categoryName);
+        AssortedDiscoveries.LOGGER.error("Skipping {} because it is not a known config category!", categoryName);
     }
 
     private void logInvalidConfigSubcategory(String subcategoryName, String categoryName) {
-        AssortedDiscoveries.LOGGER.error("Skipping because {} is not a known subcategory in category {}!",
+        AssortedDiscoveries.LOGGER.error("Skipping {} because it is not a known subcategory in category {}!",
                 subcategoryName, categoryName);
     }
 

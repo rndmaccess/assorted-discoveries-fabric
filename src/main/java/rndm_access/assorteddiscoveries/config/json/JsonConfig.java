@@ -28,7 +28,7 @@ public class JsonConfig {
 
     public JsonConfigCategory getCategory(String categoryName) {
         if(!this.hasCategory(categoryName)) {
-            throw new JsonConfigException("The config does not have category " + categoryName);
+            return null;
         }
         return nameToCategories.get(categoryName);
     }

@@ -27,35 +27,39 @@ public class JsonConfigCategory extends JsonConfigObject {
 
     public AbstractJsonConfigEntry<?> getEntry(String entryName) {
         if(!this.hasEntry(entryName)) {
-            return null;
+            throw new NoSuchElementException("The category " + this.getName() + " does not have entry " + entryName);
         }
         return (AbstractJsonConfigEntry<?>) jsonConfigObjects.get(entryName);
     }
 
     public JsonBooleanConfigEntry getBooleanEntry(String entryName) {
         if(!this.hasBooleanEntry(entryName)) {
-            return null;
+            throw new NoSuchElementException("The category " + this.getName() + " does not have boolean entry "
+                    + entryName);
         }
         return (JsonBooleanConfigEntry) jsonConfigObjects.get(entryName);
     }
 
     public JsonIntegerConfigEntry getIntegerEntry(String entryName) {
         if(!this.hasIntegerEntry(entryName)) {
-            return null;
+            throw new NoSuchElementException("The category " + this.getName() + " does not have integer entry "
+                    + entryName);
         }
         return (JsonIntegerConfigEntry) jsonConfigObjects.get(entryName);
     }
 
     public JsonStringConfigEntry getStringEntry(String entryName) {
         if(!this.hasStringEntry(entryName)) {
-            return null;
+            throw new NoSuchElementException("The category " + this.getName() + " does not have string entry "
+                    + entryName);
         }
         return (JsonStringConfigEntry) jsonConfigObjects.get(entryName);
     }
 
     public JsonConfigCategory getSubcategory(String subCategoryName) {
         if(!this.hasSubcategory(subCategoryName)) {
-            return null;
+            throw new NoSuchElementException("The category " + this.getName() + " does not have subcategory "
+                    + subCategoryName);
         }
         return (JsonConfigCategory) jsonConfigObjects.get(subCategoryName);
     }

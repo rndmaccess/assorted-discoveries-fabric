@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Collection;
 import java.util.LinkedHashMap;
+import java.util.NoSuchElementException;
 
 public class JsonConfig {
     private final LinkedHashMap<String, JsonConfigCategory> nameToCategories;
@@ -28,7 +29,7 @@ public class JsonConfig {
 
     public JsonConfigCategory getCategory(String categoryName) {
         if(!this.hasCategory(categoryName)) {
-            return null;
+            throw new NoSuchElementException("The config does not have category " + categoryName);
         }
         return nameToCategories.get(categoryName);
     }

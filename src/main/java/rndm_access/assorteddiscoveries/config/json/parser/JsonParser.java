@@ -2,7 +2,6 @@ package rndm_access.assorteddiscoveries.config.json.parser;
 
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.json.JsonConfig;
-import rndm_access.assorteddiscoveries.config.json.JsonEntryCorrector;
 import rndm_access.assorteddiscoveries.config.json.exceptions.JsonSyntaxException;
 import rndm_access.assorteddiscoveries.config.json.parser.entries.JsonBooleanConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.parser.entries.JsonIntegerConfigEntry;
@@ -19,33 +18,28 @@ public class JsonParser {
     private final JsonTokenList tokenList;
     private final JsonConfig config;
     private final Path configPath;
-    private final List<String> source;
-    private final Map<String, JsonToken> errorTokenList;
+    private final Map<String, JsonToken> entryErrors;
     private int depth;
 
     public JsonParser(List<String> source, JsonConfig config, Path configPath) {
         this.tokenList = new JsonTokenizer(source).tokenize();
         this.config = config;
         this.configPath = configPath;
-        this.source = source;
-        this.errorTokenList = new HashMap<>();
+        this.entryErrors = new HashMap<>();
         this.depth = 0;
     }
 
-    public void parseAndCorrect() {
-        // The file is empty! So we should exit before trying to load data!
+    public Map<String, JsonToken> getEntryErrors() {
+        return entryErrors;
+    }
+
+    public void parse() {
+        Stack<JsonConfigCategory> categories = new Stack<>();
+
         if(tokenList.isEmpty()) {
             AssortedDiscoveries.LOGGER.error("Could not load the config file because it was empty!");
             return;
         }
-
-        this.parse();
-        JsonEntryCorrector corrector = new JsonEntryCorrector(errorTokenList, source, config, configPath);
-        corrector.correct();
-    }
-
-    private void parse() {
-        Stack<JsonConfigCategory> categories = new Stack<>();
 
         requireToken(TokenType.LEFT_CURLY);
         do {
@@ -106,7 +100,7 @@ public class JsonParser {
             JsonToken errorToken = tokenList.consumeToken();
 
             if (category.hasEntry(entryName)) {
-                errorTokenList.put(entryName, errorToken);
+                entryErrors.put(entryName, errorToken);
             } else {
                 logInvalidConfigEntry(entryName);
             }

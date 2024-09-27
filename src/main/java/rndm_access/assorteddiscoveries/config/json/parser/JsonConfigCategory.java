@@ -21,6 +21,10 @@ public class JsonConfigCategory extends JsonConfigObject {
         return subcategoryNames;
     }
 
+    public boolean hasSubCategories() {
+        return !subcategoryNames.isEmpty();
+    }
+
     public List<String> getEntryNames() {
         return jsonConfigObjects.keySet().stream().toList();
     }

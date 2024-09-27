@@ -5,43 +5,58 @@ import rndm_access.assorteddiscoveries.config.json.parser.JsonConfigCategory;
 import rndm_access.assorteddiscoveries.config.json.tokenizer.JsonToken;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
 
 public class JsonEntryCorrector {
-    private final Map<String, JsonToken> errorTokenList;
     private final List<String> fileContent;
     private final JsonConfig config;
     private final Path configPath;
 
-    public JsonEntryCorrector(Map<String, JsonToken> errorTokenList, List<String> fileContent, JsonConfig config,
+    public JsonEntryCorrector(List<String> fileContent, JsonConfig config,
                               Path configPath) {
-        this.errorTokenList = errorTokenList;
         this.fileContent = fileContent;
         this.config = config;
         this.configPath = configPath;
     }
 
-    public void correct() {
+    public void correct(Map<String, JsonToken> errorList) {
         for (JsonConfigCategory category : config.getCategories()) {
-            for (String entryName : errorTokenList.keySet()) {
-                correctEntryValue(category, entryName);
+            if (category.hasSubCategories()) {
+                this.correctSubCategoryEntries(errorList, category);
             }
+            correctEntries(errorList, category);
         }
 
         try {
-            Files.write(configPath, fileContent, StandardCharsets.UTF_8);
+            Files.write(configPath, fileContent);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Could not correct the config!", e);
         }
     }
 
-    private void correctEntryValue(JsonConfigCategory category, String entryName) {
+    private void correctSubCategoryEntries(Map<String, JsonToken> errorList, JsonConfigCategory category) {
+        for (String subcategoryName : category.getSubcategoryNames()) {
+            JsonConfigCategory subCategory = category.getSubcategory(subcategoryName);
+
+            if (subCategory.hasSubCategories()) {
+                correctSubCategoryEntries(errorList, category);
+            }
+            correctEntries(errorList, subCategory);
+        }
+    }
+
+    private void correctEntries(Map<String, JsonToken> errorList, JsonConfigCategory category) {
+        for (String entryName : errorList.keySet()) {
+            correctEntryValue(errorList, category, entryName);
+        }
+    }
+
+    private void correctEntryValue(Map<String, JsonToken> errorList, JsonConfigCategory category, String entryName) {
         if (category.hasEntry(entryName)) {
-            JsonToken errorToken = errorTokenList.get(entryName);
+            JsonToken errorToken = errorList.get(entryName);
             int errorLine = errorToken.getLine();
             int errorStart = errorToken.getStart();
             int errorEnd = errorToken.getEnd();

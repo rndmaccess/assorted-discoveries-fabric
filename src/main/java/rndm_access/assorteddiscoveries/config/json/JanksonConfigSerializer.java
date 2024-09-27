@@ -23,7 +23,7 @@ public class JanksonConfigSerializer {
             try {
                 List<String> jsonFileLines = Files.readAllLines(configPath);
                 JsonParser parser = new JsonParser(jsonFileLines, config, configPath);
-                parser.parse();
+                parser.parseAndCorrect();
             } catch (IOException e) {
                 throw new SerializationException("Failed to deserialize the file!", e);
             }
@@ -34,18 +34,14 @@ public class JanksonConfigSerializer {
     }
 
     public void serializeConfig() {
-        if(!Files.exists(configPath)) {
-            try {
-                Files.createFile(configPath);
-            } catch (IOException e) {
-                throw new SerializationException(e);
-            }
-        }
+        if (!Files.exists(configPath)) {
+            try (BufferedWriter writer = Files.newBufferedWriter(configPath)) {
+                String configText = config.toJson();
 
-        try (BufferedWriter writer = Files.newBufferedWriter(configPath)) {
-            writer.write(config.toJson());
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to serialize the file!", e);
+                writer.write(configText);
+            } catch (IOException e) {
+                throw new RuntimeException("Failed to serialize the file!", e);
+            }
         }
     }
 }

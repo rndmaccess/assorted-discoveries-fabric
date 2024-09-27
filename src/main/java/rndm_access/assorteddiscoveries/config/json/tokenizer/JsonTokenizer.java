@@ -106,13 +106,14 @@ public class JsonTokenizer {
 
         tokenBuilder.setLine(line);
         tokenBuilder.setStart(index);
-        while (hasNextChar() && isNotSpecialCharacter()) {
+        while (hasNextChar() && curChar != '"' && curChar != ':' && curChar != ',' && curChar != '{'
+                && curChar != '}' && curChar != '[' && curChar != ']') {
             if(!Character.isWhitespace(curChar)) {
                 objectBuilder.append(curChar);
+                tokenBuilder.setEnd(index + 1);
             }
             consumeChar();
         }
-        tokenBuilder.setEnd(index);
         String value = objectBuilder.toString();
 
         if (value.equalsIgnoreCase("true") || value.equalsIgnoreCase("false")) {
@@ -130,11 +131,11 @@ public class JsonTokenizer {
         require('"');
         consumeChar();
 
-        while (hasNextChar() && isNotSpecialCharacter()) {
+        while (hasNextCharOnLine() && curChar != '"') {
             builder.append(curChar);
             consumeChar();
         }
-        token.setEnd(index);
+        token.setEnd(index + 1);
         require('"');
         consumeChar();
         token.setValue(builder.toString());
@@ -148,29 +149,20 @@ public class JsonTokenizer {
         return line < source.size();
     }
 
-    private void require(char character) {
-        if(this.curChar != character) {
-            throw new JsonSyntaxException("Expected " + character
-                    + " but found " + this.curChar
-                    + " at line " + (this.line + 1)
-                    + " and column " + (this.index + 1));
-        }
+    private boolean hasNextCharOnLine() {
+        String lineContent = source.get(line);
+        int nextIndex = index + 1;
+
+        return nextIndex < lineContent.length();
     }
 
-    public Character peek() {
-        String jsonLine = source.get(line);
-        int nextColumn = index + 1;
-
-        if(nextColumn < jsonLine.length()) {
-            return jsonLine.charAt(nextColumn);
-        } else {
-            int nextLine = line + 1;
-
-            if (nextLine < source.size() - 1) {
-                return source.get(nextLine).charAt(0);
-            }
+    private void require(char character) {
+        if (this.curChar != character) {
+            throw new JsonSyntaxException("Expected '" + character
+                    + "', got '" + this.curChar
+                    + "' at line " + (this.line + 1)
+                    + " and column " + (this.index + 1));
         }
-        return null;
     }
 
     private void consumeChar() {
@@ -197,12 +189,6 @@ public class JsonTokenizer {
                 advanceLine();
             }
         }
-    }
-
-    private boolean isNotSpecialCharacter() {
-        return curChar != '"' && curChar != ':' && curChar != ','
-                && curChar != '{' && curChar != '}'
-                && curChar != '[' && curChar != ']';
     }
 
     private boolean isInteger(String value) {

@@ -2,6 +2,7 @@ package rndm_access.assorteddiscoveries.config.json.parser;
 
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.json.JsonConfig;
+import rndm_access.assorteddiscoveries.config.json.JsonEntryCorrector;
 import rndm_access.assorteddiscoveries.config.json.JsonSyntaxException;
 import rndm_access.assorteddiscoveries.config.json.parser.entries.JsonBooleanConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.parser.entries.JsonIntegerConfigEntry;
@@ -15,25 +16,36 @@ import java.nio.file.Path;
 import java.util.*;
 
 public class JsonParser {
-    private final JsonConfig config;
     private final JsonTokenList tokenList;
+    private final JsonConfig config;
     private final Path configPath;
-    private int depth = 0;
+    private final List<String> source;
+    private final Map<String, JsonToken> errorTokenList;
+    private int depth;
 
     public JsonParser(List<String> source, JsonConfig config, Path configPath) {
         this.tokenList = new JsonTokenizer(source).tokenize();
         this.config = config;
         this.configPath = configPath;
+        this.source = source;
+        this.errorTokenList = new HashMap<>();
+        this.depth = 0;
     }
 
-    public void parse() {
-        Stack<JsonConfigCategory> categories = new Stack<>();
-
+    public void parseAndCorrect() {
         // The file is empty! So we should exit before trying to load data!
         if(tokenList.isEmpty()) {
             AssortedDiscoveries.LOGGER.error("Could not load the config file because it was empty!");
             return;
         }
+
+        this.parse();
+        JsonEntryCorrector corrector = new JsonEntryCorrector(errorTokenList, source, config, configPath);
+        corrector.correct();
+    }
+
+    private void parse() {
+        Stack<JsonConfigCategory> categories = new Stack<>();
 
         requireToken(TokenType.LEFT_CURLY);
         do {
@@ -61,8 +73,6 @@ public class JsonParser {
         if (depth > 0) {
             throw new JsonSyntaxException(getSyntaxErrorMessage(TokenType.COMMA, TokenType.RIGHT_CURLY));
         }
-
-        // TODO: Correct the file for each value error! Use a substring of 0, start + defaultValue + end, end of line!
     }
 
     private void parseCategory(JsonToken categoryToken, Stack<JsonConfigCategory> categories) {
@@ -93,14 +103,10 @@ public class JsonParser {
         String entryName = keyToken.getValue();
 
         if (tokenList.match(TokenType.ERROR)) {
-            String errorValue = tokenList.consumeToken().getValue();
+            JsonToken errorToken = tokenList.consumeToken();
 
             if (category.hasEntry(entryName)) {
-                Object defaultValue = category.getEntry(entryName).getValue();
-
-                AssortedDiscoveries.LOGGER.warn("Could not load the value {} for entry {} correcting to {}.",
-                        errorValue, entryName, defaultValue);
-                // TODO: Add each value error to a list to update the config later!
+                errorTokenList.put(entryName, errorToken);
             } else {
                 logInvalidConfigEntry(entryName);
             }
@@ -159,7 +165,14 @@ public class JsonParser {
         if (tokenList.hasNextToken()) {
             JsonToken currentToken = tokenList.get();
 
-            message.append(", got '").append(currentToken.getValue()).append("'");
+            message.append(", got ");
+            if (tokenList.match(TokenType.STRING, TokenType.INT, TokenType.BOOL)) {
+                message.append("'").append(currentToken.getType().asString()).append("'");
+                message.append(" with value ").append("'").append(currentToken.getValue()).append("'");
+            } else {
+                message.append("'").append(currentToken.getValue()).append("'");
+            }
+
             message.append(" at line ").append(currentToken.getLine() + 1);
             message.append(", column ").append(currentToken.getStart() + 1);
         }

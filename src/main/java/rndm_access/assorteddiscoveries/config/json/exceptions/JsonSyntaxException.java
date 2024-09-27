@@ -1,4 +1,4 @@
-package rndm_access.assorteddiscoveries.config.json;
+package rndm_access.assorteddiscoveries.config.json.exceptions;
 
 public class JsonSyntaxException extends RuntimeException {
     public JsonSyntaxException(String message) {

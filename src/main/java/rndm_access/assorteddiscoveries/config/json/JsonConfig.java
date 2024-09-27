@@ -1,5 +1,6 @@
 package rndm_access.assorteddiscoveries.config.json;
 
+import rndm_access.assorteddiscoveries.config.json.exceptions.JsonConfigException;
 import rndm_access.assorteddiscoveries.config.json.parser.entries.AbstractJsonConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.parser.JsonConfigCategory;
 import rndm_access.assorteddiscoveries.config.json.parser.JsonConfigObject;

@@ -3,7 +3,7 @@ package rndm_access.assorteddiscoveries.config.json.parser;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.json.JsonConfig;
 import rndm_access.assorteddiscoveries.config.json.JsonEntryCorrector;
-import rndm_access.assorteddiscoveries.config.json.JsonSyntaxException;
+import rndm_access.assorteddiscoveries.config.json.exceptions.JsonSyntaxException;
 import rndm_access.assorteddiscoveries.config.json.parser.entries.JsonBooleanConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.parser.entries.JsonIntegerConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.parser.entries.JsonStringConfigEntry;

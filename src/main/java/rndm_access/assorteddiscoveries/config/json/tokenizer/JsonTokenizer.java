@@ -1,6 +1,6 @@
 package rndm_access.assorteddiscoveries.config.json.tokenizer;
 
-import rndm_access.assorteddiscoveries.config.json.JsonSyntaxException;
+import rndm_access.assorteddiscoveries.config.json.exceptions.JsonSyntaxException;
 
 import java.util.List;
 

@@ -18,6 +18,7 @@ public class JsonConfig {
 
     protected JsonConfig(Builder builder) {
         this.categories = builder.categories;
+        this.path = null;
         this.type = ConfigType.NONE;
     }
 
@@ -53,7 +54,7 @@ public class JsonConfig {
     }
 
     public void load() {
-        if (!Files.exists(path)) {
+        if (path == null || !Files.exists(path)) {
             throw new JsonConfigException("Couldn't load the config because it does not exist!");
         }
 
@@ -62,6 +63,10 @@ public class JsonConfig {
     }
 
     public void save() {
+        if (path == null) {
+            throw new JsonConfigException("The config path has not been set!");
+        }
+
         JanksonConfigSerializer serializer = new JanksonConfigSerializer(this, path);
         serializer.serializeConfig();
     }

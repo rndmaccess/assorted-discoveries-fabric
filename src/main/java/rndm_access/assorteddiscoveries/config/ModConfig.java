@@ -133,7 +133,7 @@ public class ModConfig {
                 CONFIG.setPath(worldPath);
                 CONFIG.load();
                 CONFIG.setType(ConfigType.LOCAL);
-                AssortedDiscoveries.LOGGER.info("Loaded world config for {}", worldPath.getFileName());
+                AssortedDiscoveries.LOGGER.info("Loaded world config for '{}'", worldPathFolder.getFileName());
             }
         });
 

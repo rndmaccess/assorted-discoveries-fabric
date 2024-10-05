@@ -12,48 +12,57 @@ import java.util.LinkedHashMap;
 import java.util.NoSuchElementException;
 
 public class JsonConfig {
-    private final LinkedHashMap<String, JsonConfigCategory> nameToCategories;
-    private ConfigType configType;
+    private final LinkedHashMap<String, JsonConfigCategory> categories;
+    private ConfigType type;
+    private Path path;
 
     protected JsonConfig(Builder builder) {
-        this.nameToCategories = builder.configCategories;
-        this.configType = ConfigType.NONE;
+        this.categories = builder.categories;
+        this.type = ConfigType.NONE;
     }
 
-    public ConfigType getConfigType() {
-        return configType;
+    public ConfigType getType() {
+        return type;
     }
 
-    public void setConfigType(ConfigType configType) {
-        this.configType = configType;
+    public void setType(ConfigType type) {
+        this.type = type;
     }
 
-    public JsonConfigCategory getCategory(String categoryName) {
-        if(!this.hasCategory(categoryName)) {
-            throw new NoSuchElementException("The config does not have category " + categoryName);
+    public Path getPath() {
+        return path;
+    }
+
+    public void setPath(Path path) {
+        this.path = path;
+    }
+
+    public JsonConfigCategory getCategory(String name) {
+        if(!this.hasCategory(name)) {
+            throw new NoSuchElementException("The config does not have category " + name);
         }
-        return nameToCategories.get(categoryName);
+        return categories.get(name);
     }
 
-    public boolean hasCategory(String categoryName) {
-        return nameToCategories.containsKey(categoryName);
+    public boolean hasCategory(String name) {
+        return categories.containsKey(name);
     }
 
     public Collection<JsonConfigCategory> getCategories() {
-        return nameToCategories.values();
+        return categories.values();
     }
 
-    public void load(Path configPath) {
-        if (!Files.exists(configPath)) {
+    public void load() {
+        if (!Files.exists(path)) {
             throw new JsonConfigException("Couldn't load the config because it does not exist!");
         }
 
-        JanksonConfigSerializer serializer = new JanksonConfigSerializer(this, configPath);
+        JanksonConfigSerializer serializer = new JanksonConfigSerializer(this, path);
         serializer.deserializeConfig();
     }
 
-    public void save(Path configPath) {
-        JanksonConfigSerializer serializer = new JanksonConfigSerializer(this, configPath);
+    public void save() {
+        JanksonConfigSerializer serializer = new JanksonConfigSerializer(this, path);
         serializer.serializeConfig();
     }
 
@@ -156,10 +165,10 @@ public class JsonConfig {
     }
 
     public static class Builder {
-        public LinkedHashMap<String, JsonConfigCategory> configCategories = new LinkedHashMap<>();
+        public LinkedHashMap<String, JsonConfigCategory> categories = new LinkedHashMap<>();
 
         public Builder addCategory(JsonConfigCategory category) {
-            configCategories.put(category.getName(), category);
+            categories.put(category.getName(), category);
             return this;
         }
 

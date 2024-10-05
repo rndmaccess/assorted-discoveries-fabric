@@ -25,71 +25,67 @@ public class JsonConfigCategory extends JsonConfigObject {
         return !subcategoryNames.isEmpty();
     }
 
-    public List<String> getEntryNames() {
-        return jsonConfigObjects.keySet().stream().toList();
-    }
-
-    public AbstractJsonConfigEntry<?> getEntry(String entryName) {
-        if(!this.hasEntry(entryName)) {
-            throw new NoSuchElementException("The category " + this.getName() + " does not have entry " + entryName);
+    public AbstractJsonConfigEntry<?> getEntry(String name) {
+        if(!this.hasEntry(name)) {
+            throw new NoSuchElementException("The category " + this.getName() + " does not have entry " + name);
         }
-        return (AbstractJsonConfigEntry<?>) jsonConfigObjects.get(entryName);
+        return (AbstractJsonConfigEntry<?>) jsonConfigObjects.get(name);
     }
 
-    public JsonBooleanConfigEntry getBooleanEntry(String entryName) {
-        if(!this.hasBooleanEntry(entryName)) {
+    public JsonBooleanConfigEntry getBooleanEntry(String name) {
+        if(!this.hasBooleanEntry(name)) {
             throw new NoSuchElementException("The category " + this.getName() + " does not have boolean entry "
-                    + entryName);
+                    + name);
         }
-        return (JsonBooleanConfigEntry) jsonConfigObjects.get(entryName);
+        return (JsonBooleanConfigEntry) jsonConfigObjects.get(name);
     }
 
-    public JsonIntegerConfigEntry getIntegerEntry(String entryName) {
-        if(!this.hasIntegerEntry(entryName)) {
+    public JsonIntegerConfigEntry getIntegerEntry(String name) {
+        if(!this.hasIntegerEntry(name)) {
             throw new NoSuchElementException("The category " + this.getName() + " does not have integer entry "
-                    + entryName);
+                    + name);
         }
-        return (JsonIntegerConfigEntry) jsonConfigObjects.get(entryName);
+        return (JsonIntegerConfigEntry) jsonConfigObjects.get(name);
     }
 
-    public JsonStringConfigEntry getStringEntry(String entryName) {
-        if(!this.hasStringEntry(entryName)) {
+    public JsonStringConfigEntry getStringEntry(String name) {
+        if(!this.hasStringEntry(name)) {
             throw new NoSuchElementException("The category " + this.getName() + " does not have string entry "
-                    + entryName);
+                    + name);
         }
-        return (JsonStringConfigEntry) jsonConfigObjects.get(entryName);
+        return (JsonStringConfigEntry) jsonConfigObjects.get(name);
     }
 
-    public JsonConfigCategory getSubcategory(String subCategoryName) {
-        if(!this.hasSubcategory(subCategoryName)) {
+    public JsonConfigCategory getSubcategory(String name) {
+        if(!this.hasSubcategory(name)) {
             throw new NoSuchElementException("The category " + this.getName() + " does not have subcategory "
-                    + subCategoryName);
+                    + name);
         }
-        return (JsonConfigCategory) jsonConfigObjects.get(subCategoryName);
+        return (JsonConfigCategory) jsonConfigObjects.get(name);
     }
 
-    public boolean hasEntry(String entryName) {
-        return hasConfigObject(entryName) && jsonConfigObjects.get(entryName) instanceof AbstractJsonConfigEntry<?>;
+    public boolean hasEntry(String name) {
+        return hasConfigObject(name) && jsonConfigObjects.get(name) instanceof AbstractJsonConfigEntry<?>;
     }
 
-    public boolean hasBooleanEntry(String entryName) {
-        return hasConfigObject(entryName) && jsonConfigObjects.get(entryName) instanceof JsonBooleanConfigEntry;
+    public boolean hasBooleanEntry(String name) {
+        return hasConfigObject(name) && jsonConfigObjects.get(name) instanceof JsonBooleanConfigEntry;
     }
 
-    public boolean hasIntegerEntry(String entryName) {
-        return hasConfigObject(entryName) && jsonConfigObjects.get(entryName) instanceof JsonIntegerConfigEntry;
+    public boolean hasIntegerEntry(String name) {
+        return hasConfigObject(name) && jsonConfigObjects.get(name) instanceof JsonIntegerConfigEntry;
     }
 
-    public boolean hasStringEntry(String entryName) {
-        return hasConfigObject(entryName) && jsonConfigObjects.get(entryName) instanceof JsonStringConfigEntry;
+    public boolean hasStringEntry(String name) {
+        return hasConfigObject(name) && jsonConfigObjects.get(name) instanceof JsonStringConfigEntry;
     }
 
-    public boolean hasSubcategory(String subCategoryName) {
-        return hasConfigObject(subCategoryName) && jsonConfigObjects.get(subCategoryName) instanceof JsonConfigCategory;
+    public boolean hasSubcategory(String name) {
+        return hasConfigObject(name) && jsonConfigObjects.get(name) instanceof JsonConfigCategory;
     }
 
-    private boolean hasConfigObject(String key) {
-        return jsonConfigObjects.containsKey(key);
+    private boolean hasConfigObject(String name) {
+        return jsonConfigObjects.containsKey(name);
     }
 
     public List<JsonConfigObject> getJsonObjects() {

@@ -1,25 +1,25 @@
 package rndm_access.assorteddiscoveries.config.json;
 
 import rndm_access.assorteddiscoveries.config.json.exceptions.JsonConfigException;
-import rndm_access.assorteddiscoveries.config.json.parser.entries.AbstractJsonConfigEntry;
-import rndm_access.assorteddiscoveries.config.json.parser.JsonConfigCategory;
-import rndm_access.assorteddiscoveries.config.json.parser.JsonConfigObject;
+import rndm_access.assorteddiscoveries.config.json.parser.entries.AbstractConfigEntry;
+import rndm_access.assorteddiscoveries.config.json.parser.ConfigCategory;
+import rndm_access.assorteddiscoveries.config.json.parser.ConfigObject;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Collection;
-import java.util.LinkedHashMap;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 public class JsonConfig {
-    private final LinkedHashMap<String, JsonConfigCategory> categories;
+    private final LinkedHashMap<String, ConfigCategory> categories;
     private ConfigType type;
     private Path path;
+    private List<String> fileContent;
 
     protected JsonConfig(Builder builder) {
         this.categories = builder.categories;
         this.path = null;
         this.type = ConfigType.NONE;
+        this.fileContent = new LinkedList<>();
     }
 
     public ConfigType getType() {
@@ -38,7 +38,15 @@ public class JsonConfig {
         this.path = path;
     }
 
-    public JsonConfigCategory getCategory(String name) {
+    public List<String> getFileContent() {
+        return fileContent;
+    }
+
+    public void setFileContent(List<String> fileContent) {
+        this.fileContent = fileContent;
+    }
+
+    public ConfigCategory getCategory(String name) {
         if(!this.hasCategory(name)) {
             throw new NoSuchElementException("The config does not have category " + name);
         }
@@ -49,7 +57,7 @@ public class JsonConfig {
         return categories.containsKey(name);
     }
 
-    public Collection<JsonConfigCategory> getCategories() {
+    public Collection<ConfigCategory> getCategories() {
         return categories.values();
     }
 
@@ -58,20 +66,20 @@ public class JsonConfig {
             throw new JsonConfigException("Couldn't load the config because it does not exist!");
         }
 
-        JanksonConfigSerializer serializer = new JanksonConfigSerializer(this, path);
+        JsonConfigSerializer serializer = new JsonConfigSerializer(this, path);
         serializer.deserializeConfig();
     }
 
-    public void save() {
+    public void save(Map<String, Object> entryChangeList) {
         if (path == null) {
             throw new JsonConfigException("The config path has not been set!");
         }
 
-        JanksonConfigSerializer serializer = new JanksonConfigSerializer(this, path);
-        serializer.serializeConfig();
+        JsonConfigSerializer serializer = new JsonConfigSerializer(this, path);
+        serializer.serializeConfig(entryChangeList);
     }
 
-    public String toJson() {
+    public String createFileContent() {
         StringBuilder builder = new StringBuilder();
 
         if (!this.getCategories().isEmpty()) {
@@ -79,7 +87,7 @@ public class JsonConfig {
 
             int indent = 1;
             int i = 0;
-            for (JsonConfigCategory category : this.getCategories()) {
+            for (ConfigCategory category : this.getCategories()) {
                 builder.append('\n');
                 writeCategory(category, builder, indent);
 
@@ -94,23 +102,23 @@ public class JsonConfig {
         return builder.toString();
     }
 
-    private void writeCategory(JsonConfigCategory category, StringBuilder builder, int depth) {
+    private void writeCategory(ConfigCategory category, StringBuilder builder, int depth) {
         indent(builder, depth);
         depth++;
         builder.append('\"');
-        builder.append(category.getName());
+        builder.append(category.getKey());
         builder.append('\"');
         builder.append(": {");
         builder.append('\n');
 
         for (int i = 0; i < category.getJsonObjects().size(); i++) {
-            JsonConfigObject component = category.getJsonObjects().get(i);
+            ConfigObject component = category.getJsonObjects().get(i);
 
-            if (category.hasEntry(component.getName())) {
-                AbstractJsonConfigEntry<?> entry = (AbstractJsonConfigEntry<?>) component;
+            if (category.hasEntry(component.getKey().getName())) {
+                AbstractConfigEntry<?> entry = (AbstractConfigEntry<?>) component;
                 writeEntry(category, entry, builder, depth);
             } else {
-                JsonConfigCategory subCategory = category.getSubcategory(component.getName());
+                ConfigCategory subCategory = category.getSubcategory(component.getKey().getName());
                 writeCategory(subCategory, builder, depth);
             }
 
@@ -126,7 +134,7 @@ public class JsonConfig {
         }
     }
 
-    private void writeEntry(JsonConfigCategory category, AbstractJsonConfigEntry<?> entry,
+    private void writeEntry(ConfigCategory category, AbstractConfigEntry<?> entry,
                             StringBuilder builder, int depth) {
         if (entry.getComment() != null) {
             writeComment(builder, entry, depth);
@@ -134,11 +142,11 @@ public class JsonConfig {
 
         indent(builder, depth);
         builder.append('\"');
-        builder.append(entry.getName());
+        builder.append(entry.getKey());
         builder.append('\"');
         builder.append(": ");
 
-        if (category.hasStringEntry(entry.getName())) {
+        if (category.hasStringEntry(entry.getKey().getName())) {
             builder.append('\"');
             builder.append(entry.getValue());
             builder.append('\"');
@@ -147,7 +155,7 @@ public class JsonConfig {
         }
     }
 
-    private void writeComment(StringBuilder builder, AbstractJsonConfigEntry<?> entry, int depth) {
+    private void writeComment(StringBuilder builder, AbstractConfigEntry<?> entry, int depth) {
         indent(builder, depth);
         builder.append("// ");
 
@@ -170,10 +178,10 @@ public class JsonConfig {
     }
 
     public static class Builder {
-        public LinkedHashMap<String, JsonConfigCategory> categories = new LinkedHashMap<>();
+        public LinkedHashMap<String, ConfigCategory> categories = new LinkedHashMap<>();
 
-        public Builder addCategory(JsonConfigCategory category) {
-            categories.put(category.getName(), category);
+        public Builder addCategory(ConfigCategory category) {
+            categories.put(category.getKey().getName(), category);
             return this;
         }
 

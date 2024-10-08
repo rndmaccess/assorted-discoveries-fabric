@@ -3,46 +3,25 @@ package rndm_access.assorteddiscoveries.config.json.tokenizer;
 import java.util.LinkedList;
 import java.util.Objects;
 
-public class JsonTokenList {
+public class TokenList {
     private int position;
-    private final LinkedList<JsonToken> tokenList;
+    private final LinkedList<Token> tokenList;
 
-    public JsonTokenList() {
+    public TokenList() {
         this.position = 0;
         this.tokenList = new LinkedList<>();
     }
 
-    public void add(JsonToken token) {
+    public void add(Token token) {
         tokenList.add(token);
     }
 
-    public JsonToken get() {
+    public Token get() {
         return this.tokenList.get(position);
     }
 
-    public JsonToken consumeToken() {
+    public Token consumeToken() {
         return tokenList.get(position++);
-    }
-
-    public JsonToken getNext() {
-        int nextPos = position + 1;
-
-        if (tokenList.size() == nextPos) {
-            return null;
-        }
-        return tokenList.get(nextPos);
-    }
-
-    /**
-     * @param tokenType The token type to match
-     * @return true if the next token's type matches the type passed in.
-     *         If the list does not have another token then the method returns false.
-     */
-    public boolean matchNext(TokenType tokenType) {
-        if(this.getNext() == null) {
-            return false;
-        }
-        return Objects.equals(this.getNext().getType(), tokenType);
     }
 
     /**

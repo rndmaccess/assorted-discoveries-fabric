@@ -1,21 +1,18 @@
 package rndm_access.assorteddiscoveries.config.json.tokenizer;
 
-public class JsonToken {
-    private TokenType type;
-    private String value;
-    private int line;
-    private int start;
-    private int end;
+public class Token {
+    private final TokenType type;
+    private final String value;
+    private final int line;
+    private final int start;
+    private final int end;
 
-    protected JsonToken(JsonToken.Builder builder) {
+    protected Token(Token.Builder builder) {
         this.type = builder.type;
         this.value = builder.value;
         this.line = builder.line;
         this.start = builder.start;
         this.end = builder.end;
-    }
-
-    public JsonToken() {
     }
 
     public TokenType getType() {
@@ -70,8 +67,8 @@ public class JsonToken {
             return this;
         }
 
-        public JsonToken build() {
-            return new JsonToken(this);
+        public Token build() {
+            return new Token(this);
         }
     }
 }

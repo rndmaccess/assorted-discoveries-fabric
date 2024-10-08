@@ -6,13 +6,9 @@ import me.shedaniel.clothconfig2.gui.entries.SubCategoryListEntry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import rndm_access.assorteddiscoveries.ADReference;
-import rndm_access.assorteddiscoveries.config.json.parser.entries.JsonBooleanConfigEntry;
-import rndm_access.assorteddiscoveries.config.json.parser.JsonConfigCategory;
+import rndm_access.assorteddiscoveries.config.json.parser.entries.BooleanConfigEntry;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Supplier;
 
 public class ModConfigScreen {
@@ -35,9 +31,9 @@ public class ModConfigScreen {
         buildingScreenCategory.addEntry(makeHostilePlushieSubCategory(buildingCategoryName, entryBuilder));
 
         Text displayText;
-        String woodenWallsName = ModConfig.ENABLE_WOODEN_WALLS.getName();
+        String woodenWallsName = ModConfig.ENABLE_WOODEN_WALLS.getKey().getName();
         displayText = makeEntryText(buildingCategoryName, woodenWallsName);
-        entryBuilder.startBooleanToggle(displayText, ModConfig.ENABLE_WOODEN_WALLS.getValue())
+        entryBuilder.startBooleanToggle(displayText, ModConfig.ENABLE_WOODEN_WALLS.getValue().evaluate())
                 .setSaveConsumer(newValue -> ENTRY_VALUE_CHANGES.put(woodenWallsName, newValue))
                 .setDefaultValue(true).requireRestart().build();
 
@@ -158,13 +154,8 @@ public class ModConfigScreen {
                 ModConfig.RABBITS_SAFE_FALL_INCREASED, miscCategoryName));
 
         builder.setSavingRunnable(() -> {
-            // When the config is saved make the changes to the categories and serialize to the config file.
-            for (JsonConfigCategory category : ModConfig.CONFIG.getCategories()) {
-                for (String entryName : ENTRY_VALUE_CHANGES.keySet()) {
-                    saveEntries(category, entryName, ENTRY_VALUE_CHANGES);
-                }
-            }
-            ModConfig.CONFIG.save();
+            ModConfig.CONFIG.save(ENTRY_VALUE_CHANGES);
+            ModConfig.CONFIG.load();
         });
         return builder;
     }
@@ -341,40 +332,49 @@ public class ModConfigScreen {
         return entryBuilder.startSubCategory(subCategoryText, entryList).build();
     }
 
-    private static BooleanListEntry makeToggleableConfigEntry(ConfigEntryBuilder entryBuilder, JsonBooleanConfigEntry entry,
+    private static BooleanListEntry makeToggleableConfigEntry(ConfigEntryBuilder entryBuilder, BooleanConfigEntry entry,
                                                               String categoryName, String subCategoryName) {
-        final String entryName = entry.getName();
-        final boolean entryValue = entry.getValue();
+        final String entryName = entry.getKey().getName();
+        final boolean entryValue = entry.getValue().evaluate();
         Text displayText = makeEntryText(categoryName, subCategoryName, entryName);
 
         return entryBuilder.startBooleanToggle(displayText, entryValue)
-                .setSaveConsumer(newValue -> ENTRY_VALUE_CHANGES.put(entryName, newValue))
-                .setDefaultValue(true).requireRestart().build();
+                .setSaveConsumer(newValue -> {
+                    if (entryValue != newValue) {
+                        ENTRY_VALUE_CHANGES.put(entryName, newValue);
+                    }
+                }).setDefaultValue(true).requireRestart().build();
     }
 
-    private static BooleanListEntry makeToggleableConfigEntry(ConfigEntryBuilder entryBuilder, JsonBooleanConfigEntry entry,
+    private static BooleanListEntry makeToggleableConfigEntry(ConfigEntryBuilder entryBuilder, BooleanConfigEntry entry,
                                                              String categoryName) {
-        final String entryName = entry.getName();
-        final boolean entryValue = entry.getValue();
+        final String entryName = entry.getKey().getName();
+        final boolean entryValue = entry.getValue().evaluate();
         Text displayText = makeEntryText(categoryName, entryName);
 
         return entryBuilder.startBooleanToggle(displayText, entryValue)
-                .setSaveConsumer(newValue -> ENTRY_VALUE_CHANGES.put(entryName, newValue))
-                .setDefaultValue(true).requireRestart().build();
+                .setSaveConsumer(newValue -> {
+                    if (entryValue != newValue) {
+                        ENTRY_VALUE_CHANGES.put(entryName, newValue);
+                    }
+                }).setDefaultValue(true).requireRestart().build();
     }
 
     @SuppressWarnings("UnstableApiUsage")
-    private static BooleanListEntry makeToggleableConfigEntry(ConfigEntryBuilder entryBuilder, JsonBooleanConfigEntry entry,
+    private static BooleanListEntry makeToggleableConfigEntry(ConfigEntryBuilder entryBuilder, BooleanConfigEntry entry,
                                                               String categoryName, BooleanListEntry dependency) {
-        final String entryName = entry.getName();
-        final boolean entryValue = entry.getValue();
+        final String entryName = entry.getKey().getName();
+        final boolean entryValue = entry.getValue().evaluate();
         Text requirementText = makeEntryRequirementText(categoryName, entryName);
         Supplier<Optional<Text[]>> requirementTooltip = getRequirementToolTip(dependency, requirementText);
         Text displayText = makeEntryText(categoryName, entryName);
 
         return entryBuilder.startBooleanToggle(displayText, entryValue)
-                .setSaveConsumer(newValue -> ENTRY_VALUE_CHANGES.put(entryName, newValue))
-                .setTooltipSupplier(requirementTooltip).setDefaultValue(true).requireRestart()
+                .setSaveConsumer(newValue -> {
+                    if (entryValue != newValue) {
+                        ENTRY_VALUE_CHANGES.put(entryName, newValue);
+                    }
+                }).setTooltipSupplier(requirementTooltip).setDefaultValue(true).requireRestart()
                 .setRequirement(Requirement.isTrue(dependency)).build();
     }
 
@@ -393,21 +393,6 @@ public class ModConfigScreen {
             }
             return Optional.empty();
         };
-    }
-
-    // TODO: Re-write this method so it adds lines to the file and sets values in the internal config.
-    private static void saveEntries(JsonConfigCategory category, String entryName,
-                                    HashMap<String, Object> entryValueChanges) {
-        if(category.hasBooleanEntry(entryName)) {
-            JsonBooleanConfigEntry entry = category.getBooleanEntry(entryName);
-            entry.setValue(Boolean.parseBoolean(entryValueChanges.get(entryName).toString()));
-        } else {
-            for (String subcategoryName : category.getSubcategoryNames()) {
-                if(category.hasSubcategory(subcategoryName)) {
-                    saveEntries(category.getSubcategory(subcategoryName), entryName, entryValueChanges);
-                }
-            }
-        }
     }
 
     private static Text makeEntryText(String categoryName, String entryName) {

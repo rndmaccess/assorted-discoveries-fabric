@@ -3,11 +3,9 @@ package rndm_access.assorteddiscoveries.config.json.parser;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.json.JsonConfig;
 import rndm_access.assorteddiscoveries.config.json.exceptions.JsonSyntaxException;
-import rndm_access.assorteddiscoveries.config.json.parser.entries.JsonBooleanConfigEntry;
-import rndm_access.assorteddiscoveries.config.json.parser.entries.JsonIntegerConfigEntry;
-import rndm_access.assorteddiscoveries.config.json.parser.entries.JsonStringConfigEntry;
-import rndm_access.assorteddiscoveries.config.json.tokenizer.JsonToken;
-import rndm_access.assorteddiscoveries.config.json.tokenizer.JsonTokenList;
+import rndm_access.assorteddiscoveries.config.json.parser.entries.*;
+import rndm_access.assorteddiscoveries.config.json.tokenizer.Token;
+import rndm_access.assorteddiscoveries.config.json.tokenizer.TokenList;
 import rndm_access.assorteddiscoveries.config.json.tokenizer.JsonTokenizer;
 import rndm_access.assorteddiscoveries.config.json.tokenizer.TokenType;
 
@@ -15,26 +13,26 @@ import java.nio.file.Path;
 import java.util.*;
 
 public class JsonParser {
-    private final JsonTokenList tokenList;
+    private final TokenList tokenList;
     private final JsonConfig config;
     private final Path configPath;
-    private final Map<String, JsonToken> entryErrors;
+    private final Map<String, Token> entryErrors;
     private int depth;
 
-    public JsonParser(List<String> source, JsonConfig config, Path configPath) {
-        this.tokenList = new JsonTokenizer(source).tokenize();
+    public JsonParser(JsonConfig config, Path configPath) {
+        this.tokenList = new JsonTokenizer(config.getFileContent()).tokenize();
         this.config = config;
         this.configPath = configPath;
         this.entryErrors = new HashMap<>();
         this.depth = 0;
     }
 
-    public Map<String, JsonToken> getEntryErrors() {
+    public Map<String, Token> getEntryErrors() {
         return entryErrors;
     }
 
     public void parse() {
-        Stack<JsonConfigCategory> categories = new Stack<>();
+        Stack<ConfigCategory> categories = new Stack<>();
 
         if(tokenList.isEmpty()) {
             AssortedDiscoveries.LOGGER.error("Could not load the config file because it was empty!");
@@ -43,7 +41,7 @@ public class JsonParser {
 
         requireToken(TokenType.LEFT_CURLY);
         do {
-            JsonToken keyToken = requireToken(TokenType.STRING);
+            Token keyToken = requireToken(TokenType.STRING);
             requireToken(TokenType.COLON);
 
             if (tokenList.matchAndConsume(TokenType.LEFT_CURLY)) {
@@ -56,6 +54,7 @@ public class JsonParser {
 
                 if(tokenList.match(TokenType.RIGHT_CURLY)) {
                     depth--;
+                    categories.peek().setEndLine(tokenList.get().getLine());
                     categories.pop();
                     requireToken(TokenType.COMMA, TokenType.RIGHT_CURLY);
                 }
@@ -69,35 +68,45 @@ public class JsonParser {
         }
     }
 
-    private void parseCategory(JsonToken categoryToken, Stack<JsonConfigCategory> categories) {
+    private void parseCategory(Token categoryToken, Stack<ConfigCategory> categories) {
         if (categories.isEmpty()) {
             String categoryName = categoryToken.getValue();
             depth++;
 
             if (config.hasCategory(categoryName)) {
-                categories.push(config.getCategory(categoryName));
+                ConfigCategory category = config.getCategory(categoryName);
+                category.setStartLine(categoryToken.getLine());
+                ConfigKey key = category.getKey();
+                key.setStart(categoryToken.getStart());
+                key.setEnd(categoryToken.getEnd());
+                categories.push(category);
             } else {
                 logInvalidConfigCategory(categoryName);
             }
         } else {
-            JsonConfigCategory category = categories.peek();
-            String categoryName = category.getName();
+            ConfigCategory category = categories.peek();
+            String categoryName = category.getKey().getName();
             String subcategoryName = categoryToken.getValue();
             depth++;
 
             if (category.hasSubcategory(subcategoryName)) {
-                categories.push(category.getSubcategory(subcategoryName));
+                ConfigCategory subCategory = category.getSubcategory(subcategoryName);
+                subCategory.setStartLine(categoryToken.getLine());
+                ConfigKey key = subCategory.getKey();
+                key.setStart(categoryToken.getStart());
+                key.setEnd(categoryToken.getEnd());
+                categories.push(subCategory);
             } else {
                 logInvalidConfigSubcategory(subcategoryName, categoryName);
             }
         }
     }
 
-    private void parseEntry(JsonToken keyToken, JsonConfigCategory category) {
+    private void parseEntry(Token keyToken, ConfigCategory category) {
         String entryName = keyToken.getValue();
 
         if (tokenList.match(TokenType.ERROR)) {
-            JsonToken errorToken = tokenList.consumeToken();
+            Token errorToken = tokenList.consumeToken();
 
             if (category.hasEntry(entryName)) {
                 entryErrors.put(entryName, errorToken);
@@ -106,17 +115,44 @@ public class JsonParser {
             }
         } else {
             if (category.hasBooleanEntry(entryName)) {
-                JsonToken boolToken = requireToken(TokenType.BOOL);
-                JsonBooleanConfigEntry entry = category.getBooleanEntry(entryName);
-                entry.setValue(Boolean.valueOf(boolToken.getValue()));
+                Token boolToken = requireToken(TokenType.BOOL);
+                BooleanConfigEntry entry = category.getBooleanEntry(entryName);
+                entry.setLine(boolToken.getLine());
+                entry.setStart(keyToken.getStart());
+                entry.setEnd(boolToken.getEnd());
+                ConfigValue<Boolean> boolValue = entry.getValue();
+                boolValue.setEntryValue(Boolean.valueOf(boolToken.getValue()));
+                boolValue.setStart(boolToken.getStart());
+                boolValue.setEnd(boolToken.getEnd());
+                ConfigKey boolKey = entry.getKey();
+                boolKey.setStart(keyToken.getStart());
+                boolKey.setEnd(keyToken.getEnd());
             } else if (category.hasIntegerEntry(entryName)) {
-                JsonToken intToken = requireToken(TokenType.INT);
-                JsonIntegerConfigEntry entry = category.getIntegerEntry(entryName);
-                entry.setValue(Integer.valueOf(intToken.getValue()));
+                Token intToken = requireToken(TokenType.INT);
+                IntegerConfigEntry entry = category.getIntegerEntry(entryName);
+                entry.setLine(intToken.getLine());
+                entry.setStart(keyToken.getStart());
+                entry.setEnd(intToken.getEnd());
+                ConfigValue<Integer> intValue = entry.getValue();
+                intValue.setEntryValue(Integer.valueOf(intToken.getValue()));
+                intValue.setStart(intToken.getStart());
+                intValue.setEnd(intToken.getEnd());
+                ConfigKey intKey = entry.getKey();
+                intKey.setStart(keyToken.getStart());
+                intKey.setEnd(keyToken.getEnd());
             } else if (category.hasStringEntry(entryName)) {
-                JsonToken stringToken = requireToken(TokenType.STRING);
-                JsonStringConfigEntry entry = category.getStringEntry(entryName);
-                entry.setValue(stringToken.getValue());
+                Token stringToken = requireToken(TokenType.STRING);
+                StringConfigEntry entry = category.getStringEntry(entryName);
+                entry.setLine(stringToken.getLine());
+                entry.setStart(keyToken.getStart());
+                entry.setEnd(stringToken.getEnd());
+                ConfigValue<String> stringValue = entry.getValue();
+                stringValue.setEntryValue(stringToken.getValue());
+                stringValue.setStart(stringToken.getStart());
+                stringValue.setEnd(stringToken.getEnd());
+                ConfigKey stringKey = entry.getKey();
+                stringKey.setStart(keyToken.getStart());
+                stringKey.setEnd(keyToken.getEnd());
             } else {
                 logInvalidConfigEntry(entryName);
                 tokenList.consumeToken();
@@ -124,7 +160,7 @@ public class JsonParser {
         }
     }
 
-    public JsonToken requireToken(TokenType... types) {
+    public Token requireToken(TokenType... types) {
         if (!tokenList.match(types)) {
             throw new JsonSyntaxException(getSyntaxErrorMessage(types));
         }
@@ -157,7 +193,7 @@ public class JsonParser {
         message.append(" expected");
 
         if (tokenList.hasNextToken()) {
-            JsonToken currentToken = tokenList.get();
+            Token currentToken = tokenList.get();
 
             message.append(", got ");
             if (tokenList.match(TokenType.STRING, TokenType.INT, TokenType.BOOL)) {

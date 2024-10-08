@@ -16,7 +16,7 @@ public abstract class LivingEntityMixin {
     public void handleFallDamage(float fallDistance, float damageMultiplier, DamageSource damageSource,
                                  CallbackInfoReturnable<Boolean> info) {
         boolean isRabbit = ((EntityAccessor) this).getType().equals(EntityType.RABBIT);
-        boolean isSafeFallDistanceIncreased = ModConfig.RABBITS_SAFE_FALL_INCREASED.getValue();
+        boolean isSafeFallDistanceIncreased = ModConfig.RABBITS_SAFE_FALL_INCREASED.getValue().evaluate();
 
         // This lets rabbits fall 5 blocks before they take damage.
         if(isRabbit && isSafeFallDistanceIncreased) {

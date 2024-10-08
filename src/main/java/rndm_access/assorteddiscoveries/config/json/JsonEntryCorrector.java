@@ -1,8 +1,8 @@
 package rndm_access.assorteddiscoveries.config.json;
 
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
-import rndm_access.assorteddiscoveries.config.json.parser.JsonConfigCategory;
-import rndm_access.assorteddiscoveries.config.json.tokenizer.JsonToken;
+import rndm_access.assorteddiscoveries.config.json.parser.ConfigCategory;
+import rndm_access.assorteddiscoveries.config.json.tokenizer.Token;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -15,15 +15,14 @@ public class JsonEntryCorrector {
     private final JsonConfig config;
     private final Path configPath;
 
-    public JsonEntryCorrector(List<String> fileContent, JsonConfig config,
-                              Path configPath) {
-        this.fileContent = fileContent;
+    public JsonEntryCorrector(JsonConfig config, Path configPath) {
+        this.fileContent = config.getFileContent();
         this.config = config;
         this.configPath = configPath;
     }
 
-    public void correct(Map<String, JsonToken> errorList) {
-        for (JsonConfigCategory category : config.getCategories()) {
+    public void correct(Map<String, Token> errorList) {
+        for (ConfigCategory category : config.getCategories()) {
             if (category.hasSubCategories()) {
                 this.correctSubCategoryEntries(errorList, category);
             }
@@ -37,9 +36,9 @@ public class JsonEntryCorrector {
         }
     }
 
-    private void correctSubCategoryEntries(Map<String, JsonToken> errorList, JsonConfigCategory category) {
+    private void correctSubCategoryEntries(Map<String, Token> errorList, ConfigCategory category) {
         for (String subcategoryName : category.getSubcategoryNames()) {
-            JsonConfigCategory subCategory = category.getSubcategory(subcategoryName);
+            ConfigCategory subCategory = category.getSubcategory(subcategoryName);
 
             if (subCategory.hasSubCategories()) {
                 correctSubCategoryEntries(errorList, category);
@@ -48,20 +47,20 @@ public class JsonEntryCorrector {
         }
     }
 
-    private void correctEntries(Map<String, JsonToken> errorList, JsonConfigCategory category) {
+    private void correctEntries(Map<String, Token> errorList, ConfigCategory category) {
         for (String entryName : errorList.keySet()) {
             correctEntryValue(errorList, category, entryName);
         }
     }
 
-    private void correctEntryValue(Map<String, JsonToken> errorList, JsonConfigCategory category, String entryName) {
+    private void correctEntryValue(Map<String, Token> errorList, ConfigCategory category, String entryName) {
         if (category.hasEntry(entryName)) {
-            JsonToken errorToken = errorList.get(entryName);
+            Token errorToken = errorList.get(entryName);
             int errorLine = errorToken.getLine();
             int errorStart = errorToken.getStart();
             int errorEnd = errorToken.getEnd();
             String errorValue = errorToken.getValue();
-            Object defaultValue = category.getEntry(entryName).getValue();
+            Object defaultValue = category.getEntry(entryName).getValue().evaluate();
             String line = fileContent.get(errorLine);
             String startLine = line.substring(0, errorStart);
             String endLine = line.substring(errorEnd);

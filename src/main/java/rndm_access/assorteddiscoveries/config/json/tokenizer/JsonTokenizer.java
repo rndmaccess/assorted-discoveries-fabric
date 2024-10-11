@@ -2,6 +2,7 @@ package rndm_access.assorteddiscoveries.config.json.tokenizer;
 
 import rndm_access.assorteddiscoveries.config.json.exceptions.JsonSyntaxException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class JsonTokenizer {
@@ -28,11 +29,11 @@ public class JsonTokenizer {
     }
 
     public TokenList tokenize() {
-        TokenList jsonTokens = new TokenList();
+        ArrayList<Token> jsonTokens = new ArrayList<>();
 
         // If the first character was not found then the file is empty!
         if (curChar == null) {
-            return jsonTokens;
+            return new TokenList(jsonTokens);
         }
 
         while (hasNextChar()) {
@@ -79,7 +80,7 @@ public class JsonTokenizer {
                 jsonTokens.add(token);
             }
         }
-        return jsonTokens;
+        return new TokenList(jsonTokens);
     }
 
     private void consumeComment() {

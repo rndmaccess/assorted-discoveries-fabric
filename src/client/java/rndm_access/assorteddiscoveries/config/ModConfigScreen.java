@@ -162,7 +162,7 @@ public class ModConfigScreen {
 
     @SuppressWarnings("rawtypes")
     private static SubCategoryListEntry makeDyedSubCategory(String categoryName, ConfigEntryBuilder entryBuilder) {
-        final List<AbstractConfigListEntry> entryList = new LinkedList<>();
+        final List<AbstractConfigListEntry> entryList = new ArrayList<>();
         final String subCategoryName = "dyed";
         final Text subCategoryText = makeSubcategoryText(categoryName, subCategoryName);
         BooleanListEntry configEntry;
@@ -182,7 +182,7 @@ public class ModConfigScreen {
     @SuppressWarnings("rawtypes")
     private static SubCategoryListEntry makePassivePlushieSubCategory(String categoryName,
                                                                       ConfigEntryBuilder entryBuilder) {
-        final List<AbstractConfigListEntry> entryList = new LinkedList<>();
+        final List<AbstractConfigListEntry> entryList = new ArrayList<>();
         final String subCategoryName = "passive_plushies";
         final Text subCategoryText = makeSubcategoryText(categoryName, subCategoryName);
         BooleanListEntry configEntry;
@@ -241,7 +241,7 @@ public class ModConfigScreen {
     @SuppressWarnings("rawtypes")
     private static SubCategoryListEntry makeNeutralPlushieSubCategory(String categoryName,
                                                                       ConfigEntryBuilder entryBuilder) {
-        final List<AbstractConfigListEntry> entryList = new LinkedList<>();
+        final List<AbstractConfigListEntry> entryList = new ArrayList<>();
         final String subCategoryName = "neutral_plushies";
         final Text subCategoryText = makeSubcategoryText(categoryName, subCategoryName);
         BooleanListEntry configEntry;
@@ -273,7 +273,7 @@ public class ModConfigScreen {
     @SuppressWarnings("rawtypes")
     private static SubCategoryListEntry makeHostilePlushieSubCategory(String categoryName,
                                                                       ConfigEntryBuilder entryBuilder) {
-        final List<AbstractConfigListEntry> entryList = new LinkedList<>();
+        final List<AbstractConfigListEntry> entryList = new ArrayList<>();
         final String subCategoryName = "hostile_plushies";
         final Text subCategoryText = makeSubcategoryText(categoryName, subCategoryName);
         BooleanListEntry configEntry;

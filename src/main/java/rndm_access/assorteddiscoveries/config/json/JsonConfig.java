@@ -10,7 +10,7 @@ import java.nio.file.Path;
 import java.util.*;
 
 public class JsonConfig {
-    private final LinkedHashMap<String, ConfigCategory> categories;
+    private final HashMap<String, ConfigCategory> categories;
     private ConfigType type;
     private Path path;
     private List<String> fileContent;
@@ -106,7 +106,7 @@ public class JsonConfig {
         indent(builder, depth);
         depth++;
         builder.append('\"');
-        builder.append(category.getKey());
+        builder.append(category.getKey().getName());
         builder.append('\"');
         builder.append(": {");
         builder.append('\n');
@@ -142,16 +142,16 @@ public class JsonConfig {
 
         indent(builder, depth);
         builder.append('\"');
-        builder.append(entry.getKey());
+        builder.append(entry.getKey().getName());
         builder.append('\"');
         builder.append(": ");
 
         if (category.hasStringEntry(entry.getKey().getName())) {
             builder.append('\"');
-            builder.append(entry.getValue());
+            builder.append(entry.getValue().evaluate());
             builder.append('\"');
         } else {
-            builder.append(entry.getValue());
+            builder.append(entry.getValue().evaluate());
         }
     }
 
@@ -178,7 +178,7 @@ public class JsonConfig {
     }
 
     public static class Builder {
-        public LinkedHashMap<String, ConfigCategory> categories = new LinkedHashMap<>();
+        public HashMap<String, ConfigCategory> categories = new LinkedHashMap<>();
 
         public Builder addCategory(ConfigCategory category) {
             categories.put(category.getKey().getName(), category);

@@ -56,10 +56,13 @@ public class JsonParser {
                 requireToken(TokenType.COMMA, TokenType.RIGHT_CURLY);
             }
         }
-        Token token = requireToken(TokenType.RIGHT_CURLY);
 
         if (category != null) {
+            Token token = requireToken(TokenType.RIGHT_CURLY);
+
             category.setEndLine(token.getLine());
+        } else {
+            tokenList.consumeToken(); // Ignore the invalid tokens at the end of the file :)
         }
     }
 

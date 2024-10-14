@@ -15,7 +15,7 @@ public abstract class RootsBlockMixin {
     @Inject(method = "canPlantOnTop", at = @At("HEAD"), cancellable = true)
     private void canPlantOnTop(BlockState floor, BlockView world,
                                BlockPos pos, CallbackInfoReturnable<Boolean> info) {
-        if(floor.isIn(ModBlockTags.ROOTS_PLANTABLE_ON)) {
+        if(floor.isIn(ModBlockTags.NETHER_PLANTER_BOXES)) {
             info.setReturnValue(true);
         }
     }

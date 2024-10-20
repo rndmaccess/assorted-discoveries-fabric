@@ -6,10 +6,10 @@ import net.minecraft.block.BlockState;
 import net.minecraft.state.StateManager;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
 
 public class CreakingPlushieBlock extends AbstractSimplePlushieBlock {
     public static final MapCodec<CreakingPlushieBlock> CODEC;
+    private static final VoxelShape NORTH_SHAPE;
 
     public CreakingPlushieBlock(Settings settings) {
         super(settings);
@@ -24,7 +24,7 @@ public class CreakingPlushieBlock extends AbstractSimplePlushieBlock {
 
     @Override
     protected VoxelShape getNorthShape() {
-        return VoxelShapes.fullCube();
+        return NORTH_SHAPE;
     }
 
     @Override
@@ -34,5 +34,7 @@ public class CreakingPlushieBlock extends AbstractSimplePlushieBlock {
 
     static {
         CODEC = createCodec(CreakingPlushieBlock::new);
+        NORTH_SHAPE = Block.createCuboidShape(1.5D, 0.0D, 1.5D, 14.5D,
+                14.5D, 14.5D);
     }
 }

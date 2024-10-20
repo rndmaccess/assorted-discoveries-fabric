@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BBB",
+    "EIE",
+    "BBB"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:gray_wool"
+    },
+    "E": {
+      "item": "minecraft:yellow_wool"
+    },
+    "I": {
+      "item": "minecraft:dark_oak_log"
+    }
+  },
+  "result": {
+    "item": "assorted-discoveries:creaking_plushie"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_creaking_plushie"
+    }
+  ]
+}

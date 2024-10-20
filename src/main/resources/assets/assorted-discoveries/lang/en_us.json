@@ -411,6 +411,7 @@
   "block.assorted-discoveries.coarse_dirt_slab": "Coarse Dirt Slab",
   "block.assorted-discoveries.green_onions": "Green Onions",
   "block.assorted-discoveries.wild_green_onions": "Wild Green Onions",
+  "block.assorted-discoveries.creaking_plushie": "Creaking Plushie",
 
   "container.assorted-discoveries.woodcutter": "Woodcutter",
 
@@ -509,6 +510,7 @@
   "text.cloth-config.assorted-discoveries.option.building.hostile_plushies.enable_wither_plushie": "Enable Wither Plushie",
   "text.cloth-config.assorted-discoveries.option.building.hostile_plushies.enable_zombie_plushie": "Enable Zombie Plushie",
   "text.cloth-config.assorted-discoveries.option.building.hostile_plushies.enable_zombie_villager_plushies": "Enable Zombie Villager Plushies",
+  "text.cloth-config.assorted-discoveries.option.building.hostile_plushies.enable_creaking_plushie": "Enable Creaking Plushie",
 
   "text.cloth-config.assorted-discoveries.option.building.enable_wooden_walls": "Enable Wooden Walls",
   "text.cloth-config.assorted-discoveries.option.building.enable_stripped_wooden_walls": "Enable Stripped Wooden Walls",

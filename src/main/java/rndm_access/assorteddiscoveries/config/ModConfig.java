@@ -57,6 +57,7 @@ public class ModConfig {
     public static final BooleanConfigEntry ENABLE_WITHER_PLUSHIE;
     public static final BooleanConfigEntry ENABLE_ZOMBIE_PLUSHIE;
     public static final BooleanConfigEntry ENABLE_ZOMBIE_VILLAGER_PLUSHIES;
+    public static final BooleanConfigEntry ENABLE_CREAKING_PLUSHIE;
     public static final BooleanConfigEntry ENABLE_WOODEN_WALLS;
     public static final BooleanConfigEntry ENABLE_STRIPPED_WOODEN_WALLS;
     public static final BooleanConfigEntry ENABLE_WOODEN_ROPE_LADDERS;
@@ -207,6 +208,7 @@ public class ModConfig {
                 .addBooleanEntry(ENABLE_WITHER_PLUSHIE)
                 .addBooleanEntry(ENABLE_ZOMBIE_PLUSHIE)
                 .addBooleanEntry(ENABLE_ZOMBIE_VILLAGER_PLUSHIES)
+                .addBooleanEntry(ENABLE_CREAKING_PLUSHIE)
                 .build();
 
         ConfigCategory buildingCategory = new ConfigCategory.Builder("building")
@@ -323,6 +325,7 @@ public class ModConfig {
         ENABLE_WITHER_PLUSHIE = new BooleanConfigEntry("enable_wither_plushie");
         ENABLE_ZOMBIE_PLUSHIE = new BooleanConfigEntry("enable_zombie_plushie");
         ENABLE_ZOMBIE_VILLAGER_PLUSHIES = new BooleanConfigEntry("enable_zombie_villager_plushies");
+        ENABLE_CREAKING_PLUSHIE = new BooleanConfigEntry("enable_creaking_plushie");
         ENABLE_WOODEN_WALLS = new BooleanConfigEntry("enable_wooden_walls");
         ENABLE_STRIPPED_WOODEN_WALLS = new BooleanConfigEntry("enable_stripped_wooden_walls");
         ENABLE_WOODEN_ROPE_LADDERS = new BooleanConfigEntry("enable_wooden_rope_ladders");

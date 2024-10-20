@@ -119,7 +119,7 @@ public class AssortedDiscoveriesClient implements ClientModInitializer {
                 ModBlocks.BLOOD_KELP_PLANT, ModBlocks.MANGROVE_ROPE_LADDER, ModBlocks.BOG_BLOSSOM,
                 ModBlocks.MAROON_CAMPFIRE, ModBlocks.MAROON_TORCH, ModBlocks.MAROON_WALL_TORCH, ModBlocks.MAROON_LANTERN,
                 ModBlocks.CINDERSNAP_BERRY_BUSH, ModBlocks.FROSTBITE_BERRY_BUSH, ModBlocks.CHERRY_ROPE_LADDER,
-                ModBlocks.POTTED_CATTAIL, ModBlocks.WILD_GREEN_ONIONS);
+                ModBlocks.POTTED_CATTAIL, ModBlocks.WILD_GREEN_ONIONS, ModBlocks.CREAKING_PLUSHIE);
 
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutoutMipped(),
                 ModBlocks.ENDERMAN_PLUSHIE, ModBlocks.GRASS_SLAB);

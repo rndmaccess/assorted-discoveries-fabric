@@ -426,6 +426,10 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ModItems.CAMEL_PLUSHIE);
                     }
 
+                    if (ModConfig.ENABLE_CREAKING_PLUSHIE.getValue().evaluate()) {
+                        entries.add(ModItems.CREAKING_PLUSHIE);
+                    }
+
                     if (ModConfig.ENABLE_WOODEN_PLANTER_BOXES.getValue().evaluate()) {
                         entries.add(ModItems.OAK_PLANTER_BOX);
                         entries.add(ModItems.SPRUCE_PLANTER_BOX);

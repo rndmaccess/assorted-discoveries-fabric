@@ -329,6 +329,9 @@ public class ModConfigScreen {
         configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_ZOMBIE_VILLAGER_PLUSHIES,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_CREAKING_PLUSHIE,
+                categoryName, subCategoryName);
+        entryList.add(configEntry);
         return entryBuilder.startSubCategory(subCategoryText, entryList).build();
     }
 

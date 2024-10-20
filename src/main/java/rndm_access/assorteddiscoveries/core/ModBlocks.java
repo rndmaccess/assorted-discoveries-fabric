@@ -451,6 +451,7 @@ public class ModBlocks {
     public static final Block COARSE_DIRT_SLAB;
     public static final Block ROOTED_DIRT_SLAB;
     public static final Block WILD_GREEN_ONIONS;
+    public static final Block CREAKING_PLUSHIE;
 
     private static WallTorchBlock wallTorchBlock(DefaultParticleType flameParticle) {
         return new WallTorchBlock(flameParticle, AbstractBlock.Settings.copy(Blocks.WALL_TORCH));
@@ -935,6 +936,7 @@ public class ModBlocks {
         register("coarse_dirt_slab", ModBlocks.COARSE_DIRT_SLAB);
         register("rooted_dirt_slab", ModBlocks.ROOTED_DIRT_SLAB);
         register("wild_green_onions", ModBlocks.WILD_GREEN_ONIONS);
+        register("creaking_plushie", ModBlocks.CREAKING_PLUSHIE);
 
         AssortedDiscoveries.LOGGER.info("Registered blocks");
     }
@@ -1501,5 +1503,6 @@ public class ModBlocks {
         COARSE_DIRT_SLAB = new SlabBlock(AbstractBlock.Settings.copy(Blocks.COARSE_DIRT));
         ROOTED_DIRT_SLAB = new SlabBlock(AbstractBlock.Settings.copy(Blocks.ROOTED_DIRT));
         WILD_GREEN_ONIONS = new WildGreenOnionsBlock(AbstractBlock.Settings.copy(Blocks.WHEAT));
+        CREAKING_PLUSHIE = new CreakingPlushieBlock(AbstractBlock.Settings.copy(ModBlocks.BAT_PLUSHIE));
     }
 }

@@ -102,6 +102,7 @@ public class ModResourceConditions {
         registerEntry("enable_cattails", ModConfig.ENABLE_CATTAILS.getValue().evaluate());
         registerEntry("enable_blood_kelp", ModConfig.ENABLE_BLOOD_KELP.getValue().evaluate());
         registerEntry("enable_ender_plants", ModConfig.ENABLE_ENDER_PLANTS.getValue().evaluate());
+        registerEntry("enable_creaking_plushie", ModConfig.ENABLE_CREAKING_PLUSHIE.getValue().evaluate());
     }
 
     static {

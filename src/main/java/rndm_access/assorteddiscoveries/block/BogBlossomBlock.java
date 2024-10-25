@@ -2,17 +2,13 @@ package rndm_access.assorteddiscoveries.block;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
-import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
-import net.minecraft.world.WorldView;
+import net.minecraft.world.*;
 import rndm_access.assorteddiscoveries.core.ModParticleTypes;
 
 public class BogBlossomBlock extends Block implements Fertilizable {
@@ -89,7 +85,25 @@ public class BogBlossomBlock extends Block implements Fertilizable {
 
     @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-        dropStack(world, pos, new ItemStack(this));
+        BlockPos.Mutable mutablePos = pos.mutableCopy();
+        boolean placed = false;
+
+        do {
+            boolean isXPos = random.nextBoolean();
+            boolean isZPos = random.nextBoolean();
+            int xOffset = isXPos ? random.nextInt(3) : -random.nextInt(3);
+            int zOffset = isZPos ? random.nextInt(3) : -random.nextInt(3);
+            int y = world.getTopY(Heightmap.Type.WORLD_SURFACE, xOffset + pos.getX(), zOffset + pos.getZ());
+            mutablePos.move(xOffset, 0, zOffset);
+            mutablePos.setY(y);
+            BlockPos placePos = mutablePos.toImmutable();
+            BlockState worldState = world.getBlockState(placePos);
+
+            if (this.canPlaceAt(null, world, placePos) && (worldState.isAir() || worldState.isReplaceable())) {
+                world.setBlockState(placePos, this.getDefaultState());
+                placed = true;
+            }
+        } while (!placed);
     }
 
     static {

@@ -87,15 +87,19 @@ public class BogBlossomBlock extends Block implements Fertilizable {
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
         BlockPos.Mutable mutablePos = pos.mutableCopy();
         boolean placed = false;
+        int tries = 0;
 
         do {
             boolean isXPos = random.nextBoolean();
             boolean isZPos = random.nextBoolean();
-            int xOffset = isXPos ? random.nextInt(3) : -random.nextInt(3);
-            int zOffset = isZPos ? random.nextInt(3) : -random.nextInt(3);
-            int y = world.getTopY(Heightmap.Type.WORLD_SURFACE, xOffset + pos.getX(), zOffset + pos.getZ());
-            mutablePos.move(xOffset, 0, zOffset);
-            mutablePos.setY(y);
+            boolean isYPos = random.nextBoolean();
+            int x = random.nextInt(4);
+            int z = random.nextInt(4);
+            int y = random.nextInt(4);
+            int xOffset = isXPos ? x : -x;
+            int zOffset = isZPos ? z : -z;
+            int yOffset = isYPos ? y : -y;
+            mutablePos.move(xOffset, yOffset, zOffset);
             BlockPos placePos = mutablePos.toImmutable();
             BlockState worldState = world.getBlockState(placePos);
 
@@ -103,7 +107,9 @@ public class BogBlossomBlock extends Block implements Fertilizable {
                 world.setBlockState(placePos, this.getDefaultState());
                 placed = true;
             }
-        } while (!placed);
+            tries++;
+            mutablePos = pos.mutableCopy();
+        } while (!placed && tries < 24); // Try to place a block 24 times before giving up!
     }
 
     static {

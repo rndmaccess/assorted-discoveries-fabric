@@ -90,15 +90,9 @@ public class BogBlossomBlock extends Block implements Fertilizable {
         int tries = 0;
 
         do {
-            boolean isXPos = random.nextBoolean();
-            boolean isZPos = random.nextBoolean();
-            boolean isYPos = random.nextBoolean();
-            int x = random.nextInt(4);
-            int z = random.nextInt(4);
-            int y = random.nextInt(4);
-            int xOffset = isXPos ? x : -x;
-            int zOffset = isZPos ? z : -z;
-            int yOffset = isYPos ? y : -y;
+            int xOffset = random.nextInt(4) - random.nextInt(4);
+            int yOffset = random.nextInt(4) - random.nextInt(4);
+            int zOffset = random.nextInt(4) - random.nextInt(4);
             mutablePos.move(xOffset, yOffset, zOffset);
             BlockPos placePos = mutablePos.toImmutable();
             BlockState worldState = world.getBlockState(placePos);

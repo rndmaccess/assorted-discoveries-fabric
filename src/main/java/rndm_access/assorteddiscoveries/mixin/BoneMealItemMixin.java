@@ -4,6 +4,8 @@ import net.minecraft.block.BlockState;
 import net.minecraft.item.BoneMealItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -26,45 +28,56 @@ public abstract class BoneMealItemMixin {
 
     @Inject(method = "useOnBlock", at = @At("HEAD"), cancellable = true)
     private void useOnBlock(ItemUsageContext context, CallbackInfoReturnable<ActionResult> info) {
-        BlockPos blockPos = context.getBlockPos();
+        BlockPos pos = context.getBlockPos();
         World world = context.getWorld();
         ItemStack boneMealStack = context.getStack();
         Random random = new Random();
-        BlockState blockBoneMealed = world.getBlockState(blockPos);
+        BlockState boneMealedBlock = world.getBlockState(pos);
+        boolean isEmptyAbove = world.getBlockState(pos.up()).isAir();
 
         // Grow snapdragons and ender grass on blocks in the END_BONE_MEALABLE_BLOCKS when using bone meal.
-        if (blockBoneMealed.isIn(CommonBlockTags.END_BONE_MEALABLE_BLOCKS) && world.getBlockState(blockPos.up()).isAir()) {
+        if (boneMealedBlock.isIn(CommonBlockTags.END_BONE_MEALABLE_BLOCKS) && isEmptyAbove) {
             if (!world.isClient()) {
-                growEnderPlants(blockPos, random, world);
+                growEnderPlants(world, pos);
             }
             boneMealStack.decrement(1);
-            createParticles(world, blockPos, random.nextInt(10));
+            world.playSound(null, pos, SoundEvents.ITEM_BONE_MEAL_USE, SoundCategory.BLOCKS);
+            createParticles(world, pos, random.nextInt(10));
             info.setReturnValue(ActionResult.success(world.isClient()));
         }
     }
 
     @Unique
-    private static void growEnderPlants(BlockPos blockPos, Random random, World world) {
+    private static void growEnderPlants(World world, BlockPos centerPos) {
+        Random random = new Random();
+
         for (int i = 0; i < 128; ++i) {
             // Re-center the position on the block bone mealed.
-            BlockPos.Mutable mutablePos = blockPos.mutableCopy();
+            BlockPos.Mutable mutablePos = centerPos.mutableCopy();
 
             for (int j = 0; j < i / 16; ++j) {
-                mutablePos.move(random.nextInt(3) - 1, (random.nextInt(3) - 1) * random.nextInt(3) / 2,
-                        random.nextInt(3) - 1);
-                BlockState state = world.getBlockState(mutablePos);
-                BlockState soilState = world.getBlockState(mutablePos.down());
+                int xOffset = random.nextInt(3) - 1;
+                int yOffset = (random.nextInt(3) - 1) * random.nextInt(3) / 2;
+                int zOffset = random.nextInt(3) - 1;
+                mutablePos.move(xOffset, yOffset, zOffset);
+                BlockPos pos = mutablePos.toImmutable();
 
-                if (soilState.isIn(CommonBlockTags.END_BONE_MEALABLE_BLOCKS) && state.isAir()) {
+                placeBlocks(world, random, pos);
+            }
+        }
+    }
 
-                    // There is a 40% chance to grow a snapdragon and a 60% chance to grow some ender grass.
-                    if(random.nextFloat() <= 0.4) {
-                        world.setBlockState(mutablePos, ModBlocks.SNAPDRAGON.getDefaultState());
-                    }
-                    else {
-                        world.setBlockState(mutablePos, ModBlocks.SHORT_ENDER_GRASS.getDefaultState());
-                    }
-                }
+    @Unique
+    private static void placeBlocks(World world, Random random, BlockPos pos) {
+        BlockState state = world.getBlockState(pos);
+        BlockState soilState = world.getBlockState(pos.down());
+
+        if (soilState.isIn(CommonBlockTags.END_BONE_MEALABLE_BLOCKS) && state.isAir()) {
+            // There is a 40% chance to grow a snapdragon and a 60% chance to grow some ender grass.
+            if(random.nextFloat() <= 0.4) {
+                world.setBlockState(pos, ModBlocks.SNAPDRAGON.getDefaultState());
+            } else {
+                world.setBlockState(pos, ModBlocks.SHORT_ENDER_GRASS.getDefaultState());
             }
         }
     }

@@ -21,8 +21,6 @@ import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Objects;
-
 public class CattailBlock extends TallPlantBlock implements Fertilizable {
     public static final MapCodec<CattailBlock> CODEC;
     public static final BooleanProperty WATERLOGGED;
@@ -55,38 +53,38 @@ public class CattailBlock extends TallPlantBlock implements Fertilizable {
 
     @Override
     public BlockState onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+        boolean isUpperHalf = state.get(HALF) == DoubleBlockHalf.UPPER;
+
         // Break the other half when the top is broken and drop an item.
-        if(!world.isClient() && isUpperHalf(state) && !player.isCreative()) {
-            BlockPos bottomPos = pos.down();
-            BlockState bottomState = world.getBlockState(bottomPos);
+        if(!world.isClient() && isUpperHalf && !player.isCreative()) {
+            BlockPos bottomHalfPos = pos.down();
+            BlockState bottomState = world.getBlockState(bottomHalfPos);
             BlockState newState = bottomState.getFluidState().isOf(Fluids.WATER) ? Blocks.WATER.getDefaultState()
                     : Blocks.AIR.getDefaultState();
 
-            dropStacks(bottomState, world, bottomPos, null, player, player.getMainHandStack());
-            world.setBlockState(bottomPos, newState, 3);
-            world.syncWorldEvent(player, 2001, bottomPos, Block.getRawIdFromState(bottomState));
+            dropStacks(bottomState, world, bottomHalfPos, null, player, player.getMainHandStack());
+            world.setBlockState(bottomHalfPos, newState, 3);
+            world.syncWorldEvent(player, 2001, bottomHalfPos, Block.getRawIdFromState(bottomState));
         }
         return super.onBreak(world, pos, state, player);
     }
 
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-        BlockPos topPos = pos.up();
+        BlockPos upperPos = pos.up();
         BlockPos floorPos = pos.down();
-        BlockState topState = world.getBlockState(topPos);
-        FluidState topFluidState = world.getFluidState(topPos);
+        BlockState upperState = world.getBlockState(upperPos);
+        FluidState upperFluidState = world.getFluidState(upperPos);
+        boolean hasRootsInWater = world.isWater(pos);
+        boolean isUpperHalf = state.get(HALF) == DoubleBlockHalf.UPPER;
 
-        if (state.get(HALF) == DoubleBlockHalf.UPPER) {
+        if (isUpperHalf) {
             return state.isReplaceable() && super.canPlaceAt(state, world, pos);
         }
 
-        return ((this.isWaterAdjacent(world, floorPos) && topState.isReplaceable() && topFluidState.isEmpty())
-                || (this.hasRootsInWater(world, pos) && topState.isReplaceable() && topFluidState.isEmpty())
+        return ((this.isWaterAdjacent(world, floorPos) && upperState.isReplaceable() && upperFluidState.isEmpty())
+                || (hasRootsInWater && upperState.isReplaceable() && upperFluidState.isEmpty())
                 && super.canPlaceAt(state, world, pos));
-    }
-
-    private boolean hasRootsInWater(WorldView world, BlockPos bottomPos) {
-        return world.isWater(bottomPos);
     }
 
     private boolean isWaterAdjacent(WorldView world, BlockPos floorPos) {
@@ -117,28 +115,24 @@ public class CattailBlock extends TallPlantBlock implements Fertilizable {
 
     private boolean canStay(BlockState state, BlockState neighborState, Direction direction,
                             WorldAccess world, BlockPos pos) {
+        boolean isUpperHalf = state.get(HALF) == DoubleBlockHalf.UPPER;
+        boolean isLowerHalf = state.get(HALF) == DoubleBlockHalf.LOWER;
+        boolean hasRootsInWater = world.isWater(pos);
+
         // Break the other half when the bottom is broken.
         // We don't check the top here so tall plants can be replaced!
-        if(direction == Direction.DOWN && isUpperHalf(state)) {
+        if(direction == Direction.DOWN && isUpperHalf) {
             return neighborState.isOf(state.getBlock());
         } else {
-            BlockPos floorPos = pos.down();
-            BlockState floorState = world.getBlockState(floorPos);
+            BlockPos soilPos = pos.down();
+            BlockState soilState = world.getBlockState(soilPos);
 
-            if(isLowerHalf(state)) {
-                return canPlantOnTop(floorState, world, floorPos) && isWaterAdjacent(world, floorPos)
-                        || canPlantOnTop(floorState, world, floorPos) && hasRootsInWater(world, pos);
+            if(isLowerHalf) {
+                return canPlantOnTop(soilState, world, soilPos) && isWaterAdjacent(world, soilPos)
+                        || canPlantOnTop(soilState, world, soilPos) && hasRootsInWater;
             }
             return true;
         }
-    }
-
-    private boolean isUpperHalf(BlockState state) {
-        return Objects.equals(state.get(HALF), DoubleBlockHalf.UPPER);
-    }
-
-    private boolean isLowerHalf(BlockState state) {
-        return Objects.equals(state.get(HALF), DoubleBlockHalf.LOWER);
     }
 
     @Override

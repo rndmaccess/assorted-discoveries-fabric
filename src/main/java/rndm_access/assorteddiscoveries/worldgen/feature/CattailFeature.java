@@ -41,14 +41,12 @@ public class CattailFeature extends Feature<ProbabilityConfig> {
     }
 
     private BlockPos offsetPos(Random random, StructureWorldAccess world, int xOrigin, int zOrigin) {
-        int x = offsetCoordinate(xOrigin, random);
-        int z = offsetCoordinate(zOrigin, random);
+        int xOffset = random.nextInt(8) - random.nextInt(8);
+        int zOffset = random.nextInt(8) - random.nextInt(8);
+        int x = xOrigin + xOffset;
+        int z = zOrigin + zOffset;
         int y = world.getTopY(Heightmap.Type.OCEAN_FLOOR, x, z);
 
         return new BlockPos(x, y, z);
-    }
-
-    private int offsetCoordinate(int origin, Random random) {
-        return origin + random.nextInt(8) - random.nextInt(8);
     }
 }

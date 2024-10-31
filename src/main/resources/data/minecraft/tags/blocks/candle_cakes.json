@@ -1,8 +1,6 @@
 {
   "replace": false,
   "values": [
-    "assorted-discoveries:maroon_candle_cake",
-    "assorted-discoveries:maroon_candle_chocolate_cake",
     "assorted-discoveries:candle_chocolate_cake",
     "assorted-discoveries:white_candle_chocolate_cake",
     "assorted-discoveries:orange_candle_chocolate_cake",
@@ -20,7 +18,6 @@
     "assorted-discoveries:green_candle_chocolate_cake",
     "assorted-discoveries:red_candle_chocolate_cake",
     "assorted-discoveries:black_candle_chocolate_cake",
-    "assorted-discoveries:maroon_candle_red_velvet_cake",
     "assorted-discoveries:candle_red_velvet_cake",
     "assorted-discoveries:white_candle_red_velvet_cake",
     "assorted-discoveries:orange_candle_red_velvet_cake",

@@ -66,7 +66,6 @@ public class AssortedDiscoveriesClient implements ClientModInitializer {
         factoryRegistry.register(ModParticleTypes.GREEN_EMBER, LavaEmberParticle.Factory::new);
         factoryRegistry.register(ModParticleTypes.RED_EMBER, LavaEmberParticle.Factory::new);
         factoryRegistry.register(ModParticleTypes.BLACK_EMBER, LavaEmberParticle.Factory::new);
-        factoryRegistry.register(ModParticleTypes.MAROON_EMBER, LavaEmberParticle.Factory::new);
         factoryRegistry.register(ModParticleTypes.WHITE_FLAME, FlameParticle.Factory::new);
         factoryRegistry.register(ModParticleTypes.ORANGE_FLAME, FlameParticle.Factory::new);
         factoryRegistry.register(ModParticleTypes.MAGENTA_FLAME, FlameParticle.Factory::new);
@@ -83,7 +82,6 @@ public class AssortedDiscoveriesClient implements ClientModInitializer {
         factoryRegistry.register(ModParticleTypes.GREEN_FLAME, FlameParticle.Factory::new);
         factoryRegistry.register(ModParticleTypes.RED_FLAME, FlameParticle.Factory::new);
         factoryRegistry.register(ModParticleTypes.BLACK_FLAME, FlameParticle.Factory::new);
-        factoryRegistry.register(ModParticleTypes.MAROON_FLAME, FlameParticle.Factory::new);
         factoryRegistry.register(ModParticleTypes.BLOOD_KELP_SPORE, SporeParticle.Factory::new);
         factoryRegistry.register(ModParticleTypes.WITCHS_CRADLE_SPORE, SporeParticle.Factory::new);
         factoryRegistry.register(ModParticleTypes.BOG_BLOSSOM_AIR_NECTAR, AirNectarParticle.Factory::new);
@@ -117,14 +115,10 @@ public class AssortedDiscoveriesClient implements ClientModInitializer {
                 ModBlocks.WITCHS_CRADLE, ModBlocks.SNAPDRAGON, ModBlocks.POTTED_SNAPDRAGON, ModBlocks.SHORT_ENDER_GRASS,
                 ModBlocks.CATTAIL, ModBlocks.POTTED_PURPLE_MUSHROOM, ModBlocks.BLOOD_KELP,
                 ModBlocks.BLOOD_KELP_PLANT, ModBlocks.MANGROVE_ROPE_LADDER, ModBlocks.BOG_BLOSSOM,
-                ModBlocks.MAROON_CAMPFIRE, ModBlocks.MAROON_TORCH, ModBlocks.MAROON_WALL_TORCH, ModBlocks.MAROON_LANTERN,
                 ModBlocks.CINDERSNAP_BERRY_BUSH, ModBlocks.FROSTBITE_BERRY_BUSH, ModBlocks.CHERRY_ROPE_LADDER,
                 ModBlocks.POTTED_CATTAIL, ModBlocks.WILD_GREEN_ONIONS, ModBlocks.CREAKING_PLUSHIE);
 
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutoutMipped(),
                 ModBlocks.ENDERMAN_PLUSHIE, ModBlocks.GRASS_SLAB);
-
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(),
-                ModBlocks.MAROON_STAINED_GLASS, ModBlocks.MAROON_STAINED_GLASS_PANE);
     }
 }

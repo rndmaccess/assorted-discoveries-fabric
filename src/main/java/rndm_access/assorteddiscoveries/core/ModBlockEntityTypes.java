@@ -31,7 +31,6 @@ public class ModBlockEntityTypes {
                 ModBlocks.LIME_CAMPFIRE, ModBlocks.PINK_CAMPFIRE, ModBlocks.GRAY_CAMPFIRE,
                 ModBlocks.LIGHT_GRAY_CAMPFIRE, ModBlocks.CYAN_CAMPFIRE,
                 ModBlocks.PURPLE_CAMPFIRE, ModBlocks.BLUE_CAMPFIRE, ModBlocks.BROWN_CAMPFIRE,
-                ModBlocks.GREEN_CAMPFIRE, ModBlocks.RED_CAMPFIRE, ModBlocks.BLACK_CAMPFIRE,
-                ModBlocks.MAROON_CAMPFIRE).build();
+                ModBlocks.GREEN_CAMPFIRE, ModBlocks.RED_CAMPFIRE, ModBlocks.BLACK_CAMPFIRE).build();
     }
 }

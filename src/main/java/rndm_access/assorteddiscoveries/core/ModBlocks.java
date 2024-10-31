@@ -1,9 +1,7 @@
 package rndm_access.assorteddiscoveries.core;
 
 import net.minecraft.block.*;
-import net.minecraft.block.enums.Instrument;
 import net.minecraft.block.piston.PistonBehavior;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.particle.ParticleEffect;
@@ -11,7 +9,6 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.property.Properties;
-import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.world.BlockView;
@@ -75,7 +72,6 @@ public class ModBlocks {
     public static final Block GREEN_SHEEP_PLUSHIE;
     public static final Block RED_SHEEP_PLUSHIE;
     public static final Block BLACK_SHEEP_PLUSHIE;
-    public static final Block MAROON_SHEEP_PLUSHIE;
     public static final Block SKELETON_PLUSHIE;
     public static final Block SLIME_PLUSHIE;
     public static final Block SPIDER_PLUSHIE;
@@ -210,7 +206,6 @@ public class ModBlocks {
     public static final Block GREEN_CAMPFIRE;
     public static final Block RED_CAMPFIRE;
     public static final Block BLACK_CAMPFIRE;
-    public static final Block MAROON_CAMPFIRE;
     public static final Block WHITE_LANTERN;
     public static final Block ORANGE_LANTERN;
     public static final Block MAGENTA_LANTERN;
@@ -227,7 +222,6 @@ public class ModBlocks {
     public static final Block GREEN_LANTERN;
     public static final Block RED_LANTERN;
     public static final Block BLACK_LANTERN;
-    public static final Block MAROON_LANTERN;
     public static final Block WHITE_WALL_TORCH;
     public static final Block ORANGE_WALL_TORCH;
     public static final Block MAGENTA_WALL_TORCH;
@@ -244,7 +238,6 @@ public class ModBlocks {
     public static final Block GREEN_WALL_TORCH;
     public static final Block RED_WALL_TORCH;
     public static final Block BLACK_WALL_TORCH;
-    public static final Block MAROON_WALL_TORCH;
     public static final Block WHITE_TORCH;
     public static final Block ORANGE_TORCH;
     public static final Block MAGENTA_TORCH;
@@ -261,7 +254,6 @@ public class ModBlocks {
     public static final Block GREEN_TORCH;
     public static final Block RED_TORCH;
     public static final Block BLACK_TORCH;
-    public static final Block MAROON_TORCH;
     public static final Block WITCHS_CRADLE;
     public static final Block BAUXITE;
     public static final Block BAUXITE_SLAB;
@@ -378,15 +370,7 @@ public class ModBlocks {
     public static final Block BLOOD_KELP_PLANT;
     public static final Block DRIED_BLOOD_KELP_BLOCK;
     public static final Block BLOOD_KELP_LANTERN;
-    public static final Block MAROON_WOOL;
-    public static final Block MAROON_STAINED_GLASS;
-    public static final Block MAROON_STAINED_GLASS_PANE;
-    public static final Block MAROON_CANDLE;
-    public static final Block MAROON_CONCRETE;
-    public static final Block MAROON_CONCRETE_POWDER;
-    public static final Block MAROON_CANDLE_CAKE;
     public static final Block BOG_BLOSSOM;
-    public static final Block MAROON_CANDLE_CHOCOLATE_CAKE;
     public static final Block CANDLE_CHOCOLATE_CAKE;
     public static final Block WHITE_CANDLE_CHOCOLATE_CAKE;
     public static final Block ORANGE_CANDLE_CHOCOLATE_CAKE;
@@ -404,7 +388,6 @@ public class ModBlocks {
     public static final Block GREEN_CANDLE_CHOCOLATE_CAKE;
     public static final Block RED_CANDLE_CHOCOLATE_CAKE;
     public static final Block BLACK_CANDLE_CHOCOLATE_CAKE;
-    public static final Block MAROON_CANDLE_RED_VELVET_CAKE;
     public static final Block CANDLE_RED_VELVET_CAKE;
     public static final Block WHITE_CANDLE_RED_VELVET_CAKE;
     public static final Block ORANGE_CANDLE_RED_VELVET_CAKE;
@@ -455,14 +438,6 @@ public class ModBlocks {
 
     private static WallTorchBlock wallTorchBlock(DefaultParticleType flameParticle) {
         return new WallTorchBlock(flameParticle, AbstractBlock.Settings.copy(Blocks.WALL_TORCH));
-    }
-
-    private static Boolean never(BlockState state, BlockView world, BlockPos pos, EntityType<?> type) {
-        return false;
-    }
-
-    private static boolean never(BlockState state, BlockView world, BlockPos pos) {
-        return false;
     }
 
     private static boolean always(BlockState state, BlockView world, BlockPos pos) {
@@ -560,7 +535,6 @@ public class ModBlocks {
         register("green_sheep_plushie", ModBlocks.GREEN_SHEEP_PLUSHIE);
         register("red_sheep_plushie", ModBlocks.RED_SHEEP_PLUSHIE);
         register("black_sheep_plushie", ModBlocks.BLACK_SHEEP_PLUSHIE);
-        register("maroon_sheep_plushie", ModBlocks.MAROON_SHEEP_PLUSHIE);
         register("skeleton_plushie", ModBlocks.SKELETON_PLUSHIE);
         register("slime_plushie", ModBlocks.SLIME_PLUSHIE);
         register("spider_plushie", ModBlocks.SPIDER_PLUSHIE);
@@ -694,7 +668,6 @@ public class ModBlocks {
         register("green_campfire", ModBlocks.GREEN_CAMPFIRE);
         register("red_campfire", ModBlocks.RED_CAMPFIRE);
         register("black_campfire", ModBlocks.BLACK_CAMPFIRE);
-        register("maroon_campfire", ModBlocks.MAROON_CAMPFIRE);
         register("white_lantern", ModBlocks.WHITE_LANTERN);
         register("orange_lantern", ModBlocks.ORANGE_LANTERN);
         register("magenta_lantern", ModBlocks.MAGENTA_LANTERN);
@@ -711,7 +684,6 @@ public class ModBlocks {
         register("green_lantern", ModBlocks.GREEN_LANTERN);
         register("red_lantern", ModBlocks.RED_LANTERN);
         register("black_lantern", ModBlocks.BLACK_LANTERN);
-        register("maroon_lantern", ModBlocks.MAROON_LANTERN);
         register("white_wall_torch", ModBlocks.WHITE_WALL_TORCH);
         register("orange_wall_torch", ModBlocks.ORANGE_WALL_TORCH);
         register("magenta_wall_torch", ModBlocks.MAGENTA_WALL_TORCH);
@@ -728,7 +700,6 @@ public class ModBlocks {
         register("green_wall_torch", ModBlocks.GREEN_WALL_TORCH);
         register("red_wall_torch", ModBlocks.RED_WALL_TORCH);
         register("black_wall_torch", ModBlocks.BLACK_WALL_TORCH);
-        register("maroon_wall_torch", ModBlocks.MAROON_WALL_TORCH);
         register("white_torch", ModBlocks.WHITE_TORCH);
         register("orange_torch", ModBlocks.ORANGE_TORCH);
         register("magenta_torch", ModBlocks.MAGENTA_TORCH);
@@ -745,7 +716,6 @@ public class ModBlocks {
         register("green_torch", ModBlocks.GREEN_TORCH);
         register("red_torch", ModBlocks.RED_TORCH);
         register("black_torch", ModBlocks.BLACK_TORCH);
-        register("maroon_torch", ModBlocks.MAROON_TORCH);
         register("witchs_cradle", ModBlocks.WITCHS_CRADLE);
         register("bauxite", ModBlocks.BAUXITE);
         register("bauxite_slab", ModBlocks.BAUXITE_SLAB);
@@ -862,15 +832,7 @@ public class ModBlocks {
         register("blood_kelp_plant", ModBlocks.BLOOD_KELP_PLANT);
         register("dried_blood_kelp_block", ModBlocks.DRIED_BLOOD_KELP_BLOCK);
         register("blood_kelp_lantern", ModBlocks.BLOOD_KELP_LANTERN);
-        register("maroon_wool", ModBlocks.MAROON_WOOL);
-        register("maroon_stained_glass", ModBlocks.MAROON_STAINED_GLASS);
-        register("maroon_stained_glass_pane", ModBlocks.MAROON_STAINED_GLASS_PANE);
-        register("maroon_candle", ModBlocks.MAROON_CANDLE);
-        register("maroon_candle_cake", ModBlocks.MAROON_CANDLE_CAKE);
-        register("maroon_concrete", ModBlocks.MAROON_CONCRETE);
-        register("maroon_concrete_powder", ModBlocks.MAROON_CONCRETE_POWDER);
         register("bog_blossom", ModBlocks.BOG_BLOSSOM);
-        register("maroon_candle_chocolate_cake", ModBlocks.MAROON_CANDLE_CHOCOLATE_CAKE);
         register("candle_chocolate_cake", ModBlocks.CANDLE_CHOCOLATE_CAKE);
         register("white_candle_chocolate_cake", ModBlocks.WHITE_CANDLE_CHOCOLATE_CAKE);
         register("orange_candle_chocolate_cake", ModBlocks.ORANGE_CANDLE_CHOCOLATE_CAKE);
@@ -888,7 +850,6 @@ public class ModBlocks {
         register("green_candle_chocolate_cake", ModBlocks.GREEN_CANDLE_CHOCOLATE_CAKE);
         register("red_candle_chocolate_cake", ModBlocks.RED_CANDLE_CHOCOLATE_CAKE);
         register("black_candle_chocolate_cake", ModBlocks.BLACK_CANDLE_CHOCOLATE_CAKE);
-        register("maroon_candle_red_velvet_cake", ModBlocks.MAROON_CANDLE_RED_VELVET_CAKE);
         register("candle_red_velvet_cake", ModBlocks.CANDLE_RED_VELVET_CAKE);
         register("white_candle_red_velvet_cake", ModBlocks.WHITE_CANDLE_RED_VELVET_CAKE);
         register("orange_candle_red_velvet_cake", ModBlocks.ORANGE_CANDLE_RED_VELVET_CAKE);
@@ -997,7 +958,6 @@ public class ModBlocks {
         GREEN_SHEEP_PLUSHIE = new SheepPlushieBlock(AbstractBlock.Settings.copy(ModBlocks.BAT_PLUSHIE));
         RED_SHEEP_PLUSHIE = new SheepPlushieBlock(AbstractBlock.Settings.copy(ModBlocks.BAT_PLUSHIE));
         BLACK_SHEEP_PLUSHIE = new SheepPlushieBlock(AbstractBlock.Settings.copy(ModBlocks.BAT_PLUSHIE));
-        MAROON_SHEEP_PLUSHIE = new SheepPlushieBlock(AbstractBlock.Settings.copy(ModBlocks.BAT_PLUSHIE));
         SKELETON_PLUSHIE = new SkeletonPlushieBlock(AbstractBlock.Settings.copy(ModBlocks.BAT_PLUSHIE));
         SLIME_PLUSHIE = new CubePlushieBlock(AbstractBlock.Settings.copy(ModBlocks.BAT_PLUSHIE)
                 .pistonBehavior(PistonBehavior.DESTROY));
@@ -1156,7 +1116,6 @@ public class ModBlocks {
         GREEN_CAMPFIRE = dyedCampfireBlock(ModParticleTypes.GREEN_EMBER);
         RED_CAMPFIRE = dyedCampfireBlock(ModParticleTypes.RED_EMBER);
         BLACK_CAMPFIRE = dyedCampfireBlock(ModParticleTypes.BLACK_EMBER);
-        MAROON_CAMPFIRE = dyedCampfireBlock(ModParticleTypes.MAROON_EMBER);
         WHITE_LANTERN = lanternBlock();
         ORANGE_LANTERN = lanternBlock();
         MAGENTA_LANTERN = lanternBlock();
@@ -1173,7 +1132,6 @@ public class ModBlocks {
         GREEN_LANTERN = lanternBlock();
         RED_LANTERN = lanternBlock();
         BLACK_LANTERN = lanternBlock();
-        MAROON_LANTERN = lanternBlock();
         WHITE_WALL_TORCH = wallTorchBlock(ModParticleTypes.WHITE_FLAME);
         ORANGE_WALL_TORCH = wallTorchBlock(ModParticleTypes.ORANGE_FLAME);
         MAGENTA_WALL_TORCH = wallTorchBlock(ModParticleTypes.MAGENTA_FLAME);
@@ -1190,7 +1148,6 @@ public class ModBlocks {
         GREEN_WALL_TORCH = wallTorchBlock(ModParticleTypes.GREEN_FLAME);
         RED_WALL_TORCH = wallTorchBlock(ModParticleTypes.RED_FLAME);
         BLACK_WALL_TORCH = wallTorchBlock(ModParticleTypes.BLACK_FLAME);
-        MAROON_WALL_TORCH = wallTorchBlock(ModParticleTypes.MAROON_FLAME);
         WHITE_TORCH = torchBlock(ModParticleTypes.WHITE_FLAME);
         ORANGE_TORCH = torchBlock(ModParticleTypes.ORANGE_FLAME);
         MAGENTA_TORCH = torchBlock(ModParticleTypes.MAGENTA_FLAME);
@@ -1207,7 +1164,6 @@ public class ModBlocks {
         GREEN_TORCH = torchBlock(ModParticleTypes.GREEN_FLAME);
         RED_TORCH = torchBlock(ModParticleTypes.RED_FLAME);
         BLACK_TORCH = torchBlock(ModParticleTypes.BLACK_FLAME);
-        MAROON_TORCH = torchBlock(ModParticleTypes.MAROON_FLAME);
         WITCHS_CRADLE = new WitchsCradleBlock(AbstractBlock.Settings.copy(Blocks.SWEET_BERRY_BUSH)
                 .luminance((state) -> 10));
         BAUXITE = new Block(AbstractBlock.Settings.create()
@@ -1371,29 +1327,9 @@ public class ModBlocks {
         DRIED_BLOOD_KELP_BLOCK = new Block(AbstractBlock.Settings.copy(Blocks.DRIED_KELP_BLOCK));
         BLOOD_KELP_LANTERN = new PillarBlock(AbstractBlock.Settings.create()
                 .mapColor(MapColor.PALE_YELLOW).strength(0.3F).sounds(BlockSoundGroup.GLASS).luminance((state) -> 15));
-        MAROON_WOOL = new Block(AbstractBlock.Settings.copy(Blocks.RED_WOOL));
-        MAROON_STAINED_GLASS = new StainedGlassBlock(DyeColor.RED,
-                AbstractBlock.Settings.create().mapColor(DyeColor.RED).strength(0.3F).sounds(BlockSoundGroup.GLASS)
-                        .nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never)
-                        .suffocates(ModBlocks::never).blockVision(ModBlocks::never));
-        MAROON_STAINED_GLASS_PANE = new StainedGlassPaneBlock(DyeColor.RED,
-                AbstractBlock.Settings.create().instrument(Instrument.HAT).strength(0.3F).sounds(BlockSoundGroup.GLASS)
-                        .nonOpaque());
-        MAROON_CANDLE = new CandleBlock(AbstractBlock.Settings.create()
-                .mapColor(MapColor.DARK_RED).nonOpaque().strength(0.1F)
-                .sounds(BlockSoundGroup.CANDLE).luminance(CandleBlock.STATE_TO_LUMINANCE)
-                .pistonBehavior(PistonBehavior.DESTROY));
-        MAROON_CONCRETE = new Block(AbstractBlock.Settings.create().mapColor(MapColor.DARK_RED)
-                .requiresTool().strength(1.8F).instrument(Instrument.BASEDRUM).sounds(BlockSoundGroup.STONE));
-        MAROON_CONCRETE_POWDER = new ConcretePowderBlock(MAROON_CONCRETE,
-                AbstractBlock.Settings.create().instrument(Instrument.SNARE).mapColor(MapColor.DARK_RED)
-                        .strength(0.5F).sounds(BlockSoundGroup.SAND));
-        MAROON_CANDLE_CAKE = new CandleCakeBlock(MAROON_CANDLE, AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
         BOG_BLOSSOM = new BogBlossomBlock(AbstractBlock.Settings.create()
                 .mapColor(MapColor.DARK_GREEN).breakInstantly().noCollision().sounds(BlockSoundGroup.SPORE_BLOSSOM)
                 .pistonBehavior(PistonBehavior.DESTROY).luminance((state) -> 10));
-        MAROON_CANDLE_CHOCOLATE_CAKE = new ModdedCandleCakeBlock(CHOCOLATE_CAKE, MAROON_CANDLE,
-                AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
         CANDLE_CHOCOLATE_CAKE = new ModdedCandleCakeBlock(CHOCOLATE_CAKE, Blocks.CANDLE,
                 AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
         WHITE_CANDLE_CHOCOLATE_CAKE = new ModdedCandleCakeBlock(CHOCOLATE_CAKE, Blocks.WHITE_CANDLE,
@@ -1427,8 +1363,6 @@ public class ModBlocks {
         RED_CANDLE_CHOCOLATE_CAKE = new ModdedCandleCakeBlock(CHOCOLATE_CAKE, Blocks.RED_CANDLE,
                 AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
         BLACK_CANDLE_CHOCOLATE_CAKE = new ModdedCandleCakeBlock(CHOCOLATE_CAKE, Blocks.BLACK_CANDLE,
-                AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
-        MAROON_CANDLE_RED_VELVET_CAKE = new ModdedCandleCakeBlock(RED_VELVET_CAKE, MAROON_CANDLE,
                 AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));
         CANDLE_RED_VELVET_CAKE = new ModdedCandleCakeBlock(RED_VELVET_CAKE, Blocks.CANDLE,
                 AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE));

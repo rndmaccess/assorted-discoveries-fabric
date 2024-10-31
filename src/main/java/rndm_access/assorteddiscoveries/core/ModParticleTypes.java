@@ -24,7 +24,6 @@ public class ModParticleTypes {
     public static final DefaultParticleType GREEN_EMBER;
     public static final DefaultParticleType RED_EMBER;
     public static final DefaultParticleType BLACK_EMBER;
-    public static final DefaultParticleType MAROON_EMBER;
     public static final DefaultParticleType WHITE_FLAME;
     public static final DefaultParticleType ORANGE_FLAME;
     public static final DefaultParticleType MAGENTA_FLAME;
@@ -41,7 +40,6 @@ public class ModParticleTypes {
     public static final DefaultParticleType GREEN_FLAME;
     public static final DefaultParticleType RED_FLAME;
     public static final DefaultParticleType BLACK_FLAME;
-    public static final DefaultParticleType MAROON_FLAME;
     public static final DefaultParticleType BLOOD_KELP_SPORE;
     public static final DefaultParticleType WITCHS_CRADLE_SPORE;
     public static final DefaultParticleType BOG_BLOSSOM_AIR_NECTAR;
@@ -71,7 +69,6 @@ public class ModParticleTypes {
         register("green_ember", GREEN_EMBER);
         register("red_ember", RED_EMBER);
         register("black_ember", BLACK_EMBER);
-        register("maroon_ember", MAROON_EMBER);
         register("white_flame", WHITE_FLAME);
         register("orange_flame", ORANGE_FLAME);
         register("magenta_flame", MAGENTA_FLAME);
@@ -88,7 +85,6 @@ public class ModParticleTypes {
         register("green_flame", GREEN_FLAME);
         register("red_flame", RED_FLAME);
         register("black_flame", BLACK_FLAME);
-        register("maroon_flame", MAROON_FLAME);
         register("blood_kelp_spore", BLOOD_KELP_SPORE);
         register("witchs_cradle_spore", WITCHS_CRADLE_SPORE);
         register("bog_blossom_air_nectar", BOG_BLOSSOM_AIR_NECTAR);
@@ -114,7 +110,6 @@ public class ModParticleTypes {
         GREEN_EMBER = FabricParticleTypes.simple();
         RED_EMBER = FabricParticleTypes.simple();
         BLACK_EMBER = FabricParticleTypes.simple();
-        MAROON_EMBER = FabricParticleTypes.simple();
         WHITE_FLAME = FabricParticleTypes.simple();
         ORANGE_FLAME = FabricParticleTypes.simple();
         MAGENTA_FLAME = FabricParticleTypes.simple();
@@ -131,7 +126,6 @@ public class ModParticleTypes {
         GREEN_FLAME = FabricParticleTypes.simple();
         RED_FLAME = FabricParticleTypes.simple();
         BLACK_FLAME = FabricParticleTypes.simple();
-        MAROON_FLAME = FabricParticleTypes.simple();
         BLOOD_KELP_SPORE = FabricParticleTypes.simple();
         WITCHS_CRADLE_SPORE = FabricParticleTypes.simple();
         BOG_BLOSSOM_AIR_NECTAR = FabricParticleTypes.simple();

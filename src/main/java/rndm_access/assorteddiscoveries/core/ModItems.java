@@ -63,7 +63,6 @@ public class ModItems {
     public static final Item GREEN_SHEEP_PLUSHIE;
     public static final Item RED_SHEEP_PLUSHIE;
     public static final Item BLACK_SHEEP_PLUSHIE;
-    public static final Item MAROON_SHEEP_PLUSHIE;
     public static final Item SKELETON_PLUSHIE;
     public static final Item SLIME_PLUSHIE;
     public static final Item SPIDER_PLUSHIE;
@@ -195,7 +194,6 @@ public class ModItems {
     public static final Item GREEN_CAMPFIRE;
     public static final Item RED_CAMPFIRE;
     public static final Item BLACK_CAMPFIRE;
-    public static final Item MAROON_CAMPFIRE;
     public static final Item WHITE_LANTERN;
     public static final Item ORANGE_LANTERN;
     public static final Item MAGENTA_LANTERN;
@@ -212,7 +210,6 @@ public class ModItems {
     public static final Item GREEN_LANTERN;
     public static final Item RED_LANTERN;
     public static final Item BLACK_LANTERN;
-    public static final Item MAROON_LANTERN;
     public static final Item WHITE_TORCH;
     public static final Item ORANGE_TORCH;
     public static final Item MAGENTA_TORCH;
@@ -229,7 +226,6 @@ public class ModItems {
     public static final Item GREEN_TORCH;
     public static final Item RED_TORCH;
     public static final Item BLACK_TORCH;
-    public static final Item MAROON_TORCH;
     public static final Item BAUXITE;
     public static final Item BAUXITE_SLAB;
     public static final Item BAUXITE_STAIRS;
@@ -361,14 +357,7 @@ public class ModItems {
     public static final Item DRIED_BLOOD_KELP_BLOCK;
     public static final Item DRIED_BLOOD_KELP;
     public static final Item BLOOD_KELP_LANTERN;
-    public static final Item MAROON_WOOL;
-    public static final Item MAROON_STAINED_GLASS;
-    public static final Item MAROON_STAINED_GLASS_PANE;
-    public static final Item MAROON_CANDLE;
-    public static final Item MAROON_CONCRETE;
-    public static final Item MAROON_CONCRETE_POWDER;
     public static final Item CAMEL_PLUSHIE;
-    public static final Item MAROON_DYE;
     public static final Item HOGLIN_STEW;
     public static final Item BOG_BLOSSOM;
     public static final Item CINDERSNAP_BERRIES;
@@ -451,7 +440,7 @@ public class ModItems {
                 WHITE_SHEEP_PLUSHIE, ORANGE_SHEEP_PLUSHIE, MAGENTA_SHEEP_PLUSHIE, LIGHT_BLUE_SHEEP_PLUSHIE,
                 YELLOW_SHEEP_PLUSHIE, LIME_SHEEP_PLUSHIE, PINK_SHEEP_PLUSHIE, GRAY_SHEEP_PLUSHIE,
                 LIGHT_GRAY_SHEEP_PLUSHIE, CYAN_SHEEP_PLUSHIE, PURPLE_SHEEP_PLUSHIE, BLUE_SHEEP_PLUSHIE,
-                BROWN_SHEEP_PLUSHIE, GREEN_SHEEP_PLUSHIE, RED_SHEEP_PLUSHIE, BLACK_SHEEP_PLUSHIE, MAROON_SHEEP_PLUSHIE,
+                BROWN_SHEEP_PLUSHIE, GREEN_SHEEP_PLUSHIE, RED_SHEEP_PLUSHIE, BLACK_SHEEP_PLUSHIE,
                 SKELETON_PLUSHIE, SLIME_PLUSHIE, SPIDER_PLUSHIE, SQUID_PLUSHIE, GLOW_SQUID_PLUSHIE, BEE_PLUSHIE,
                 PLAINS_VILLAGER_PLUSHIE, DESERT_VILLAGER_PLUSHIE, JUNGLE_VILLAGER_PLUSHIE, SAVANNA_VILLAGER_PLUSHIE,
                 SNOW_VILLAGER_PLUSHIE, SWAMP_VILLAGER_PLUSHIE, TAIGA_VILLAGER_PLUSHIE, CRIMSON_VILLAGER_PLUSHIE,
@@ -480,12 +469,12 @@ public class ModItems {
                 WHITE_CAMPFIRE, ORANGE_CAMPFIRE, MAGENTA_CAMPFIRE, LIGHT_BLUE_CAMPFIRE, YELLOW_CAMPFIRE,
                 LIME_CAMPFIRE, PINK_CAMPFIRE, GRAY_CAMPFIRE, LIGHT_GRAY_CAMPFIRE, CYAN_CAMPFIRE,
                 PURPLE_CAMPFIRE, BLUE_CAMPFIRE, BROWN_CAMPFIRE, GREEN_CAMPFIRE, RED_CAMPFIRE, BLACK_CAMPFIRE,
-                MAROON_CAMPFIRE, WHITE_LANTERN, ORANGE_LANTERN, MAGENTA_LANTERN, LIGHT_BLUE_LANTERN, YELLOW_LANTERN,
+                WHITE_LANTERN, ORANGE_LANTERN, MAGENTA_LANTERN, LIGHT_BLUE_LANTERN, YELLOW_LANTERN,
                 LIME_LANTERN, PINK_LANTERN, GRAY_LANTERN, LIGHT_GRAY_LANTERN, CYAN_LANTERN, PURPLE_LANTERN,
-                BLUE_LANTERN, BROWN_LANTERN, GREEN_LANTERN, RED_LANTERN, BLACK_LANTERN, MAROON_LANTERN, WHITE_TORCH,
+                BLUE_LANTERN, BROWN_LANTERN, GREEN_LANTERN, RED_LANTERN, BLACK_LANTERN, WHITE_TORCH,
                 ORANGE_TORCH, MAGENTA_TORCH, LIGHT_BLUE_TORCH, YELLOW_TORCH, LIME_TORCH, PINK_TORCH, GRAY_TORCH,
                 LIGHT_GRAY_TORCH, CYAN_TORCH, PURPLE_TORCH, BLUE_TORCH, BROWN_TORCH, GREEN_TORCH, RED_TORCH,
-                BLACK_TORCH, MAROON_TORCH, BAUXITE, BAUXITE_SLAB, BAUXITE_STAIRS, BAUXITE_WALL, BAUXITE_BRICKS,
+                BLACK_TORCH, BAUXITE, BAUXITE_SLAB, BAUXITE_STAIRS, BAUXITE_WALL, BAUXITE_BRICKS,
                 BAUXITE_BRICK_STAIRS, BAUXITE_BRICK_SLAB, BAUXITE_BRICK_WALL, MOSSY_BAUXITE_BRICKS,
                 MOSSY_BAUXITE_BRICK_STAIRS, MOSSY_BAUXITE_BRICK_SLAB, MOSSY_BAUXITE_BRICK_WALL,
                 CRACKED_BAUXITE_BRICKS, CRACKED_BAUXITE_BRICK_STAIRS, CRACKED_BAUXITE_BRICK_SLAB,
@@ -515,8 +504,7 @@ public class ModItems {
                 MOSSY_DRIPSTONE_BRICK_SLAB, MOSSY_DRIPSTONE_BRICK_WALL, CRACKED_DRIPSTONE_BRICKS,
                 CRACKED_DRIPSTONE_BRICK_STAIRS, CRACKED_DRIPSTONE_BRICK_SLAB, CRACKED_DRIPSTONE_BRICK_WALL,
                 CHISELED_DRIPSTONE_BRICKS, CATTAIL, DRIED_BLOOD_KELP_BLOCK, BLOOD_KELP_LANTERN, CAMEL_PLUSHIE,
-                MAROON_WOOL, MAROON_STAINED_GLASS, MAROON_STAINED_GLASS_PANE, MAROON_CANDLE, MAROON_CONCRETE,
-                MAROON_CONCRETE_POWDER, POLISHED_DRIPSTONE, POLISHED_DRIPSTONE_STAIRS, POLISHED_DRIPSTONE_SLAB,
+                POLISHED_DRIPSTONE, POLISHED_DRIPSTONE_STAIRS, POLISHED_DRIPSTONE_SLAB,
                 POLISHED_DRIPSTONE_WALL, POLISHED_CALCITE, POLISHED_CALCITE_STAIRS, POLISHED_CALCITE_SLAB,
                 POLISHED_CALCITE_WALL, DRIPSTONE_STAIRS, DRIPSTONE_SLAB, DRIPSTONE_WALL, CALCITE_STAIRS,
                 CALCITE_SLAB, CALCITE_WALL, BAMBOO_PLANTER_BOX, BOG_BLOSSOM, STONE_WALL, QUARTZ_WALL,
@@ -542,7 +530,6 @@ public class ModItems {
         register("blood_kelp_seed_cluster", BLOOD_KELP_SEED_CLUSTER);
         register("blood_kelp", BLOOD_KELP);
         register("dried_blood_kelp", DRIED_BLOOD_KELP);
-        register("maroon_dye", MAROON_DYE);
         register("hoglin_stew", HOGLIN_STEW);
         register("cindersnap_berries", CINDERSNAP_BERRIES);
         register("frostbite_berries", FROSTBITE_BERRIES);
@@ -604,7 +591,6 @@ public class ModItems {
         GREEN_SHEEP_PLUSHIE = blockItem(ModBlocks.GREEN_SHEEP_PLUSHIE);
         RED_SHEEP_PLUSHIE = blockItem(ModBlocks.RED_SHEEP_PLUSHIE);
         BLACK_SHEEP_PLUSHIE = blockItem(ModBlocks.BLACK_SHEEP_PLUSHIE);
-        MAROON_SHEEP_PLUSHIE = blockItem(ModBlocks.MAROON_SHEEP_PLUSHIE);
         SKELETON_PLUSHIE = blockItem(ModBlocks.SKELETON_PLUSHIE);
         SLIME_PLUSHIE = blockItem(ModBlocks.SLIME_PLUSHIE);
         SPIDER_PLUSHIE = blockItem(ModBlocks.SPIDER_PLUSHIE);
@@ -736,7 +722,6 @@ public class ModItems {
         GREEN_CAMPFIRE = blockItem(ModBlocks.GREEN_CAMPFIRE);
         RED_CAMPFIRE = blockItem(ModBlocks.RED_CAMPFIRE);
         BLACK_CAMPFIRE = blockItem(ModBlocks.BLACK_CAMPFIRE);
-        MAROON_CAMPFIRE = blockItem(ModBlocks.MAROON_CAMPFIRE);
         WHITE_LANTERN = blockItem(ModBlocks.WHITE_LANTERN);
         ORANGE_LANTERN = blockItem(ModBlocks.ORANGE_LANTERN);
         MAGENTA_LANTERN = blockItem(ModBlocks.MAGENTA_LANTERN);
@@ -753,7 +738,6 @@ public class ModItems {
         GREEN_LANTERN = blockItem(ModBlocks.GREEN_LANTERN);
         RED_LANTERN = blockItem(ModBlocks.RED_LANTERN);
         BLACK_LANTERN = blockItem(ModBlocks.BLACK_LANTERN);
-        MAROON_LANTERN = blockItem(ModBlocks.MAROON_LANTERN);
         WHITE_TORCH = wallStandingBlockItem(ModBlocks.WHITE_TORCH, ModBlocks.WHITE_WALL_TORCH);
         ORANGE_TORCH = wallStandingBlockItem(ModBlocks.ORANGE_TORCH, ModBlocks.ORANGE_WALL_TORCH);
         MAGENTA_TORCH = wallStandingBlockItem(ModBlocks.MAGENTA_TORCH, ModBlocks.MAGENTA_WALL_TORCH);
@@ -770,7 +754,6 @@ public class ModItems {
         GREEN_TORCH = wallStandingBlockItem(ModBlocks.GREEN_TORCH, ModBlocks.GREEN_WALL_TORCH);
         RED_TORCH = wallStandingBlockItem(ModBlocks.RED_TORCH, ModBlocks.RED_WALL_TORCH);
         BLACK_TORCH = wallStandingBlockItem(ModBlocks.BLACK_TORCH, ModBlocks.BLACK_WALL_TORCH);
-        MAROON_TORCH = wallStandingBlockItem(ModBlocks.MAROON_TORCH, ModBlocks.MAROON_WALL_TORCH);
         BAUXITE = blockItem(ModBlocks.BAUXITE);
         BAUXITE_SLAB = blockItem(ModBlocks.BAUXITE_SLAB);
         BAUXITE_STAIRS = blockItem(ModBlocks.BAUXITE_STAIRS);
@@ -912,16 +895,8 @@ public class ModItems {
         DRIED_BLOOD_KELP_BLOCK = blockItem(ModBlocks.DRIED_BLOOD_KELP_BLOCK);
         DRIED_BLOOD_KELP = new Item(new Item.Settings().food(net.minecraft.item.FoodComponents.DRIED_KELP));
         BLOOD_KELP_LANTERN = blockItem(ModBlocks.BLOOD_KELP_LANTERN);
-        MAROON_WOOL = blockItem(ModBlocks.MAROON_WOOL);
-        MAROON_STAINED_GLASS = blockItem(ModBlocks.MAROON_STAINED_GLASS);
-        MAROON_STAINED_GLASS_PANE = blockItem(ModBlocks.MAROON_STAINED_GLASS_PANE);
-        MAROON_CANDLE = blockItem(ModBlocks.MAROON_CANDLE);
-        MAROON_CONCRETE = blockItem(ModBlocks.MAROON_CONCRETE);
-        MAROON_CONCRETE_POWDER = blockItem(ModBlocks.MAROON_CONCRETE_POWDER);
         CAMEL_PLUSHIE = blockItem(ModBlocks.CAMEL_PLUSHIE);
-        MAROON_DYE = new Item(new Item.Settings());
-        HOGLIN_STEW
-                = new FoodContainerItem(new Item.Settings().food(ModFoodComponents.HOGLIN_STEW).maxCount(1));
+        HOGLIN_STEW = new FoodContainerItem(new Item.Settings().food(ModFoodComponents.HOGLIN_STEW).maxCount(1));
         BOG_BLOSSOM = blockItem(ModBlocks.BOG_BLOSSOM);
         CINDERSNAP_BERRIES = new AliasedBlockItem(ModBlocks.CINDERSNAP_BERRY_BUSH,
                 new Item.Settings().food(ModFoodComponents.NETHER_BERRIES));

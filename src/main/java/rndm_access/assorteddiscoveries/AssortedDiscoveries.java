@@ -338,7 +338,6 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ModItems.RED_SHEEP_PLUSHIE);
                         entries.add(ModItems.GREEN_SHEEP_PLUSHIE);
                         entries.add(ModItems.BLACK_SHEEP_PLUSHIE);
-                        entries.add(ModItems.MAROON_SHEEP_PLUSHIE);
                     }
 
                     if (ModConfig.ENABLE_HORSE_PLUSHIES.getValue().evaluate()) {
@@ -508,7 +507,6 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ModItems.GREEN_CAMPFIRE);
                         entries.add(ModItems.RED_CAMPFIRE);
                         entries.add(ModItems.BLACK_CAMPFIRE);
-                        entries.add(ModItems.MAROON_CAMPFIRE);
                     }
 
                     if (ModConfig.ENABLE_DYED_LANTERNS.getValue().evaluate()) {
@@ -528,7 +526,6 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ModItems.GREEN_LANTERN);
                         entries.add(ModItems.RED_LANTERN);
                         entries.add(ModItems.BLACK_LANTERN);
-                        entries.add(ModItems.MAROON_LANTERN);
                     }
 
                     if (ModConfig.ENABLE_DYED_TORCHES.getValue().evaluate()) {
@@ -548,7 +545,6 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ModItems.GREEN_TORCH);
                         entries.add(ModItems.RED_TORCH);
                         entries.add(ModItems.BLACK_TORCH);
-                        entries.add(ModItems.MAROON_TORCH);
                     }
 
                     if (ModConfig.ENABLE_TWISTED_NETHERRACK.getValue().evaluate()) {
@@ -775,13 +771,6 @@ public class AssortedDiscoveries implements ModInitializer {
 					entries.add(ModItems.PACKED_SNOW_SLAB);
 					entries.add(ModItems.PACKED_SNOW_WALL);
 
-					entries.add(ModItems.MAROON_WOOL);
-					entries.add(ModItems.MAROON_CONCRETE);
-					entries.add(ModItems.MAROON_CONCRETE_POWDER);
-					entries.add(ModItems.MAROON_STAINED_GLASS);
-					entries.add(ModItems.MAROON_STAINED_GLASS_PANE);
-					entries.add(ModItems.MAROON_CANDLE);
-
                     entries.add(ModItems.GRASS_SLAB);
                     entries.add(ModItems.PODZOL_SLAB);
                     entries.add(ModItems.MYCELIUM_SLAB);
@@ -892,8 +881,6 @@ public class AssortedDiscoveries implements ModInitializer {
                     if (ModConfig.ENABLE_SWEET_BERRY_JUICE.getValue().evaluate()) {
                         entries.add(ModItems.SWEET_BERRY_JUICE);
                     }
-
-					entries.add(ModItems.MAROON_DYE);
 				}).build());
 	}
 }

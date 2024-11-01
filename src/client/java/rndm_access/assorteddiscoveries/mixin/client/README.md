@@ -1,0 +1,2 @@
+This directory is to prevent a directory not found error for the assorted-discoveries.client.mixins file 
+and is a place to put future client-only mixins! Having this file prevents a warning from fabric!

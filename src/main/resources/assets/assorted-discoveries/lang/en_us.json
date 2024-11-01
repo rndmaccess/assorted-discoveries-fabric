@@ -528,6 +528,9 @@
   "text.cloth-config.assorted-discoveries.option.building.enable_cracked_stone_tiles": "Enable Cracked Stone Tiles",
   "text.cloth-config.assorted-discoveries.option.building.enable_mossy_stone_tiles": "Enable Mossy Stone Tiles",
 
+  "text.cloth-config.assorted-discoveries.option.building.enable_cabins": "Enable Cabins",
+  "text.cloth-config.assorted-discoveries.option.building.enable_nether_cabins": "Enable Nether Cabins",
+
   "category.cloth-config.assorted-discoveries.option.farming": "Farming",
   "text.cloth-config.assorted-discoveries.option.farming.enable_wooden_planter_boxes": "Enable Wooden Planter Boxes",
   "text.cloth-config.assorted-discoveries.option.farming.enable_green_onions": "Enable Green Onions",

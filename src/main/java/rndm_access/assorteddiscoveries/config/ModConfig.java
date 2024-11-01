@@ -110,6 +110,8 @@ public class ModConfig {
     public static final BooleanConfigEntry ENABLE_BLOOD_KELP;
     public static final BooleanConfigEntry ENABLE_ENDER_PLANTS;
     public static final BooleanConfigEntry RABBITS_SAFE_FALL_INCREASED;
+    public static final BooleanConfigEntry ENABLE_CABINS;
+    public static final BooleanConfigEntry ENABLE_NETHER_CABINS;
     public static final JsonConfig CONFIG;
 
     public static void initializeConfig() {
@@ -245,7 +247,8 @@ public class ModConfig {
                 .addBooleanEntry(ENABLE_MOSSY_STONE_TILES)
                 .addBooleanEntry(ENABLE_WOODCUTTER)
                 .addBooleanEntry(ENABLE_CRACKED_STONE_BRICK_BLOCKS)
-                .build();
+                .addBooleanEntry(ENABLE_CABINS)
+                .addBooleanEntry(ENABLE_NETHER_CABINS).build();
 
         //TODO: Give enable_ender_plants a better name!
         ConfigCategory farmingCategory = new ConfigCategory.Builder("farming")
@@ -383,6 +386,8 @@ public class ModConfig {
         ENABLE_ENDER_PLANTS = new BooleanConfigEntry("enable_ender_plants",
                 "Whether patches of ender grass and snapdragons should spawn!");
         RABBITS_SAFE_FALL_INCREASED = new BooleanConfigEntry("rabbits_safe_fall_increased");
+        ENABLE_CABINS = new BooleanConfigEntry("enable_cabins");
+        ENABLE_NETHER_CABINS = new BooleanConfigEntry("enable_nether_cabins");
         CONFIG = makeConfig();
     }
 }

@@ -96,6 +96,11 @@ public class ModConfigScreen {
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
                 ModConfig.ENABLE_CRACKED_STONE_BRICK_BLOCKS, buildingCategoryName));
 
+        buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
+                ModConfig.ENABLE_CABINS, buildingCategoryName));
+        buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
+                ModConfig.ENABLE_NETHER_CABINS, buildingCategoryName));
+
         // Farming config options
         String farmingCategoryName = "farming";
         ConfigCategory farmingScreenCategory = builder.getOrCreateCategory(Text.translatable("category.cloth-config."

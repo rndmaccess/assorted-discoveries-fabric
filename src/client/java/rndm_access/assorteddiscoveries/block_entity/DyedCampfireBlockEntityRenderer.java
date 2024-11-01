@@ -5,12 +5,14 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
+import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.RotationAxis;
+import net.minecraft.world.World;
 
 public class DyedCampfireBlockEntityRenderer implements BlockEntityRenderer<DyedCampfireBlockEntity> {
     public DyedCampfireBlockEntityRenderer(BlockEntityRendererFactory.Context context) {}
@@ -19,10 +21,13 @@ public class DyedCampfireBlockEntityRenderer implements BlockEntityRenderer<Dyed
     public void render(DyedCampfireBlockEntity dyedCampfireBlockEntity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
         Direction direction = dyedCampfireBlockEntity.getCachedState().get(CampfireBlock.FACING);
         DefaultedList<ItemStack> defaultedList = dyedCampfireBlockEntity.getItemsBeingCooked();
-        int k = (int)dyedCampfireBlockEntity.getPos().asLong();
+        int k = (int) dyedCampfireBlockEntity.getPos().asLong();
 
         for(int l = 0; l < defaultedList.size(); ++l) {
             ItemStack itemStack = defaultedList.get(l);
+            ItemRenderer renderer = MinecraftClient.getInstance().getItemRenderer();
+            World world = dyedCampfireBlockEntity.getWorld();
+
             if (itemStack != ItemStack.EMPTY) {
                 matrices.push();
                 matrices.translate(0.5D, 0.44921875D, 0.5D);
@@ -32,8 +37,8 @@ public class DyedCampfireBlockEntityRenderer implements BlockEntityRenderer<Dyed
                 matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(90.0F));
                 matrices.translate(-0.3125D, -0.3125D, 0.0D);
                 matrices.scale(0.375F, 0.375F, 0.375F);
-                MinecraftClient.getInstance().getItemRenderer().renderItem(itemStack, ModelTransformationMode.FIXED,
-                        light, overlay, matrices, vertexConsumers, dyedCampfireBlockEntity.getWorld(), k + l);
+                renderer.renderItem(itemStack, ModelTransformationMode.FIXED, light, overlay, matrices,
+                        vertexConsumers, world, k + l);
                 matrices.pop();
             }
         }

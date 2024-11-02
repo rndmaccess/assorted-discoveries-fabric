@@ -21,80 +21,80 @@ public class ModConfigScreen {
         builder.setGlobalized(true);
         builder.setGlobalizedExpanded(false);
         ConfigEntryBuilder entryBuilder = builder.entryBuilder();
-        String buildingCategoryName = "building";
+        String buildingBlocksCategoryName = "building_blocks";
 
         // Building config options
-        ConfigCategory buildingScreenCategory = builder.getOrCreateCategory(makeCategoryText(buildingCategoryName));
-        buildingScreenCategory.addEntry(makeDyedSubCategory(buildingCategoryName, entryBuilder));
-        buildingScreenCategory.addEntry(makePassivePlushieSubCategory(buildingCategoryName, entryBuilder));
-        buildingScreenCategory.addEntry(makeNeutralPlushieSubCategory(buildingCategoryName, entryBuilder));
-        buildingScreenCategory.addEntry(makeHostilePlushieSubCategory(buildingCategoryName, entryBuilder));
+        ConfigCategory buildingScreenCategory = builder.getOrCreateCategory(makeCategoryText(buildingBlocksCategoryName));
+        buildingScreenCategory.addEntry(makeDyedSubCategory(buildingBlocksCategoryName, entryBuilder));
+        buildingScreenCategory.addEntry(makePassivePlushieSubCategory(buildingBlocksCategoryName, entryBuilder));
+        buildingScreenCategory.addEntry(makeNeutralPlushieSubCategory(buildingBlocksCategoryName, entryBuilder));
+        buildingScreenCategory.addEntry(makeHostilePlushieSubCategory(buildingBlocksCategoryName, entryBuilder));
 
         Text displayText;
         String woodenWallsName = ModConfig.ENABLE_WOODEN_WALLS.getKey().getName();
-        displayText = makeEntryText(buildingCategoryName, woodenWallsName);
+        displayText = makeEntryText(buildingBlocksCategoryName, woodenWallsName);
         entryBuilder.startBooleanToggle(displayText, ModConfig.ENABLE_WOODEN_WALLS.getValue().evaluate())
                 .setSaveConsumer(newValue -> ENTRY_VALUE_CHANGES.put(woodenWallsName, newValue))
                 .setDefaultValue(true).requireRestart().build();
 
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_STRIPPED_WOODEN_WALLS, buildingCategoryName));
+                ModConfig.ENABLE_STRIPPED_WOODEN_WALLS, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_WOODEN_ROPE_LADDERS, buildingCategoryName));
+                ModConfig.ENABLE_WOODEN_ROPE_LADDERS, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_IRON_LADDERS, buildingCategoryName));
+                ModConfig.ENABLE_IRON_LADDERS, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_TWISTED_BLACKSTONE, buildingCategoryName));
+                ModConfig.ENABLE_TWISTED_BLACKSTONE, buildingBlocksCategoryName));
         BooleanListEntry enableBlackstoneTiles = makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_BLACKSTONE_TILES, buildingCategoryName);
+                ModConfig.ENABLE_BLACKSTONE_TILES, buildingBlocksCategoryName);
         buildingScreenCategory.addEntry(enableBlackstoneTiles);
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_TWISTED_BLACKSTONE_TILES, buildingCategoryName, enableBlackstoneTiles));
+                ModConfig.ENABLE_TWISTED_BLACKSTONE_TILES, buildingBlocksCategoryName, enableBlackstoneTiles));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_WEEPING_BLACKSTONE_TILES, buildingCategoryName, enableBlackstoneTiles));
+                ModConfig.ENABLE_WEEPING_BLACKSTONE_TILES, buildingBlocksCategoryName, enableBlackstoneTiles));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_TWISTED_NETHERRACK, buildingCategoryName));
+                ModConfig.ENABLE_TWISTED_NETHERRACK, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_TWISTED_NETHER_BRICKS, buildingCategoryName));
+                ModConfig.ENABLE_TWISTED_NETHER_BRICKS, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_TWISTED_POLISHED_BLACKSTONE_BRICKS, buildingCategoryName));
+                ModConfig.ENABLE_TWISTED_POLISHED_BLACKSTONE_BRICKS, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_WEEPING_NETHERRACK, buildingCategoryName));
+                ModConfig.ENABLE_WEEPING_NETHERRACK, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_WEEPING_NETHER_BRICKS, buildingCategoryName));
+                ModConfig.ENABLE_WEEPING_NETHER_BRICKS, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_WEEPING_BLACKSTONE, buildingCategoryName));
+                ModConfig.ENABLE_WEEPING_BLACKSTONE, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_WEEPING_POLISHED_BLACKSTONE_BRICKS, buildingCategoryName));
+                ModConfig.ENABLE_WEEPING_POLISHED_BLACKSTONE_BRICKS, buildingBlocksCategoryName));
         BooleanListEntry enableSmokyQuartzBlocks = makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_SMOKY_QUARTZ_BLOCKS, buildingCategoryName);
+                ModConfig.ENABLE_SMOKY_QUARTZ_BLOCKS, buildingBlocksCategoryName);
         buildingScreenCategory.addEntry(enableSmokyQuartzBlocks);
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_SMOKY_QUARTZ_BRICKS, buildingCategoryName, enableSmokyQuartzBlocks));
+                ModConfig.ENABLE_SMOKY_QUARTZ_BRICKS, buildingBlocksCategoryName, enableSmokyQuartzBlocks));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_SMOOTH_SMOKY_QUARTZ, buildingCategoryName, enableSmokyQuartzBlocks));
+                ModConfig.ENABLE_SMOOTH_SMOKY_QUARTZ, buildingBlocksCategoryName, enableSmokyQuartzBlocks));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_QUARTZ_TILES, buildingCategoryName));
+                ModConfig.ENABLE_QUARTZ_TILES, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_QUARTZ_WALLS, buildingCategoryName));
+                ModConfig.ENABLE_QUARTZ_WALLS, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_BAUXITE, buildingCategoryName));
+                ModConfig.ENABLE_BAUXITE, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_BAUXITE_BRICKS, buildingCategoryName));
+                ModConfig.ENABLE_BAUXITE_BRICKS, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_CRACKED_BAUXITE_BRICKS, buildingCategoryName));
+                ModConfig.ENABLE_CRACKED_BAUXITE_BRICKS, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_MOSSY_BAUXITE_BRICKS, buildingCategoryName));
+                ModConfig.ENABLE_MOSSY_BAUXITE_BRICKS, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_STONE_TILES, buildingCategoryName));
+                ModConfig.ENABLE_STONE_TILES, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_CRACKED_STONE_TILES, buildingCategoryName));
+                ModConfig.ENABLE_CRACKED_STONE_TILES, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_MOSSY_STONE_TILES, buildingCategoryName));
+                ModConfig.ENABLE_MOSSY_STONE_TILES, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_WOODCUTTER, buildingCategoryName));
+                ModConfig.ENABLE_WOODCUTTER, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_CRACKED_STONE_BRICK_BLOCKS, buildingCategoryName));
+                ModConfig.ENABLE_CRACKED_STONE_BRICK_BLOCKS, buildingBlocksCategoryName));
 
         // Structures config options
         String structuresCategoryName = "structures";

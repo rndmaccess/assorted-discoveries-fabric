@@ -226,7 +226,7 @@ public class ModConfig {
                 .addBooleanEntry(ENABLE_CRIMSON_FOREST_CABINS)
                 .addBooleanEntry(ENABLE_WARPED_FOREST_CABINS).build();
 
-        ConfigCategory buildingCategory = new ConfigCategory.Builder("building")
+        ConfigCategory buildingBlocksCategory = new ConfigCategory.Builder("building_blocks")
                 .addSubcategory(dyedSubcategory)
                 .addSubcategory(passivePlushiesSubcategory)
                 .addSubcategory(neutralPlushiesSubcategory)
@@ -290,8 +290,8 @@ public class ModConfig {
                 .addBooleanEntry(RABBITS_SAFE_FALL_INCREASED)
                 .build();
 
-        return configBuilder.addCategory(buildingCategory).addCategory(structureCategory).addCategory(farmingCategory)
-                .addCategory(miscCategory).build();
+        return configBuilder.addCategory(buildingBlocksCategory).addCategory(structureCategory)
+                .addCategory(farmingCategory).addCategory(miscCategory).build();
     }
 
     static {

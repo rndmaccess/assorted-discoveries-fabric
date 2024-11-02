@@ -110,8 +110,13 @@ public class ModConfig {
     public static final BooleanConfigEntry ENABLE_BLOOD_KELP;
     public static final BooleanConfigEntry ENABLE_ENDER_PLANTS;
     public static final BooleanConfigEntry RABBITS_SAFE_FALL_INCREASED;
-    public static final BooleanConfigEntry ENABLE_CABINS;
-    public static final BooleanConfigEntry ENABLE_NETHER_CABINS;
+    public static final BooleanConfigEntry ENABLE_FOREST_CABINS;
+    public static final BooleanConfigEntry ENABLE_DARK_FOREST_CABINS;
+    public static final BooleanConfigEntry ENABLE_BIRCH_FOREST_CABINS;
+    public static final BooleanConfigEntry ENABLE_TAIGA_CABINS;
+    public static final BooleanConfigEntry ENABLE_SNOWY_TAIGA_CABINS;
+    public static final BooleanConfigEntry ENABLE_CRIMSON_FOREST_CABINS;
+    public static final BooleanConfigEntry ENABLE_WARPED_FOREST_CABINS;
     public static final JsonConfig CONFIG;
 
     public static void initializeConfig() {
@@ -210,8 +215,16 @@ public class ModConfig {
                 .addBooleanEntry(ENABLE_WITHER_PLUSHIE)
                 .addBooleanEntry(ENABLE_ZOMBIE_PLUSHIE)
                 .addBooleanEntry(ENABLE_ZOMBIE_VILLAGER_PLUSHIES)
-                .addBooleanEntry(ENABLE_CREAKING_PLUSHIE)
-                .build();
+                .addBooleanEntry(ENABLE_CREAKING_PLUSHIE).build();
+
+        ConfigCategory structureCategory = new ConfigCategory.Builder("structures")
+                .addBooleanEntry(ENABLE_FOREST_CABINS)
+                .addBooleanEntry(ENABLE_DARK_FOREST_CABINS)
+                .addBooleanEntry(ENABLE_BIRCH_FOREST_CABINS)
+                .addBooleanEntry(ENABLE_TAIGA_CABINS)
+                .addBooleanEntry(ENABLE_SNOWY_TAIGA_CABINS)
+                .addBooleanEntry(ENABLE_CRIMSON_FOREST_CABINS)
+                .addBooleanEntry(ENABLE_WARPED_FOREST_CABINS).build();
 
         ConfigCategory buildingCategory = new ConfigCategory.Builder("building")
                 .addSubcategory(dyedSubcategory)
@@ -246,9 +259,7 @@ public class ModConfig {
                 .addBooleanEntry(ENABLE_CRACKED_STONE_TILES)
                 .addBooleanEntry(ENABLE_MOSSY_STONE_TILES)
                 .addBooleanEntry(ENABLE_WOODCUTTER)
-                .addBooleanEntry(ENABLE_CRACKED_STONE_BRICK_BLOCKS)
-                .addBooleanEntry(ENABLE_CABINS)
-                .addBooleanEntry(ENABLE_NETHER_CABINS).build();
+                .addBooleanEntry(ENABLE_CRACKED_STONE_BRICK_BLOCKS).build();
 
         //TODO: Give enable_ender_plants a better name!
         ConfigCategory farmingCategory = new ConfigCategory.Builder("farming")
@@ -279,7 +290,7 @@ public class ModConfig {
                 .addBooleanEntry(RABBITS_SAFE_FALL_INCREASED)
                 .build();
 
-        return configBuilder.addCategory(buildingCategory).addCategory(farmingCategory)
+        return configBuilder.addCategory(buildingCategory).addCategory(structureCategory).addCategory(farmingCategory)
                 .addCategory(miscCategory).build();
     }
 
@@ -386,8 +397,13 @@ public class ModConfig {
         ENABLE_ENDER_PLANTS = new BooleanConfigEntry("enable_ender_plants",
                 "Whether patches of ender grass and snapdragons should spawn!");
         RABBITS_SAFE_FALL_INCREASED = new BooleanConfigEntry("rabbits_safe_fall_increased");
-        ENABLE_CABINS = new BooleanConfigEntry("enable_cabins");
-        ENABLE_NETHER_CABINS = new BooleanConfigEntry("enable_nether_cabins");
+        ENABLE_FOREST_CABINS = new BooleanConfigEntry("enable_forest_cabins");
+        ENABLE_DARK_FOREST_CABINS = new BooleanConfigEntry("enable_dark_forest_cabins");
+        ENABLE_BIRCH_FOREST_CABINS = new BooleanConfigEntry("enable_birch_forest_cabins");
+        ENABLE_TAIGA_CABINS = new BooleanConfigEntry("enable_taiga_cabins");
+        ENABLE_SNOWY_TAIGA_CABINS = new BooleanConfigEntry("enable_snowy_taiga_cabins");
+        ENABLE_CRIMSON_FOREST_CABINS = new BooleanConfigEntry("enable_crimson_forest_cabins");
+        ENABLE_WARPED_FOREST_CABINS = new BooleanConfigEntry("enable_warped_forest_cabins");
         CONFIG = makeConfig();
     }
 }

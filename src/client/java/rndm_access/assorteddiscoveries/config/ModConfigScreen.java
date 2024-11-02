@@ -96,10 +96,24 @@ public class ModConfigScreen {
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
                 ModConfig.ENABLE_CRACKED_STONE_BRICK_BLOCKS, buildingCategoryName));
 
-        buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_CABINS, buildingCategoryName));
-        buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_NETHER_CABINS, buildingCategoryName));
+        // Structures config options
+        String structuresCategoryName = "structures";
+        ConfigCategory structuresCategory = builder.getOrCreateCategory(Text.translatable("category.cloth-config."
+                + ADReference.MOD_ID + ".option." + structuresCategoryName));
+        structuresCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
+                ModConfig.ENABLE_FOREST_CABINS, structuresCategoryName));
+        structuresCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
+                ModConfig.ENABLE_DARK_FOREST_CABINS, structuresCategoryName));
+        structuresCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
+                ModConfig.ENABLE_BIRCH_FOREST_CABINS, structuresCategoryName));
+        structuresCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
+                ModConfig.ENABLE_TAIGA_CABINS, structuresCategoryName));
+        structuresCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
+                ModConfig.ENABLE_SNOWY_TAIGA_CABINS, structuresCategoryName));
+        structuresCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
+                ModConfig.ENABLE_CRIMSON_FOREST_CABINS, structuresCategoryName));
+        structuresCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
+                ModConfig.ENABLE_WARPED_FOREST_CABINS, structuresCategoryName));
 
         // Farming config options
         String farmingCategoryName = "farming";

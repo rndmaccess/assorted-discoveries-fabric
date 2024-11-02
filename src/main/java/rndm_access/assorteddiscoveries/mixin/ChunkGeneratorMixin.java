@@ -17,6 +17,7 @@ import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.noise.NoiseConfig;
 import net.minecraft.world.gen.structure.Structure;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -36,21 +37,8 @@ public class ChunkGeneratorMixin {
 
         if (structureKey.isPresent()) {
             String structureName = structureKey.get().getValue().toString();
-            boolean cabinsEnabled = ModConfig.ENABLE_CABINS.getValue().evaluate();
-            boolean netherCabinsEnabled = ModConfig.ENABLE_NETHER_CABINS.getValue().evaluate();
 
-            if ((structureName.equals("assorted-discoveries:cabin_forest")
-                    || structureName.equals("assorted-discoveries:cabin_taiga")
-                    || structureName.equals("assorted-discoveries:cabin_dark_forest")
-                    || structureName.equals("assorted-discoveries:cabin_birch_forest")
-                    || structureName.equals("assorted-discoveries:cabin_snowy_taiga"))
-                    && !cabinsEnabled) {
-                cir.setReturnValue(false);
-            }
-
-            if ((structureName.equals("assorted-discoveries:nether_cabin_crimson_forest")
-                    || structureName.equals("assorted-discoveries:nether_cabin_warped_forest"))
-                    && !netherCabinsEnabled) {
+            if (isStructureDisabled(structureName)) {
                 cir.setReturnValue(false);
             }
         }
@@ -61,28 +49,44 @@ public class ChunkGeneratorMixin {
                                 int radius, boolean skipReferencedStructures,
                                 CallbackInfoReturnable<Pair<BlockPos, RegistryEntry<Structure>>> cir) {
         structures.stream().forEach(structure -> {
-            var key = structure.getKey();
+            Optional<RegistryKey<Structure>> structureKey = structure.getKey();
 
-            if (key.isPresent()) {
-                String structureName = key.get().getValue().toString();
-                boolean cabinsEnabled = ModConfig.ENABLE_CABINS.getValue().evaluate();
-                boolean netherCabinsEnabled = ModConfig.ENABLE_NETHER_CABINS.getValue().evaluate();
+            if (structureKey.isPresent()) {
+                String structureName = structureKey.get().getValue().toString();
 
-                if ((structureName.equals("assorted-discoveries:cabin_forest")
-                        || structureName.equals("assorted-discoveries:cabin_taiga")
-                        || structureName.equals("assorted-discoveries:cabin_dark_forest")
-                        || structureName.equals("assorted-discoveries:cabin_birch_forest")
-                        || structureName.equals("assorted-discoveries:cabin_snowy_taiga"))
-                        && !cabinsEnabled) {
-                    cir.setReturnValue(null);
-                }
-
-                if ((structureName.equals("assorted-discoveries:nether_cabin_crimson_forest")
-                        || structureName.equals("assorted-discoveries:nether_cabin_warped_forest"))
-                        && !netherCabinsEnabled) {
+                if (isStructureDisabled(structureName)) {
                     cir.setReturnValue(null);
                 }
             }
         });
+    }
+
+    @Unique
+    private boolean isStructureDisabled(String structureName) {
+        boolean forestCabinsEnabled = ModConfig.ENABLE_FOREST_CABINS.getValue().evaluate();
+        boolean darkForestCabinsEnabled = ModConfig.ENABLE_DARK_FOREST_CABINS.getValue().evaluate();
+        boolean birchForestCabinsEnabled = ModConfig.ENABLE_BIRCH_FOREST_CABINS.getValue().evaluate();
+        boolean taigaCabinsEnabled = ModConfig.ENABLE_TAIGA_CABINS.getValue().evaluate();
+        boolean snowyTaigaCabinsEnabled = ModConfig.ENABLE_SNOWY_TAIGA_CABINS.getValue().evaluate();
+        boolean crimsonForestCabinsEnabled = ModConfig.ENABLE_CRIMSON_FOREST_CABINS.getValue().evaluate();
+        boolean warpedForestCabinsEnabled = ModConfig.ENABLE_WARPED_FOREST_CABINS.getValue().evaluate();
+
+        if (structureName.equals("assorted-discoveries:cabin_forest") && !forestCabinsEnabled) {
+            return true;
+        } else if (structureName.equals("assorted-discoveries:cabin_dark_forest") && !darkForestCabinsEnabled) {
+            return true;
+        } else if (structureName.equals("assorted-discoveries:cabin_birch_forest") && !birchForestCabinsEnabled) {
+            return true;
+        } else if (structureName.equals("assorted-discoveries:cabin_taiga") && !taigaCabinsEnabled) {
+            return true;
+        } else if (structureName.equals("assorted-discoveries:cabin_snowy_taiga") && !snowyTaigaCabinsEnabled) {
+            return true;
+        } else if (structureName.equals("assorted-discoveries:nether_cabin_crimson_forest")
+                && !crimsonForestCabinsEnabled) {
+            return true;
+        } else {
+            return structureName.equals("assorted-discoveries:nether_cabin_warped_forest")
+                    && !warpedForestCabinsEnabled;
+        }
     }
 }

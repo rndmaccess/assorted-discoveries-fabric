@@ -527,6 +527,8 @@
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_stone_tiles": "Enable Stone Tiles",
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_cracked_stone_tiles": "Enable Cracked Stone Tiles",
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_mossy_stone_tiles": "Enable Mossy Stone Tiles",
+  "text.cloth-config.assorted-discoveries.option.building_blocks.enable_woodcutter": "Enable Woodcutter",
+  "text.cloth-config.assorted-discoveries.option.building_blocks.enable_cracked_stone_brick_blocks": "Enable Cracked Stone Brick Blocks",
 
   "category.cloth-config.assorted-discoveries.option.structures": "Structures",
   "text.cloth-config.assorted-discoveries.option.structures.enable_forest_cabins": "Enable Forest Cabins",

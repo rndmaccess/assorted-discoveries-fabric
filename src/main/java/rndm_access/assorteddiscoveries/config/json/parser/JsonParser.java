@@ -109,6 +109,8 @@ public class JsonParser {
 
     private void skipCategory() {
         while (tokenList.hasNextToken() && !tokenList.match(TokenType.RIGHT_CURLY)) {
+
+            // Skip all subcategories in the invalid categories!
             if (tokenList.match(TokenType.LEFT_CURLY)) {
                 tokenList.consumeToken();
                 this.skipCategory();

@@ -396,8 +396,10 @@ public class ModConfigScreen {
                     if (entryValue != newValue) {
                         ENTRY_VALUE_CHANGES.put(entryName, newValue);
                     }
-                }).setTooltipSupplier(requirementTooltip).setDefaultValue(true).requireRestart()
-                .setRequirement(Requirement.isTrue(dependency)).build();
+                }).setDefaultValue(true).requireRestart()
+                .setRequirement(Requirement.isTrue(dependency))
+                .setTooltipSupplier(requirementTooltip)
+                .build();
     }
 
     /**
@@ -409,9 +411,10 @@ public class ModConfigScreen {
     private static Supplier<Optional<Text[]>> getRequirementToolTip(BooleanListEntry dependency, Text requirementText) {
         return () -> {
             Requirement requirement = Requirement.isFalse(dependency);
+            Text[] requirementTextArray = new Text[]{requirementText};
 
             if(requirement.check()) {
-                return Optional.of(requirementText.withoutStyle().toArray(new Text[0]));
+                return Optional.of(requirementTextArray);
             }
             return Optional.empty();
         };

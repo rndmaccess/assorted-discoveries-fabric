@@ -55,8 +55,9 @@ public class JsonConfigSerializer {
             }
 
             try {
-                JsonEntrySerializer entrySerializer = new JsonEntrySerializer(config, configPath);
-                entrySerializer.serialize(entryList);
+                JsonEntrySaver entrySaver = new JsonEntrySaver(config, configPath);
+                // If the config file exists then save specific entries instead of overwriting the entire file!
+                entrySaver.save(entryList);
             } catch (IOException e) {
                 throw new SerializationException("Failed to serialize the file!", e);
             }

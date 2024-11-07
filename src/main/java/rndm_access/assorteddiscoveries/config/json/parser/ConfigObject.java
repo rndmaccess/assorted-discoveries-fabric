@@ -1,15 +1,13 @@
 package rndm_access.assorteddiscoveries.config.json.parser;
 
-import rndm_access.assorteddiscoveries.config.json.parser.entries.ConfigKey;
-
 public class ConfigObject {
-    private final ConfigKey key;
+    private final String name;
 
-    public ConfigObject(ConfigKey key) {
-        this.key = key;
+    public ConfigObject(String name) {
+        this.name = name;
     }
 
-    public ConfigKey getKey() {
-        return key;
+    public String getName() {
+        return name;
     }
 }

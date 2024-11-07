@@ -31,9 +31,9 @@ public class ModConfigScreen {
         buildingScreenCategory.addEntry(makeHostilePlushieSubCategory(buildingBlocksCategoryName, entryBuilder));
 
         Text displayText;
-        String woodenWallsName = ModConfig.ENABLE_WOODEN_WALLS.getKey().getName();
+        String woodenWallsName = ModConfig.ENABLE_WOODEN_WALLS.getName();
         displayText = makeEntryText(buildingBlocksCategoryName, woodenWallsName);
-        entryBuilder.startBooleanToggle(displayText, ModConfig.ENABLE_WOODEN_WALLS.getValue().evaluate())
+        entryBuilder.startBooleanToggle(displayText, ModConfig.ENABLE_WOODEN_WALLS.getValue())
                 .setSaveConsumer(newValue -> ENTRY_VALUE_CHANGES.put(woodenWallsName, newValue))
                 .setDefaultValue(true).requireRestart().build();
 
@@ -356,8 +356,8 @@ public class ModConfigScreen {
 
     private static BooleanListEntry makeToggleableConfigEntry(ConfigEntryBuilder entryBuilder, BooleanConfigEntry entry,
                                                               String categoryName, String subCategoryName) {
-        final String entryName = entry.getKey().getName();
-        final boolean entryValue = entry.getValue().evaluate();
+        final String entryName = entry.getName();
+        final boolean entryValue = entry.getValue();
         Text displayText = makeEntryText(categoryName, subCategoryName, entryName);
 
         return entryBuilder.startBooleanToggle(displayText, entryValue)
@@ -370,8 +370,8 @@ public class ModConfigScreen {
 
     private static BooleanListEntry makeToggleableConfigEntry(ConfigEntryBuilder entryBuilder, BooleanConfigEntry entry,
                                                              String categoryName) {
-        final String entryName = entry.getKey().getName();
-        final boolean entryValue = entry.getValue().evaluate();
+        final String entryName = entry.getName();
+        final boolean entryValue = entry.getValue();
         Text displayText = makeEntryText(categoryName, entryName);
 
         return entryBuilder.startBooleanToggle(displayText, entryValue)
@@ -385,8 +385,8 @@ public class ModConfigScreen {
     @SuppressWarnings("UnstableApiUsage")
     private static BooleanListEntry makeToggleableConfigEntry(ConfigEntryBuilder entryBuilder, BooleanConfigEntry entry,
                                                               String categoryName, BooleanListEntry dependency) {
-        final String entryName = entry.getKey().getName();
-        final boolean entryValue = entry.getValue().evaluate();
+        final String entryName = entry.getName();
+        final boolean entryValue = entry.getValue();
         Text requirementText = makeEntryRequirementText(categoryName, entryName);
         Supplier<Optional<Text[]>> requirementTooltip = getRequirementToolTip(dependency, requirementText);
         Text displayText = makeEntryText(categoryName, entryName);

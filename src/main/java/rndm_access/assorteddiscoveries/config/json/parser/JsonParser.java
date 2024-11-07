@@ -76,9 +76,7 @@ public class JsonParser {
         if (config.hasCategory(categoryName)) {
             ConfigCategory category = config.getCategory(categoryName);
             category.setStartLine(keyToken.getLine());
-            ConfigKey key = category.getKey();
-            key.setStart(keyToken.getStart());
-            key.setEnd(keyToken.getEnd());
+
             parse(category);
         } else {
             int startLine = keyToken.getLine() + 1;
@@ -94,12 +92,9 @@ public class JsonParser {
         if (category.hasSubcategory(subcategoryName)) {
             ConfigCategory subCategory = category.getSubcategory(subcategoryName);
             subCategory.setStartLine(keyToken.getLine());
-            ConfigKey key = subCategory.getKey();
-            key.setStart(keyToken.getStart());
-            key.setEnd(keyToken.getEnd());
             parse(subCategory);
         } else {
-            String categoryName = category.getKey().getName();
+            String categoryName = category.getName();
             int startLine = keyToken.getLine() + 1;
 
             this.logInvalidSubcategory(subcategoryName, categoryName, startLine);
@@ -138,7 +133,7 @@ public class JsonParser {
             if (category.hasEntry(entryName)) {
                 entryErrors.put(entryName, errorToken);
             } else {
-                String categoryName = category.getKey().getName();
+                String categoryName = category.getName();
                 int line = keyToken.getLine() + 1;
 
                 logInvalidEntry(entryName, categoryName, line);
@@ -150,41 +145,23 @@ public class JsonParser {
                 entry.setLine(boolToken.getLine());
                 entry.setStart(keyToken.getStart());
                 entry.setEnd(boolToken.getEnd());
-                ConfigValue<Boolean> boolValue = entry.getValue();
-                boolValue.setEntryValue(Boolean.valueOf(boolToken.getValue()));
-                boolValue.setStart(boolToken.getStart());
-                boolValue.setEnd(boolToken.getEnd());
-                ConfigKey boolKey = entry.getKey();
-                boolKey.setStart(keyToken.getStart());
-                boolKey.setEnd(keyToken.getEnd());
+                entry.setValue(Boolean.valueOf(boolToken.getValue()));
             } else if (category.hasIntegerEntry(entryName)) {
                 Token intToken = requireToken(TokenType.INT);
                 IntegerConfigEntry entry = category.getIntegerEntry(entryName);
                 entry.setLine(intToken.getLine());
                 entry.setStart(keyToken.getStart());
                 entry.setEnd(intToken.getEnd());
-                ConfigValue<Integer> intValue = entry.getValue();
-                intValue.setEntryValue(Integer.valueOf(intToken.getValue()));
-                intValue.setStart(intToken.getStart());
-                intValue.setEnd(intToken.getEnd());
-                ConfigKey intKey = entry.getKey();
-                intKey.setStart(keyToken.getStart());
-                intKey.setEnd(keyToken.getEnd());
+                entry.setValue(Integer.valueOf(intToken.getValue()));
             } else if (category.hasStringEntry(entryName)) {
                 Token stringToken = requireToken(TokenType.STRING);
                 StringConfigEntry entry = category.getStringEntry(entryName);
                 entry.setLine(stringToken.getLine());
                 entry.setStart(keyToken.getStart());
                 entry.setEnd(stringToken.getEnd());
-                ConfigValue<String> stringValue = entry.getValue();
-                stringValue.setEntryValue(stringToken.getValue());
-                stringValue.setStart(stringToken.getStart());
-                stringValue.setEnd(stringToken.getEnd());
-                ConfigKey stringKey = entry.getKey();
-                stringKey.setStart(keyToken.getStart());
-                stringKey.setEnd(keyToken.getEnd());
+                entry.setValue(stringToken.getValue());
             } else {
-                String categoryName = category.getKey().getName();
+                String categoryName = category.getName();
                 int line = keyToken.getLine() + 1;
 
                 logInvalidEntry(entryName, categoryName, line);

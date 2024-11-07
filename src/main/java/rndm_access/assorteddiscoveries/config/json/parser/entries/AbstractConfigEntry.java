@@ -3,18 +3,24 @@ package rndm_access.assorteddiscoveries.config.json.parser.entries;
 import rndm_access.assorteddiscoveries.config.json.parser.ConfigObject;
 
 public abstract class AbstractConfigEntry<T> extends ConfigObject {
-    private final ConfigValue<T> value;
+    private T value;
     private String comment;
     private int line;
     private int start;
     private int end;
 
     public AbstractConfigEntry(String name, T defaultValue) {
-        super(new ConfigKey(name));
-        this.value = new ConfigValue<>(defaultValue);
+        super(name);
+        this.value = defaultValue;
         this.line = -1;
         this.start = -1;
         this.end = -1;
+    }
+
+    public AbstractConfigEntry(String name, T defaultValue, String comment) {
+        super(name);
+        this.value = defaultValue;
+        this.comment = comment;
     }
 
     public void setLine(int line) {
@@ -29,6 +35,10 @@ public abstract class AbstractConfigEntry<T> extends ConfigObject {
         this.end = end;
     }
 
+    public void setValue(T value) {
+        this.value = value;
+    }
+
     public int getLine() {
         return line;
     }
@@ -41,13 +51,7 @@ public abstract class AbstractConfigEntry<T> extends ConfigObject {
         return end;
     }
 
-    public AbstractConfigEntry(String name, T defaultValue, String comment) {
-        super(new ConfigKey(name));
-        this.value = new ConfigValue<>(defaultValue);
-        this.comment = comment;
-    }
-
-    public ConfigValue<T> getValue() {
+    public T getValue() {
         return value;
     }
 

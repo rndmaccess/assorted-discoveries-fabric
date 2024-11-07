@@ -106,7 +106,7 @@ public class JsonConfig {
         indent(builder, depth);
         depth++;
         builder.append('\"');
-        builder.append(category.getKey().getName());
+        builder.append(category.getName());
         builder.append('\"');
         builder.append(": {");
         builder.append('\n');
@@ -114,11 +114,11 @@ public class JsonConfig {
         for (int i = 0; i < category.getJsonObjects().size(); i++) {
             ConfigObject component = category.getJsonObjects().get(i);
 
-            if (category.hasEntry(component.getKey().getName())) {
+            if (category.hasEntry(component.getName())) {
                 AbstractConfigEntry<?> entry = (AbstractConfigEntry<?>) component;
                 writeEntry(category, entry, builder, depth);
             } else {
-                ConfigCategory subCategory = category.getSubcategory(component.getKey().getName());
+                ConfigCategory subCategory = category.getSubcategory(component.getName());
                 writeCategory(subCategory, builder, depth);
             }
 
@@ -142,16 +142,16 @@ public class JsonConfig {
 
         indent(builder, depth);
         builder.append('\"');
-        builder.append(entry.getKey().getName());
+        builder.append(entry.getName());
         builder.append('\"');
         builder.append(": ");
 
-        if (category.hasStringEntry(entry.getKey().getName())) {
+        if (category.hasStringEntry(entry.getName())) {
             builder.append('\"');
-            builder.append(entry.getValue().evaluate());
+            builder.append(entry.getValue());
             builder.append('\"');
         } else {
-            builder.append(entry.getValue().evaluate());
+            builder.append(entry.getValue());
         }
     }
 
@@ -181,7 +181,7 @@ public class JsonConfig {
         public HashMap<String, ConfigCategory> categories = new LinkedHashMap<>();
 
         public Builder addCategory(ConfigCategory category) {
-            categories.put(category.getKey().getName(), category);
+            categories.put(category.getName(), category);
             return this;
         }
 

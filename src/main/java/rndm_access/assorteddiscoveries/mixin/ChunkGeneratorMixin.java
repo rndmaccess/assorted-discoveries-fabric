@@ -63,13 +63,13 @@ public class ChunkGeneratorMixin {
 
     @Unique
     private boolean isStructureDisabled(String structureName) {
-        boolean forestCabinsEnabled = ModConfig.ENABLE_FOREST_CABINS.getValue().evaluate();
-        boolean darkForestCabinsEnabled = ModConfig.ENABLE_DARK_FOREST_CABINS.getValue().evaluate();
-        boolean birchForestCabinsEnabled = ModConfig.ENABLE_BIRCH_FOREST_CABINS.getValue().evaluate();
-        boolean taigaCabinsEnabled = ModConfig.ENABLE_TAIGA_CABINS.getValue().evaluate();
-        boolean snowyTaigaCabinsEnabled = ModConfig.ENABLE_SNOWY_TAIGA_CABINS.getValue().evaluate();
-        boolean crimsonForestCabinsEnabled = ModConfig.ENABLE_CRIMSON_FOREST_CABINS.getValue().evaluate();
-        boolean warpedForestCabinsEnabled = ModConfig.ENABLE_WARPED_FOREST_CABINS.getValue().evaluate();
+        boolean forestCabinsEnabled = ModConfig.ENABLE_FOREST_CABINS.getValue();
+        boolean darkForestCabinsEnabled = ModConfig.ENABLE_DARK_FOREST_CABINS.getValue();
+        boolean birchForestCabinsEnabled = ModConfig.ENABLE_BIRCH_FOREST_CABINS.getValue();
+        boolean taigaCabinsEnabled = ModConfig.ENABLE_TAIGA_CABINS.getValue();
+        boolean snowyTaigaCabinsEnabled = ModConfig.ENABLE_SNOWY_TAIGA_CABINS.getValue();
+        boolean crimsonForestCabinsEnabled = ModConfig.ENABLE_CRIMSON_FOREST_CABINS.getValue();
+        boolean warpedForestCabinsEnabled = ModConfig.ENABLE_WARPED_FOREST_CABINS.getValue();
 
         if (structureName.equals("assorted-discoveries:cabin_forest") && !forestCabinsEnabled) {
             return true;

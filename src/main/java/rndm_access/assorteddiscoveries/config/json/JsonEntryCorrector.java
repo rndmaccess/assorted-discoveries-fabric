@@ -24,9 +24,9 @@ public class JsonEntryCorrector {
     public void correct(Map<String, Token> errorList) {
         for (ConfigCategory category : config.getCategories()) {
             if (category.hasSubCategories()) {
-                this.correctSubCategoryEntries(errorList, category);
+                this.correctSubcategoryEntries(errorList, category);
             }
-            correctEntries(errorList, category);
+            this.correctEntries(errorList, category);
         }
 
         try {
@@ -36,20 +36,19 @@ public class JsonEntryCorrector {
         }
     }
 
-    private void correctSubCategoryEntries(Map<String, Token> errorList, ConfigCategory category) {
-        for (String subcategoryName : category.getSubcategoryNames()) {
-            ConfigCategory subCategory = category.getSubcategory(subcategoryName);
+    private void correctSubcategoryEntries(Map<String, Token> errorList, ConfigCategory category) {
+        for (ConfigCategory subcategory : category.getSubcategories()) {
 
-            if (subCategory.hasSubCategories()) {
-                correctSubCategoryEntries(errorList, category);
+            if (subcategory.hasSubCategories()) {
+                this.correctSubcategoryEntries(errorList, category);
             }
-            correctEntries(errorList, subCategory);
+            this.correctEntries(errorList, subcategory);
         }
     }
 
     private void correctEntries(Map<String, Token> errorList, ConfigCategory category) {
         for (String entryName : errorList.keySet()) {
-            correctEntryValue(errorList, category, entryName);
+            this.correctEntryValue(errorList, category, entryName);
         }
     }
 
@@ -60,14 +59,14 @@ public class JsonEntryCorrector {
             int errorStart = errorToken.getStart();
             int errorEnd = errorToken.getEnd();
             String errorValue = errorToken.getValue();
-            Object defaultValue = category.getEntry(entryName).getValue().evaluate();
+            Object defaultValue = category.getEntry(entryName).getValue();
             String line = fileContent.get(errorLine);
             String startLine = line.substring(0, errorStart);
             String endLine = line.substring(errorEnd);
 
-            fileContent.set(errorLine, startLine + defaultValue + endLine);
+            fileContent.set(errorLine, startLine + defaultValue + endLine); // Correct the entry's value!
 
-            AssortedDiscoveries.LOGGER.warn("Could not load the value {} for entry {} correcting to {}.",
+            AssortedDiscoveries.LOGGER.warn("Could not load value {} for entry \"{}\", correcting to {}.",
                     errorValue, entryName, defaultValue);
         }
     }

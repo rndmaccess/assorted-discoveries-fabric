@@ -30,13 +30,8 @@ public class ModConfigScreen {
         buildingScreenCategory.addEntry(makeNeutralPlushieSubCategory(buildingBlocksCategoryName, entryBuilder));
         buildingScreenCategory.addEntry(makeHostilePlushieSubCategory(buildingBlocksCategoryName, entryBuilder));
 
-        Text displayText;
-        String woodenWallsName = ModConfig.ENABLE_WOODEN_WALLS.getName();
-        displayText = makeEntryText(buildingBlocksCategoryName, woodenWallsName);
-        entryBuilder.startBooleanToggle(displayText, ModConfig.ENABLE_WOODEN_WALLS.getValue())
-                .setSaveConsumer(newValue -> ENTRY_VALUE_CHANGES.put(woodenWallsName, newValue))
-                .setDefaultValue(true).requireRestart().build();
-
+        buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
+                ModConfig.ENABLE_WOODEN_WALLS, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
                 ModConfig.ENABLE_STRIPPED_WOODEN_WALLS, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,

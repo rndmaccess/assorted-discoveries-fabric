@@ -85,8 +85,8 @@ public class JsonEntrySaver {
 
         fileContent.set(line, newLineContent.toString());
 
-        AssortedDiscoveries.LOGGER.warn("Couldn't find the entry in the category {}, adding the entry {}",
-                entryName, category.getName());
+        AssortedDiscoveries.LOGGER.warn("Couldn't find the entry in category \"{}\", adding entry \"{}\"",
+                category.getName(), entryName);
     }
 
     private void updateEntryLine(String entryName, Object value, ConfigCategory category) {

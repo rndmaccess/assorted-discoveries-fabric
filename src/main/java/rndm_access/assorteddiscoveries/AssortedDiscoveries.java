@@ -718,58 +718,69 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ModItems.CRACKED_STONE_BRICK_WALL);
                     }
 
+                    if (ModConfig.ENABLE_STONE_WALLS.getValue()) {
+                        entries.add(ModItems.STONE_WALL);
+                    }
 
-					entries.add(ModItems.STONE_WALL);
-					entries.add(ModItems.CALCITE_STAIRS);
-					entries.add(ModItems.CALCITE_SLAB);
-					entries.add(ModItems.CALCITE_WALL);
-					entries.add(ModItems.POLISHED_CALCITE);
-					entries.add(ModItems.POLISHED_CALCITE_STAIRS);
-					entries.add(ModItems.POLISHED_CALCITE_SLAB);
-					entries.add(ModItems.POLISHED_CALCITE_WALL);
-					entries.add(ModItems.CALCITE_BRICKS);
-					entries.add(ModItems.CALCITE_BRICK_STAIRS);
-					entries.add(ModItems.CALCITE_BRICK_SLAB);
-					entries.add(ModItems.CALCITE_BRICK_WALL);
-					entries.add(ModItems.CRACKED_CALCITE_BRICKS);
-					entries.add(ModItems.CRACKED_CALCITE_BRICK_STAIRS);
-					entries.add(ModItems.CRACKED_CALCITE_BRICK_SLAB);
-					entries.add(ModItems.CRACKED_CALCITE_BRICK_WALL);
-					entries.add(ModItems.CHISELED_CALCITE_BRICKS);
-					entries.add(ModItems.MOSSY_CALCITE_BRICKS);
-					entries.add(ModItems.MOSSY_CALCITE_BRICK_STAIRS);
-					entries.add(ModItems.MOSSY_CALCITE_BRICK_SLAB);
-					entries.add(ModItems.MOSSY_CALCITE_BRICK_WALL);
-					entries.add(ModItems.DRIPSTONE_STAIRS);
-					entries.add(ModItems.DRIPSTONE_SLAB);
-					entries.add(ModItems.DRIPSTONE_WALL);
-					entries.add(ModItems.POLISHED_DRIPSTONE);
-					entries.add(ModItems.POLISHED_DRIPSTONE_STAIRS);
-					entries.add(ModItems.POLISHED_DRIPSTONE_SLAB);
-					entries.add(ModItems.POLISHED_DRIPSTONE_WALL);
-					entries.add(ModItems.DRIPSTONE_BRICKS);
-					entries.add(ModItems.DRIPSTONE_BRICK_STAIRS);
-					entries.add(ModItems.DRIPSTONE_BRICK_SLAB);
-					entries.add(ModItems.DRIPSTONE_BRICK_WALL);
-					entries.add(ModItems.CRACKED_DRIPSTONE_BRICKS);
-					entries.add(ModItems.CRACKED_DRIPSTONE_BRICK_STAIRS);
-					entries.add(ModItems.CRACKED_DRIPSTONE_BRICK_SLAB);
-					entries.add(ModItems.CRACKED_DRIPSTONE_BRICK_WALL);
-					entries.add(ModItems.CHISELED_DRIPSTONE_BRICKS);
-					entries.add(ModItems.MOSSY_DRIPSTONE_BRICKS);
-					entries.add(ModItems.MOSSY_DRIPSTONE_BRICK_STAIRS);
-					entries.add(ModItems.MOSSY_DRIPSTONE_BRICK_SLAB);
-					entries.add(ModItems.MOSSY_DRIPSTONE_BRICK_WALL);
+                    entries.add(ModItems.CALCITE_STAIRS);
+                    entries.add(ModItems.CALCITE_SLAB);
+                    entries.add(ModItems.CALCITE_WALL);
 
-					entries.add(ModItems.SNOW_BRICKS);
-					entries.add(ModItems.SNOW_BRICK_STAIRS);
-					entries.add(ModItems.SNOW_BRICK_SLAB);
-					entries.add(ModItems.SNOW_BRICK_WALL);
+                    entries.add(ModItems.POLISHED_CALCITE);
+                    entries.add(ModItems.POLISHED_CALCITE_STAIRS);
+                    entries.add(ModItems.POLISHED_CALCITE_SLAB);
+                    entries.add(ModItems.POLISHED_CALCITE_WALL);
 
-					entries.add(ModItems.PACKED_SNOW);
-					entries.add(ModItems.PACKED_SNOW_STAIRS);
-					entries.add(ModItems.PACKED_SNOW_SLAB);
-					entries.add(ModItems.PACKED_SNOW_WALL);
+                    entries.add(ModItems.CALCITE_BRICKS);
+                    entries.add(ModItems.CALCITE_BRICK_STAIRS);
+                    entries.add(ModItems.CALCITE_BRICK_SLAB);
+                    entries.add(ModItems.CALCITE_BRICK_WALL);
+
+                    entries.add(ModItems.CRACKED_CALCITE_BRICKS);
+                    entries.add(ModItems.CRACKED_CALCITE_BRICK_STAIRS);
+                    entries.add(ModItems.CRACKED_CALCITE_BRICK_SLAB);
+                    entries.add(ModItems.CRACKED_CALCITE_BRICK_WALL);
+                    entries.add(ModItems.CHISELED_CALCITE_BRICKS);
+
+                    entries.add(ModItems.MOSSY_CALCITE_BRICKS);
+                    entries.add(ModItems.MOSSY_CALCITE_BRICK_STAIRS);
+                    entries.add(ModItems.MOSSY_CALCITE_BRICK_SLAB);
+                    entries.add(ModItems.MOSSY_CALCITE_BRICK_WALL);
+
+                    entries.add(ModItems.DRIPSTONE_STAIRS);
+                    entries.add(ModItems.DRIPSTONE_SLAB);
+                    entries.add(ModItems.DRIPSTONE_WALL);
+
+                    entries.add(ModItems.POLISHED_DRIPSTONE);
+                    entries.add(ModItems.POLISHED_DRIPSTONE_STAIRS);
+                    entries.add(ModItems.POLISHED_DRIPSTONE_SLAB);
+                    entries.add(ModItems.POLISHED_DRIPSTONE_WALL);
+
+                    entries.add(ModItems.DRIPSTONE_BRICKS);
+                    entries.add(ModItems.DRIPSTONE_BRICK_STAIRS);
+                    entries.add(ModItems.DRIPSTONE_BRICK_SLAB);
+                    entries.add(ModItems.DRIPSTONE_BRICK_WALL);
+
+                    entries.add(ModItems.CRACKED_DRIPSTONE_BRICKS);
+                    entries.add(ModItems.CRACKED_DRIPSTONE_BRICK_STAIRS);
+                    entries.add(ModItems.CRACKED_DRIPSTONE_BRICK_SLAB);
+                    entries.add(ModItems.CRACKED_DRIPSTONE_BRICK_WALL);
+                    entries.add(ModItems.CHISELED_DRIPSTONE_BRICKS);
+
+                    entries.add(ModItems.MOSSY_DRIPSTONE_BRICKS);
+                    entries.add(ModItems.MOSSY_DRIPSTONE_BRICK_STAIRS);
+                    entries.add(ModItems.MOSSY_DRIPSTONE_BRICK_SLAB);
+                    entries.add(ModItems.MOSSY_DRIPSTONE_BRICK_WALL);
+
+                    entries.add(ModItems.SNOW_BRICKS);
+                    entries.add(ModItems.SNOW_BRICK_STAIRS);
+                    entries.add(ModItems.SNOW_BRICK_SLAB);
+                    entries.add(ModItems.SNOW_BRICK_WALL);
+
+                    entries.add(ModItems.PACKED_SNOW);
+                    entries.add(ModItems.PACKED_SNOW_STAIRS);
+                    entries.add(ModItems.PACKED_SNOW_SLAB);
+                    entries.add(ModItems.PACKED_SNOW_WALL);
 
                     entries.add(ModItems.GRASS_SLAB);
                     entries.add(ModItems.PODZOL_SLAB);

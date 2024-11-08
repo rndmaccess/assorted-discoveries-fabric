@@ -102,6 +102,7 @@ public class ModResourceConditions {
         registerEntry("enable_blood_kelp", ModConfig.ENABLE_BLOOD_KELP.getValue());
         registerEntry("enable_ender_plants", ModConfig.ENABLE_ENDER_PLANTS.getValue());
         registerEntry("enable_creaking_plushie", ModConfig.ENABLE_CREAKING_PLUSHIE.getValue());
+        registerEntry("enable_stone_walls", ModConfig.ENABLE_STONE_WALLS.getValue());
     }
 
     static {

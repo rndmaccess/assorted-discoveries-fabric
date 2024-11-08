@@ -137,50 +137,25 @@ public class AssortedDiscoveries implements ModInitializer {
 	}
 
 	private static void registerFuel() {
-        if (ModConfig.ENABLE_BLOOD_KELP.getValue()) {
-            FuelRegistry.INSTANCE.add(ModItems.DRIED_BLOOD_KELP_BLOCK, 4000);
-        }
+        FuelRegistry.INSTANCE.add(ModItems.DRIED_BLOOD_KELP_BLOCK, 4000);
 	}
 
 	private static void registerCompostables() {
-        if (ModConfig.ENABLE_BLUEBERRIES.getValue()) {
-            CompostingChanceRegistry.INSTANCE.add(ModItems.BLUEBERRIES, 0.3F);
-        }
-
-        if (ModConfig.ENABLE_NETHER_BERRIES.getValue()) {
-            CompostingChanceRegistry.INSTANCE.add(ModItems.CINDERSNAP_BERRIES, 0.3F);
-            CompostingChanceRegistry.INSTANCE.add(ModItems.FROSTBITE_BERRIES, 0.3F);
-        }
-
-        if (ModConfig.ENABLE_WITCHS_CRADLE_SOUP.getValue()) {
-            CompostingChanceRegistry.INSTANCE.add(ModItems.WITCHS_CRADLE_BRANCH, 0.3F);
-        }
-
-        if (ModConfig.ENABLE_BLOOD_KELP.getValue()) {
-            CompostingChanceRegistry.INSTANCE.add(ModItems.BLOOD_KELP_SEED_CLUSTER, 0.3F);
-            CompostingChanceRegistry.INSTANCE.add(ModItems.BLOOD_KELP, 0.3F);
-            CompostingChanceRegistry.INSTANCE.add(ModItems.DRIED_BLOOD_KELP, 0.3F);
-            CompostingChanceRegistry.INSTANCE.add(ModItems.DRIED_BLOOD_KELP_BLOCK, 0.5F);
-        }
-
-        if (ModConfig.ENABLE_ENDER_PLANTS.getValue()) {
-            CompostingChanceRegistry.INSTANCE.add(ModItems.SNAPDRAGON, 0.65F);
-            CompostingChanceRegistry.INSTANCE.add(ModItems.SHORT_ENDER_GRASS, 0.3F);
-        }
-
-        if (ModConfig.ENABLE_PURPLE_MUSHROOMS.getValue()) {
-            CompostingChanceRegistry.INSTANCE.add(ModItems.PURPLE_MUSHROOM_BLOCK, 0.85F);
-            CompostingChanceRegistry.INSTANCE.add(ModItems.PURPLE_MUSHROOM, 0.65F);
-        }
-
-        if (ModConfig.ENABLE_CATTAILS.getValue()) {
-            CompostingChanceRegistry.INSTANCE.add(ModItems.CATTAIL, 0.5F);
-        }
-
-        if (ModConfig.ENABLE_GREEN_ONIONS.getValue()) {
-            CompostingChanceRegistry.INSTANCE.add(ModItems.GREEN_ONION, 0.65F);
-            CompostingChanceRegistry.INSTANCE.add(ModItems.GREEN_ONION_SEEDS, 0.3F);
-        }
+        CompostingChanceRegistry.INSTANCE.add(ModItems.BLUEBERRIES, 0.3F);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.CINDERSNAP_BERRIES, 0.3F);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.FROSTBITE_BERRIES, 0.3F);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.WITCHS_CRADLE_BRANCH, 0.3F);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.BLOOD_KELP_SEED_CLUSTER, 0.3F);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.BLOOD_KELP, 0.3F);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.DRIED_BLOOD_KELP, 0.3F);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.DRIED_BLOOD_KELP_BLOCK, 0.5F);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.SNAPDRAGON, 0.65F);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.SHORT_ENDER_GRASS, 0.3F);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.PURPLE_MUSHROOM_BLOCK, 0.85F);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.PURPLE_MUSHROOM, 0.65F);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.CATTAIL, 0.5F);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.GREEN_ONION, 0.65F);
+        CompostingChanceRegistry.INSTANCE.add(ModItems.GREEN_ONION_SEEDS, 0.3F);
 	}
 
 	private static void modifyLootTables() {

@@ -94,6 +94,8 @@ public class ModConfigScreen {
                 ModConfig.ENABLE_STONE_WALLS, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
                 ModConfig.ENABLE_CALCITE_BLOCKS, buildingBlocksCategoryName));
+        buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
+                ModConfig.ENABLE_POLISHED_CALCITE, buildingBlocksCategoryName));
 
         // Structures config options
         String structuresCategoryName = "structures";

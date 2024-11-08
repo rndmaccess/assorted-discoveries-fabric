@@ -728,10 +728,12 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ModItems.CALCITE_WALL);
                     }
 
-                    entries.add(ModItems.POLISHED_CALCITE);
-                    entries.add(ModItems.POLISHED_CALCITE_STAIRS);
-                    entries.add(ModItems.POLISHED_CALCITE_SLAB);
-                    entries.add(ModItems.POLISHED_CALCITE_WALL);
+                    if (ModConfig.ENABLE_POLISHED_CALCITE.getValue()) {
+                        entries.add(ModItems.POLISHED_CALCITE);
+                        entries.add(ModItems.POLISHED_CALCITE_STAIRS);
+                        entries.add(ModItems.POLISHED_CALCITE_SLAB);
+                        entries.add(ModItems.POLISHED_CALCITE_WALL);
+                    }
 
                     entries.add(ModItems.CALCITE_BRICKS);
                     entries.add(ModItems.CALCITE_BRICK_STAIRS);

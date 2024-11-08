@@ -532,6 +532,7 @@
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_woodcutter": "Enable Woodcutter",
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_cracked_stone_brick_blocks": "Enable Cracked Stone Brick Blocks",
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_stone_walls": "Enable Stone Walls",
+  "text.cloth-config.assorted-discoveries.option.building_blocks.enable_calcite_blocks": "Enable Calcite Blocks",
 
   "category.cloth-config.assorted-discoveries.option.structures": "Structures",
   "text.cloth-config.assorted-discoveries.option.structures.enable_forest_cabins": "Enable Forest Cabins",

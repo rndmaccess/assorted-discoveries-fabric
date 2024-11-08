@@ -103,6 +103,7 @@ public class ModResourceConditions {
         registerEntry("enable_ender_plants", ModConfig.ENABLE_ENDER_PLANTS.getValue());
         registerEntry("enable_creaking_plushie", ModConfig.ENABLE_CREAKING_PLUSHIE.getValue());
         registerEntry("enable_stone_walls", ModConfig.ENABLE_STONE_WALLS.getValue());
+        registerEntry("enable_calcite_blocks", ModConfig.ENABLE_CALCITE_BLOCKS.getValue());
     }
 
     static {

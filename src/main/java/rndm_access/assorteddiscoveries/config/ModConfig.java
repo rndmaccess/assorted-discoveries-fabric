@@ -118,6 +118,7 @@ public class ModConfig {
     public static final BooleanConfigEntry ENABLE_CRIMSON_FOREST_CABINS;
     public static final BooleanConfigEntry ENABLE_WARPED_FOREST_CABINS;
     public static final BooleanConfigEntry ENABLE_STONE_WALLS;
+    public static final BooleanConfigEntry ENABLE_CALCITE_BLOCKS;
     public static final JsonConfig CONFIG;
 
     public static void initializeConfig() {
@@ -261,7 +262,8 @@ public class ModConfig {
                 .addBooleanEntry(ENABLE_MOSSY_STONE_TILES)
                 .addBooleanEntry(ENABLE_WOODCUTTER)
                 .addBooleanEntry(ENABLE_CRACKED_STONE_BRICK_BLOCKS)
-                .addBooleanEntry(ENABLE_STONE_WALLS).build();
+                .addBooleanEntry(ENABLE_STONE_WALLS)
+                .addBooleanEntry(ENABLE_CALCITE_BLOCKS).build();
 
         //TODO: Give enable_ender_plants a better name!
         ConfigCategory farmingCategory = new ConfigCategory.Builder("farming")
@@ -407,6 +409,7 @@ public class ModConfig {
         ENABLE_CRIMSON_FOREST_CABINS = new BooleanConfigEntry("enable_crimson_forest_cabins");
         ENABLE_WARPED_FOREST_CABINS = new BooleanConfigEntry("enable_warped_forest_cabins");
         ENABLE_STONE_WALLS = new BooleanConfigEntry("enable_stone_walls");
+        ENABLE_CALCITE_BLOCKS = new BooleanConfigEntry("enable_calcite_blocks");
         CONFIG = makeConfig();
     }
 }

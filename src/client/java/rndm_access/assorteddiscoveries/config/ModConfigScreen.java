@@ -92,6 +92,8 @@ public class ModConfigScreen {
                 ModConfig.ENABLE_CRACKED_STONE_BRICK_BLOCKS, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
                 ModConfig.ENABLE_STONE_WALLS, buildingBlocksCategoryName));
+        buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
+                ModConfig.ENABLE_CALCITE_BLOCKS, buildingBlocksCategoryName));
 
         // Structures config options
         String structuresCategoryName = "structures";

@@ -15,8 +15,8 @@ public class ModConfigScreen {
     public static final HashMap<String, Object> ENTRY_VALUE_CHANGES;
 
     public static ConfigBuilder getConfigScreenBuilder() {
-        ConfigBuilder builder = ConfigBuilder.create()
-                .setTitle(Text.translatable("title." + ADReference.MOD_ID + ".config"));
+        Text title = Text.translatable("title." + ADReference.MOD_ID + ".config");
+        ConfigBuilder builder = ConfigBuilder.create().setTitle(title);
         builder.setDefaultBackgroundTexture(new Identifier("assorted-discoveries:textures/block/calcite_bricks.png"));
         builder.setGlobalized(true);
         builder.setGlobalizedExpanded(false);

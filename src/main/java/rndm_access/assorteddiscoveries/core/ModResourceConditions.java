@@ -108,6 +108,9 @@ public class ModResourceConditions {
         registerEntry("enable_calcite_bricks", ModConfig.ENABLE_CALCITE_BRICKS.getValue());
         registerEntry("enable_cracked_calcite_bricks", ModConfig.ENABLE_CRACKED_CALCITE_BRICKS.getValue());
         registerEntry("enable_mossy_calcite_bricks", ModConfig.ENABLE_MOSSY_CALCITE_BRICKS.getValue());
+        registerEntry("enable_blackstone_tiles", ModConfig.ENABLE_BLACKSTONE_TILES.getValue());
+        registerEntry("enable_weeping_blackstone_tiles", ModConfig.ENABLE_WEEPING_BLACKSTONE_TILES.getValue());
+        registerEntry("enable_twisted_blackstone_tiles", ModConfig.ENABLE_TWISTED_BLACKSTONE_TILES.getValue());
     }
 
     static {

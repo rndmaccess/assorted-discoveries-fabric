@@ -28,5 +28,20 @@
       "has_crimson_vegetation",
       "has_the_recipe"
     ]
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:and",
+      "values": [
+        {
+          "condition": "assorted-discoveries:config_entry_enabled",
+          "value": "assorted-discoveries:enable_blackstone_tiles"
+        },
+        {
+          "condition": "assorted-discoveries:config_entry_enabled",
+          "value": "assorted-discoveries:enable_weeping_blackstone_tiles"
+        }
+      ]
+    }
   ]
 }

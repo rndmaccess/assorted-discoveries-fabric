@@ -4,5 +4,11 @@
     "item": "minecraft:calcite"
   },
   "result": "assorted-discoveries:calcite_brick_slab",
-  "count": 2
+  "count": 2,
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_calcite_bricks"
+    }
+  ]
 }

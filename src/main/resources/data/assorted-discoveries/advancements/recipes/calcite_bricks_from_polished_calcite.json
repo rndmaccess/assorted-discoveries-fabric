@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "assorted-discoveries:calcite_bricks"
+      "assorted-discoveries:calcite_bricks_from_polished_calcite"
     ]
   },
   "criteria": {
@@ -20,7 +20,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "assorted-discoveries:calcite_bricks"
+        "recipe": "assorted-discoveries:calcite_bricks_from_polished_calcite"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -30,5 +30,20 @@
       "has_polished_calcite",
       "has_the_recipe"
     ]
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:and",
+      "values": [
+        {
+          "condition": "assorted-discoveries:config_entry_enabled",
+          "value": "assorted-discoveries:enable_calcite_bricks"
+        },
+        {
+          "condition": "assorted-discoveries:config_entry_enabled",
+          "value": "assorted-discoveries:enable_polished_calcite"
+        }
+      ]
+    }
   ]
 }

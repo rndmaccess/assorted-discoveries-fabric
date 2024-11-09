@@ -1,10 +1,18 @@
 {
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "assorted-discoveries:polished_calcite"
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "assorted-discoveries:polished_calcite"
+    }
   },
-  "result": "assorted-discoveries:calcite_brick_slab",
-  "count": 2,
+  "result": {
+    "item": "assorted-discoveries:calcite_bricks",
+    "count": 4
+  },
   "fabric:load_conditions": [
     {
       "condition": "fabric:and",

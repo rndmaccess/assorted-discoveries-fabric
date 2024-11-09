@@ -161,7 +161,7 @@ public class AssortedDiscoveries implements ModInitializer {
 	private static void modifyLootTables() {
 		Identifier spruceLeavesLootTableId = Blocks.SPRUCE_LEAVES.getLootTableId();
 
-        if(ModConfig.ENABLE_FORESTS_BOUNTY.getValue()) {
+        if (ModConfig.ENABLE_FORESTS_BOUNTY.getValue()) {
             LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
                 if(source.isBuiltin() && spruceLeavesLootTableId.equals(id)) {
                     LootPool.Builder poolBuilder = LootPool.builder()
@@ -710,16 +710,18 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ModItems.POLISHED_CALCITE_WALL);
                     }
 
-                    entries.add(ModItems.CALCITE_BRICKS);
-                    entries.add(ModItems.CALCITE_BRICK_STAIRS);
-                    entries.add(ModItems.CALCITE_BRICK_SLAB);
-                    entries.add(ModItems.CALCITE_BRICK_WALL);
+                    if (ModConfig.ENABLE_CALCITE_BRICKS.getValue()) {
+                        entries.add(ModItems.CALCITE_BRICKS);
+                        entries.add(ModItems.CALCITE_BRICK_STAIRS);
+                        entries.add(ModItems.CALCITE_BRICK_SLAB);
+                        entries.add(ModItems.CALCITE_BRICK_WALL);
+                        entries.add(ModItems.CHISELED_CALCITE_BRICKS);
+                    }
 
                     entries.add(ModItems.CRACKED_CALCITE_BRICKS);
                     entries.add(ModItems.CRACKED_CALCITE_BRICK_STAIRS);
                     entries.add(ModItems.CRACKED_CALCITE_BRICK_SLAB);
                     entries.add(ModItems.CRACKED_CALCITE_BRICK_WALL);
-                    entries.add(ModItems.CHISELED_CALCITE_BRICKS);
 
                     entries.add(ModItems.MOSSY_CALCITE_BRICKS);
                     entries.add(ModItems.MOSSY_CALCITE_BRICK_STAIRS);

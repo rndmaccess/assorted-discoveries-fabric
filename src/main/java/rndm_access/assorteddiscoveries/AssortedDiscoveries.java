@@ -578,21 +578,23 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ModItems.WEEPING_POLISHED_BLACKSTONE_BRICK_WALL);
                     }
 
-                    if (ModConfig.ENABLE_BLACKSTONE_TILES.getValue()) {
+                    boolean blackstoneTilesEnabled = ModConfig.ENABLE_BLACKSTONE_TILES.getValue();
+
+                    if (blackstoneTilesEnabled) {
                         entries.add(ModItems.BLACKSTONE_TILES);
                         entries.add(ModItems.BLACKSTONE_TILE_STAIRS);
                         entries.add(ModItems.BLACKSTONE_TILE_SLAB);
                         entries.add(ModItems.BLACKSTONE_TILE_WALL);
                     }
 
-                    if (ModConfig.ENABLE_TWISTED_BLACKSTONE_TILES.getValue()) {
+                    if (blackstoneTilesEnabled && ModConfig.ENABLE_TWISTED_BLACKSTONE_TILES.getValue()) {
                         entries.add(ModItems.TWISTED_BLACKSTONE_TILES);
                         entries.add(ModItems.TWISTED_BLACKSTONE_TILE_STAIRS);
                         entries.add(ModItems.TWISTED_BLACKSTONE_TILE_SLAB);
                         entries.add(ModItems.TWISTED_BLACKSTONE_TILE_WALL);
                     }
 
-                    if (ModConfig.ENABLE_WEEPING_BLACKSTONE_TILES.getValue()) {
+                    if (blackstoneTilesEnabled && ModConfig.ENABLE_WEEPING_BLACKSTONE_TILES.getValue()) {
                         entries.add(ModItems.WEEPING_BLACKSTONE_TILES);
                         entries.add(ModItems.WEEPING_BLACKSTONE_TILE_STAIRS);
                         entries.add(ModItems.WEEPING_BLACKSTONE_TILE_SLAB);

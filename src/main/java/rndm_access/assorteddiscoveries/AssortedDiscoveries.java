@@ -599,7 +599,9 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ModItems.WEEPING_BLACKSTONE_TILE_WALL);
                     }
 
-                    if (ModConfig.ENABLE_SMOKY_QUARTZ_BLOCKS.getValue()) {
+                    boolean smokyQuartzBlocksEnabled = ModConfig.ENABLE_SMOKY_QUARTZ_BLOCKS.getValue();
+
+                    if (smokyQuartzBlocksEnabled) {
                         entries.add(ModItems.NETHER_SMOKY_QUARTZ_ORE);
                         entries.add(ModItems.SMOKY_QUARTZ);
                         entries.add(ModItems.SMOKY_QUARTZ_BLOCK);
@@ -608,8 +610,7 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ModItems.SMOKY_QUARTZ_WALL);
                     }
 
-                    if (ModConfig.ENABLE_SMOKY_QUARTZ_BLOCKS.getValue()
-                            && ModConfig.ENABLE_SMOKY_QUARTZ_BRICKS.getValue()) {
+                    if (smokyQuartzBlocksEnabled && ModConfig.ENABLE_SMOKY_QUARTZ_BRICKS.getValue()) {
                         entries.add(ModItems.SMOKY_QUARTZ_BRICKS);
                         entries.add(ModItems.SMOKY_QUARTZ_BRICK_STAIRS);
                         entries.add(ModItems.SMOKY_QUARTZ_BRICK_SLAB);
@@ -618,8 +619,7 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ModItems.SMOKY_QUARTZ_PILLAR);
                     }
 
-                    if (ModConfig.ENABLE_SMOKY_QUARTZ_BLOCKS.getValue()
-                            && ModConfig.ENABLE_SMOOTH_SMOKY_QUARTZ.getValue()) {
+                    if (smokyQuartzBlocksEnabled && ModConfig.ENABLE_SMOOTH_SMOKY_QUARTZ.getValue()) {
                         entries.add(ModItems.SMOOTH_SMOKY_QUARTZ);
                         entries.add(ModItems.SMOOTH_SMOKY_QUARTZ_STAIRS);
                         entries.add(ModItems.SMOOTH_SMOKY_QUARTZ_SLAB);

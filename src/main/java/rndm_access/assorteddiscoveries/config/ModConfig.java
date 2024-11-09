@@ -122,6 +122,7 @@ public class ModConfig {
     public static final BooleanConfigEntry ENABLE_POLISHED_CALCITE;
     public static final BooleanConfigEntry ENABLE_CALCITE_BRICKS;
     public static final BooleanConfigEntry ENABLE_CRACKED_CALCITE_BRICKS;
+    public static final BooleanConfigEntry ENABLE_MOSSY_CALCITE_BRICKS;
     public static final JsonConfig CONFIG;
 
     public static void initializeConfig() {
@@ -269,7 +270,8 @@ public class ModConfig {
                 .addBooleanEntry(ENABLE_CALCITE_BLOCKS)
                 .addBooleanEntry(ENABLE_POLISHED_CALCITE)
                 .addBooleanEntry(ENABLE_CALCITE_BRICKS)
-                .addBooleanEntry(ENABLE_CRACKED_CALCITE_BRICKS).build();
+                .addBooleanEntry(ENABLE_CRACKED_CALCITE_BRICKS)
+                .addBooleanEntry(ENABLE_MOSSY_CALCITE_BRICKS).build();
 
         //TODO: Give enable_ender_plants a better name!
         ConfigCategory farmingCategory = new ConfigCategory.Builder("farming")
@@ -419,6 +421,7 @@ public class ModConfig {
         ENABLE_POLISHED_CALCITE = new BooleanConfigEntry("enable_polished_calcite");
         ENABLE_CALCITE_BRICKS = new BooleanConfigEntry("enable_calcite_bricks");
         ENABLE_CRACKED_CALCITE_BRICKS = new BooleanConfigEntry("enable_cracked_calcite_bricks");
+        ENABLE_MOSSY_CALCITE_BRICKS = new BooleanConfigEntry("enable_mossy_calcite_bricks");
         CONFIG = makeConfig();
     }
 }

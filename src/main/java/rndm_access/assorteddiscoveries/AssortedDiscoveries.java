@@ -727,10 +727,12 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ModItems.CRACKED_CALCITE_BRICK_WALL);
                     }
 
-                    entries.add(ModItems.MOSSY_CALCITE_BRICKS);
-                    entries.add(ModItems.MOSSY_CALCITE_BRICK_STAIRS);
-                    entries.add(ModItems.MOSSY_CALCITE_BRICK_SLAB);
-                    entries.add(ModItems.MOSSY_CALCITE_BRICK_WALL);
+                    if (ModConfig.ENABLE_MOSSY_CALCITE_BRICKS.getValue() && calciteBricksEnabled) {
+                        entries.add(ModItems.MOSSY_CALCITE_BRICKS);
+                        entries.add(ModItems.MOSSY_CALCITE_BRICK_STAIRS);
+                        entries.add(ModItems.MOSSY_CALCITE_BRICK_SLAB);
+                        entries.add(ModItems.MOSSY_CALCITE_BRICK_WALL);
+                    }
 
                     entries.add(ModItems.DRIPSTONE_STAIRS);
                     entries.add(ModItems.DRIPSTONE_SLAB);

@@ -107,6 +107,7 @@ public class ModResourceConditions {
         registerEntry("enable_polished_calcite", ModConfig.ENABLE_POLISHED_CALCITE.getValue());
         registerEntry("enable_calcite_bricks", ModConfig.ENABLE_CALCITE_BRICKS.getValue());
         registerEntry("enable_cracked_calcite_bricks", ModConfig.ENABLE_CRACKED_CALCITE_BRICKS.getValue());
+        registerEntry("enable_mossy_calcite_bricks", ModConfig.ENABLE_MOSSY_CALCITE_BRICKS.getValue());
     }
 
     static {

@@ -536,6 +536,7 @@
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_polished_calcite": "Enable Polished Calcite",
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_calcite_bricks": "Enable Calcite Bricks",
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_cracked_calcite_bricks": "Enable Cracked Calcite Bricks",
+  "text.cloth-config.assorted-discoveries.option.building_blocks.enable_mossy_calcite_bricks": "Enable Mossy Calcite Bricks",
 
   "requirement.cloth-config.assorted-discoveries.option.building_blocks.enable_cracked_calcite_bricks": "Disabled by Enable Calcite Bricks",
 

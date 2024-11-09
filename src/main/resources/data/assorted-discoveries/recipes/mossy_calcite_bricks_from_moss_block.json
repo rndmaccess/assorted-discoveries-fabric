@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:moss_block"
+    },
+    {
+      "item": "assorted-discoveries:calcite_bricks"
+    }
+  ],
+  "result": {
+    "item": "assorted-discoveries:mossy_calcite_bricks"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:and",
+      "values": [
+        {
+          "condition": "assorted-discoveries:config_entry_enabled",
+          "value": "assorted-discoveries:enable_calcite_bricks"
+        },
+        {
+          "condition": "assorted-discoveries:config_entry_enabled",
+          "value": "assorted-discoveries:enable_mossy_calcite_bricks"
+        }
+      ]
+    }
+  ]
+}

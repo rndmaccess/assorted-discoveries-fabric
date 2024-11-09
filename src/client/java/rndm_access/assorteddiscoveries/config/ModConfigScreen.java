@@ -103,6 +103,8 @@ public class ModConfigScreen {
         buildingScreenCategory.addEntry(enableCalciteBricksEntry);
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
                 ModConfig.ENABLE_CRACKED_CALCITE_BRICKS, buildingBlocksCategoryName, enableCalciteBricksEntry));
+        buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
+                ModConfig.ENABLE_MOSSY_CALCITE_BRICKS, buildingBlocksCategoryName, enableCalciteBricksEntry));
 
         // Structures config options
         String structuresCategoryName = "structures";

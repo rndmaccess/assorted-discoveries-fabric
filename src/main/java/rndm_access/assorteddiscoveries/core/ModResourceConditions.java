@@ -122,6 +122,7 @@ public class ModResourceConditions {
         registerEntry("enable_weeping_nether_bricks", ModConfig.ENABLE_WEEPING_NETHER_BRICKS.getValue());
         registerEntry("enable_twisted_nether_bricks", ModConfig.ENABLE_TWISTED_NETHER_BRICKS.getValue());
         registerEntry("enable_weeping_netherrack", ModConfig.ENABLE_WEEPING_NETHERRACK.getValue());
+        registerEntry("enable_twisted_netherrack", ModConfig.ENABLE_TWISTED_NETHERRACK.getValue());
     }
 
     static {

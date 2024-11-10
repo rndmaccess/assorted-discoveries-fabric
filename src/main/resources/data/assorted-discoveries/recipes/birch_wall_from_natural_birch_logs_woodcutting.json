@@ -4,5 +4,20 @@
     "tag": "c:natural_birch_logs"
   },
   "result": "assorted-discoveries:birch_wall",
-  "count": 1
+  "count": 1,
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:and",
+      "values": [
+        {
+          "condition": "assorted-discoveries:config_entry_enabled",
+          "value": "assorted-discoveries:enable_wooden_walls"
+        },
+        {
+          "condition": "assorted-discoveries:config_entry_enabled",
+          "value": "assorted-discoveries:enable_woodcutter"
+        }
+      ]
+    }
+  ]
 }

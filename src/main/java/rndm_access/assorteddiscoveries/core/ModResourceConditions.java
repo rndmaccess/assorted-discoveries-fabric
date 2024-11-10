@@ -117,6 +117,7 @@ public class ModResourceConditions {
         registerEntry("enable_iron_ladders", ModConfig.ENABLE_IRON_LADDERS.getValue());
         registerEntry("enable_twisted_blackstone", ModConfig.ENABLE_TWISTED_BLACKSTONE.getValue());
         registerEntry("enable_weeping_blackstone", ModConfig.ENABLE_WEEPING_BLACKSTONE.getValue());
+        registerEntry("enable_dyed_campfires", ModConfig.ENABLE_DYED_CAMPFIRES.getValue());
     }
 
     static {

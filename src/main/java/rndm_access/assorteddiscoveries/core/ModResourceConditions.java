@@ -121,6 +121,7 @@ public class ModResourceConditions {
         registerEntry("enable_dyed_lanterns", ModConfig.ENABLE_DYED_LANTERNS.getValue());
         registerEntry("enable_weeping_nether_bricks", ModConfig.ENABLE_WEEPING_NETHER_BRICKS.getValue());
         registerEntry("enable_twisted_nether_bricks", ModConfig.ENABLE_TWISTED_NETHER_BRICKS.getValue());
+        registerEntry("enable_weeping_netherrack", ModConfig.ENABLE_WEEPING_NETHERRACK.getValue());
     }
 
     static {

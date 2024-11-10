@@ -76,8 +76,7 @@ public class ModResourceConditions {
         registerEntry("enable_witch_plushie", ModConfig.ENABLE_WITCH_PLUSHIE.getValue());
         registerEntry("enable_wither_plushie", ModConfig.ENABLE_WITHER_PLUSHIE.getValue());
         registerEntry("enable_zombie_plushie", ModConfig.ENABLE_ZOMBIE_PLUSHIE.getValue());
-        registerEntry("enable_zombie_villager_plushies", ModConfig.ENABLE_ZOMBIE_VILLAGER_PLUSHIES
-                .getValue());
+        registerEntry("enable_zombie_villager_plushies", ModConfig.ENABLE_ZOMBIE_VILLAGER_PLUSHIES.getValue());
         registerEntry("enable_smoky_quartz_blocks", ModConfig.ENABLE_SMOKY_QUARTZ_BLOCKS.getValue());
         registerEntry("enable_smoky_quartz_bricks", ModConfig.ENABLE_SMOKY_QUARTZ_BRICKS.getValue());
         registerEntry("enable_woodcutter", ModConfig.ENABLE_WOODCUTTER.getValue());
@@ -120,6 +119,7 @@ public class ModResourceConditions {
         registerEntry("enable_dyed_campfires", ModConfig.ENABLE_DYED_CAMPFIRES.getValue());
         registerEntry("enable_dyed_torches", ModConfig.ENABLE_DYED_TORCHES.getValue());
         registerEntry("enable_dyed_lanterns", ModConfig.ENABLE_DYED_LANTERNS.getValue());
+        registerEntry("enable_weeping_nether_bricks", ModConfig.ENABLE_WEEPING_NETHER_BRICKS.getValue());
     }
 
     static {

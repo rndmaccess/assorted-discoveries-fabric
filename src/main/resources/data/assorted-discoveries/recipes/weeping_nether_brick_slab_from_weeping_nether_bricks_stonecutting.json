@@ -4,5 +4,11 @@
     "item": "assorted-discoveries:weeping_nether_bricks"
   },
   "result": "assorted-discoveries:weeping_nether_brick_slab",
-  "count": 2
+  "count": 2,
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_weeping_nether_bricks"
+    }
+  ]
 }

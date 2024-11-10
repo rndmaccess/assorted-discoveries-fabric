@@ -125,6 +125,8 @@ public class ModResourceConditions {
         registerEntry("enable_twisted_netherrack", ModConfig.ENABLE_TWISTED_NETHERRACK.getValue());
         registerEntry("enable_twisted_polished_blackstone_bricks",
                 ModConfig.ENABLE_TWISTED_POLISHED_BLACKSTONE_BRICKS.getValue());
+        registerEntry("enable_weeping_polished_blackstone_bricks",
+                ModConfig.ENABLE_WEEPING_POLISHED_BLACKSTONE_BRICKS.getValue());
     }
 
     static {

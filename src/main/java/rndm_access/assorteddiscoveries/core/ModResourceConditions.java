@@ -123,6 +123,8 @@ public class ModResourceConditions {
         registerEntry("enable_twisted_nether_bricks", ModConfig.ENABLE_TWISTED_NETHER_BRICKS.getValue());
         registerEntry("enable_weeping_netherrack", ModConfig.ENABLE_WEEPING_NETHERRACK.getValue());
         registerEntry("enable_twisted_netherrack", ModConfig.ENABLE_TWISTED_NETHERRACK.getValue());
+        registerEntry("enable_twisted_polished_blackstone_bricks",
+                ModConfig.ENABLE_TWISTED_POLISHED_BLACKSTONE_BRICKS.getValue());
     }
 
     static {

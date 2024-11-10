@@ -119,6 +119,7 @@ public class ModResourceConditions {
         registerEntry("enable_weeping_blackstone", ModConfig.ENABLE_WEEPING_BLACKSTONE.getValue());
         registerEntry("enable_dyed_campfires", ModConfig.ENABLE_DYED_CAMPFIRES.getValue());
         registerEntry("enable_dyed_torches", ModConfig.ENABLE_DYED_TORCHES.getValue());
+        registerEntry("enable_dyed_lanterns", ModConfig.ENABLE_DYED_LANTERNS.getValue());
     }
 
     static {

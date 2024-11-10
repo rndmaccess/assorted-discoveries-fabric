@@ -4,5 +4,11 @@
     "item": "assorted-discoveries:twisted_blackstone"
   },
   "result": "assorted-discoveries:twisted_blackstone_wall",
-  "count": 1
+  "count": 1,
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_twisted_blackstone"
+    }
+  ]
 }

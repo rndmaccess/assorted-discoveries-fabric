@@ -115,6 +115,7 @@ public class ModResourceConditions {
         registerEntry("enable_wooden_walls", ModConfig.ENABLE_WOODEN_WALLS.getValue());
         registerEntry("enable_stripped_wooden_walls", ModConfig.ENABLE_STRIPPED_WOODEN_WALLS.getValue());
         registerEntry("enable_iron_ladders", ModConfig.ENABLE_IRON_LADDERS.getValue());
+        registerEntry("enable_twisted_blackstone", ModConfig.ENABLE_TWISTED_BLACKSTONE.getValue());
     }
 
     static {

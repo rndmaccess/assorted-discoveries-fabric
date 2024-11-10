@@ -11,11 +11,11 @@
       "item": "minecraft:string"
     },
     "#": {
-      "item": "minecraft:acacia_planks"
+      "item": "minecraft:cherry_planks"
     }
   },
   "result": {
-    "item": "assorted-discoveries:acacia_rope_ladder",
+    "item": "assorted-discoveries:cherry_rope_ladder",
     "count": 3
   },
   "fabric:load_conditions": [

@@ -111,6 +111,7 @@ public class ModResourceConditions {
         registerEntry("enable_blackstone_tiles", ModConfig.ENABLE_BLACKSTONE_TILES.getValue());
         registerEntry("enable_weeping_blackstone_tiles", ModConfig.ENABLE_WEEPING_BLACKSTONE_TILES.getValue());
         registerEntry("enable_twisted_blackstone_tiles", ModConfig.ENABLE_TWISTED_BLACKSTONE_TILES.getValue());
+        registerEntry("enable_wooden_rope_ladders", ModConfig.ENABLE_WOODEN_ROPE_LADDERS.getValue());
     }
 
     static {

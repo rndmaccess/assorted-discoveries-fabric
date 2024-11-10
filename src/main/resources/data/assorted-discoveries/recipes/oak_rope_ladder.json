@@ -17,5 +17,11 @@
   "result": {
     "item": "assorted-discoveries:oak_rope_ladder",
     "count": 3
-  }
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_wooden_rope_ladders"
+    }
+  ]
 }

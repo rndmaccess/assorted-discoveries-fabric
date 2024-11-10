@@ -4,5 +4,20 @@
     "item": "minecraft:cherry_planks"
   },
   "result": "assorted-discoveries:cherry_rope_ladder",
-  "count": 1
+  "count": 1,
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:and",
+      "values": [
+        {
+          "condition": "assorted-discoveries:config_entry_enabled",
+          "value": "assorted-discoveries:enable_wooden_rope_ladders"
+        },
+        {
+          "condition": "assorted-discoveries:config_entry_enabled",
+          "value": "assorted-discoveries:enable_woodcutter"
+        }
+      ]
+    }
+  ]
 }

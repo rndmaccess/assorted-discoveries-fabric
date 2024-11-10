@@ -114,6 +114,7 @@ public class ModResourceConditions {
         registerEntry("enable_wooden_rope_ladders", ModConfig.ENABLE_WOODEN_ROPE_LADDERS.getValue());
         registerEntry("enable_wooden_walls", ModConfig.ENABLE_WOODEN_WALLS.getValue());
         registerEntry("enable_stripped_wooden_walls", ModConfig.ENABLE_STRIPPED_WOODEN_WALLS.getValue());
+        registerEntry("enable_iron_ladders", ModConfig.ENABLE_IRON_LADDERS.getValue());
     }
 
     static {

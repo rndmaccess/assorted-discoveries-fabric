@@ -4,20 +4,5 @@
     "item": "minecraft:smooth_quartz"
   },
   "result": "assorted-discoveries:smooth_quartz_wall",
-  "count": 1,
-  "fabric:load_conditions": [
-    {
-      "condition": "fabric:and",
-      "values": [
-        {
-          "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "assorted-discoveries:enable_smoky_quartz_blocks"
-        },
-        {
-          "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "assorted-discoveries:enable_smooth_smoky_quartz"
-        }
-      ]
-    }
-  ]
+  "count": 1
 }

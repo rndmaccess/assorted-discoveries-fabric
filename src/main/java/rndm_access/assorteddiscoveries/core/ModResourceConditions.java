@@ -77,8 +77,6 @@ public class ModResourceConditions {
         registerEntry("enable_wither_plushie", ModConfig.ENABLE_WITHER_PLUSHIE.getValue());
         registerEntry("enable_zombie_plushie", ModConfig.ENABLE_ZOMBIE_PLUSHIE.getValue());
         registerEntry("enable_zombie_villager_plushies", ModConfig.ENABLE_ZOMBIE_VILLAGER_PLUSHIES.getValue());
-        registerEntry("enable_smoky_quartz_blocks", ModConfig.ENABLE_SMOKY_QUARTZ_BLOCKS.getValue());
-        registerEntry("enable_smoky_quartz_bricks", ModConfig.ENABLE_SMOKY_QUARTZ_BRICKS.getValue());
         registerEntry("enable_woodcutter", ModConfig.ENABLE_WOODCUTTER.getValue());
 
         registerEntry("enable_wooden_planter_boxes", ModConfig.ENABLE_WOODEN_PLANTER_BOXES.getValue());
@@ -127,6 +125,9 @@ public class ModResourceConditions {
                 ModConfig.ENABLE_TWISTED_POLISHED_BLACKSTONE_BRICKS.getValue());
         registerEntry("enable_weeping_polished_blackstone_bricks",
                 ModConfig.ENABLE_WEEPING_POLISHED_BLACKSTONE_BRICKS.getValue());
+        registerEntry("enable_smoky_quartz_blocks", ModConfig.ENABLE_SMOKY_QUARTZ_BLOCKS.getValue());
+        registerEntry("enable_smoky_quartz_bricks", ModConfig.ENABLE_SMOKY_QUARTZ_BRICKS.getValue());
+        registerEntry("enable_smooth_smoky_quartz", ModConfig.ENABLE_SMOOTH_SMOKY_QUARTZ.getValue());
     }
 
     static {

@@ -4,5 +4,20 @@
     "item": "assorted-discoveries:smoky_quartz_block"
   },
   "result": "assorted-discoveries:smoky_quartz_brick_wall",
-  "count": 1
+  "count": 1,
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:and",
+      "values": [
+        {
+          "condition": "assorted-discoveries:config_entry_enabled",
+          "value": "assorted-discoveries:enable_smoky_quartz_blocks"
+        },
+        {
+          "condition": "assorted-discoveries:config_entry_enabled",
+          "value": "assorted-discoveries:enable_smoky_quartz_bricks"
+        }
+      ]
+    }
+  ]
 }

@@ -12,5 +12,11 @@
   "result": {
     "item": "assorted-discoveries:smoky_quartz_pillar",
     "count": 2
-  }
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_smoky_quartz_blocks"
+    }
+  ]
 }

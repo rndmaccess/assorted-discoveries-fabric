@@ -13,5 +13,20 @@
   "result": {
     "item": "assorted-discoveries:smoky_quartz_brick_slab",
     "count": 6
-  }
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:and",
+      "values": [
+        {
+          "condition": "assorted-discoveries:config_entry_enabled",
+          "value": "assorted-discoveries:enable_smoky_quartz_blocks"
+        },
+        {
+          "condition": "assorted-discoveries:config_entry_enabled",
+          "value": "assorted-discoveries:enable_smoky_quartz_bricks"
+        }
+      ]
+    }
+  ]
 }

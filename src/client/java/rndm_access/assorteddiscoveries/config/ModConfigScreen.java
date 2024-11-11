@@ -30,6 +30,33 @@ public class ModConfigScreen {
         buildingScreenCategory.addEntry(makeNeutralPlushieSubCategory(buildingBlocksCategoryName, entryBuilder));
         buildingScreenCategory.addEntry(makeHostilePlushieSubCategory(buildingBlocksCategoryName, entryBuilder));
 
+        // Netherrack and Nether Bricks
+        buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
+                ModConfig.ENABLE_TWISTED_NETHERRACK, buildingBlocksCategoryName));
+        buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
+                ModConfig.ENABLE_WEEPING_NETHERRACK, buildingBlocksCategoryName));
+        buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
+                ModConfig.ENABLE_TWISTED_NETHER_BRICKS, buildingBlocksCategoryName));
+        buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
+                ModConfig.ENABLE_WEEPING_NETHER_BRICKS, buildingBlocksCategoryName));
+
+        // Blackstone Entries
+        buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
+                ModConfig.ENABLE_TWISTED_BLACKSTONE, buildingBlocksCategoryName));
+        buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
+                ModConfig.ENABLE_WEEPING_BLACKSTONE, buildingBlocksCategoryName));
+        buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
+                ModConfig.ENABLE_TWISTED_POLISHED_BLACKSTONE_BRICKS, buildingBlocksCategoryName));
+        buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
+                ModConfig.ENABLE_WEEPING_POLISHED_BLACKSTONE_BRICKS, buildingBlocksCategoryName));
+        BooleanListEntry enableBlackstoneTiles = makeToggleableConfigEntry(entryBuilder,
+                ModConfig.ENABLE_BLACKSTONE_TILES, buildingBlocksCategoryName);
+        buildingScreenCategory.addEntry(enableBlackstoneTiles);
+        buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
+                ModConfig.ENABLE_TWISTED_BLACKSTONE_TILES, buildingBlocksCategoryName, enableBlackstoneTiles));
+        buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
+                ModConfig.ENABLE_WEEPING_BLACKSTONE_TILES, buildingBlocksCategoryName, enableBlackstoneTiles));
+
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
                 ModConfig.ENABLE_WOODEN_WALLS, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
@@ -38,29 +65,6 @@ public class ModConfigScreen {
                 ModConfig.ENABLE_WOODEN_ROPE_LADDERS, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
                 ModConfig.ENABLE_IRON_LADDERS, buildingBlocksCategoryName));
-        buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_TWISTED_BLACKSTONE, buildingBlocksCategoryName));
-        BooleanListEntry enableBlackstoneTiles = makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_BLACKSTONE_TILES, buildingBlocksCategoryName);
-        buildingScreenCategory.addEntry(enableBlackstoneTiles);
-        buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_TWISTED_BLACKSTONE_TILES, buildingBlocksCategoryName, enableBlackstoneTiles));
-        buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_WEEPING_BLACKSTONE_TILES, buildingBlocksCategoryName, enableBlackstoneTiles));
-        buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_TWISTED_NETHERRACK, buildingBlocksCategoryName));
-        buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_TWISTED_NETHER_BRICKS, buildingBlocksCategoryName));
-        buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_TWISTED_POLISHED_BLACKSTONE_BRICKS, buildingBlocksCategoryName));
-        buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_WEEPING_NETHERRACK, buildingBlocksCategoryName));
-        buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_WEEPING_NETHER_BRICKS, buildingBlocksCategoryName));
-        buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_WEEPING_BLACKSTONE, buildingBlocksCategoryName));
-        buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_WEEPING_POLISHED_BLACKSTONE_BRICKS, buildingBlocksCategoryName));
         BooleanListEntry enableSmokyQuartzBlocks = makeToggleableConfigEntry(entryBuilder,
                 ModConfig.ENABLE_SMOKY_QUARTZ_BLOCKS, buildingBlocksCategoryName);
         buildingScreenCategory.addEntry(enableSmokyQuartzBlocks);

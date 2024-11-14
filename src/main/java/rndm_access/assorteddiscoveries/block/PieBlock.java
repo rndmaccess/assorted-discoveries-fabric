@@ -1,9 +1,6 @@
 package rndm_access.assorteddiscoveries.block;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
+import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
@@ -12,10 +9,12 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
+import net.minecraft.world.WorldView;
 
 public class PieBlock extends Block {
     public static final IntProperty BITES;
@@ -31,6 +30,24 @@ public class PieBlock extends Block {
 
     @SuppressWarnings("deprecation")
     @Override
+    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState,
+                                                WorldAccess world, BlockPos pos, BlockPos neighborPos) {
+        if (direction == Direction.DOWN && !state.canPlaceAt(world, pos)) {
+            return Blocks.AIR.getDefaultState();
+        }
+        return state;
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
+        BlockPos floorPos = pos.down();
+
+        return world.getBlockState(floorPos).isSolidBlock(world, floorPos);
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPE_BY_BITE[state.get(BITES)];
     }
@@ -39,12 +56,10 @@ public class PieBlock extends Block {
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand,
                               BlockHitResult hit) {
-        if (world.isClient) {
-            if (tryEat(world, pos, state, player).isAccepted()) {
-                return ActionResult.SUCCESS;
-            }
+        if (world.isClient && this.tryEat(world, pos, state, player).isAccepted()) {
+            return ActionResult.SUCCESS;
         }
-        return tryEat(world, pos, state, player);
+        return this.tryEat(world, pos, state, player);
     }
 
     private ActionResult tryEat(WorldAccess world, BlockPos pos, BlockState state, PlayerEntity player) {

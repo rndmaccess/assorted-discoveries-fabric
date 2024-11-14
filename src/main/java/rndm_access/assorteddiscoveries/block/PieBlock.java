@@ -43,7 +43,7 @@ public class PieBlock extends Block {
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         BlockPos floorPos = pos.down();
 
-        return world.getBlockState(floorPos).isSolidBlock(world, floorPos);
+        return world.getBlockState(floorPos).isSolid();
     }
 
     @SuppressWarnings("deprecation")

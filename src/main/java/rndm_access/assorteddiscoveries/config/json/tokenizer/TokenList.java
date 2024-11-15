@@ -36,12 +36,15 @@ public class TokenList {
      *         False if there is no token to match!
      */
     public boolean match(TokenType... tokenTypes) {
+        // This check is to prevent an out-of-bounds exception!
         if(!hasNextToken()) {
             return false;
         }
 
         for (TokenType tokenType : tokenTypes) {
-            if(Objects.equals(this.get().getType(), tokenType)) {
+            TokenType currentTokenType = this.get().getType();
+
+            if(Objects.equals(currentTokenType, tokenType)) {
                 return true;
             }
         }
@@ -57,7 +60,7 @@ public class TokenList {
     }
 
     public boolean hasNextToken() {
-        return position < tokenList.size() - 1;
+        return position < tokenList.size();
     }
 
     public boolean isEmpty() {

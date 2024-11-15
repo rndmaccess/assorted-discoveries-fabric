@@ -66,7 +66,21 @@ public class JsonParser {
             Token token = requireToken(TokenType.RIGHT_CURLY);
             category.setEndLine(token.getLine());
         } else {
-            tokenList.consumeToken(); // Ignore the invalid tokens at the end of the file :)
+            requireToken(TokenType.RIGHT_CURLY);
+
+            if (!tokenList.hasNextToken()) {
+                return;
+            }
+
+            if (tokenList.match(TokenType.COMMA)) {
+                requireToken(TokenType.COMMA);
+                this.parse();
+            } else {
+                Token token = tokenList.consumeToken();
+                int line = token.getLine() + 1;
+
+                throw new JsonSyntaxException("Invalid token '" + token.getValue() + "' on line " + line);
+            }
         }
     }
 
@@ -220,7 +234,6 @@ public class JsonParser {
             }
 
             message.append(" at line ").append(currentToken.getLine() + 1);
-            message.append(", column ").append(currentToken.getStart() + 1);
         }
         message.append(". Config path: ").append(configPath);
 

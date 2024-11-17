@@ -630,6 +630,7 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ModItems.SMOOTH_SMOKY_QUARTZ_WALL);
                     }
 
+                    // TODO: Maybe add quartz brick stairs, slabs, and walls!
                     if (ModConfig.ENABLE_QUARTZ_TILES.getValue()) {
                         entries.add(ModItems.QUARTZ_TILES);
                         entries.add(ModItems.QUARTZ_TILE_STAIRS);

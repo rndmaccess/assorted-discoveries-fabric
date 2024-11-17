@@ -128,6 +128,7 @@ public class ModResourceConditions {
         registerEntry("enable_smoky_quartz_blocks", ModConfig.ENABLE_SMOKY_QUARTZ_BLOCKS.getValue());
         registerEntry("enable_smoky_quartz_bricks", ModConfig.ENABLE_SMOKY_QUARTZ_BRICKS.getValue());
         registerEntry("enable_smooth_smoky_quartz", ModConfig.ENABLE_SMOOTH_SMOKY_QUARTZ.getValue());
+        registerEntry("enable_quartz_tiles", ModConfig.ENABLE_QUARTZ_TILES.getValue());
     }
 
     static {

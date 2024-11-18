@@ -677,21 +677,23 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ModItems.MOSSY_BAUXITE_BRICK_WALL);
                     }
 
-                    if (ModConfig.ENABLE_STONE_TILES.getValue()) {
+                    boolean stoneTilesEnabled = ModConfig.ENABLE_STONE_TILES.getValue();
+
+                    if (stoneTilesEnabled) {
                         entries.add(ModItems.STONE_TILES);
                         entries.add(ModItems.STONE_TILE_SLAB);
                         entries.add(ModItems.STONE_TILE_STAIRS);
                         entries.add(ModItems.STONE_TILE_WALL);
                     }
 
-                    if (ModConfig.ENABLE_CRACKED_STONE_TILES.getValue()) {
+                    if (stoneTilesEnabled && ModConfig.ENABLE_CRACKED_STONE_TILES.getValue()) {
                         entries.add(ModItems.CRACKED_STONE_TILES);
                         entries.add(ModItems.CRACKED_STONE_TILE_SLAB);
                         entries.add(ModItems.CRACKED_STONE_TILE_STAIRS);
                         entries.add(ModItems.CRACKED_STONE_TILE_WALL);
                     }
 
-                    if (ModConfig.ENABLE_MOSSY_STONE_TILES.getValue()) {
+                    if (stoneTilesEnabled && ModConfig.ENABLE_MOSSY_STONE_TILES.getValue()) {
                         entries.add(ModItems.MOSSY_STONE_TILES);
                         entries.add(ModItems.MOSSY_STONE_TILE_SLAB);
                         entries.add(ModItems.MOSSY_STONE_TILE_STAIRS);

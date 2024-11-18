@@ -541,8 +541,9 @@
   "requirement.cloth-config.assorted-discoveries.option.building_blocks.enable_bauxite_bricks": "Requires Bauxite",
   "requirement.cloth-config.assorted-discoveries.option.building_blocks.enable_mossy_bauxite_bricks": "Requires Bauxite And Bauxite Bricks",
   "requirement.cloth-config.assorted-discoveries.option.building_blocks.enable_cracked_bauxite_bricks": "Requires Bauxite And Bauxite Bricks",
-
   "requirement.cloth-config.assorted-discoveries.option.building_blocks.enable_cracked_calcite_bricks": "Requires Calcite Bricks",
+  "requirement.cloth-config.assorted-discoveries.option.building_blocks.enable_cracked_stone_tiles": "Requires Stone Tiles",
+  "requirement.cloth-config.assorted-discoveries.option.building_blocks.enable_mossy_stone_tiles": "Requires Stone Tiles",
 
   "category.cloth-config.assorted-discoveries.option.structures": "Structures",
   "text.cloth-config.assorted-discoveries.option.structures.enable_forest_cabins": "Enable Forest Cabins",

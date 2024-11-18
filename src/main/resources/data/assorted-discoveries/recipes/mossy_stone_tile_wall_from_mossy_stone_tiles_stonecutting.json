@@ -4,5 +4,15 @@
     "item": "assorted-discoveries:mossy_stone_tiles"
   },
   "result": "assorted-discoveries:mossy_stone_tile_wall",
-  "count": 1
+  "count": 1,
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_stone_tiles"
+    },
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_mossy_stone_tiles"
+    }
+  ]
 }

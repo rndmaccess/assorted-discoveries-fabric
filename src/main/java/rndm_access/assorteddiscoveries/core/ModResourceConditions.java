@@ -133,6 +133,9 @@ public class ModResourceConditions {
         registerEntry("enable_bauxite_bricks", ModConfig.ENABLE_BAUXITE_BRICKS.getValue());
         registerEntry("enable_mossy_bauxite_bricks", ModConfig.ENABLE_MOSSY_BAUXITE_BRICKS.getValue());
         registerEntry("enable_cracked_bauxite_bricks", ModConfig.ENABLE_CRACKED_BAUXITE_BRICKS.getValue());
+        registerEntry("enable_stone_tiles", ModConfig.ENABLE_STONE_TILES.getValue());
+        registerEntry("enable_mossy_stone_tiles", ModConfig.ENABLE_MOSSY_STONE_TILES.getValue());
+        registerEntry("enable_cracked_stone_tiles", ModConfig.ENABLE_CRACKED_STONE_TILES.getValue());
     }
 
     static {

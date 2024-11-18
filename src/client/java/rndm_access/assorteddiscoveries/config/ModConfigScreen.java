@@ -88,12 +88,15 @@ public class ModConfigScreen {
                 ModConfig.ENABLE_CRACKED_BAUXITE_BRICKS, buildingBlocksCategoryName, enableBauxite, enableBauxiteBricks));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
                 ModConfig.ENABLE_MOSSY_BAUXITE_BRICKS, buildingBlocksCategoryName, enableBauxite, enableBauxiteBricks));
+
+        BooleanListEntry enableStoneTiles = makeToggleableConfigEntry(entryBuilder,
+                ModConfig.ENABLE_STONE_TILES, buildingBlocksCategoryName);
+
+        buildingScreenCategory.addEntry(enableStoneTiles);
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_STONE_TILES, buildingBlocksCategoryName));
+                ModConfig.ENABLE_CRACKED_STONE_TILES, buildingBlocksCategoryName, enableStoneTiles));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_CRACKED_STONE_TILES, buildingBlocksCategoryName));
-        buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_MOSSY_STONE_TILES, buildingBlocksCategoryName));
+                ModConfig.ENABLE_MOSSY_STONE_TILES, buildingBlocksCategoryName, enableStoneTiles));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
                 ModConfig.ENABLE_WOODCUTTER, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,

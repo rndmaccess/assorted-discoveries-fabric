@@ -76,14 +76,18 @@ public class ModConfigScreen {
                 ModConfig.ENABLE_QUARTZ_TILES, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
                 ModConfig.ENABLE_QUARTZ_WALLS, buildingBlocksCategoryName));
+
+        BooleanListEntry enableBauxite = makeToggleableConfigEntry(entryBuilder,
+                ModConfig.ENABLE_BAUXITE, buildingBlocksCategoryName);
+        BooleanListEntry enableBauxiteBricks = makeToggleableConfigEntry(entryBuilder,
+                ModConfig.ENABLE_BAUXITE_BRICKS, buildingBlocksCategoryName, enableBauxite);
+
+        buildingScreenCategory.addEntry(enableBauxite);
+        buildingScreenCategory.addEntry(enableBauxiteBricks);
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_BAUXITE, buildingBlocksCategoryName));
+                ModConfig.ENABLE_CRACKED_BAUXITE_BRICKS, buildingBlocksCategoryName, enableBauxite, enableBauxiteBricks));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_BAUXITE_BRICKS, buildingBlocksCategoryName));
-        buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_CRACKED_BAUXITE_BRICKS, buildingBlocksCategoryName));
-        buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_MOSSY_BAUXITE_BRICKS, buildingBlocksCategoryName));
+                ModConfig.ENABLE_MOSSY_BAUXITE_BRICKS, buildingBlocksCategoryName, enableBauxite, enableBauxiteBricks));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
                 ModConfig.ENABLE_STONE_TILES, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
@@ -398,40 +402,59 @@ public class ModConfigScreen {
 
     @SuppressWarnings("UnstableApiUsage")
     private static BooleanListEntry makeToggleableConfigEntry(ConfigEntryBuilder entryBuilder, BooleanConfigEntry entry,
-                                                              String categoryName, BooleanListEntry dependency) {
+                                                              String categoryName, BooleanListEntry... dependencies) {
         final String entryName = entry.getName();
         final boolean entryValue = entry.getValue();
         Text requirementText = makeEntryRequirementText(categoryName, entryName);
-        Supplier<Optional<Text[]>> requirementTooltip = getRequirementToolTip(dependency, requirementText);
+        Supplier<Optional<Text[]>> requirementTooltip = getRequirementToolTip(requirementText, dependencies);
         Text displayText = makeEntryText(categoryName, entryName);
+        Requirement[] requirements = getTrueRequirements(dependencies);
 
         return entryBuilder.startBooleanToggle(displayText, entryValue)
                 .setSaveConsumer(newValue -> {
                     if (entryValue != newValue) {
                         ENTRY_VALUE_CHANGES.put(entryName, newValue);
                     }
-                }).setDefaultValue(true).requireRestart()
-                .setRequirement(Requirement.isTrue(dependency))
-                .setTooltipSupplier(requirementTooltip)
-                .build();
+                }).setDefaultValue(true).requireRestart().setRequirement(Requirement.all(requirements))
+                .setTooltipSupplier(requirementTooltip).build();
     }
 
     /**
-     * @param dependency The dependency to check.
+     * @param dependencies The dependencies to check.
      * @param requirementText The tooltip text to display when the requirement is met.
      * @return If the requirement is met the tooltip to show otherwise nothing.
      */
     @SuppressWarnings("UnstableApiUsage")
-    private static Supplier<Optional<Text[]>> getRequirementToolTip(BooleanListEntry dependency, Text requirementText) {
+    private static Supplier<Optional<Text[]>> getRequirementToolTip(Text requirementText, BooleanListEntry... dependencies) {
         return () -> {
-            Requirement requirement = Requirement.isFalse(dependency);
+            Requirement[] requirements = getFalseRequirements(dependencies);
             Text[] requirementTextArray = new Text[]{requirementText};
 
-            if(requirement.check()) {
+            if(Requirement.any(requirements).check()) {
                 return Optional.of(requirementTextArray);
             }
             return Optional.empty();
         };
+    }
+
+    @SuppressWarnings("UnstableApiUsage")
+    private static Requirement[] getTrueRequirements(BooleanListEntry... dependencies) {
+        ArrayList<Requirement> requirementsList = new ArrayList<>();
+
+        for (BooleanListEntry dependency : dependencies) {
+            requirementsList.add(Requirement.isTrue(dependency));
+        }
+        return requirementsList.toArray(Requirement[]::new);
+    }
+
+    @SuppressWarnings("UnstableApiUsage")
+    private static Requirement[] getFalseRequirements(BooleanListEntry... dependencies) {
+        ArrayList<Requirement> requirementsList = new ArrayList<>();
+
+        for (BooleanListEntry dependency : dependencies) {
+            requirementsList.add(Requirement.isFalse(dependency));
+        }
+        return requirementsList.toArray(Requirement[]::new);
     }
 
     private static Text makeEntryText(String categoryName, String entryName) {

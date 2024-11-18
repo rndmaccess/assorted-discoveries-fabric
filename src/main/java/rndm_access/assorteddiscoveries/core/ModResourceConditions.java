@@ -129,6 +129,10 @@ public class ModResourceConditions {
         registerEntry("enable_smoky_quartz_bricks", ModConfig.ENABLE_SMOKY_QUARTZ_BRICKS.getValue());
         registerEntry("enable_smooth_smoky_quartz", ModConfig.ENABLE_SMOOTH_SMOKY_QUARTZ.getValue());
         registerEntry("enable_quartz_tiles", ModConfig.ENABLE_QUARTZ_TILES.getValue());
+        registerEntry("enable_bauxite", ModConfig.ENABLE_BAUXITE.getValue());
+        registerEntry("enable_bauxite_bricks", ModConfig.ENABLE_BAUXITE_BRICKS.getValue());
+        registerEntry("enable_mossy_bauxite_bricks", ModConfig.ENABLE_MOSSY_BAUXITE_BRICKS.getValue());
+        registerEntry("enable_cracked_bauxite_bricks", ModConfig.ENABLE_CRACKED_BAUXITE_BRICKS.getValue());
     }
 
     static {

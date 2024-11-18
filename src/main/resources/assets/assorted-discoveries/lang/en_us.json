@@ -538,6 +538,10 @@
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_cracked_calcite_bricks": "Enable Cracked Calcite Bricks",
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_mossy_calcite_bricks": "Enable Mossy Calcite Bricks",
 
+  "requirement.cloth-config.assorted-discoveries.option.building_blocks.enable_bauxite_bricks": "Requires Bauxite",
+  "requirement.cloth-config.assorted-discoveries.option.building_blocks.enable_mossy_bauxite_bricks": "Requires Bauxite And Bauxite Bricks",
+  "requirement.cloth-config.assorted-discoveries.option.building_blocks.enable_cracked_bauxite_bricks": "Requires Bauxite And Bauxite Bricks",
+
   "requirement.cloth-config.assorted-discoveries.option.building_blocks.enable_cracked_calcite_bricks": "Disabled by Enable Calcite Bricks",
 
   "category.cloth-config.assorted-discoveries.option.structures": "Structures",

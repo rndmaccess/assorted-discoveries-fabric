@@ -638,33 +638,39 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ModItems.QUARTZ_TILE_WALL);
                     }
 
+                    // TODO: Finish implementing the enable_quartz_walls config entry so recipes can be disabled!
+                    //        Maybe split this entry into enable_quartz_wall and enable_smooth_quartz_wall.
                     if (ModConfig.ENABLE_QUARTZ_WALLS.getValue()) {
                         entries.add(ModItems.QUARTZ_WALL);
                         entries.add(ModItems.SMOOTH_QUARTZ_WALL);
                     }
 
-                    if (ModConfig.ENABLE_BAUXITE.getValue()) {
+                    boolean bauxiteEnabled = ModConfig.ENABLE_BAUXITE.getValue();
+
+                    if (bauxiteEnabled) {
                         entries.add(ModItems.BAUXITE);
                         entries.add(ModItems.BAUXITE_SLAB);
                         entries.add(ModItems.BAUXITE_STAIRS);
                         entries.add(ModItems.BAUXITE_WALL);
                     }
 
-                    if (ModConfig.ENABLE_BAUXITE_BRICKS.getValue()) {
+                    boolean bauxiteBricksEnabled = ModConfig.ENABLE_BAUXITE_BRICKS.getValue();
+
+                    if (bauxiteEnabled && bauxiteBricksEnabled) {
                         entries.add(ModItems.BAUXITE_BRICKS);
                         entries.add(ModItems.BAUXITE_BRICK_STAIRS);
                         entries.add(ModItems.BAUXITE_BRICK_SLAB);
                         entries.add(ModItems.BAUXITE_BRICK_WALL);
                     }
 
-                    if (ModConfig.ENABLE_CRACKED_BAUXITE_BRICKS.getValue()) {
+                    if (bauxiteEnabled && bauxiteBricksEnabled && ModConfig.ENABLE_CRACKED_BAUXITE_BRICKS.getValue()) {
                         entries.add(ModItems.CRACKED_BAUXITE_BRICKS);
                         entries.add(ModItems.CRACKED_BAUXITE_BRICK_STAIRS);
                         entries.add(ModItems.CRACKED_BAUXITE_BRICK_SLAB);
                         entries.add(ModItems.CRACKED_BAUXITE_BRICK_WALL);
                     }
 
-					if (ModConfig.ENABLE_MOSSY_BAUXITE_BRICKS.getValue()) {
+					if (bauxiteEnabled && bauxiteBricksEnabled && ModConfig.ENABLE_MOSSY_BAUXITE_BRICKS.getValue()) {
                         entries.add(ModItems.MOSSY_BAUXITE_BRICKS);
                         entries.add(ModItems.MOSSY_BAUXITE_BRICK_STAIRS);
                         entries.add(ModItems.MOSSY_BAUXITE_BRICK_SLAB);

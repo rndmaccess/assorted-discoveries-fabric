@@ -5,5 +5,24 @@
   },
   "result": "assorted-discoveries:cracked_bauxite_bricks",
   "experience": 0.1,
-  "cookingtime": 200
+  "cookingtime": 200,
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:and",
+      "values": [
+        {
+          "condition": "assorted-discoveries:config_entry_enabled",
+          "value": "assorted-discoveries:enable_bauxite_bricks"
+        },
+        {
+          "condition": "assorted-discoveries:config_entry_enabled",
+          "value": "assorted-discoveries:enable_cracked_bauxite_bricks"
+        },
+        {
+          "condition": "assorted-discoveries:config_entry_enabled",
+          "value": "assorted-discoveries:enable_bauxite"
+        }
+      ]
+    }
+  ]
 }

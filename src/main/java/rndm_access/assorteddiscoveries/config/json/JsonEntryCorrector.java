@@ -22,6 +22,11 @@ public class JsonEntryCorrector {
     }
 
     public void correct(Map<String, Token> errorList) {
+        // Exit if there are no entries to correct!
+        if (errorList.isEmpty()) {
+            return;
+        }
+
         for (ConfigCategory category : config.getCategories()) {
             if (category.hasSubCategories()) {
                 this.correctSubcategoryEntries(errorList, category);
@@ -55,19 +60,19 @@ public class JsonEntryCorrector {
     private void correctEntryValue(Map<String, Token> errorList, ConfigCategory category, String entryName) {
         if (category.hasEntry(entryName)) {
             Token errorToken = errorList.get(entryName);
-            int errorLine = errorToken.getLine();
+            int lineNum = errorToken.getLine();
             int errorStart = errorToken.getStart();
             int errorEnd = errorToken.getEnd();
             String errorValue = errorToken.getValue();
             Object defaultValue = category.getEntry(entryName).getValue();
-            String line = fileContent.get(errorLine);
+            String line = fileContent.get(lineNum);
             String startLine = line.substring(0, errorStart);
             String endLine = line.substring(errorEnd);
 
-            fileContent.set(errorLine, startLine + defaultValue + endLine); // Correct the entry's value!
+            fileContent.set(lineNum, startLine + defaultValue + endLine); // Correct the entry's value!
 
-            AssortedDiscoveries.LOGGER.warn("Could not load value {} for entry \"{}\", correcting to {}.",
-                    errorValue, entryName, defaultValue);
+            AssortedDiscoveries.LOGGER.warn("Could not load value {} for entry \"{}\", correcting to {} at line {}.",
+                    errorValue, entryName, defaultValue, lineNum);
         }
     }
 }

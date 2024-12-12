@@ -7,26 +7,22 @@ import rndm_access.assorteddiscoveries.config.json.tokenizer.Token;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Map;
 
 public class JsonEntryCorrector {
-    private final List<String> fileContent;
     private final JsonConfig config;
     private final Path configPath;
+    private final List<String> fileContent;
 
-    public JsonEntryCorrector(JsonConfig config, Path configPath) {
-        this.fileContent = config.getFileContent();
+    public JsonEntryCorrector(List<String> fileContent, JsonConfig config, Path configPath) {
         this.config = config;
         this.configPath = configPath;
+        this.fileContent = fileContent;
     }
 
     public void correct(Map<String, Token> errorList) {
-        // Exit if there are no entries to correct!
-        if (errorList.isEmpty()) {
-            return;
-        }
-
         for (ConfigCategory category : config.getCategories()) {
             if (category.hasSubCategories()) {
                 this.correctSubcategoryEntries(errorList, category);
@@ -35,7 +31,10 @@ public class JsonEntryCorrector {
         }
 
         try {
-            Files.write(configPath, fileContent);
+            // To prevent partial files we first save it to a temporary file, then replace the config file!
+            Path tempFile = Files.createTempFile(configPath.getFileName().toString(), null);
+            Files.write(tempFile, fileContent);
+            Files.move(tempFile, configPath, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             throw new RuntimeException("Could not correct the config!", e);
         }

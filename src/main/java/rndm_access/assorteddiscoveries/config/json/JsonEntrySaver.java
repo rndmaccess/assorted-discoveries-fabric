@@ -1,119 +1,89 @@
 package rndm_access.assorteddiscoveries.config.json;
 
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
-import rndm_access.assorteddiscoveries.config.json.parser.ConfigCategory;
 import rndm_access.assorteddiscoveries.config.json.parser.entries.AbstractConfigEntry;
 
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.*;
 
 public class JsonEntrySaver {
-    private final JsonConfig config;
     private final Path configPath;
-    private final List<String> fileContent;
 
-    public JsonEntrySaver(JsonConfig config, Path configPath) {
-        this.config = config;
+    public JsonEntrySaver(Path configPath) {
         this.configPath = configPath;
-        this.fileContent = config.getFileContent();
     }
 
-    public void save(Map<String, Object> entryList) throws IOException {
-        for (ConfigCategory category : config.getCategories()) {
-            this.saveEntries(entryList, category);
+    public void save(Map<AbstractConfigEntry<?>, Object> entryList) {
+        List<String> newContent = new ArrayList<>();
+
+        this.saveEntries(newContent, entryList);
+
+        // To prevent partial files we first save it to a temporary file, then replace the config file!
+        try {
+            Path tempFile = Files.createTempFile(configPath.getFileName().toString(), null);
+            Files.write(tempFile, newContent);
+            Files.move(tempFile, configPath, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to save the file!", e);
         }
-        Files.write(configPath, fileContent);
     }
 
-    private void saveEntries(Map<String, Object> entryList, ConfigCategory category) {
-        if (category.hasSubCategories()) {
-            for (ConfigCategory subCategory : category.getSubcategories()) {
-                this.saveEntries(entryList, subCategory);
+    private void saveEntries(List<String> fileContent, Map<AbstractConfigEntry<?>, Object> entryList) {
+        try (BufferedReader reader = Files.newBufferedReader(configPath)) {
+            String lineContent;
+            int lineNum = 0;
+            this.removeMissingEntries(entryList);
+            while ((lineContent = reader.readLine()) != null) {
+                String line = this.getLine(entryList, lineContent, lineNum);
+                fileContent.add(line);
+                lineNum++;
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to read the file!", e);
+        }
+    }
+
+    private void removeMissingEntries(Map<AbstractConfigEntry<?>, Object> entryList) {
+        List<AbstractConfigEntry<?>> entries = new ArrayList<>(entryList.keySet());
+
+        for (AbstractConfigEntry<?> entry : entries) {
+            String entryName = entry.getName();
+            int entryLine = entry.getLine();
+
+            if (entryLine == -1) {
+                AssortedDiscoveries.LOGGER.error("Failed to save the entry {} because it is missing in the config!",
+                        entryName);
+                entryList.remove(entry);
             }
         }
-        this.saveEntry(entryList, category);
     }
 
-    private void saveEntry(Map<String, Object> entryList, ConfigCategory category) {
-        for (String entryName : entryList.keySet()) {
-            Object value = entryList.get(entryName);
+    private String getLine(Map<AbstractConfigEntry<?>, Object> entryList, String lineContent, int lineNum) {
+        for (AbstractConfigEntry<?> entry : entryList.keySet()) {
+            Object value = entryList.get(entry);
+            String entryName = entry.getName();
+            int entryLine = entry.getLine();
 
-            if (!category.hasEntry(entryName)) {
-                continue;
-            }
-
-            if (category.getEndLine() == -1) {
-                AssortedDiscoveries.LOGGER.error("Could not save entry {}, because category {} does not exist!",
-                        entryName, category.getName());
-                continue;
-            }
-
-            AbstractConfigEntry<?> entry = category.getEntry(entryName);
-            int line = entry.getLine();
-
-            if (line == -1) {
-                this.insertEntryLine(entryName, value, category);
-            } else {
-                this.updateEntryLine(entryName, value, category);
+            if (lineNum == entryLine) {
+                return this.getUpdatedLine(lineContent, entryName, value, entry);
             }
         }
+        return lineContent;
     }
 
-    private void insertEntryLine(String entryName, Object value, ConfigCategory category) {
-        int line = category.getEndLine() - 1;
-        String entryLine = fileContent.get(line);
-        String valueStr = value.toString();
-        StringBuilder newLineContent = new StringBuilder(entryLine);
-
-        if (entryLine.isEmpty()) {
-            AssortedDiscoveries.LOGGER.error("Failed to save the entry because the config is empty!");
-            return;
-        }
-
-        char lastChar = entryLine.charAt(entryLine.length() - 1);
-        String leadingWhitespace = this.getWhitespace(entryLine);
-
-        if (lastChar != '{') {
-            newLineContent.append(",");
-        }
-
-        newLineContent.append("\n").append(leadingWhitespace);
-        newLineContent.append("\"").append(entryName).append("\": ");
-        newLineContent.append(valueStr);
-
-        fileContent.set(line, newLineContent.toString());
-
-        AssortedDiscoveries.LOGGER.warn("Couldn't find the entry in category \"{}\", adding entry \"{}\"",
-                category.getName(), entryName);
-    }
-
-    private void updateEntryLine(String entryName, Object value, ConfigCategory category) {
-        AbstractConfigEntry<?> entry = category.getEntry(entryName);
-        int line = entry.getLine();
-
+    private String getUpdatedLine(String lineContent, String entryName, Object value, AbstractConfigEntry<?> entry) {
         if (!Objects.equals(entry.getValue(), value)) {
             int start = entry.getStart();
             int end = entry.getEnd();
-            String entryLine = fileContent.get(line);
-            String startStr = entryLine.substring(0, start);
-            String endStr = entryLine.substring(end);
+            String startStr = lineContent.substring(0, start);
+            String endStr = lineContent.substring(end);
             String valueStr = value.toString();
-            String newLineContent = startStr + "\"" + entryName + "\": " + valueStr + endStr;
 
-            fileContent.set(line, newLineContent);
+            return startStr + "\"" + entryName + "\": " + valueStr + endStr;
         }
-    }
-
-    private String getWhitespace(String line) {
-        StringBuilder builder = new StringBuilder();
-        int i = 0;
-
-        while (Character.isWhitespace(line.charAt(i))) {
-            builder.append(line.charAt(i));
-            i++;
-        }
-        return builder.toString();
+        return lineContent;
     }
 }

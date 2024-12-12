@@ -19,8 +19,8 @@ public class JsonParser {
     private final Path configPath;
     private final Map<String, Token> entryErrors;
 
-    public JsonParser(JsonConfig config, Path configPath) {
-        this.tokenList = new JsonTokenizer(config.getFileContent()).tokenize();
+    public JsonParser(List<String> source, JsonConfig config, Path configPath) {
+        this.tokenList = new JsonTokenizer(source).tokenize();
         this.config = config;
         this.configPath = configPath;
         this.entryErrors = new HashMap<>();

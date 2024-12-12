@@ -1,10 +1,14 @@
 package rndm_access.assorteddiscoveries.config.json;
 
 import rndm_access.assorteddiscoveries.config.json.exceptions.JsonConfigException;
+import rndm_access.assorteddiscoveries.config.json.parser.JsonParser;
 import rndm_access.assorteddiscoveries.config.json.parser.entries.AbstractConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.parser.ConfigCategory;
 import rndm_access.assorteddiscoveries.config.json.parser.ConfigObject;
+import rndm_access.assorteddiscoveries.config.json.tokenizer.Token;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
@@ -13,13 +17,11 @@ public class JsonConfig {
     private final HashMap<String, ConfigCategory> categories;
     private ConfigType type;
     private Path path;
-    private List<String> fileContent;
 
     protected JsonConfig(Builder builder) {
         this.categories = builder.categories;
         this.path = null;
         this.type = ConfigType.NONE;
-        this.fileContent = new LinkedList<>();
     }
 
     public ConfigType getType() {
@@ -38,14 +40,6 @@ public class JsonConfig {
         this.path = path;
     }
 
-    public List<String> getFileContent() {
-        return fileContent;
-    }
-
-    public void setFileContent(List<String> fileContent) {
-        this.fileContent = fileContent;
-    }
-
     public ConfigCategory getCategory(String name) {
         if(!this.hasCategory(name)) {
             throw new NoSuchElementException("The config does not have category " + name);
@@ -61,22 +55,46 @@ public class JsonConfig {
         return categories.values();
     }
 
-    public void load() {
+    public void loadAndCorrect() {
         if (path == null || !Files.exists(path)) {
             throw new JsonConfigException("Couldn't load the config because it does not exist!");
         }
 
-        JsonConfigSerializer serializer = new JsonConfigSerializer(this, path);
-        serializer.deserializeConfig();
+        try {
+            List<String> source = Files.readAllLines(path);
+
+            JsonParser parser = new JsonParser(source, this, path);
+            parser.parse();
+
+            Map<String, Token> entryErrors = parser.getEntryErrors();
+
+            // Correct if there were any entry value errors found during parsing!
+            if (!entryErrors.isEmpty()) {
+                JsonEntryCorrector corrector = new JsonEntryCorrector(source, this, path);
+                corrector.correct(entryErrors);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public void save(Map<String, Object> entryChangeList) {
+    public void saveOrCreate(Map<AbstractConfigEntry<?>, Object> entryChangeList) {
         if (path == null) {
             throw new JsonConfigException("The config path has not been set!");
         }
 
-        JsonConfigSerializer serializer = new JsonConfigSerializer(this, path);
-        serializer.serializeConfig(entryChangeList);
+        if (!Files.exists(path)) {
+            try (BufferedWriter writer = Files.newBufferedWriter(path)) {
+                String configContent = this.createFileContent();
+                writer.write(configContent);
+            } catch (IOException e) {
+                throw new JsonConfigException("Failed to create the config!");
+            }
+        } else {
+            JsonEntrySaver entrySaver = new JsonEntrySaver(path);
+            // If the config file exists then save specific entries instead of overwriting the entire file!
+            entrySaver.save(entryChangeList);
+        }
     }
 
     public String createFileContent() {

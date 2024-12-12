@@ -130,11 +130,11 @@ public class ModConfig {
         CONFIG.setType(ConfigType.GLOBAL);
 
         if (Files.exists(GLOBAL_PATH)) {
-            CONFIG.load();
+            CONFIG.loadAndCorrect();
             AssortedDiscoveries.LOGGER.info("Loaded global config");
         } else {
-            CONFIG.save(null);
-            CONFIG.load();
+            CONFIG.saveOrCreate(null);
+            CONFIG.loadAndCorrect();
             AssortedDiscoveries.LOGGER.info("Created global config");
         }
 
@@ -146,7 +146,7 @@ public class ModConfig {
 
             if (CONFIG.getType().equals(ConfigType.GLOBAL) && Files.exists(worldPath)) {
                 CONFIG.setPath(worldPath);
-                CONFIG.load();
+                CONFIG.loadAndCorrect();
                 CONFIG.setType(ConfigType.LOCAL);
                 AssortedDiscoveries.LOGGER.info("Loaded world config for '{}'", worldPathFolder.getFileName());
             }
@@ -156,7 +156,7 @@ public class ModConfig {
         ServerWorldEvents.UNLOAD.register((phase, listener) -> {
             if (CONFIG.getType().equals(ConfigType.LOCAL)) {
                 CONFIG.setPath(GLOBAL_PATH);
-                CONFIG.load();
+                CONFIG.loadAndCorrect();
                 CONFIG.setType(ConfigType.GLOBAL);
                 AssortedDiscoveries.LOGGER.info("Loaded global config");
             }
@@ -190,8 +190,7 @@ public class ModConfig {
                 .addBooleanEntry(ENABLE_SHEEP_PLUSHIES)
                 .addBooleanEntry(ENABLE_SQUID_PLUSHIES)
                 .addBooleanEntry(ENABLE_STRIDER_PLUSHIES)
-                .addBooleanEntry(ENABLE_VILLAGER_PLUSHIES)
-                .build();
+                .addBooleanEntry(ENABLE_VILLAGER_PLUSHIES).build();
 
         ConfigCategory neutralPlushiesSubcategory = new ConfigCategory.Builder("neutral_plushies")
                 .addBooleanEntry(ENABLE_BEE_PLUSHIE)
@@ -200,8 +199,7 @@ public class ModConfig {
                 .addBooleanEntry(ENABLE_PIGLIN_PLUSHIES)
                 .addBooleanEntry(ENABLE_POLAR_BEAR_PLUSHIE)
                 .addBooleanEntry(ENABLE_SPIDER_PLUSHIE)
-                .addBooleanEntry(ENABLE_PALE_WOLF_PLUSHIE)
-                .build();
+                .addBooleanEntry(ENABLE_PALE_WOLF_PLUSHIE).build();
 
         ConfigCategory hostilePlushiesSubcategory = new ConfigCategory.Builder("hostile_plushies")
                 .addBooleanEntry(ENABLE_BLAZE_PLUSHIE)

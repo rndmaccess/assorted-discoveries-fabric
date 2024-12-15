@@ -75,22 +75,22 @@ public class JsonEntryCorrector {
         List<ConfigCategory> subCategories = categories.peek().getSubcategories();
         int size = subCategories.size() - 1;
 
-        while (true) {
-            // If this is true we can safely pop the category off the stack because it has no additional
-            // subcategories that we have not traversed yet!
-            if (!categories.isEmpty() && size == i) {
-                categories.pop();
+        while (!categories.isEmpty()) {
+            if (size != i) {
+                i++; // We increment i here to move onto the next subcategory in the list!
+                return i;
+            } else {
+                categories.pop(); // If we are here we can safely pop off this category
+                                  // because it has no untraversed subcategories!
                 i = 0;
 
                 if (!categories.isEmpty()) {
                     subCategories = categories.peek().getSubcategories();
                     size = subCategories.size() - 1;
                 }
-            } else {
-                i++; // We increment i here to move onto the next subcategory in the list!
-                return i;
             }
         }
+        return i;
     }
 
     private void correctEntries(Map<String, Token> errorList, ConfigCategory category) {

@@ -63,15 +63,20 @@ public class JsonConfig {
         try {
             List<String> source = Files.readAllLines(path);
 
-            JsonParser parser = new JsonParser(source, this, path);
+            JsonParser parser = new JsonParser(this, source, path);
             parser.parse();
 
             Map<String, Token> entryErrors = parser.getEntryErrors();
 
             // Correct if there were any entry value errors found during parsing!
             if (!entryErrors.isEmpty()) {
-                JsonEntryCorrector corrector = new JsonEntryCorrector(source, this, path);
+                JsonEntryCorrector corrector = new JsonEntryCorrector(this, source, path);
                 corrector.correct(entryErrors);
+
+                // Reparse the data after correcting it so when saving the state remains consistent!
+                source = Files.readAllLines(path);
+                parser = new JsonParser(this, source, path);
+                parser.parse();
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

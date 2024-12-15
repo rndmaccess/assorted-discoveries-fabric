@@ -17,7 +17,7 @@ public class JsonEntryCorrector {
     private final Path configPath;
     private final List<String> fileContent;
 
-    public JsonEntryCorrector(List<String> fileContent, JsonConfig config, Path configPath) {
+    public JsonEntryCorrector(JsonConfig config, List<String> fileContent, Path configPath) {
         this.config = config;
         this.configPath = configPath;
         this.fileContent = fileContent;

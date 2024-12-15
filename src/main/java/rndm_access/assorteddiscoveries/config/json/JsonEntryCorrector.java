@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayDeque;
 import java.util.List;
 import java.util.Map;
 
@@ -23,11 +24,19 @@ public class JsonEntryCorrector {
     }
 
     public void correct(Map<String, Token> errorList) {
-        for (ConfigCategory category : config.getCategories()) {
-            if (category.hasSubCategories()) {
-                this.correctSubcategoryEntries(errorList, category);
-            }
+        ArrayDeque<ConfigCategory> categories = new ArrayDeque<>();
+        List<ConfigCategory> configCategories = config.getCategories().stream().toList();
+        int configSize = configCategories.size();
+        int j = 0;
+
+        // Once this is true we have traversed the entire config file!
+        while (configSize != j) {
+            ConfigCategory category = configCategories.get(j);
+
+            categories.push(category);
             this.correctEntries(errorList, category);
+            this.correctSubcategories(category, categories, errorList);
+            j++;
         }
 
         try {
@@ -40,38 +49,68 @@ public class JsonEntryCorrector {
         }
     }
 
-    private void correctSubcategoryEntries(Map<String, Token> errorList, ConfigCategory category) {
-        for (ConfigCategory subcategory : category.getSubcategories()) {
+    private void correctSubcategories(ConfigCategory category, ArrayDeque<ConfigCategory> categories,
+                                      Map<String, Token> errorList) {
+        int i = 0;
 
-            if (subcategory.hasSubCategories()) {
-                this.correctSubcategoryEntries(errorList, category);
+        while (category.hasSubCategories() && !categories.isEmpty()) {
+            List<ConfigCategory> subCategories = categories.peek().getSubcategories();
+
+            assert categories.peek() != null;
+            if (categories.peek().hasSubCategories()) {
+                ConfigCategory subcategory = subCategories.get(i);
+
+                categories.push(subcategory);
+                this.correctEntries(errorList, subcategory);
+            } else {
+                categories.pop(); // This category has no sub-categories
+                                  // so we can pop it off safely!
+                i = popCategories(categories, i);
             }
-            this.correctEntries(errorList, subcategory);
+        }
+    }
+
+    private int popCategories(ArrayDeque<ConfigCategory> categories, int i) {
+        assert categories.peek() != null;
+        List<ConfigCategory> subCategories = categories.peek().getSubcategories();
+        int size = subCategories.size() - 1;
+
+        while (true) {
+            // If this is true we can safely pop the category off the stack because it has no additional
+            // subcategories that we have not traversed yet!
+            if (!categories.isEmpty() && size == i) {
+                categories.pop();
+                i = 0;
+
+                if (!categories.isEmpty()) {
+                    subCategories = categories.peek().getSubcategories();
+                    size = subCategories.size() - 1;
+                }
+            } else {
+                i++; // We increment i here to move onto the next subcategory in the list!
+                return i;
+            }
         }
     }
 
     private void correctEntries(Map<String, Token> errorList, ConfigCategory category) {
         for (String entryName : errorList.keySet()) {
-            this.correctEntryValue(errorList, category, entryName);
-        }
-    }
+            if (category.hasEntry(entryName)) {
+                Token errorToken = errorList.get(entryName);
+                int lineNum = errorToken.getLine();
+                int errorStart = errorToken.getStart();
+                int errorEnd = errorToken.getEnd();
+                String errorValue = errorToken.getValue();
+                Object defaultValue = category.getEntry(entryName).getValue();
+                String line = fileContent.get(lineNum);
+                String startLine = line.substring(0, errorStart);
+                String endLine = line.substring(errorEnd);
 
-    private void correctEntryValue(Map<String, Token> errorList, ConfigCategory category, String entryName) {
-        if (category.hasEntry(entryName)) {
-            Token errorToken = errorList.get(entryName);
-            int lineNum = errorToken.getLine();
-            int errorStart = errorToken.getStart();
-            int errorEnd = errorToken.getEnd();
-            String errorValue = errorToken.getValue();
-            Object defaultValue = category.getEntry(entryName).getValue();
-            String line = fileContent.get(lineNum);
-            String startLine = line.substring(0, errorStart);
-            String endLine = line.substring(errorEnd);
+                fileContent.set(lineNum, startLine + defaultValue + endLine); // Correct the entry's value!
 
-            fileContent.set(lineNum, startLine + defaultValue + endLine); // Correct the entry's value!
-
-            AssortedDiscoveries.LOGGER.warn("Could not load value {} for entry \"{}\", correcting to {} at line {}.",
-                    errorValue, entryName, defaultValue, lineNum);
+                AssortedDiscoveries.LOGGER.warn("Could not load value {} for entry \"{}\", correcting to {} at line {}.",
+                        errorValue, entryName, defaultValue, lineNum);
+            }
         }
     }
 }

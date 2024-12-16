@@ -2,7 +2,8 @@ package rndm_access.assorteddiscoveries.config.json;
 
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.json.parser.ConfigCategory;
-import rndm_access.assorteddiscoveries.config.json.tokenizer.Token;
+import rndm_access.assorteddiscoveries.config.json.parser.entries.AbstractConfigEntry;
+import rndm_access.assorteddiscoveries.config.json.parser.entries.ErrorConfigEntry;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -10,7 +11,6 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayDeque;
 import java.util.List;
-import java.util.Map;
 
 public class JsonEntryCorrector {
     private final JsonConfig config;
@@ -23,13 +23,13 @@ public class JsonEntryCorrector {
         this.fileContent = fileContent;
     }
 
-    public void correct(Map<String, Token> errorList) {
+    public void correct(List<ErrorConfigEntry> errorList) {
         ArrayDeque<ConfigCategory> categories = new ArrayDeque<>();
         List<ConfigCategory> configCategories = config.getCategories().stream().toList();
         int configSize = configCategories.size();
         int j = 0;
 
-        // Once this is true we have traversed the entire config file!
+        // Once this is true we have traversed and corrected the entire config file!
         while (configSize != j) {
             ConfigCategory category = configCategories.get(j);
 
@@ -50,7 +50,7 @@ public class JsonEntryCorrector {
     }
 
     private void correctSubcategories(ConfigCategory category, ArrayDeque<ConfigCategory> categories,
-                                      Map<String, Token> errorList) {
+                                      List<ErrorConfigEntry> errorList) {
         int i = 0;
 
         while (category.hasSubCategories() && !categories.isEmpty()) {
@@ -93,23 +93,30 @@ public class JsonEntryCorrector {
         return i;
     }
 
-    private void correctEntries(Map<String, Token> errorList, ConfigCategory category) {
-        for (String entryName : errorList.keySet()) {
-            if (category.hasEntry(entryName)) {
-                Token errorToken = errorList.get(entryName);
-                int lineNum = errorToken.getLine();
-                int errorStart = errorToken.getStart();
-                int errorEnd = errorToken.getEnd();
-                String errorValue = errorToken.getValue();
-                Object defaultValue = category.getEntry(entryName).getValue();
-                String line = fileContent.get(lineNum);
+    private void correctEntries(List<ErrorConfigEntry> errorList, ConfigCategory category) {
+        for (ErrorConfigEntry entryError : errorList) {
+            String errorName = entryError.getName();
+            String errorVal = String.valueOf(entryError.getValue());
+            int errorLine = entryError.getLine();
+            int errorStart = entryError.getStart();
+            int errorEnd = entryError.getEnd();
+
+            if (category.hasEntry(errorName)) {
+                AbstractConfigEntry<?> entry = category.getEntry(errorName);
+                Object defaultValue = entry.getValue();
+                String line = fileContent.get(errorLine);
                 String startLine = line.substring(0, errorStart);
                 String endLine = line.substring(errorEnd);
+                String correctedEntry = startLine + "\"" + errorName + "\"" + ": " + defaultValue;
+                int newEnd = correctedEntry.length();
 
-                fileContent.set(lineNum, startLine + defaultValue + endLine); // Correct the entry's value!
+                fileContent.set(errorLine, correctedEntry + endLine); // Correct the entry's value!
+                entry.setLine(errorLine);
+                entry.setStart(errorStart);
+                entry.setEnd(newEnd);
 
                 AssortedDiscoveries.LOGGER.warn("Could not load value {} for entry \"{}\", correcting to {} at line {}.",
-                        errorValue, entryName, defaultValue, lineNum);
+                        errorVal, errorName, defaultValue, errorLine);
             }
         }
     }

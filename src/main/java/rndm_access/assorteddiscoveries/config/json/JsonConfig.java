@@ -5,7 +5,7 @@ import rndm_access.assorteddiscoveries.config.json.parser.JsonParser;
 import rndm_access.assorteddiscoveries.config.json.parser.entries.AbstractConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.parser.ConfigCategory;
 import rndm_access.assorteddiscoveries.config.json.parser.ConfigObject;
-import rndm_access.assorteddiscoveries.config.json.tokenizer.Token;
+import rndm_access.assorteddiscoveries.config.json.parser.entries.ErrorConfigEntry;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -66,17 +66,19 @@ public class JsonConfig {
             JsonParser parser = new JsonParser(this, source, path);
             parser.parse();
 
-            Map<String, Token> entryErrors = parser.getEntryErrors();
+            List<ErrorConfigEntry> entryErrors = parser.getEntryErrors();
 
             // Correct if there were any entry value errors found during parsing!
             if (!entryErrors.isEmpty()) {
                 JsonEntryCorrector corrector = new JsonEntryCorrector(this, source, path);
                 corrector.correct(entryErrors);
 
+                /*
                 // Reparse the data after correcting it so when saving the state remains consistent!
                 source = Files.readAllLines(path);
                 parser = new JsonParser(this, source, path);
                 parser.parse();
+                */
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

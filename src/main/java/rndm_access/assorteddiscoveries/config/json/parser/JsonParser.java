@@ -17,16 +17,16 @@ public class JsonParser {
     private final TokenList tokenList;
     private final JsonConfig config;
     private final Path configPath;
-    private final Map<String, Token> entryErrors;
+    private final List<ErrorConfigEntry> entryErrors;
 
     public JsonParser(JsonConfig config, List<String> source, Path configPath) {
         this.tokenList = new JsonTokenizer(source).tokenize();
         this.config = config;
         this.configPath = configPath;
-        this.entryErrors = new HashMap<>();
+        this.entryErrors = new ArrayList<>();
     }
 
-    public Map<String, Token> getEntryErrors() {
+    public List<ErrorConfigEntry> getEntryErrors() {
         return entryErrors;
     }
 
@@ -145,7 +145,13 @@ public class JsonParser {
             Token errorToken = tokenList.consumeToken();
 
             if (category.hasEntry(entryName)) {
-                entryErrors.put(entryName, errorToken);
+                ErrorConfigEntry entry = new ErrorConfigEntry(entryName);
+                entry.setStart(keyToken.getStart());
+                entry.setEnd(errorToken.getEnd());
+                entry.setLine(errorToken.getLine());
+                entry.setValue(errorToken.getValue());
+
+                entryErrors.add(entry);
             } else {
                 String categoryName = category.getName();
                 int line = keyToken.getLine() + 1;

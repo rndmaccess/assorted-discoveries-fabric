@@ -72,13 +72,6 @@ public class JsonConfig {
             if (!entryErrors.isEmpty()) {
                 JsonEntryCorrector corrector = new JsonEntryCorrector(this, source, path);
                 corrector.correct(entryErrors);
-
-                /*
-                // Reparse the data after correcting it so when saving the state remains consistent!
-                source = Files.readAllLines(path);
-                parser = new JsonParser(this, source, path);
-                parser.parse();
-                */
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

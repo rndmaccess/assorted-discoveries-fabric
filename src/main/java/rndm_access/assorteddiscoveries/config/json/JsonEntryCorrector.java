@@ -116,7 +116,7 @@ public class JsonEntryCorrector {
                 entry.setEnd(newEnd);
 
                 AssortedDiscoveries.LOGGER.warn("Could not load value {} for entry \"{}\", correcting to {} at line {}.",
-                        errorVal, errorName, defaultValue, errorLine);
+                        errorVal, errorName, defaultValue, errorLine + 1);
             }
         }
     }

@@ -6,14 +6,14 @@ import me.shedaniel.clothconfig2.gui.entries.SubCategoryListEntry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import rndm_access.assorteddiscoveries.ADReference;
-import rndm_access.assorteddiscoveries.config.json.parser.entries.BooleanConfigEntry;
-import rndm_access.assorteddiscoveries.config.json.parser.entries.AbstractConfigEntry;
+import rndm_access.assorteddiscoveries.config.json.JsonConfig;
+import rndm_access.assorteddiscoveries.config.json.deserializer.entries.BooleanConfigEntry;
 
 import java.util.*;
 import java.util.function.Supplier;
 
 public class ModConfigScreen {
-    public static final HashMap<AbstractConfigEntry<?>, Object> ENTRY_VALUE_CHANGES;
+    public static final HashMap<String, Object> ENTRY_VALUE_CHANGES;
 
     public static ConfigBuilder getConfigScreenBuilder() {
         Text title = Text.translatable("title." + ADReference.MOD_ID + ".config");
@@ -195,8 +195,10 @@ public class ModConfigScreen {
                 ModConfig.RABBITS_SAFE_FALL_INCREASED, miscCategoryName));
 
         builder.setSavingRunnable(() -> {
-            ModConfig.CONFIG.saveOrCreate(ENTRY_VALUE_CHANGES);
-            ModConfig.CONFIG.loadAndCorrect();
+            JsonConfig config = ModConfig.makeModConfig();
+
+            config.save(ENTRY_VALUE_CHANGES);
+            config.load(); // Load the new changes into memory here!
         });
         return builder;
     }
@@ -385,7 +387,7 @@ public class ModConfigScreen {
         return entryBuilder.startBooleanToggle(displayText, entryValue)
                 .setSaveConsumer(newValue -> {
                     if (entryValue != newValue) {
-                        ENTRY_VALUE_CHANGES.put(entry, newValue);
+                        ENTRY_VALUE_CHANGES.put(entry.getName(), newValue);
                     }
                 }).setDefaultValue(true).requireRestart().build();
     }
@@ -399,7 +401,7 @@ public class ModConfigScreen {
         return entryBuilder.startBooleanToggle(displayText, entryValue)
                 .setSaveConsumer(newValue -> {
                     if (entryValue != newValue) {
-                        ENTRY_VALUE_CHANGES.put(entry, newValue);
+                        ENTRY_VALUE_CHANGES.put(entry.getName(), newValue);
                     }
                 }).setDefaultValue(true).requireRestart().build();
     }
@@ -417,7 +419,7 @@ public class ModConfigScreen {
         return entryBuilder.startBooleanToggle(displayText, entryValue)
                 .setSaveConsumer(newValue -> {
                     if (entryValue != newValue) {
-                        ENTRY_VALUE_CHANGES.put(entry, newValue);
+                        ENTRY_VALUE_CHANGES.put(entry.getName(), newValue);
                     }
                 }).setDefaultValue(true).requireRestart().setRequirement(Requirement.all(requirements))
                 .setTooltipSupplier(requirementTooltip).build();

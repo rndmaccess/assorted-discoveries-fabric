@@ -1,33 +1,27 @@
-package rndm_access.assorteddiscoveries.config.json.parser;
+package rndm_access.assorteddiscoveries.config.json.deserializer;
 
 import org.jetbrains.annotations.Nullable;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.json.JsonConfig;
 import rndm_access.assorteddiscoveries.config.json.exceptions.JsonSyntaxException;
-import rndm_access.assorteddiscoveries.config.json.parser.entries.*;
+import rndm_access.assorteddiscoveries.config.json.deserializer.entries.*;
 import rndm_access.assorteddiscoveries.config.json.tokenizer.Token;
 import rndm_access.assorteddiscoveries.config.json.tokenizer.TokenList;
 import rndm_access.assorteddiscoveries.config.json.tokenizer.JsonTokenizer;
 import rndm_access.assorteddiscoveries.config.json.tokenizer.TokenType;
 
+import java.io.IOException;
 import java.nio.file.Path;
-import java.util.*;
 
-public class JsonParser {
+public class JsonDeserializer {
     private final TokenList tokenList;
     private final JsonConfig config;
     private final Path configPath;
-    private final List<ErrorConfigEntry> entryErrors;
 
-    public JsonParser(JsonConfig config, List<String> source, Path configPath) {
-        this.tokenList = new JsonTokenizer(source).tokenize();
+    public JsonDeserializer(JsonConfig config, Path configPath) throws IOException {
+        this.tokenList = new JsonTokenizer(configPath).tokenize();
         this.config = config;
         this.configPath = configPath;
-        this.entryErrors = new ArrayList<>();
-    }
-
-    public List<ErrorConfigEntry> getEntryErrors() {
-        return entryErrors;
     }
 
     public void parse() {
@@ -44,7 +38,7 @@ public class JsonParser {
 
     private void parse(ConfigCategory category) {
         while (tokenList.hasNextToken() && !tokenList.match(TokenType.RIGHT_CURLY)) {
-            Token keyToken = requireToken(TokenType.STRING);
+            Token keyToken = requireToken(TokenType.KEY);
             requireToken(TokenType.COLON);
 
             if (tokenList.matchAndConsume(TokenType.LEFT_CURLY)) {
@@ -63,8 +57,7 @@ public class JsonParser {
         }
 
         if (category != null) {
-            Token token = requireToken(TokenType.RIGHT_CURLY);
-            category.setEndLine(token.getLine());
+            requireToken(TokenType.RIGHT_CURLY);
         } else {
             requireToken(TokenType.RIGHT_CURLY);
 
@@ -84,12 +77,22 @@ public class JsonParser {
         }
     }
 
+    /**
+     * @param input The input to trim!
+     * @return The input without extra surrounding quotes if there are any otherwise the input itself.
+     */
+    private String parseJsonString(String input) {
+        if (input.charAt(0) == '"' && input.charAt(input.length() - 1) == '"') {
+            return input.substring(1, input.length() - 1);
+        }
+        return input;
+    }
+
     private void parseCategory(Token keyToken) {
-        String categoryName = keyToken.getValue();
+        String categoryName = parseJsonString(keyToken.getValue());
 
         if (config.hasCategory(categoryName)) {
             ConfigCategory category = config.getCategory(categoryName);
-            category.setStartLine(keyToken.getLine());
 
             parse(category);
         } else {
@@ -101,11 +104,10 @@ public class JsonParser {
     }
 
     private void parseSubCategory(Token keyToken, ConfigCategory category) {
-        String subcategoryName = keyToken.getValue();
+        String subcategoryName = parseJsonString(keyToken.getValue());
 
         if (category.hasSubcategory(subcategoryName)) {
             ConfigCategory subCategory = category.getSubcategory(subcategoryName);
-            subCategory.setStartLine(keyToken.getLine());
             parse(subCategory);
         } else {
             String categoryName = category.getName();
@@ -130,7 +132,7 @@ public class JsonParser {
     }
 
     private void parseEntry(Token keyToken, ConfigCategory category) {
-        String entryName = keyToken.getValue();
+        String entryName = parseJsonString(keyToken.getValue());
 
         // Skip the entry if it is not in any categories!
         if (category == null) {
@@ -142,44 +144,30 @@ public class JsonParser {
         }
 
         if (tokenList.match(TokenType.ERROR)) {
-            Token errorToken = tokenList.consumeToken();
+            String errorVal = tokenList.consumeToken().getValue();
+            String categoryName = category.getName();
+            int line = keyToken.getLine() + 1;
 
             if (category.hasEntry(entryName)) {
-                ErrorConfigEntry entry = new ErrorConfigEntry(entryName);
-                entry.setStart(keyToken.getStart());
-                entry.setEnd(errorToken.getEnd());
-                entry.setLine(errorToken.getLine());
-                entry.setValue(errorToken.getValue());
+                Object defaultVal = category.getEntry(entryName).getValue();
 
-                entryErrors.add(entry);
+                logEntryError(entryName, errorVal, defaultVal, categoryName, line);
             } else {
-                String categoryName = category.getName();
-                int line = keyToken.getLine() + 1;
-
                 logInvalidEntry(entryName, categoryName, line);
             }
         } else {
             if (category.hasBooleanEntry(entryName)) {
-                Token boolToken = requireToken(TokenType.BOOL);
+                Token boolToken = requireToken(TokenType.VALUE);
                 BooleanConfigEntry entry = category.getBooleanEntry(entryName);
-                entry.setLine(boolToken.getLine());
-                entry.setStart(keyToken.getStart());
-                entry.setEnd(boolToken.getEnd());
                 entry.setValue(Boolean.valueOf(boolToken.getValue()));
             } else if (category.hasIntegerEntry(entryName)) {
-                Token intToken = requireToken(TokenType.INT);
+                Token intToken = requireToken(TokenType.VALUE);
                 IntegerConfigEntry entry = category.getIntegerEntry(entryName);
-                entry.setLine(intToken.getLine());
-                entry.setStart(keyToken.getStart());
-                entry.setEnd(intToken.getEnd());
                 entry.setValue(Integer.valueOf(intToken.getValue()));
             } else if (category.hasStringEntry(entryName)) {
-                Token stringToken = requireToken(TokenType.STRING);
+                Token stringToken = requireToken(TokenType.VALUE);
                 StringConfigEntry entry = category.getStringEntry(entryName);
-                entry.setLine(stringToken.getLine());
-                entry.setStart(keyToken.getStart());
-                entry.setEnd(stringToken.getEnd());
-                entry.setValue(stringToken.getValue());
+                entry.setValue(parseJsonString(stringToken.getValue()));
             } else {
                 String categoryName = category.getName();
                 int line = keyToken.getLine() + 1;
@@ -195,6 +183,16 @@ public class JsonParser {
             throw new JsonSyntaxException(getSyntaxErrorMessage(types));
         }
         return tokenList.consumeToken();
+    }
+
+    private void logEntryError(String entryName, String value, Object defaultVal, @Nullable String categoryName, int line) {
+        if (categoryName == null) {
+            AssortedDiscoveries.LOGGER.error("Could not load value {} for config entry \"{}\" on line {}! " +
+                    "Using default value: {}!", value, entryName, line, defaultVal);
+        } else {
+            AssortedDiscoveries.LOGGER.error("Could not load value {} for config entry \"{}\" in category \"{}\" " +
+                    "on line {}! Using default value: {}!", value, entryName, categoryName, line, defaultVal);
+        }
     }
 
     private void logInvalidEntry(String entryName, @Nullable String categoryName, int line) {
@@ -232,7 +230,7 @@ public class JsonParser {
             Token currentToken = tokenList.get();
 
             message.append(", got ");
-            if (tokenList.match(TokenType.STRING, TokenType.INT, TokenType.BOOL)) {
+            if (tokenList.match(TokenType.VALUE)) {
                 message.append("'").append(currentToken.getType().asString()).append("'");
                 message.append(" with value ").append("'").append(currentToken.getValue()).append("'");
             } else {

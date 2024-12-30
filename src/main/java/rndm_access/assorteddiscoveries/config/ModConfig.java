@@ -2,12 +2,13 @@ package rndm_access.assorteddiscoveries.config;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.WorldSavePath;
 import rndm_access.assorteddiscoveries.ADReference;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.json.*;
-import rndm_access.assorteddiscoveries.config.json.parser.entries.BooleanConfigEntry;
-import rndm_access.assorteddiscoveries.config.json.parser.ConfigCategory;
+import rndm_access.assorteddiscoveries.config.json.deserializer.entries.BooleanConfigEntry;
+import rndm_access.assorteddiscoveries.config.json.deserializer.ConfigCategory;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -123,52 +124,64 @@ public class ModConfig {
     public static final BooleanConfigEntry ENABLE_CALCITE_BRICKS;
     public static final BooleanConfigEntry ENABLE_CRACKED_CALCITE_BRICKS;
     public static final BooleanConfigEntry ENABLE_MOSSY_CALCITE_BRICKS;
-    public static final JsonConfig CONFIG;
 
     public static void initializeConfig() {
-        CONFIG.setPath(GLOBAL_PATH);
-        CONFIG.setType(ConfigType.GLOBAL);
+        JsonConfig config = makeModConfig();
 
         if (Files.exists(GLOBAL_PATH)) {
-            CONFIG.loadAndCorrect();
-            AssortedDiscoveries.LOGGER.info("Loaded global config");
+            loadGlobalConfig(config);
         } else {
-            CONFIG.saveOrCreate(null);
-            CONFIG.loadAndCorrect();
-            AssortedDiscoveries.LOGGER.info("Created global config");
+            createGlobalConfig(config);
         }
 
         // When loading the world load the config for that world if there is one!
         ServerWorldEvents.LOAD.register((phase, listener) -> {
-            Path worldPathFolder = phase.getSavePath(WorldSavePath.ROOT).getParent();
-            Path worldPath = Path.of(worldPathFolder.toString() + "/config/")
-                    .resolve(ADReference.MOD_ID + ".json5");
+            ConfigType type = config.getType();
 
-            if (CONFIG.getType().equals(ConfigType.GLOBAL) && Files.exists(worldPath)) {
-                CONFIG.setPath(worldPath);
-                CONFIG.loadAndCorrect();
-                CONFIG.setType(ConfigType.LOCAL);
-                AssortedDiscoveries.LOGGER.info("Loaded world config for '{}'", worldPathFolder.getFileName());
+            if (type == ConfigType.GLOBAL || type == ConfigType.NONE) {
+                loadLocalConfig(phase, config);
             }
         });
 
         // After unloading the world reload the global config!
         ServerWorldEvents.UNLOAD.register((phase, listener) -> {
-            if (CONFIG.getType().equals(ConfigType.LOCAL)) {
-                CONFIG.setPath(GLOBAL_PATH);
-                CONFIG.loadAndCorrect();
-                CONFIG.setType(ConfigType.GLOBAL);
-                AssortedDiscoveries.LOGGER.info("Loaded global config");
+            ConfigType type = config.getType();
+
+            if (type == ConfigType.LOCAL || type == ConfigType.NONE) {
+                loadGlobalConfig(config);
             }
         });
     }
 
-    /**
-     * @return A config with all entries set to their default values!
-     */
-    private static JsonConfig makeConfig() {
-        JsonConfig.Builder configBuilder = new JsonConfig.Builder();
+    private static void loadLocalConfig(MinecraftServer phase, JsonConfig config) {
+        Path worldPathFolder = phase.getSavePath(WorldSavePath.ROOT).getParent();
+        Path worldPath = Path.of(worldPathFolder.toString() + "/config/")
+                .resolve(ADReference.MOD_ID + ".json5");
 
+        if (Files.exists(worldPath)) {
+            config.setPath(worldPath);
+            config.setType(ConfigType.LOCAL);
+            config.load();
+            AssortedDiscoveries.LOGGER.info("Loaded world config for '{}'", worldPathFolder.getFileName());
+        }
+    }
+
+    private static void createGlobalConfig(JsonConfig config) {
+        config.setPath(GLOBAL_PATH);
+        config.setType(ConfigType.GLOBAL);
+        config.create();
+        config.load();
+        AssortedDiscoveries.LOGGER.info("Created global config");
+    }
+
+    private static void loadGlobalConfig(JsonConfig config) {
+        config.setPath(GLOBAL_PATH);
+        config.setType(ConfigType.GLOBAL);
+        config.load();
+        AssortedDiscoveries.LOGGER.info("Loaded global config");
+    }
+
+    public static JsonConfig makeModConfig() {
         ConfigCategory dyedSubcategory = new ConfigCategory.Builder("dyed")
                 .addBooleanEntry(ENABLE_DYED_CAMPFIRES)
                 .addBooleanEntry(ENABLE_DYED_LANTERNS)
@@ -300,8 +313,7 @@ public class ModConfig {
                 .addBooleanEntry(RABBITS_SAFE_FALL_INCREASED)
                 .build();
 
-        return configBuilder.addCategory(buildingBlocksCategory).addCategory(structureCategory)
-                .addCategory(farmingCategory).addCategory(miscCategory).build();
+        return JsonConfig.getInstance(buildingBlocksCategory, structureCategory, farmingCategory, miscCategory);
     }
 
     static {
@@ -370,17 +382,24 @@ public class ModConfig {
         ENABLE_WEEPING_BLACKSTONE_TILES = new BooleanConfigEntry("enable_weeping_blackstone_tiles",
                 "Requires blackstone tiles!");
         ENABLE_SMOKY_QUARTZ_BLOCKS = new BooleanConfigEntry("enable_smoky_quartz_blocks");
-        ENABLE_SMOKY_QUARTZ_BRICKS = new BooleanConfigEntry("enable_smoky_quartz_bricks");
-        ENABLE_SMOOTH_SMOKY_QUARTZ = new BooleanConfigEntry("enable_smooth_smoky_quartz");
+        ENABLE_SMOKY_QUARTZ_BRICKS = new BooleanConfigEntry("enable_smoky_quartz_bricks",
+                "Requires smoky quartz blocks!");
+        ENABLE_SMOOTH_SMOKY_QUARTZ = new BooleanConfigEntry("enable_smooth_smoky_quartz",
+                "Requires smoky quartz blocks!");
         ENABLE_QUARTZ_TILES = new BooleanConfigEntry("enable_quartz_tiles");
         ENABLE_QUARTZ_WALLS = new BooleanConfigEntry("enable_quartz_walls");
         ENABLE_BAUXITE = new BooleanConfigEntry("enable_bauxite");
-        ENABLE_BAUXITE_BRICKS = new BooleanConfigEntry("enable_bauxite_bricks");
-        ENABLE_CRACKED_BAUXITE_BRICKS = new BooleanConfigEntry("enable_cracked_bauxite_bricks");
-        ENABLE_MOSSY_BAUXITE_BRICKS = new BooleanConfigEntry("enable_mossy_bauxite_bricks");
+        ENABLE_BAUXITE_BRICKS = new BooleanConfigEntry("enable_bauxite_bricks",
+                "Requires bauxite!");
+        ENABLE_CRACKED_BAUXITE_BRICKS = new BooleanConfigEntry("enable_cracked_bauxite_bricks",
+                "Requires bauxite and bauxite bricks!");
+        ENABLE_MOSSY_BAUXITE_BRICKS = new BooleanConfigEntry("enable_mossy_bauxite_bricks",
+                "Requires bauxite and bauxite bricks!");
         ENABLE_STONE_TILES = new BooleanConfigEntry("enable_stone_tiles");
-        ENABLE_CRACKED_STONE_TILES = new BooleanConfigEntry("enable_cracked_stone_tiles");
-        ENABLE_MOSSY_STONE_TILES = new BooleanConfigEntry("enable_mossy_stone_tiles");
+        ENABLE_CRACKED_STONE_TILES = new BooleanConfigEntry("enable_cracked_stone_tiles",
+                "Requires stone tiles!");
+        ENABLE_MOSSY_STONE_TILES = new BooleanConfigEntry("enable_mossy_stone_tiles",
+                "Requires stone tiles!");
         ENABLE_WOODCUTTER = new BooleanConfigEntry("enable_woodcutter");
         ENABLE_CRACKED_STONE_BRICK_BLOCKS = new BooleanConfigEntry("enable_cracked_stone_brick_blocks");
         ENABLE_WOODEN_PLANTER_BOXES = new BooleanConfigEntry("enable_wooden_planter_boxes");
@@ -418,8 +437,9 @@ public class ModConfig {
         ENABLE_CALCITE_BLOCKS = new BooleanConfigEntry("enable_calcite_blocks");
         ENABLE_POLISHED_CALCITE = new BooleanConfigEntry("enable_polished_calcite");
         ENABLE_CALCITE_BRICKS = new BooleanConfigEntry("enable_calcite_bricks");
-        ENABLE_CRACKED_CALCITE_BRICKS = new BooleanConfigEntry("enable_cracked_calcite_bricks");
-        ENABLE_MOSSY_CALCITE_BRICKS = new BooleanConfigEntry("enable_mossy_calcite_bricks");
-        CONFIG = makeConfig();
+        ENABLE_CRACKED_CALCITE_BRICKS = new BooleanConfigEntry("enable_cracked_calcite_bricks",
+                "Requires calcite bricks!");
+        ENABLE_MOSSY_CALCITE_BRICKS = new BooleanConfigEntry("enable_mossy_calcite_bricks",
+                "Requires calcite bricks!");
     }
 }

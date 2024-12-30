@@ -1,0 +1,35 @@
+package rndm_access.assorteddiscoveries.config.json.deserializer.entries;
+
+import rndm_access.assorteddiscoveries.config.json.deserializer.ConfigObject;
+
+public abstract class AbstractConfigEntry<T> extends ConfigObject {
+    private T value;
+    private String comment;
+
+    public AbstractConfigEntry(String name, T defaultValue) {
+        super(name);
+        this.value = defaultValue;
+    }
+
+    public AbstractConfigEntry(String name, T defaultValue, String comment) {
+        super(name);
+        this.value = defaultValue;
+        this.comment = comment;
+    }
+
+    public void setValue(T value) {
+        this.value = value;
+    }
+
+    public T getValue() {
+        return value;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public boolean hasComment() {
+        return comment != null;
+    }
+}

@@ -1,6 +1,6 @@
-package rndm_access.assorteddiscoveries.config.json.parser;
+package rndm_access.assorteddiscoveries.config.json.deserializer;
 
-import rndm_access.assorteddiscoveries.config.json.parser.entries.*;
+import rndm_access.assorteddiscoveries.config.json.deserializer.entries.*;
 
 import java.util.*;
 
@@ -16,22 +16,6 @@ public class ConfigCategory extends ConfigObject {
         this.subcategories = builder.subcategories;
         this.startLine = -1;
         this.endLine = -1;
-    }
-
-    public int getStartLine() {
-        return startLine;
-    }
-
-    public int getEndLine() {
-        return endLine;
-    }
-
-    public void setStartLine(int startLine) {
-        this.startLine = startLine;
-    }
-
-    public void setEndLine(int endLine) {
-        this.endLine = endLine;
     }
 
     public ArrayList<ConfigCategory> getSubcategories() {

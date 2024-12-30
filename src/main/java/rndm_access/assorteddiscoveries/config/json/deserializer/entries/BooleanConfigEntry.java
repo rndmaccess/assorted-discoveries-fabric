@@ -1,4 +1,4 @@
-package rndm_access.assorteddiscoveries.config.json.parser.entries;
+package rndm_access.assorteddiscoveries.config.json.deserializer.entries;
 
 public class BooleanConfigEntry extends AbstractConfigEntry<Boolean> {
     public BooleanConfigEntry(String name) {

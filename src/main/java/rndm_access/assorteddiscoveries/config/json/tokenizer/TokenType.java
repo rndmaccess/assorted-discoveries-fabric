@@ -7,9 +7,7 @@ public enum TokenType implements StringIdentifiable {
     LEFT_BRACKET("["), RIGHT_BRACKET("]"),
     COLON(":"), COMMA(","),
 
-    STRING("string"), INT("integer"), BOOL("boolean"),
-
-    ERROR("error");
+    KEY("key"), VALUE("value"), ERROR("error");
 
     private final String string;
 

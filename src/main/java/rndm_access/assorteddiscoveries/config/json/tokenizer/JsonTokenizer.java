@@ -1,194 +1,181 @@
 package rndm_access.assorteddiscoveries.config.json.tokenizer;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.LineIterator;
 import rndm_access.assorteddiscoveries.config.json.exceptions.JsonSyntaxException;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.List;
 
 public class JsonTokenizer {
-    private int line;
-    private int index;
+    private int lineNum;
+    private int pos;
     private Character curChar;
-    private final List<String> source;
+    private final Path path;
+    private final ArrayList<Token> jsonTokens;
 
-    public JsonTokenizer(List<String> source) {
-        this.line = 0;
-        this.index = 0;
-        this.source = source;
-        this.curChar = findFirstChar(this.source);
-    }
-
-    private Character findFirstChar(List<String> source) {
-        while (!source.isEmpty()) {
-            if(!source.get(line).isEmpty()) {
-                return source.get(line).charAt(0);
-            }
-            line++;
-        }
-        return null;
+    public JsonTokenizer(Path path) {
+        this.lineNum = 0;
+        this.pos = 0;
+        this.path = path;
+        this.jsonTokens = new ArrayList<>();
     }
 
     public TokenList tokenize() {
-        ArrayList<Token> jsonTokens = new ArrayList<>();
+        File file = new File(String.valueOf(path));
 
-        // If the first character was not found then the file is empty!
-        if (curChar == null) {
-            return new TokenList(jsonTokens);
-        }
-
-        while (hasNextChar()) {
-            consumeWhitespace();
-            consumeComment();
-
-            if (curChar == '"') {
-                StringBuilder stringBuilder = new StringBuilder();
-                Token token = scanString(stringBuilder);
-                jsonTokens.add(token);
-            } else if (curChar == ':') {
-                Token token = new Token.Builder().setType(TokenType.COLON)
-                        .setValue(String.valueOf(curChar)).setLine(line).setStart(index).setEnd(index).build();
-                jsonTokens.add(token);
-                consumeChar();
-            } else if (curChar == '{') {
-                Token token = new Token.Builder().setType(TokenType.LEFT_CURLY)
-                        .setValue(String.valueOf(curChar)).setLine(line).setStart(index).setEnd(index).build();
-                jsonTokens.add(token);
-                consumeChar();
-            } else if (curChar == '}') {
-                Token token = new Token.Builder().setType(TokenType.RIGHT_CURLY)
-                        .setValue(String.valueOf(curChar)).setLine(line).setStart(index).setEnd(index).build();
-                jsonTokens.add(token);
-                consumeChar();
-            } else if (curChar == '[') {
-                Token token = new Token.Builder().setType(TokenType.LEFT_BRACKET)
-                        .setValue(String.valueOf(curChar)).setLine(line).setStart(index).setEnd(index).build();
-                jsonTokens.add(token);
-                consumeChar();
-            } else if (curChar == ']') {
-                Token token = new Token.Builder().setType(TokenType.RIGHT_BRACKET)
-                        .setValue(String.valueOf(curChar)).setLine(line).setStart(index).setEnd(index).build();
-                jsonTokens.add(token);
-                consumeChar();
-            } else if (curChar == ',') {
-                Token token = new Token.Builder().setType(TokenType.COMMA)
-                        .setValue(String.valueOf(curChar)).setLine(line).setStart(index).setEnd(index).build();
-                jsonTokens.add(token);
-                consumeChar();
-            } else {
-                Token token = scanObject();
-
-                jsonTokens.add(token);
+        try (LineIterator iterator = FileUtils.lineIterator(file)) {
+            while (iterator.hasNext()) {
+                String line = iterator.nextLine();
+                this.tokenizeLine(line);
             }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
         return new TokenList(jsonTokens);
     }
 
-    private void consumeComment() {
-        if (curChar == '/') {
-            consumeChar();
-            consumeWhitespace();
+    private void tokenizeLine(String line) {
+        // If the line is empty we don't have to tokenize it!
+        if (line.isEmpty()) {
+            return;
+        }
 
-            if (curChar == '/') {
-                advanceLine();
-                consumeWhitespace();
+        this.curChar = line.charAt(pos);
+
+        while (pos < line.length()) {
+            consumeWhitespace(line);
+
+            if (consumeComment(line)) {
+                break;
+            }
+
+            if (curChar == '"') {
+                StringBuilder stringBuilder = new StringBuilder();
+                Token token = scanString(line, stringBuilder);
+                jsonTokens.add(token);
+            } else if (curChar == ':') {
+                Token token = new Token.Builder().setType(TokenType.COLON)
+                        .setValue(String.valueOf(curChar)).setLine(lineNum).build();
+                jsonTokens.add(token);
+                consumeChar(line);
+            } else if (curChar == '{') {
+                Token token = new Token.Builder().setType(TokenType.LEFT_CURLY)
+                        .setValue(String.valueOf(curChar)).setLine(lineNum).build();
+                jsonTokens.add(token);
+                consumeChar(line);
+            } else if (curChar == '}') {
+                Token token = new Token.Builder().setType(TokenType.RIGHT_CURLY)
+                        .setValue(String.valueOf(curChar)).setLine(lineNum).build();
+                jsonTokens.add(token);
+                consumeChar(line);
+            } else if (curChar == '[') {
+                Token token = new Token.Builder().setType(TokenType.LEFT_BRACKET)
+                        .setValue(String.valueOf(curChar)).setLine(lineNum).build();
+                jsonTokens.add(token);
+                consumeChar(line);
+            } else if (curChar == ']') {
+                Token token = new Token.Builder().setType(TokenType.RIGHT_BRACKET)
+                        .setValue(String.valueOf(curChar)).setLine(lineNum).build();
+                jsonTokens.add(token);
+                consumeChar(line);
+            } else if (curChar == ',') {
+                Token token = new Token.Builder().setType(TokenType.COMMA)
+                        .setValue(String.valueOf(curChar)).setLine(lineNum).build();
+                jsonTokens.add(token);
+                consumeChar(line);
+            } else {
+                Token token = scanObject(line);
+
+                jsonTokens.add(token);
             }
         }
+        pos = 0;
+        lineNum++;
     }
 
-    private void consumeWhitespace() {
+    private boolean consumeComment(String line) {
+        if (curChar == '/') {
+            consumeChar(line);
+            consumeWhitespace(line);
+
+            if (curChar == '/') {
+                consumeWhitespace(line);
+                return true; // If we return true here we advance to the next line!
+            }
+        }
+        return false;
+    }
+
+    private void consumeWhitespace(String line) {
         while (Character.isWhitespace(curChar)) {
-            consumeChar();
+            consumeChar(line);
         }
     }
 
-    private Token scanObject() {
+    private Token scanObject(String line) {
         Token.Builder tokenBuilder = new Token.Builder();
         StringBuilder objectBuilder = new StringBuilder();
 
-        tokenBuilder.setLine(line);
-        tokenBuilder.setStart(index);
-        while (hasNextChar() && curChar != '"' && curChar != ':' && curChar != ',' && curChar != '{'
+        tokenBuilder.setLine(lineNum);
+        while (pos < line.length() && curChar != '"' && curChar != ':' && curChar != ',' && curChar != '{'
                 && curChar != '}' && curChar != '[' && curChar != ']') {
             if(!Character.isWhitespace(curChar)) {
                 objectBuilder.append(curChar);
-                tokenBuilder.setEnd(index + 1);
             }
-            consumeChar();
+            consumeChar(line);
         }
         String value = objectBuilder.toString();
+        boolean isBool = value.equalsIgnoreCase("true") || value.equalsIgnoreCase("false");
 
-        if (value.equalsIgnoreCase("true") || value.equalsIgnoreCase("false")) {
-            return tokenBuilder.setType(TokenType.BOOL).setValue(value.toLowerCase()).build();
-        } else if (isInteger(value)) {
-            return tokenBuilder.setType(TokenType.INT).setValue(value).build();
+        if (isBool || isInteger(value)) {
+            return tokenBuilder.setType(TokenType.VALUE).setValue(value.toLowerCase()).build();
         } else {
             return tokenBuilder.setType(TokenType.ERROR).setValue(value).build();
         }
     }
 
-    private Token scanString(StringBuilder builder) {
-        Token.Builder token = new Token.Builder().setType(TokenType.STRING).setLine(line);
-        token.setStart(index);
+    private Token scanString(String line, StringBuilder builder) {
+        Token.Builder token = new Token.Builder().setLine(lineNum);
         require('"');
-        consumeChar();
-
-        while (hasNextCharOnLine() && curChar != '"') {
+        consumeChar(line);
+        builder.append('"');
+        while (pos < line.length() && curChar != '"') {
             builder.append(curChar);
-            consumeChar();
+            consumeChar(line);
         }
-        token.setEnd(index + 1);
+        builder.append('"');
         require('"');
-        consumeChar();
+        consumeChar(line);
+        consumeWhitespace(line);
+
+        if (curChar == ':') {
+            token.setType(TokenType.KEY);
+        } else {
+            token.setType(TokenType.VALUE);
+        }
+
         token.setValue(builder.toString());
         return token.build();
     }
 
-    private boolean hasNextChar() {
-        if((line + 1) == source.size()) {
-            return index < source.get(line).length();
+    private void consumeChar(String line) {
+        pos++;
+
+        if (pos < line.length()) {
+            curChar = line.charAt(pos);
         }
-        return line < source.size();
-    }
-
-    private boolean hasNextCharOnLine() {
-        String lineContent = source.get(line);
-        int nextIndex = index + 1;
-
-        return nextIndex < lineContent.length();
     }
 
     private void require(char character) {
         if (this.curChar != character) {
+            int reportedLine = this.lineNum + 1;
+
             throw new JsonSyntaxException("Expected '" + character
                     + "', got '" + this.curChar
-                    + "' at line " + (this.line + 1)
-                    + " and column " + (this.index + 1));
-        }
-    }
-
-    private void consumeChar() {
-        String jsonLine = source.get(line);
-        index++;
-
-        if (index < jsonLine.length()) {
-            curChar = jsonLine.charAt(index);
-        } else {
-            advanceLine();
-        }
-    }
-
-    private void advanceLine() {
-        line++;
-        index = 0;
-
-        if(line < source.size()) {
-            String jsonLine = source.get(line);
-
-            if(!jsonLine.isEmpty()) {
-                curChar = jsonLine.charAt(index);
-            } else {
-                advanceLine();
-            }
+                    + "' at line " + reportedLine);
         }
     }
 

@@ -1,4 +1,4 @@
-package rndm_access.assorteddiscoveries.config.json.parser;
+package rndm_access.assorteddiscoveries.config.json.deserializer;
 
 public class ConfigObject {
     private final String name;

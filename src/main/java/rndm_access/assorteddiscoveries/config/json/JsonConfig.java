@@ -64,8 +64,8 @@ public class JsonConfig {
         return categories.containsKey(name);
     }
 
-    public Collection<ConfigCategory> getCategories() {
-        return categories.values();
+    public List<ConfigCategory> getCategories() {
+        return categories.values().stream().toList();
     }
 
     public void load() {

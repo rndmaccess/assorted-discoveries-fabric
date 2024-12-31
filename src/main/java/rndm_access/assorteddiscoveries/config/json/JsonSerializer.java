@@ -1,12 +1,7 @@
 package rndm_access.assorteddiscoveries.config.json;
 
-import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.json.deserializer.ConfigCategory;
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.AbstractConfigEntry;
-import rndm_access.assorteddiscoveries.config.json.tokenizer.JsonTokenizer;
-import rndm_access.assorteddiscoveries.config.json.tokenizer.Token;
-import rndm_access.assorteddiscoveries.config.json.tokenizer.TokenList;
-import rndm_access.assorteddiscoveries.config.json.tokenizer.TokenType;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -17,14 +12,12 @@ import java.util.*;
 public class JsonSerializer {
     private int line;
     private int depth;
-    private final TokenList tokenList;
     private final Path configPath;
     private final JsonConfig config;
 
     public JsonSerializer(JsonConfig config, Path configPath) {
         line = 0;
         depth = 0;
-        this.tokenList = new JsonTokenizer(configPath).tokenize();
         this.configPath = configPath;
         this.config = config;
     }
@@ -32,12 +25,7 @@ public class JsonSerializer {
     public void serialize(Map<String, Object> changeList) {
         List<String> newContent = new ArrayList<>();
 
-        if(tokenList.isEmpty()) {
-            AssortedDiscoveries.LOGGER.error("Could not serialize to the config file because it was empty!");
-            return;
-        }
-
-        writeContent(newContent, changeList);
+        this.writeContent(newContent, changeList);
 
         // To prevent partial files we first save it to a temporary file, then replace the config file!
         try {
@@ -49,117 +37,98 @@ public class JsonSerializer {
         }
     }
 
-    private void writeContent(List<String> newContent, Map<String, Object> changeList) {
-        ArrayDeque<ConfigCategory> categories = new ArrayDeque<>();
+    public void writeContent(List<String> newContent, Map<String, Object> changeList) {
+        List<ConfigCategory> categories = config.getCategories();
+        this.writeText("{", newContent);
 
-        while (tokenList.hasNextToken()) {
-            if (tokenList.match(TokenType.RIGHT_CURLY)) {
-                line++;
-                depth--;
-                Token token = tokenList.consumeToken();
-                String rightCurly = token.getValue();
-                this.writeText(rightCurly, newContent);
+        for (int i = 0; i < categories.size(); i++) {
+            ConfigCategory category = categories.get(i);
+            String catName = category.getName();
+            String categoryLine = "\"" + catName + "\"" + ": {";
+            line++;
+            depth++;
+            this.writeText(categoryLine, newContent);
+            this.traverseSubcategories(category, changeList, newContent);
 
-                if (!categories.isEmpty()) {
-                    categories.pop();
-                }
-            } else if (tokenList.match(TokenType.COMMA)) {
-                Token token = tokenList.consumeToken();
-                String comma = token.getValue();
-                this.writeText(comma, newContent);
-                line++;
-            } else if (tokenList.match(TokenType.LEFT_CURLY, TokenType.LEFT_BRACKET)) {
-                Token token = tokenList.consumeToken();
-                String tokenVal = token.getValue();
-                this.writeText(tokenVal, newContent);
+            List<AbstractConfigEntry<?>> entries = category.getEntries();
+
+            if (category.hasSubCategories() && category.hasEntries()) {
+                this.writeText(",", newContent); // We append a comma here because if the category
+                                                       // has subcategories then we will have a closing curly here and
+                                                       // to support more entries we have to separate it with a comma!
+            }
+
+            if (category.hasEntries()) {
+                this.writeEntries(entries, changeList, newContent);
+            }
+
+            this.writeEndingCurly(i, categories.size(), newContent);
+        }
+        line++;
+        depth--;
+        this.writeText("}", newContent);
+    }
+
+    private void traverseSubcategories(ConfigCategory category, Map<String, Object> changeList,
+                                       List<String> newContent) {
+        if (category.hasSubCategories()) {
+            List<ConfigCategory> subcategories = category.getSubcategories();
+
+            for (int i = 0; i < subcategories.size(); i++) {
+                ConfigCategory subcategory = subcategories.get(i);
+                String subcategoryName = subcategory.getName();
+                String subcategoryLine = "\"" + subcategoryName + "\"" + ": {";
+                List<AbstractConfigEntry<?>> entries = subcategory.getEntries();
                 line++;
                 depth++;
-            } else if (tokenList.match(TokenType.KEY)) {
-                Token keyToken = tokenList.consumeToken();
-                String key = keyToken.getValue();
-                StringBuilder lineContent = new StringBuilder(key);
-                String entryName = parseJsonString(key);
-                Token colonToken = tokenList.consumeToken();
-                String colon = colonToken.getValue();
-                lineContent.append(colon).append(" ");
-
-                if (tokenList.match(TokenType.LEFT_CURLY)) {
-                    this.insertCategory(newContent, entryName, lineContent, categories);
-                } else {
-                    this.insertEntry(newContent, entryName, lineContent, categories, changeList);
-                }
-            } else {
-                Token token = tokenList.consumeToken();
-                String tokenVal = token.getValue();
-
-                this.writeText(tokenVal, newContent);
+                this.writeText(subcategoryLine, newContent);
+                this.writeEntries(entries, changeList, newContent);
+                this.writeEndingCurly(i, subcategories.size(), newContent);
+                this.traverseSubcategories(subcategory, changeList, newContent);
             }
         }
-
-        if (depth > 0) {
-            throw new RuntimeException("Failed to save the file! Found unclosed body missing '}'!");
-        }
     }
 
-    private void insertCategory(List<String> newContent, String entryName, StringBuilder lineContent,
-                                ArrayDeque<ConfigCategory> categories) {
-        Token token = tokenList.consumeToken();
-        String leftCurly = token.getValue();
-        lineContent.append(leftCurly);
-        this.writeText(lineContent.toString(), newContent);
-        line++;
+    private void writeEntries(List<AbstractConfigEntry<?>> entries, Map<String, Object> changeList,
+                              List<String> newContent) {
         depth++;
-
-        if (categories.isEmpty() && config.hasCategory(entryName)) {
-            categories.push(config.getCategory(entryName));
-        }
-
-        if (!categories.isEmpty() && categories.peek().hasSubcategory(entryName)) {
-            assert categories.peek() != null;
-            categories.push(categories.peek().getSubcategory(entryName));
-        }
-    }
-
-    private void insertEntry(List<String> newContent, String entryName, StringBuilder lineContent,
-                             ArrayDeque<ConfigCategory> categories, Map<String, Object> changeList) {
-        Token valueToken = tokenList.consumeToken();
-        String value = valueToken.getValue();
-
-        this.insertComment(newContent, entryName, categories);
-
-        if (changeList.containsKey(entryName)) {
-            value = String.valueOf(changeList.get(entryName));
-        }
-        lineContent.append(value);
-        this.writeText(lineContent.toString(), newContent);
-    }
-
-    private void insertComment(List<String> newContent, String entryName, ArrayDeque<ConfigCategory> categories) {
-        assert categories.peek() != null;
-        ConfigCategory category = categories.peek();
-
-        if (!category.hasEntry(entryName)) {
-            return;
-        }
-
-        AbstractConfigEntry<?> entry = category.getEntry(entryName);
-        String comment = "\t".repeat(depth) + "// " + entry.getComment();
-
-        if (entry.hasComment()) {
-            newContent.add(comment);
+        for (int i = 0; i < entries.size(); i++) {
+            AbstractConfigEntry<?> entry = entries.get(i);
+            String entryName = entry.getName();
+            Object entryVal = entry.getValue();
             line++;
+
+            if (entry.hasComment()) {
+                String comment = "// " + entry.getComment();
+                this.writeText(comment, newContent);
+                line++;
+            }
+
+            if (changeList.containsKey(entryName)) {
+                entryVal = changeList.get(entryName);
+            }
+
+            String entryLine = "\"" + entryName + "\": " + entryVal;
+
+            if (i < entries.size() - 1) {
+                entryLine = entryLine + ",";
+            }
+            this.writeText(entryLine, newContent);
         }
+        depth--;
     }
 
-    /**
-     * @param input The input to trim!
-     * @return The input without extra surrounding quotes if there are any otherwise the input itself.
-     */
-    private String parseJsonString(String input) {
-        if (input.charAt(0) == '"' && input.charAt(input.length() - 1) == '"') {
-            return input.substring(1, input.length() - 1);
+    private void writeEndingCurly(int i, int size, List<String> newContent) {
+        String curlyLine = "}";
+
+        // If we have more stuff then we need to append a comma here!
+        if (i < size - 1) {
+            curlyLine = curlyLine + ",";
         }
-        return input;
+
+        line++;
+        this.writeText(curlyLine, newContent);
+        depth--;
     }
 
     private void writeText(String value, List<String> newContent) {

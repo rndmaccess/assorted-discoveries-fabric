@@ -399,6 +399,9 @@
   "block.assorted-discoveries.green_onions": "Green Onions",
   "block.assorted-discoveries.wild_green_onions": "Wild Green Onions",
   "block.assorted-discoveries.creaking_plushie": "Creaking Plushie",
+  "block.assorted-discoveries.quartz_brick_stairs": "Quartz Brick Stairs",
+  "block.assorted-discoveries.quartz_brick_slab": "Quartz Brick Slab",
+  "block.assorted-discoveries.quartz_brick_wall": "Quartz Brick Wall",
 
   "container.assorted-discoveries.woodcutter": "Woodcutter",
 
@@ -520,6 +523,7 @@
   "requirement.cloth-config.assorted-discoveries.option.building_blocks.enable_smoky_quartz_bricks": "Requires Smoky Quartz Blocks",
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_smooth_smoky_quartz": "Enable Smooth Smoky Quartz",
   "requirement.cloth-config.assorted-discoveries.option.building_blocks.enable_smooth_smoky_quartz": "Requires Smoky Quartz Blocks",
+  "text.cloth-config.assorted-discoveries.option.building_blocks.enable_quartz_brick_blocks": "Enable Quartz Brick Blocks",
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_quartz_tiles": "Enable Quartz Tiles",
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_quartz_walls": "Enable Quartz Walls",
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_bauxite": "Enable Bauxite",
@@ -537,6 +541,7 @@
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_calcite_bricks": "Enable Calcite Bricks",
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_cracked_calcite_bricks": "Enable Cracked Calcite Bricks",
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_mossy_calcite_bricks": "Enable Mossy Calcite Bricks",
+  "text.cloth-config.assorted-discoveries.option.building_blocks.enable_dripstone_blocks": "Enable Dripstone Blocks",
 
   "requirement.cloth-config.assorted-discoveries.option.building_blocks.enable_bauxite_bricks": "Requires Bauxite",
   "requirement.cloth-config.assorted-discoveries.option.building_blocks.enable_mossy_bauxite_bricks": "Requires Bauxite And Bauxite Bricks",

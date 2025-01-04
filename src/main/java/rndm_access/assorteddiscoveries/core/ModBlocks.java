@@ -435,6 +435,9 @@ public class ModBlocks {
     public static final Block ROOTED_DIRT_SLAB;
     public static final Block WILD_GREEN_ONIONS;
     public static final Block CREAKING_PLUSHIE;
+    public static final Block QUARTZ_BRICK_STAIRS;
+    public static final Block QUARTZ_BRICK_SLAB;
+    public static final Block QUARTZ_BRICK_WALL;
 
     private static WallTorchBlock wallTorchBlock(DefaultParticleType flameParticle) {
         return new WallTorchBlock(flameParticle, AbstractBlock.Settings.copy(Blocks.WALL_TORCH));
@@ -898,6 +901,9 @@ public class ModBlocks {
         register("rooted_dirt_slab", ModBlocks.ROOTED_DIRT_SLAB);
         register("wild_green_onions", ModBlocks.WILD_GREEN_ONIONS);
         register("creaking_plushie", ModBlocks.CREAKING_PLUSHIE);
+        register("quartz_brick_stairs", ModBlocks.QUARTZ_BRICK_STAIRS);
+        register("quartz_brick_slab", ModBlocks.QUARTZ_BRICK_SLAB);
+        register("quartz_brick_wall", ModBlocks.QUARTZ_BRICK_WALL);
 
         AssortedDiscoveries.LOGGER.info("Registered blocks");
     }
@@ -1438,5 +1444,9 @@ public class ModBlocks {
         ROOTED_DIRT_SLAB = new SlabBlock(AbstractBlock.Settings.copy(Blocks.ROOTED_DIRT));
         WILD_GREEN_ONIONS = new WildGreenOnionsBlock(AbstractBlock.Settings.copy(Blocks.WHEAT));
         CREAKING_PLUSHIE = new CreakingPlushieBlock(AbstractBlock.Settings.copy(ModBlocks.BAT_PLUSHIE));
+        QUARTZ_BRICK_STAIRS = new StairsBlock(Blocks.QUARTZ_BRICKS.getDefaultState(),
+                AbstractBlock.Settings.copy(Blocks.QUARTZ_BRICKS));
+        QUARTZ_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(Blocks.QUARTZ_BRICKS));
+        QUARTZ_BRICK_WALL = new WallBlock(AbstractBlock.Settings.copy(Blocks.QUARTZ_BRICKS));
     }
 }

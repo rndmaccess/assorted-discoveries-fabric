@@ -31,9 +31,7 @@ public class JsonDeserializer {
         }
 
         requireToken(TokenType.LEFT_CURLY);
-        while (tokenList.hasNextToken()) {
-            parse(null);
-        }
+        parse(null);
     }
 
     private void parse(ConfigCategory category) {

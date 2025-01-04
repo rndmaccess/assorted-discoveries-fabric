@@ -6,14 +6,14 @@ public abstract class AbstractConfigEntry<T> extends ConfigObject {
     private T value;
     private String comment;
 
-    public AbstractConfigEntry(String name, T defaultValue) {
+    public AbstractConfigEntry(String name, T value) {
         super(name);
-        this.value = defaultValue;
+        this.value = value;
     }
 
-    public AbstractConfigEntry(String name, T defaultValue, String comment) {
+    public AbstractConfigEntry(String name, T value, String comment) {
         super(name);
-        this.value = defaultValue;
+        this.value = value;
         this.comment = comment;
     }
 

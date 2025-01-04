@@ -33,6 +33,7 @@
 	"assorted-discoveries:calcite_wall",
     "assorted-discoveries:stone_wall",
     "assorted-discoveries:quartz_wall",
-    "assorted-discoveries:smooth_quartz_wall"
+    "assorted-discoveries:smooth_quartz_wall",
+    "assorted-discoveries:quartz_brick_wall"
   ]
 }

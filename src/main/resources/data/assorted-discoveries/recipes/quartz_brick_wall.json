@@ -1,0 +1,22 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:quartz_bricks"
+    }
+  },
+  "result": {
+    "item": "assorted-discoveries:quartz_brick_wall",
+    "count": 6
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_quartz_brick_blocks"
+    }
+  ]
+}

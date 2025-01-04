@@ -152,6 +152,9 @@
     "assorted-discoveries:calcite_stairs",
     "assorted-discoveries:calcite_slab",
     "assorted-discoveries:calcite_wall",
-    "assorted-discoveries:stone_wall"
+    "assorted-discoveries:stone_wall",
+    "assorted-discoveries:quartz_brick_stairs",
+    "assorted-discoveries:quartz_brick_slab",
+    "assorted-discoveries:quartz_brick_wall"
   ]
 }

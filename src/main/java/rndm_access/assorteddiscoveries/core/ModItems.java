@@ -389,6 +389,9 @@ public class ModItems {
     public static final Item ROOTED_DIRT_SLAB;
     public static final Item WILD_GREEN_ONIONS;
     public static final Item CREAKING_PLUSHIE;
+    public static final Item QUARTZ_BRICK_STAIRS;
+    public static final Item QUARTZ_BRICK_SLAB;
+    public static final Item QUARTZ_BRICK_WALL;
 
     private static Item blockItem(Block block) {
         return new BlockItem(block, new Item.Settings());
@@ -509,7 +512,8 @@ public class ModItems {
                 POLISHED_CALCITE_WALL, DRIPSTONE_STAIRS, DRIPSTONE_SLAB, DRIPSTONE_WALL, CALCITE_STAIRS,
                 CALCITE_SLAB, CALCITE_WALL, BAMBOO_PLANTER_BOX, BOG_BLOSSOM, STONE_WALL, QUARTZ_WALL,
                 SMOOTH_QUARTZ_WALL, GRASS_SLAB, PODZOL_SLAB, MYCELIUM_SLAB, DIRT_PATH_SLAB, DIRT_SLAB,
-                COARSE_DIRT_SLAB, ROOTED_DIRT_SLAB, WILD_GREEN_ONIONS, CREAKING_PLUSHIE);
+                COARSE_DIRT_SLAB, ROOTED_DIRT_SLAB, WILD_GREEN_ONIONS, CREAKING_PLUSHIE, QUARTZ_BRICK_STAIRS,
+                QUARTZ_BRICK_SLAB, QUARTZ_BRICK_WALL);
         register("green_onion_seeds", GREEN_ONION_SEEDS);
         register("green_onion", GREEN_ONION);
         register("blueberries", BLUEBERRIES);
@@ -929,5 +933,8 @@ public class ModItems {
         ROOTED_DIRT_SLAB = blockItem(ModBlocks.ROOTED_DIRT_SLAB);
         WILD_GREEN_ONIONS = blockItem(ModBlocks.WILD_GREEN_ONIONS);
         CREAKING_PLUSHIE = blockItem(ModBlocks.CREAKING_PLUSHIE);
+        QUARTZ_BRICK_STAIRS = blockItem(ModBlocks.QUARTZ_BRICK_STAIRS);
+        QUARTZ_BRICK_SLAB = blockItem(ModBlocks.QUARTZ_BRICK_SLAB);
+        QUARTZ_BRICK_WALL = blockItem(ModBlocks.QUARTZ_BRICK_WALL);
     }
 }

@@ -13,21 +13,37 @@ import java.nio.file.Path;
 import java.util.*;
 
 public class JsonConfig {
-    private static JsonConfig instance;
     private final HashMap<String, ConfigCategory> categories;
     public Path path;
-    private ConfigType type;
 
-    private JsonConfig(ConfigCategory... categories) {
+    public JsonConfig(ConfigCategory... categories) {
         this.categories = toMap(categories);
-        this.type = ConfigType.NONE;
     }
 
-    public static synchronized JsonConfig getInstance(ConfigCategory... categories) {
-        if (instance == null) {
-            instance = new JsonConfig(categories);
+    public AbstractConfigEntry<?> getEntry(String entryName) {
+        Stack<ConfigCategory> stack = new Stack<>();
+
+        // Start by adding the root categories to the stack. We then will look in each category for the entry!
+        for (ConfigCategory category : this.getCategories()) {
+            stack.push(category);
         }
-        return instance;
+
+        while (!stack.isEmpty()) {
+            ConfigCategory currentCategory = stack.pop();
+
+            // If the current category has the entry then we have found it!
+            if (currentCategory.hasEntry(entryName)) {
+                return currentCategory.getEntry(entryName);
+            }
+
+            // If the category has subcategories, push those onto the stack and look through those as well!
+            if (currentCategory.hasSubCategories()) {
+                for (ConfigCategory subcategory : currentCategory.getSubcategories()) {
+                    stack.push(subcategory);
+                }
+            }
+        }
+        return null; // Entry not found!
     }
 
     public HashMap<String, ConfigCategory> toMap(ConfigCategory... categories) {
@@ -39,18 +55,6 @@ public class JsonConfig {
             categoryHashMap.put(name, category);
         }
         return categoryHashMap;
-    }
-
-    public ConfigType getType() {
-        return type;
-    }
-
-    public void setType(ConfigType type) {
-        this.type = type;
-    }
-
-    public void setPath(Path path) {
-        this.path = path;
     }
 
     public ConfigCategory getCategory(String name) {
@@ -68,26 +72,26 @@ public class JsonConfig {
         return categories.values().stream().toList();
     }
 
-    public void load() {
-        if (path == null || !Files.exists(path)) {
+    public void load(ConfigData data) {
+        if (data.getPath() == null || !Files.exists(data.getPath())) {
             throw new JsonConfigException("Couldn't load the config because it does not exist!");
         }
 
         try {
-            JsonDeserializer parser = new JsonDeserializer(this, path);
-            parser.parse();
+            JsonDeserializer deserializer = new JsonDeserializer(this, data.getPath());
+            deserializer.parse();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void create() {
-        if (path == null) {
-            throw new JsonConfigException("The config path has not been set!");
+    public void create(ConfigData data) {
+        if (data.getPath() == null) {
+            throw new JsonConfigException("The config hasn't been loaded!");
         }
 
-        if (!Files.exists(path)) {
-            try (BufferedWriter writer = Files.newBufferedWriter(path)) {
+        if (!Files.exists(data.getPath())) {
+            try (BufferedWriter writer = Files.newBufferedWriter(data.getPath())) {
                 String configContent = this.createFileContent();
                 writer.write(configContent);
             } catch (IOException e) {
@@ -96,13 +100,13 @@ public class JsonConfig {
         }
     }
 
-    public void save(Map<String, Object> entryChangeList) {
-        if (path == null) {
+    public void save(ConfigData data, Map<String, Object> entryChangeList) {
+        if (data.getPath() == null) {
             throw new JsonConfigException("The config path has not been set!");
         }
 
-        if (Files.exists(path)) {
-            JsonSerializer serializer = new JsonSerializer(this, path);
+        if (Files.exists(data.getPath())) {
+            JsonSerializer serializer = new JsonSerializer(this, data.getPath());
             serializer.serialize(entryChangeList);
         }
     }

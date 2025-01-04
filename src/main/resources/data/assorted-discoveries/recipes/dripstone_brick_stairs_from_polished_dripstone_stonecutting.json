@@ -4,5 +4,11 @@
     "item": "assorted-discoveries:polished_dripstone"
   },
   "result": "assorted-discoveries:dripstone_brick_stairs",
-  "count": 1
+  "count": 1,
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_dripstone_bricks"
+    }
+  ]
 }

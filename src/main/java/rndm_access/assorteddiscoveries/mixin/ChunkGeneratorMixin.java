@@ -22,6 +22,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import rndm_access.assorteddiscoveries.config.ModConfig;
+import rndm_access.assorteddiscoveries.config.ModConfigKeys;
+import rndm_access.assorteddiscoveries.config.json.ConfigData;
+import rndm_access.assorteddiscoveries.config.json.JsonConfig;
+import rndm_access.assorteddiscoveries.config.json.deserializer.entries.BooleanConfigEntry;
 
 import java.util.Optional;
 
@@ -63,13 +67,24 @@ public class ChunkGeneratorMixin {
 
     @Unique
     private boolean isStructureDisabled(String structureName) {
-        boolean forestCabinsEnabled = ModConfig.ENABLE_FOREST_CABINS.getValue();
-        boolean darkForestCabinsEnabled = ModConfig.ENABLE_DARK_FOREST_CABINS.getValue();
-        boolean birchForestCabinsEnabled = ModConfig.ENABLE_BIRCH_FOREST_CABINS.getValue();
-        boolean taigaCabinsEnabled = ModConfig.ENABLE_TAIGA_CABINS.getValue();
-        boolean snowyTaigaCabinsEnabled = ModConfig.ENABLE_SNOWY_TAIGA_CABINS.getValue();
-        boolean crimsonForestCabinsEnabled = ModConfig.ENABLE_CRIMSON_FOREST_CABINS.getValue();
-        boolean warpedForestCabinsEnabled = ModConfig.ENABLE_WARPED_FOREST_CABINS.getValue();
+        ConfigData data = ConfigData.getInstance();
+        JsonConfig config = ModConfig.getInternalConfig();
+        config.load(data);
+
+        BooleanConfigEntry configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_FOREST_CABINS);
+        boolean forestCabinsEnabled = configEntry.getValue();
+        configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_DARK_FOREST_CABINS);
+        boolean darkForestCabinsEnabled = configEntry.getValue();
+        configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_BIRCH_FOREST_CABINS);
+        boolean birchForestCabinsEnabled = configEntry.getValue();
+        configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_TAIGA_CABINS);
+        boolean taigaCabinsEnabled = configEntry.getValue();
+        configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_SNOWY_TAIGA_CABINS);
+        boolean snowyTaigaCabinsEnabled = configEntry.getValue();
+        configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CRIMSON_FOREST_CABINS);
+        boolean crimsonForestCabinsEnabled = configEntry.getValue();
+        configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_WARPED_FOREST_CABINS);
+        boolean warpedForestCabinsEnabled = configEntry.getValue();
 
         if (structureName.equals("assorted-discoveries:cabin_forest") && !forestCabinsEnabled) {
             return true;

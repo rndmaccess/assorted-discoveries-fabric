@@ -6,6 +6,7 @@ import me.shedaniel.clothconfig2.gui.entries.SubCategoryListEntry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import rndm_access.assorteddiscoveries.ADReference;
+import rndm_access.assorteddiscoveries.config.json.ConfigData;
 import rndm_access.assorteddiscoveries.config.json.JsonConfig;
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.BooleanConfigEntry;
 
@@ -33,172 +34,182 @@ public class ModConfigScreen {
 
         // Netherrack and Nether Bricks
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_TWISTED_NETHERRACK, buildingBlocksCategoryName));
+                ModConfigKeys.ENABLE_TWISTED_NETHERRACK, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_WEEPING_NETHERRACK, buildingBlocksCategoryName));
+                ModConfigKeys.ENABLE_WEEPING_NETHERRACK, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_TWISTED_NETHER_BRICKS, buildingBlocksCategoryName));
+                ModConfigKeys.ENABLE_TWISTED_NETHER_BRICKS, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_WEEPING_NETHER_BRICKS, buildingBlocksCategoryName));
+                ModConfigKeys.ENABLE_WEEPING_NETHER_BRICKS, buildingBlocksCategoryName));
 
         // Blackstone Entries
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_TWISTED_BLACKSTONE, buildingBlocksCategoryName));
+                ModConfigKeys.ENABLE_TWISTED_BLACKSTONE, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_WEEPING_BLACKSTONE, buildingBlocksCategoryName));
+                ModConfigKeys.ENABLE_WEEPING_BLACKSTONE, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_TWISTED_POLISHED_BLACKSTONE_BRICKS, buildingBlocksCategoryName));
+                ModConfigKeys.ENABLE_TWISTED_POLISHED_BLACKSTONE_BRICKS, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_WEEPING_POLISHED_BLACKSTONE_BRICKS, buildingBlocksCategoryName));
+                ModConfigKeys.ENABLE_WEEPING_POLISHED_BLACKSTONE_BRICKS, buildingBlocksCategoryName));
         BooleanListEntry enableBlackstoneTiles = makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_BLACKSTONE_TILES, buildingBlocksCategoryName);
+                ModConfigKeys.ENABLE_BLACKSTONE_TILES, buildingBlocksCategoryName);
         buildingScreenCategory.addEntry(enableBlackstoneTiles);
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_TWISTED_BLACKSTONE_TILES, buildingBlocksCategoryName, enableBlackstoneTiles));
+                ModConfigKeys.ENABLE_TWISTED_BLACKSTONE_TILES, buildingBlocksCategoryName, enableBlackstoneTiles));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_WEEPING_BLACKSTONE_TILES, buildingBlocksCategoryName, enableBlackstoneTiles));
+                ModConfigKeys.ENABLE_WEEPING_BLACKSTONE_TILES, buildingBlocksCategoryName, enableBlackstoneTiles));
 
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_WOODEN_WALLS, buildingBlocksCategoryName));
+                ModConfigKeys.ENABLE_WOODEN_WALLS, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_STRIPPED_WOODEN_WALLS, buildingBlocksCategoryName));
+                ModConfigKeys.ENABLE_STRIPPED_WOODEN_WALLS, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_WOODEN_ROPE_LADDERS, buildingBlocksCategoryName));
+                ModConfigKeys.ENABLE_WOODEN_ROPE_LADDERS, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_IRON_LADDERS, buildingBlocksCategoryName));
+                ModConfigKeys.ENABLE_IRON_LADDERS, buildingBlocksCategoryName));
         BooleanListEntry enableSmokyQuartzBlocks = makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_SMOKY_QUARTZ_BLOCKS, buildingBlocksCategoryName);
+                ModConfigKeys.ENABLE_SMOKY_QUARTZ_BLOCKS, buildingBlocksCategoryName);
         buildingScreenCategory.addEntry(enableSmokyQuartzBlocks);
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_SMOKY_QUARTZ_BRICKS, buildingBlocksCategoryName, enableSmokyQuartzBlocks));
+                ModConfigKeys.ENABLE_SMOKY_QUARTZ_BRICKS, buildingBlocksCategoryName, enableSmokyQuartzBlocks));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_SMOOTH_SMOKY_QUARTZ, buildingBlocksCategoryName, enableSmokyQuartzBlocks));
+                ModConfigKeys.ENABLE_SMOOTH_SMOKY_QUARTZ, buildingBlocksCategoryName, enableSmokyQuartzBlocks));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_QUARTZ_TILES, buildingBlocksCategoryName));
+                ModConfigKeys.ENABLE_QUARTZ_BRICK_BLOCKS, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_QUARTZ_WALLS, buildingBlocksCategoryName));
+                ModConfigKeys.ENABLE_QUARTZ_TILES, buildingBlocksCategoryName));
+        buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
+                ModConfigKeys.ENABLE_QUARTZ_WALLS, buildingBlocksCategoryName));
 
         BooleanListEntry enableBauxite = makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_BAUXITE, buildingBlocksCategoryName);
+                ModConfigKeys.ENABLE_BAUXITE, buildingBlocksCategoryName);
         BooleanListEntry enableBauxiteBricks = makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_BAUXITE_BRICKS, buildingBlocksCategoryName, enableBauxite);
+                ModConfigKeys.ENABLE_BAUXITE_BRICKS, buildingBlocksCategoryName, enableBauxite);
 
         buildingScreenCategory.addEntry(enableBauxite);
         buildingScreenCategory.addEntry(enableBauxiteBricks);
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_CRACKED_BAUXITE_BRICKS, buildingBlocksCategoryName, enableBauxite, enableBauxiteBricks));
+                ModConfigKeys.ENABLE_CRACKED_BAUXITE_BRICKS, buildingBlocksCategoryName, enableBauxite, enableBauxiteBricks));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_MOSSY_BAUXITE_BRICKS, buildingBlocksCategoryName, enableBauxite, enableBauxiteBricks));
+                ModConfigKeys.ENABLE_MOSSY_BAUXITE_BRICKS, buildingBlocksCategoryName, enableBauxite, enableBauxiteBricks));
 
         BooleanListEntry enableStoneTiles = makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_STONE_TILES, buildingBlocksCategoryName);
+                ModConfigKeys.ENABLE_STONE_TILES, buildingBlocksCategoryName);
 
         buildingScreenCategory.addEntry(enableStoneTiles);
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_CRACKED_STONE_TILES, buildingBlocksCategoryName, enableStoneTiles));
+                ModConfigKeys.ENABLE_CRACKED_STONE_TILES, buildingBlocksCategoryName, enableStoneTiles));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_MOSSY_STONE_TILES, buildingBlocksCategoryName, enableStoneTiles));
+                ModConfigKeys.ENABLE_MOSSY_STONE_TILES, buildingBlocksCategoryName, enableStoneTiles));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_WOODCUTTER, buildingBlocksCategoryName));
+                ModConfigKeys.ENABLE_WOODCUTTER, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_CRACKED_STONE_BRICK_BLOCKS, buildingBlocksCategoryName));
+                ModConfigKeys.ENABLE_CRACKED_STONE_BRICK_BLOCKS, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_STONE_WALLS, buildingBlocksCategoryName));
+                ModConfigKeys.ENABLE_STONE_WALLS, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_CALCITE_BLOCKS, buildingBlocksCategoryName));
+                ModConfigKeys.ENABLE_CALCITE_BLOCKS, buildingBlocksCategoryName));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_POLISHED_CALCITE, buildingBlocksCategoryName));
+                ModConfigKeys.ENABLE_POLISHED_CALCITE, buildingBlocksCategoryName));
 
         BooleanListEntry enableCalciteBricksEntry = makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_CALCITE_BRICKS, buildingBlocksCategoryName);
+                ModConfigKeys.ENABLE_CALCITE_BRICKS, buildingBlocksCategoryName);
 
         buildingScreenCategory.addEntry(enableCalciteBricksEntry);
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_CRACKED_CALCITE_BRICKS, buildingBlocksCategoryName, enableCalciteBricksEntry));
+                ModConfigKeys.ENABLE_CRACKED_CALCITE_BRICKS, buildingBlocksCategoryName, enableCalciteBricksEntry));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_MOSSY_CALCITE_BRICKS, buildingBlocksCategoryName, enableCalciteBricksEntry));
+                ModConfigKeys.ENABLE_MOSSY_CALCITE_BRICKS, buildingBlocksCategoryName, enableCalciteBricksEntry));
+        buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
+                ModConfigKeys.ENABLE_DRIPSTONE_BLOCKS, buildingBlocksCategoryName));
+        buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
+                ModConfigKeys.ENABLE_CRACKED_DRIPSTONE_BRICKS, buildingBlocksCategoryName));
+        buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
+                ModConfigKeys.ENABLE_MOSSY_DRIPSTONE_BRICKS, buildingBlocksCategoryName));
 
         // Structures config options
         String structuresCategoryName = "structures";
         ConfigCategory structuresCategory = builder.getOrCreateCategory(Text.translatable("category.cloth-config."
                 + ADReference.MOD_ID + ".option." + structuresCategoryName));
         structuresCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_FOREST_CABINS, structuresCategoryName));
+                ModConfigKeys.ENABLE_FOREST_CABINS, structuresCategoryName));
         structuresCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_DARK_FOREST_CABINS, structuresCategoryName));
+                ModConfigKeys.ENABLE_DARK_FOREST_CABINS, structuresCategoryName));
         structuresCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_BIRCH_FOREST_CABINS, structuresCategoryName));
+                ModConfigKeys.ENABLE_BIRCH_FOREST_CABINS, structuresCategoryName));
         structuresCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_TAIGA_CABINS, structuresCategoryName));
+                ModConfigKeys.ENABLE_TAIGA_CABINS, structuresCategoryName));
         structuresCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_SNOWY_TAIGA_CABINS, structuresCategoryName));
+                ModConfigKeys.ENABLE_SNOWY_TAIGA_CABINS, structuresCategoryName));
         structuresCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_CRIMSON_FOREST_CABINS, structuresCategoryName));
+                ModConfigKeys.ENABLE_CRIMSON_FOREST_CABINS, structuresCategoryName));
         structuresCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_WARPED_FOREST_CABINS, structuresCategoryName));
+                ModConfigKeys.ENABLE_WARPED_FOREST_CABINS, structuresCategoryName));
 
         // Farming config options
         String farmingCategoryName = "farming";
         ConfigCategory farmingScreenCategory = builder.getOrCreateCategory(Text.translatable("category.cloth-config."
                 + ADReference.MOD_ID + ".option." + farmingCategoryName));
         farmingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_WOODEN_PLANTER_BOXES, farmingCategoryName));
+                ModConfigKeys.ENABLE_WOODEN_PLANTER_BOXES, farmingCategoryName));
         farmingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_GREEN_ONIONS, farmingCategoryName));
+                ModConfigKeys.ENABLE_GREEN_ONIONS, farmingCategoryName));
         farmingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_NOODLE_SOUP, farmingCategoryName));
+                ModConfigKeys.ENABLE_NOODLE_SOUP, farmingCategoryName));
         BooleanListEntry enableBlueberries = makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_BLUEBERRIES, farmingCategoryName);
+                ModConfigKeys.ENABLE_BLUEBERRIES, farmingCategoryName);
         farmingScreenCategory.addEntry(enableBlueberries);
         farmingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_BLUEBERRY_PIE, farmingCategoryName, enableBlueberries));
+                ModConfigKeys.ENABLE_BLUEBERRY_PIE, farmingCategoryName, enableBlueberries));
         farmingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_BLUEBERRY_JUICE, farmingCategoryName, enableBlueberries));
+                ModConfigKeys.ENABLE_BLUEBERRY_JUICE, farmingCategoryName, enableBlueberries));
         farmingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_SWEET_BERRY_PIE, farmingCategoryName));
+                ModConfigKeys.ENABLE_SWEET_BERRY_PIE, farmingCategoryName));
         farmingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_SWEET_BERRY_JUICE, farmingCategoryName));
+                ModConfigKeys.ENABLE_SWEET_BERRY_JUICE, farmingCategoryName));
         farmingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_CHOCOLATE_CAKE, farmingCategoryName));
+                ModConfigKeys.ENABLE_CHOCOLATE_CAKE, farmingCategoryName));
         farmingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_RED_VELVET_CAKE, farmingCategoryName));
+                ModConfigKeys.ENABLE_RED_VELVET_CAKE, farmingCategoryName));
         farmingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_FRIED_EGG, farmingCategoryName));
+                ModConfigKeys.ENABLE_FRIED_EGG, farmingCategoryName));
         farmingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_HOGLIN_STEW, farmingCategoryName));
+                ModConfigKeys.ENABLE_HOGLIN_STEW, farmingCategoryName));
         farmingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_FORESTS_BOUNTY, farmingCategoryName));
+                ModConfigKeys.ENABLE_FORESTS_BOUNTY, farmingCategoryName));
         farmingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_WITCHS_CRADLE_SOUP, farmingCategoryName));
+                ModConfigKeys.ENABLE_WITCHS_CRADLE_SOUP, farmingCategoryName));
         farmingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_PUDDING, farmingCategoryName));
+                ModConfigKeys.ENABLE_PUDDING, farmingCategoryName));
         farmingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_CARAMEL_APPLE, farmingCategoryName));
+                ModConfigKeys.ENABLE_CARAMEL_APPLE, farmingCategoryName));
         farmingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_NETHER_BERRIES, farmingCategoryName));
+                ModConfigKeys.ENABLE_NETHER_BERRIES, farmingCategoryName));
         farmingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_PURPLE_MUSHROOMS, farmingCategoryName));
+                ModConfigKeys.ENABLE_PURPLE_MUSHROOMS, farmingCategoryName));
         farmingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_CATTAILS, farmingCategoryName));
+                ModConfigKeys.ENABLE_CATTAILS, farmingCategoryName));
         farmingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_BOG_BLOSSOMS, farmingCategoryName));
+                ModConfigKeys.ENABLE_BOG_BLOSSOMS, farmingCategoryName));
         farmingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_BLOOD_KELP, farmingCategoryName));
+                ModConfigKeys.ENABLE_BLOOD_KELP, farmingCategoryName));
         farmingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.ENABLE_ENDER_PLANTS, farmingCategoryName));
+                ModConfigKeys.ENABLE_ENDER_PLANTS, farmingCategoryName));
 
         // Misc config options
         String miscCategoryName = "misc";
         ConfigCategory miscScreenCategory = builder.getOrCreateCategory(Text.translatable("category.cloth-config."
                 + ADReference.MOD_ID + ".option." + miscCategoryName));
         miscScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfig.RABBITS_SAFE_FALL_INCREASED, miscCategoryName));
+                ModConfigKeys.RABBITS_SAFE_FALL_INCREASED, miscCategoryName));
 
         builder.setSavingRunnable(() -> {
-            JsonConfig config = ModConfig.makeModConfig();
+            ConfigData data = ConfigData.getInstance();
+            JsonConfig config = ModConfig.getInternalConfig();
 
-            config.save(ENTRY_VALUE_CHANGES);
-            config.load(); // Load the new changes into memory here!
+            config.load(data);
+            config.save(data, ENTRY_VALUE_CHANGES);
+            config.load(data); // Load the new changes into memory here!
         });
         return builder;
     }
@@ -210,13 +221,13 @@ public class ModConfigScreen {
         final Text subCategoryText = makeSubcategoryText(categoryName, subCategoryName);
         BooleanListEntry configEntry;
 
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_DYED_CAMPFIRES,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_DYED_CAMPFIRES,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_DYED_LANTERNS,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_DYED_LANTERNS,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_DYED_TORCHES,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_DYED_TORCHES,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
         return entryBuilder.startSubCategory(subCategoryText, entryList).build();
@@ -230,52 +241,53 @@ public class ModConfigScreen {
         final Text subCategoryText = makeSubcategoryText(categoryName, subCategoryName);
         BooleanListEntry configEntry;
 
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_ALLAY_PLUSHIE,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_ALLAY_PLUSHIE,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_BAT_PLUSHIE,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_BAT_PLUSHIE,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_CAMEL_PLUSHIE,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_CAMEL_PLUSHIE,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_CAT_PLUSHIES,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_CAT_PLUSHIES,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_CHICKEN_PLUSHIE,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_CHICKEN_PLUSHIE,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_COW_PLUSHIE,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_COW_PLUSHIE,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_HORSE_PLUSHIES,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_HORSE_PLUSHIES,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_MOOSHROOM_PLUSHIES,
+
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_MOOSHROOM_PLUSHIES,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_OCELOT_PLUSHIE,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_OCELOT_PLUSHIE,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_PIG_PLUSHIE,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_PIG_PLUSHIE,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_PUFFERFISH_PLUSHIE,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_PUFFERFISH_PLUSHIE,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_RABBIT_PLUSHIES,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_RABBIT_PLUSHIES,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_SHEEP_PLUSHIES,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_SHEEP_PLUSHIES,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_SQUID_PLUSHIES,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_SQUID_PLUSHIES,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_STRIDER_PLUSHIES,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_STRIDER_PLUSHIES,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_VILLAGER_PLUSHIES,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_VILLAGER_PLUSHIES,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
         return entryBuilder.startSubCategory(subCategoryText, entryList).build();
@@ -289,25 +301,25 @@ public class ModConfigScreen {
         final Text subCategoryText = makeSubcategoryText(categoryName, subCategoryName);
         BooleanListEntry configEntry;
 
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_BEE_PLUSHIE,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_BEE_PLUSHIE,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_CAVE_SPIDER_PLUSHIE,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_CAVE_SPIDER_PLUSHIE,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_ENDERMAN_PLUSHIE,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_ENDERMAN_PLUSHIE,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_PIGLIN_PLUSHIES,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_PIGLIN_PLUSHIES,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_POLAR_BEAR_PLUSHIE,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_POLAR_BEAR_PLUSHIE,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_SPIDER_PLUSHIE,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_SPIDER_PLUSHIE,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_PALE_WOLF_PLUSHIE,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_PALE_WOLF_PLUSHIE,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
         return entryBuilder.startSubCategory(subCategoryText, entryList).build();
@@ -321,65 +333,66 @@ public class ModConfigScreen {
         final Text subCategoryText = makeSubcategoryText(categoryName, subCategoryName);
         BooleanListEntry configEntry;
 
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_BLAZE_PLUSHIE,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_BLAZE_PLUSHIE,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_CREEPER_PLUSHIE,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_CREEPER_PLUSHIE,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_GHAST_PLUSHIE,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_GHAST_PLUSHIE,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_GUARDIAN_PLUSHIE,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_GUARDIAN_PLUSHIE,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_HOGLIN_PLUSHIES,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_HOGLIN_PLUSHIES,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_ILLAGER_PLUSHIES,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_ILLAGER_PLUSHIES,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_MAGMA_CUBE_PLUSHIE,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_MAGMA_CUBE_PLUSHIE,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_PHANTOM_PLUSHIE,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_PHANTOM_PLUSHIE,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_RAVAGER_PLUSHIE,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_RAVAGER_PLUSHIE,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_SHULKER_PLUSHIE,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_SHULKER_PLUSHIE,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_SKELETON_PLUSHIE,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_SKELETON_PLUSHIE,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_SLIME_PLUSHIE,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_SLIME_PLUSHIE,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_VEX_PLUSHIE,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_VEX_PLUSHIE,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_WITCH_PLUSHIE,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_WITCH_PLUSHIE,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_WITHER_PLUSHIE,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_WITHER_PLUSHIE,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_ZOMBIE_PLUSHIE,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_ZOMBIE_PLUSHIE,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_ZOMBIE_VILLAGER_PLUSHIES,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_ZOMBIE_VILLAGER_PLUSHIES,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
-        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfig.ENABLE_CREAKING_PLUSHIE,
+        configEntry = makeToggleableConfigEntry(entryBuilder, ModConfigKeys.ENABLE_CREAKING_PLUSHIE,
                 categoryName, subCategoryName);
         entryList.add(configEntry);
         return entryBuilder.startSubCategory(subCategoryText, entryList).build();
     }
 
-    private static BooleanListEntry makeToggleableConfigEntry(ConfigEntryBuilder entryBuilder, BooleanConfigEntry entry,
+    private static BooleanListEntry makeToggleableConfigEntry(ConfigEntryBuilder entryBuilder, String key,
                                                               String categoryName, String subCategoryName) {
+        BooleanConfigEntry entry = (BooleanConfigEntry) ModConfigScreen.getConfig().getEntry(key);
         final String entryName = entry.getName();
         final boolean entryValue = entry.getValue();
         Text displayText = makeEntryText(categoryName, subCategoryName, entryName);
@@ -392,8 +405,9 @@ public class ModConfigScreen {
                 }).setDefaultValue(true).requireRestart().build();
     }
 
-    private static BooleanListEntry makeToggleableConfigEntry(ConfigEntryBuilder entryBuilder, BooleanConfigEntry entry,
-                                                             String categoryName) {
+    private static BooleanListEntry makeToggleableConfigEntry(ConfigEntryBuilder entryBuilder, String key,
+                                                              String categoryName) {
+        BooleanConfigEntry entry = (BooleanConfigEntry) ModConfigScreen.getConfig().getEntry(key);
         final String entryName = entry.getName();
         final boolean entryValue = entry.getValue();
         Text displayText = makeEntryText(categoryName, entryName);
@@ -407,8 +421,9 @@ public class ModConfigScreen {
     }
 
     @SuppressWarnings("UnstableApiUsage")
-    private static BooleanListEntry makeToggleableConfigEntry(ConfigEntryBuilder entryBuilder, BooleanConfigEntry entry,
+    private static BooleanListEntry makeToggleableConfigEntry(ConfigEntryBuilder entryBuilder, String key,
                                                               String categoryName, BooleanListEntry... dependencies) {
+        BooleanConfigEntry entry = (BooleanConfigEntry) ModConfigScreen.getConfig().getEntry(key);
         final String entryName = entry.getName();
         final boolean entryValue = entry.getValue();
         Text requirementText = makeEntryRequirementText(categoryName, entryName);
@@ -423,6 +438,13 @@ public class ModConfigScreen {
                     }
                 }).setDefaultValue(true).requireRestart().setRequirement(Requirement.all(requirements))
                 .setTooltipSupplier(requirementTooltip).build();
+    }
+
+    private static JsonConfig getConfig() {
+        ConfigData data = ConfigData.getInstance();
+        JsonConfig config = ModConfig.getInternalConfig();
+        config.load(data);
+        return config;
     }
 
     /**

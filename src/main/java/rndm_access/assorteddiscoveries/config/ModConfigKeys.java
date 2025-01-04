@@ -96,7 +96,6 @@ public class ModConfigKeys {
     public static final String ENABLE_BOG_BLOSSOMS;
     public static final String ENABLE_BLOOD_KELP;
     public static final String ENABLE_ENDER_PLANTS;
-    public static final String RABBITS_SAFE_FALL_INCREASED;
     public static final String ENABLE_FOREST_CABINS;
     public static final String ENABLE_DARK_FOREST_CABINS;
     public static final String ENABLE_BIRCH_FOREST_CABINS;
@@ -213,7 +212,6 @@ public class ModConfigKeys {
         ENABLE_BOG_BLOSSOMS = "enable_bog_blossoms";
         ENABLE_BLOOD_KELP = "enable_blood_kelp";
         ENABLE_ENDER_PLANTS = "enable_ender_plants";
-        RABBITS_SAFE_FALL_INCREASED = "rabbits_safe_fall_increased";
         ENABLE_FOREST_CABINS = "enable_forest_cabins";
         ENABLE_DARK_FOREST_CABINS = "enable_dark_forest_cabins";
         ENABLE_BIRCH_FOREST_CABINS = "enable_birch_forest_cabins";

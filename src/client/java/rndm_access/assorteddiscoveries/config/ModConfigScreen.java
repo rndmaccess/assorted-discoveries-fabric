@@ -196,13 +196,6 @@ public class ModConfigScreen {
         farmingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
                 ModConfigKeys.ENABLE_ENDER_PLANTS, farmingCategoryName));
 
-        // Misc config options
-        String miscCategoryName = "misc";
-        ConfigCategory miscScreenCategory = builder.getOrCreateCategory(Text.translatable("category.cloth-config."
-                + ADReference.MOD_ID + ".option." + miscCategoryName));
-        miscScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfigKeys.RABBITS_SAFE_FALL_INCREASED, miscCategoryName));
-
         builder.setSavingRunnable(() -> {
             ConfigData data = ConfigData.getInstance();
             JsonConfig config = ModConfig.getInternalConfig();

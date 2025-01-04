@@ -229,11 +229,7 @@ public class ModConfig {
                 .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_ENDER_PLANTS,
                         "Whether patches of ender grass and snapdragons should spawn!")).build();
 
-        ConfigCategory miscCategory = new ConfigCategory.Builder("misc")
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.RABBITS_SAFE_FALL_INCREASED))
-                .build();
-
-        return new JsonConfig(buildingBlocksCategory, structureCategory, farmingCategory, miscCategory);
+        return new JsonConfig(buildingBlocksCategory, structureCategory, farmingCategory);
     }
 
     static {

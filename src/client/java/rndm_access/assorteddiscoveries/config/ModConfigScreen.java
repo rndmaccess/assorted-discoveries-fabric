@@ -114,18 +114,25 @@ public class ModConfigScreen {
 
         BooleanListEntry enableCalciteBricksEntry = makeToggleableConfigEntry(entryBuilder,
                 ModConfigKeys.ENABLE_CALCITE_BRICKS, buildingBlocksCategoryName);
-
         buildingScreenCategory.addEntry(enableCalciteBricksEntry);
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfigKeys.ENABLE_CRACKED_CALCITE_BRICKS, buildingBlocksCategoryName, enableCalciteBricksEntry));
+                ModConfigKeys.ENABLE_CRACKED_CALCITE_BRICKS, buildingBlocksCategoryName,
+                enableCalciteBricksEntry));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfigKeys.ENABLE_MOSSY_CALCITE_BRICKS, buildingBlocksCategoryName, enableCalciteBricksEntry));
+                ModConfigKeys.ENABLE_MOSSY_CALCITE_BRICKS, buildingBlocksCategoryName,
+                enableCalciteBricksEntry));
+
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
                 ModConfigKeys.ENABLE_DRIPSTONE_BLOCKS, buildingBlocksCategoryName));
+        BooleanListEntry enableDripstoneBricksEntry = makeToggleableConfigEntry(entryBuilder,
+                ModConfigKeys.ENABLE_DRIPSTONE_BRICKS, buildingBlocksCategoryName);
+        buildingScreenCategory.addEntry(enableDripstoneBricksEntry);
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfigKeys.ENABLE_CRACKED_DRIPSTONE_BRICKS, buildingBlocksCategoryName));
+                ModConfigKeys.ENABLE_CRACKED_DRIPSTONE_BRICKS, buildingBlocksCategoryName,
+                enableDripstoneBricksEntry));
         buildingScreenCategory.addEntry(makeToggleableConfigEntry(entryBuilder,
-                ModConfigKeys.ENABLE_MOSSY_DRIPSTONE_BRICKS, buildingBlocksCategoryName));
+                ModConfigKeys.ENABLE_MOSSY_DRIPSTONE_BRICKS, buildingBlocksCategoryName,
+                enableDripstoneBricksEntry));
 
         // Structures config options
         String structuresCategoryName = "structures";

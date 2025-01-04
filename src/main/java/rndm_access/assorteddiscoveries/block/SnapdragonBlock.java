@@ -9,7 +9,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import rndm_access.assorteddiscoveries.core.CommonBlockTags;
+import rndm_access.assorteddiscoveries.core.ModBlockTags;
 
 public class SnapdragonBlock extends FlowerBlock {
 
@@ -20,7 +20,7 @@ public class SnapdragonBlock extends FlowerBlock {
 
     @Override
     protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
-        return floor.isIn(CommonBlockTags.SNAPDRAGON_PLANTABLE_ON);
+        return floor.isIn(ModBlockTags.SNAPDRAGON_PLANTABLE_ON);
     }
 
     @Override

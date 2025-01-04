@@ -8,7 +8,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.state.StateManager;
-import rndm_access.assorteddiscoveries.core.CommonEntityTypeTags;
+import rndm_access.assorteddiscoveries.core.ModEntityTypeTags;
 import rndm_access.assorteddiscoveries.core.ModItems;
 
 public class BlueberryBushBlock extends AbstractBerryBushBlock {
@@ -31,7 +31,7 @@ public class BlueberryBushBlock extends AbstractBerryBushBlock {
 
     @Override
     protected TagKey<EntityType<?>> mobsImmune() {
-        return CommonEntityTypeTags.BLUEBERRY_BUSH_IMMUNE_ENTITY_TYPES;
+        return ModEntityTypeTags.BLUEBERRY_BUSH_IMMUNE_ENTITY_TYPES;
     }
 
     @Override

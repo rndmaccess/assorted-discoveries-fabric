@@ -13,7 +13,7 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import rndm_access.assorteddiscoveries.core.CommonEntityTypeTags;
+import rndm_access.assorteddiscoveries.core.ModEntityTypeTags;
 import rndm_access.assorteddiscoveries.core.ModItems;
 import rndm_access.assorteddiscoveries.core.ModParticleTypes;
 
@@ -41,7 +41,7 @@ public class WitchsCradleBlock extends AbstractBerryBushBlock {
 
     @Override
     protected TagKey<EntityType<?>> mobsImmune() {
-        return CommonEntityTypeTags.WITCHS_CRADLE_IMMUNE_ENTITY_TYPES;
+        return ModEntityTypeTags.WITCHS_CRADLE_IMMUNE_ENTITY_TYPES;
     }
 
     @Override

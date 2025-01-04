@@ -8,7 +8,7 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import rndm_access.assorteddiscoveries.core.CommonBlockTags;
+import rndm_access.assorteddiscoveries.core.ModBlockTags;
 
 public class ShortEnderGrassBlock extends PlantBlock {
     public static final MapCodec<ShortEnderGrassBlock> CODEC;
@@ -25,7 +25,7 @@ public class ShortEnderGrassBlock extends PlantBlock {
 
     @Override
     public boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
-        return floor.isIn(CommonBlockTags.ENDER_GRASS_PLANTABLE_ON);
+        return floor.isIn(ModBlockTags.ENDER_GRASS_PLANTABLE_ON);
     }
 
     @Override

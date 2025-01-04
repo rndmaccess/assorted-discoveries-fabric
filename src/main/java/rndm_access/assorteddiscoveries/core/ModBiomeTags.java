@@ -5,7 +5,7 @@ import net.minecraft.registry.tag.TagKey;
 import net.minecraft.world.biome.Biome;
 import rndm_access.assorteddiscoveries.ADReference;
 
-public class CommonBiomeTags {
+public class ModBiomeTags {
     public static final TagKey<Biome> ORE_SMOKY_QUARTZ;
     public static final TagKey<Biome> PATCH_BLUEBERRY_BUSH;
     public static final TagKey<Biome> PATCH_CATTAIL_MANGROVE_SWAMP;
@@ -21,7 +21,7 @@ public class CommonBiomeTags {
     public static final TagKey<Biome> PATCH_WILD_GREEN_ONIONS;
 
     private static TagKey<Biome> of(String path) {
-        return TagKey.of(RegistryKeys.BIOME, ADReference.makeCommonId(path));
+        return TagKey.of(RegistryKeys.BIOME, ADReference.makeModId(path));
     }
 
     static {

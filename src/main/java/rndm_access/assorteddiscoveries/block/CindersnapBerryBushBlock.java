@@ -12,9 +12,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import rndm_access.assorteddiscoveries.core.CommonEntityTypeTags;
+import rndm_access.assorteddiscoveries.core.ModBlockTags;
+import rndm_access.assorteddiscoveries.core.ModEntityTypeTags;
 import rndm_access.assorteddiscoveries.core.ModItems;
-import rndm_access.assorteddiscoveries.core.CommonBlockTags;
 
 public class CindersnapBerryBushBlock extends AbstractBerryBushBlock {
     public static final MapCodec<CindersnapBerryBushBlock> CODEC;
@@ -31,7 +31,7 @@ public class CindersnapBerryBushBlock extends AbstractBerryBushBlock {
 
     @Override
     protected TagKey<EntityType<?>> mobsImmune() {
-        return CommonEntityTypeTags.CINDERSNAP_BERRY_BUSH_IMMUNE_ENTITY_TYPES;
+        return ModEntityTypeTags.CINDERSNAP_BERRY_BUSH_IMMUNE_ENTITY_TYPES;
     }
 
     @Override
@@ -63,7 +63,7 @@ public class CindersnapBerryBushBlock extends AbstractBerryBushBlock {
 
     @Override
     public boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
-        return floor.isIn(CommonBlockTags.CINDERSNAP_BERRY_BUSH_PLANTABLE_ON);
+        return floor.isIn(ModBlockTags.CINDERSNAP_BERRY_BUSH_PLANTABLE_ON);
     }
 
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {

@@ -40,9 +40,6 @@ public class AssortedDiscoveries implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-        // TODO: Move the plantable_on tags to the assorted-discoveries namespace and make new common
-        //  tags such as snowy_taiga, etc. These will be used in the plantable_on tags!
-
         // Config
         JsonConfig config = ModConfig.createOrInitConfig();
         ModConfig.registerConfigServerEvents();

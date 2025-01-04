@@ -172,7 +172,9 @@ public class ModConfig {
                         "This option requires smoky quartz blocks!"))
                 .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_SMOOTH_SMOKY_QUARTZ,
                         "This option requires smoky quartz blocks!"))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_QUARTZ_BRICK_BLOCKS))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_QUARTZ_BRICK_BLOCKS,
+                        "Whether quartz brick slabs, quartz brick walls, " +
+                                "and quartz brick stairs are enabled!"))
                 .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_QUARTZ_TILES))
                 .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_QUARTZ_WALLS))
                 .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_BAUXITE))
@@ -188,16 +190,21 @@ public class ModConfig {
                 .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_MOSSY_STONE_TILES,
                         "This option requires stone tiles!"))
                 .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_WOODCUTTER))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CRACKED_STONE_BRICK_BLOCKS))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CRACKED_STONE_BRICK_BLOCKS,
+                        "Whether cracked stone brick slabs, cracked stone brick walls, " +
+                                "and cracked stone brick stairs are enabled!"))
                 .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_STONE_WALLS))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CALCITE_BLOCKS))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CALCITE_BLOCKS,
+                        "Whether calcite slabs, calcite walls, and calcite stairs are enabled!"))
                 .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_POLISHED_CALCITE))
                 .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CALCITE_BRICKS))
                 .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CRACKED_CALCITE_BRICKS,
                         "This option requires calcite bricks!"))
                 .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_MOSSY_CALCITE_BRICKS,
                         "This option requires calcite bricks!"))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_DRIPSTONE_BLOCKS))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_DRIPSTONE_BLOCKS,
+                        "Whether dripstone slabs, " +
+                                "dripstone walls, and dripstone stairs are enabled!"))
                 .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_POLISHED_DRIPSTONE))
                 .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_DRIPSTONE_BRICKS))
                 .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CRACKED_DRIPSTONE_BRICKS))

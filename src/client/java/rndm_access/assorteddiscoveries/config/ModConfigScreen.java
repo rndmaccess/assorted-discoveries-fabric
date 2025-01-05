@@ -209,7 +209,6 @@ public class ModConfigScreen {
 
             config.load(data);
             config.save(data, ENTRY_VALUE_CHANGES);
-            config.load(data); // Load the new changes into memory here!
         });
         return builder;
     }

@@ -84,72 +84,10 @@ public class ModConfig {
     }
 
     public static JsonConfig getInternalConfig() {
-        ConfigCategory dyedSubcategory = new ConfigCategory.Builder("dyed")
+        ConfigCategory buildingBlocksCategory = new ConfigCategory.Builder("building_blocks")
                 .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_DYED_CAMPFIRES))
                 .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_DYED_LANTERNS))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_DYED_TORCHES)).build();
-
-        ConfigCategory passivePlushiesSubcategory = new ConfigCategory.Builder("passive_plushies")
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_ALLAY_PLUSHIE))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_BAT_PLUSHIE))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CAMEL_PLUSHIE))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CAT_PLUSHIES))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CHICKEN_PLUSHIE))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_COW_PLUSHIE))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_HORSE_PLUSHIES))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_MOOSHROOM_PLUSHIES))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_OCELOT_PLUSHIE))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_PIG_PLUSHIE))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_PUFFERFISH_PLUSHIE))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_RABBIT_PLUSHIES))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_SHEEP_PLUSHIES))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_SQUID_PLUSHIES))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_STRIDER_PLUSHIES))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_VILLAGER_PLUSHIES)).build();
-
-        ConfigCategory neutralPlushiesSubcategory = new ConfigCategory.Builder("neutral_plushies")
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_BEE_PLUSHIE))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CAVE_SPIDER_PLUSHIE))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_ENDERMAN_PLUSHIE))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_PIGLIN_PLUSHIES))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_POLAR_BEAR_PLUSHIE))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_SPIDER_PLUSHIE))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_PALE_WOLF_PLUSHIE)).build();
-
-        ConfigCategory hostilePlushiesSubcategory = new ConfigCategory.Builder("hostile_plushies")
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_BLAZE_PLUSHIE))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CREEPER_PLUSHIE))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_GHAST_PLUSHIE))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_GUARDIAN_PLUSHIE))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_HOGLIN_PLUSHIES))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_ILLAGER_PLUSHIES))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_MAGMA_CUBE_PLUSHIE))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_PHANTOM_PLUSHIE))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_RAVAGER_PLUSHIE))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_SHULKER_PLUSHIE))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_SKELETON_PLUSHIE))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_SLIME_PLUSHIE))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_VEX_PLUSHIE))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_WITCH_PLUSHIE))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_WITHER_PLUSHIE))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_ZOMBIE_PLUSHIE))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_ZOMBIE_VILLAGER_PLUSHIES))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CREAKING_PLUSHIE)).build();
-
-        ConfigCategory structureCategory = new ConfigCategory.Builder("structures")
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_FOREST_CABINS))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_DARK_FOREST_CABINS))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_BIRCH_FOREST_CABINS))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_TAIGA_CABINS))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_SNOWY_TAIGA_CABINS))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CRIMSON_FOREST_CABINS))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_WARPED_FOREST_CABINS)).build();
-
-        ConfigCategory buildingBlocksCategory = new ConfigCategory.Builder("building_blocks")
-                .addSubcategory(dyedSubcategory)
-                .addSubcategory(passivePlushiesSubcategory)
-                .addSubcategory(neutralPlushiesSubcategory)
-                .addSubcategory(hostilePlushiesSubcategory)
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_DYED_TORCHES))
                 .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_WOODEN_WALLS))
                 .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_STRIPPED_WOODEN_WALLS))
                 .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_WOODEN_ROPE_LADDERS))
@@ -210,6 +148,64 @@ public class ModConfig {
                 .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CRACKED_DRIPSTONE_BRICKS))
                 .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_MOSSY_DRIPSTONE_BRICKS)).build();
 
+        ConfigCategory passivePlushiesCategory = new ConfigCategory.Builder("passive_plushies")
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_ALLAY_PLUSHIE))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_BAT_PLUSHIE))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CAMEL_PLUSHIE))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CAT_PLUSHIES))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CHICKEN_PLUSHIE))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_COW_PLUSHIE))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_HORSE_PLUSHIES))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_MOOSHROOM_PLUSHIES))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_OCELOT_PLUSHIE))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_PIG_PLUSHIE))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_PUFFERFISH_PLUSHIE))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_RABBIT_PLUSHIES))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_SHEEP_PLUSHIES))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_SQUID_PLUSHIES))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_STRIDER_PLUSHIES))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_VILLAGER_PLUSHIES)).build();
+
+        ConfigCategory neutralPlushiesCategory = new ConfigCategory.Builder("neutral_plushies")
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_BEE_PLUSHIE))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CAVE_SPIDER_PLUSHIE))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_ENDERMAN_PLUSHIE))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_PIGLIN_PLUSHIES))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_POLAR_BEAR_PLUSHIE))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_SPIDER_PLUSHIE))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_PALE_WOLF_PLUSHIE)).build();
+
+        ConfigCategory hostilePlushiesCategory = new ConfigCategory.Builder("hostile_plushies")
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_BLAZE_PLUSHIE))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CREEPER_PLUSHIE))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_GHAST_PLUSHIE))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_GUARDIAN_PLUSHIE))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_HOGLIN_PLUSHIES))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_ILLAGER_PLUSHIES))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_MAGMA_CUBE_PLUSHIE))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_PHANTOM_PLUSHIE))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_RAVAGER_PLUSHIE))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_SHULKER_PLUSHIE))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_SKELETON_PLUSHIE))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_SLIME_PLUSHIE))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_VEX_PLUSHIE))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_WITCH_PLUSHIE))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_WITHER_PLUSHIE))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_ZOMBIE_PLUSHIE))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_ZOMBIE_VILLAGER_PLUSHIES))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CREAKING_PLUSHIE)).build();
+
+        ConfigCategory structureCategory = new ConfigCategory.Builder("structures")
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_FOREST_CABINS))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_DARK_FOREST_CABINS))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_BIRCH_FOREST_CABINS))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_TAIGA_CABINS))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_SNOWY_TAIGA_CABINS))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CRIMSON_FOREST_CABINS))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_WARPED_FOREST_CABINS)).build();
+
+
+
         //TODO: Give enable_ender_plants a better name!
         ConfigCategory farmingCategory = new ConfigCategory.Builder("farming")
                 .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_WOODEN_PLANTER_BOXES))
@@ -236,7 +232,8 @@ public class ModConfig {
                 .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_ENDER_PLANTS,
                         "Whether patches of ender grass and snapdragons should spawn!")).build();
 
-        return new JsonConfig(buildingBlocksCategory, structureCategory, farmingCategory);
+        return new JsonConfig(buildingBlocksCategory, passivePlushiesCategory, neutralPlushiesCategory, hostilePlushiesCategory,
+                structureCategory, farmingCategory);
     }
 
     static {

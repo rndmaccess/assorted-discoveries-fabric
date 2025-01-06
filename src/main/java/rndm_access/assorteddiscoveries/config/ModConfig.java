@@ -1,85 +1,20 @@
 package rndm_access.assorteddiscoveries.config;
 
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
-import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.WorldSavePath;
 import rndm_access.assorteddiscoveries.ADReference;
-import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.json.*;
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.BooleanConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.deserializer.ConfigCategory;
 
 import java.nio.file.Files;
-import java.nio.file.Path;
 
 public class ModConfig {
-    public static final Path GLOBAL_PATH;
-
     public static JsonConfig createOrInitConfig() {
-        if (Files.exists(GLOBAL_PATH)) {
-            // Here we get the instance because it is are first time calling this function so the instance will be null!
-            ConfigData data = ConfigData.getInstance(GLOBAL_PATH, ConfigType.GLOBAL);
-            return loadGlobalConfig(data);
-        } else {
-            return createGlobalConfig();
-        }
-    }
-
-    public static void registerConfigServerEvents() {
-        // When loading the world load the config for that world if there is one!
-        ServerWorldEvents.LOAD.register((phase, listener) -> {
-            ConfigData data = ConfigData.getInstance();
-            ConfigType type = data.getType();
-
-            if (type == ConfigType.GLOBAL) {
-                loadLocalConfig(phase);
-            }
-        });
-
-        // After unloading the world reload the global config!
-        ServerWorldEvents.UNLOAD.register((phase, listener) -> {
-            ConfigData data = ConfigData.getInstance();
-            ConfigType type = data.getType();
-
-            if (type == ConfigType.LOCAL) {
-                ConfigData.update(GLOBAL_PATH, ConfigType.GLOBAL);
-                data = ConfigData.getInstance();
-                loadGlobalConfig(data);
-            }
-        });
-    }
-
-    private static void loadLocalConfig(MinecraftServer phase) {
-        Path worldPathFolder = phase.getSavePath(WorldSavePath.ROOT).getParent();
-        Path worldPath = Path.of(worldPathFolder.toString() + "/config/")
-                .resolve(ADReference.MOD_ID + ".json5");
-
-        if (Files.exists(worldPath)) {
-            ConfigData.update(worldPath, ConfigType.LOCAL);
-            ConfigData data = ConfigData.getInstance();
-            JsonConfig config = ModConfig.getInternalConfig();
-
-            config.load(data);
-            AssortedDiscoveries.LOGGER.info("Loaded world config for '{}'", worldPathFolder.getFileName());
-        }
-    }
-
-    private static JsonConfig createGlobalConfig() {
-        ConfigData data = ConfigData.getInstance(GLOBAL_PATH, ConfigType.GLOBAL);
         JsonConfig config = ModConfig.getInternalConfig();
 
-        config.create(data);
-        config.load(data);
-        AssortedDiscoveries.LOGGER.info("Created global config");
-        return config;
-    }
-
-    private static JsonConfig loadGlobalConfig(ConfigData data) {
-        JsonConfig config = ModConfig.getInternalConfig();
-
-        config.load(data);
-        AssortedDiscoveries.LOGGER.info("Loaded global config");
+        if (!Files.exists(config.getPath())) {
+            config.create();
+        }
+        config.load();
         return config;
     }
 
@@ -232,11 +167,7 @@ public class ModConfig {
                 .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_ENDER_PLANTS,
                         "Whether patches of ender grass and snapdragons should spawn!")).build();
 
-        return new JsonConfig(buildingBlocksCategory, passivePlushiesCategory, neutralPlushiesCategory, hostilePlushiesCategory,
-                structureCategory, farmingCategory);
-    }
-
-    static {
-        GLOBAL_PATH = FabricLoader.getInstance().getConfigDir().resolve(ADReference.MOD_ID + ".json5");
+        return new JsonConfig(ADReference.MOD_ID, buildingBlocksCategory, passivePlushiesCategory,
+                neutralPlushiesCategory, hostilePlushiesCategory, structureCategory, farmingCategory);
     }
 }

@@ -5,7 +5,6 @@ import me.shedaniel.clothconfig2.gui.entries.BooleanListEntry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import rndm_access.assorteddiscoveries.ADReference;
-import rndm_access.assorteddiscoveries.config.json.ConfigData;
 import rndm_access.assorteddiscoveries.config.json.JsonConfig;
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.BooleanConfigEntry;
 
@@ -31,11 +30,10 @@ public class ModConfigScreen {
         ModConfigScreen.addFarmingCategory(configBuilder, entryBuilder);
 
         configBuilder.setSavingRunnable(() -> {
-            ConfigData data = ConfigData.getInstance();
             JsonConfig config = ModConfig.getInternalConfig();
 
-            config.load(data);
-            config.save(data, ENTRY_VALUE_CHANGES);
+            config.load();
+            config.save(ENTRY_VALUE_CHANGES);
         });
         return configBuilder;
     }
@@ -388,9 +386,8 @@ public class ModConfigScreen {
     }
 
     private static JsonConfig getConfig() {
-        ConfigData data = ConfigData.getInstance();
         JsonConfig config = ModConfig.getInternalConfig();
-        config.load(data);
+        config.load();
         return config;
     }
 

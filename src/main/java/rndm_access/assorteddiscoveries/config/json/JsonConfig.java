@@ -1,5 +1,6 @@
 package rndm_access.assorteddiscoveries.config.json;
 
+import net.fabricmc.loader.api.FabricLoader;
 import rndm_access.assorteddiscoveries.config.json.exceptions.JsonConfigException;
 import rndm_access.assorteddiscoveries.config.json.deserializer.JsonDeserializer;
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.AbstractConfigEntry;
@@ -14,10 +15,15 @@ import java.util.*;
 
 public class JsonConfig {
     private final HashMap<String, ConfigCategory> categories;
-    public Path path;
+    private final Path path;
 
-    public JsonConfig(ConfigCategory... categories) {
+    public JsonConfig(String configName, ConfigCategory... categories) {
         this.categories = toMap(categories);
+        this.path = FabricLoader.getInstance().getConfigDir().resolve(configName + ".json5");
+    }
+
+    public Path getPath() {
+        return path;
     }
 
     public AbstractConfigEntry<?> getEntry(String entryName) {
@@ -72,26 +78,26 @@ public class JsonConfig {
         return categories.values().stream().toList();
     }
 
-    public void load(ConfigData data) {
-        if (data.getPath() == null || !Files.exists(data.getPath())) {
+    public void load() {
+        if (path == null || !Files.exists(path)) {
             throw new JsonConfigException("Couldn't load the config because it does not exist!");
         }
 
         try {
-            JsonDeserializer deserializer = new JsonDeserializer(this, data.getPath());
+            JsonDeserializer deserializer = new JsonDeserializer(this, path);
             deserializer.parse();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void create(ConfigData data) {
-        if (data.getPath() == null) {
+    public void create() {
+        if (path == null) {
             throw new JsonConfigException("The config hasn't been loaded!");
         }
 
-        if (!Files.exists(data.getPath())) {
-            try (BufferedWriter writer = Files.newBufferedWriter(data.getPath())) {
+        if (!Files.exists(path)) {
+            try (BufferedWriter writer = Files.newBufferedWriter(path)) {
                 String configContent = this.createFileContent();
                 writer.write(configContent);
             } catch (IOException e) {
@@ -100,13 +106,13 @@ public class JsonConfig {
         }
     }
 
-    public void save(ConfigData data, Map<String, Object> entryChangeList) {
-        if (data.getPath() == null) {
+    public void save(Map<String, Object> entryChangeList) {
+        if (path == null) {
             throw new JsonConfigException("The config path has not been set!");
         }
 
-        if (Files.exists(data.getPath())) {
-            JsonSerializer serializer = new JsonSerializer(this, data.getPath());
+        if (Files.exists(path)) {
+            JsonSerializer serializer = new JsonSerializer(this, path);
             serializer.serialize(entryChangeList);
         }
     }

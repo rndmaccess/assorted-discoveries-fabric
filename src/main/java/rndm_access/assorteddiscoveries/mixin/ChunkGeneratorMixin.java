@@ -23,7 +23,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import rndm_access.assorteddiscoveries.config.ModConfig;
 import rndm_access.assorteddiscoveries.config.ModConfigKeys;
-import rndm_access.assorteddiscoveries.config.json.ConfigData;
 import rndm_access.assorteddiscoveries.config.json.JsonConfig;
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.BooleanConfigEntry;
 
@@ -67,9 +66,8 @@ public class ChunkGeneratorMixin {
 
     @Unique
     private boolean isStructureDisabled(String structureName) {
-        ConfigData data = ConfigData.getInstance();
         JsonConfig config = ModConfig.getInternalConfig();
-        config.load(data);
+        config.load();
 
         BooleanConfigEntry configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_FOREST_CABINS);
         boolean forestCabinsEnabled = configEntry.getValue();

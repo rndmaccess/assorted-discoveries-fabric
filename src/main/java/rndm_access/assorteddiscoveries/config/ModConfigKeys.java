@@ -115,6 +115,8 @@ public class ModConfigKeys {
     public static final String ENABLE_CRACKED_DRIPSTONE_BRICKS;
     public static final String ENABLE_MOSSY_DRIPSTONE_BRICKS;
     public static final String ENABLE_QUARTZ_BRICK_BLOCKS;
+    public static final String ENABLE_SNOW_BRICKS;
+    public static final String ENABLE_PACKED_SNOW;
 
     static {
         ENABLE_DYED_CAMPFIRES = "enable_dyed_campfires";
@@ -231,5 +233,7 @@ public class ModConfigKeys {
         ENABLE_CRACKED_DRIPSTONE_BRICKS = "enable_cracked_dripstone_bricks";
         ENABLE_MOSSY_DRIPSTONE_BRICKS = "enable_mossy_dripstone_bricks";
         ENABLE_QUARTZ_BRICK_BLOCKS = "enable_quartz_brick_blocks";
+        ENABLE_SNOW_BRICKS = "enable_snow_bricks";
+        ENABLE_PACKED_SNOW = "enable_packed_snow";
     }
 }

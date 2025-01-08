@@ -21,28 +21,12 @@ public class ModConfigScreen {
         configBuilder.setGlobalized(true);
         configBuilder.setGlobalizedExpanded(false);
         ConfigEntryBuilder entryBuilder = configBuilder.entryBuilder();
-
-        ModConfigScreen.addBuildingBlocksCategory(configBuilder, entryBuilder);
-        ModConfigScreen.addPassivePlushieCategory(configBuilder, entryBuilder);
-        ModConfigScreen.addNeutralPlushieCategory(configBuilder, entryBuilder);
-        ModConfigScreen.addHostilePlushieCategory(configBuilder, entryBuilder);
-        ModConfigScreen.addStructureCategory(configBuilder, entryBuilder);
-        ModConfigScreen.addFarmingCategory(configBuilder, entryBuilder);
-
-        configBuilder.setSavingRunnable(() -> {
-            JsonConfig config = ModConfig.getInternalConfig();
-
-            config.load();
-            config.save(ENTRY_VALUE_CHANGES);
-        });
-        return configBuilder;
-    }
-
-    private static void addBuildingBlocksCategory(ConfigBuilder configBuilder, ConfigEntryBuilder entryBuilder) {
-        String categoryName = "building_blocks";
-        Text categoryText = makeCategoryText(categoryName);
-        ConfigCategory category = configBuilder.getOrCreateCategory(categoryText);
+        String categoryName;
+        ConfigCategory category;
         BooleanListEntry configEntry;
+
+        categoryName = "building_blocks";
+        category = makeCategory(configBuilder, categoryName);
 
         // Dyed Blocks
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_DYED_CAMPFIRES, categoryName);
@@ -131,8 +115,9 @@ public class ModConfigScreen {
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_MOSSY_STONE_TILES,
                 categoryName, enableStoneTiles);
         category.addEntry(configEntry);
-        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_WOODCUTTER, categoryName);
-        category.addEntry(configEntry);
+        BooleanListEntry enableWoodcutter = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_WOODCUTTER,
+                categoryName);
+        category.addEntry(enableWoodcutter);
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_CRACKED_STONE_BRICK_BLOCKS,
                 categoryName);
         category.addEntry(configEntry);
@@ -164,14 +149,38 @@ public class ModConfigScreen {
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_MOSSY_DRIPSTONE_BRICKS,
                 categoryName, enableDripstoneBricksEntry);
         category.addEntry(configEntry);
+        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_SNOW_BRICKS, categoryName);
+        category.addEntry(configEntry);
+        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_PACKED_SNOW, categoryName);
+        category.addEntry(configEntry);
 
-    }
+        categoryName = "structures";
+        category = makeCategory(configBuilder, categoryName);
 
-    private static void addPassivePlushieCategory(ConfigBuilder configBuilder, ConfigEntryBuilder entryBuilder) {
-        String categoryName = "passive_plushies";
-        Text categoryText = makeCategoryText(categoryName);
-        ConfigCategory category = configBuilder.getOrCreateCategory(categoryText);
-        BooleanListEntry configEntry;
+        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_FOREST_CABINS,
+                categoryName, enableWoodcutter);
+        category.addEntry(configEntry);
+        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_DARK_FOREST_CABINS,
+                categoryName, enableWoodcutter);
+        category.addEntry(configEntry);
+        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_BIRCH_FOREST_CABINS,
+                categoryName, enableWoodcutter);
+        category.addEntry(configEntry);
+        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_TAIGA_CABINS,
+                categoryName, enableWoodcutter);
+        category.addEntry(configEntry);
+        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_SNOWY_TAIGA_CABINS,
+                categoryName, enableWoodcutter);
+        category.addEntry(configEntry);
+        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_CRIMSON_FOREST_CABINS,
+                categoryName, enableWoodcutter);
+        category.addEntry(configEntry);
+        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_WARPED_FOREST_CABINS,
+                categoryName, enableWoodcutter);
+        category.addEntry(configEntry);
+
+        categoryName = "passive_plushies";
+        category = makeCategory(configBuilder, categoryName);
 
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_ALLAY_PLUSHIE, categoryName);
         category.addEntry(configEntry);
@@ -205,13 +214,9 @@ public class ModConfigScreen {
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_VILLAGER_PLUSHIES, categoryName);
         category.addEntry(configEntry);
-    }
 
-    private static void addNeutralPlushieCategory(ConfigBuilder configBuilder, ConfigEntryBuilder entryBuilder) {
-        String categoryName = "neutral_plushies";
-        Text categoryText = makeCategoryText(categoryName);
-        ConfigCategory category = configBuilder.getOrCreateCategory(categoryText);
-        BooleanListEntry configEntry;
+        categoryName = "neutral_plushies";
+        category = makeCategory(configBuilder, categoryName);
 
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_BEE_PLUSHIE, categoryName);
         category.addEntry(configEntry);
@@ -227,13 +232,9 @@ public class ModConfigScreen {
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_PALE_WOLF_PLUSHIE, categoryName);
         category.addEntry(configEntry);
-    }
 
-    private static void addHostilePlushieCategory(ConfigBuilder configBuilder, ConfigEntryBuilder entryBuilder) {
-        String categoryName = "hostile_plushies";
-        Text categoryText = makeCategoryText(categoryName);
-        ConfigCategory category = configBuilder.getOrCreateCategory(categoryText);
-        BooleanListEntry configEntry;
+        categoryName = "hostile_plushies";
+        category = makeCategory(configBuilder, categoryName);
 
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_BLAZE_PLUSHIE, categoryName);
         category.addEntry(configEntry);
@@ -271,35 +272,9 @@ public class ModConfigScreen {
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_CREAKING_PLUSHIE, categoryName);
         category.addEntry(configEntry);
-    }
 
-    private static void addStructureCategory(ConfigBuilder configBuilder, ConfigEntryBuilder entryBuilder) {
-        String categoryName = "structures";
-        Text categoryText = makeCategoryText(categoryName);
-        ConfigCategory category = configBuilder.getOrCreateCategory(categoryText);
-        BooleanListEntry configEntry;
-
-        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_FOREST_CABINS, categoryName);
-        category.addEntry(configEntry);
-        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_DARK_FOREST_CABINS, categoryName);
-        category.addEntry(configEntry);
-        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_BIRCH_FOREST_CABINS, categoryName);
-        category.addEntry(configEntry);
-        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_TAIGA_CABINS, categoryName);
-        category.addEntry(configEntry);
-        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_SNOWY_TAIGA_CABINS, categoryName);
-        category.addEntry(configEntry);
-        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_CRIMSON_FOREST_CABINS, categoryName);
-        category.addEntry(configEntry);
-        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_WARPED_FOREST_CABINS, categoryName);
-        category.addEntry(configEntry);
-    }
-
-    private static void addFarmingCategory(ConfigBuilder configBuilder, ConfigEntryBuilder entryBuilder) {
-        String categoryName = "farming";
-        Text categoryText = makeCategoryText(categoryName);
-        ConfigCategory category = configBuilder.getOrCreateCategory(categoryText);
-        BooleanListEntry configEntry;
+        categoryName = "farming";
+        category = makeCategory(configBuilder, categoryName);
 
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_WOODEN_PLANTER_BOXES, categoryName);
         category.addEntry(configEntry);
@@ -348,6 +323,19 @@ public class ModConfigScreen {
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_ENDER_PLANTS, categoryName);
         category.addEntry(configEntry);
+
+        configBuilder.setSavingRunnable(() -> {
+            JsonConfig config = ModConfig.getInternalConfig();
+
+            config.load();
+            config.save(ENTRY_VALUE_CHANGES);
+        });
+        return configBuilder;
+    }
+
+    private static ConfigCategory makeCategory(ConfigBuilder builder, String categoryName) {
+        Text categoryText = makeCategoryText(categoryName);
+        return builder.getOrCreateCategory(categoryText);
     }
 
     private static BooleanListEntry makeBoolConfigEntry(ConfigEntryBuilder entryBuilder, String key,

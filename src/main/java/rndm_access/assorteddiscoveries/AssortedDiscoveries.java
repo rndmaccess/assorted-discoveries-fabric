@@ -890,15 +890,21 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ModItems.MOSSY_DRIPSTONE_BRICK_WALL);
                     }
 
-                    entries.add(ModItems.SNOW_BRICKS);
-                    entries.add(ModItems.SNOW_BRICK_STAIRS);
-                    entries.add(ModItems.SNOW_BRICK_SLAB);
-                    entries.add(ModItems.SNOW_BRICK_WALL);
+                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_SNOW_BRICKS);
+                    if (configEntry.getValue()) {
+                        entries.add(ModItems.SNOW_BRICKS);
+                        entries.add(ModItems.SNOW_BRICK_STAIRS);
+                        entries.add(ModItems.SNOW_BRICK_SLAB);
+                        entries.add(ModItems.SNOW_BRICK_WALL);
+                    }
 
-                    entries.add(ModItems.PACKED_SNOW);
-                    entries.add(ModItems.PACKED_SNOW_STAIRS);
-                    entries.add(ModItems.PACKED_SNOW_SLAB);
-                    entries.add(ModItems.PACKED_SNOW_WALL);
+                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_PACKED_SNOW);
+                    if (configEntry.getValue()) {
+                        entries.add(ModItems.PACKED_SNOW);
+                        entries.add(ModItems.PACKED_SNOW_STAIRS);
+                        entries.add(ModItems.PACKED_SNOW_SLAB);
+                        entries.add(ModItems.PACKED_SNOW_WALL);
+                    }
 
                     entries.add(ModItems.GRASS_SLAB);
                     entries.add(ModItems.PODZOL_SLAB);

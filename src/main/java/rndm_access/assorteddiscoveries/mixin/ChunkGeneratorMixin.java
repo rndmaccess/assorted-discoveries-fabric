@@ -68,8 +68,9 @@ public class ChunkGeneratorMixin {
     private boolean isStructureDisabled(String structureName) {
         JsonConfig config = ModConfig.getInternalConfig();
         config.load();
-
-        BooleanConfigEntry configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_FOREST_CABINS);
+        BooleanConfigEntry configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_WOODCUTTER);
+        boolean woodcuttersEnabled = configEntry.getValue();
+        configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_FOREST_CABINS);
         boolean forestCabinsEnabled = configEntry.getValue();
         configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_DARK_FOREST_CABINS);
         boolean darkForestCabinsEnabled = configEntry.getValue();
@@ -83,23 +84,32 @@ public class ChunkGeneratorMixin {
         boolean crimsonForestCabinsEnabled = configEntry.getValue();
         configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_WARPED_FOREST_CABINS);
         boolean warpedForestCabinsEnabled = configEntry.getValue();
+        boolean isForestCabin = structureName.equals("assorted-discoveries:cabin_forest");
+        boolean isDarkForestCabin = structureName.equals("assorted-discoveries:cabin_dark_forest");
+        boolean isBirchForestCabin = structureName.equals("assorted-discoveries:cabin_birch_forest");
+        boolean isTaigaCabin = structureName.equals("assorted-discoveries:cabin_taiga");
+        boolean isSnowyTaigaCabin = structureName.equals("assorted-discoveries:cabin_snowy_taiga");
+        boolean isCrimsonCabin = structureName.equals("assorted-discoveries:nether_cabin_crimson_forest");
+        boolean isWarpedCabin = structureName.equals("assorted-discoveries:nether_cabin_warped_forest");
+        boolean isCabin = isForestCabin || isDarkForestCabin || isBirchForestCabin || isTaigaCabin
+                || isSnowyTaigaCabin || isCrimsonCabin || isWarpedCabin;
 
-        if (structureName.equals("assorted-discoveries:cabin_forest") && !forestCabinsEnabled) {
+        if (isCabin && !woodcuttersEnabled) {
             return true;
-        } else if (structureName.equals("assorted-discoveries:cabin_dark_forest") && !darkForestCabinsEnabled) {
+        } else if (isForestCabin && !forestCabinsEnabled) {
             return true;
-        } else if (structureName.equals("assorted-discoveries:cabin_birch_forest") && !birchForestCabinsEnabled) {
+        } else if (isDarkForestCabin && !darkForestCabinsEnabled) {
             return true;
-        } else if (structureName.equals("assorted-discoveries:cabin_taiga") && !taigaCabinsEnabled) {
+        } else if (isBirchForestCabin && !birchForestCabinsEnabled) {
             return true;
-        } else if (structureName.equals("assorted-discoveries:cabin_snowy_taiga") && !snowyTaigaCabinsEnabled) {
+        } else if (isTaigaCabin && !taigaCabinsEnabled) {
             return true;
-        } else if (structureName.equals("assorted-discoveries:nether_cabin_crimson_forest")
-                && !crimsonForestCabinsEnabled) {
+        } else if (isSnowyTaigaCabin && !snowyTaigaCabinsEnabled) {
+            return true;
+        } else if (isCrimsonCabin && !crimsonForestCabinsEnabled) {
             return true;
         } else {
-            return structureName.equals("assorted-discoveries:nether_cabin_warped_forest")
-                    && !warpedForestCabinsEnabled;
+            return isWarpedCabin && !warpedForestCabinsEnabled;
         }
     }
 }

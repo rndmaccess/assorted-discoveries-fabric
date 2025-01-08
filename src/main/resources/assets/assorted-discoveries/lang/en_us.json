@@ -491,6 +491,8 @@
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_dripstone_bricks": "Enable Dripstone Bricks",
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_cracked_dripstone_bricks": "Enable Cracked Dripstone Bricks",
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_mossy_dripstone_bricks": "Enable Mossy Dripstone Bricks",
+  "text.cloth-config.assorted-discoveries.option.building_blocks.enable_snow_bricks": "Enable Snow Bricks",
+  "text.cloth-config.assorted-discoveries.option.building_blocks.enable_packed_snow": "Enable Packed Snow",
 
   "requirement.cloth-config.assorted-discoveries.option.building_blocks.enable_bauxite_bricks": "Requires Bauxite",
   "requirement.cloth-config.assorted-discoveries.option.building_blocks.enable_mossy_bauxite_bricks": "Requires Bauxite And Bauxite Bricks",
@@ -559,6 +561,14 @@
   "text.cloth-config.assorted-discoveries.option.structures.enable_snowy_taiga_cabins": "Enable Snowy Taiga Cabins",
   "text.cloth-config.assorted-discoveries.option.structures.enable_crimson_forest_cabins": "Enable Crimson Forest Cabins",
   "text.cloth-config.assorted-discoveries.option.structures.enable_warped_forest_cabins": "Enable Warped Forest Cabins",
+
+  "requirement.cloth-config.assorted-discoveries.option.structures.enable_forest_cabins": "Requires Woodcutter",
+  "requirement.cloth-config.assorted-discoveries.option.structures.enable_dark_forest_cabins": "Requires Woodcutter",
+  "requirement.cloth-config.assorted-discoveries.option.structures.enable_birch_forest_cabins": "Requires Woodcutter",
+  "requirement.cloth-config.assorted-discoveries.option.structures.enable_taiga_cabins": "Requires Woodcutter",
+  "requirement.cloth-config.assorted-discoveries.option.structures.enable_snowy_taiga_cabins": "Requires Woodcutter",
+  "requirement.cloth-config.assorted-discoveries.option.structures.enable_crimson_forest_cabins": "Requires Woodcutter",
+  "requirement.cloth-config.assorted-discoveries.option.structures.enable_warped_forest_cabins": "Requires Woodcutter",
 
   "category.cloth-config.assorted-discoveries.option.farming": "Farming",
   "text.cloth-config.assorted-discoveries.option.farming.enable_wooden_planter_boxes": "Enable Wooden Planter Boxes",

@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "assorted-discoveries:packed_snow_slab"
+      "assorted-discoveries:snow_bricks"
     ]
   },
   "criteria": {
@@ -20,7 +20,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "assorted-discoveries:packed_snow_slab"
+        "recipe": "assorted-discoveries:snow_bricks"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -33,8 +33,20 @@
   ],
   "fabric:load_conditions": [
     {
-      "condition": "assorted-discoveries:config_entry_enabled",
-      "value": "assorted-discoveries:enable_packed_snow"
+      "condition": "fabric:and",
+      "values": [
+        {
+          "condition": "assorted-discoveries:config_entry_enabled",
+          "value": "assorted-discoveries:enable_snow_bricks"
+        },
+        {
+          "condition": "fabric:not",
+          "value": {
+            "condition": "assorted-discoveries:config_entry_enabled",
+            "value": "assorted-discoveries:enable_packed_snow"
+          }
+        }
+      ]
     }
   ]
 }

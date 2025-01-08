@@ -148,6 +148,8 @@ public class ModResourceConditions {
         registerEntry(config, ModConfigKeys.ENABLE_MOSSY_DRIPSTONE_BRICKS);
         registerEntry(config, ModConfigKeys.ENABLE_QUARTZ_BRICK_BLOCKS);
         registerEntry(config, ModConfigKeys.ENABLE_POLISHED_DRIPSTONE);
+        registerEntry(config, ModConfigKeys.ENABLE_PACKED_SNOW);
+        registerEntry(config, ModConfigKeys.ENABLE_SNOW_BRICKS);
     }
 
     static {

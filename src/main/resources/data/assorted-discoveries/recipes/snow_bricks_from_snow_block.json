@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:snow_block"
+    }
+  },
+  "result": {
+    "item": "assorted-discoveries:snow_bricks",
+    "count": 4
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:and",
+      "values": [
+        {
+          "condition": "assorted-discoveries:config_entry_enabled",
+          "value": "assorted-discoveries:enable_snow_bricks"
+        },
+        {
+          "condition": "fabric:not",
+          "value": {
+            "condition": "assorted-discoveries:config_entry_enabled",
+            "value": "assorted-discoveries:enable_packed_snow"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -108,7 +108,7 @@ public class JsonDeserializer {
             ConfigCategory subCategory = category.getSubcategory(subcategoryName);
             parse(subCategory);
         } else {
-            String categoryName = category.getName();
+            String categoryName = category.getKey();
             int startLine = keyToken.getLine() + 1;
 
             this.logInvalidSubcategory(subcategoryName, categoryName, startLine);
@@ -143,7 +143,7 @@ public class JsonDeserializer {
 
         if (tokenList.match(TokenType.ERROR)) {
             String errorVal = tokenList.consumeToken().getValue();
-            String categoryName = category.getName();
+            String categoryName = category.getKey();
             int line = keyToken.getLine() + 1;
 
             if (category.hasEntry(entryName)) {
@@ -167,7 +167,7 @@ public class JsonDeserializer {
                 StringConfigEntry entry = category.getStringEntry(entryName);
                 entry.setValue(parseJsonString(stringToken.getValue()));
             } else {
-                String categoryName = category.getName();
+                String categoryName = category.getKey();
                 int line = keyToken.getLine() + 1;
 
                 logInvalidEntry(entryName, categoryName, line);

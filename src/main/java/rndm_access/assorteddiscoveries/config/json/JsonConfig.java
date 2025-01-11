@@ -5,9 +5,7 @@ import rndm_access.assorteddiscoveries.config.json.exceptions.JsonConfigExceptio
 import rndm_access.assorteddiscoveries.config.json.deserializer.JsonDeserializer;
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.AbstractConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.deserializer.ConfigCategory;
-import rndm_access.assorteddiscoveries.config.json.deserializer.ConfigObject;
 
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -53,10 +51,10 @@ public class JsonConfig {
     }
 
     public HashMap<String, ConfigCategory> toMap(ConfigCategory... categories) {
-        HashMap<String, ConfigCategory> categoryHashMap = new HashMap<>();
+        HashMap<String, ConfigCategory> categoryHashMap = new LinkedHashMap<>();
 
         for (ConfigCategory category : categories) {
-            String name = category.getName();
+            String name = category.getKey();
 
             categoryHashMap.put(name, category);
         }
@@ -97,12 +95,8 @@ public class JsonConfig {
         }
 
         if (!Files.exists(path)) {
-            try (BufferedWriter writer = Files.newBufferedWriter(path)) {
-                String configContent = this.createFileContent();
-                writer.write(configContent);
-            } catch (IOException e) {
-                throw new JsonConfigException("Failed to create the config!");
-            }
+            JsonSerializer serializer = new JsonSerializer(this, path);
+            serializer.serialize();
         }
     }
 
@@ -115,103 +109,5 @@ public class JsonConfig {
             JsonSerializer serializer = new JsonSerializer(this, path);
             serializer.serialize(entryChangeList);
         }
-    }
-
-    public String createFileContent() {
-        StringBuilder builder = new StringBuilder();
-
-        if (!this.getCategories().isEmpty()) {
-            builder.append('{');
-
-            int indent = 1;
-            int i = 0;
-            for (ConfigCategory category : this.getCategories()) {
-                builder.append('\n');
-                writeCategory(category, builder, indent);
-
-                if(i + 1 < this.getCategories().size()) {
-                    builder.append(',');
-                }
-                i++;
-            }
-            builder.append('\n');
-            builder.append('}');
-        }
-        return builder.toString();
-    }
-
-    private void writeCategory(ConfigCategory category, StringBuilder builder, int depth) {
-        indent(builder, depth);
-        depth++;
-        builder.append('\"');
-        builder.append(category.getName());
-        builder.append('\"');
-        builder.append(": {");
-        builder.append('\n');
-
-        for (int i = 0; i < category.getJsonObjects().size(); i++) {
-            ConfigObject component = category.getJsonObjects().get(i);
-
-            if (category.hasEntry(component.getName())) {
-                AbstractConfigEntry<?> entry = (AbstractConfigEntry<?>) component;
-                writeEntry(category, entry, builder, depth);
-            } else {
-                ConfigCategory subCategory = category.getSubcategory(component.getName());
-                writeCategory(subCategory, builder, depth);
-            }
-
-            if (i + 1 < category.getJsonObjects().size()) {
-                builder.append(',');
-                builder.append('\n');
-            } else {
-                depth--;
-                builder.append('\n');
-                indent(builder, depth);
-                builder.append('}');
-            }
-        }
-    }
-
-    private void writeEntry(ConfigCategory category, AbstractConfigEntry<?> entry,
-                            StringBuilder builder, int depth) {
-        if (entry.getComment() != null) {
-            writeComment(builder, entry, depth);
-        }
-
-        indent(builder, depth);
-        builder.append('\"');
-        builder.append(entry.getName());
-        builder.append('\"');
-        builder.append(": ");
-
-        if (category.hasStringEntry(entry.getName())) {
-            builder.append('\"');
-            builder.append(entry.getValue());
-            builder.append('\"');
-        } else {
-            builder.append(entry.getValue());
-        }
-    }
-
-    private void writeComment(StringBuilder builder, AbstractConfigEntry<?> entry, int depth) {
-        indent(builder, depth);
-        builder.append("// ");
-
-        for (int i = 0; i < entry.getComment().length(); i++) {
-            char token = entry.getComment().charAt(i);
-
-            if(token == '\n') {
-                builder.append(token);
-                indent(builder, depth);
-                builder.append("// ");
-            } else {
-                builder.append(token);
-            }
-        }
-        builder.append('\n');
-    }
-
-    private void indent(StringBuilder builder, int indent) {
-        builder.append("\t".repeat(Math.max(0, indent)));
     }
 }

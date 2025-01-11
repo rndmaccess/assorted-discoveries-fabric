@@ -1,6 +1,8 @@
 package rndm_access.assorteddiscoveries.config.json;
 
+import org.jetbrains.annotations.Nullable;
 import rndm_access.assorteddiscoveries.config.json.deserializer.ConfigCategory;
+import rndm_access.assorteddiscoveries.config.json.deserializer.ConfigObject;
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.AbstractConfigEntry;
 
 import java.io.IOException;
@@ -22,10 +24,20 @@ public class JsonSerializer {
         this.config = config;
     }
 
-    public void serialize(Map<String, Object> changeList) {
-        List<String> newContent = new ArrayList<>();
+    /*
+     * This method is used to serialize to a new config file!
+     */
+    public void serialize() {
+        // The config does not exist so we don't have any changes!
+        this.serialize(null);
+    }
 
-        this.writeContent(newContent, changeList);
+    /**
+     * This method is used to serialize new changes to a config file!
+     * @param changeList The changes to serialize
+     */
+    public void serialize(Map<String, Object> changeList) {
+        List<String> newContent = this.getContent(changeList);
 
         // To prevent partial files we first save it to a temporary file, then replace the config file!
         try {
@@ -37,98 +49,103 @@ public class JsonSerializer {
         }
     }
 
-    public void writeContent(List<String> newContent, Map<String, Object> changeList) {
-        List<ConfigCategory> categories = config.getCategories();
-        this.writeText("{", newContent);
+    private List<String> getContent(@Nullable Map<String, Object> changeList) {
+        List<String> newContent = new ArrayList<>();
 
-        for (int i = 0; i < categories.size(); i++) {
-            ConfigCategory category = categories.get(i);
-            String catName = category.getName();
-            String categoryLine = "\"" + catName + "\"" + ": {";
-            line++;
+        if (!config.getCategories().isEmpty()) {
+            this.writeText("{", newContent);
+
             depth++;
-            this.writeText(categoryLine, newContent);
-            this.traverseSubcategories(category, changeList, newContent);
-
-            List<AbstractConfigEntry<?>> entries = category.getEntries();
-
-            if (category.hasSubCategories() && category.hasEntries()) {
-                this.writeText(",", newContent); // We append a comma here because if the category
-                                                       // has subcategories then we will have a closing curly here and
-                                                       // to support more entries we have to separate it with a comma!
-            }
-
-            if (category.hasEntries()) {
-                this.writeEntries(entries, changeList, newContent);
-            }
-
-            this.writeEndingCurly(i, categories.size(), newContent);
-        }
-        line++;
-        depth--;
-        this.writeText("}", newContent);
-    }
-
-    private void traverseSubcategories(ConfigCategory category, Map<String, Object> changeList,
-                                       List<String> newContent) {
-        if (category.hasSubCategories()) {
-            List<ConfigCategory> subcategories = category.getSubcategories();
-
-            for (int i = 0; i < subcategories.size(); i++) {
-                ConfigCategory subcategory = subcategories.get(i);
-                String subcategoryName = subcategory.getName();
-                String subcategoryLine = "\"" + subcategoryName + "\"" + ": {";
-                List<AbstractConfigEntry<?>> entries = subcategory.getEntries();
+            int i = 0;
+            for (ConfigCategory category : config.getCategories()) {
                 line++;
-                depth++;
-                this.writeText(subcategoryLine, newContent);
-                this.writeEntries(entries, changeList, newContent);
-                this.writeEndingCurly(i, subcategories.size(), newContent);
-                this.traverseSubcategories(subcategory, changeList, newContent);
-            }
-        }
-    }
+                this.writeCategory(newContent, category, changeList);
 
-    private void writeEntries(List<AbstractConfigEntry<?>> entries, Map<String, Object> changeList,
-                              List<String> newContent) {
-        depth++;
-        for (int i = 0; i < entries.size(); i++) {
-            AbstractConfigEntry<?> entry = entries.get(i);
-            String entryName = entry.getName();
-            Object entryVal = entry.getValue();
+                if(i + 1 < config.getCategories().size()) {
+                    this.writeText(",", newContent);
+                }
+                i++;
+            }
             line++;
+            depth--;
+            this.writeText("}", newContent);
+        }
+        return newContent;
+    }
 
-            if (entry.hasComment()) {
-                String comment = "// " + entry.getComment();
-                this.writeText(comment, newContent);
-                line++;
+    private void writeCategory(List<String> newContent, ConfigCategory category, Map<String, Object> changeList) {
+        List<ConfigObject> objects = category.getJsonObjects();
+        this.writeText("\"" + category.getKey() + "\": {", newContent);
+        depth++;
+        line++;
+
+        for (int i = 0; i < objects.size(); i++) {
+            ConfigObject component = objects.get(i);
+            String key = component.getKey();
+
+            if (component.isComment()) {
+                this.writeComment(newContent, key);
+                continue;
             }
+
+            if (category.hasEntry(key)) {
+                AbstractConfigEntry<?> entry = (AbstractConfigEntry<?>) component;
+                writeEntry(newContent, category, entry, changeList);
+            } else {
+                ConfigCategory subCategory = category.getSubcategory(key);
+                writeCategory(newContent, subCategory, changeList);
+            }
+
+            if (i + 1 < category.getJsonObjects().size()) {
+                this.writeText(",", newContent);
+                line++;
+            } else {
+                depth--;
+                line++;
+                this.writeText("}", newContent);
+            }
+        }
+    }
+
+    private void writeEntry(List<String> newContent, ConfigCategory category, AbstractConfigEntry<?> entry,
+                            Map<String, Object> changeList) {
+        this.writeText("\"" + entry.getKey() + "\": ", newContent);
+
+        if (category.hasStringEntry(entry.getKey())) {
+            String entryName = entry.getKey();
+            Object entryVal = entry.getValue();
 
             if (changeList.containsKey(entryName)) {
                 entryVal = changeList.get(entryName);
             }
 
-            String entryLine = "\"" + entryName + "\": " + entryVal;
+            this.writeText("\"" + entryVal + "\"", newContent);
+        } else {
+            String entryName = entry.getKey();
+            Object entryVal = entry.getValue();
 
-            if (i < entries.size() - 1) {
-                entryLine = entryLine + ",";
+            if (changeList != null && changeList.containsKey(entryName)) {
+                entryVal = changeList.get(entryName);
             }
-            this.writeText(entryLine, newContent);
+
+            this.writeText(entryVal.toString(), newContent);
         }
-        depth--;
     }
 
-    private void writeEndingCurly(int i, int size, List<String> newContent) {
-        String curlyLine = "}";
+    private void writeComment(List<String> newContent, String comment) {
+        this.writeText("// ", newContent);
 
-        // If we have more stuff then we need to append a comma here!
-        if (i < size - 1) {
-            curlyLine = curlyLine + ",";
+        for (int i = 0; i < comment.length(); i++) {
+            char token = comment.charAt(i);
+
+            if(token == '\n') {
+                line++;
+                this.writeText("// ", newContent);
+            } else {
+                this.writeText(Character.toString(token), newContent);
+            }
         }
-
         line++;
-        this.writeText(curlyLine, newContent);
-        depth--;
     }
 
     private void writeText(String value, List<String> newContent) {

@@ -340,14 +340,14 @@ public class ModConfigScreen {
     private static BooleanListEntry makeBoolConfigEntry(ConfigEntryBuilder entryBuilder, String key,
                                                         String categoryName) {
         BooleanConfigEntry entry = (BooleanConfigEntry) ModConfigScreen.getConfig().getEntry(key);
-        final String entryName = entry.getName();
+        final String entryName = entry.getKey();
         final boolean entryValue = entry.getValue();
         Text displayText = makeEntryText(categoryName, entryName);
 
         return entryBuilder.startBooleanToggle(displayText, entryValue)
                 .setSaveConsumer(newValue -> {
                     if (entryValue != newValue) {
-                        ENTRY_VALUE_CHANGES.put(entry.getName(), newValue);
+                        ENTRY_VALUE_CHANGES.put(entry.getKey(), newValue);
                     }
                 }).setDefaultValue(true).requireRestart().build();
     }
@@ -356,7 +356,7 @@ public class ModConfigScreen {
     private static BooleanListEntry makeBoolConfigEntry(ConfigEntryBuilder entryBuilder, String key,
                                                         String categoryName, BooleanListEntry... dependencies) {
         BooleanConfigEntry entry = (BooleanConfigEntry) ModConfigScreen.getConfig().getEntry(key);
-        final String entryName = entry.getName();
+        final String entryName = entry.getKey();
         final boolean entryValue = entry.getValue();
         Text requirementText = makeEntryRequirementText(categoryName, entryName);
         Supplier<Optional<Text[]>> requirementTooltip = getRequirementToolTip(requirementText, dependencies);
@@ -366,7 +366,7 @@ public class ModConfigScreen {
         return entryBuilder.startBooleanToggle(displayText, entryValue)
                 .setSaveConsumer(newValue -> {
                     if (entryValue != newValue) {
-                        ENTRY_VALUE_CHANGES.put(entry.getName(), newValue);
+                        ENTRY_VALUE_CHANGES.put(entry.getKey(), newValue);
                     }
                 }).setDefaultValue(true).requireRestart().setRequirement(Requirement.all(requirements))
                 .setTooltipSupplier(requirementTooltip).build();

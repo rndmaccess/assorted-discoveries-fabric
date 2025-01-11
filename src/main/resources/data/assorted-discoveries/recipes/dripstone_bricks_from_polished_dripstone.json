@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "assorted-discoveries:polished_dripstone"
+    }
+  },
+  "result": {
+    "item": "assorted-discoveries:dripstone_bricks",
+    "count": 4
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:and",
+      "values": [
+        {
+          "condition": "assorted-discoveries:config_entry_enabled",
+          "value": "assorted-discoveries:enable_polished_dripstone"
+        },
+        {
+          "condition": "assorted-discoveries:config_entry_enabled",
+          "value": "assorted-discoveries:enable_dripstone_bricks"
+        }
+      ]
+    }
+  ]
+}

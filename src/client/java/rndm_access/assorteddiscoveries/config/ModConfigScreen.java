@@ -326,7 +326,6 @@ public class ModConfigScreen {
 
         configBuilder.setSavingRunnable(() -> {
             JsonConfig config = ModConfig.getInternalConfig();
-
             config.load();
             config.save(ENTRY_VALUE_CHANGES);
         });

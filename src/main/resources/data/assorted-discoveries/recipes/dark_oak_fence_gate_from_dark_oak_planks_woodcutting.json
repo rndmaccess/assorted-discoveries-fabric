@@ -4,5 +4,11 @@
     "item": "minecraft:dark_oak_planks"
   },
   "result": "minecraft:dark_oak_fence_gate",
-  "count": 1
+  "count": 1,
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_woodcutter"
+    }
+  ]
 }

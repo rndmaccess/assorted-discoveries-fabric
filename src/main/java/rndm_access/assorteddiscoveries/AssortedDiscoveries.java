@@ -906,13 +906,16 @@ public class AssortedDiscoveries implements ModInitializer {
                         entries.add(ModItems.PACKED_SNOW_WALL);
                     }
 
-                    entries.add(ModItems.GRASS_SLAB);
-                    entries.add(ModItems.PODZOL_SLAB);
-                    entries.add(ModItems.MYCELIUM_SLAB);
-                    entries.add(ModItems.DIRT_PATH_SLAB);
-                    entries.add(ModItems.DIRT_SLAB);
-                    entries.add(ModItems.ROOTED_DIRT_SLAB);
-                    entries.add(ModItems.COARSE_DIRT_SLAB);
+                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_DIRT_SLABS);
+                    if (configEntry.getValue()) {
+                        entries.add(ModItems.GRASS_SLAB);
+                        entries.add(ModItems.PODZOL_SLAB);
+                        entries.add(ModItems.MYCELIUM_SLAB);
+                        entries.add(ModItems.DIRT_PATH_SLAB);
+                        entries.add(ModItems.DIRT_SLAB);
+                        entries.add(ModItems.ROOTED_DIRT_SLAB);
+                        entries.add(ModItems.COARSE_DIRT_SLAB);
+                    }
 
                     configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_PURPLE_MUSHROOMS);
                     if (configEntry.getValue()) {

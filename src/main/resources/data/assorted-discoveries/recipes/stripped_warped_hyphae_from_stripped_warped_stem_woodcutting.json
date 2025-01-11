@@ -4,5 +4,11 @@
     "item": "minecraft:stripped_warped_stem"
   },
   "result": "minecraft:stripped_warped_hyphae",
-  "count": 1
+  "count": 1,
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_woodcutter"
+    }
+  ]
 }

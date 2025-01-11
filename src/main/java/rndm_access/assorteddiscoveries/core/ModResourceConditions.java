@@ -150,6 +150,9 @@ public class ModResourceConditions {
         registerEntry(config, ModConfigKeys.ENABLE_POLISHED_DRIPSTONE);
         registerEntry(config, ModConfigKeys.ENABLE_PACKED_SNOW);
         registerEntry(config, ModConfigKeys.ENABLE_SNOW_BRICKS);
+        registerEntry(config, ModConfigKeys.ENABLE_QUARTZ_WALLS);
+        registerEntry(config, ModConfigKeys.ENABLE_CRACKED_STONE_BRICK_BLOCKS);
+        registerEntry(config, ModConfigKeys.ENABLE_DIRT_SLABS);
     }
 
     static {

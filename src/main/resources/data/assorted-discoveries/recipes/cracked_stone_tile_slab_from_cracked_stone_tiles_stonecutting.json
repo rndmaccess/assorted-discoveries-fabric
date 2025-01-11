@@ -7,12 +7,17 @@
   "count": 2,
   "fabric:load_conditions": [
     {
-      "condition": "assorted-discoveries:config_entry_enabled",
-      "value": "assorted-discoveries:enable_stone_tiles"
-    },
-    {
-      "condition": "assorted-discoveries:config_entry_enabled",
-      "value": "assorted-discoveries:enable_cracked_stone_tiles"
+      "condition": "fabric:and",
+      "values": [
+        {
+          "condition": "assorted-discoveries:config_entry_enabled",
+          "value": "assorted-discoveries:enable_stone_tiles"
+        },
+        {
+          "condition": "assorted-discoveries:config_entry_enabled",
+          "value": "assorted-discoveries:enable_cracked_stone_tiles"
+        }
+      ]
     }
   ]
 }

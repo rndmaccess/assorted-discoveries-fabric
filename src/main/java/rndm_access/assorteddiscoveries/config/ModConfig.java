@@ -83,7 +83,8 @@ public class ModConfig {
                 .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CRACKED_DRIPSTONE_BRICKS))
                 .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_MOSSY_DRIPSTONE_BRICKS))
                 .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_SNOW_BRICKS))
-                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_PACKED_SNOW)).build();
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_PACKED_SNOW))
+                .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_DIRT_SLABS)).build();
 
         ConfigCategory passivePlushiesCategory = new ConfigCategory.Builder("passive_plushies")
                 .addBooleanEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_ALLAY_PLUSHIE))

@@ -1,0 +1,49 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "assorted-discoveries:dripstone_bricks"
+    ]
+  },
+  "criteria": {
+    "has_polished_dripstone": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "assorted-discoveries:polished_dripstone"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "assorted-discoveries:dripstone_bricks"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_polished_dripstone",
+      "has_the_recipe"
+    ]
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:and",
+      "values": [
+        {
+          "condition": "assorted-discoveries:config_entry_enabled",
+          "value": "assorted-discoveries:enable_polished_dripstone"
+        },
+        {
+          "condition": "assorted-discoveries:config_entry_enabled",
+          "value": "assorted-discoveries:enable_dripstone_bricks"
+        }
+      ]
+    }
+  ]
+}

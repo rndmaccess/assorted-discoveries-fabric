@@ -6,12 +6,12 @@
     ]
   },
   "criteria": {
-    "has_polished_dripstone": {
+    "has_dripstone_block": {
       "conditions": {
         "items": [
           {
             "items": [
-              "assorted-discoveries:polished_dripstone"
+              "minecraft:dripstone_block"
             ]
           }
         ]
@@ -27,14 +27,26 @@
   },
   "requirements": [
     [
-      "has_polished_dripstone",
+      "has_dripstone_block",
       "has_the_recipe"
     ]
   ],
   "fabric:load_conditions": [
     {
-      "condition": "assorted-discoveries:config_entry_enabled",
-      "value": "assorted-discoveries:enable_dripstone_bricks"
+      "condition": "fabric:and",
+      "values": [
+        {
+          "condition": "assorted-discoveries:config_entry_enabled",
+          "value": "assorted-discoveries:enable_dripstone_bricks"
+        },
+        {
+          "condition": "fabric:not",
+          "value": {
+            "condition": "assorted-discoveries:config_entry_enabled",
+            "value": "assorted-discoveries:enable_polished_dripstone"
+          }
+        }
+      ]
     }
   ]
 }

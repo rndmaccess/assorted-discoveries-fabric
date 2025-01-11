@@ -51,20 +51,30 @@ public class JsonSerializer {
 
     private List<String> getContent(@Nullable Map<String, Object> changeList) {
         List<String> newContent = new ArrayList<>();
+        List<ConfigObject> objects = config.getObjects();
+        int size = objects.size();
 
-        if (!config.getCategories().isEmpty()) {
+        if (!objects.isEmpty()) {
             this.writeText("{", newContent);
-
             depth++;
-            int i = 0;
-            for (ConfigCategory category : config.getCategories()) {
-                line++;
+            line++;
+
+            for (int i = 0; i < size; i++) {
+                ConfigObject object = objects.get(i);
+
+                if (object.isComment()) {
+                    String comment = object.getKey();
+                    this.writeComment(newContent, comment);
+                    continue;
+                }
+
+                ConfigCategory category = (ConfigCategory) object;
                 this.writeCategory(newContent, category, changeList);
 
-                if(i + 1 < config.getCategories().size()) {
+                if(i + 1 < size) {
                     this.writeText(",", newContent);
                 }
-                i++;
+                line++;
             }
             line++;
             depth--;
@@ -109,27 +119,23 @@ public class JsonSerializer {
 
     private void writeEntry(List<String> newContent, ConfigCategory category, AbstractConfigEntry<?> entry,
                             Map<String, Object> changeList) {
-        this.writeText("\"" + entry.getKey() + "\": ", newContent);
+        StringBuilder entryLine = new StringBuilder();
+        String key = entry.getKey();
+        Object value = entry.getValue();
+        entryLine.append("\"").append(entry.getKey()).append("\": ");
 
-        if (category.hasStringEntry(entry.getKey())) {
-            String entryName = entry.getKey();
-            Object entryVal = entry.getValue();
-
-            if (changeList.containsKey(entryName)) {
-                entryVal = changeList.get(entryName);
+        if (category.hasStringEntry(key)) {
+            if (changeList != null && changeList.containsKey(key)) {
+                value = changeList.get(key);
             }
-
-            this.writeText("\"" + entryVal + "\"", newContent);
+            entryLine.append("\"").append(value).append("\"");
         } else {
-            String entryName = entry.getKey();
-            Object entryVal = entry.getValue();
-
-            if (changeList != null && changeList.containsKey(entryName)) {
-                entryVal = changeList.get(entryName);
+            if (changeList != null && changeList.containsKey(key)) {
+                value = changeList.get(key);
             }
-
-            this.writeText(entryVal.toString(), newContent);
+            entryLine.append(value);
         }
+        this.writeText(entryLine.toString(), newContent);
     }
 
     private void writeComment(List<String> newContent, String comment) {

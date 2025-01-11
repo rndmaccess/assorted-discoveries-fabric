@@ -20,11 +20,15 @@ public class ModConfig {
     }
 
     public static JsonConfig getInternalConfig() {
-        CommentConfigEntry blackstoneTileComment = new CommentConfigEntry("This option requires blackstone tiles!");
-        CommentConfigEntry smokyQuartzBlocksComment = new CommentConfigEntry("This option requires smoky quartz blocks!");
+        CommentConfigEntry blackstoneTileComment = new CommentConfigEntry("This option requires " +
+                "blackstone tiles!");
+        CommentConfigEntry smokyQuartzBlocksComment = new CommentConfigEntry("This option requires " +
+                "smoky quartz blocks!");
         CommentConfigEntry quartzBrickComment = new CommentConfigEntry("Whether quartz brick slabs, " +
                 "quartz brick walls, and quartz brick stairs are enabled!");
         CommentConfigEntry bauxiteComment = new CommentConfigEntry("This option requires bauxite!");
+        CommentConfigEntry requiredRestartComment = new CommentConfigEntry("Each option in the config " +
+                "requires a game restart!");
 
         ConfigCategory buildingBlocksCategory = new ConfigCategory.Builder("building_blocks")
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_DYED_CAMPFIRES))
@@ -149,8 +153,6 @@ public class ModConfig {
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CRIMSON_FOREST_CABINS))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_WARPED_FOREST_CABINS)).build();
 
-
-
         //TODO: Give enable_ender_plants a better name!
         ConfigCategory farmingCategory = new ConfigCategory.Builder("farming")
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_WOODEN_PLANTER_BOXES))
@@ -177,7 +179,9 @@ public class ModConfig {
                 .addComment(new CommentConfigEntry("Whether patches of ender grass and snapdragons should spawn!"))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_ENDER_PLANTS)).build();
 
-        return new JsonConfig(ADReference.MOD_ID, buildingBlocksCategory, passivePlushiesCategory,
-                neutralPlushiesCategory, hostilePlushiesCategory, structureCategory, farmingCategory);
+        return new JsonConfig.Builder(ADReference.MOD_ID).addComment(requiredRestartComment)
+                .addCategory(buildingBlocksCategory).addCategory(passivePlushiesCategory)
+                .addCategory(neutralPlushiesCategory).addCategory(hostilePlushiesCategory)
+                .addCategory(structureCategory).addCategory(farmingCategory).build();
     }
 }

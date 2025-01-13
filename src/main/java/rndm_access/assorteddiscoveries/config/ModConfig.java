@@ -153,7 +153,6 @@ public class ModConfig {
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CRIMSON_FOREST_CABINS))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_WARPED_FOREST_CABINS)).build();
 
-        //TODO: Give enable_ender_plants a better name!
         ConfigCategory farmingCategory = new ConfigCategory.Builder("farming")
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_WOODEN_PLANTER_BOXES))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_GREEN_ONIONS))

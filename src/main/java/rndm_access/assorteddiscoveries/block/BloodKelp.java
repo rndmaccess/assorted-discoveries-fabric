@@ -28,7 +28,7 @@ public interface BloodKelp {
             player.giveItemStack(new ItemStack(ModItems.BLOOD_KELP_SEED_CLUSTER,
                     random.nextInt(3) + 1));
             world.setBlockState(pos, state.with(LIT, false));
-            return ActionResult.success(world.isClient);
+            return ActionResult.SUCCESS;
         } else {
             return ActionResult.PASS;
         }

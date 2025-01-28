@@ -24,8 +24,9 @@ public class ModdedCakeBlock extends CakeBlock {
         super(settings);
     }
 
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand,
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player,
                               BlockHitResult hit) {
+        Hand hand = player.getActiveHand();
         ItemStack heldStack = player.getStackInHand(hand);
 
         if (state.get(BITES) == 0) {

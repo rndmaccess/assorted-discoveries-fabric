@@ -54,11 +54,10 @@ public abstract class AbstractBerryBushBlock extends PlantBlock implements Ferti
     protected abstract boolean needsLightToGrow();
 
     @Override
-    public ItemStack getPickStack(WorldView world, BlockPos pos, BlockState state) {
+    public ItemStack getPickStack(WorldView world, BlockPos pos, BlockState state, boolean includeData) {
         return new ItemStack(this.berryItem());
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         if (state.get(AGE) == 0) {
@@ -73,7 +72,6 @@ public abstract class AbstractBerryBushBlock extends PlantBlock implements Ferti
         return this.isBushYoung(state);
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         int age = state.get(AGE);
@@ -85,29 +83,29 @@ public abstract class AbstractBerryBushBlock extends PlantBlock implements Ferti
         }
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-        if (!entity.getType().isIn(this.mobsImmune())) {
-            entity.slowMovement(state, new Vec3d(0.8D, 0.75D, 0.8D));
+        if (entity.getType().isIn(this.mobsImmune())) {
+            return;
+        }
 
-            if (this.bushDamages() && !world.isClient() && state.get(AGE) > 0
-                    && (entity.lastRenderX != entity.getX() || entity.lastRenderZ != entity.getZ())) {
-                double minMovementForDamage = 0.003D;
-                double d = Math.abs(entity.getX() - entity.lastRenderX);
-                double e = Math.abs(entity.getZ() - entity.lastRenderZ);
+        entity.slowMovement(state, new Vec3d(0.8D, 0.75D, 0.8D));
 
-                if (d >= minMovementForDamage || e >= minMovementForDamage) {
-                    entity.damage(world.getDamageSources().sweetBerryBush(), 1.0F);
-                }
+        if (this.bushDamages() && !world.isClient() && state.get(AGE) > 0
+                && (entity.lastRenderX != entity.getX() || entity.lastRenderZ != entity.getZ())) {
+            double minMovementForDamage = 0.003D;
+            double d = Math.abs(entity.getX() - entity.lastRenderX);
+            double e = Math.abs(entity.getZ() - entity.lastRenderZ);
+
+            if (!world.isClient() && (d >= minMovementForDamage || e >= minMovementForDamage)) {
+                entity.damage((ServerWorld) world, world.getDamageSources().sweetBerryBush(), 1.0F);
             }
         }
     }
 
-    @SuppressWarnings("deprecation")
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player,
-                              Hand hand, BlockHitResult hit) {
+    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+        Hand hand = player.getActiveHand();
         boolean isHoldingBoneMeal = player.getStackInHand(hand).isOf(Items.BONE_MEAL);
         int age = state.get(AGE);
 
@@ -118,7 +116,7 @@ public abstract class AbstractBerryBushBlock extends PlantBlock implements Ferti
             world.playSound(null, pos, SoundEvents.BLOCK_SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS,
                     1.0F, 0.8F + world.random.nextFloat() * 0.4F);
             world.setBlockState(pos, state.with(AGE, 1), 2);
-            return ActionResult.success(world.isClient());
+            return ActionResult.SUCCESS;
         }
         return ActionResult.PASS;
     }

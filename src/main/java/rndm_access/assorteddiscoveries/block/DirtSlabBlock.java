@@ -23,6 +23,7 @@ public class DirtSlabBlock extends SlabBlock implements Fertilizable {
         return CODEC;
     }
 
+    @Override
     public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
         return SnowySlabBlock.canSurvive(state, world, pos);
     }

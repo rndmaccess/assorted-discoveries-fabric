@@ -8,13 +8,16 @@ import net.minecraft.item.Items;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TradeOffers;
+import net.minecraft.village.TradedItem;
+
+import java.util.Optional;
 
 public class ModVillagerOffers {
 
     public static void registerVillagerTradeOffers() {
         TradeOfferHelper.registerVillagerOffers(ModVillagerProfessions.LUMBERJACK, 1, factories -> {
-            factories.add(new ItemForEmeraldFactory(new ItemStack(Items.APPLE), 16, 2));
-            factories.add(new ItemForEmeraldFactory(new ItemStack(ModItems.SPRUCE_CONE), 10, 2));
+            factories.add(new ItemForEmeraldFactory(new TradedItem(Items.APPLE), 16, 2));
+            factories.add(new ItemForEmeraldFactory(new TradedItem(ModItems.SPRUCE_CONE), 10, 2));
         });
         TradeOfferHelper.registerVillagerOffers(ModVillagerProfessions.LUMBERJACK, 2, factories -> {
             factories.add(new EmeraldForItemFactory(2, new ItemStack(Items.GOLDEN_AXE), 6,
@@ -24,15 +27,15 @@ public class ModVillagerOffers {
         });
         TradeOfferHelper.registerVillagerOffers(ModVillagerProfessions.LUMBERJACK,
                 3, factories -> {
-            factories.add(new SellItemFactory(new ItemStack(Blocks.OAK_LOG, 5),
+            factories.add(new SellItemFactory(new TradedItem(Blocks.OAK_LOG, 5),
                     new ItemStack(Items.CHARCOAL, 5), 5, 15));
-            factories.add(new SellItemFactory(new ItemStack(Blocks.BIRCH_LOG, 5),
+            factories.add(new SellItemFactory(new TradedItem(Blocks.BIRCH_LOG, 5),
                     new ItemStack(Items.CHARCOAL, 5), 5, 15));
-            factories.add(new SellItemFactory(new ItemStack(Blocks.JUNGLE_LOG, 5),
+            factories.add(new SellItemFactory(new TradedItem(Blocks.JUNGLE_LOG, 5),
                     new ItemStack(Items.CHARCOAL, 5), 5, 15));
-            factories.add(new SellItemFactory(new ItemStack(Blocks.ACACIA_LOG, 5),
+            factories.add(new SellItemFactory(new TradedItem(Blocks.ACACIA_LOG, 5),
                     new ItemStack(Items.CHARCOAL, 5), 5, 15));
-            factories.add(new SellItemFactory(new ItemStack(Blocks.DARK_OAK_LOG, 5),
+            factories.add(new SellItemFactory(new TradedItem(Blocks.DARK_OAK_LOG, 5),
                     new ItemStack(Items.CHARCOAL, 5), 5, 15));
         });
         TradeOfferHelper.registerVillagerOffers(ModVillagerProfessions.LUMBERJACK, 4, factories -> {
@@ -59,22 +62,24 @@ public class ModVillagerOffers {
                                          float priceMultiplier) implements TradeOffers.Factory {
         @Override
         public TradeOffer create(Entity entity, Random random) {
-            return new TradeOffer(new ItemStack(Items.EMERALD, emeralds), sellItem, maxTrades, xp, priceMultiplier);
+            TradedItem tradedItem = new TradedItem(Items.EMERALD, emeralds);
+            return new TradeOffer(tradedItem, sellItem, maxTrades, xp, priceMultiplier);
         }
     }
 
-    private record ItemForEmeraldFactory(ItemStack buyItem, int maxTrades, int xp) implements TradeOffers.Factory {
+    private record ItemForEmeraldFactory(TradedItem buyItem, int maxTrades, int xp) implements TradeOffers.Factory {
         @Override
         public TradeOffer create(Entity entity, Random random) {
             return new TradeOffer(buyItem, new ItemStack(Items.EMERALD), maxTrades, xp, 0.05F);
         }
     }
 
-    private record SellItemFactory(ItemStack buyItem, ItemStack forSale, int maxTrades, int xp)
+    private record SellItemFactory(TradedItem buyItem, ItemStack forSale, int maxTrades, int xp)
             implements TradeOffers.Factory {
         @Override
         public TradeOffer create(Entity entity, Random random) {
-            return new TradeOffer(buyItem, new ItemStack(Items.EMERALD), forSale, maxTrades, xp, 0.05F);
+            Optional<TradedItem> emeraldTradeItem = Optional.of(new TradedItem(Items.EMERALD));
+            return new TradeOffer(buyItem, emeraldTradeItem, forSale, maxTrades, xp, 0.05F);
         }
     }
 
@@ -82,8 +87,8 @@ public class ModVillagerOffers {
             implements TradeOffers.Factory {
         @Override
         public TradeOffer create(Entity entity, Random random) {
-            return new TradeOffer(new ItemStack(Items.EMERALD, emeralds), forSale, maxTrades, 0,
-                    priceMultiplier);
+            TradedItem tradedItem = new TradedItem(Items.EMERALD, emeralds);
+            return new TradeOffer(tradedItem, forSale, maxTrades, 0, priceMultiplier);
         }
     }
 }

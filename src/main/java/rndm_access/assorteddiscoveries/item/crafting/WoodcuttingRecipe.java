@@ -2,131 +2,138 @@ package rndm_access.assorteddiscoveries.item.crafting;
 
 import com.mojang.datafixers.Products;
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.inventory.Inventory;
+import io.netty.buffer.ByteBuf;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.registry.DynamicRegistryManager;
-import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.dynamic.Codecs;
+import net.minecraft.network.RegistryByteBuf;
+import net.minecraft.network.codec.PacketCodec;
+import net.minecraft.network.codec.PacketCodecs;
+import net.minecraft.recipe.*;
+import net.minecraft.recipe.book.RecipeBookCategory;
+import net.minecraft.recipe.display.RecipeDisplay;
+import net.minecraft.recipe.display.SlotDisplay;
+import net.minecraft.recipe.input.SingleStackRecipeInput;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.world.World;
-import rndm_access.assorteddiscoveries.core.ModBlocks;
-import rndm_access.assorteddiscoveries.core.ModRecipeSerializers;
-import rndm_access.assorteddiscoveries.core.ModRecipeTypes;
+import org.jetbrains.annotations.Nullable;
+import rndm_access.assorteddiscoveries.core.*;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 
-public class WoodcuttingRecipe implements Recipe<Inventory> {
-    protected final Ingredient ingredient;
-    protected final ItemStack result;
-    protected final String group;
-    private final RecipeType<?> type;
-    private final RecipeSerializer<?> serializer;
+public class WoodcuttingRecipe implements Recipe<SingleStackRecipeInput> {
+    private final Ingredient ingredient;
+    private final ItemStack result;
+    private final String group;
+    @Nullable
+    private IngredientPlacement ingredientPlacement;
 
     public WoodcuttingRecipe(String group, Ingredient ingredient, ItemStack result) {
-        this.type = ModRecipeTypes.WOODCUTTING;
-        this.serializer = ModRecipeSerializers.WOODCUTTING;
         this.group = group;
         this.ingredient = ingredient;
         this.result = result;
     }
 
     @Override
-    public boolean matches(Inventory inventory, World world) {
-        return this.ingredient.test(inventory.getStack(0));
+    public RecipeType<WoodcuttingRecipe> getType() {
+        return ModRecipeTypes.WOODCUTTING;
     }
 
     @Override
-    public RecipeType<?> getType() {
-        return this.type;
+    public RecipeSerializer<WoodcuttingRecipe> getSerializer() {
+        return ModRecipeSerializers.WOODCUTTING;
     }
 
-    @Override
-    public RecipeSerializer<?> getSerializer() {
-        return this.serializer;
+    public List<RecipeDisplay> getDisplays() {
+        SlotDisplay ingredientDisplay = this.getIngredient().toDisplay();
+        Item woodcutterItem = ModBlocks.WOODCUTTER.asItem();
+        SlotDisplay.ItemSlotDisplay craftingStationDisplay = new SlotDisplay.ItemSlotDisplay(woodcutterItem);
+
+        return List.of(new WoodcutterRecipeDisplay(ingredientDisplay, this.createResultDisplay(), craftingStationDisplay));
     }
 
-    @Override
+    public SlotDisplay createResultDisplay() {
+        return new SlotDisplay.StackSlotDisplay(this.getResult());
+    }
+
+    public RecipeBookCategory getRecipeBookCategory() {
+        return ModRecipeBookCategories.WOODCUTTER;
+    }
+
+    public boolean matches(SingleStackRecipeInput singleStackRecipeInput, World world) {
+        return this.ingredient.test(singleStackRecipeInput.item());
+    }
+
     public String getGroup() {
         return this.group;
-    }
-
-    @Override
-    public ItemStack getResult(DynamicRegistryManager registryManager) {
-        return this.result;
     }
 
     public Ingredient getIngredient() {
         return this.ingredient;
     }
 
-    @Override
-    public DefaultedList<Ingredient> getIngredients() {
-        DefaultedList<Ingredient> ingredients = DefaultedList.of();
-        ingredients.add(this.ingredient);
-        return ingredients;
+    protected ItemStack getResult() {
+        return this.result;
     }
 
-    @Override
-    public ItemStack createIcon() {
-        return new ItemStack(ModBlocks.WOODCUTTER);
+    public IngredientPlacement getIngredientPlacement() {
+        if (this.ingredientPlacement == null) {
+            this.ingredientPlacement = IngredientPlacement.forSingleSlot(this.ingredient);
+        }
+        return this.ingredientPlacement;
     }
 
-    @Override
-    public boolean fits(int width, int height) {
-        return true;
-    }
-
-    @Override
-    public ItemStack craft(Inventory inventory, DynamicRegistryManager registryManager) {
+    public ItemStack craft(SingleStackRecipeInput singleStackRecipeInput, RegistryWrapper.WrapperLookup wrapperLookup) {
         return this.result.copy();
     }
 
-    public interface RecipeFactory<T extends WoodcuttingRecipe> {
-        T create(String group, Ingredient ingredient, ItemStack result);
-    }
-
     public static class Serializer<T extends WoodcuttingRecipe> implements RecipeSerializer<T> {
-        private final RecipeFactory<T> recipeFactory;
-        private final Codec<T> codec;
+        private final MapCodec<T> codec;
+        private final PacketCodec<RegistryByteBuf, T> packetCodec;
 
         public Serializer(RecipeFactory<T> recipeFactory) {
-            this.recipeFactory = recipeFactory;
-            this.codec = RecordCodecBuilder.create((instance) -> {
-                Products.P3<RecordCodecBuilder.Mu<T>, String, Ingredient, ItemStack> temp = instance.group(
-                        Codecs.createStrictOptionalFieldCodec(Codec.STRING, "group", "")
-                                .forGetter((recipe) -> recipe.group),
-                        Ingredient.DISALLOW_EMPTY_CODEC.fieldOf("ingredient")
-                                .forGetter((recipe) -> recipe.ingredient),
-                        ItemStack.CUTTING_RECIPE_RESULT_CODEC
-                                .forGetter((recipe) -> recipe.result));
+            this.codec = RecordCodecBuilder.mapCodec((instance) -> {
+                Products.P3<RecordCodecBuilder.Mu<T>, String, Ingredient, ItemStack> var10000 =
+                        instance.group(Codec.STRING.optionalFieldOf("group", "")
+                        .forGetter(WoodcuttingRecipe::getGroup), Ingredient.CODEC.fieldOf("ingredient")
+                        .forGetter(WoodcuttingRecipe::getIngredient), ItemStack.VALIDATED_CODEC.fieldOf("result")
+                        .forGetter(WoodcuttingRecipe::getResult));
+
                 Objects.requireNonNull(recipeFactory);
-                return temp.apply(instance, recipeFactory::create);
+                return var10000.apply(instance, recipeFactory::create);
             });
+
+            PacketCodec<ByteBuf, String> groupCodec = PacketCodecs.STRING;
+            Function<T, String> groupFunc = WoodcuttingRecipe::getGroup;
+            PacketCodec<RegistryByteBuf, Ingredient> ingredientCodec = Ingredient.PACKET_CODEC;
+            Function<T, Ingredient> ingredientFunc = WoodcuttingRecipe::getIngredient;
+            PacketCodec<RegistryByteBuf, ItemStack> resultCodec = ItemStack.PACKET_CODEC;
+            Function<T, ItemStack> resultFunc = WoodcuttingRecipe::getResult;
+            Objects.requireNonNull(recipeFactory);
+            this.packetCodec = PacketCodec.tuple(groupCodec, groupFunc, ingredientCodec, ingredientFunc, resultCodec,
+                    resultFunc, recipeFactory::create);
         }
 
-        @Override
-        public Codec<T> codec() {
+        public Serializer(MapCodec<T> codec, PacketCodec<RegistryByteBuf, T> packetCodec) {
+            this.codec = codec;
+            this.packetCodec = packetCodec;
+        }
+
+        public MapCodec<T> codec() {
             return this.codec;
         }
 
         @Override
-        public T read(PacketByteBuf packetByteBuf) {
-            String string = packetByteBuf.readString();
-            Ingredient ingredient = Ingredient.fromPacket(packetByteBuf);
-            ItemStack itemStack = packetByteBuf.readItemStack();
-            return this.recipeFactory.create(string, ingredient, itemStack);
+        public PacketCodec<RegistryByteBuf, T> packetCodec() {
+            return this.packetCodec;
         }
+    }
 
-        @Override
-        public void write(PacketByteBuf packetByteBuf, T cuttingRecipe) {
-            packetByteBuf.writeString(cuttingRecipe.group);
-            cuttingRecipe.getIngredient().write(packetByteBuf);
-            packetByteBuf.writeItemStack(cuttingRecipe.result);
-        }
+    @FunctionalInterface
+    public interface RecipeFactory<T extends WoodcuttingRecipe> {
+        T create(String group, Ingredient ingredient, ItemStack result);
     }
 }

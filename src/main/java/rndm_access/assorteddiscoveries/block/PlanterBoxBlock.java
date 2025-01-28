@@ -12,10 +12,12 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
-import net.minecraft.world.WorldAccess;
+import net.minecraft.world.WorldView;
+import net.minecraft.world.tick.ScheduledTickView;
 import org.jetbrains.annotations.Nullable;
 import rndm_access.assorteddiscoveries.util.ShapeHelper;
 
@@ -70,7 +72,6 @@ public class PlanterBoxBlock extends Block {
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         List<Boolean> stateProperties = ImmutableList.of(state.get(SOUTH), state.get(NORTH), state.get(EAST),
                 state.get(WEST));
@@ -81,17 +82,17 @@ public class PlanterBoxBlock extends Block {
     @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext context) {
-        return getPlanterBoxState(this.getDefaultState(), context.getWorld(), context.getBlockPos());
+        return this.getPlanterBoxState(this.getDefaultState(), context.getWorld(), context.getBlockPos());
     }
 
     @Override
-    @SuppressWarnings("deprecation")
-    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState,
-                                                WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        return getPlanterBoxState(state, world, pos);
+    public BlockState getStateForNeighborUpdate(BlockState state, WorldView world, ScheduledTickView tickView,
+                                                BlockPos pos, Direction direction, BlockPos neighborPos,
+                                                BlockState neighborState, Random random) {
+        return this.getPlanterBoxState(state, world, pos);
     }
 
-    private BlockState getPlanterBoxState(BlockState state, WorldAccess world, BlockPos pos) {
+    private BlockState getPlanterBoxState(BlockState state, WorldView world, BlockPos pos) {
         return state.with(NORTH, world.getBlockState(pos.north()).isOf(this))
                 .with(SOUTH, world.getBlockState(pos.south()).isOf(this))
                 .with(WEST, world.getBlockState(pos.west()).isOf(this))
@@ -103,7 +104,6 @@ public class PlanterBoxBlock extends Block {
      * state each block should be in.
      */
     @Override
-    @SuppressWarnings("deprecation")
     public BlockState rotate(BlockState state, BlockRotation rotation) {
         boolean north = state.get(NORTH);
         boolean south = state.get(SOUTH);

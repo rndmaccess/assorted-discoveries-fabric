@@ -8,7 +8,6 @@ import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.state.StateManager;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -18,6 +17,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
+import net.minecraft.world.tick.ScheduledTickView;
 import org.jetbrains.annotations.Nullable;
 import rndm_access.assorteddiscoveries.core.ModBlocks;
 
@@ -44,10 +44,11 @@ public class BloodKelpPlantBlock extends AbstractPlantBlock implements FluidFill
     }
 
     @Override
-    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState,
-                                                WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos)
-                .with(LIT, state.get(LIT));
+    public BlockState getStateForNeighborUpdate(BlockState state, WorldView world, ScheduledTickView tickView,
+                                                BlockPos pos, Direction direction, BlockPos neighborPos,
+                                                BlockState neighborState, Random random) {
+        return super.getStateForNeighborUpdate(state, world, tickView, pos, direction, neighborPos,
+                        neighborState, random).with(LIT, state.get(LIT));
     }
 
     @Override
@@ -55,10 +56,8 @@ public class BloodKelpPlantBlock extends AbstractPlantBlock implements FluidFill
         BloodKelp.playParticles(world, state, pos, random);
     }
 
-    @SuppressWarnings("deprecation")
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand,
-                              BlockHitResult hit) {
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         return BloodKelp.pickSeedCluster(world, player, state, pos);
     }
 
@@ -67,7 +66,6 @@ public class BloodKelpPlantBlock extends AbstractPlantBlock implements FluidFill
         return !state.get(LIT) && super.isFertilizable(world, pos, state);
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public FluidState getFluidState(BlockState state) {
         return Fluids.WATER.getStill(false);

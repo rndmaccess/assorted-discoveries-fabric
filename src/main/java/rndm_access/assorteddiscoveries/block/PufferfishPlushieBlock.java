@@ -8,7 +8,6 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -42,9 +41,7 @@ public class PufferfishPlushieBlock extends AbstractPlushieBlock {
     }
 
     @Override
-    @SuppressWarnings("deprecation")
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player,
-                              Hand hand, BlockHitResult hit) {
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         int puffedLevel = state.get(PUFFED);
         float pitch = 0.8F + world.getRandom().nextFloat() * 0.4F;
 
@@ -57,11 +54,10 @@ public class PufferfishPlushieBlock extends AbstractPlushieBlock {
                     SoundCategory.BLOCKS, 1.0F, pitch);
             world.setBlockState(pos, state.with(PUFFED, 0));
         }
-        return ActionResult.success(world.isClient());
+        return ActionResult.SUCCESS;
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos,
                                       ShapeContext context) {
         Direction direction = state.get(FACING);

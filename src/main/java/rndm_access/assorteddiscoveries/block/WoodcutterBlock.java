@@ -9,14 +9,14 @@ import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
 import net.minecraft.state.StateManager;
-import net.minecraft.state.property.DirectionProperty;
+import net.minecraft.state.property.EnumProperty;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
-import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
@@ -26,7 +26,7 @@ import rndm_access.assorteddiscoveries.block_screen.WoodcutterScreenHandler;
 public class WoodcutterBlock extends Block {
     public static final MapCodec<WoodcutterBlock> CODEC;
     private static final Text TITLE;
-    public static final DirectionProperty FACING;
+    public static final EnumProperty<Direction> FACING;
     protected static final VoxelShape SHAPE;
 
     public WoodcutterBlock(AbstractBlock.Settings settings) {
@@ -42,62 +42,52 @@ public class WoodcutterBlock extends Block {
         return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
     }
 
-    @SuppressWarnings("deprecation")
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand,
-                              BlockHitResult hit) {
-        if (world.isClient) {
-            return ActionResult.SUCCESS;
-        } else {
+    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+        if (!world.isClient) {
             player.openHandledScreen(state.createScreenHandlerFactory(world, pos));
-            return ActionResult.CONSUME;
         }
+        return ActionResult.SUCCESS;
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public NamedScreenHandlerFactory createScreenHandlerFactory(BlockState state, World world,
                                                                 BlockPos pos) {
-        return new SimpleNamedScreenHandlerFactory(
-                (syncId, playerInventory, player) -> new WoodcutterScreenHandler(syncId, playerInventory,
-                        ScreenHandlerContext.create(world, pos)), TITLE);
+        return new SimpleNamedScreenHandlerFactory((syncId, playerInventory, player) -> {
+            ScreenHandlerContext context = ScreenHandlerContext.create(world, pos);
+
+            return new WoodcutterScreenHandler(syncId, playerInventory, context);
+        }, TITLE);
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos,
                                       ShapeContext context) {
         return SHAPE;
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public boolean hasSidedTransparency(BlockState state) {
         return true;
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public BlockState rotate(BlockState state, BlockRotation rotation) {
         return state.with(FACING, rotation.rotate(state.get(FACING)));
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public BlockState mirror(BlockState state, BlockMirror mirror) {
         return state.rotate(mirror.getRotation(state.get(FACING)));
     }
 
-    @SuppressWarnings("deprecation")
     @Override
-    public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos,
-                                      NavigationType type) {
+    protected boolean canPathfindThrough(BlockState state, NavigationType type) {
         return false;
     }
 

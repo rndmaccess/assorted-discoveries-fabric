@@ -37,7 +37,6 @@ public class ShortEnderGrassBlock extends PlantBlock {
         world.addParticle(ParticleTypes.PORTAL, x, y, z, 0.0D, 0.0D, 0.0D);
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos,
                                       ShapeContext context) {

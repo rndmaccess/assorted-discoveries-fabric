@@ -2,7 +2,8 @@ package rndm_access.assorteddiscoveries.particle;
 
 import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
-import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.particle.ParticleGroup;
+import net.minecraft.particle.SimpleParticleType;
 import net.minecraft.util.math.MathHelper;
 
 import java.util.Optional;
@@ -46,10 +47,12 @@ public class AirNectarParticle extends SpriteBillboardParticle {
         return 240;
     }
 
-    public record Factory(SpriteProvider spriteProvider) implements ParticleFactory<DefaultParticleType> {
-        public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld,
-                                       double d, double e, double f, double g, double h, double i) {
-            return new AirNectarParticle(clientWorld, Factory.this.spriteProvider, d, e, f,
+    public record Factory(SpriteProvider spriteProvider) implements ParticleFactory<SimpleParticleType> {
+
+        @Override
+        public Particle createParticle(SimpleParticleType particle, ClientWorld world, double x, double y, double z,
+                                       double velocityX, double velocityY, double velocityZ) {
+            return new AirNectarParticle(world, this.spriteProvider, x, y, z,
                     0.0D, -0.8D, 0.0D) {
                 public Optional<ParticleGroup> getGroup() {
                     return Optional.of(ParticleGroup.SPORE_BLOSSOM_AIR);

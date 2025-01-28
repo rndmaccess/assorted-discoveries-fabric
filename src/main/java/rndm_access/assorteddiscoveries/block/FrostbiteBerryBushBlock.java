@@ -64,6 +64,7 @@ public class FrostbiteBerryBushBlock extends AbstractBerryBushBlock {
         return floor.isIn(ModBlockTags.FROSTBITE_BERRY_BUSH_PLANTABLE_ON);
     }
 
+    @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(AGE);
     }

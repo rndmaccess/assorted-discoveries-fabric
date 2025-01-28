@@ -6,15 +6,16 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
+import net.minecraft.world.tick.ScheduledTickView;
 
 public class PieBlock extends Block {
     public static final IntProperty BITES;
@@ -28,10 +29,10 @@ public class PieBlock extends Block {
         this.saturationMod = saturationMod;
     }
 
-    @SuppressWarnings("deprecation")
     @Override
-    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState,
-                                                WorldAccess world, BlockPos pos, BlockPos neighborPos) {
+    public BlockState getStateForNeighborUpdate(BlockState state, WorldView world, ScheduledTickView tickView,
+                                                BlockPos pos, Direction direction, BlockPos neighborPos,
+                                                BlockState neighborState, Random random) {
         if (direction == Direction.DOWN && !state.canPlaceAt(world, pos)) {
             return Blocks.AIR.getDefaultState();
         }
@@ -46,16 +47,13 @@ public class PieBlock extends Block {
         return world.getBlockState(floorPos).isSolid();
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPE_BY_BITE[state.get(BITES)];
     }
 
-    @SuppressWarnings("deprecation")
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand,
-                              BlockHitResult hit) {
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if (world.isClient && this.tryEat(world, pos, state, player).isAccepted()) {
             return ActionResult.SUCCESS;
         }

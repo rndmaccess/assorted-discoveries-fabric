@@ -30,7 +30,6 @@ public abstract class AbstractSimplePlushieBlock extends AbstractPlushieBlock {
     protected abstract VoxelShape getNorthShape();
 
     @Override
-    @SuppressWarnings("deprecation")
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return shapes.get(state.get(FACING));
     }

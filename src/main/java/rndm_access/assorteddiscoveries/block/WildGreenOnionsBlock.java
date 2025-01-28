@@ -19,7 +19,6 @@ public class WildGreenOnionsBlock extends PlantBlock {
         return CODEC;
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos,
                                       ShapeContext context) {

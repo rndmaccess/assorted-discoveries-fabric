@@ -43,7 +43,7 @@ public abstract class BoneMealItemMixin {
             boneMealStack.decrement(1);
             world.playSound(null, pos, SoundEvents.ITEM_BONE_MEAL_USE, SoundCategory.BLOCKS);
             createParticles(world, pos, random.nextInt(10));
-            info.setReturnValue(ActionResult.success(world.isClient()));
+            info.setReturnValue(ActionResult.SUCCESS);
         }
     }
 

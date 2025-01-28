@@ -1,51 +1,51 @@
 package rndm_access.assorteddiscoveries.core;
 
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
-import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.particle.SimpleParticleType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import rndm_access.assorteddiscoveries.ADReference;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 
 public class ModParticleTypes {
-    public static final DefaultParticleType WHITE_EMBER;
-    public static final DefaultParticleType ORANGE_EMBER;
-    public static final DefaultParticleType MAGENTA_EMBER;
-    public static final DefaultParticleType LIGHT_BLUE_EMBER;
-    public static final DefaultParticleType YELLOW_EMBER;
-    public static final DefaultParticleType LIME_EMBER;
-    public static final DefaultParticleType PINK_EMBER;
-    public static final DefaultParticleType GRAY_EMBER;
-    public static final DefaultParticleType LIGHT_GRAY_EMBER;
-    public static final DefaultParticleType CYAN_EMBER;
-    public static final DefaultParticleType PURPLE_EMBER;
-    public static final DefaultParticleType BLUE_EMBER;
-    public static final DefaultParticleType BROWN_EMBER;
-    public static final DefaultParticleType GREEN_EMBER;
-    public static final DefaultParticleType RED_EMBER;
-    public static final DefaultParticleType BLACK_EMBER;
-    public static final DefaultParticleType WHITE_FLAME;
-    public static final DefaultParticleType ORANGE_FLAME;
-    public static final DefaultParticleType MAGENTA_FLAME;
-    public static final DefaultParticleType LIGHT_BLUE_FLAME;
-    public static final DefaultParticleType YELLOW_FLAME;
-    public static final DefaultParticleType LIME_FLAME;
-    public static final DefaultParticleType PINK_FLAME;
-    public static final DefaultParticleType GRAY_FLAME;
-    public static final DefaultParticleType LIGHT_GRAY_FLAME;
-    public static final DefaultParticleType CYAN_FLAME;
-    public static final DefaultParticleType PURPLE_FLAME;
-    public static final DefaultParticleType BLUE_FLAME;
-    public static final DefaultParticleType BROWN_FLAME;
-    public static final DefaultParticleType GREEN_FLAME;
-    public static final DefaultParticleType RED_FLAME;
-    public static final DefaultParticleType BLACK_FLAME;
-    public static final DefaultParticleType BLOOD_KELP_SPORE;
-    public static final DefaultParticleType WITCHS_CRADLE_SPORE;
-    public static final DefaultParticleType BOG_BLOSSOM_AIR_NECTAR;
-    public static final DefaultParticleType SOUL_EMBER;
+    public static final SimpleParticleType WHITE_EMBER;
+    public static final SimpleParticleType ORANGE_EMBER;
+    public static final SimpleParticleType MAGENTA_EMBER;
+    public static final SimpleParticleType LIGHT_BLUE_EMBER;
+    public static final SimpleParticleType YELLOW_EMBER;
+    public static final SimpleParticleType LIME_EMBER;
+    public static final SimpleParticleType PINK_EMBER;
+    public static final SimpleParticleType GRAY_EMBER;
+    public static final SimpleParticleType LIGHT_GRAY_EMBER;
+    public static final SimpleParticleType CYAN_EMBER;
+    public static final SimpleParticleType PURPLE_EMBER;
+    public static final SimpleParticleType BLUE_EMBER;
+    public static final SimpleParticleType BROWN_EMBER;
+    public static final SimpleParticleType GREEN_EMBER;
+    public static final SimpleParticleType RED_EMBER;
+    public static final SimpleParticleType BLACK_EMBER;
+    public static final SimpleParticleType WHITE_FLAME;
+    public static final SimpleParticleType ORANGE_FLAME;
+    public static final SimpleParticleType MAGENTA_FLAME;
+    public static final SimpleParticleType LIGHT_BLUE_FLAME;
+    public static final SimpleParticleType YELLOW_FLAME;
+    public static final SimpleParticleType LIME_FLAME;
+    public static final SimpleParticleType PINK_FLAME;
+    public static final SimpleParticleType GRAY_FLAME;
+    public static final SimpleParticleType LIGHT_GRAY_FLAME;
+    public static final SimpleParticleType CYAN_FLAME;
+    public static final SimpleParticleType PURPLE_FLAME;
+    public static final SimpleParticleType BLUE_FLAME;
+    public static final SimpleParticleType BROWN_FLAME;
+    public static final SimpleParticleType GREEN_FLAME;
+    public static final SimpleParticleType RED_FLAME;
+    public static final SimpleParticleType BLACK_FLAME;
+    public static final SimpleParticleType BLOOD_KELP_SPORE;
+    public static final SimpleParticleType WITCHS_CRADLE_SPORE;
+    public static final SimpleParticleType BOG_BLOSSOM_AIR_NECTAR;
+    public static final SimpleParticleType SOUL_EMBER;
 
-    private static void register(String path, DefaultParticleType particleType) {
+    private static void register(String path, SimpleParticleType particleType) {
         Registry.register(Registries.PARTICLE_TYPE, ADReference.makeModId(path), particleType);
     }
 

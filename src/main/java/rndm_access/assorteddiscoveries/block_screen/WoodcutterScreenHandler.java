@@ -1,6 +1,5 @@
 package rndm_access.assorteddiscoveries.block_screen;
 
-import com.google.common.collect.Lists;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.CraftingResultInventory;
@@ -8,7 +7,7 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.RecipeEntry;
+import net.minecraft.recipe.display.CuttingRecipeDisplay;
 import net.minecraft.screen.*;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.sound.SoundCategory;
@@ -23,7 +22,7 @@ public class WoodcutterScreenHandler extends ScreenHandler {
     private final ScreenHandlerContext context;
     private final Property selectedRecipe;
     private final World world;
-    private List<RecipeEntry<WoodcuttingRecipe>> availableRecipes;
+    private CuttingRecipeDisplay.Grouping<WoodcuttingRecipe> availableRecipes;
     private ItemStack inputStack;
     private long lastTakeTime;
     private final Slot inputSlot;
@@ -40,7 +39,7 @@ public class WoodcutterScreenHandler extends ScreenHandler {
                                    ScreenHandlerContext context) {
         super(ModScreenHandlerTypes.WOODCUTTER, syncId);
         this.selectedRecipe = Property.create();
-        this.availableRecipes = Lists.newArrayList();
+        //this.availableRecipes = Lists.newArrayList();
         this.inputStack = ItemStack.EMPTY;
         this.contentsChangedListener = () -> {};
         this.input = new SimpleInventory(1) {
@@ -111,7 +110,7 @@ public class WoodcutterScreenHandler extends ScreenHandler {
         return this.selectedRecipe.get();
     }
 
-    public List<RecipeEntry<WoodcuttingRecipe>> getAvailableRecipes() {
+    public CuttingRecipeDisplay.Grouping<WoodcuttingRecipe> getAvailableRecipes() {
         return this.availableRecipes;
     }
 
@@ -150,23 +149,29 @@ public class WoodcutterScreenHandler extends ScreenHandler {
         }
     }
 
+    //StonecutterScreenHandler
+
     private void updateInput(Inventory input, ItemStack stack) {
-        this.availableRecipes.clear();
         this.selectedRecipe.set(-1);
-        this.outputSlot.setStack(ItemStack.EMPTY);
+        this.outputSlot.setStackNoCallbacks(ItemStack.EMPTY);
         if (!stack.isEmpty()) {
-            this.availableRecipes = this.world.getRecipeManager()
-                    .getAllMatches(ModRecipeTypes.WOODCUTTING, input, this.world);
+            //this.availableRecipes = .getStonecutterRecipes().filter(stack);
+        } else {
+            this.availableRecipes = CuttingRecipeDisplay.Grouping.empty();
+        }
+
+        if (!stack.isEmpty()) {
+            //this.availableRecipes = this.world.getRecipeManager().getStonecutterRecipes()
+            //        .getAllMatches(ModRecipeTypes.WOODCUTTING, input, this.world);
         }
     }
 
     public void populateResult() {
         if (!this.availableRecipes.isEmpty() && this.isInBounds(this.selectedRecipe.get())) {
-            RecipeEntry<WoodcuttingRecipe> woodcuttingRecipe = this.availableRecipes
-                    .get(this.selectedRecipe.get());
-            this.output.setLastRecipe(woodcuttingRecipe);
-            this.outputSlot.setStack(woodcuttingRecipe.value()
-                    .craft(this.input, this.world.getRegistryManager()));
+            //RecipeEntry<WoodcuttingRecipe> woodcuttingRecipe = this.availableRecipes.entries().get(this.selectedRecipe.get());
+            //this.output.setLastRecipe(woodcuttingRecipe);
+            //this.outputSlot.setStack(woodcuttingRecipe.value()
+             //       .craft(this.input, this.world.getRegistryManager()));
         } else {
             this.outputSlot.setStack(ItemStack.EMPTY);
         }
@@ -207,12 +212,16 @@ public class WoodcutterScreenHandler extends ScreenHandler {
                 if (!this.insertItem(itemStack2, 2, 38, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (this.world.getRecipeManager().getFirstMatch(ModRecipeTypes.WOODCUTTING,
+            }
+            /*
+            else if (this.world.getRecipeManager().getFirstMatch(ModRecipeTypes.WOODCUTTING,
                     new SimpleInventory(itemStack2), this.world).isPresent()) {
                 if (!this.insertItem(itemStack2, 0, 1, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (index >= 2 && index < 29) {
+            }
+            */
+            else if (index >= 2 && index < 29) {
                 if (!this.insertItem(itemStack2, 29, 38, false)) {
                     return ItemStack.EMPTY;
                 }

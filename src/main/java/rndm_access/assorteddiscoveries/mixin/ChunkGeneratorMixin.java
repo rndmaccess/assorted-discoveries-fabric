@@ -11,6 +11,7 @@ import net.minecraft.structure.StructureTemplateManager;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.ChunkSectionPos;
+import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
@@ -35,7 +36,8 @@ public class ChunkGeneratorMixin {
     public void trySetStructureStart(StructureSet.WeightedEntry weightedEntry, StructureAccessor structureAccessor,
                                      DynamicRegistryManager dynamicRegistryManager, NoiseConfig noiseConfig,
                                      StructureTemplateManager structureManager, long seed, Chunk chunk, ChunkPos pos,
-                                     ChunkSectionPos sectionPos, CallbackInfoReturnable<Boolean> cir) {
+                                     ChunkSectionPos sectionPos, RegistryKey<World> dimension,
+                                     CallbackInfoReturnable<Boolean> cir) {
         Optional<RegistryKey<Structure>> structureKey = weightedEntry.structure().getKey();
 
         if (structureKey.isPresent()) {

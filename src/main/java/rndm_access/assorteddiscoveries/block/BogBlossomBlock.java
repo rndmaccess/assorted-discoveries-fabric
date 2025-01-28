@@ -9,6 +9,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.*;
+import net.minecraft.world.tick.ScheduledTickView;
 import rndm_access.assorteddiscoveries.core.ModParticleTypes;
 
 public class BogBlossomBlock extends Block implements Fertilizable {
@@ -53,21 +54,19 @@ public class BogBlossomBlock extends Block implements Fertilizable {
         }
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         return Block.sideCoversSmallSquare(world, pos.down(), Direction.DOWN) && !world.isWater(pos);
     }
 
-    @SuppressWarnings("deprecation")
     @Override
-    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState,
-                                                WorldAccess world, BlockPos pos, BlockPos neighborPos) {
+    public BlockState getStateForNeighborUpdate(BlockState state, WorldView world, ScheduledTickView tickView,
+                                                BlockPos pos, Direction direction, BlockPos neighborPos,
+                                                BlockState neighborState, Random random) {
         return direction == Direction.DOWN && !this.canPlaceAt(state, world, pos) ? Blocks.AIR.getDefaultState()
                 : state;
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPE;

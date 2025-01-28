@@ -11,9 +11,10 @@ import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
+import net.minecraft.world.tick.ScheduledTickView;
 import rndm_access.assorteddiscoveries.block.state.ModBlockStateProperties;
 
 public class RopeLadderBlock extends LadderBlock {
@@ -65,14 +66,15 @@ public class RopeLadderBlock extends LadderBlock {
     }
 
     @Override
-    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState,
-                                                WorldAccess world, BlockPos pos, BlockPos neighborPos) {
+    public BlockState getStateForNeighborUpdate(BlockState state, WorldView world, ScheduledTickView tickView,
+                                                BlockPos pos, Direction direction, BlockPos neighborPos,
+                                                BlockState neighborState, Random random) {
         Direction facing = state.get(FACING);
         BlockState stateAbove = world.getBlockState(pos.up());
 
         if (canPlaceAt(state, world, pos)) {
             if (state.get(WATERLOGGED)) {
-                world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+                tickView.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
             }
 
             // Set the ladder's length to 0 when a block is placed behind it.
@@ -112,7 +114,7 @@ public class RopeLadderBlock extends LadderBlock {
         return stateBehindLadder.isSideSolidFullSquare(world, posBehindLadder, facing);
     }
 
-    private boolean isEnd(WorldAccess world, BlockPos pos) {
+    private boolean isEnd(WorldView world, BlockPos pos) {
         BlockState stateBelowLadder = world.getBlockState(pos.down());
 
         return this.isRopeLadder(stateBelowLadder);

@@ -5,6 +5,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.FlowerBlock;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
@@ -12,10 +13,9 @@ import net.minecraft.world.World;
 import rndm_access.assorteddiscoveries.core.ModBlockTags;
 
 public class SnapdragonBlock extends FlowerBlock {
-
-    public SnapdragonBlock(StatusEffect suspiciousStewEffect, int effectDuration,
+    public SnapdragonBlock(RegistryEntry<StatusEffect> stewEffect, int effectDuration,
                            AbstractBlock.Settings settings) {
-        super(suspiciousStewEffect, effectDuration, settings);
+        super(stewEffect, effectDuration, settings);
     }
 
     @Override

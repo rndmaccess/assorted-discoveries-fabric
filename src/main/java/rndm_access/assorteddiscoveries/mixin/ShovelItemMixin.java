@@ -19,13 +19,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import rndm_access.assorteddiscoveries.block.SnowySlabBlock;
 import rndm_access.assorteddiscoveries.core.ModBlocks;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
 
 @Mixin(ShovelItem.class)
 public abstract class ShovelItemMixin {
     @Unique
-    private static final Map<Block, BlockState> PATH_SLAB_STATES;
+    private static final HashSet<Block> DIRT_SLAB_LIST;
 
     @Inject(method = "useOnBlock", at = @At("HEAD"), cancellable = true)
     private void useOnBlock(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir) {
@@ -35,14 +34,14 @@ public abstract class ShovelItemMixin {
         BlockState state = world.getBlockState(pos);
         Block block = state.getBlock();
 
-        if(PATH_SLAB_STATES.containsKey(block) && block instanceof SlabBlock) {
+        if(DIRT_SLAB_LIST.contains(block) && block instanceof SlabBlock) {
             if(state.contains(SnowySlabBlock.SNOWY) && state.get(SnowySlabBlock.SNOWY).equals(true)) {
                 cir.setReturnValue(ActionResult.FAIL);
                 return;
             }
 
             world.playSound(player, pos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
-            world.setBlockState(pos, PATH_SLAB_STATES.get(block)
+            world.setBlockState(pos, ModBlocks.DIRT_PATH_SLAB.getDefaultState()
                     .with(SlabBlock.WATERLOGGED, state.get(SlabBlock.WATERLOGGED))
                     .with(SlabBlock.TYPE, state.get(SlabBlock.TYPE)));
             cir.setReturnValue(ActionResult.SUCCESS);
@@ -50,12 +49,12 @@ public abstract class ShovelItemMixin {
     }
 
     static {
-        PATH_SLAB_STATES = new HashMap<>();
-        PATH_SLAB_STATES.put(ModBlocks.GRASS_SLAB, ModBlocks.DIRT_PATH_SLAB.getDefaultState());
-        PATH_SLAB_STATES.put(ModBlocks.PODZOL_SLAB, ModBlocks.DIRT_PATH_SLAB.getDefaultState());
-        PATH_SLAB_STATES.put(ModBlocks.COARSE_DIRT_SLAB, ModBlocks.DIRT_PATH_SLAB.getDefaultState());
-        PATH_SLAB_STATES.put(ModBlocks.DIRT_SLAB, ModBlocks.DIRT_PATH_SLAB.getDefaultState());
-        PATH_SLAB_STATES.put(ModBlocks.MYCELIUM_SLAB, ModBlocks.DIRT_PATH_SLAB.getDefaultState());
-        PATH_SLAB_STATES.put(ModBlocks.ROOTED_DIRT_SLAB, ModBlocks.DIRT_PATH_SLAB.getDefaultState());
+        DIRT_SLAB_LIST = new HashSet<>();
+        DIRT_SLAB_LIST.add(ModBlocks.GRASS_SLAB);
+        DIRT_SLAB_LIST.add(ModBlocks.PODZOL_SLAB);
+        DIRT_SLAB_LIST.add(ModBlocks.COARSE_DIRT_SLAB);
+        DIRT_SLAB_LIST.add(ModBlocks.DIRT_SLAB);
+        DIRT_SLAB_LIST.add(ModBlocks.MYCELIUM_SLAB);
+        DIRT_SLAB_LIST.add(ModBlocks.ROOTED_DIRT_SLAB);
     }
 }

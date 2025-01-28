@@ -2,7 +2,7 @@ package rndm_access.assorteddiscoveries.particle;
 
 import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
-import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.particle.SimpleParticleType;
 
 public class SporeParticle extends SpriteBillboardParticle {
     protected SporeParticle(ClientWorld clientWorld, double x, double y, double z, double xd, double yd, double zd) {
@@ -40,11 +40,11 @@ public class SporeParticle extends SpriteBillboardParticle {
         }
     }
 
-    public record Factory(SpriteProvider sprite) implements ParticleFactory<DefaultParticleType> {
+    public record Factory(SpriteProvider sprite) implements ParticleFactory<SimpleParticleType> {
         @Override
-        public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld,
+        public Particle createParticle(SimpleParticleType type, ClientWorld world,
                                        double x, double y, double z, double xd, double yd, double zd) {
-            SporeParticle particle = new SporeParticle(clientWorld, x, y, z, xd, yd, zd);
+            SporeParticle particle = new SporeParticle(world, x, y, z, xd, yd, zd);
             particle.setSprite(this.sprite);
             return particle;
         }

@@ -31,7 +31,7 @@ public class CattailFeature extends Feature<ProbabilityConfig> {
         BlockState lowerHalf = ModBlocks.CATTAIL.getDefaultState();
         BlockState upperHalf = lowerHalf.with(CattailBlock.HALF, DoubleBlockHalf.UPPER);
         boolean canPlace = lowerHalf.canPlaceAt(world, lowerPos) && world.getBlockState(upperPos).isAir();
-        boolean isCold = world.getBiome(lowerPos).value().isCold(lowerPos);
+        boolean isCold = world.getBiome(lowerPos).value().isCold(lowerPos, world.getSeaLevel());
 
         if (canPlace && !isCold) {
             world.setBlockState(lowerPos, lowerHalf.with(CattailBlock.WATERLOGGED, world.isWater(lowerPos)), 2);

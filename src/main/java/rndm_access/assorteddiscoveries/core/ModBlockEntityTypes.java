@@ -1,5 +1,6 @@
 package rndm_access.assorteddiscoveries.core;
 
+import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.registry.Registries;
@@ -25,7 +26,7 @@ public class ModBlockEntityTypes {
     }
 
     static {
-        DYED_CAMPFIRE = BlockEntityType.Builder.create(DyedCampfireBlockEntity::new,
+        DYED_CAMPFIRE = FabricBlockEntityTypeBuilder.create(DyedCampfireBlockEntity::new,
                 ModBlocks.WHITE_CAMPFIRE, ModBlocks.ORANGE_CAMPFIRE, ModBlocks.MAGENTA_CAMPFIRE,
                 ModBlocks.LIGHT_BLUE_CAMPFIRE, ModBlocks.YELLOW_CAMPFIRE,
                 ModBlocks.LIME_CAMPFIRE, ModBlocks.PINK_CAMPFIRE, ModBlocks.GRAY_CAMPFIRE,

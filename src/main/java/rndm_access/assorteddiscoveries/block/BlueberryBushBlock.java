@@ -20,6 +20,11 @@ public class BlueberryBushBlock extends AbstractBerryBushBlock {
     }
 
     @Override
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        builder.add(AGE);
+    }
+
+    @Override
     protected MapCodec<BlueberryBushBlock> getCodec() {
         return CODEC;
     }
@@ -42,10 +47,6 @@ public class BlueberryBushBlock extends AbstractBerryBushBlock {
     @Override
     protected boolean needsLightToGrow() {
         return true;
-    }
-
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(AGE);
     }
 
     static {

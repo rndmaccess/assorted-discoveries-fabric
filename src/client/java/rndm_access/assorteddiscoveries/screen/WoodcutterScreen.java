@@ -3,26 +3,33 @@ package rndm_access.assorteddiscoveries.screen;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.sound.PositionedSoundInstance;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.recipe.RecipeEntry;
+import net.minecraft.recipe.display.CuttingRecipeDisplay;
+import net.minecraft.recipe.display.SlotDisplay;
+import net.minecraft.recipe.display.SlotDisplayContexts;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.context.ContextParameterMap;
 import net.minecraft.util.math.MathHelper;
 import rndm_access.assorteddiscoveries.block_screen.WoodcutterScreenHandler;
 import rndm_access.assorteddiscoveries.item.crafting.WoodcuttingRecipe;
 
-import java.util.List;
 import java.util.Objects;
 
 public class WoodcutterScreen extends HandledScreen<WoodcutterScreenHandler> {
-    private static final Identifier SCROLLER_TEXTURE = new Identifier("container/stonecutter/scroller");
-    private static final Identifier SCROLLER_DISABLED_TEXTURE = new Identifier("container/stonecutter/scroller_disabled");
-    private static final Identifier RECIPE_SELECTED_TEXTURE = new Identifier("container/stonecutter/recipe_selected");
-    private static final Identifier RECIPE_HIGHLIGHTED_TEXTURE = new Identifier("container/stonecutter/recipe_highlighted");
-    private static final Identifier RECIPE_TEXTURE = new Identifier("container/stonecutter/recipe");
-    private static final Identifier TEXTURE = new Identifier("textures/gui/container/stonecutter.png");
+    private static final Identifier SCROLLER_TEXTURE
+            = Identifier.ofVanilla("container/stonecutter/scroller");
+    private static final Identifier SCROLLER_DISABLED_TEXTURE
+            = Identifier.ofVanilla("container/stonecutter/scroller_disabled");
+    private static final Identifier RECIPE_SELECTED_TEXTURE
+            = Identifier.ofVanilla("container/stonecutter/recipe_selected");
+    private static final Identifier RECIPE_HIGHLIGHTED_TEXTURE
+            = Identifier.ofVanilla("container/stonecutter/recipe_highlighted");
+    private static final Identifier RECIPE_TEXTURE = Identifier.ofVanilla("container/stonecutter/recipe");
+    private static final Identifier TEXTURE = Identifier.ofVanilla("textures/gui/container/stonecutter.png");
     private float scrollAmount;
     private boolean mouseClicked;
     private int scrollOffset;
@@ -49,32 +56,33 @@ public class WoodcutterScreen extends HandledScreen<WoodcutterScreenHandler> {
         int m = this.y + 14;
         int n = this.scrollOffset + 12;
 
-        context.drawTexture(TEXTURE, i, j, 0, 0, this.backgroundWidth, this.backgroundHeight);
+        context.drawTexture(RenderLayer::getGuiTextured, TEXTURE, i, j, 0.0F, 0.0F, this.backgroundWidth,
+                this.backgroundHeight, 256, 256);
         Identifier identifier = this.shouldScroll() ? SCROLLER_TEXTURE : SCROLLER_DISABLED_TEXTURE;
-        context.drawGuiTexture(identifier, i + 119, j + 15 + k, 12, 15);
+        context.drawGuiTexture(RenderLayer::getGuiTextured, identifier, i + 119, j + 15 + k, 12, 15);
         this.renderRecipeBackground(context, mouseX, mouseY, l, m, n);
         this.renderRecipeIcons(context, l, m, n);
     }
 
     @Override
-    protected void drawMouseoverTooltip(DrawContext context, int x, int y) {
-        super.drawMouseoverTooltip(context, x, y);
+    protected void drawMouseoverTooltip(DrawContext drawContext, int x, int y) {
+        super.drawMouseoverTooltip(drawContext, x, y);
         if (this.canCraft) {
-            List<RecipeEntry<WoodcuttingRecipe>> list = this.handler.getAvailableRecipes();
             int i = this.x + 52;
             int j = this.y + 14;
             int k = this.scrollOffset + 12;
+            CuttingRecipeDisplay.Grouping<WoodcuttingRecipe> grouping = this.handler.getAvailableRecipes();
 
-            for (int l = this.scrollOffset; l < k && l < this.handler.getAvailableRecipeCount(); ++l) {
-                int i1 = l - this.scrollOffset;
-                int j1 = i + i1 % 4 * 16;
-                int k1 = j + i1 / 4 * 18 + 2;
-
-                if (x >= j1 && x < j1 + 16 && y >= k1 && y < k1 + 18) {
+            for(int l = this.scrollOffset; l < k && l < grouping.size(); ++l) {
+                int m = l - this.scrollOffset;
+                int n = i + m % 4 * 16;
+                int o = j + m / 4 * 18 + 2;
+                if (x >= n && x < n + 16 && y >= o && y < o + 18) {
                     assert this.client != null;
                     assert this.client.world != null;
-                    context.drawItemTooltip(this.textRenderer, list.get(l).value()
-                            .getResult(this.client.world.getRegistryManager()), x, y);
+                    ContextParameterMap contextParameterMap = SlotDisplayContexts.createParameters(this.client.world);
+                    SlotDisplay slotDisplay = grouping.entries().get(l).recipe().optionDisplay();
+                    drawContext.drawItemTooltip(this.textRenderer, slotDisplay.getFirst(contextParameterMap), x, y);
                 }
             }
         }
@@ -87,6 +95,7 @@ public class WoodcutterScreen extends HandledScreen<WoodcutterScreenHandler> {
             int l = j / 4;
             int m = y + l * 18 + 2;
             Identifier identifier;
+
             if (i == this.handler.getSelectedRecipe()) {
                 identifier = RECIPE_SELECTED_TEXTURE;
             } else if (mouseX >= k && mouseY >= m && mouseX < k + 16 && mouseY < m + 18) {
@@ -94,23 +103,23 @@ public class WoodcutterScreen extends HandledScreen<WoodcutterScreenHandler> {
             } else {
                 identifier = RECIPE_TEXTURE;
             }
-
-            context.drawGuiTexture(identifier, k, m - 1, 16, 18);
+            context.drawGuiTexture(RenderLayer::getGuiTextured, identifier, k, m - 1, 16, 18);
         }
     }
 
     private void renderRecipeIcons(DrawContext context, int x, int y, int scrollOffset) {
-        List<RecipeEntry<WoodcuttingRecipe>> list = this.handler.getAvailableRecipes();
+        CuttingRecipeDisplay.Grouping<WoodcuttingRecipe> grouping = this.handler.getAvailableRecipes();
+        assert this.client != null;
+        assert client.world != null;
+        ContextParameterMap contextParameterMap = SlotDisplayContexts.createParameters(client.world);
 
-        for(int i = this.scrollOffset; i < scrollOffset && i < this.handler.getAvailableRecipeCount(); ++i) {
+        for(int i = this.scrollOffset; i < scrollOffset && i < grouping.size(); ++i) {
             int j = i - this.scrollOffset;
             int k = x + j % 4 * 16;
             int l = j / 4;
             int m = y + l * 18 + 2;
-
-            assert this.client != null;
-            assert this.client.world != null;
-            context.drawItem(list.get(i).value().getResult(this.client.world.getRegistryManager()), k, m);
+            SlotDisplay slotDisplay = grouping.entries().get(i).recipe().optionDisplay();
+            context.drawItem(slotDisplay.getFirst(contextParameterMap), k, m);
         }
     }
 
@@ -128,7 +137,10 @@ public class WoodcutterScreen extends HandledScreen<WoodcutterScreenHandler> {
                 double d = mouseX - (double)(i + m % 4 * 16);
                 double e = mouseY - (double)(j + m / 4 * 18);
                 if (d >= 0.0D && e >= 0.0D && d < 16.0D && e < 18.0D && this.handler.onButtonClick(client.player, l)) {
-                    MinecraftClient.getInstance().getSoundManager().play(PositionedSoundInstance.master(SoundEvents.UI_STONECUTTER_SELECT_RECIPE, 1.0F));
+                    PositionedSoundInstance sound
+                            = PositionedSoundInstance.master(SoundEvents.UI_STONECUTTER_SELECT_RECIPE, 1.0F);
+
+                    MinecraftClient.getInstance().getSoundManager().play(sound);
                     Objects.requireNonNull(client.interactionManager).clickButton(this.handler.syncId, l);
                     return true;
                 }

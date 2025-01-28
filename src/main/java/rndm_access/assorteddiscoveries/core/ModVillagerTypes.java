@@ -27,7 +27,7 @@ public class ModVillagerTypes {
     }
 
     private static VillagerType createVillagerType(Identifier id) {
-        return Registry.register(Registries.VILLAGER_TYPE, new Identifier(id.toString()),
+        return Registry.register(Registries.VILLAGER_TYPE, Identifier.of(id.toString()),
                 new VillagerType(id.toString()));
     }
 

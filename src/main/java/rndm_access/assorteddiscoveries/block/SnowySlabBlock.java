@@ -78,7 +78,6 @@ public class SnowySlabBlock extends SlabBlock {
         return state.get(TYPE).equals(SlabType.BOTTOM);
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         if(!canSurvive(state, world, pos)) {

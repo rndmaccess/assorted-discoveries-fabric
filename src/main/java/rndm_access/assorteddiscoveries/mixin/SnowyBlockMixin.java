@@ -6,8 +6,10 @@ import net.minecraft.block.SnowyBlock;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
+import net.minecraft.world.WorldView;
+import net.minecraft.world.tick.ScheduledTickView;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -18,11 +20,11 @@ import rndm_access.assorteddiscoveries.core.CommonBlockTags;
 @Mixin(SnowyBlock.class)
 public abstract class SnowyBlockMixin {
     @Inject(method = "getStateForNeighborUpdate", at = @At("HEAD"), cancellable = true)
-    private void getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState,
-                                                WorldAccess world, BlockPos pos, BlockPos neighborPos,
-                                                CallbackInfoReturnable<BlockState> info) {
+    private void getStateForNeighborUpdate(BlockState state, WorldView world, ScheduledTickView tickView, BlockPos pos,
+                                           Direction direction, BlockPos neighborPos, BlockState neighborState,
+                                           Random random, CallbackInfoReturnable<BlockState> cir) {
         if(direction == Direction.UP && this.isSnowSlabOrStairs(world, neighborPos, neighborState)) {
-            info.setReturnValue(state.with(SnowyBlock.SNOWY, true));
+            cir.setReturnValue(state.with(SnowyBlock.SNOWY, true));
         }
     }
 
@@ -39,7 +41,7 @@ public abstract class SnowyBlockMixin {
     }
 
     @Unique
-    private boolean isSnowSlabOrStairs(WorldAccess world, BlockPos pos, BlockState state) {
+    private boolean isSnowSlabOrStairs(WorldView world, BlockPos pos, BlockState state) {
         boolean isCovered = state.isSideSolidFullSquare(world, pos, Direction.DOWN);
         return (state.isIn(CommonBlockTags.SNOW_STAIRS) && isCovered)
                 || (state.isIn(CommonBlockTags.SNOW_SLABS) && isCovered);

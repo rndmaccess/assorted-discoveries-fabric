@@ -1,4 +1,4 @@
-## Fabric Assorted Discoveries For Minecraft 1.20.4
+## Fabric Assorted Discoveries For Minecraft 1.21.4
 
 ## License
 

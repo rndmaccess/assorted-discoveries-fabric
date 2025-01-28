@@ -7,6 +7,11 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.particle.ParticleEffect;
+import net.minecraft.recipe.CampfireCookingRecipe;
+import net.minecraft.recipe.RecipeType;
+import net.minecraft.recipe.ServerRecipeManager;
+import net.minecraft.recipe.input.SingleStackRecipeInput;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -47,15 +52,20 @@ public class DyedCampfireBlock extends CampfireBlock {
     @Override
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        if (world.isClient()) {
-            return state.get(LIT)
-                    ? validateTicker(type, ModBlockEntityTypes.DYED_CAMPFIRE, DyedCampfireBlockEntity::clientTick) : null;
-        } else {
-            return state.get(LIT) ? validateTicker(type, ModBlockEntityTypes.DYED_CAMPFIRE,
-                    DyedCampfireBlockEntity::litServerTick)
-                    : validateTicker(type, ModBlockEntityTypes.DYED_CAMPFIRE,
-                    DyedCampfireBlockEntity::unlitServerTick);
+        boolean isLit = state.get(LIT);
+
+        if (world instanceof ServerWorld serverWorld) {
+            if (isLit) {
+                ServerRecipeManager.MatchGetter<SingleStackRecipeInput, CampfireCookingRecipe> matchGetter
+                        = ServerRecipeManager.createCachedMatchGetter(RecipeType.CAMPFIRE_COOKING);
+
+                return validateTicker(type, ModBlockEntityTypes.DYED_CAMPFIRE,
+                        (worldx, pos, statex, blockEntity) ->
+                                DyedCampfireBlockEntity.litServerTick(serverWorld, pos, statex, blockEntity, matchGetter));
+            }
+            return validateTicker(type, ModBlockEntityTypes.DYED_CAMPFIRE, DyedCampfireBlockEntity::unlitServerTick);
         }
+        return isLit ? validateTicker(type, ModBlockEntityTypes.DYED_CAMPFIRE, DyedCampfireBlockEntity::clientTick) : null;
     }
 
     @Override

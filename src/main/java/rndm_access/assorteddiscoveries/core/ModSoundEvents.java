@@ -17,7 +17,7 @@ public class ModSoundEvents {
     }
 
     private static void register(SoundEvent soundEvent) {
-        Registry.register(Registries.SOUND_EVENT, soundEvent.getId(), soundEvent);
+        Registry.register(Registries.SOUND_EVENT, soundEvent.id(), soundEvent);
     }
 
     private static SoundEvent makeSoundEvent(String name) {

@@ -370,12 +370,15 @@ public class ModBlocks {
                     .registryKey(CRACKED_STONE_BRICK_WALL_KEY));
     public static final RegistryKey<Block> BLUEBERRY_BUSH_KEY = makeRegistryKey("blueberry_bush");
     public static final Block BLUEBERRY_BUSH
-            = register(new BlueberryBushBlock(AbstractBlock.Settings.copy(Blocks.WHEAT)
-                    .registryKey(BLUEBERRY_BUSH_KEY)), BLUEBERRY_BUSH_KEY, false);
+            = register(new BlueberryBushBlock(AbstractBlock.Settings.create().mapColor(MapColor.PALE_GREEN)
+            .ticksRandomly().noCollision().sounds(BlockSoundGroup.SWEET_BERRY_BUSH)
+            .pistonBehavior(PistonBehavior.DESTROY).registryKey(BLUEBERRY_BUSH_KEY)),
+            BLUEBERRY_BUSH_KEY, false);
     public static final RegistryKey<Block> GREEN_ONIONS_KEY = makeRegistryKey("green_onions");
     public static final Block GREEN_ONIONS
-            = register(new GreenOnionsBlock(AbstractBlock.Settings.copy(Blocks.WHEAT)
-                    .registryKey(GREEN_ONIONS_KEY)),
+            = register(new GreenOnionsBlock(AbstractBlock.Settings.create().mapColor(MapColor.DARK_GREEN)
+            .noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.CROP)
+                    .pistonBehavior(PistonBehavior.DESTROY).registryKey(GREEN_ONIONS_KEY)),
             GREEN_ONIONS_KEY, false);
     public static final RegistryKey<Block> OAK_PLANTER_BOX_KEY = makeRegistryKey("oak_planter_box");
     public static final Block OAK_PLANTER_BOX
@@ -669,7 +672,7 @@ public class ModBlocks {
     public static final Block BLACK_WALL_TORCH = registerWallTorch(BLACK_WALL_TORCH_KEY, ModParticleTypes.BLACK_FLAME);
     public static final RegistryKey<Block> WITCHS_CRADLE_KEY = makeRegistryKey("witchs_cradle");
     public static final Block WITCHS_CRADLE = register(new WitchsCradleBlock(AbstractBlock.Settings
-            .copy(Blocks.SWEET_BERRY_BUSH).luminance((state) -> 10)),
+            .copy(Blocks.SWEET_BERRY_BUSH).luminance((state) -> 10).registryKey(WITCHS_CRADLE_KEY)),
             WITCHS_CRADLE_KEY, false);
     public static final RegistryKey<Block> BAUXITE_KEY = makeRegistryKey("bauxite");
     public static final Block BAUXITE = register(new Block(makeBauxiteSettings(BAUXITE_KEY)),
@@ -769,7 +772,7 @@ public class ModBlocks {
             = register(new Block(AbstractBlock.Settings.copy(Blocks.NETHER_BRICKS)
             .registryKey(WEEPING_NETHER_BRICKS_KEY)), WEEPING_NETHER_BRICKS_KEY, true);
     public static final RegistryKey<Block> WEEPING_NETHER_BRICK_STAIRS_KEY
-            = makeRegistryKey("weeping_nether_brick_slab");
+            = makeRegistryKey("weeping_nether_brick_stairs");
     public static final Block WEEPING_NETHER_BRICK_STAIRS = registerStairs(WEEPING_NETHER_BRICK_STAIRS_KEY,
             AbstractBlock.Settings.copy(Blocks.NETHER_BRICKS)
                     .registryKey(WEEPING_NETHER_BRICK_STAIRS_KEY), WEEPING_NETHER_BRICKS);
@@ -802,10 +805,10 @@ public class ModBlocks {
             AbstractBlock.Settings.copy(Blocks.NETHERRACK).registryKey(WEEPING_NETHERRACK_WALL_KEY));
     public static final RegistryKey<Block> SNAPDRAGON_KEY = makeRegistryKey("snapdragon");
     public static final Block SNAPDRAGON = registerSnapdragon(SNAPDRAGON_KEY, StatusEffects.LUCK, 8,
-            AbstractBlock.Settings.copy(Blocks.POPPY).luminance((state) -> 7));
+            AbstractBlock.Settings.copy(Blocks.POPPY).luminance((state) -> 7).registryKey(SNAPDRAGON_KEY));
     public static final RegistryKey<Block> POTTED_SNAPDRAGON_KEY = makeRegistryKey("potted_snapdragon");
     public static final Block POTTED_SNAPDRAGON = registerPottedSnapdragon(AbstractBlock.Settings
-            .copy(Blocks.POTTED_POPPY).luminance((state) -> 7));
+            .copy(Blocks.POTTED_POPPY).luminance((state) -> 7).registryKey(POTTED_SNAPDRAGON_KEY));
     public static final RegistryKey<Block> POTTED_PURPLE_MUSHROOM_KEY = makeRegistryKey("potted_purple_mushroom");
     public static final Block POTTED_PURPLE_MUSHROOM = register(new FlowerPotBlock(ModBlocks.PURPLE_MUSHROOM,
             AbstractBlock.Settings.copy(Blocks.POTTED_RED_MUSHROOM).registryKey(POTTED_PURPLE_MUSHROOM_KEY)),
@@ -1254,11 +1257,11 @@ public class ModBlocks {
     public static final RegistryKey<Block> BLOOD_KELP_KEY = makeRegistryKey("blood_kelp");
     public static final Block BLOOD_KELP
             = register(new BloodKelpBlock(makeBloodKelpSettings(BLOOD_KELP_KEY)),
-            BLOOD_KELP_KEY, true);
+            BLOOD_KELP_KEY, false);
     public static final RegistryKey<Block> BLOOD_KELP_PLANT_KEY = makeRegistryKey("blood_kelp_plant");
     public static final Block BLOOD_KELP_PLANT
             = register(new BloodKelpPlantBlock(makeBloodKelpPlantSettings(BLOOD_KELP_PLANT_KEY)),
-            BLOOD_KELP_PLANT_KEY, true);
+            BLOOD_KELP_PLANT_KEY, false);
     public static final RegistryKey<Block> DRIED_BLOOD_KELP_BLOCK_KEY = makeRegistryKey("dried_blood_kelp_block");
     public static final Block DRIED_BLOOD_KELP_BLOCK
             = register(new Block(AbstractBlock.Settings.copy(Blocks.DRIED_KELP_BLOCK)
@@ -1372,8 +1375,10 @@ public class ModBlocks {
             AbstractBlock.Settings.copy(Blocks.ROOTED_DIRT).registryKey(ROOTED_DIRT_SLAB_KEY));
     public static final RegistryKey<Block> WILD_GREEN_ONIONS_KEY = makeRegistryKey("wild_green_onions");
     public static final Block WILD_GREEN_ONIONS
-            = register(new WildGreenOnionsBlock(AbstractBlock.Settings.copy(Blocks.WHEAT)
-            .registryKey(WILD_GREEN_ONIONS_KEY)), WILD_GREEN_ONIONS_KEY, true);
+            = register(new WildGreenOnionsBlock(AbstractBlock.Settings.create().mapColor(MapColor.DARK_GREEN)
+            .noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.CROP)
+            .pistonBehavior(PistonBehavior.DESTROY).registryKey(WILD_GREEN_ONIONS_KEY)),
+            WILD_GREEN_ONIONS_KEY, true);
     public static final RegistryKey<Block> CREAKING_PLUSHIE_KEY = makeRegistryKey("creaking_plushie");
     public static final Block CREAKING_PLUSHIE
             = register(new CreakingPlushieBlock(makePlushieSettings(CREAKING_PLUSHIE_KEY)),
@@ -1486,7 +1491,7 @@ public class ModBlocks {
     private static Block registerPurpleMushroom(RegistryKey<Block> blockKey, RegistryKey<ConfiguredFeature<?,?>> hugeMushroom) {
         AbstractBlock.Settings settings = AbstractBlock.Settings.create().mapColor(MapColor.PURPLE)
                 .pistonBehavior(PistonBehavior.DESTROY).noCollision().ticksRandomly().breakInstantly()
-                .sounds(BlockSoundGroup.GRASS).postProcess(ModBlocks::always);
+                .sounds(BlockSoundGroup.GRASS).postProcess(ModBlocks::always).registryKey(blockKey);
         Block mushroomBlock = new MushroomPlantBlock(hugeMushroom, settings);
         return register(mushroomBlock, blockKey, true);
     }
@@ -1500,7 +1505,7 @@ public class ModBlocks {
 
     private static Block registerPlanterBox(RegistryKey<Block> blockKey, MapColor color, BlockSoundGroup soundGroup) {
         AbstractBlock.Settings planterBoxSettings = AbstractBlock.Settings.create().mapColor(color)
-                .strength(2.5F).sounds(soundGroup).burnable();
+                .strength(2.5F).sounds(soundGroup).burnable().registryKey(blockKey);
         Block planterBoxBlock = new PlanterBoxBlock(planterBoxSettings);
         return register(planterBoxBlock, blockKey, true);
     }

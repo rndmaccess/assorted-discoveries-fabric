@@ -16,7 +16,7 @@ public class BlueberryBushBlock extends AbstractBerryBushBlock {
 
     public BlueberryBushBlock(AbstractBlock.Settings settings) {
         super(settings);
-        this.setDefaultState(this.getStateManager().getDefaultState().with(AGE, 0));
+        this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0));
     }
 
     @Override

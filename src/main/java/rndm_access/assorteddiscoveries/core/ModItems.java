@@ -46,16 +46,11 @@ public final class ModItems {
     public static final Item FORESTS_BOUNTY;
     public static final Item WITCHS_CRADLE_BRANCH;
     public static final Item WITCHS_CRADLE_SOUP;
-    public static final Item CATTAIL;
     public static final Item FRIED_EGG;
     public static final Item BLOOD_KELP_SEED_CLUSTER;
     public static final Item BLOOD_KELP;
-    public static final Item DRIED_BLOOD_KELP_BLOCK;
     public static final Item DRIED_BLOOD_KELP;
-    public static final Item BLOOD_KELP_LANTERN;
-    public static final Item CAMEL_PLUSHIE;
     public static final Item HOGLIN_STEW;
-    public static final Item BOG_BLOSSOM;
     public static final Item CINDERSNAP_BERRIES;
     public static final Item FROSTBITE_BERRIES;
 
@@ -70,10 +65,6 @@ public final class ModItems {
         final Function<Item.Settings, Item> blockItem = (settingsIn) ->
                 new VerticallyAttachableBlockItem(standingBlock, wallBlock, Direction.DOWN, settingsIn);
         return register(name, blockItem, new Item.Settings());
-    }
-
-    private static Item registerBlockItem(Block block) {
-        return Items.register(block, BlockItem::new);
     }
 
     private static Item registerBlockItem(String name, Block block) {
@@ -140,19 +131,14 @@ public final class ModItems {
         WITCHS_CRADLE_SOUP = register("witchs_cradle_soup", Item::new, new Item.Settings()
                 .food(ModFoodComponents.WITCHS_CRADLE_SOUP, ModConsumableComponents.WITCHS_CRADLE_SOUP)
                 .maxCount(1).useRemainder(Items.BOWL));
-        CATTAIL = registerBlockItem(ModBlocks.CATTAIL);
         FRIED_EGG = register("fried_egg", Item::new, new Item.Settings()
                 .food(ModFoodComponents.FRIED_EGG).maxCount(16));
         BLOOD_KELP_SEED_CLUSTER = registerBlockItem("blood_kelp_seed_cluster", ModBlocks.BLOOD_KELP);
         BLOOD_KELP = register("blood_kelp", Item::new, new Item.Settings());
-        DRIED_BLOOD_KELP_BLOCK = registerBlockItem(ModBlocks.DRIED_BLOOD_KELP_BLOCK);
         DRIED_BLOOD_KELP = register("dried_blood_kelp", Item::new, new Item.Settings()
                 .food(FoodComponents.DRIED_KELP));
-        BLOOD_KELP_LANTERN = registerBlockItem(ModBlocks.BLOOD_KELP_LANTERN);
-        CAMEL_PLUSHIE = registerBlockItem(ModBlocks.CAMEL_PLUSHIE);
         HOGLIN_STEW = register("hoglin_stew", Item::new, new Item.Settings()
                 .food(ModFoodComponents.HOGLIN_STEW).maxCount(1).useRemainder(Items.BOWL));
-        BOG_BLOSSOM = registerBlockItem(ModBlocks.BOG_BLOSSOM);
         CINDERSNAP_BERRIES = registerBlockItem("cindersnap_berries", ModBlocks.CINDERSNAP_BERRY_BUSH,
                 new Item.Settings().food(ModFoodComponents.NETHER_BERRIES));
         FROSTBITE_BERRIES = registerBlockItem("frostbite_berries", ModBlocks.FROSTBITE_BERRY_BUSH,

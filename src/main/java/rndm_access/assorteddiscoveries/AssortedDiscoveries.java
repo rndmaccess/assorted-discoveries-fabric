@@ -163,9 +163,8 @@ public class AssortedDiscoveries implements ModInitializer {
 	}
 
 	private static void registerFuel() {
-        FuelRegistryEvents.BUILD.register(((builder, context) -> {
-            builder.add(ModItems.DRIED_BLOOD_KELP_BLOCK, 4000);
-        }));
+        FuelRegistryEvents.BUILD.register((builder, context) ->
+                builder.add(ModItems.DRIED_BLOOD_KELP_BLOCK, 4000));
 	}
 
 	private static void registerCompostables() {

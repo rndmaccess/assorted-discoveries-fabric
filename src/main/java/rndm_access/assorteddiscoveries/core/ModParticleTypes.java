@@ -7,7 +7,7 @@ import net.minecraft.registry.Registry;
 import rndm_access.assorteddiscoveries.ADReference;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 
-public class ModParticleTypes {
+public final class ModParticleTypes {
     public static final SimpleParticleType WHITE_EMBER;
     public static final SimpleParticleType ORANGE_EMBER;
     public static final SimpleParticleType MAGENTA_EMBER;

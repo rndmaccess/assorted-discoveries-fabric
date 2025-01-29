@@ -8,7 +8,7 @@ import rndm_access.assorteddiscoveries.ADReference;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.item.crafting.WoodcuttingRecipe;
 
-public class ModRecipeTypes {
+public final class ModRecipeTypes {
     public static final RecipeType<WoodcuttingRecipe> WOODCUTTING;
 
     public static void registerRecipeTypes() {

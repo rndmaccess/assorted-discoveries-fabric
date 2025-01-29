@@ -11,7 +11,7 @@ import net.minecraft.world.biome.BiomeKeys;
 import rndm_access.assorteddiscoveries.ADReference;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 
-public class ModVillagerTypes {
+public final class ModVillagerTypes {
 
     private static void register(String path, RegistryKey<Biome> biome) {
         register(path, ImmutableList.of(biome));

@@ -7,7 +7,7 @@ import rndm_access.assorteddiscoveries.ADReference;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.conditions.ConfigEntryEnabledResourceCondition;
 
-public class ModResourceConditionTypes {
+public final class ModResourceConditionTypes {
     public static final ResourceConditionType<ConfigEntryEnabledResourceCondition> CONFIG_ENTRY_ENABLED;
 
     private static <T extends ResourceCondition> ResourceConditionType<T> create(String name, MapCodec<T> codec) {

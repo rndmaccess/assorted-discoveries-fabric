@@ -12,7 +12,7 @@ import net.minecraft.village.TradedItem;
 
 import java.util.Optional;
 
-public class ModVillagerOffers {
+public final class ModVillagerOffers {
 
     public static void registerVillagerTradeOffers() {
         TradeOfferHelper.registerVillagerOffers(ModVillagerProfessions.LUMBERJACK, 1, factories -> {

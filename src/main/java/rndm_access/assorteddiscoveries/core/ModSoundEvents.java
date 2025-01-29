@@ -6,7 +6,7 @@ import net.minecraft.sound.SoundEvent;
 import rndm_access.assorteddiscoveries.ADReference;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 
-public class ModSoundEvents {
+public final class ModSoundEvents {
     public static final SoundEvent BLOCK_MUSHROOM_BOUNCE;
     public static final SoundEvent UI_WOODCUTTER_TAKE_RESULT;
 

@@ -5,7 +5,7 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 import rndm_access.assorteddiscoveries.ADReference;
 
-public class ModBlockTags {
+public final class ModBlockTags {
     public static final TagKey<Block> END_BONE_MEALABLE_BLOCKS;
     public static final TagKey<Block> SNAPDRAGON_PLANTABLE_ON;
     public static final TagKey<Block> ENDER_GRASS_PLANTABLE_ON;

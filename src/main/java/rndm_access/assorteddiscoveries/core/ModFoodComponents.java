@@ -2,7 +2,7 @@ package rndm_access.assorteddiscoveries.core;
 
 import net.minecraft.component.type.FoodComponent;
 
-public class ModFoodComponents {
+public final class ModFoodComponents {
     public static final FoodComponent FRIED_EGG;
     public static final FoodComponent GREEN_ONION;
     public static final FoodComponent NOODLE_SOUP;

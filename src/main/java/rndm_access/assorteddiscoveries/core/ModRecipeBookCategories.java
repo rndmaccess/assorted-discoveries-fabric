@@ -7,7 +7,7 @@ import net.minecraft.util.Identifier;
 import rndm_access.assorteddiscoveries.ADReference;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 
-public class ModRecipeBookCategories {
+public final class ModRecipeBookCategories {
     public static final RecipeBookCategory WOODCUTTER = new RecipeBookCategory();
 
     public static void register() {

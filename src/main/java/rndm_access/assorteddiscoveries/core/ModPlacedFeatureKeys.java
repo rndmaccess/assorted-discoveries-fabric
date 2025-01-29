@@ -5,7 +5,7 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.world.gen.feature.PlacedFeature;
 import rndm_access.assorteddiscoveries.ADReference;
 
-public class ModPlacedFeatureKeys {
+public final class ModPlacedFeatureKeys {
     public static final RegistryKey<PlacedFeature> PATCH_CATTAIL_MANGROVE_SWAMP;
     public static final RegistryKey<PlacedFeature> PATCH_CATTAIL_RIVER;
     public static final RegistryKey<PlacedFeature> ORE_SMOKY_QUARTZ;

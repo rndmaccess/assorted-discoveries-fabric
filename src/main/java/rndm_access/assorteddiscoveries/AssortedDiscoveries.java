@@ -593,22 +593,22 @@ public class AssortedDiscoveries implements ModInitializer {
 
                     configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_DYED_TORCHES);
                     if (configEntry.getValue()) {
-                        entries.add(ModBlocks.WHITE_TORCH);
-                        entries.add(ModBlocks.ORANGE_TORCH);
-                        entries.add(ModBlocks.MAGENTA_TORCH);
-                        entries.add(ModBlocks.LIGHT_BLUE_TORCH);
-                        entries.add(ModBlocks.YELLOW_TORCH);
-                        entries.add(ModBlocks.LIME_TORCH);
-                        entries.add(ModBlocks.PINK_TORCH);
-                        entries.add(ModBlocks.GRAY_TORCH);
-                        entries.add(ModBlocks.LIGHT_GRAY_TORCH);
-                        entries.add(ModBlocks.CYAN_TORCH);
-                        entries.add(ModBlocks.PURPLE_TORCH);
-                        entries.add(ModBlocks.BLUE_TORCH);
-                        entries.add(ModBlocks.BROWN_TORCH);
-                        entries.add(ModBlocks.GREEN_TORCH);
-                        entries.add(ModBlocks.RED_TORCH);
-                        entries.add(ModBlocks.BLACK_TORCH);
+                        entries.add(ModItems.WHITE_TORCH);
+                        entries.add(ModItems.ORANGE_TORCH);
+                        entries.add(ModItems.MAGENTA_TORCH);
+                        entries.add(ModItems.LIGHT_BLUE_TORCH);
+                        entries.add(ModItems.YELLOW_TORCH);
+                        entries.add(ModItems.LIME_TORCH);
+                        entries.add(ModItems.PINK_TORCH);
+                        entries.add(ModItems.GRAY_TORCH);
+                        entries.add(ModItems.LIGHT_GRAY_TORCH);
+                        entries.add(ModItems.CYAN_TORCH);
+                        entries.add(ModItems.PURPLE_TORCH);
+                        entries.add(ModItems.BLUE_TORCH);
+                        entries.add(ModItems.BROWN_TORCH);
+                        entries.add(ModItems.GREEN_TORCH);
+                        entries.add(ModItems.RED_TORCH);
+                        entries.add(ModItems.BLACK_TORCH);
                     }
 
                     configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_TWISTED_NETHERRACK);

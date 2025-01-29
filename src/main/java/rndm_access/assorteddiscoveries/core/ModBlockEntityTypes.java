@@ -9,7 +9,7 @@ import rndm_access.assorteddiscoveries.ADReference;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.block_entity.DyedCampfireBlockEntity;
 
-public class ModBlockEntityTypes {
+public final class ModBlockEntityTypes {
     public static final BlockEntityType<DyedCampfireBlockEntity> DYED_CAMPFIRE;
 
     private static <T extends BlockEntity> void register(String path, BlockEntityType<T> type) {

@@ -8,7 +8,7 @@ import rndm_access.assorteddiscoveries.ADReference;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.block_screen.WoodcutterScreenHandler;
 
-public class ModScreenHandlerTypes {
+public final class ModScreenHandlerTypes {
     public static final ScreenHandlerType<WoodcutterScreenHandler> WOODCUTTER;
 
     private static void register(String path, ScreenHandlerType<?> type) {

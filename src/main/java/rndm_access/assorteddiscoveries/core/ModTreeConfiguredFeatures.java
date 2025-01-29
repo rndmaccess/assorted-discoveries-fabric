@@ -5,7 +5,7 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import rndm_access.assorteddiscoveries.ADReference;
 
-public class ModTreeConfiguredFeatures {
+public final class ModTreeConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?,?>> HUGE_PURPLE_MUSHROOM;
 
     public static RegistryKey<ConfiguredFeature<?,?>> of(String path) {

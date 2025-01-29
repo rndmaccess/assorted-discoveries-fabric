@@ -6,7 +6,7 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.consume.ApplyEffectsConsumeEffect;
 
-public class ModConsumableComponents {
+public final class ModConsumableComponents {
     public static final ConsumableComponent WITCHS_CRADLE_SOUP;
 
     static {

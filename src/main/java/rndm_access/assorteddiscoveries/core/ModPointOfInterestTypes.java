@@ -7,7 +7,7 @@ import net.minecraft.world.poi.PointOfInterestType;
 import rndm_access.assorteddiscoveries.ADReference;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 
-public class ModPointOfInterestTypes {
+public final class ModPointOfInterestTypes {
     public static final RegistryKey<PointOfInterestType> LUMBERJACK;
 
     public static void registerPointOfInterestTypes() {

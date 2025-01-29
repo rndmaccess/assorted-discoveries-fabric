@@ -5,7 +5,7 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 import rndm_access.assorteddiscoveries.ADReference;
 
-public class ModEntityTypeTags {
+public final class ModEntityTypeTags {
     public static final TagKey<EntityType<?>> BLUEBERRY_BUSH_IMMUNE_ENTITY_TYPES;
     public static final TagKey<EntityType<?>> CINDERSNAP_BERRY_BUSH_IMMUNE_ENTITY_TYPES;
     public static final TagKey<EntityType<?>> FROSTBITE_BERRY_BUSH_IMMUNE_ENTITY_TYPES;

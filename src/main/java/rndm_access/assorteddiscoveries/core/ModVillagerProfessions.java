@@ -11,7 +11,7 @@ import org.jetbrains.annotations.Nullable;
 import rndm_access.assorteddiscoveries.ADReference;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 
-public class ModVillagerProfessions {
+public final class ModVillagerProfessions {
     public static final VillagerProfession LUMBERJACK;
 
     private static VillagerProfession register(String id, VillagerProfession profession) {

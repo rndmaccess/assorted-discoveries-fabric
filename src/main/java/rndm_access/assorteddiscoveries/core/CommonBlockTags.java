@@ -5,7 +5,7 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 import rndm_access.assorteddiscoveries.ADReference;
 
-public class CommonBlockTags {
+public final class CommonBlockTags {
     public static final TagKey<Block> SNOW_SLABS;
     public static final TagKey<Block> SNOW_STAIRS;
     public static final TagKey<Block> SNOW_WALLS;

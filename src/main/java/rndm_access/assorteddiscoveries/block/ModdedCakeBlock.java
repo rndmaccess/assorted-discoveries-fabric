@@ -1,8 +1,6 @@
 package rndm_access.assorteddiscoveries.block;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.CakeBlock;
+import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -24,9 +22,9 @@ public class ModdedCakeBlock extends CakeBlock {
         super(settings);
     }
 
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player,
-                              BlockHitResult hit) {
-        Hand hand = player.getActiveHand();
+    @Override
+    protected ActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos,
+                                         PlayerEntity player, Hand hand, BlockHitResult hit) {
         ItemStack heldStack = player.getStackInHand(hand);
 
         if (state.get(BITES) == 0) {
@@ -37,35 +35,18 @@ public class ModdedCakeBlock extends CakeBlock {
                 return this.placeCandleCake(world, player, pos, heldStack, block, item);
             }
         }
-        return this.eatCake(world, player, pos, heldStack, state);
+        return ActionResult.PASS_TO_DEFAULT_BLOCK_ACTION;
     }
 
     private ActionResult placeCandleCake(World world, PlayerEntity player, BlockPos pos, ItemStack itemStack,
                                          Block block, Item item) {
-        if (!player.isCreative()) {
-            itemStack.decrement(1);
-        }
-
+        itemStack.decrementUnlessCreative(1, player);
         world.playSound(null, pos, SoundEvents.BLOCK_CAKE_ADD_CANDLE, SoundCategory.BLOCKS,
                 1.0F, 1.0F);
         world.setBlockState(pos, ModdedCandleCakeBlock.getCandleCake(this, block));
         world.emitGameEvent(player, GameEvent.BLOCK_CHANGE, pos);
         player.incrementStat(Stats.USED.getOrCreateStat(item));
         return ActionResult.SUCCESS;
-    }
-
-    private ActionResult eatCake(World world, PlayerEntity player, BlockPos pos,
-                                 ItemStack itemStack, BlockState state) {
-        if (world.isClient()) {
-            if (tryEatCake(world, pos, state, player).isAccepted()) {
-                return ActionResult.SUCCESS;
-            }
-
-            if (itemStack.isEmpty()) {
-                return ActionResult.CONSUME;
-            }
-        }
-        return tryEatCake(world, pos, state, player);
     }
 
     public static ActionResult tryEatCake(WorldAccess world, BlockPos pos, BlockState state, PlayerEntity player) {

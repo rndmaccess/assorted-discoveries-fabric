@@ -1595,7 +1595,7 @@ public class ModBlocks {
     private static Block registerCandleCake(RegistryKey<Block> blockKey, Block cake, Block candle) {
         Block candleCakeBlock = new ModdedCandleCakeBlock(cake, candle,
                 AbstractBlock.Settings.copy(Blocks.CANDLE_CAKE).registryKey(blockKey));
-        return register(candleCakeBlock, blockKey, true);
+        return register(candleCakeBlock, blockKey, false);
     }
 
     private static Block registerPie(RegistryKey<Block> blockKey) {

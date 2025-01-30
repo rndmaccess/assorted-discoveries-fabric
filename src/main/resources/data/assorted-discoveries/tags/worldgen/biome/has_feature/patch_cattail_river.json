@@ -1,6 +1,6 @@
 {
   "replace": false,
   "values": [
-    "#c:river"
+    "#c:is_river"
   ]
 }

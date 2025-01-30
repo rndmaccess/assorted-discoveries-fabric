@@ -4,6 +4,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
@@ -39,8 +40,12 @@ import java.util.Optional;
 
 public class AssortedDiscoveries implements ModInitializer {
 	public static final Logger LOGGER = LoggerFactory.getLogger("AssortedDiscoveries");
-	private static final RegistryKey<ItemGroup> ITEM_GROUP_KEY = RegistryKey.of(
+	private static final RegistryKey<ItemGroup> MOD_ITEM_GROUP_KEY = RegistryKey.of(
 			RegistryKeys.ITEM_GROUP, ADReference.makeModId("item_group"));
+    public static final ItemGroup MOD_ITEM_GROUP = FabricItemGroup.builder()
+            .icon(() -> new ItemStack(ModBlocks.ENDERMAN_PLUSHIE.asItem()))
+            .displayName(Text.translatable("itemGroup." + ADReference.MOD_ID))
+            .build();
 
 	@Override
 	public void onInitialize() {
@@ -213,850 +218,846 @@ public class AssortedDiscoveries implements ModInitializer {
 	}
 
 	private static void addItemGroups(JsonConfig config) {
-		Registry.register(Registries.ITEM_GROUP, ITEM_GROUP_KEY, FabricItemGroup.builder()
-				.displayName(Text.translatable("itemGroup." + ADReference.MOD_ID + ".item_group"))
-				.icon(() -> new ItemStack(ModBlocks.ENDERMAN_PLUSHIE))
-				.entries((context, entries) -> {
-                    BooleanConfigEntry configEntry;
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_SLIME_PLUSHIE);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.SLIME_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_MAGMA_CUBE_PLUSHIE);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.MAGMA_CUBE_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_OCELOT_PLUSHIE);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.OCELOT_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CAT_PLUSHIES);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.WHITE_CAT_PLUSHIE);
-                        entries.add(ModBlocks.TABBY_CAT_PLUSHIE);
-                        entries.add(ModBlocks.TUXEDO_CAT_PLUSHIE);
-                        entries.add(ModBlocks.RED_CAT_PLUSHIE);
-                        entries.add(ModBlocks.SIAMESE_CAT_PLUSHIE);
-                        entries.add(ModBlocks.BRITISH_SHORTHAIR_CAT_PLUSHIE);
-                        entries.add(ModBlocks.CALICO_CAT_PLUSHIE);
-                        entries.add(ModBlocks.PERSIAN_CAT_PLUSHIE);
-                        entries.add(ModBlocks.RAGDOLL_CAT_PLUSHIE);
-                        entries.add(ModBlocks.BLACK_CAT_PLUSHIE);
-                        entries.add(ModBlocks.JELLIE_CAT_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_PALE_WOLF_PLUSHIE);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.PALE_WOLF_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_ZOMBIE_PLUSHIE);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.ZOMBIE_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_SKELETON_PLUSHIE);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.SKELETON_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_ENDERMAN_PLUSHIE);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.ENDERMAN_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CREEPER_PLUSHIE);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.CREEPER_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_SPIDER_PLUSHIE);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.SPIDER_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CAVE_SPIDER_PLUSHIE);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.CAVE_SPIDER_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_GUARDIAN_PLUSHIE);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.GUARDIAN_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_PHANTOM_PLUSHIE);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.PHANTOM_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_BAT_PLUSHIE);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.BAT_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_SQUID_PLUSHIES);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.SQUID_PLUSHIE);
-                        entries.add(ModBlocks.GLOW_SQUID_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_BEE_PLUSHIE);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.BEE_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_PIGLIN_PLUSHIES);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.PIGLIN_PLUSHIE);
-                        entries.add(ModBlocks.ZOMBIFIED_PIGLIN_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_HOGLIN_PLUSHIES);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.HOGLIN_PLUSHIE);
-                        entries.add(ModBlocks.ZOGLIN_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_GHAST_PLUSHIE);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.GHAST_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_BLAZE_PLUSHIE);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.BLAZE_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_STRIDER_PLUSHIES);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.STRIDER_PLUSHIE);
-                        entries.add(ModBlocks.SHIVERING_STRIDER_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CHICKEN_PLUSHIE);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.CHICKEN_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_PIG_PLUSHIE);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.PIG_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_COW_PLUSHIE);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.COW_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_MOOSHROOM_PLUSHIES);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.RED_MOOSHROOM_PLUSHIE);
-                        entries.add(ModBlocks.BROWN_MOOSHROOM_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_SHEEP_PLUSHIES);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.WHITE_SHEEP_PLUSHIE);
-                        entries.add(ModBlocks.ORANGE_SHEEP_PLUSHIE);
-                        entries.add(ModBlocks.MAGENTA_SHEEP_PLUSHIE);
-                        entries.add(ModBlocks.LIGHT_BLUE_SHEEP_PLUSHIE);
-                        entries.add(ModBlocks.YELLOW_SHEEP_PLUSHIE);
-                        entries.add(ModBlocks.LIME_SHEEP_PLUSHIE);
-                        entries.add(ModBlocks.PINK_SHEEP_PLUSHIE);
-                        entries.add(ModBlocks.GRAY_SHEEP_PLUSHIE);
-                        entries.add(ModBlocks.LIGHT_GRAY_SHEEP_PLUSHIE);
-                        entries.add(ModBlocks.CYAN_SHEEP_PLUSHIE);
-                        entries.add(ModBlocks.PURPLE_SHEEP_PLUSHIE);
-                        entries.add(ModBlocks.BLUE_SHEEP_PLUSHIE);
-                        entries.add(ModBlocks.BROWN_SHEEP_PLUSHIE);
-                        entries.add(ModBlocks.RED_SHEEP_PLUSHIE);
-                        entries.add(ModBlocks.GREEN_SHEEP_PLUSHIE);
-                        entries.add(ModBlocks.BLACK_SHEEP_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_HORSE_PLUSHIES);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.WHITE_HORSE_PLUSHIE);
-                        entries.add(ModBlocks.GRAY_HORSE_PLUSHIE);
-                        entries.add(ModBlocks.LIGHT_GRAY_HORSE_PLUSHIE);
-                        entries.add(ModBlocks.BROWN_HORSE_PLUSHIE);
-                        entries.add(ModBlocks.BLACK_HORSE_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_RABBIT_PLUSHIES);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.BROWN_RABBIT_PLUSHIE);
-                        entries.add(ModBlocks.WHITE_RABBIT_PLUSHIE);
-                        entries.add(ModBlocks.BLACK_RABBIT_PLUSHIE);
-                        entries.add(ModBlocks.WHITE_SPLOTCHED_RABBIT_PLUSHIE);
-                        entries.add(ModBlocks.GOLD_RABBIT_PLUSHIE);
-                        entries.add(ModBlocks.TOAST_RABBIT_PLUSHIE);
-                        entries.add(ModBlocks.SALT_RABBIT_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_ILLAGER_PLUSHIES);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.PILLAGER_PLUSHIE);
-                        entries.add(ModBlocks.VINDICATOR_PLUSHIE);
-                        entries.add(ModBlocks.EVOKER_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_VILLAGER_PLUSHIES);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.PLAINS_VILLAGER_PLUSHIE);
-                        entries.add(ModBlocks.DESERT_VILLAGER_PLUSHIE);
-                        entries.add(ModBlocks.JUNGLE_VILLAGER_PLUSHIE);
-                        entries.add(ModBlocks.SAVANNA_VILLAGER_PLUSHIE);
-                        entries.add(ModBlocks.SNOW_VILLAGER_PLUSHIE);
-                        entries.add(ModBlocks.SWAMP_VILLAGER_PLUSHIE);
-                        entries.add(ModBlocks.TAIGA_VILLAGER_PLUSHIE);
-                        entries.add(ModBlocks.CRIMSON_VILLAGER_PLUSHIE);
-                        entries.add(ModBlocks.WARPED_VILLAGER_PLUSHIE);
-                        entries.add(ModBlocks.WANDERING_TRADER_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_ZOMBIE_VILLAGER_PLUSHIES);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.PLAINS_ZOMBIE_VILLAGER_PLUSHIE);
-                        entries.add(ModBlocks.DESERT_ZOMBIE_VILLAGER_PLUSHIE);
-                        entries.add(ModBlocks.JUNGLE_ZOMBIE_VILLAGER_PLUSHIE);
-                        entries.add(ModBlocks.SAVANNA_ZOMBIE_VILLAGER_PLUSHIE);
-                        entries.add(ModBlocks.SNOW_ZOMBIE_VILLAGER_PLUSHIE);
-                        entries.add(ModBlocks.SWAMP_ZOMBIE_VILLAGER_PLUSHIE);
-                        entries.add(ModBlocks.TAIGA_ZOMBIE_VILLAGER_PLUSHIE);
-                        entries.add(ModBlocks.CRIMSON_ZOMBIE_VILLAGER_PLUSHIE);
-                        entries.add(ModBlocks.WARPED_ZOMBIE_VILLAGER_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_WITCH_PLUSHIE);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.WITCH_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_PUFFERFISH_PLUSHIE);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.PUFFERFISH_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_WITHER_PLUSHIE);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.WITHER_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_POLAR_BEAR_PLUSHIE);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.POLAR_BEAR_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_ALLAY_PLUSHIE);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.ALLAY_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_VEX_PLUSHIE);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.VEX_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_RAVAGER_PLUSHIE);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.RAVAGER_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_SHULKER_PLUSHIE);
-					if (configEntry.getValue()) {
-                        entries.add(ModBlocks.SHULKER_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CAMEL_PLUSHIE);
-					if (configEntry.getValue()) {
-                        entries.add(ModBlocks.CAMEL_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CREAKING_PLUSHIE);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.CREAKING_PLUSHIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config
-                            .getEntry(ModConfigKeys.ENABLE_WOODEN_PLANTER_BOXES);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.OAK_PLANTER_BOX);
-                        entries.add(ModBlocks.SPRUCE_PLANTER_BOX);
-                        entries.add(ModBlocks.BIRCH_PLANTER_BOX);
-                        entries.add(ModBlocks.JUNGLE_PLANTER_BOX);
-                        entries.add(ModBlocks.ACACIA_PLANTER_BOX);
-                        entries.add(ModBlocks.DARK_OAK_PLANTER_BOX);
-                        entries.add(ModBlocks.MANGROVE_PLANTER_BOX);
-                        entries.add(ModBlocks.CHERRY_PLANTER_BOX);
-                        entries.add(ModBlocks.BAMBOO_PLANTER_BOX);
-                        entries.add(ModBlocks.CRIMSON_PLANTER_BOX);
-                        entries.add(ModBlocks.WARPED_PLANTER_BOX);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_WOODCUTTER);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.WOODCUTTER);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_WOODEN_WALLS);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.OAK_WALL);
-                        entries.add(ModBlocks.SPRUCE_WALL);
-                        entries.add(ModBlocks.BIRCH_WALL);
-                        entries.add(ModBlocks.JUNGLE_WALL);
-                        entries.add(ModBlocks.ACACIA_WALL);
-                        entries.add(ModBlocks.DARK_OAK_WALL);
-                        entries.add(ModBlocks.MANGROVE_WALL);
-                        entries.add(ModBlocks.CHERRY_WALL);
-                        entries.add(ModBlocks.CRIMSON_WALL);
-                        entries.add(ModBlocks.WARPED_WALL);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_STRIPPED_WOODEN_WALLS);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.STRIPPED_OAK_WALL);
-                        entries.add(ModBlocks.STRIPPED_SPRUCE_WALL);
-                        entries.add(ModBlocks.STRIPPED_BIRCH_WALL);
-                        entries.add(ModBlocks.STRIPPED_JUNGLE_WALL);
-                        entries.add(ModBlocks.STRIPPED_ACACIA_WALL);
-                        entries.add(ModBlocks.STRIPPED_DARK_OAK_WALL);
-                        entries.add(ModBlocks.STRIPPED_MANGROVE_WALL);
-                        entries.add(ModBlocks.STRIPPED_CHERRY_WALL);
-                        entries.add(ModBlocks.STRIPPED_CRIMSON_WALL);
-                        entries.add(ModBlocks.STRIPPED_WARPED_WALL);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_WOODEN_ROPE_LADDERS);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.OAK_ROPE_LADDER);
-                        entries.add(ModBlocks.SPRUCE_ROPE_LADDER);
-                        entries.add(ModBlocks.BIRCH_ROPE_LADDER);
-                        entries.add(ModBlocks.JUNGLE_ROPE_LADDER);
-                        entries.add(ModBlocks.ACACIA_ROPE_LADDER);
-                        entries.add(ModBlocks.DARK_OAK_ROPE_LADDER);
-                        entries.add(ModBlocks.MANGROVE_ROPE_LADDER);
-                        entries.add(ModBlocks.CHERRY_ROPE_LADDER);
-                        entries.add(ModBlocks.CRIMSON_ROPE_LADDER);
-                        entries.add(ModBlocks.WARPED_ROPE_LADDER);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_IRON_LADDERS);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.IRON_LADDER);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_DYED_CAMPFIRES);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.WHITE_CAMPFIRE);
-                        entries.add(ModBlocks.ORANGE_CAMPFIRE);
-                        entries.add(ModBlocks.MAGENTA_CAMPFIRE);
-                        entries.add(ModBlocks.LIGHT_BLUE_CAMPFIRE);
-                        entries.add(ModBlocks.YELLOW_CAMPFIRE);
-                        entries.add(ModBlocks.LIME_CAMPFIRE);
-                        entries.add(ModBlocks.PINK_CAMPFIRE);
-                        entries.add(ModBlocks.GRAY_CAMPFIRE);
-                        entries.add(ModBlocks.LIGHT_GRAY_CAMPFIRE);
-                        entries.add(ModBlocks.CYAN_CAMPFIRE);
-                        entries.add(ModBlocks.PURPLE_CAMPFIRE);
-                        entries.add(ModBlocks.BLUE_CAMPFIRE);
-                        entries.add(ModBlocks.BROWN_CAMPFIRE);
-                        entries.add(ModBlocks.GREEN_CAMPFIRE);
-                        entries.add(ModBlocks.RED_CAMPFIRE);
-                        entries.add(ModBlocks.BLACK_CAMPFIRE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_DYED_LANTERNS);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.WHITE_LANTERN);
-                        entries.add(ModBlocks.ORANGE_LANTERN);
-                        entries.add(ModBlocks.MAGENTA_LANTERN);
-                        entries.add(ModBlocks.LIGHT_BLUE_LANTERN);
-                        entries.add(ModBlocks.YELLOW_LANTERN);
-                        entries.add(ModBlocks.LIME_LANTERN);
-                        entries.add(ModBlocks.PINK_LANTERN);
-                        entries.add(ModBlocks.GRAY_LANTERN);
-                        entries.add(ModBlocks.LIGHT_GRAY_LANTERN);
-                        entries.add(ModBlocks.CYAN_LANTERN);
-                        entries.add(ModBlocks.PURPLE_LANTERN);
-                        entries.add(ModBlocks.BLUE_LANTERN);
-                        entries.add(ModBlocks.BROWN_LANTERN);
-                        entries.add(ModBlocks.GREEN_LANTERN);
-                        entries.add(ModBlocks.RED_LANTERN);
-                        entries.add(ModBlocks.BLACK_LANTERN);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_DYED_TORCHES);
-                    if (configEntry.getValue()) {
-                        entries.add(ModItems.WHITE_TORCH);
-                        entries.add(ModItems.ORANGE_TORCH);
-                        entries.add(ModItems.MAGENTA_TORCH);
-                        entries.add(ModItems.LIGHT_BLUE_TORCH);
-                        entries.add(ModItems.YELLOW_TORCH);
-                        entries.add(ModItems.LIME_TORCH);
-                        entries.add(ModItems.PINK_TORCH);
-                        entries.add(ModItems.GRAY_TORCH);
-                        entries.add(ModItems.LIGHT_GRAY_TORCH);
-                        entries.add(ModItems.CYAN_TORCH);
-                        entries.add(ModItems.PURPLE_TORCH);
-                        entries.add(ModItems.BLUE_TORCH);
-                        entries.add(ModItems.BROWN_TORCH);
-                        entries.add(ModItems.GREEN_TORCH);
-                        entries.add(ModItems.RED_TORCH);
-                        entries.add(ModItems.BLACK_TORCH);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_TWISTED_NETHERRACK);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.TWISTED_NETHERRACK);
-                        entries.add(ModBlocks.TWISTED_NETHERRACK_STAIRS);
-                        entries.add(ModBlocks.TWISTED_NETHERRACK_SLAB);
-                        entries.add(ModBlocks.TWISTED_NETHERRACK_WALL);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_WEEPING_NETHERRACK);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.WEEPING_NETHERRACK);
-                        entries.add(ModBlocks.WEEPING_NETHERRACK_STAIRS);
-                        entries.add(ModBlocks.WEEPING_NETHERRACK_SLAB);
-                        entries.add(ModBlocks.WEEPING_NETHERRACK_WALL);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_TWISTED_NETHER_BRICKS);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.TWISTED_NETHER_BRICKS);
-                        entries.add(ModBlocks.TWISTED_NETHER_BRICK_STAIRS);
-                        entries.add(ModBlocks.TWISTED_NETHER_BRICK_SLAB);
-                        entries.add(ModBlocks.TWISTED_NETHER_BRICK_WALL);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_WEEPING_NETHER_BRICKS);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.WEEPING_NETHER_BRICKS);
-                        entries.add(ModBlocks.WEEPING_NETHER_BRICK_STAIRS);
-                        entries.add(ModBlocks.WEEPING_NETHER_BRICK_SLAB);
-                        entries.add(ModBlocks.WEEPING_NETHER_BRICK_WALL);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_TWISTED_BLACKSTONE);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.TWISTED_BLACKSTONE);
-                        entries.add(ModBlocks.TWISTED_BLACKSTONE_STAIRS);
-                        entries.add(ModBlocks.TWISTED_BLACKSTONE_SLAB);
-                        entries.add(ModBlocks.TWISTED_BLACKSTONE_WALL);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_WEEPING_BLACKSTONE);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.WEEPING_BLACKSTONE);
-                        entries.add(ModBlocks.WEEPING_BLACKSTONE_STAIRS);
-                        entries.add(ModBlocks.WEEPING_BLACKSTONE_SLAB);
-                        entries.add(ModBlocks.WEEPING_BLACKSTONE_WALL);
-                    }
-
-                    configEntry = (BooleanConfigEntry)
-                            config.getEntry(ModConfigKeys.ENABLE_TWISTED_POLISHED_BLACKSTONE_BRICKS);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.TWISTED_POLISHED_BLACKSTONE_BRICKS);
-                        entries.add(ModBlocks.TWISTED_POLISHED_BLACKSTONE_BRICK_STAIRS);
-                        entries.add(ModBlocks.TWISTED_POLISHED_BLACKSTONE_BRICK_SLAB);
-                        entries.add(ModBlocks.TWISTED_POLISHED_BLACKSTONE_BRICK_WALL);
-                    }
-
-                    configEntry = (BooleanConfigEntry)
-                            config.getEntry(ModConfigKeys.ENABLE_WEEPING_POLISHED_BLACKSTONE_BRICKS);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.WEEPING_POLISHED_BLACKSTONE_BRICKS);
-                        entries.add(ModBlocks.WEEPING_POLISHED_BLACKSTONE_BRICK_STAIRS);
-                        entries.add(ModBlocks.WEEPING_POLISHED_BLACKSTONE_BRICK_SLAB);
-                        entries.add(ModBlocks.WEEPING_POLISHED_BLACKSTONE_BRICK_WALL);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_BLACKSTONE_TILES);
-                    boolean blackstoneTilesEnabled = configEntry.getValue();
-                    if (blackstoneTilesEnabled) {
-                        entries.add(ModBlocks.BLACKSTONE_TILES);
-                        entries.add(ModBlocks.BLACKSTONE_TILE_STAIRS);
-                        entries.add(ModBlocks.BLACKSTONE_TILE_SLAB);
-                        entries.add(ModBlocks.BLACKSTONE_TILE_WALL);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_TWISTED_BLACKSTONE_TILES);
-                    if (blackstoneTilesEnabled && configEntry.getValue()) {
-                        entries.add(ModBlocks.TWISTED_BLACKSTONE_TILES);
-                        entries.add(ModBlocks.TWISTED_BLACKSTONE_TILE_STAIRS);
-                        entries.add(ModBlocks.TWISTED_BLACKSTONE_TILE_SLAB);
-                        entries.add(ModBlocks.TWISTED_BLACKSTONE_TILE_WALL);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_WEEPING_BLACKSTONE_TILES);
-                    if (blackstoneTilesEnabled && configEntry.getValue()) {
-                        entries.add(ModBlocks.WEEPING_BLACKSTONE_TILES);
-                        entries.add(ModBlocks.WEEPING_BLACKSTONE_TILE_STAIRS);
-                        entries.add(ModBlocks.WEEPING_BLACKSTONE_TILE_SLAB);
-                        entries.add(ModBlocks.WEEPING_BLACKSTONE_TILE_WALL);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_SMOKY_QUARTZ_BLOCKS);
-                    boolean smokyQuartzBlocksEnabled = configEntry.getValue();
-                    if (smokyQuartzBlocksEnabled) {
-                        entries.add(ModBlocks.NETHER_SMOKY_QUARTZ_ORE);
-                        entries.add(ModItems.SMOKY_QUARTZ);
-                        entries.add(ModBlocks.SMOKY_QUARTZ_BLOCK);
-                        entries.add(ModBlocks.SMOKY_QUARTZ_STAIRS);
-                        entries.add(ModBlocks.SMOKY_QUARTZ_SLAB);
-                        entries.add(ModBlocks.SMOKY_QUARTZ_WALL);
-                        entries.add(ModBlocks.CHISELED_SMOKY_QUARTZ_BLOCK);
-                        entries.add(ModBlocks.SMOKY_QUARTZ_PILLAR);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_SMOKY_QUARTZ_BRICKS);
-                    if (smokyQuartzBlocksEnabled && configEntry.getValue()) {
-                        entries.add(ModBlocks.SMOKY_QUARTZ_BRICKS);
-                        entries.add(ModBlocks.SMOKY_QUARTZ_BRICK_STAIRS);
-                        entries.add(ModBlocks.SMOKY_QUARTZ_BRICK_SLAB);
-                        entries.add(ModBlocks.SMOKY_QUARTZ_BRICK_WALL);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_SMOOTH_SMOKY_QUARTZ);
-                    if (smokyQuartzBlocksEnabled && configEntry.getValue()) {
-                        entries.add(ModBlocks.SMOOTH_SMOKY_QUARTZ);
-                        entries.add(ModBlocks.SMOOTH_SMOKY_QUARTZ_STAIRS);
-                        entries.add(ModBlocks.SMOOTH_SMOKY_QUARTZ_SLAB);
-                        entries.add(ModBlocks.SMOOTH_SMOKY_QUARTZ_WALL);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_QUARTZ_BRICK_BLOCKS);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.QUARTZ_BRICK_STAIRS);
-                        entries.add(ModBlocks.QUARTZ_BRICK_SLAB);
-                        entries.add(ModBlocks.QUARTZ_BRICK_WALL);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_QUARTZ_TILES);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.QUARTZ_TILES);
-                        entries.add(ModBlocks.QUARTZ_TILE_STAIRS);
-                        entries.add(ModBlocks.QUARTZ_TILE_SLAB);
-                        entries.add(ModBlocks.QUARTZ_TILE_WALL);
-                    }
-
-                    // TODO: Finish implementing the enable_quartz_walls config entry so recipes can be disabled!
-                    //        Maybe split this entry into enable_quartz_wall and enable_smooth_quartz_wall.
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_QUARTZ_WALLS);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.QUARTZ_WALL);
-                        entries.add(ModBlocks.SMOOTH_QUARTZ_WALL);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_BAUXITE);
-                    boolean bauxiteEnabled = configEntry.getValue();
-                    if (bauxiteEnabled) {
-                        entries.add(ModBlocks.BAUXITE);
-                        entries.add(ModBlocks.BAUXITE_SLAB);
-                        entries.add(ModBlocks.BAUXITE_STAIRS);
-                        entries.add(ModBlocks.BAUXITE_WALL);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_BAUXITE_BRICKS);
-                    boolean bauxiteBricksEnabled = configEntry.getValue();
-                    if (bauxiteEnabled && bauxiteBricksEnabled) {
-                        entries.add(ModBlocks.BAUXITE_BRICKS);
-                        entries.add(ModBlocks.BAUXITE_BRICK_STAIRS);
-                        entries.add(ModBlocks.BAUXITE_BRICK_SLAB);
-                        entries.add(ModBlocks.BAUXITE_BRICK_WALL);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CRACKED_BAUXITE_BRICKS);
-                    if (bauxiteEnabled && bauxiteBricksEnabled && configEntry.getValue()) {
-                        entries.add(ModBlocks.CRACKED_BAUXITE_BRICKS);
-                        entries.add(ModBlocks.CRACKED_BAUXITE_BRICK_STAIRS);
-                        entries.add(ModBlocks.CRACKED_BAUXITE_BRICK_SLAB);
-                        entries.add(ModBlocks.CRACKED_BAUXITE_BRICK_WALL);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_MOSSY_BAUXITE_BRICKS);
-					if (bauxiteEnabled && bauxiteBricksEnabled && configEntry.getValue()) {
-                        entries.add(ModBlocks.MOSSY_BAUXITE_BRICKS);
-                        entries.add(ModBlocks.MOSSY_BAUXITE_BRICK_STAIRS);
-                        entries.add(ModBlocks.MOSSY_BAUXITE_BRICK_SLAB);
-                        entries.add(ModBlocks.MOSSY_BAUXITE_BRICK_WALL);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_STONE_TILES);
-                    boolean stoneTilesEnabled = configEntry.getValue();
-                    if (stoneTilesEnabled) {
-                        entries.add(ModBlocks.STONE_TILES);
-                        entries.add(ModBlocks.STONE_TILE_SLAB);
-                        entries.add(ModBlocks.STONE_TILE_STAIRS);
-                        entries.add(ModBlocks.STONE_TILE_WALL);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CRACKED_STONE_TILES);
-                    if (stoneTilesEnabled && configEntry.getValue()) {
-                        entries.add(ModBlocks.CRACKED_STONE_TILES);
-                        entries.add(ModBlocks.CRACKED_STONE_TILE_SLAB);
-                        entries.add(ModBlocks.CRACKED_STONE_TILE_STAIRS);
-                        entries.add(ModBlocks.CRACKED_STONE_TILE_WALL);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_MOSSY_STONE_TILES);
-                    if (stoneTilesEnabled && configEntry.getValue()) {
-                        entries.add(ModBlocks.MOSSY_STONE_TILES);
-                        entries.add(ModBlocks.MOSSY_STONE_TILE_SLAB);
-                        entries.add(ModBlocks.MOSSY_STONE_TILE_STAIRS);
-                        entries.add(ModBlocks.MOSSY_STONE_TILE_WALL);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CRACKED_STONE_BRICK_BLOCKS);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.CRACKED_STONE_BRICK_STAIRS);
-                        entries.add(ModBlocks.CRACKED_STONE_BRICK_SLAB);
-                        entries.add(ModBlocks.CRACKED_STONE_BRICK_WALL);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_STONE_WALLS);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.STONE_WALL);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CALCITE_BLOCKS);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.CALCITE_STAIRS);
-                        entries.add(ModBlocks.CALCITE_SLAB);
-                        entries.add(ModBlocks.CALCITE_WALL);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_POLISHED_CALCITE);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.POLISHED_CALCITE);
-                        entries.add(ModBlocks.POLISHED_CALCITE_STAIRS);
-                        entries.add(ModBlocks.POLISHED_CALCITE_SLAB);
-                        entries.add(ModBlocks.POLISHED_CALCITE_WALL);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CALCITE_BRICKS);
-                    boolean calciteBricksEnabled = configEntry.getValue();
-                    if (calciteBricksEnabled) {
-                        entries.add(ModBlocks.CALCITE_BRICKS);
-                        entries.add(ModBlocks.CALCITE_BRICK_STAIRS);
-                        entries.add(ModBlocks.CALCITE_BRICK_SLAB);
-                        entries.add(ModBlocks.CALCITE_BRICK_WALL);
-                        entries.add(ModBlocks.CHISELED_CALCITE_BRICKS);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CRACKED_CALCITE_BRICKS);
-                    if (configEntry.getValue() && calciteBricksEnabled) {
-                        entries.add(ModBlocks.CRACKED_CALCITE_BRICKS);
-                        entries.add(ModBlocks.CRACKED_CALCITE_BRICK_STAIRS);
-                        entries.add(ModBlocks.CRACKED_CALCITE_BRICK_SLAB);
-                        entries.add(ModBlocks.CRACKED_CALCITE_BRICK_WALL);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_MOSSY_CALCITE_BRICKS);
-                    if (configEntry.getValue() && calciteBricksEnabled) {
-                        entries.add(ModBlocks.MOSSY_CALCITE_BRICKS);
-                        entries.add(ModBlocks.MOSSY_CALCITE_BRICK_STAIRS);
-                        entries.add(ModBlocks.MOSSY_CALCITE_BRICK_SLAB);
-                        entries.add(ModBlocks.MOSSY_CALCITE_BRICK_WALL);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_DRIPSTONE_BLOCKS);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.DRIPSTONE_STAIRS);
-                        entries.add(ModBlocks.DRIPSTONE_SLAB);
-                        entries.add(ModBlocks.DRIPSTONE_WALL);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_POLISHED_DRIPSTONE);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.POLISHED_DRIPSTONE);
-                        entries.add(ModBlocks.POLISHED_DRIPSTONE_STAIRS);
-                        entries.add(ModBlocks.POLISHED_DRIPSTONE_SLAB);
-                        entries.add(ModBlocks.POLISHED_DRIPSTONE_WALL);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_DRIPSTONE_BRICKS);
-                    boolean dripstoneBricksEnabled = configEntry.getValue();
-                    if (dripstoneBricksEnabled) {
-                        entries.add(ModBlocks.DRIPSTONE_BRICKS);
-                        entries.add(ModBlocks.DRIPSTONE_BRICK_STAIRS);
-                        entries.add(ModBlocks.DRIPSTONE_BRICK_SLAB);
-                        entries.add(ModBlocks.DRIPSTONE_BRICK_WALL);
-                        entries.add(ModBlocks.CHISELED_DRIPSTONE_BRICKS);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CRACKED_DRIPSTONE_BRICKS);
-                    if (configEntry.getValue() && dripstoneBricksEnabled) {
-                        entries.add(ModBlocks.CRACKED_DRIPSTONE_BRICKS);
-                        entries.add(ModBlocks.CRACKED_DRIPSTONE_BRICK_STAIRS);
-                        entries.add(ModBlocks.CRACKED_DRIPSTONE_BRICK_SLAB);
-                        entries.add(ModBlocks.CRACKED_DRIPSTONE_BRICK_WALL);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_MOSSY_DRIPSTONE_BRICKS);
-                    if (configEntry.getValue() && dripstoneBricksEnabled) {
-                        entries.add(ModBlocks.MOSSY_DRIPSTONE_BRICKS);
-                        entries.add(ModBlocks.MOSSY_DRIPSTONE_BRICK_STAIRS);
-                        entries.add(ModBlocks.MOSSY_DRIPSTONE_BRICK_SLAB);
-                        entries.add(ModBlocks.MOSSY_DRIPSTONE_BRICK_WALL);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_SNOW_BRICKS);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.SNOW_BRICKS);
-                        entries.add(ModBlocks.SNOW_BRICK_STAIRS);
-                        entries.add(ModBlocks.SNOW_BRICK_SLAB);
-                        entries.add(ModBlocks.SNOW_BRICK_WALL);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_PACKED_SNOW);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.PACKED_SNOW);
-                        entries.add(ModBlocks.PACKED_SNOW_STAIRS);
-                        entries.add(ModBlocks.PACKED_SNOW_SLAB);
-                        entries.add(ModBlocks.PACKED_SNOW_WALL);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_DIRT_SLABS);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.GRASS_SLAB);
-                        entries.add(ModBlocks.PODZOL_SLAB);
-                        entries.add(ModBlocks.MYCELIUM_SLAB);
-                        entries.add(ModBlocks.DIRT_PATH_SLAB);
-                        entries.add(ModBlocks.DIRT_SLAB);
-                        entries.add(ModBlocks.ROOTED_DIRT_SLAB);
-                        entries.add(ModBlocks.COARSE_DIRT_SLAB);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_PURPLE_MUSHROOMS);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.PURPLE_MUSHROOM_BLOCK);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CHOCOLATE_CAKE);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.CHOCOLATE_CAKE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_RED_VELVET_CAKE);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.RED_VELVET_CAKE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_SWEET_BERRY_PIE);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.SWEET_BERRY_PIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_BLUEBERRIES);
-                    boolean blueberriesEnabled = configEntry.getValue();
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_BLUEBERRY_PIE);
-                    if (blueberriesEnabled && configEntry.getValue()) {
-                        entries.add(ModBlocks.BLUEBERRY_PIE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_GREEN_ONIONS);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.WILD_GREEN_ONIONS);
-                        entries.add(ModItems.GREEN_ONION_SEEDS);
-                        entries.add(ModItems.GREEN_ONION);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_NOODLE_SOUP);
-                    if (configEntry.getValue()) {
-                        entries.add(ModItems.NOODLES);
-                        entries.add(ModItems.NOODLE_SOUP);
-                    }
-
-                    if (blueberriesEnabled) {
-                        entries.add(ModItems.BLUEBERRIES);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_NETHER_BERRIES);
-                    if (configEntry.getValue()) {
-                        entries.add(ModItems.CINDERSNAP_BERRIES);
-                        entries.add(ModItems.FROSTBITE_BERRIES);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CATTAILS);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.CATTAIL);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_BOG_BLOSSOMS);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.BOG_BLOSSOM);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_ENDER_PLANTS);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.SNAPDRAGON);
-                        entries.add(ModBlocks.SHORT_ENDER_GRASS);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_PURPLE_MUSHROOMS);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.PURPLE_MUSHROOM);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CARAMEL_APPLE);
-                    if (configEntry.getValue()) {
-                        entries.add(ModItems.CARAMEL_APPLE);
-                        entries.add(ModItems.CARAMEL);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_FRIED_EGG);
-                    if (configEntry.getValue()) {
-                        entries.add(ModItems.FRIED_EGG);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_BLOOD_KELP);
-                    if (configEntry.getValue()) {
-                        entries.add(ModBlocks.DRIED_BLOOD_KELP_BLOCK);
-                        entries.add(ModBlocks.BLOOD_KELP_LANTERN);
-                        entries.add(ModItems.BLOOD_KELP_SEED_CLUSTER);
-                        entries.add(ModItems.BLOOD_KELP);
-                        entries.add(ModItems.DRIED_BLOOD_KELP);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_HOGLIN_STEW);
-                    if (configEntry.getValue()) {
-                        entries.add(ModItems.HOGLIN_STEW);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_FORESTS_BOUNTY);
-                    if (configEntry.getValue()) {
-                        entries.add(ModItems.FORESTS_BOUNTY);
-                        entries.add(ModItems.SPRUCE_CONE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_WITCHS_CRADLE_SOUP);
-                    if (configEntry.getValue()) {
-                        entries.add(ModItems.WITCHS_CRADLE_SOUP);
-                        entries.add(ModItems.WITCHS_CRADLE_BRANCH);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_PUDDING);
-                    if (configEntry.getValue()) {
-                        entries.add(ModItems.BERRY_PUDDING);
-                        entries.add(ModItems.PUDDING);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_BLUEBERRY_JUICE);
-                    if (blueberriesEnabled && configEntry.getValue()) {
-                        entries.add(ModItems.BLUEBERRY_JUICE);
-                    }
-
-                    configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_SWEET_BERRY_JUICE);
-                    if (configEntry.getValue()) {
-                        entries.add(ModItems.SWEET_BERRY_JUICE);
-                    }
-				}).build());
+        Registry.register(Registries.ITEM_GROUP, MOD_ITEM_GROUP_KEY, MOD_ITEM_GROUP);
+        ItemGroupEvents.modifyEntriesEvent(MOD_ITEM_GROUP_KEY).register((entries) -> {
+            BooleanConfigEntry configEntry;
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_SLIME_PLUSHIE);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.SLIME_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_MAGMA_CUBE_PLUSHIE);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.MAGMA_CUBE_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_OCELOT_PLUSHIE);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.OCELOT_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CAT_PLUSHIES);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.WHITE_CAT_PLUSHIE.asItem());
+                entries.add(ModBlocks.TABBY_CAT_PLUSHIE.asItem());
+                entries.add(ModBlocks.TUXEDO_CAT_PLUSHIE.asItem());
+                entries.add(ModBlocks.RED_CAT_PLUSHIE.asItem());
+                entries.add(ModBlocks.SIAMESE_CAT_PLUSHIE.asItem());
+                entries.add(ModBlocks.BRITISH_SHORTHAIR_CAT_PLUSHIE.asItem());
+                entries.add(ModBlocks.CALICO_CAT_PLUSHIE.asItem());
+                entries.add(ModBlocks.PERSIAN_CAT_PLUSHIE.asItem());
+                entries.add(ModBlocks.RAGDOLL_CAT_PLUSHIE.asItem());
+                entries.add(ModBlocks.BLACK_CAT_PLUSHIE.asItem());
+                entries.add(ModBlocks.JELLIE_CAT_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_PALE_WOLF_PLUSHIE);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.PALE_WOLF_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_ZOMBIE_PLUSHIE);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.ZOMBIE_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_SKELETON_PLUSHIE);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.SKELETON_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_ENDERMAN_PLUSHIE);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.ENDERMAN_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CREEPER_PLUSHIE);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.CREEPER_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_SPIDER_PLUSHIE);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.SPIDER_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CAVE_SPIDER_PLUSHIE);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.CAVE_SPIDER_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_GUARDIAN_PLUSHIE);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.GUARDIAN_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_PHANTOM_PLUSHIE);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.PHANTOM_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_BAT_PLUSHIE);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.BAT_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_SQUID_PLUSHIES);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.SQUID_PLUSHIE.asItem());
+                entries.add(ModBlocks.GLOW_SQUID_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_BEE_PLUSHIE);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.BEE_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_PIGLIN_PLUSHIES);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.PIGLIN_PLUSHIE.asItem());
+                entries.add(ModBlocks.ZOMBIFIED_PIGLIN_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_HOGLIN_PLUSHIES);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.HOGLIN_PLUSHIE.asItem());
+                entries.add(ModBlocks.ZOGLIN_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_GHAST_PLUSHIE);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.GHAST_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_BLAZE_PLUSHIE);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.BLAZE_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_STRIDER_PLUSHIES);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.STRIDER_PLUSHIE.asItem());
+                entries.add(ModBlocks.SHIVERING_STRIDER_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CHICKEN_PLUSHIE);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.CHICKEN_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_PIG_PLUSHIE);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.PIG_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_COW_PLUSHIE);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.COW_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_MOOSHROOM_PLUSHIES);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.RED_MOOSHROOM_PLUSHIE.asItem());
+                entries.add(ModBlocks.BROWN_MOOSHROOM_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_SHEEP_PLUSHIES);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.WHITE_SHEEP_PLUSHIE.asItem());
+                entries.add(ModBlocks.ORANGE_SHEEP_PLUSHIE.asItem());
+                entries.add(ModBlocks.MAGENTA_SHEEP_PLUSHIE.asItem());
+                entries.add(ModBlocks.LIGHT_BLUE_SHEEP_PLUSHIE.asItem());
+                entries.add(ModBlocks.YELLOW_SHEEP_PLUSHIE.asItem());
+                entries.add(ModBlocks.LIME_SHEEP_PLUSHIE.asItem());
+                entries.add(ModBlocks.PINK_SHEEP_PLUSHIE.asItem());
+                entries.add(ModBlocks.GRAY_SHEEP_PLUSHIE.asItem());
+                entries.add(ModBlocks.LIGHT_GRAY_SHEEP_PLUSHIE.asItem());
+                entries.add(ModBlocks.CYAN_SHEEP_PLUSHIE.asItem());
+                entries.add(ModBlocks.PURPLE_SHEEP_PLUSHIE.asItem());
+                entries.add(ModBlocks.BLUE_SHEEP_PLUSHIE.asItem());
+                entries.add(ModBlocks.BROWN_SHEEP_PLUSHIE.asItem());
+                entries.add(ModBlocks.RED_SHEEP_PLUSHIE.asItem());
+                entries.add(ModBlocks.GREEN_SHEEP_PLUSHIE.asItem());
+                entries.add(ModBlocks.BLACK_SHEEP_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_HORSE_PLUSHIES);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.WHITE_HORSE_PLUSHIE.asItem());
+                entries.add(ModBlocks.GRAY_HORSE_PLUSHIE.asItem());
+                entries.add(ModBlocks.LIGHT_GRAY_HORSE_PLUSHIE.asItem());
+                entries.add(ModBlocks.BROWN_HORSE_PLUSHIE.asItem());
+                entries.add(ModBlocks.BLACK_HORSE_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_RABBIT_PLUSHIES);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.BROWN_RABBIT_PLUSHIE.asItem());
+                entries.add(ModBlocks.WHITE_RABBIT_PLUSHIE.asItem());
+                entries.add(ModBlocks.BLACK_RABBIT_PLUSHIE.asItem());
+                entries.add(ModBlocks.WHITE_SPLOTCHED_RABBIT_PLUSHIE.asItem());
+                entries.add(ModBlocks.GOLD_RABBIT_PLUSHIE.asItem());
+                entries.add(ModBlocks.TOAST_RABBIT_PLUSHIE.asItem());
+                entries.add(ModBlocks.SALT_RABBIT_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_ILLAGER_PLUSHIES);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.PILLAGER_PLUSHIE.asItem());
+                entries.add(ModBlocks.VINDICATOR_PLUSHIE.asItem());
+                entries.add(ModBlocks.EVOKER_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_VILLAGER_PLUSHIES);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.PLAINS_VILLAGER_PLUSHIE.asItem());
+                entries.add(ModBlocks.DESERT_VILLAGER_PLUSHIE.asItem());
+                entries.add(ModBlocks.JUNGLE_VILLAGER_PLUSHIE.asItem());
+                entries.add(ModBlocks.SAVANNA_VILLAGER_PLUSHIE.asItem());
+                entries.add(ModBlocks.SNOW_VILLAGER_PLUSHIE.asItem());
+                entries.add(ModBlocks.SWAMP_VILLAGER_PLUSHIE.asItem());
+                entries.add(ModBlocks.TAIGA_VILLAGER_PLUSHIE.asItem());
+                entries.add(ModBlocks.CRIMSON_VILLAGER_PLUSHIE.asItem());
+                entries.add(ModBlocks.WARPED_VILLAGER_PLUSHIE.asItem());
+                entries.add(ModBlocks.WANDERING_TRADER_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_ZOMBIE_VILLAGER_PLUSHIES);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.PLAINS_ZOMBIE_VILLAGER_PLUSHIE.asItem());
+                entries.add(ModBlocks.DESERT_ZOMBIE_VILLAGER_PLUSHIE.asItem());
+                entries.add(ModBlocks.JUNGLE_ZOMBIE_VILLAGER_PLUSHIE.asItem());
+                entries.add(ModBlocks.SAVANNA_ZOMBIE_VILLAGER_PLUSHIE.asItem());
+                entries.add(ModBlocks.SNOW_ZOMBIE_VILLAGER_PLUSHIE.asItem());
+                entries.add(ModBlocks.SWAMP_ZOMBIE_VILLAGER_PLUSHIE.asItem());
+                entries.add(ModBlocks.TAIGA_ZOMBIE_VILLAGER_PLUSHIE.asItem());
+                entries.add(ModBlocks.CRIMSON_ZOMBIE_VILLAGER_PLUSHIE.asItem());
+                entries.add(ModBlocks.WARPED_ZOMBIE_VILLAGER_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_WITCH_PLUSHIE);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.WITCH_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_PUFFERFISH_PLUSHIE);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.PUFFERFISH_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_WITHER_PLUSHIE);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.WITHER_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_POLAR_BEAR_PLUSHIE);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.POLAR_BEAR_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_ALLAY_PLUSHIE);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.ALLAY_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_VEX_PLUSHIE);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.VEX_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_RAVAGER_PLUSHIE);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.RAVAGER_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_SHULKER_PLUSHIE);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.SHULKER_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CAMEL_PLUSHIE);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.CAMEL_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CREAKING_PLUSHIE);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.CREAKING_PLUSHIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config
+                    .getEntry(ModConfigKeys.ENABLE_WOODEN_PLANTER_BOXES);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.OAK_PLANTER_BOX.asItem());
+                entries.add(ModBlocks.SPRUCE_PLANTER_BOX.asItem());
+                entries.add(ModBlocks.BIRCH_PLANTER_BOX.asItem());
+                entries.add(ModBlocks.JUNGLE_PLANTER_BOX.asItem());
+                entries.add(ModBlocks.ACACIA_PLANTER_BOX.asItem());
+                entries.add(ModBlocks.DARK_OAK_PLANTER_BOX.asItem());
+                entries.add(ModBlocks.MANGROVE_PLANTER_BOX.asItem());
+                entries.add(ModBlocks.CHERRY_PLANTER_BOX.asItem());
+                entries.add(ModBlocks.BAMBOO_PLANTER_BOX.asItem());
+                entries.add(ModBlocks.CRIMSON_PLANTER_BOX.asItem());
+                entries.add(ModBlocks.WARPED_PLANTER_BOX.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_WOODCUTTER);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.WOODCUTTER.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_WOODEN_WALLS);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.OAK_WALL.asItem());
+                entries.add(ModBlocks.SPRUCE_WALL.asItem());
+                entries.add(ModBlocks.BIRCH_WALL.asItem());
+                entries.add(ModBlocks.JUNGLE_WALL.asItem());
+                entries.add(ModBlocks.ACACIA_WALL.asItem());
+                entries.add(ModBlocks.DARK_OAK_WALL.asItem());
+                entries.add(ModBlocks.MANGROVE_WALL.asItem());
+                entries.add(ModBlocks.CHERRY_WALL.asItem());
+                entries.add(ModBlocks.CRIMSON_WALL.asItem());
+                entries.add(ModBlocks.WARPED_WALL.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_STRIPPED_WOODEN_WALLS);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.STRIPPED_OAK_WALL.asItem());
+                entries.add(ModBlocks.STRIPPED_SPRUCE_WALL.asItem());
+                entries.add(ModBlocks.STRIPPED_BIRCH_WALL.asItem());
+                entries.add(ModBlocks.STRIPPED_JUNGLE_WALL.asItem());
+                entries.add(ModBlocks.STRIPPED_ACACIA_WALL.asItem());
+                entries.add(ModBlocks.STRIPPED_DARK_OAK_WALL.asItem());
+                entries.add(ModBlocks.STRIPPED_MANGROVE_WALL.asItem());
+                entries.add(ModBlocks.STRIPPED_CHERRY_WALL.asItem());
+                entries.add(ModBlocks.STRIPPED_CRIMSON_WALL.asItem());
+                entries.add(ModBlocks.STRIPPED_WARPED_WALL.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_WOODEN_ROPE_LADDERS);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.OAK_ROPE_LADDER.asItem());
+                entries.add(ModBlocks.SPRUCE_ROPE_LADDER.asItem());
+                entries.add(ModBlocks.BIRCH_ROPE_LADDER.asItem());
+                entries.add(ModBlocks.JUNGLE_ROPE_LADDER.asItem());
+                entries.add(ModBlocks.ACACIA_ROPE_LADDER.asItem());
+                entries.add(ModBlocks.DARK_OAK_ROPE_LADDER.asItem());
+                entries.add(ModBlocks.MANGROVE_ROPE_LADDER.asItem());
+                entries.add(ModBlocks.CHERRY_ROPE_LADDER.asItem());
+                entries.add(ModBlocks.CRIMSON_ROPE_LADDER.asItem());
+                entries.add(ModBlocks.WARPED_ROPE_LADDER.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_IRON_LADDERS);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.IRON_LADDER.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_DYED_CAMPFIRES);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.WHITE_CAMPFIRE.asItem());
+                entries.add(ModBlocks.ORANGE_CAMPFIRE.asItem());
+                entries.add(ModBlocks.MAGENTA_CAMPFIRE.asItem());
+                entries.add(ModBlocks.LIGHT_BLUE_CAMPFIRE.asItem());
+                entries.add(ModBlocks.YELLOW_CAMPFIRE.asItem());
+                entries.add(ModBlocks.LIME_CAMPFIRE.asItem());
+                entries.add(ModBlocks.PINK_CAMPFIRE.asItem());
+                entries.add(ModBlocks.GRAY_CAMPFIRE.asItem());
+                entries.add(ModBlocks.LIGHT_GRAY_CAMPFIRE.asItem());
+                entries.add(ModBlocks.CYAN_CAMPFIRE.asItem());
+                entries.add(ModBlocks.PURPLE_CAMPFIRE.asItem());
+                entries.add(ModBlocks.BLUE_CAMPFIRE.asItem());
+                entries.add(ModBlocks.BROWN_CAMPFIRE.asItem());
+                entries.add(ModBlocks.GREEN_CAMPFIRE.asItem());
+                entries.add(ModBlocks.RED_CAMPFIRE.asItem());
+                entries.add(ModBlocks.BLACK_CAMPFIRE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_DYED_LANTERNS);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.WHITE_LANTERN.asItem());
+                entries.add(ModBlocks.ORANGE_LANTERN.asItem());
+                entries.add(ModBlocks.MAGENTA_LANTERN.asItem());
+                entries.add(ModBlocks.LIGHT_BLUE_LANTERN.asItem());
+                entries.add(ModBlocks.YELLOW_LANTERN.asItem());
+                entries.add(ModBlocks.LIME_LANTERN.asItem());
+                entries.add(ModBlocks.PINK_LANTERN.asItem());
+                entries.add(ModBlocks.GRAY_LANTERN.asItem());
+                entries.add(ModBlocks.LIGHT_GRAY_LANTERN.asItem());
+                entries.add(ModBlocks.CYAN_LANTERN.asItem());
+                entries.add(ModBlocks.PURPLE_LANTERN.asItem());
+                entries.add(ModBlocks.BLUE_LANTERN.asItem());
+                entries.add(ModBlocks.BROWN_LANTERN.asItem());
+                entries.add(ModBlocks.GREEN_LANTERN.asItem());
+                entries.add(ModBlocks.RED_LANTERN.asItem());
+                entries.add(ModBlocks.BLACK_LANTERN.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_DYED_TORCHES);
+            if (configEntry.getValue()) {
+                entries.add(ModItems.WHITE_TORCH);
+                entries.add(ModItems.ORANGE_TORCH);
+                entries.add(ModItems.MAGENTA_TORCH);
+                entries.add(ModItems.LIGHT_BLUE_TORCH);
+                entries.add(ModItems.YELLOW_TORCH);
+                entries.add(ModItems.LIME_TORCH);
+                entries.add(ModItems.PINK_TORCH);
+                entries.add(ModItems.GRAY_TORCH);
+                entries.add(ModItems.LIGHT_GRAY_TORCH);
+                entries.add(ModItems.CYAN_TORCH);
+                entries.add(ModItems.PURPLE_TORCH);
+                entries.add(ModItems.BLUE_TORCH);
+                entries.add(ModItems.BROWN_TORCH);
+                entries.add(ModItems.GREEN_TORCH);
+                entries.add(ModItems.RED_TORCH);
+                entries.add(ModItems.BLACK_TORCH);
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_TWISTED_NETHERRACK);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.TWISTED_NETHERRACK.asItem());
+                entries.add(ModBlocks.TWISTED_NETHERRACK_STAIRS.asItem());
+                entries.add(ModBlocks.TWISTED_NETHERRACK_SLAB.asItem());
+                entries.add(ModBlocks.TWISTED_NETHERRACK_WALL.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_WEEPING_NETHERRACK);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.WEEPING_NETHERRACK.asItem());
+                entries.add(ModBlocks.WEEPING_NETHERRACK_STAIRS.asItem());
+                entries.add(ModBlocks.WEEPING_NETHERRACK_SLAB.asItem());
+                entries.add(ModBlocks.WEEPING_NETHERRACK_WALL.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_TWISTED_NETHER_BRICKS);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.TWISTED_NETHER_BRICKS.asItem());
+                entries.add(ModBlocks.TWISTED_NETHER_BRICK_STAIRS.asItem());
+                entries.add(ModBlocks.TWISTED_NETHER_BRICK_SLAB.asItem());
+                entries.add(ModBlocks.TWISTED_NETHER_BRICK_WALL.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_WEEPING_NETHER_BRICKS);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.WEEPING_NETHER_BRICKS.asItem());
+                entries.add(ModBlocks.WEEPING_NETHER_BRICK_STAIRS.asItem());
+                entries.add(ModBlocks.WEEPING_NETHER_BRICK_SLAB.asItem());
+                entries.add(ModBlocks.WEEPING_NETHER_BRICK_WALL.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_TWISTED_BLACKSTONE);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.TWISTED_BLACKSTONE.asItem());
+                entries.add(ModBlocks.TWISTED_BLACKSTONE_STAIRS.asItem());
+                entries.add(ModBlocks.TWISTED_BLACKSTONE_SLAB.asItem());
+                entries.add(ModBlocks.TWISTED_BLACKSTONE_WALL.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_WEEPING_BLACKSTONE);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.WEEPING_BLACKSTONE.asItem());
+                entries.add(ModBlocks.WEEPING_BLACKSTONE_STAIRS.asItem());
+                entries.add(ModBlocks.WEEPING_BLACKSTONE_SLAB.asItem());
+                entries.add(ModBlocks.WEEPING_BLACKSTONE_WALL.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry)
+                    config.getEntry(ModConfigKeys.ENABLE_TWISTED_POLISHED_BLACKSTONE_BRICKS);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.TWISTED_POLISHED_BLACKSTONE_BRICKS.asItem());
+                entries.add(ModBlocks.TWISTED_POLISHED_BLACKSTONE_BRICK_STAIRS.asItem());
+                entries.add(ModBlocks.TWISTED_POLISHED_BLACKSTONE_BRICK_SLAB.asItem());
+                entries.add(ModBlocks.TWISTED_POLISHED_BLACKSTONE_BRICK_WALL.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry)
+                    config.getEntry(ModConfigKeys.ENABLE_WEEPING_POLISHED_BLACKSTONE_BRICKS);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.WEEPING_POLISHED_BLACKSTONE_BRICKS.asItem());
+                entries.add(ModBlocks.WEEPING_POLISHED_BLACKSTONE_BRICK_STAIRS.asItem());
+                entries.add(ModBlocks.WEEPING_POLISHED_BLACKSTONE_BRICK_SLAB.asItem());
+                entries.add(ModBlocks.WEEPING_POLISHED_BLACKSTONE_BRICK_WALL.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_BLACKSTONE_TILES);
+            boolean blackstoneTilesEnabled = configEntry.getValue();
+            if (blackstoneTilesEnabled) {
+                entries.add(ModBlocks.BLACKSTONE_TILES.asItem());
+                entries.add(ModBlocks.BLACKSTONE_TILE_STAIRS.asItem());
+                entries.add(ModBlocks.BLACKSTONE_TILE_SLAB.asItem());
+                entries.add(ModBlocks.BLACKSTONE_TILE_WALL.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_TWISTED_BLACKSTONE_TILES);
+            if (blackstoneTilesEnabled && configEntry.getValue()) {
+                entries.add(ModBlocks.TWISTED_BLACKSTONE_TILES.asItem());
+                entries.add(ModBlocks.TWISTED_BLACKSTONE_TILE_STAIRS.asItem());
+                entries.add(ModBlocks.TWISTED_BLACKSTONE_TILE_SLAB.asItem());
+                entries.add(ModBlocks.TWISTED_BLACKSTONE_TILE_WALL.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_WEEPING_BLACKSTONE_TILES);
+            if (blackstoneTilesEnabled && configEntry.getValue()) {
+                entries.add(ModBlocks.WEEPING_BLACKSTONE_TILES.asItem());
+                entries.add(ModBlocks.WEEPING_BLACKSTONE_TILE_STAIRS.asItem());
+                entries.add(ModBlocks.WEEPING_BLACKSTONE_TILE_SLAB.asItem());
+                entries.add(ModBlocks.WEEPING_BLACKSTONE_TILE_WALL.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_SMOKY_QUARTZ_BLOCKS);
+            boolean smokyQuartzBlocksEnabled = configEntry.getValue();
+            if (smokyQuartzBlocksEnabled) {
+                entries.add(ModBlocks.NETHER_SMOKY_QUARTZ_ORE.asItem());
+                entries.add(ModItems.SMOKY_QUARTZ);
+                entries.add(ModBlocks.SMOKY_QUARTZ_BLOCK.asItem());
+                entries.add(ModBlocks.SMOKY_QUARTZ_STAIRS.asItem());
+                entries.add(ModBlocks.SMOKY_QUARTZ_SLAB.asItem());
+                entries.add(ModBlocks.SMOKY_QUARTZ_WALL.asItem());
+                entries.add(ModBlocks.CHISELED_SMOKY_QUARTZ_BLOCK.asItem());
+                entries.add(ModBlocks.SMOKY_QUARTZ_PILLAR.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_SMOKY_QUARTZ_BRICKS);
+            if (smokyQuartzBlocksEnabled && configEntry.getValue()) {
+                entries.add(ModBlocks.SMOKY_QUARTZ_BRICKS.asItem());
+                entries.add(ModBlocks.SMOKY_QUARTZ_BRICK_STAIRS.asItem());
+                entries.add(ModBlocks.SMOKY_QUARTZ_BRICK_SLAB.asItem());
+                entries.add(ModBlocks.SMOKY_QUARTZ_BRICK_WALL.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_SMOOTH_SMOKY_QUARTZ);
+            if (smokyQuartzBlocksEnabled && configEntry.getValue()) {
+                entries.add(ModBlocks.SMOOTH_SMOKY_QUARTZ.asItem());
+                entries.add(ModBlocks.SMOOTH_SMOKY_QUARTZ_STAIRS.asItem());
+                entries.add(ModBlocks.SMOOTH_SMOKY_QUARTZ_SLAB.asItem());
+                entries.add(ModBlocks.SMOOTH_SMOKY_QUARTZ_WALL.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_QUARTZ_BRICK_BLOCKS);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.QUARTZ_BRICK_STAIRS.asItem());
+                entries.add(ModBlocks.QUARTZ_BRICK_SLAB.asItem());
+                entries.add(ModBlocks.QUARTZ_BRICK_WALL.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_QUARTZ_TILES);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.QUARTZ_TILES.asItem());
+                entries.add(ModBlocks.QUARTZ_TILE_STAIRS.asItem());
+                entries.add(ModBlocks.QUARTZ_TILE_SLAB.asItem());
+                entries.add(ModBlocks.QUARTZ_TILE_WALL.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_QUARTZ_WALLS);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.QUARTZ_WALL.asItem());
+                entries.add(ModBlocks.SMOOTH_QUARTZ_WALL.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_BAUXITE);
+            boolean bauxiteEnabled = configEntry.getValue();
+            if (bauxiteEnabled) {
+                entries.add(ModBlocks.BAUXITE.asItem());
+                entries.add(ModBlocks.BAUXITE_SLAB.asItem());
+                entries.add(ModBlocks.BAUXITE_STAIRS.asItem());
+                entries.add(ModBlocks.BAUXITE_WALL.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_BAUXITE_BRICKS);
+            boolean bauxiteBricksEnabled = configEntry.getValue();
+            if (bauxiteEnabled && bauxiteBricksEnabled) {
+                entries.add(ModBlocks.BAUXITE_BRICKS.asItem());
+                entries.add(ModBlocks.BAUXITE_BRICK_STAIRS.asItem());
+                entries.add(ModBlocks.BAUXITE_BRICK_SLAB.asItem());
+                entries.add(ModBlocks.BAUXITE_BRICK_WALL.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CRACKED_BAUXITE_BRICKS);
+            if (bauxiteEnabled && bauxiteBricksEnabled && configEntry.getValue()) {
+                entries.add(ModBlocks.CRACKED_BAUXITE_BRICKS.asItem());
+                entries.add(ModBlocks.CRACKED_BAUXITE_BRICK_STAIRS.asItem());
+                entries.add(ModBlocks.CRACKED_BAUXITE_BRICK_SLAB.asItem());
+                entries.add(ModBlocks.CRACKED_BAUXITE_BRICK_WALL.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_MOSSY_BAUXITE_BRICKS);
+            if (bauxiteEnabled && bauxiteBricksEnabled && configEntry.getValue()) {
+                entries.add(ModBlocks.MOSSY_BAUXITE_BRICKS.asItem());
+                entries.add(ModBlocks.MOSSY_BAUXITE_BRICK_STAIRS.asItem());
+                entries.add(ModBlocks.MOSSY_BAUXITE_BRICK_SLAB.asItem());
+                entries.add(ModBlocks.MOSSY_BAUXITE_BRICK_WALL.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_STONE_TILES);
+            boolean stoneTilesEnabled = configEntry.getValue();
+            if (stoneTilesEnabled) {
+                entries.add(ModBlocks.STONE_TILES.asItem());
+                entries.add(ModBlocks.STONE_TILE_SLAB.asItem());
+                entries.add(ModBlocks.STONE_TILE_STAIRS.asItem());
+                entries.add(ModBlocks.STONE_TILE_WALL.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CRACKED_STONE_TILES);
+            if (stoneTilesEnabled && configEntry.getValue()) {
+                entries.add(ModBlocks.CRACKED_STONE_TILES.asItem());
+                entries.add(ModBlocks.CRACKED_STONE_TILE_SLAB.asItem());
+                entries.add(ModBlocks.CRACKED_STONE_TILE_STAIRS.asItem());
+                entries.add(ModBlocks.CRACKED_STONE_TILE_WALL.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_MOSSY_STONE_TILES);
+            if (stoneTilesEnabled && configEntry.getValue()) {
+                entries.add(ModBlocks.MOSSY_STONE_TILES.asItem());
+                entries.add(ModBlocks.MOSSY_STONE_TILE_SLAB.asItem());
+                entries.add(ModBlocks.MOSSY_STONE_TILE_STAIRS.asItem());
+                entries.add(ModBlocks.MOSSY_STONE_TILE_WALL.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CRACKED_STONE_BRICK_BLOCKS);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.CRACKED_STONE_BRICK_STAIRS.asItem());
+                entries.add(ModBlocks.CRACKED_STONE_BRICK_SLAB.asItem());
+                entries.add(ModBlocks.CRACKED_STONE_BRICK_WALL.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_STONE_WALLS);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.STONE_WALL.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CALCITE_BLOCKS);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.CALCITE_STAIRS.asItem());
+                entries.add(ModBlocks.CALCITE_SLAB.asItem());
+                entries.add(ModBlocks.CALCITE_WALL.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_POLISHED_CALCITE);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.POLISHED_CALCITE.asItem());
+                entries.add(ModBlocks.POLISHED_CALCITE_STAIRS.asItem());
+                entries.add(ModBlocks.POLISHED_CALCITE_SLAB.asItem());
+                entries.add(ModBlocks.POLISHED_CALCITE_WALL.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CALCITE_BRICKS);
+            boolean calciteBricksEnabled = configEntry.getValue();
+            if (calciteBricksEnabled) {
+                entries.add(ModBlocks.CALCITE_BRICKS.asItem());
+                entries.add(ModBlocks.CALCITE_BRICK_STAIRS.asItem());
+                entries.add(ModBlocks.CALCITE_BRICK_SLAB.asItem());
+                entries.add(ModBlocks.CALCITE_BRICK_WALL.asItem());
+                entries.add(ModBlocks.CHISELED_CALCITE_BRICKS.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CRACKED_CALCITE_BRICKS);
+            if (configEntry.getValue() && calciteBricksEnabled) {
+                entries.add(ModBlocks.CRACKED_CALCITE_BRICKS.asItem());
+                entries.add(ModBlocks.CRACKED_CALCITE_BRICK_STAIRS.asItem());
+                entries.add(ModBlocks.CRACKED_CALCITE_BRICK_SLAB.asItem());
+                entries.add(ModBlocks.CRACKED_CALCITE_BRICK_WALL.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_MOSSY_CALCITE_BRICKS);
+            if (configEntry.getValue() && calciteBricksEnabled) {
+                entries.add(ModBlocks.MOSSY_CALCITE_BRICKS.asItem());
+                entries.add(ModBlocks.MOSSY_CALCITE_BRICK_STAIRS.asItem());
+                entries.add(ModBlocks.MOSSY_CALCITE_BRICK_SLAB.asItem());
+                entries.add(ModBlocks.MOSSY_CALCITE_BRICK_WALL.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_DRIPSTONE_BLOCKS);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.DRIPSTONE_STAIRS.asItem());
+                entries.add(ModBlocks.DRIPSTONE_SLAB.asItem());
+                entries.add(ModBlocks.DRIPSTONE_WALL.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_POLISHED_DRIPSTONE);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.POLISHED_DRIPSTONE.asItem());
+                entries.add(ModBlocks.POLISHED_DRIPSTONE_STAIRS.asItem());
+                entries.add(ModBlocks.POLISHED_DRIPSTONE_SLAB.asItem());
+                entries.add(ModBlocks.POLISHED_DRIPSTONE_WALL.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_DRIPSTONE_BRICKS);
+            boolean dripstoneBricksEnabled = configEntry.getValue();
+            if (dripstoneBricksEnabled) {
+                entries.add(ModBlocks.DRIPSTONE_BRICKS.asItem());
+                entries.add(ModBlocks.DRIPSTONE_BRICK_STAIRS.asItem());
+                entries.add(ModBlocks.DRIPSTONE_BRICK_SLAB.asItem());
+                entries.add(ModBlocks.DRIPSTONE_BRICK_WALL.asItem());
+                entries.add(ModBlocks.CHISELED_DRIPSTONE_BRICKS.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CRACKED_DRIPSTONE_BRICKS);
+            if (configEntry.getValue() && dripstoneBricksEnabled) {
+                entries.add(ModBlocks.CRACKED_DRIPSTONE_BRICKS.asItem());
+                entries.add(ModBlocks.CRACKED_DRIPSTONE_BRICK_STAIRS.asItem());
+                entries.add(ModBlocks.CRACKED_DRIPSTONE_BRICK_SLAB.asItem());
+                entries.add(ModBlocks.CRACKED_DRIPSTONE_BRICK_WALL.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_MOSSY_DRIPSTONE_BRICKS);
+            if (configEntry.getValue() && dripstoneBricksEnabled) {
+                entries.add(ModBlocks.MOSSY_DRIPSTONE_BRICKS.asItem());
+                entries.add(ModBlocks.MOSSY_DRIPSTONE_BRICK_STAIRS.asItem());
+                entries.add(ModBlocks.MOSSY_DRIPSTONE_BRICK_SLAB.asItem());
+                entries.add(ModBlocks.MOSSY_DRIPSTONE_BRICK_WALL.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_SNOW_BRICKS);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.SNOW_BRICKS.asItem());
+                entries.add(ModBlocks.SNOW_BRICK_STAIRS.asItem());
+                entries.add(ModBlocks.SNOW_BRICK_SLAB.asItem());
+                entries.add(ModBlocks.SNOW_BRICK_WALL.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_PACKED_SNOW);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.PACKED_SNOW.asItem());
+                entries.add(ModBlocks.PACKED_SNOW_STAIRS.asItem());
+                entries.add(ModBlocks.PACKED_SNOW_SLAB.asItem());
+                entries.add(ModBlocks.PACKED_SNOW_WALL.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_DIRT_SLABS);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.GRASS_SLAB.asItem());
+                entries.add(ModBlocks.PODZOL_SLAB.asItem());
+                entries.add(ModBlocks.MYCELIUM_SLAB.asItem());
+                entries.add(ModBlocks.DIRT_PATH_SLAB.asItem());
+                entries.add(ModBlocks.DIRT_SLAB.asItem());
+                entries.add(ModBlocks.ROOTED_DIRT_SLAB.asItem());
+                entries.add(ModBlocks.COARSE_DIRT_SLAB.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_PURPLE_MUSHROOMS);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.PURPLE_MUSHROOM_BLOCK.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CHOCOLATE_CAKE);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.CHOCOLATE_CAKE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_RED_VELVET_CAKE);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.RED_VELVET_CAKE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_SWEET_BERRY_PIE);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.SWEET_BERRY_PIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_BLUEBERRIES);
+            boolean blueberriesEnabled = configEntry.getValue();
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_BLUEBERRY_PIE);
+            if (blueberriesEnabled && configEntry.getValue()) {
+                entries.add(ModBlocks.BLUEBERRY_PIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_GREEN_ONIONS);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.WILD_GREEN_ONIONS.asItem());
+                entries.add(ModItems.GREEN_ONION_SEEDS);
+                entries.add(ModItems.GREEN_ONION);
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_NOODLE_SOUP);
+            if (configEntry.getValue()) {
+                entries.add(ModItems.NOODLES);
+                entries.add(ModItems.NOODLE_SOUP);
+            }
+
+            if (blueberriesEnabled) {
+                entries.add(ModItems.BLUEBERRIES);
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_NETHER_BERRIES);
+            if (configEntry.getValue()) {
+                entries.add(ModItems.CINDERSNAP_BERRIES);
+                entries.add(ModItems.FROSTBITE_BERRIES);
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CATTAILS);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.CATTAIL.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_BOG_BLOSSOMS);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.BOG_BLOSSOM.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_ENDER_PLANTS);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.SNAPDRAGON.asItem());
+                entries.add(ModBlocks.SHORT_ENDER_GRASS.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_PURPLE_MUSHROOMS);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.PURPLE_MUSHROOM.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CARAMEL_APPLE);
+            if (configEntry.getValue()) {
+                entries.add(ModItems.CARAMEL_APPLE);
+                entries.add(ModItems.CARAMEL);
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_FRIED_EGG);
+            if (configEntry.getValue()) {
+                entries.add(ModItems.FRIED_EGG);
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_BLOOD_KELP);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.DRIED_BLOOD_KELP_BLOCK);
+                entries.add(ModBlocks.BLOOD_KELP_LANTERN);
+                entries.add(ModItems.BLOOD_KELP_SEED_CLUSTER);
+                entries.add(ModItems.BLOOD_KELP);
+                entries.add(ModItems.DRIED_BLOOD_KELP);
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_HOGLIN_STEW);
+            if (configEntry.getValue()) {
+                entries.add(ModItems.HOGLIN_STEW);
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_FORESTS_BOUNTY);
+            if (configEntry.getValue()) {
+                entries.add(ModItems.FORESTS_BOUNTY);
+                entries.add(ModItems.SPRUCE_CONE);
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_WITCHS_CRADLE_SOUP);
+            if (configEntry.getValue()) {
+                entries.add(ModItems.WITCHS_CRADLE_SOUP);
+                entries.add(ModItems.WITCHS_CRADLE_BRANCH);
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_PUDDING);
+            if (configEntry.getValue()) {
+                entries.add(ModItems.BERRY_PUDDING);
+                entries.add(ModItems.PUDDING);
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_BLUEBERRY_JUICE);
+            if (blueberriesEnabled && configEntry.getValue()) {
+                entries.add(ModItems.BLUEBERRY_JUICE);
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_SWEET_BERRY_JUICE);
+            if (configEntry.getValue()) {
+                entries.add(ModItems.SWEET_BERRY_JUICE);
+            }
+        });
 	}
 }

@@ -150,16 +150,20 @@ public final class ModItems {
     private static Item registerBlockItem(RegistryKey<Item> key, Block standingBlock, Block wallBlock) {
         final Item blockItem = new VerticallyAttachableBlockItem(standingBlock, wallBlock,
                 Direction.DOWN, new Item.Settings().registryKey(key));
+        Item.BLOCK_ITEMS.put(standingBlock, blockItem);
+        Item.BLOCK_ITEMS.put(wallBlock, blockItem);
         return register(blockItem, key);
     }
 
     private static Item registerBlockItem(RegistryKey<Item> key, Block block) {
         final Item blockItem = new BlockItem(block, new Item.Settings().registryKey(key));
+        Item.BLOCK_ITEMS.put(block, blockItem);
         return register(blockItem, key);
     }
 
     private static Item registerBlockItem(RegistryKey<Item> key, Block block, Item.Settings settings) {
         final Item blockItem = new BlockItem(block, settings);
+        Item.BLOCK_ITEMS.put(block, blockItem);
         return register(blockItem, key);
     }
 

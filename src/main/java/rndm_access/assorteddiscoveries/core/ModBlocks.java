@@ -1412,6 +1412,7 @@ public class ModBlocks {
             RegistryKey<Item> itemKey = RegistryKey.of(RegistryKeys.ITEM, blockKey.getValue());
             BlockItem blockItem = new BlockItem(block, new Item.Settings().registryKey(itemKey));
             Registry.register(Registries.ITEM, itemKey, blockItem);
+            Item.BLOCK_ITEMS.put(block, blockItem);
         }
         return Registry.register(Registries.BLOCK, blockKey, block);
     }
@@ -1523,6 +1524,7 @@ public class ModBlocks {
         Block block = new RopeLadderBlock(AbstractBlock.Settings.copy(Blocks.LADDER).registryKey(blockKey));
         BlockItem blockItem = new RopeLadderBlockItem(block, new Item.Settings().registryKey(itemKey));
         Registry.register(Registries.ITEM, itemKey, blockItem);
+        Item.BLOCK_ITEMS.put(block, blockItem);
         return Registry.register(Registries.BLOCK, blockKey, block);
     }
 

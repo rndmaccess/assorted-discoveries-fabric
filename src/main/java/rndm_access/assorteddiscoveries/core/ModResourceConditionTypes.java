@@ -3,6 +3,7 @@ package rndm_access.assorteddiscoveries.core;
 import com.mojang.serialization.MapCodec;
 import net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition;
 import net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditionType;
+import net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditions;
 import rndm_access.assorteddiscoveries.ADReference;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.conditions.ConfigEntryEnabledResourceCondition;
@@ -15,6 +16,7 @@ public final class ModResourceConditionTypes {
     }
 
     public static void register() {
+        ResourceConditions.register(CONFIG_ENTRY_ENABLED);
         AssortedDiscoveries.LOGGER.info("Registered resource conditions!");
     }
 

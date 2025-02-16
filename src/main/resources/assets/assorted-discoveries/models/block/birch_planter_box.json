@@ -1,8 +1,9 @@
 {
   "parent": "assorted-discoveries:block/template_planter_box",
   "textures": {
-    "material": "block/birch_planks",
-    "log": "block/stripped_birch_log",
+    "side": "assorted-discoveries:block/birch_planter_box_side",
+    "top": "assorted-discoveries:block/birch_planter_box_top",
+    "bottom": "assorted-discoveries:block/birch_planter_box_bottom",
     "soil": "block/farmland_moist"
   }
 }

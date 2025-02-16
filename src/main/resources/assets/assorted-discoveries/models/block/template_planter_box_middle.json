@@ -2,8 +2,9 @@
 	"__comment": "Designed by rndm_access with Cubik Studio - https://cubik.studio",
 	"parent": "block/block",
 	"textures": {
-		"particle": "#material",
-		"soil": "#soil"
+		"particle": "#bottom",
+		"soil": "#soil",
+		"bottom": "#bottom"
 	},
 	"elements": [ 	 
 		{
@@ -11,7 +12,7 @@
 			"from": [ 0, 0, 0 ],
 			"to": [ 16, 3, 16 ],
 			"faces": {
-				"down": { "uv": [ 0, 0, 16, 16 ], "texture": "#material", "cullface": "down" }
+				"down": { "uv": [ 0, 0, 16, 16 ], "texture": "#bottom", "cullface": "down" }
 			}
 		},
 		{

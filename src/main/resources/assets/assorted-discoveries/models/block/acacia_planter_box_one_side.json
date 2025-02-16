@@ -1,7 +1,9 @@
 {
   "parent": "assorted-discoveries:block/template_planter_box_one_side",
   "textures": {
-    "material": "block/acacia_planks",
+    "side": "assorted-discoveries:block/acacia_planter_box_side_middle",
+    "bottom": "assorted-discoveries:block/acacia_planter_box_bottom",
+    "top": "assorted-discoveries:block/acacia_planter_box_top",
     "soil": "block/farmland_moist"
   }
 }

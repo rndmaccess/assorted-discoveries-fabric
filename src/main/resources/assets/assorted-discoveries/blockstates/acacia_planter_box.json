@@ -1,13 +1,16 @@
 {
   "variants": {
     "east=false,north=false,south=false,west=false": {
-      "model": "assorted-discoveries:block/acacia_planter_box"
+      "model": "assorted-discoveries:block/acacia_planter_box",
+      "uvlock": true
     },
     "east=true,north=true,south=true,west=true": {
-      "model": "assorted-discoveries:block/acacia_planter_box_middle"
+      "model": "assorted-discoveries:block/acacia_planter_box_middle",
+      "uvlock": true
     },
     "east=true,north=true,south=false,west=true": {
-      "model": "assorted-discoveries:block/acacia_planter_box_one_side"
+      "model": "assorted-discoveries:block/acacia_planter_box_one_side",
+      "uvlock": true
     },
     "east=true,north=false,south=true,west=true": {
       "model": "assorted-discoveries:block/acacia_planter_box_one_side",
@@ -25,7 +28,8 @@
       "uvlock": true
     },
     "east=true,north=true,south=false,west=false": {
-      "model": "assorted-discoveries:block/acacia_planter_box_corner"
+      "model": "assorted-discoveries:block/acacia_planter_box_corner",
+      "uvlock": true
     },
     "east=false,north=false,south=true,west=true": {
       "model": "assorted-discoveries:block/acacia_planter_box_corner",
@@ -61,7 +65,8 @@
       "uvlock": true
     },
     "east=false,north=true,south=true,west=false": {
-      "model": "assorted-discoveries:block/acacia_planter_box_two_sides"
+      "model": "assorted-discoveries:block/acacia_planter_box_two_sides",
+      "uvlock": true
     },
     "east=true,north=false,south=false,west=true": {
       "model": "assorted-discoveries:block/acacia_planter_box_two_sides",

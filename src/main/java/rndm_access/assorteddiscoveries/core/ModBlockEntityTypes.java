@@ -19,7 +19,7 @@ public final class ModBlockEntityTypes {
     /**
      * Called during mod initialization to register every block entity type.
      */
-    public static void registerBlockEntityTypes() {
+    public static void register() {
         register("dyed_campfire", DYED_CAMPFIRE);
 
         AssortedDiscoveries.LOGGER.info("Registered block entity types");

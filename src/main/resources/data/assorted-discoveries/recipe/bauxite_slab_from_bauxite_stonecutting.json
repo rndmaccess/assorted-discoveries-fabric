@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "assorted-discoveries:bauxite",
+  "result": {
+    "count": 2,
+    "id": "assorted-discoveries:bauxite_slab"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_bauxite"
+    }
+  ]
+}

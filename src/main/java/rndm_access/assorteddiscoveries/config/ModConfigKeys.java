@@ -72,7 +72,6 @@ public class ModConfigKeys {
     public static final String ENABLE_STONE_TILES;
     public static final String ENABLE_CRACKED_STONE_TILES;
     public static final String ENABLE_MOSSY_STONE_TILES;
-    public static final String ENABLE_WOODCUTTER;
     public static final String ENABLE_CRACKED_STONE_BRICK_BLOCKS;
     public static final String ENABLE_WOODEN_PLANTER_BOXES;
     public static final String ENABLE_GREEN_ONIONS;
@@ -96,13 +95,6 @@ public class ModConfigKeys {
     public static final String ENABLE_BOG_BLOSSOMS;
     public static final String ENABLE_BLOOD_KELP;
     public static final String ENABLE_ENDER_PLANTS;
-    public static final String ENABLE_FOREST_CABINS;
-    public static final String ENABLE_DARK_FOREST_CABINS;
-    public static final String ENABLE_BIRCH_FOREST_CABINS;
-    public static final String ENABLE_TAIGA_CABINS;
-    public static final String ENABLE_SNOWY_TAIGA_CABINS;
-    public static final String ENABLE_CRIMSON_FOREST_CABINS;
-    public static final String ENABLE_WARPED_FOREST_CABINS;
     public static final String ENABLE_STONE_WALLS;
     public static final String ENABLE_CALCITE_BLOCKS;
     public static final String ENABLE_POLISHED_CALCITE;
@@ -191,7 +183,6 @@ public class ModConfigKeys {
         ENABLE_STONE_TILES = "enable_stone_tiles";
         ENABLE_CRACKED_STONE_TILES = "enable_cracked_stone_tiles";
         ENABLE_MOSSY_STONE_TILES = "enable_mossy_stone_tiles";
-        ENABLE_WOODCUTTER = "enable_woodcutter";
         ENABLE_CRACKED_STONE_BRICK_BLOCKS = "enable_cracked_stone_brick_blocks";
         ENABLE_WOODEN_PLANTER_BOXES = "enable_wooden_planter_boxes";
         ENABLE_GREEN_ONIONS = "enable_green_onions";
@@ -215,13 +206,6 @@ public class ModConfigKeys {
         ENABLE_BOG_BLOSSOMS = "enable_bog_blossoms";
         ENABLE_BLOOD_KELP = "enable_blood_kelp";
         ENABLE_ENDER_PLANTS = "enable_ender_plants";
-        ENABLE_FOREST_CABINS = "enable_forest_cabins";
-        ENABLE_DARK_FOREST_CABINS = "enable_dark_forest_cabins";
-        ENABLE_BIRCH_FOREST_CABINS = "enable_birch_forest_cabins";
-        ENABLE_TAIGA_CABINS = "enable_taiga_cabins";
-        ENABLE_SNOWY_TAIGA_CABINS = "enable_snowy_taiga_cabins";
-        ENABLE_CRIMSON_FOREST_CABINS = "enable_crimson_forest_cabins";
-        ENABLE_WARPED_FOREST_CABINS = "enable_warped_forest_cabins";
         ENABLE_STONE_WALLS = "enable_stone_walls";
         ENABLE_CALCITE_BLOCKS = "enable_calcite_blocks";
         ENABLE_POLISHED_CALCITE = "enable_polished_calcite";

@@ -115,9 +115,6 @@ public class ModConfigScreen {
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_MOSSY_STONE_TILES,
                 categoryName, enableStoneTiles);
         category.addEntry(configEntry);
-        BooleanListEntry enableWoodcutter = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_WOODCUTTER,
-                categoryName);
-        category.addEntry(enableWoodcutter);
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_CRACKED_STONE_BRICK_BLOCKS,
                 categoryName);
         category.addEntry(configEntry);
@@ -152,31 +149,6 @@ public class ModConfigScreen {
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_SNOW_BRICKS, categoryName);
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_PACKED_SNOW, categoryName);
-        category.addEntry(configEntry);
-
-        categoryName = "structures";
-        category = makeCategory(configBuilder, categoryName);
-
-        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_FOREST_CABINS,
-                categoryName, enableWoodcutter);
-        category.addEntry(configEntry);
-        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_DARK_FOREST_CABINS,
-                categoryName, enableWoodcutter);
-        category.addEntry(configEntry);
-        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_BIRCH_FOREST_CABINS,
-                categoryName, enableWoodcutter);
-        category.addEntry(configEntry);
-        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_TAIGA_CABINS,
-                categoryName, enableWoodcutter);
-        category.addEntry(configEntry);
-        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_SNOWY_TAIGA_CABINS,
-                categoryName, enableWoodcutter);
-        category.addEntry(configEntry);
-        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_CRIMSON_FOREST_CABINS,
-                categoryName, enableWoodcutter);
-        category.addEntry(configEntry);
-        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_WARPED_FOREST_CABINS,
-                categoryName, enableWoodcutter);
         category.addEntry(configEntry);
 
         categoryName = "passive_plushies";

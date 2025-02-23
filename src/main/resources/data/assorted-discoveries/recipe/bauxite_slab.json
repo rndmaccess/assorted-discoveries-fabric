@@ -1,0 +1,20 @@
+{
+  "type": "crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": "assorted-discoveries:bauxite"
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "id": "assorted-discoveries:bauxite_slab",
+    "count": 6
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_bauxite"
+    }
+  ]
+}

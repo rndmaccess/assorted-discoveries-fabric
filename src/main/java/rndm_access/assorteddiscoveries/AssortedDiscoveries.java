@@ -54,30 +54,18 @@ public class AssortedDiscoveries implements ModInitializer {
         ModResourceConditionTypes.register();
 
 		// General Registries
-		ModBlocks.registerBlocks();
-		ModItems.registerItems();
-
+		ModBlocks.register();
+		ModItems.register();
         AssortedDiscoveries.addItemGroups(config);
-		ModBlockEntityTypes.registerBlockEntityTypes();
-		ModParticleTypes.registerParticleTypes();
-		ModScreenHandlerTypes.registerScreenHandlerTypes();
-		ModRecipeTypes.registerRecipeTypes();
-        ModRecipeBookCategories.register();
-		ModRecipeSerializers.registerRecipeSerializers();
-		ModSoundEvents.registerSoundEvents();
+		ModBlockEntityTypes.register();
+		ModParticleTypes.register();
+		ModSoundEvents.register();
 		AssortedDiscoveries.registerFuel();
 		AssortedDiscoveries.registerCompostables();
-
 		AssortedDiscoveries.modifyLootTables(config);
 
-		// Entity Registries
-		ModVillagerTypes.registerVillagerTypes();
-		ModPointOfInterestTypes.registerPointOfInterestTypes();
-		ModVillagerProfessions.registerVillagerProfessions();
-		ModVillagerOffers.registerVillagerTradeOffers();
-
 		// World Generation Registries
-		ModFeatures.registerFeatures();
+		ModFeatures.register();
 		AssortedDiscoveries.addFeaturesToBiomes(config);
 	}
 
@@ -500,11 +488,6 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.BAMBOO_PLANTER_BOX.asItem());
                 entries.add(ModBlocks.CRIMSON_PLANTER_BOX.asItem());
                 entries.add(ModBlocks.WARPED_PLANTER_BOX.asItem());
-            }
-
-            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_WOODCUTTER);
-            if (configEntry.getValue()) {
-                entries.add(ModBlocks.WOODCUTTER.asItem());
             }
 
             configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_WOODEN_WALLS);

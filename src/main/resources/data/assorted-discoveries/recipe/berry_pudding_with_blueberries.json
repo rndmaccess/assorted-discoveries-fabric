@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "food",
+  "ingredients": [
+    "assorted-discoveries:pudding",
+    "assorted-discoveries:blueberries",
+    "minecraft:sweet_berries"
+  ],
+  "result": {
+    "id": "assorted-discoveries:berry_pudding"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:and",
+      "values": [
+        {
+          "condition": "assorted-discoveries:config_entry_enabled",
+          "value": "assorted-discoveries:enable_blueberries"
+        },
+        {
+          "condition": "assorted-discoveries:config_entry_enabled",
+          "value": "assorted-discoveries:enable_pudding"
+        }
+      ]
+    }
+  ]
+}

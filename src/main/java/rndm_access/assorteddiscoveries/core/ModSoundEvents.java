@@ -8,11 +8,10 @@ import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 
 public final class ModSoundEvents {
     public static final SoundEvent BLOCK_MUSHROOM_BOUNCE;
-    public static final SoundEvent UI_WOODCUTTER_TAKE_RESULT;
 
-    public static void registerSoundEvents() {
+
+    public static void register() {
         register(BLOCK_MUSHROOM_BOUNCE);
-        register(UI_WOODCUTTER_TAKE_RESULT);
         AssortedDiscoveries.LOGGER.info("Registered sound events.");
     }
 
@@ -26,6 +25,5 @@ public final class ModSoundEvents {
 
     static {
         BLOCK_MUSHROOM_BOUNCE = makeSoundEvent("block.mushroom_bounce");
-        UI_WOODCUTTER_TAKE_RESULT = makeSoundEvent("ui.woodcutter.take_result");
     }
 }

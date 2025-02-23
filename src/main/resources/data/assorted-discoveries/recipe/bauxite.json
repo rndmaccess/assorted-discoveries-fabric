@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    "minecraft:granite",
+    "minecraft:terracotta"
+  ],
+  "result": {
+    "id": "assorted-discoveries:bauxite",
+	"count": 2
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_bauxite"
+    }
+  ]
+}

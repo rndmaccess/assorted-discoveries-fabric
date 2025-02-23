@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "W": "minecraft:white_wool",
+    "Y": "minecraft:yellow_wool",
+    "B": "minecraft:black_wool",
+    "I": "minecraft:honeycomb"
+  },
+  "pattern": [
+    "W W",
+    "BBB",
+    "YIY"
+  ],
+  "result": {
+    "id": "assorted-discoveries:bee_plushie"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_bee_plushie"
+    }
+  ]
+}

@@ -50,8 +50,8 @@ public record ConfigEntryEnabledResourceCondition(String configKey) implements R
     }
 
     private static Map<String, Boolean> resolveEntries() {
-        JsonConfig config = ModConfig.getInternalConfig();
-        config.load();
+        // By calling this method we make sure that there is a config to load!
+        JsonConfig config = ModConfig.createOrInitConfig();
         Map<String, Boolean> entries = new HashMap<>();
         List<String> configKeys = getConfigKeys();
 
@@ -106,7 +106,6 @@ public record ConfigEntryEnabledResourceCondition(String configKey) implements R
         configEntries.add(ModConfigKeys.ENABLE_WITHER_PLUSHIE);
         configEntries.add(ModConfigKeys.ENABLE_ZOMBIE_PLUSHIE);
         configEntries.add(ModConfigKeys.ENABLE_ZOMBIE_VILLAGER_PLUSHIES);
-        configEntries.add(ModConfigKeys.ENABLE_WOODCUTTER);
         configEntries.add(ModConfigKeys.ENABLE_WOODEN_PLANTER_BOXES);
         configEntries.add(ModConfigKeys.ENABLE_GREEN_ONIONS);
         configEntries.add(ModConfigKeys.ENABLE_NOODLE_SOUP);

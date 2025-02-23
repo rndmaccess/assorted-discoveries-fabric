@@ -22,7 +22,7 @@ public final class ModFeatures {
     /**
      * Called during initialization to register every feature.
      */
-    public static void registerFeatures() {
+    public static void register() {
         register("cattail", CATTAIL);
         register("blood_kelp", BLOOD_KELP);
 

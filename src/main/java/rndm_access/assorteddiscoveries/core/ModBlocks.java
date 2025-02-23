@@ -533,10 +533,6 @@ public class ModBlocks {
             = register(new PurpleMushroomBlock(AbstractBlock.Settings.create().mapColor(MapColor.PURPLE)
             .instrument(NoteBlockInstrument.BASS).strength(0.2F).sounds(BlockSoundGroup.WOOD).burnable()
             .registryKey(PURPLE_MUSHROOM_BLOCK_KEY)), PURPLE_MUSHROOM_BLOCK_KEY, true);
-    public static final RegistryKey<Block> WOODCUTTER_KEY = makeRegistryKey("woodcutter");
-    public static final Block WOODCUTTER = register(new WoodcutterBlock(AbstractBlock.Settings.create()
-            .mapColor(MapColor.SPRUCE_BROWN).strength(2.5F).sounds(BlockSoundGroup.WOOD).burnable()
-            .registryKey(WOODCUTTER_KEY)), WOODCUTTER_KEY, true);
     public static final RegistryKey<Block> WHITE_CAMPFIRE_KEY = makeRegistryKey("white_campfire");
     public static final Block WHITE_CAMPFIRE
             = registerDyedCampfire(WHITE_CAMPFIRE_KEY, ModParticleTypes.WHITE_EMBER);
@@ -1407,7 +1403,7 @@ public class ModBlocks {
         return (state) -> state.get(Properties.LIT) ? 10 : 0;
     }
 
-    public static Block register(Block block, RegistryKey<Block> blockKey, boolean shouldRegisterItem) {
+    private static Block register(Block block, RegistryKey<Block> blockKey, boolean shouldRegisterItem) {
         if (shouldRegisterItem) {
             RegistryKey<Item> itemKey = RegistryKey.of(RegistryKeys.ITEM, blockKey.getValue());
             BlockItem blockItem = new BlockItem(block, new Item.Settings().registryKey(itemKey));
@@ -1685,7 +1681,7 @@ public class ModBlocks {
      * Called during mod initialization to make sure that every block
      * is registered and available later during gameplay.
      */
-    public static void registerBlocks() {
+    public static void register() {
         AssortedDiscoveries.LOGGER.info("Registered blocks!");
     }
 }

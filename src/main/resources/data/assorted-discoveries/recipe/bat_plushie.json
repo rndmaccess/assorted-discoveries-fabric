@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "G": "minecraft:light_gray_wool",
+    "B": "minecraft:black_wool",
+    "S": "#c:natural_stones"
+  },
+  "pattern": [
+    "GGG",
+    "BSB",
+    "GGG"
+  ],
+  "result": {
+    "id": "assorted-discoveries:bat_plushie"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_bat_plushie"
+    }
+  ]
+}

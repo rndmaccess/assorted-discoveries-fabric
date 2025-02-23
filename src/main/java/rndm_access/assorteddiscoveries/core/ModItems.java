@@ -170,7 +170,7 @@ public final class ModItems {
     /**
      * Called during mod initialization to register every item.
      */
-    public static void registerItems() {
+    public static void register() {
         AssortedDiscoveries.LOGGER.info("Registered Items");
     }
 }

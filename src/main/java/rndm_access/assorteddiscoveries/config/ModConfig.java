@@ -72,7 +72,6 @@ public class ModConfig {
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CRACKED_STONE_TILES))
                 .addComment(new CommentConfigEntry("This option requires stone tiles!"))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_MOSSY_STONE_TILES))
-                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_WOODCUTTER))
                 .addComment(new CommentConfigEntry("Whether cracked stone brick slabs, " +
                         "cracked stone brick walls, and cracked stone brick stairs are enabled!"))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CRACKED_STONE_BRICK_BLOCKS))
@@ -144,15 +143,6 @@ public class ModConfig {
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_ZOMBIE_VILLAGER_PLUSHIES))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CREAKING_PLUSHIE)).build();
 
-        ConfigCategory structureCategory = new ConfigCategory.Builder("structures")
-                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_FOREST_CABINS))
-                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_DARK_FOREST_CABINS))
-                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_BIRCH_FOREST_CABINS))
-                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_TAIGA_CABINS))
-                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_SNOWY_TAIGA_CABINS))
-                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CRIMSON_FOREST_CABINS))
-                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_WARPED_FOREST_CABINS)).build();
-
         ConfigCategory farmingCategory = new ConfigCategory.Builder("farming")
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_WOODEN_PLANTER_BOXES))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_GREEN_ONIONS))
@@ -181,6 +171,6 @@ public class ModConfig {
         return new JsonConfig.Builder(ADReference.MOD_ID).addComment(requiredRestartComment)
                 .addCategory(buildingBlocksCategory).addCategory(passivePlushiesCategory)
                 .addCategory(neutralPlushiesCategory).addCategory(hostilePlushiesCategory)
-                .addCategory(structureCategory).addCategory(farmingCategory).build();
+                .addCategory(farmingCategory).build();
     }
 }

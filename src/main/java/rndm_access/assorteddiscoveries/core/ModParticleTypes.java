@@ -52,7 +52,7 @@ public final class ModParticleTypes {
     /**
      * Called during mod initialization to register every particle type.
      */
-    public static void registerParticleTypes() {
+    public static void register() {
         register("white_ember", WHITE_EMBER);
         register("orange_ember", ORANGE_EMBER);
         register("magenta_ember", MAGENTA_EMBER);

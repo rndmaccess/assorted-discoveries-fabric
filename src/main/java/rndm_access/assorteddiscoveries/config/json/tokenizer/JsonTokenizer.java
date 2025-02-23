@@ -28,7 +28,7 @@ public class JsonTokenizer {
 
         try (LineIterator iterator = FileUtils.lineIterator(file)) {
             while (iterator.hasNext()) {
-                String line = iterator.nextLine();
+                String line = iterator.next();
                 this.tokenizeLine(line);
             }
         } catch (IOException e) {

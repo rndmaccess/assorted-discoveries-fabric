@@ -7,14 +7,5 @@
         "name": "assorted-discoveries:block/mushroom_bounce", "stream": false
       }
     ]
-  },
-  "ui.woodcutter.take_result": {
-    "category": "blocks",
-    "subtitle": "Woodcutter cuts",
-    "sounds": [
-      {
-        "name": "assorted-discoveries:ui/woodcutter/take_result", "stream": false
-      }
-    ]
   }
 }

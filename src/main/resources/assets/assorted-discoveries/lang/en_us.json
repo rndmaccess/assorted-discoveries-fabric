@@ -169,7 +169,6 @@
   "item.assorted-discoveries.glass_of_darkness": "Glass Of Darkness",
   "item.assorted-discoveries.purple_mushroom": "Purple Mushroom",
   "item.assorted-discoveries.purple_mushroom_block": "Purple Mushroom Block",
-  "item.assorted-discoveries.woodcutter": "Woodcutter",
   "item.assorted-discoveries.white_campfire": "White Campfire",
   "item.assorted-discoveries.orange_campfire": "Orange Campfire",
   "item.assorted-discoveries.magenta_campfire": "Magenta Campfire",
@@ -404,8 +403,6 @@
 
   "block.assorted-discoveries.blood_kelp": "Blood Kelp",
 
-  "container.assorted-discoveries.woodcutter": "Woodcutter",
-
   "item.assorted-discoveries.green_onion_seeds": "Green Onion Seeds",
   "item.assorted-discoveries.green_onion": "Green Onion",
   "item.assorted-discoveries.blueberries": "Blueberries",
@@ -436,17 +433,11 @@
   "painting.assorted-discoveries.starry_night.author": "rndm_access",
   
   "advancements.assorted-discoveries.story.root.title": "Assorted Discoveries",
-  "advancements.assorted-discoveries.story.root.description": "Start the game with assorted discoveries installed",
+  "advancements.assorted-discoveries.story.root.description": "Start the game with Assorted Discoveries installed",
   "advancements.assorted-discoveries.story.eat_witchs_cradle_soup.title": "Is this even edible!?",
-  "advancements.assorted-discoveries.story.eat_witchs_cradle_soup.description": "Eat a witches cradle soup",
-  "advancements.assorted-discoveries.story.find_nether_cabin.title": "A long way from home",
-  "advancements.assorted-discoveries.story.find_nether_cabin.description": "Visit a cabin in the nether",
+  "advancements.assorted-discoveries.story.eat_witchs_cradle_soup.description": "Eat witch's cradle soup",
   
   "itemGroup.assorted-discoveries": "Assorted Discoveries Mod",
-  
-  "entity.minecraft.villager.lumberjack": "Lumberjack",
-
-  "category.assorted-discoveries.wood_cutting": "Wood Cutting",
 
   "category.cloth-config.assorted-discoveries.option.building_blocks": "Building Blocks",
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_dyed_campfires": "Enable Dyed Campfires",
@@ -480,7 +471,6 @@
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_stone_tiles": "Enable Stone Tiles",
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_cracked_stone_tiles": "Enable Cracked Stone Tiles",
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_mossy_stone_tiles": "Enable Mossy Stone Tiles",
-  "text.cloth-config.assorted-discoveries.option.building_blocks.enable_woodcutter": "Enable Woodcutter",
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_cracked_stone_brick_blocks": "Enable Cracked Stone Brick Blocks",
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_stone_walls": "Enable Stone Walls",
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_calcite_blocks": "Enable Calcite Blocks",
@@ -553,23 +543,6 @@
   "text.cloth-config.assorted-discoveries.option.hostile_plushies.enable_zombie_plushie": "Enable Zombie Plushie",
   "text.cloth-config.assorted-discoveries.option.hostile_plushies.enable_zombie_villager_plushies": "Enable Zombie Villager Plushies",
   "text.cloth-config.assorted-discoveries.option.hostile_plushies.enable_creaking_plushie": "Enable Creaking Plushie",
-
-  "category.cloth-config.assorted-discoveries.option.structures": "Structures",
-  "text.cloth-config.assorted-discoveries.option.structures.enable_forest_cabins": "Enable Forest Cabins",
-  "text.cloth-config.assorted-discoveries.option.structures.enable_dark_forest_cabins": "Enable Dark Forest Cabins",
-  "text.cloth-config.assorted-discoveries.option.structures.enable_birch_forest_cabins": "Enable Birch Forest Cabins",
-  "text.cloth-config.assorted-discoveries.option.structures.enable_taiga_cabins": "Enable Taiga Cabins",
-  "text.cloth-config.assorted-discoveries.option.structures.enable_snowy_taiga_cabins": "Enable Snowy Taiga Cabins",
-  "text.cloth-config.assorted-discoveries.option.structures.enable_crimson_forest_cabins": "Enable Crimson Forest Cabins",
-  "text.cloth-config.assorted-discoveries.option.structures.enable_warped_forest_cabins": "Enable Warped Forest Cabins",
-
-  "requirement.cloth-config.assorted-discoveries.option.structures.enable_forest_cabins": "Requires Woodcutter",
-  "requirement.cloth-config.assorted-discoveries.option.structures.enable_dark_forest_cabins": "Requires Woodcutter",
-  "requirement.cloth-config.assorted-discoveries.option.structures.enable_birch_forest_cabins": "Requires Woodcutter",
-  "requirement.cloth-config.assorted-discoveries.option.structures.enable_taiga_cabins": "Requires Woodcutter",
-  "requirement.cloth-config.assorted-discoveries.option.structures.enable_snowy_taiga_cabins": "Requires Woodcutter",
-  "requirement.cloth-config.assorted-discoveries.option.structures.enable_crimson_forest_cabins": "Requires Woodcutter",
-  "requirement.cloth-config.assorted-discoveries.option.structures.enable_warped_forest_cabins": "Requires Woodcutter",
 
   "category.cloth-config.assorted-discoveries.option.farming": "Farming",
   "text.cloth-config.assorted-discoveries.option.farming.enable_wooden_planter_boxes": "Enable Wooden Planter Boxes",

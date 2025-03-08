@@ -1,8 +1,10 @@
 {
   "parent": "assorted-discoveries:block/template_planter_box_three_sides",
   "textures": {
-    "material": "block/oak_planks",
-    "log": "block/stripped_oak_log",
-    "soil": "block/farmland_moist"
+    "side": "assorted-discoveries:block/oak_planter_box_side",
+    "side_corner": "assorted-discoveries:block/oak_planter_box_side_corner",
+    "top": "assorted-discoveries:block/oak_planter_box_top",
+    "bottom": "minecraft:block/oak_planks",
+    "soil": "minecraft:block/farmland_moist"
   }
 }

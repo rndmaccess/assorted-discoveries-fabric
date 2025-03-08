@@ -3,6 +3,7 @@
   "textures": {
     "side": "assorted-discoveries:block/acacia_planter_box_side_middle",
     "top": "assorted-discoveries:block/acacia_planter_box_top",
-    "soil": "block/farmland_moist"
+    "bottom": "minecraft:block/acacia_planks",
+    "soil": "minecraft:block/farmland_moist"
   }
 }

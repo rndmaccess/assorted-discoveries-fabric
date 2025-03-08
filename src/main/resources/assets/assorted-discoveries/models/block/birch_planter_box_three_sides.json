@@ -2,9 +2,9 @@
   "parent": "assorted-discoveries:block/template_planter_box_three_sides",
   "textures": {
     "side": "assorted-discoveries:block/birch_planter_box_side",
-    "bottom": "assorted-discoveries:block/birch_planter_box_bottom",
-    "top": "assorted-discoveries:block/birch_planter_box_top",
     "side_corner": "assorted-discoveries:block/birch_planter_box_side_corner",
-    "soil": "block/farmland_moist"
+    "top": "assorted-discoveries:block/birch_planter_box_top",
+    "bottom": "minecraft:block/birch_planks",
+    "soil": "minecraft:block/farmland_moist"
   }
 }

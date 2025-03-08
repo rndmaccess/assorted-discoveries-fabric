@@ -1,7 +1,7 @@
 {
   "parent": "assorted-discoveries:block/template_planter_box_middle",
   "textures": {
-    "bottom": "assorted-discoveries:block/spruce_planter_box_side_middle",
-    "soil": "block/farmland_moist"
+    "bottom": "minecraft:block/spruce_planks",
+    "soil": "minecraft:block/farmland_moist"
   }
 }

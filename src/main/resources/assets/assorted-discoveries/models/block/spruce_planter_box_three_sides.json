@@ -2,9 +2,9 @@
   "parent": "assorted-discoveries:block/template_planter_box_three_sides",
   "textures": {
     "side": "assorted-discoveries:block/spruce_planter_box_side",
-    "bottom": "assorted-discoveries:block/spruce_planter_box_side_middle",
-    "top": "assorted-discoveries:block/spruce_planter_box_top",
     "side_corner": "assorted-discoveries:block/spruce_planter_box_side_corner",
-    "soil": "block/farmland_moist"
+    "top": "assorted-discoveries:block/spruce_planter_box_top",
+    "bottom": "minecraft:block/spruce_planks",
+    "soil": "minecraft:block/farmland_moist"
   }
 }

@@ -1,8 +1,9 @@
 {
   "parent": "assorted-discoveries:block/template_planter_box",
   "textures": {
-    "material": "block/jungle_planks",
-    "log": "block/stripped_jungle_log",
-    "soil": "block/farmland_moist"
+    "side": "assorted-discoveries:block/jungle_planter_box_side",
+    "top": "assorted-discoveries:block/jungle_planter_box_top",
+    "bottom": "minecraft:block/jungle_planks",
+    "soil": "minecraft:block/farmland_moist"
   }
 }

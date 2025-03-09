@@ -1,8 +1,9 @@
 {
   "parent": "assorted-discoveries:block/template_planter_box_corner",
   "textures": {
-    "material": "block/warped_planks",
-    "log": "block/stripped_warped_stem",
-    "soil": "block/soul_soil"
+    "side": "assorted-discoveries:block/warped_planter_box_side_corner",
+    "top": "assorted-discoveries:block/warped_planter_box_top",
+    "bottom": "minecraft:block/warped_planks",
+    "soil": "minecraft:block/farmland_moist"
   }
 }

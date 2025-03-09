@@ -1,8 +1,10 @@
 {
   "parent": "assorted-discoveries:block/template_planter_box_three_sides",
   "textures": {
-    "material": "block/bamboo_planks",
-    "log": "block/stripped_bamboo_block",
-    "soil": "block/farmland_moist"
+    "side": "assorted-discoveries:block/bamboo_planter_box_side",
+    "side_corner": "assorted-discoveries:block/bamboo_planter_box_side",
+    "top": "assorted-discoveries:block/bamboo_planter_box_top",
+    "bottom": "minecraft:block/bamboo_planks",
+    "soil": "minecraft:block/farmland_moist"
   }
 }

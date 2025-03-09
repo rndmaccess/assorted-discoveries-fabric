@@ -1,7 +1,9 @@
 {
   "parent": "assorted-discoveries:block/template_planter_box_one_side",
   "textures": {
-    "material": "minecraft:block/mangrove_planks",
+    "side": "assorted-discoveries:block/mangrove_planter_box_side_middle",
+    "top": "assorted-discoveries:block/mangrove_planter_box_top",
+    "bottom": "minecraft:block/mangrove_planks",
     "soil": "minecraft:block/farmland_moist"
   }
 }

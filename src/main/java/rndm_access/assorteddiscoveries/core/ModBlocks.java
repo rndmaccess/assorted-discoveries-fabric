@@ -411,6 +411,10 @@ public class ModBlocks {
     public static final Block CHERRY_PLANTER_BOX
             = registerPlanterBox(CHERRY_PLANTER_BOX_KEY, Blocks.CHERRY_PLANKS.getDefaultMapColor(),
             BlockSoundGroup.CHERRY_WOOD);
+    public static final RegistryKey<Block> PALE_OAK_PLANTER_BOX_KEY = makeRegistryKey("pale_oak_planter_box");
+    public static final Block PALE_OAK_PLANTER_BOX
+            = registerPlanterBox(PALE_OAK_PLANTER_BOX_KEY, Blocks.PALE_OAK_PLANKS.getDefaultMapColor(),
+            BlockSoundGroup.WOOD);
     public static final RegistryKey<Block> CRIMSON_PLANTER_BOX_KEY = makeRegistryKey("crimson_planter_box");
     public static final Block CRIMSON_PLANTER_BOX
             = registerNetherPlanterBox(CRIMSON_PLANTER_BOX_KEY, Blocks.CRIMSON_PLANKS.getDefaultMapColor());

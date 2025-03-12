@@ -1,0 +1,9 @@
+{
+  "parent": "assorted-discoveries:block/template_planter_box",
+  "textures": {
+    "side": "assorted-discoveries:block/pale_oak_planter_box_side",
+    "top": "assorted-discoveries:block/pale_oak_planter_box_top",
+    "bottom": "minecraft:block/pale_oak_planks",
+    "soil": "minecraft:block/farmland_moist"
+  }
+}

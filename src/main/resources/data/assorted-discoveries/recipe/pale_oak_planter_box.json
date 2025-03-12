@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "overworld_planter_box",
+  "key": {
+    "#": "minecraft:pale_oak_slab",
+    "D": "minecraft:dirt"
+  },
+  "pattern": [
+    "# #",
+    "#D#",
+    "###"
+  ],
+  "result": {
+    "id": "assorted-discoveries:pale_oak_planter_box"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_wooden_planter_boxes"
+    }
+  ]
+}

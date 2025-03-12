@@ -1,14 +1,6 @@
 {
   "replace": false,
   "values": [
-    "assorted-discoveries:oak_planter_box",
-    "assorted-discoveries:spruce_planter_box",
-    "assorted-discoveries:birch_planter_box",
-    "assorted-discoveries:jungle_planter_box",
-    "assorted-discoveries:acacia_planter_box",
-    "assorted-discoveries:dark_oak_planter_box",
-    "assorted-discoveries:warped_planter_box",
-    "assorted-discoveries:crimson_planter_box",
     "assorted-discoveries:spruce_rope_ladder",
     "assorted-discoveries:birch_rope_ladder",
     "assorted-discoveries:jungle_rope_ladder",
@@ -35,6 +27,8 @@
     "assorted-discoveries:green_campfire",
     "assorted-discoveries:red_campfire",
     "assorted-discoveries:black_campfire",
+    "#assorted-discoveries:overworld_planter_boxes",
+    "#assorted-discoveries:nether_planter_boxes",
     "#c:wooden_walls"
   ]
 }

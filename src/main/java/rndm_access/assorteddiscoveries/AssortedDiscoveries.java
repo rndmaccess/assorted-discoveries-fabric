@@ -529,6 +529,7 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.DARK_OAK_ROPE_LADDER.asItem());
                 entries.add(ModBlocks.MANGROVE_ROPE_LADDER.asItem());
                 entries.add(ModBlocks.CHERRY_ROPE_LADDER.asItem());
+                entries.add(ModBlocks.PALE_OAK_ROPE_LADDER.asItem());
                 entries.add(ModBlocks.CRIMSON_ROPE_LADDER.asItem());
                 entries.add(ModBlocks.WARPED_ROPE_LADDER.asItem());
             }

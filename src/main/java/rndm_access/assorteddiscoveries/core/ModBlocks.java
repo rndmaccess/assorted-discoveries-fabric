@@ -501,6 +501,8 @@ public class ModBlocks {
     public static final Block MANGROVE_ROPE_LADDER = registerRopeLadder(MANGROVE_ROPE_LADDER_KEY);
     public static final RegistryKey<Block> CHERRY_ROPE_LADDER_KEY = makeRegistryKey("cherry_rope_ladder");
     public static final Block CHERRY_ROPE_LADDER = registerRopeLadder(CHERRY_ROPE_LADDER_KEY);
+    public static final RegistryKey<Block> PALE_OAK_ROPE_LADDER_KEY = makeRegistryKey("pale_oak_rope_ladder");
+    public static final Block PALE_OAK_ROPE_LADDER = registerRopeLadder(PALE_OAK_ROPE_LADDER_KEY);
     public static final RegistryKey<Block> IRON_LADDER_KEY = makeRegistryKey("iron_ladder");
     public static final Block IRON_LADDER = register(new LadderBlock(AbstractBlock.Settings.create()
             .mapColor(MapColor.IRON_GRAY).requiresTool().strength(5.0F).sounds(BlockSoundGroup.METAL)

@@ -29,7 +29,7 @@ public class JsonConfig {
     }
 
     public AbstractConfigEntry<?> getEntry(String entryName) {
-        Stack<ConfigCategory> stack = new Stack<>();
+        ArrayDeque<ConfigCategory> stack = new ArrayDeque<>();
 
         // Start by adding the root categories to the stack. We then will look in each category for the entry!
         for (ConfigCategory category : this.getCategories()) {

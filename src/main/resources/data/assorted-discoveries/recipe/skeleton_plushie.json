@@ -1,23 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "W": "minecraft:white_wool",
+    "G": "minecraft:gray_wool",
+    "I": "minecraft:arrow"
+  },
   "pattern": [
     "WWW",
     "GIG",
     "WWW"
   ],
-  "key": {
-    "W": {
-      "item": "minecraft:white_wool"
-    },
-    "G": {
-      "item": "minecraft:gray_wool"
-    },
-    "I": {
-      "item": "minecraft:arrow"
-    }
-  },
   "result": {
-    "item": "assorted-discoveries:skeleton_plushie"
+    "id": "assorted-discoveries:skeleton_plushie"
   },
   "fabric:load_conditions": [
     {

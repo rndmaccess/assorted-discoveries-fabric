@@ -1,24 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "assorted-discoveries:cat_plushies",
+  "key": {
+    "B": "minecraft:black_wool",
+    "G": "minecraft:green_wool",
+    "F": "#c:raw_fish"
+  },
   "pattern": [
     "BBB",
     "GFG",
     "BBB"
   ],
-  "key": {
-    "B": {
-      "item": "minecraft:black_wool"
-    },
-    "G": {
-      "item": "minecraft:green_wool"
-    },
-    "F": {
-      "tag": "c:raw_fish"
-    }
-  },
   "result": {
-    "item": "assorted-discoveries:tuxedo_cat_plushie"
+    "id": "assorted-discoveries:tuxedo_cat_plushie"
   },
   "fabric:load_conditions": [
     {

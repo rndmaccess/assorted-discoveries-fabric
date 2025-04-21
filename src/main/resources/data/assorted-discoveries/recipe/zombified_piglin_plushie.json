@@ -1,26 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "W": "minecraft:white_wool",
+    "P": "minecraft:pink_wool",
+    "B": "minecraft:black_wool",
+    "I": "minecraft:gold_ingot"
+  },
   "pattern": [
     "WWW",
     "BIB",
     "PPP"
   ],
-  "key": {
-    "W": {
-      "item": "minecraft:white_wool"
-    },
-    "P": {
-      "item": "minecraft:pink_wool"
-    },
-    "B": {
-      "item": "minecraft:black_wool"
-    },
-    "I": {
-      "item": "minecraft:gold_ingot"
-    }
-  },
   "result": {
-    "item": "assorted-discoveries:zombified_piglin_plushie"
+    "id": "assorted-discoveries:zombified_piglin_plushie"
   },
   "fabric:load_conditions": [
     {

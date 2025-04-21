@@ -1,15 +1,14 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": "minecraft:rooted_dirt"
+  },
   "pattern": [
     "###"
   ],
-  "key": {
-    "#": {
-      "item": "minecraft:rooted_dirt"
-    }
-  },
   "result": {
-    "item": "assorted-discoveries:rooted_dirt_slab",
+    "id": "assorted-discoveries:rooted_dirt_slab",
     "count": 6
   },
   "fabric:load_conditions": [

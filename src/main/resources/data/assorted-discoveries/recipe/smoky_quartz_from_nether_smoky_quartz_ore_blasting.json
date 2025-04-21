@@ -1,11 +1,12 @@
 {
   "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "assorted-discoveries:nether_smoky_quartz_ore"
-  },
-  "result": "assorted-discoveries:smoky_quartz",
-  "experience": 0.2,
+  "category": "misc",
   "cookingtime": 100,
+  "experience": 0.2,
+  "ingredient": "assorted-discoveries:nether_smoky_quartz_ore",
+  "result": {
+    "id": "assorted-discoveries:smoky_quartz"
+  },
   "fabric:load_conditions": [
     {
       "condition": "assorted-discoveries:config_entry_enabled",

@@ -1,17 +1,14 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": "assorted-discoveries:weeping_blackstone_tiles"
+  },
   "pattern": [
     "###"
   ],
-  "key": {
-    "#": [
-      {
-        "item": "assorted-discoveries:weeping_blackstone_tiles"
-      }
-    ]
-  },
   "result": {
-    "item": "assorted-discoveries:weeping_blackstone_tile_slab",
+    "id": "assorted-discoveries:weeping_blackstone_tile_slab",
     "count": 6
   },
   "fabric:load_conditions": [

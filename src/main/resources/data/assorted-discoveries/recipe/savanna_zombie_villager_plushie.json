@@ -1,27 +1,20 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "assorted-discoveries:zombie_villager_plushies",
+  "category": "misc",
+  "key": {
+    "H": "minecraft:green_wool",
+    "C": "minecraft:red_wool",
+    "R": "minecraft:rotten_flesh",
+    "I": "minecraft:acacia_sapling"
+  },
   "pattern": [
     "HHH",
     "HRH",
     "CIC"
   ],
-  "key": {
-    "H": {
-      "item": "minecraft:green_wool"
-    },
-    "C": {
-      "item": "minecraft:red_wool"
-    },
-    "R": {
-      "item": "minecraft:rotten_flesh"
-    },
-    "I": {
-      "item": "minecraft:acacia_sapling"
-    }
-  },
   "result": {
-    "item": "assorted-discoveries:savanna_zombie_villager_plushie"
+    "id": "assorted-discoveries:savanna_zombie_villager_plushie"
   },
   "fabric:load_conditions": [
     {

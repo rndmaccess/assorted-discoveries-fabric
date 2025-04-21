@@ -2,15 +2,11 @@
   "type": "minecraft:crafting_shapeless",
   "group": "colored_lantern",
   "ingredients": [
-    {
-      "item": "minecraft:white_dye"
-    },
-    {
-      "item": "minecraft:lantern"
-    }
+    "minecraft:white_dye",
+    "minecraft:lantern"
   ],
   "result": {
-    "item": "assorted-discoveries:white_lantern"
+    "id": "assorted-discoveries:white_lantern"
   },
   "fabric:load_conditions": [
     {

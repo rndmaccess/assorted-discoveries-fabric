@@ -1,15 +1,12 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "category": "building",
   "ingredients": [
-    {
-      "tag": "c:crimson_vegetation"
-    },
-    {
-      "item": "minecraft:blackstone"
-    }
+    "#c:crimson_vegetation",
+    "minecraft:blackstone"
   ],
   "result": {
-    "item": "assorted-discoveries:weeping_blackstone"
+    "id": "assorted-discoveries:weeping_blackstone"
   },
   "fabric:load_conditions": [
     {

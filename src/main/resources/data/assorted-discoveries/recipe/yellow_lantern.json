@@ -2,15 +2,11 @@
   "type": "minecraft:crafting_shapeless",
   "group": "colored_lantern",
   "ingredients": [
-    {
-      "item": "minecraft:yellow_dye"
-    },
-    {
-      "item": "minecraft:lantern"
-    }
+    "minecraft:yellow_dye",
+    "minecraft:lantern"
   ],
   "result": {
-    "item": "assorted-discoveries:yellow_lantern"
+    "id": "assorted-discoveries:yellow_lantern"
   },
   "fabric:load_conditions": [
     {

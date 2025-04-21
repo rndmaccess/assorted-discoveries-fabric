@@ -5,12 +5,10 @@
     "###"
   ],
   "key": {
-    "#": {
-      "item": "minecraft:stone"
-    }
+    "#": "minecraft:stone"
   },
   "result": {
-    "item": "assorted-discoveries:stone_wall",
+    "id": "assorted-discoveries:stone_wall",
     "count": 6
   },
   "fabric:load_conditions": [

@@ -2,15 +2,11 @@
   "type": "minecraft:crafting_shapeless",
   "group": "colored_campfire",
   "ingredients": [
-    {
-      "item": "minecraft:white_dye"
-    },
-    {
-      "item": "minecraft:campfire"
-    }
+    "minecraft:white_dye",
+    "minecraft:campfire"
   ],
   "result": {
-    "item": "assorted-discoveries:white_campfire"
+    "id": "assorted-discoveries:white_campfire"
   },
   "fabric:load_conditions": [
     {

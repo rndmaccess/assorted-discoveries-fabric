@@ -1,27 +1,19 @@
 {
   "type": "crafting_shaped",
   "group": "assorted-discoveries:zombie_villager_plushies",
+  "key": {
+    "H": "minecraft:green_wool",
+    "C": "minecraft:purple_wool",
+    "R": "minecraft:rotten_flesh",
+    "I": "minecraft:lily_pad"
+  },
   "pattern": [
     "HHH",
     "HRH",
     "CIC"
   ],
-  "key": {
-    "H": {
-      "item": "minecraft:green_wool"
-    },
-    "C": {
-      "item": "minecraft:purple_wool"
-    },
-    "R": {
-      "item": "minecraft:rotten_flesh"
-    },
-    "I": {
-      "item": "minecraft:lily_pad"
-    }
-  },
   "result": {
-    "item": "assorted-discoveries:swamp_zombie_villager_plushie"
+    "id": "assorted-discoveries:swamp_zombie_villager_plushie"
   },
   "fabric:load_conditions": [
     {

@@ -1,15 +1,11 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    {
-      "tag": "c:warped_vegetation"
-    },
-    {
-      "item": "minecraft:blackstone"
-    }
+    "#c:warped_vegetation",
+    "minecraft:blackstone"
   ],
   "result": {
-    "item": "assorted-discoveries:twisted_blackstone"
+    "id": "assorted-discoveries:twisted_blackstone"
   },
   "fabric:load_conditions": [
     {

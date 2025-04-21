@@ -1,15 +1,12 @@
 {
-  "type": "crafting_shaped",
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": "assorted-discoveries:weeping_netherrack"
+  },
   "pattern": [
     "###"
   ],
-  "key": {
-    "#": [
-      {
-        "item": "assorted-discoveries:weeping_netherrack"
-      }
-    ]
-  },
   "result": {
     "item": "assorted-discoveries:weeping_netherrack_slab",
     "count": 6

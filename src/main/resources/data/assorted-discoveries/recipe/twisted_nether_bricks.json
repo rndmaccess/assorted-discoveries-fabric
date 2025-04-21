@@ -1,15 +1,11 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    {
-      "item": "minecraft:nether_bricks"
-    },
-    {
-      "tag": "c:warped_vegetation"
-    }
+    "minecraft:nether_bricks",
+    "#c:warped_vegetation"
   ],
   "result": {
-    "item": "assorted-discoveries:twisted_nether_bricks"
+    "id": "assorted-discoveries:twisted_nether_bricks"
   },
   "fabric:load_conditions": [
     {

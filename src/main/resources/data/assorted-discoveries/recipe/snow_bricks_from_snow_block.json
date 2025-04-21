@@ -1,16 +1,14 @@
 {
   "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": "minecraft:snow_block"
+  },
   "pattern": [
     "##",
     "##"
   ],
-  "key": {
-    "#": {
-      "item": "minecraft:snow_block"
-    }
-  },
   "result": {
-    "item": "assorted-discoveries:snow_bricks",
+    "id": "assorted-discoveries:snow_bricks",
     "count": 4
   },
   "fabric:load_conditions": [

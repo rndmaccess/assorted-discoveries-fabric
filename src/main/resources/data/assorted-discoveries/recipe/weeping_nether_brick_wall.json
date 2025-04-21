@@ -1,14 +1,13 @@
 {
-  "type": "crafting_shaped",
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": "assorted-discoveries:weeping_nether_bricks"
+  },
   "pattern": [
     "###",
     "###"
   ],
-  "key": {
-    "#": {
-      "item": "assorted-discoveries:weeping_nether_bricks"
-    }
-  },
   "result": {
     "item": "assorted-discoveries:weeping_nether_brick_wall",
     "count": 6

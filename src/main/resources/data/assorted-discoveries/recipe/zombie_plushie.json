@@ -6,18 +6,12 @@
     "GGG"
   ],
   "key": {
-    "G": {
-      "item": "minecraft:green_wool"
-    },
-    "B": {
-      "item": "minecraft:black_wool"
-    },
-    "R": {
-      "item": "minecraft:rotten_flesh"
-    }
+    "G": "minecraft:green_wool",
+    "B": "minecraft:black_wool",
+    "R": "minecraft:rotten_flesh"
   },
   "result": {
-    "item": "assorted-discoveries:zombie_plushie"
+    "id": "assorted-discoveries:zombie_plushie"
   },
   "fabric:load_conditions": [
     {

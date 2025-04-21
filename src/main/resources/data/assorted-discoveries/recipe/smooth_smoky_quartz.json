@@ -1,11 +1,12 @@
 {
   "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "assorted-discoveries:smoky_quartz_block"
-  },
-  "result": "assorted-discoveries:smooth_smoky_quartz",
-  "experience": 0.1,
+  "category": "blocks",
   "cookingtime": 200,
+  "experience": 0.1,
+  "ingredient": "assorted-discoveries:smoky_quartz_block",
+  "result": {
+    "id": "assorted-discoveries:smooth_smoky_quartz"
+  },
   "fabric:load_conditions": [
     {
       "condition": "fabric:and",

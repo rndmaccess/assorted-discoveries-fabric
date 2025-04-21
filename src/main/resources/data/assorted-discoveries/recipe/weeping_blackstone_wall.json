@@ -1,16 +1,15 @@
 {
   "type": "crafting_shaped",
+  "category": "building",
   "pattern": [
     "###",
     "###"
   ],
   "key": {
-    "#": {
-      "item": "assorted-discoveries:weeping_blackstone"
-    }
+    "#": "assorted-discoveries:weeping_blackstone"
   },
   "result": {
-    "item": "assorted-discoveries:weeping_blackstone_wall",
+    "id": "assorted-discoveries:weeping_blackstone_wall",
     "count": 6
   },
   "fabric:load_conditions": [

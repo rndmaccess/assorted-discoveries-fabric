@@ -1,23 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": "minecraft:gray_wool",
+    "g": "minecraft:green_wool",
+    "I": "minecraft:leather"
+  },
   "pattern": [
     "GIG",
     "gIg",
     "GGG"
   ],
-  "key": {
-    "G": {
-      "item": "minecraft:gray_wool"
-    },
-    "g": {
-      "item": "minecraft:green_wool"
-    },
-    "I": {
-      "item": "minecraft:leather"
-    }
-  },
   "result": {
-    "item": "assorted-discoveries:ravager_plushie"
+    "id": "assorted-discoveries:ravager_plushie"
   },
   "fabric:load_conditions": [
     {

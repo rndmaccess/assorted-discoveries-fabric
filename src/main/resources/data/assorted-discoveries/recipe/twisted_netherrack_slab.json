@@ -1,17 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": "assorted-discoveries:twisted_netherrack"
+  },
   "pattern": [
     "###"
   ],
-  "key": {
-    "#": [
-      {
-        "item": "assorted-discoveries:twisted_netherrack"
-      }
-    ]
-  },
   "result": {
-    "item": "assorted-discoveries:twisted_netherrack_slab",
+    "id": "assorted-discoveries:twisted_netherrack_slab",
     "count": 6
   },
   "fabric:load_conditions": [

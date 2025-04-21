@@ -1,16 +1,14 @@
 {
   "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": "assorted-discoveries:smoky_quartz"
+  },
   "pattern": [
     "##",
     "##"
   ],
-  "key": {
-    "#": {
-      "item": "assorted-discoveries:smoky_quartz"
-    }
-  },
   "result": {
-    "item": "assorted-discoveries:smoky_quartz_block"
+    "id": "assorted-discoveries:smoky_quartz_block"
   },
   "fabric:load_conditions": [
     {

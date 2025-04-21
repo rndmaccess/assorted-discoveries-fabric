@@ -1,16 +1,15 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": "assorted-discoveries:twisted_polished_blackstone_bricks"
+  },
   "pattern": [
     "###",
     "###"
   ],
-  "key": {
-    "#": {
-      "item": "assorted-discoveries:twisted_polished_blackstone_bricks"
-    }
-  },
   "result": {
-    "item": "assorted-discoveries:twisted_polished_blackstone_brick_wall",
+    "id": "assorted-discoveries:twisted_polished_blackstone_brick_wall",
     "count": 6
   },
   "fabric:load_conditions": [

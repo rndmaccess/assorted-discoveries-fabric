@@ -1,16 +1,13 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "colored_lantern",
+  "group": "dyed_lantern",
+  "category": "misc",
   "ingredients": [
-    {
-      "item": "minecraft:red_dye"
-    },
-    {
-      "item": "minecraft:lantern"
-    }
+    "minecraft:red_dye",
+    "minecraft:lantern"
   ],
   "result": {
-    "item": "assorted-discoveries:red_lantern"
+    "id": "assorted-discoveries:red_lantern"
   },
   "fabric:load_conditions": [
     {

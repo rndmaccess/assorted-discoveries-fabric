@@ -1,17 +1,14 @@
 {
   "type": "crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": "assorted-discoveries:weeping_polished_blackstone_bricks"
+  },
   "pattern": [
     "###"
   ],
-  "key": {
-    "#": [
-      {
-        "item": "assorted-discoveries:weeping_polished_blackstone_bricks"
-      }
-    ]
-  },
   "result": {
-    "item": "assorted-discoveries:weeping_polished_blackstone_brick_slab",
+    "id": "assorted-discoveries:weeping_polished_blackstone_brick_slab",
     "count": 6
   },
   "fabric:load_conditions": [

@@ -1,23 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": "minecraft:purple_wool",
+    "B": "minecraft:black_wool",
+    "W": "minecraft:water_bucket"
+  },
   "pattern": [
     "PPP",
     "BWB",
     "PPP"
   ],
-  "key": {
-    "P": {
-      "item": "minecraft:purple_wool"
-    },
-    "B": {
-      "item": "minecraft:black_wool"
-    },
-    "W": {
-      "item": "minecraft:water_bucket"
-    }
-  },
   "result": {
-    "item": "assorted-discoveries:shivering_strider_plushie"
+    "id": "assorted-discoveries:shivering_strider_plushie"
   },
   "fabric:load_conditions": [
     {

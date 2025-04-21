@@ -1,23 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": "minecraft:purple_wool",
+    "B": "minecraft:black_wool",
+    "I": "minecraft:shulker_shell"
+  },
   "pattern": [
     "PPP",
     "BIB",
     "PPP"
   ],
-  "key": {
-    "P": {
-      "item": "minecraft:purple_wool"
-    },
-    "B": {
-      "item": "minecraft:black_wool"
-    },
-    "I": {
-      "item": "minecraft:shulker_shell"
-    }
-  },
   "result": {
-    "item": "assorted-discoveries:shulker_plushie"
+    "id": "assorted-discoveries:shulker_plushie"
   },
   "fabric:load_conditions": [
     {

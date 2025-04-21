@@ -1,27 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "assorted-discoveries:illager_plushies",
+  "key": {
+    "H": "minecraft:cyan_terracotta",
+    "G": "minecraft:gray_wool",
+    "B": "minecraft:black_wool",
+    "E": "minecraft:emerald"
+  },
   "pattern": [
     "HHH",
     "BEB",
     "GGG"
   ],
-  "key": {
-    "H": {
-      "item": "minecraft:cyan_terracotta"
-    },
-    "G": {
-      "item": "minecraft:gray_wool"
-    },
-    "B": {
-      "item": "minecraft:black_wool"
-    },
-    "E": {
-      "item": "minecraft:emerald"
-    }
-  },
   "result": {
-    "item": "assorted-discoveries:vindicator_plushie"
+    "id": "assorted-discoveries:vindicator_plushie"
   },
   "fabric:load_conditions": [
     {

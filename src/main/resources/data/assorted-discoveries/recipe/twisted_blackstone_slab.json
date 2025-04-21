@@ -1,17 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": "assorted-discoveries:twisted_blackstone"
+  },
   "pattern": [
     "###"
   ],
-  "key": {
-    "#": [
-      {
-        "item": "assorted-discoveries:twisted_blackstone"
-      }
-    ]
-  },
   "result": {
-    "item": "assorted-discoveries:twisted_blackstone_slab",
+    "id": "assorted-discoveries:twisted_blackstone_slab",
     "count": 6
   },
   "fabric:load_conditions": [

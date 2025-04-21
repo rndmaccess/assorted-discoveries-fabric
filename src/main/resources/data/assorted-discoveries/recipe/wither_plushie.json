@@ -6,18 +6,12 @@
     "BBB"
   ],
   "key": {
-    "B": {
-      "item": "minecraft:black_wool"
-    },
-    "W": {
-      "item": "minecraft:white_wool"
-    },
-    "S": {
-      "item": "minecraft:wither_skeleton_skull"
-    }
+    "B": "minecraft:black_wool",
+    "W": "minecraft:white_wool",
+    "S": "minecraft:wither_skeleton_skull"
   },
   "result": {
-    "item": "assorted-discoveries:wither_plushie"
+    "id": "assorted-discoveries:wither_plushie"
   },
   "fabric:load_conditions": [
     {

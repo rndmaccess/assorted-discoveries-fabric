@@ -1,29 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": "minecraft:black_wool",
+    "W": "minecraft:white_terracotta",
+    "O": "minecraft:orange_terracotta",
+    "P": "minecraft:purple_wool",
+    "G": "minecraft:glass_bottle"
+  },
   "pattern": [
     "BBB",
     "WOW",
     "PGP"
   ],
-  "key": {
-    "B": {
-      "item": "minecraft:black_wool"
-    },
-    "W": {
-      "item": "minecraft:white_terracotta"
-    },
-    "O": {
-      "item": "minecraft:orange_terracotta"
-    },
-    "P": {
-      "item": "minecraft:purple_wool"
-    },
-    "G": {
-      "item": "minecraft:glass_bottle"
-    }
-  },
   "result": {
-    "item": "assorted-discoveries:witch_plushie"
+    "id": "assorted-discoveries:witch_plushie"
   },
   "fabric:load_conditions": [
     {

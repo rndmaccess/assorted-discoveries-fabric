@@ -1,29 +1,20 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": "minecraft:milk_bucket",
+    "B": "minecraft:sugar",
+    "C": "minecraft:cocoa_beans",
+    "E": "#minecraft:eggs",
+    "D": "minecraft:red_dye"
+  },
   "pattern": [
     "AAA",
     "BEB",
     "CDC"
   ],
-  "key": {
-    "A": {
-      "item": "minecraft:milk_bucket"
-    },
-    "B": {
-      "item": "minecraft:sugar"
-    },
-    "C": {
-      "item": "minecraft:cocoa_beans"
-    },
-    "E": {
-      "item": "minecraft:egg"
-    },
-    "D": {
-      "item": "minecraft:red_dye"
-    }
-  },
   "result": {
-    "item": "assorted-discoveries:red_velvet_cake"
+    "id": "assorted-discoveries:red_velvet_cake"
   },
   "fabric:load_conditions": [
     {

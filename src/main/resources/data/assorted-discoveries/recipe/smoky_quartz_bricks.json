@@ -1,14 +1,12 @@
 {
   "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": "assorted-discoveries:smoky_quartz_block"
+  },
   "pattern": [
     "##",
     "##"
   ],
-  "key": {
-    "#": {
-      "item": "assorted-discoveries:smoky_quartz_block"
-    }
-  },
   "result": {
     "item": "assorted-discoveries:smoky_quartz_bricks",
     "count": 4

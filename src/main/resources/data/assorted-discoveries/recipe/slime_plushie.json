@@ -1,23 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "L": "minecraft:lime_wool",
+    "G": "minecraft:green_wool",
+    "S": "minecraft:slime_ball"
+  },
   "pattern": [
     "LLL",
     "GSG",
     "LLL"
   ],
-  "key": {
-    "L": {
-      "item": "minecraft:lime_wool"
-    },
-    "G": {
-      "item": "minecraft:green_wool"
-    },
-    "S": {
-      "item": "minecraft:slime_ball"
-    }
-  },
   "result": {
-    "item": "assorted-discoveries:slime_plushie"
+    "id": "assorted-discoveries:slime_plushie"
   },
   "fabric:load_conditions": [
     {

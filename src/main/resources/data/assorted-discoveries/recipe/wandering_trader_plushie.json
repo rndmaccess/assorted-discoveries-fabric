@@ -1,27 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "assorted-discoveries:villager_plushies",
+  "key": {
+    "H": "minecraft:terracotta",
+    "C": "minecraft:blue_wool",
+    "E": "minecraft:emerald",
+    "I": "minecraft:lead"
+  },
   "pattern": [
     "HHH",
     "HEH",
     "CIC"
   ],
-  "key": {
-    "H": {
-      "item": "minecraft:terracotta"
-    },
-    "C": {
-      "item": "minecraft:blue_wool"
-    },
-    "E": {
-      "item": "minecraft:emerald"
-    },
-    "I": {
-      "item": "minecraft:lead"
-    }
-  },
   "result": {
-    "item": "assorted-discoveries:wandering_trader_plushie"
+    "id": "assorted-discoveries:wandering_trader_plushie"
   },
   "fabric:load_conditions": [
     {

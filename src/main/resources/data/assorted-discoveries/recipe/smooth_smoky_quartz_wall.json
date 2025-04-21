@@ -1,17 +1,15 @@
 {
   "type": "crafting_shaped",
   "group": "smoky_quartz_wall",
+  "key": {
+    "#": "assorted-discoveries:smooth_smoky_quartz"
+  },
   "pattern": [
     "###",
     "###"
   ],
-  "key": {
-    "#": {
-      "item": "assorted-discoveries:smooth_smoky_quartz"
-    }
-  },
   "result": {
-    "item": "assorted-discoveries:smooth_smoky_quartz_wall",
+    "id": "assorted-discoveries:smooth_smoky_quartz_wall",
     "count": 6
   },
   "fabric:load_conditions": [

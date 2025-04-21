@@ -1,15 +1,13 @@
 {
   "type": "crafting_shaped",
   "group": "smoky_quartz_wall",
+  "key": {
+    "#": "assorted-discoveries:smoky_quartz_block"
+  },
   "pattern": [
     "###",
     "###"
   ],
-  "key": {
-    "#": {
-      "item": "assorted-discoveries:smoky_quartz_block"
-    }
-  },
   "result": {
     "item": "assorted-discoveries:smoky_quartz_wall",
     "count": 6

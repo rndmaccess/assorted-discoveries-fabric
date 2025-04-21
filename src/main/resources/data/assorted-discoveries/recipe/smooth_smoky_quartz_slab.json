@@ -1,15 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": "assorted-discoveries:smooth_smoky_quartz"
+  },
   "pattern": [
     "###"
   ],
-  "key": {
-    "#": {
-      "item": "assorted-discoveries:smooth_smoky_quartz"
-    }
-  },
   "result": {
-    "item": "assorted-discoveries:smooth_smoky_quartz_slab",
+    "id": "assorted-discoveries:smooth_smoky_quartz_slab",
     "count": 6
   },
   "fabric:load_conditions": [

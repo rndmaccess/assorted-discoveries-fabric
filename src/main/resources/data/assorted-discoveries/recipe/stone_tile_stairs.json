@@ -1,17 +1,15 @@
 {
   "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": "assorted-discoveries:stone_tiles"
+  },
   "pattern": [
     "#  ",
     "## ",
     "###"
   ],
-  "key": {
-    "#": {
-      "item": "assorted-discoveries:stone_tiles"
-    }
-  },
   "result": {
-    "item": "assorted-discoveries:stone_tile_stairs",
+    "id": "assorted-discoveries:stone_tile_stairs",
     "count": 4
   },
   "fabric:load_conditions": [

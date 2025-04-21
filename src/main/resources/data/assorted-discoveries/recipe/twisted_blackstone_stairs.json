@@ -6,12 +6,10 @@
     "###"
   ],
   "key": {
-    "#": {
-      "item": "assorted-discoveries:twisted_blackstone"
-    }
+    "#": "assorted-discoveries:twisted_blackstone"
   },
   "result": {
-    "item": "assorted-discoveries:twisted_blackstone_stairs",
+    "id": "assorted-discoveries:twisted_blackstone_stairs",
     "count": 4
   },
   "fabric:load_conditions": [

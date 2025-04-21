@@ -6,15 +6,11 @@
     " C "
   ],
   "key": {
-    "C": {
-      "item": "minecraft:sweet_berries"
-    },
-    "G": {
-      "item": "minecraft:glass_bottle"
-    }
+    "C": "minecraft:sweet_berries",
+    "G": "minecraft:glass_bottle"
   },
   "result": {
-    "item": "assorted-discoveries:sweet_berry_juice"
+    "id": "assorted-discoveries:sweet_berry_juice"
   },
   "fabric:load_conditions": [
     {

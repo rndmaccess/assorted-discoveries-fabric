@@ -4,11 +4,7 @@
     "###"
   ],
   "key": {
-    "#": [
-      {
-        "item": "assorted-discoveries:twisted_blackstone_tiles"
-      }
-    ]
+    "#": "assorted-discoveries:twisted_blackstone_tiles"
   },
   "result": {
     "item": "assorted-discoveries:twisted_blackstone_tile_slab",

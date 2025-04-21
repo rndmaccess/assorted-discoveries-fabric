@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "group": "colored_campfire",
   "ingredients": [
-    {
-      "item": "minecraft:yellow_dye"
-    },
-    {
-      "item": "minecraft:campfire"
-    }
+    "minecraft:yellow_dye",
+    "minecraft:campfire"
   ],
   "result": {
     "item": "assorted-discoveries:yellow_campfire"

@@ -7,18 +7,12 @@
     "WWW"
   ],
   "key": {
-    "W": {
-      "item": "minecraft:white_wool"
-    },
-    "B": {
-      "item": "minecraft:black_wool"
-    },
-    "I": {
-      "item": "minecraft:leather"
-    }
+    "W": "minecraft:white_wool",
+    "B": "minecraft:black_wool",
+    "I": "minecraft:leather"
   },
   "result": {
-    "item": "assorted-discoveries:white_horse_plushie"
+    "id": "assorted-discoveries:white_horse_plushie"
   },
   "fabric:load_conditions": [
     {

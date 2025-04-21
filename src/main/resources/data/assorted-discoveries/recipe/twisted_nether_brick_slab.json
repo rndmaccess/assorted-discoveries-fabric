@@ -1,17 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": "assorted-discoveries:twisted_nether_bricks"
+  },
   "pattern": [
     "###"
   ],
-  "key": {
-    "#": [
-      {
-        "item": "assorted-discoveries:twisted_nether_bricks"
-      }
-    ]
-  },
   "result": {
-    "item": "assorted-discoveries:twisted_nether_brick_slab",
+    "id": "assorted-discoveries:twisted_nether_brick_slab",
     "count": 6
   },
   "fabric:load_conditions": [

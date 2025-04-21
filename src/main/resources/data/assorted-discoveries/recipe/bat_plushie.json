@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "building",
+  "category": "misc",
   "key": {
     "G": "minecraft:light_gray_wool",
     "B": "minecraft:black_wool",

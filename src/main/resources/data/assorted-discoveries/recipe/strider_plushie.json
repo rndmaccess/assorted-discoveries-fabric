@@ -1,23 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
+  "key": {
+    "R": "minecraft:red_wool",
+    "B": "minecraft:black_wool",
+    "L": "minecraft:lava_bucket"
+  },
   "pattern": [
     "RRR",
     "BLB",
     "RRR"
   ],
-  "key": {
-    "R": {
-      "item": "minecraft:red_wool"
-    },
-    "B": {
-      "item": "minecraft:black_wool"
-    },
-    "L": {
-      "item": "minecraft:lava_bucket"
-    }
-  },
   "result": {
-    "item": "assorted-discoveries:strider_plushie"
+    "id": "assorted-discoveries:strider_plushie"
   },
   "fabric:load_conditions": [
     {

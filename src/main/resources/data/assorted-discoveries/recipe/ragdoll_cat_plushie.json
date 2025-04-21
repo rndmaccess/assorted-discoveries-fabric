@@ -7,21 +7,13 @@
     "WWW"
   ],
   "key": {
-    "W": {
-      "item": "minecraft:white_wool"
-    },
-    "G": {
-      "item": "minecraft:light_gray_wool"
-    },
-    "B": {
-      "item": "minecraft:blue_wool"
-    },
-    "F": {
-      "tag": "c:raw_fish"
-    }
+    "W": "minecraft:white_wool",
+    "G": "minecraft:light_gray_wool",
+    "B": "minecraft:blue_wool",
+    "F": "#c:raw_fish"
   },
   "result": {
-    "item": "assorted-discoveries:ragdoll_cat_plushie"
+    "id": "assorted-discoveries:ragdoll_cat_plushie"
   },
   "fabric:load_conditions": [
     {

@@ -1,17 +1,15 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "stripped_wooden_wall",
+  "key": {
+    "#": "#c:stripped_warped_stems"
+  },
   "pattern": [
     "###",
     "###"
   ],
-  "key": {
-    "#": {
-      "tag": "c:stripped_warped_stems"
-    }
-  },
   "result": {
-    "item": "assorted-discoveries:stripped_warped_wall",
+    "id": "assorted-discoveries:stripped_warped_wall",
     "count": 6
   },
   "fabric:load_conditions": [

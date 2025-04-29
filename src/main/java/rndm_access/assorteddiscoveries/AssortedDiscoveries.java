@@ -8,6 +8,7 @@ import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
+import net.fabricmc.fabric.api.registry.VillagerInteractionRegistries;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
@@ -63,11 +64,17 @@ public class AssortedDiscoveries implements ModInitializer {
 		AssortedDiscoveries.registerFuel();
 		AssortedDiscoveries.registerCompostables();
 		AssortedDiscoveries.modifyLootTables(config);
+        AssortedDiscoveries.registerVillagerInteractions();
 
 		// World Generation Registries
 		ModFeatures.register();
 		AssortedDiscoveries.addFeaturesToBiomes(config);
 	}
+
+    private static void registerVillagerInteractions() {
+        VillagerInteractionRegistries.registerCompostable(ModItems.GREEN_ONION);
+        VillagerInteractionRegistries.registerFood(ModItems.GREEN_ONION, 1);
+    }
 
 	private static void addFeaturesToBiomes(JsonConfig config) {
         BooleanConfigEntry configEntry;

@@ -24,6 +24,10 @@ public class JsonDeserializer {
         this.configPath = configPath;
     }
 
+    /**
+     * Deserialize from the passed in config file and merge it
+     * with the passed in config (This is often the default config)!
+     */
     public void parse() {
         if(tokenList.isEmpty()) {
             AssortedDiscoveries.LOGGER.error("Could not load the config file because it was empty!");

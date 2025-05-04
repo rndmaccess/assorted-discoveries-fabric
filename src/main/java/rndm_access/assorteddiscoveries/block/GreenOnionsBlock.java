@@ -20,7 +20,7 @@ public class GreenOnionsBlock extends BeetrootsBlock {
     }
 
     @Override
-    protected ItemConvertible getSeedsItem() { return ModItems.GREEN_ONION; }
+    protected ItemConvertible getSeedsItem() { return ModItems.GREEN_ONION_SEEDS; }
 
     static {
         ONION_SHAPE_BY_AGE = new VoxelShape[] {

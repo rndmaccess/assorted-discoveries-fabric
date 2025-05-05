@@ -15,4 +15,9 @@ public class DyedCampfireBlockEntity extends CampfireBlockEntity {
     public BlockEntityType<?> getType() {
         return ModBlockEntityTypes.DYED_CAMPFIRE;
     }
+
+    @Override
+    public boolean supports(BlockState state) {
+        return ModBlockEntityTypes.DYED_CAMPFIRE.supports(state);
+    }
 }

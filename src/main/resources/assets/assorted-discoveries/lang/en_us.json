@@ -402,6 +402,7 @@
   "item.assorted-discoveries.quartz_brick_stairs": "Quartz Brick Stairs",
   "item.assorted-discoveries.quartz_brick_slab": "Quartz Brick Slab",
   "item.assorted-discoveries.quartz_brick_wall": "Quartz Brick Wall",
+  "item.assorted-discoveries.sniffer_plushie": "Sniffer Plushie",
 
   "block.assorted-discoveries.blood_kelp": "Blood Kelp",
 
@@ -516,6 +517,7 @@
   "text.cloth-config.assorted-discoveries.option.passive_plushies.enable_squid_plushies": "Enable Squid Plushies",
   "text.cloth-config.assorted-discoveries.option.passive_plushies.enable_strider_plushies": "Enable Strider Plushies",
   "text.cloth-config.assorted-discoveries.option.passive_plushies.enable_villager_plushies": "Enable Villager Plushies",
+  "text.cloth-config.assorted-discoveries.option.passive_plushies.enable_sniffer_plushie": "Enable Sniffer Plushie",
 
   "category.cloth-config.assorted-discoveries.option.neutral_plushies": "Neutral Plushies",
   "text.cloth-config.assorted-discoveries.option.neutral_plushies.enable_bee_plushie": "Enable Bee Plushie",

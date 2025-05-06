@@ -110,6 +110,7 @@ public class ModConfigKeys {
     public static final String ENABLE_SNOW_BRICKS;
     public static final String ENABLE_PACKED_SNOW;
     public static final String ENABLE_DIRT_SLABS;
+    public static final String ENABLE_SNIFFER_PLUSHIE;
 
     static {
         ENABLE_DYED_CAMPFIRES = "enable_dyed_campfires";
@@ -221,5 +222,6 @@ public class ModConfigKeys {
         ENABLE_SNOW_BRICKS = "enable_snow_bricks";
         ENABLE_PACKED_SNOW = "enable_packed_snow";
         ENABLE_DIRT_SLABS = "enable_dirt_slabs";
+        ENABLE_SNIFFER_PLUSHIE = "enable_sniffer_plushie";
     }
 }

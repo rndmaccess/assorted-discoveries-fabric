@@ -172,6 +172,7 @@ public record ConfigEntryEnabledResourceCondition(String configKey) implements R
         configEntries.add(ModConfigKeys.ENABLE_QUARTZ_WALLS);
         configEntries.add(ModConfigKeys.ENABLE_CRACKED_STONE_BRICK_BLOCKS);
         configEntries.add(ModConfigKeys.ENABLE_DIRT_SLABS);
+        configEntries.add(ModConfigKeys.ENABLE_SNIFFER_PLUSHIE);
         return configEntries;
     }
 

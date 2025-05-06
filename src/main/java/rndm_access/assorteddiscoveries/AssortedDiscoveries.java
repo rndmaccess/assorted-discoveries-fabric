@@ -481,6 +481,11 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.CREAKING_PLUSHIE.asItem());
             }
 
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_SNIFFER_PLUSHIE);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.SNIFFER_PLUSHIE.asItem());
+            }
+
             configEntry = (BooleanConfigEntry) config
                     .getEntry(ModConfigKeys.ENABLE_WOODEN_PLANTER_BOXES);
             if (configEntry.getValue()) {

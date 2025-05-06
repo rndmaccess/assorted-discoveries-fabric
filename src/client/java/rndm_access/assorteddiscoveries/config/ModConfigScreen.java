@@ -186,6 +186,8 @@ public class ModConfigScreen {
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_VILLAGER_PLUSHIES, categoryName);
         category.addEntry(configEntry);
+        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_SNIFFER_PLUSHIE, categoryName);
+        category.addEntry(configEntry);
 
         categoryName = "neutral_plushies";
         category = makeCategory(configBuilder, categoryName);

@@ -1396,6 +1396,10 @@ public class ModBlocks {
     public static final RegistryKey<Block> QUARTZ_BRICK_WALL_KEY = makeRegistryKey("quartz_brick_wall");
     public static final Block QUARTZ_BRICK_WALL = registerWall(QUARTZ_BRICK_WALL_KEY,
             AbstractBlock.Settings.copy(Blocks.QUARTZ_BRICKS).registryKey(QUARTZ_BRICK_WALL_KEY));
+    public static final RegistryKey<Block> SNIFFER_PLUSHIE_KEY = makeRegistryKey("sniffer_plushie");
+    public static final Block SNIFFER_PLUSHIE
+            = register(new SnifferPlushieBlock(makePlushieSettings(SNIFFER_PLUSHIE_KEY)),
+            SNIFFER_PLUSHIE_KEY, true);
 
     private static RegistryKey<Block> makeRegistryKey(String name) {
         return RegistryKey.of(RegistryKeys.BLOCK, ADReference.makeModId(name));

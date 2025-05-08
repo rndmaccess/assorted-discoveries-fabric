@@ -498,9 +498,9 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.MANGROVE_PLANTER_BOX.asItem());
                 entries.add(ModBlocks.CHERRY_PLANTER_BOX.asItem());
                 entries.add(ModBlocks.BAMBOO_PLANTER_BOX.asItem());
+                entries.add(ModBlocks.PALE_OAK_PLANTER_BOX.asItem());
                 entries.add(ModBlocks.CRIMSON_PLANTER_BOX.asItem());
                 entries.add(ModBlocks.WARPED_PLANTER_BOX.asItem());
-                entries.add(ModBlocks.PALE_OAK_PLANTER_BOX.asItem());
             }
 
             configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_WOODEN_WALLS);

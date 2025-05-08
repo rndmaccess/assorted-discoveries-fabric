@@ -4,6 +4,6 @@
     "side": "assorted-discoveries:block/crimson_planter_box_side",
     "top": "assorted-discoveries:block/crimson_planter_box_top",
     "bottom": "minecraft:block/crimson_planks",
-    "soil": "minecraft:block/farmland_moist"
+    "soil": "minecraft:block/soul_soil"
   }
 }

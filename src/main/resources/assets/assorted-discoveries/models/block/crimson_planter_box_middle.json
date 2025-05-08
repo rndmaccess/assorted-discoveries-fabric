@@ -2,6 +2,6 @@
   "parent": "assorted-discoveries:block/template_planter_box_middle",
   "textures": {
     "bottom": "minecraft:block/crimson_planks",
-    "soil": "minecraft:block/farmland_moist"
+    "soil": "minecraft:block/soul_soil"
   }
 }

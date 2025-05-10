@@ -413,8 +413,6 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.SNOW_VILLAGER_PLUSHIE.asItem());
                 entries.add(ModBlocks.SWAMP_VILLAGER_PLUSHIE.asItem());
                 entries.add(ModBlocks.TAIGA_VILLAGER_PLUSHIE.asItem());
-                entries.add(ModBlocks.CRIMSON_VILLAGER_PLUSHIE.asItem());
-                entries.add(ModBlocks.WARPED_VILLAGER_PLUSHIE.asItem());
                 entries.add(ModBlocks.WANDERING_TRADER_PLUSHIE.asItem());
             }
 
@@ -427,8 +425,6 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.SNOW_ZOMBIE_VILLAGER_PLUSHIE.asItem());
                 entries.add(ModBlocks.SWAMP_ZOMBIE_VILLAGER_PLUSHIE.asItem());
                 entries.add(ModBlocks.TAIGA_ZOMBIE_VILLAGER_PLUSHIE.asItem());
-                entries.add(ModBlocks.CRIMSON_ZOMBIE_VILLAGER_PLUSHIE.asItem());
-                entries.add(ModBlocks.WARPED_ZOMBIE_VILLAGER_PLUSHIE.asItem());
             }
 
             configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_WITCH_PLUSHIE);

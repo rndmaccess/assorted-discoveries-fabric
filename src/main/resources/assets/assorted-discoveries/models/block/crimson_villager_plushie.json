@@ -1,7 +1,0 @@
-{
-  "parent": "assorted-discoveries:block/template_villager_plushie",
-  "textures": {
-    "shirt": "minecraft:block/red_wool",
-    "arms": "minecraft:block/black_wool"
-  }
-}

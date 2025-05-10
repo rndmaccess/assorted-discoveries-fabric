@@ -6,18 +6,12 @@
     "WWW"
   ],
   "key": {
-    "W": {
-      "item": "minecraft:white_wool"
-    },
-    "G": {
-      "item": "minecraft:gray_wool"
-    },
-    "T": {
-      "item": "minecraft:ghast_tear"
-    }
+    "W": "minecraft:white_wool",
+    "G": "minecraft:gray_wool",
+    "T": "minecraft:ghast_tear"
   },
   "result": {
-    "item": "assorted-discoveries:ghast_plushie"
+    "id": "assorted-discoveries:ghast_plushie"
   },
   "fabric:load_conditions": [
     {

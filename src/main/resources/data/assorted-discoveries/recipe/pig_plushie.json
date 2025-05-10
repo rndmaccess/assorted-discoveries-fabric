@@ -6,18 +6,12 @@
     "PPP"
   ],
   "key": {
-    "B": {
-      "item": "minecraft:black_wool"
-    },
-    "P": {
-      "item": "minecraft:pink_wool"
-    },
-    "I": {
-      "item": "minecraft:porkchop"
-    }
+    "B": "minecraft:black_wool",
+    "P": "minecraft:pink_wool",
+    "I": "minecraft:porkchop"
   },
   "result": {
-    "item": "assorted-discoveries:pig_plushie"
+    "id": "assorted-discoveries:pig_plushie"
   },
   "fabric:load_conditions": [
     {

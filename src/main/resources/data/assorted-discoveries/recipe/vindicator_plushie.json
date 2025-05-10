@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "assorted-discoveries:illager_plushies",
+  "group": "illager_plushies",
   "key": {
     "H": "minecraft:cyan_terracotta",
     "G": "minecraft:gray_wool",

@@ -4,12 +4,10 @@
     "###"
   ],
   "key": {
-    "#": {
-      "item": "assorted-discoveries:mossy_calcite_bricks"
-    }
+    "#": "assorted-discoveries:mossy_calcite_bricks"
   },
   "result": {
-    "item": "assorted-discoveries:mossy_calcite_brick_slab",
+    "id": "assorted-discoveries:mossy_calcite_brick_slab",
     "count": 6
   },
   "fabric:load_conditions": [

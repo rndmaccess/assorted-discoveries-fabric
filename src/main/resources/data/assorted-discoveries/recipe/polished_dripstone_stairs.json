@@ -6,12 +6,10 @@
     "###"
   ],
   "key": {
-    "#": {
-      "item": "assorted-discoveries:polished_dripstone"
-    }
+    "#": "assorted-discoveries:polished_dripstone"
   },
   "result": {
-    "item": "assorted-discoveries:polished_dripstone_stairs",
+    "id": "assorted-discoveries:polished_dripstone_stairs",
     "count": 4
   },
   "fabric:load_conditions": [

@@ -6,15 +6,11 @@
     " C "
   ],
   "key": {
-    "C": {
-      "item": "assorted-discoveries:blueberries"
-    },
-    "G": {
-      "item": "minecraft:glass_bottle"
-    }
+    "C": "assorted-discoveries:blueberries",
+    "G": "minecraft:glass_bottle"
   },
   "result": {
-    "item": "assorted-discoveries:blueberry_juice"
+    "id": "assorted-discoveries:blueberry_juice"
   },
   "fabric:load_conditions": [
     {

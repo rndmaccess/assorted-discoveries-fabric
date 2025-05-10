@@ -6,12 +6,10 @@
     "###"
   ],
   "key": {
-    "#": {
-      "item": "assorted-discoveries:packed_snow"
-    }
+    "#": "assorted-discoveries:packed_snow"
   },
   "result": {
-    "item": "assorted-discoveries:packed_snow_stairs",
+    "id": "assorted-discoveries:packed_snow_stairs",
     "count": 4
   },
   "fabric:load_conditions": [

@@ -1,10 +1,10 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "assorted-discoveries:cat_plushies",
+  "group": "cat_plushies",
   "key": {
     "B": "minecraft:black_wool",
     "G": "minecraft:green_wool",
-    "F": "#c:raw_fish"
+    "F": "#c:raw_fishes"
   },
   "pattern": [
     "BBB",

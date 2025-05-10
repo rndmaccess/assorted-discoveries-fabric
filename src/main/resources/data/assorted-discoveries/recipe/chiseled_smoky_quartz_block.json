@@ -5,12 +5,10 @@
     "#"
   ],
   "key": {
-    "#": {
-      "item": "assorted-discoveries:smoky_quartz_slab"
-    }
+    "#": "assorted-discoveries:smoky_quartz_slab"
   },
   "result": {
-    "item": "assorted-discoveries:chiseled_smoky_quartz_block"
+    "id": "assorted-discoveries:chiseled_smoky_quartz_block"
   },
   "fabric:load_conditions": [
     {

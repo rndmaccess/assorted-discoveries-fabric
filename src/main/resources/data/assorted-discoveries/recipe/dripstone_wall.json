@@ -1,16 +1,14 @@
 {
-  "type": "crafting_shaped",
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "###",
     "###"
   ],
   "key": {
-    "#": {
-      "item": "minecraft:dripstone_block"
-    }
+    "#": "minecraft:dripstone_block"
   },
   "result": {
-    "item": "assorted-discoveries:dripstone_wall",
+    "id": "assorted-discoveries:dripstone_wall",
     "count": 6
   },
   "fabric:load_conditions": [

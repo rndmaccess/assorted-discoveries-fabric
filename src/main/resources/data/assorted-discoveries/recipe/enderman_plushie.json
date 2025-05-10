@@ -6,21 +6,13 @@
     "WGW"
   ],
   "key": {
-    "W": {
-      "item": "minecraft:black_wool"
-    },
-	"M": {
-	  "item": "minecraft:magenta_wool"
-	},
-    "P": {
-      "item": "minecraft:ender_pearl"
-    },
-    "G": {
-      "item": "minecraft:grass_block"
-    }
+    "W": "minecraft:black_wool",
+	"M": "minecraft:magenta_wool",
+    "P": "minecraft:ender_pearl",
+    "G": "minecraft:grass_block"
   },
   "result": {
-    "item": "assorted-discoveries:enderman_plushie"
+    "id": "assorted-discoveries:enderman_plushie"
   },
   "fabric:load_conditions": [
     {

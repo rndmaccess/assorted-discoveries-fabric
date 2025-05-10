@@ -6,18 +6,12 @@
     "TTT"
   ],
   "key": {
-    "T": {
-      "item": "minecraft:terracotta"
-    },
-    "W": {
-      "item": "minecraft:white_wool"
-    },
-    "I": {
-      "item": "minecraft:gold_ingot"
-    }
+    "T": "minecraft:terracotta",
+    "W": "minecraft:white_wool",
+    "I": "minecraft:gold_ingot"
   },
   "result": {
-    "item": "assorted-discoveries:piglin_plushie"
+    "id": "assorted-discoveries:piglin_plushie"
   },
   "fabric:load_conditions": [
     {

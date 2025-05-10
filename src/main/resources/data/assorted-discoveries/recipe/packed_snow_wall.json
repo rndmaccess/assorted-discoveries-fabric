@@ -1,16 +1,14 @@
 {
-  "type": "crafting_shaped",
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "###",
     "###"
   ],
   "key": {
-    "#": {
-      "item": "assorted-discoveries:packed_snow"
-    }
+    "#": "assorted-discoveries:packed_snow"
   },
   "result": {
-    "item": "assorted-discoveries:packed_snow_wall",
+    "id": "assorted-discoveries:packed_snow_wall",
     "count": 6
   },
   "fabric:load_conditions": [

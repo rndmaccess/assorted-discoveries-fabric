@@ -5,12 +5,10 @@
     "##"
   ],
   "key": {
-    "#": {
-      "item": "minecraft:dripstone_block"
-    }
+    "#": "minecraft:dripstone_block"
   },
   "result": {
-    "item": "assorted-discoveries:polished_dripstone",
+    "id": "assorted-discoveries:polished_dripstone",
     "count": 4
   },
   "fabric:load_conditions": [

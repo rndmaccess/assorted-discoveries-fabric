@@ -10,7 +10,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "c:raw_fish"
+            "tag": "c:raw_fishes"
           }
         ]
       },
@@ -25,7 +25,7 @@
   },
   "requirements": [
     [
-      "has_raw_fish",
+      "has_raw_fishes",
       "has_the_recipe"
     ]
   ],

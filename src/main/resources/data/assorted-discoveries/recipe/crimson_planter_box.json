@@ -1,21 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "nether_planter_box",
+  "category": "building",
+  "group": "planter_boxes",
   "pattern": [
     "# #",
     "#S#",
     "###"
   ],
   "key": {
-    "#": {
-      "item": "minecraft:crimson_slab"
-    },
-    "S": {
-      "tag": "minecraft:soul_fire_base_blocks"
-    }
+    "#": "minecraft:crimson_slab",
+    "S": "#minecraft:soul_fire_base_blocks"
   },
   "result": {
-    "item": "assorted-discoveries:crimson_planter_box"
+    "id": "assorted-discoveries:crimson_planter_box"
   },
   "fabric:load_conditions": [
     {

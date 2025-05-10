@@ -6,12 +6,10 @@
     "# #"
   ],
   "key": {
-    "#": {
-      "item": "minecraft:iron_ingot"
-    }
+    "#": "minecraft:iron_ingot"
   },
   "result": {
-    "item": "assorted-discoveries:iron_ladder",
+    "id": "assorted-discoveries:iron_ladder",
     "count": 6
   },
   "fabric:load_conditions": [

@@ -1,16 +1,12 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "colored_torch",
+  "group": "dyed_torches",
   "ingredients": [
-    {
-      "item": "minecraft:cyan_dye"
-    },
-    {
-      "item": "minecraft:torch"
-    }
+    "minecraft:cyan_dye",
+    "minecraft:torch"
   ],
   "result": {
-    "item": "assorted-discoveries:cyan_torch"
+    "id": "assorted-discoveries:cyan_torch"
   },
   "fabric:load_conditions": [
     {

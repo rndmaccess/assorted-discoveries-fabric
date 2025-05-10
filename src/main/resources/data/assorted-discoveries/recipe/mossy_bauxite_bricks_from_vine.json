@@ -1,15 +1,11 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    {
-      "item": "minecraft:vine"
-    },
-    {
-      "item": "assorted-discoveries:bauxite_bricks"
-    }
+    "minecraft:vine",
+    "assorted-discoveries:bauxite_bricks"
   ],
   "result": {
-    "item": "assorted-discoveries:mossy_bauxite_bricks"
+    "id": "assorted-discoveries:mossy_bauxite_bricks"
   },
   "fabric:load_conditions": [
     {

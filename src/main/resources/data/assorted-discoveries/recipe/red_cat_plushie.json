@@ -1,11 +1,11 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "assorted-discoveries:cat_plushies",
+  "group": "cat_plushies",
   "category": "misc",
   "key": {
     "O": "minecraft:orange_wool",
     "G": "minecraft:green_wool",
-    "F": "#c:raw_fish"
+    "F": "#c:raw_fishes"
   },
   "pattern": [
     "OOO",

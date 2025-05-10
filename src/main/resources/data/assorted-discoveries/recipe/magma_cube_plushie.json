@@ -6,18 +6,12 @@
     "RRR"
   ],
   "key": {
-    "R": {
-      "item": "minecraft:red_wool"
-    },
-    "Y": {
-      "item": "minecraft:yellow_wool"
-    },
-    "M": {
-      "item": "minecraft:magma_cream"
-    }
+    "R": "minecraft:red_wool",
+    "Y": "minecraft:yellow_wool",
+    "M": "minecraft:magma_cream"
   },
   "result": {
-    "item": "assorted-discoveries:magma_cube_plushie"
+    "id": "assorted-discoveries:magma_cube_plushie"
   },
   "fabric:load_conditions": [
     {

@@ -4,12 +4,10 @@
     "###"
   ],
   "key": {
-    "#": {
-      "item": "minecraft:coarse_dirt"
-    }
+    "#": "minecraft:coarse_dirt"
   },
   "result": {
-    "item": "assorted-discoveries:coarse_dirt_slab",
+    "id": "assorted-discoveries:coarse_dirt_slab",
     "count": 6
   },
   "fabric:load_conditions": [

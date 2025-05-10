@@ -5,12 +5,10 @@
     "##"
   ],
   "key": {
-    "#": {
-      "item": "assorted-discoveries:polished_calcite"
-    }
+    "#": "assorted-discoveries:polished_calcite"
   },
   "result": {
-    "item": "assorted-discoveries:calcite_bricks",
+    "id": "assorted-discoveries:calcite_bricks",
     "count": 4
   },
   "fabric:load_conditions": [

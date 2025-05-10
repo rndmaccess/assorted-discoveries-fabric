@@ -1,23 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "pattern": [
     "#S#",
     "#A#",
     "###"
   ],
   "key": {
-    "#": {
-      "item": "assorted-discoveries:caramel"
-    },
-    "S": {
-      "item": "minecraft:stick"
-    },
-    "A": {
-      "item": "minecraft:apple"
-    }
+    "#": "assorted-discoveries:caramel",
+    "S": "minecraft:stick",
+    "A": "minecraft:apple"
   },
   "result": {
-    "item": "assorted-discoveries:caramel_apple"
+    "id": "assorted-discoveries:caramel_apple"
   },
   "fabric:load_conditions": [
     {

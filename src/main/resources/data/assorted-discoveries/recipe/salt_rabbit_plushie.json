@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "assorted-discoveries:rabbit_plushies",
+  "group": "rabbit_plushies",
   "category": "misc",
   "key": {
     "B": "minecraft:brown_wool",

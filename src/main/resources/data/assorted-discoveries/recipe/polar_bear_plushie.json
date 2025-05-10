@@ -6,18 +6,12 @@
     "WWW"
   ],
   "key": {
-    "W": {
-      "item": "minecraft:white_wool"
-    },
-    "B": {
-      "item": "minecraft:black_wool"
-    },
-    "S": {
-      "item": "minecraft:snow_block"
-    }
+    "W": "minecraft:white_wool",
+    "B": "minecraft:black_wool",
+    "S": "minecraft:snow_block"
   },
   "result": {
-    "item": "assorted-discoveries:polar_bear_plushie"
+    "id": "assorted-discoveries:polar_bear_plushie"
   },
   "fabric:load_conditions": [
     {

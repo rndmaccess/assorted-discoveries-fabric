@@ -6,12 +6,10 @@
     "  X"
   ],
   "key": {
-    "X": {
-      "item": "minecraft:wheat"
-    }
+    "X": "minecraft:wheat"
   },
   "result": {
-    "item": "assorted-discoveries:noodles"
+    "id": "assorted-discoveries:noodles"
   },
   "fabric:load_conditions": [
     {

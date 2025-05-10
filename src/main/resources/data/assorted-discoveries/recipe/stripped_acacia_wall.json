@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "stripped_wooden_wall",
+  "group": "stripped_wooden_walls",
   "key": {
     "#": "#c:stripped_acacia_logs"
   },

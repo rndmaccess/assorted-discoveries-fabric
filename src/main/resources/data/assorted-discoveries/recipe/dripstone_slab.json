@@ -4,12 +4,10 @@
     "###"
   ],
   "key": {
-    "#": {
-      "item": "minecraft:dripstone_block"
-    }
+    "#": "minecraft:dripstone_block"
   },
   "result": {
-    "item": "assorted-discoveries:dripstone_slab",
+    "id": "assorted-discoveries:dripstone_slab",
     "count": 6
   },
   "fabric:load_conditions": [

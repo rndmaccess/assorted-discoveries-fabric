@@ -5,12 +5,10 @@
     "##"
   ],
   "key": {
-    "#": {
-      "item": "minecraft:snow_block"
-    }
+    "#": "minecraft:snow_block"
   },
   "result": {
-    "item": "assorted-discoveries:packed_snow",
+    "id": "assorted-discoveries:packed_snow",
     "count": 4
   },
   "fabric:load_conditions": [

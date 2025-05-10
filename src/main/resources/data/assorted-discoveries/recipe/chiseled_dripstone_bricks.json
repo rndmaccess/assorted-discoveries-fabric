@@ -5,12 +5,10 @@
     "#"
   ],
   "key": {
-    "#": {
-      "item": "assorted-discoveries:dripstone_brick_slab"
-    }
+    "#": "assorted-discoveries:dripstone_brick_slab"
   },
   "result": {
-    "item": "assorted-discoveries:chiseled_dripstone_bricks"
+    "id": "assorted-discoveries:chiseled_dripstone_bricks"
   },
   "fabric:load_conditions": [
     {

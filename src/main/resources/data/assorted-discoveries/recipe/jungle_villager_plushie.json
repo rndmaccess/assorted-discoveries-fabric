@@ -1,27 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "assorted-discoveries:villager_plushies",
+  "group": "villager_plushies",
   "pattern": [
     "HHH",
     "HEH",
     "CIC"
   ],
   "key": {
-    "H": {
-      "item": "minecraft:terracotta"
-    },
-    "C": {
-      "item": "minecraft:yellow_wool"
-    },
-    "E": {
-      "item": "minecraft:emerald"
-    },
-    "I": {
-      "item": "minecraft:jungle_sapling"
-    }
+    "H": "minecraft:terracotta",
+    "C": "minecraft:yellow_wool",
+    "E": "minecraft:emerald",
+    "I": "minecraft:jungle_sapling"
   },
   "result": {
-    "item": "assorted-discoveries:jungle_villager_plushie"
+    "id": "assorted-discoveries:jungle_villager_plushie"
   },
   "fabric:load_conditions": [
     {

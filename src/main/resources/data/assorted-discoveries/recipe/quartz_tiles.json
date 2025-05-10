@@ -5,12 +5,10 @@
     "##"
   ],
   "key": {
-    "#": {
-      "item": "minecraft:quartz_bricks"
-    }
+    "#": "minecraft:quartz_bricks"
   },
   "result": {
-    "item": "assorted-discoveries:quartz_tiles",
+    "id": "assorted-discoveries:quartz_tiles",
     "count": 4
   },
   "fabric:load_conditions": [

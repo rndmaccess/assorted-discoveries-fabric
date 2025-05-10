@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "colored_campfire",
+  "group": "dyed_campfires",
   "category": "misc",
   "ingredients": [
     "minecraft:red_dye",

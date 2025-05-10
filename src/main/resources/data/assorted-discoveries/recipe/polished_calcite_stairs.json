@@ -6,12 +6,10 @@
     "###"
   ],
   "key": {
-    "#": {
-      "item": "assorted-discoveries:polished_calcite"
-    }
+    "#": "assorted-discoveries:polished_calcite"
   },
   "result": {
-    "item": "assorted-discoveries:polished_calcite_stairs",
+    "id": "assorted-discoveries:polished_calcite_stairs",
     "count": 4
   },
   "fabric:load_conditions": [

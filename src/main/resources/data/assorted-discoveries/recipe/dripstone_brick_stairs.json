@@ -6,12 +6,10 @@
     "###"
   ],
   "key": {
-    "#": {
-      "item": "assorted-discoveries:dripstone_bricks"
-    }
+    "#": "assorted-discoveries:dripstone_bricks"
   },
   "result": {
-    "item": "assorted-discoveries:dripstone_brick_stairs",
+    "id": "assorted-discoveries:dripstone_brick_stairs",
     "count": 4
   },
   "fabric:load_conditions": [

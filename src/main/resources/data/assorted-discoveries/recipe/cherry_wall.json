@@ -6,12 +6,10 @@
     "###"
   ],
   "key": {
-    "#": {
-      "tag": "c:natural_cherry_logs"
-    }
+    "#": "#c:natural_cherry_logs"
   },
   "result": {
-    "item": "assorted-discoveries:cherry_wall",
+    "id": "assorted-discoveries:cherry_wall",
     "count": 6
   },
   "fabric:load_conditions": [

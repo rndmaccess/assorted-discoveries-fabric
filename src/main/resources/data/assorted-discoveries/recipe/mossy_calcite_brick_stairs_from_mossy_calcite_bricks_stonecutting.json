@@ -1,10 +1,10 @@
 {
   "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "assorted-discoveries:mossy_calcite_bricks"
+  "ingredient": "assorted-discoveries:mossy_calcite_bricks",
+  "result": {
+    "id": "assorted-discoveries:mossy_calcite_brick_stairs",
+    "count": 1
   },
-  "result": "assorted-discoveries:mossy_calcite_brick_stairs",
-  "count": 1,
   "fabric:load_conditions": [
     {
       "condition": "fabric:and",

@@ -1,6 +1,6 @@
 {
-  "type": "crafting_shaped",
-  "group": "assorted-discoveries:villager_plushies",
+  "type": "minecraft:crafting_shaped",
+  "group": "villager_plushies",
   "key": {
     "H": "minecraft:terracotta",
     "C": "minecraft:purple_wool",

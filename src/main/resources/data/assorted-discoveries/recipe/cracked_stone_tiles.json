@@ -1,11 +1,12 @@
 {
   "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "assorted-discoveries:stone_tiles"
-  },
-  "result": "assorted-discoveries:cracked_stone_tiles",
-  "experience": 0.1,
+  "category": "blocks",
   "cookingtime": 200,
+  "experience": 0.1,
+  "ingredient": "assorted-discoveries:stone_tiles",
+  "result": {
+    "id": "assorted-discoveries:cracked_stone_tiles"
+  },
   "fabric:load_conditions": [
     {
       "condition": "fabric:and",

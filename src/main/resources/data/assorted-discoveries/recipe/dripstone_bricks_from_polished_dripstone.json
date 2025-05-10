@@ -5,12 +5,10 @@
     "##"
   ],
   "key": {
-    "#": {
-      "item": "assorted-discoveries:polished_dripstone"
-    }
+    "#": "assorted-discoveries:polished_dripstone"
   },
   "result": {
-    "item": "assorted-discoveries:dripstone_bricks",
+    "id": "assorted-discoveries:dripstone_bricks",
     "count": 4
   },
   "fabric:load_conditions": [

@@ -1,18 +1,12 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    {
-      "item": "minecraft:cooked_porkchop"
-    },
-    {
-      "item": "minecraft:nether_wart"
-    },
-    {
-      "item": "minecraft:bowl"
-    }
+    "minecraft:cooked_porkchop",
+    "minecraft:nether_wart",
+    "minecraft:bowl"
   ],
   "result": {
-    "item": "assorted-discoveries:hoglin_stew"
+    "id": "assorted-discoveries:hoglin_stew"
   },
   "fabric:load_conditions": [
     {

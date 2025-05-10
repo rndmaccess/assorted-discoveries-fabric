@@ -6,18 +6,12 @@
     "BBB"
   ],
   "key": {
-    "B": {
-      "item": "minecraft:gray_wool"
-    },
-    "E": {
-      "item": "minecraft:yellow_wool"
-    },
-    "I": {
-      "item": "minecraft:dark_oak_log"
-    }
+    "B": "minecraft:gray_wool",
+    "E": "minecraft:yellow_wool",
+    "I": "minecraft:dark_oak_log"
   },
   "result": {
-    "item": "assorted-discoveries:creaking_plushie"
+    "id": "assorted-discoveries:creaking_plushie"
   },
   "fabric:load_conditions": [
     {

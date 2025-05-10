@@ -4,12 +4,10 @@
     "###"
   ],
   "key": {
-    "#": {
-      "item": "assorted-discoveries:polished_dripstone"
-    }
+    "#": "assorted-discoveries:polished_dripstone"
   },
   "result": {
-    "item": "assorted-discoveries:polished_dripstone_slab",
+    "id": "assorted-discoveries:polished_dripstone_slab",
     "count": 6
   },
   "fabric:load_conditions": [

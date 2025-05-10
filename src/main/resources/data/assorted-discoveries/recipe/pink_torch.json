@@ -1,16 +1,12 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "colored_torch",
+  "group": "dyed_torches",
   "ingredients": [
-    {
-      "item": "minecraft:pink_dye"
-    },
-    {
-      "item": "minecraft:torch"
-    }
+    "minecraft:pink_dye",
+    "minecraft:torch"
   ],
   "result": {
-    "item": "assorted-discoveries:pink_torch"
+    "id": "assorted-discoveries:pink_torch"
   },
   "fabric:load_conditions": [
     {

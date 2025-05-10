@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "assorted-discoveries:sheep_plushies",
+  "group": "sheep_plushies",
   "category": "misc",
   "pattern": [
     "RRR",

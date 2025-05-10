@@ -6,15 +6,11 @@
     "###"
   ],
   "key": {
-    "#": {
-      "item": "assorted-discoveries:blood_kelp"
-    },
-    "X": {
-      "item": "assorted-discoveries:blood_kelp_seed_cluster"
-    }
+    "#": "assorted-discoveries:blood_kelp",
+    "X": "assorted-discoveries:blood_kelp_seed_cluster"
   },
   "result": {
-    "item": "assorted-discoveries:blood_kelp_lantern"
+    "id": "assorted-discoveries:blood_kelp_lantern"
   },
   "fabric:load_conditions": [
     {

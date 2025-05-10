@@ -1,10 +1,12 @@
 {
   "type": "minecraft:stonecutting",
   "ingredient": {
-    "item": "minecraft:dripstone_block"
+    "id": "minecraft:dripstone_block"
   },
-  "result": "assorted-discoveries:chiseled_dripstone_bricks",
-  "count": 1,
+  "result": {
+    "id": "assorted-discoveries:chiseled_dripstone_bricks",
+    "count": 1
+  },
   "fabric:load_conditions": [
     {
       "condition": "assorted-discoveries:config_entry_enabled",

@@ -1,24 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "assorted-discoveries:rabbit_plushies",
+  "group": "rabbit_plushies",
   "pattern": [
     "YYY",
     "BIB",
     "YYY"
   ],
   "key": {
-    "Y": {
-      "item": "minecraft:yellow_wool"
-    },
-    "B": {
-      "item": "minecraft:brown_wool"
-    },
-    "I": {
-      "item": "minecraft:rabbit"
-    }
+    "Y": "minecraft:yellow_wool",
+    "B": "minecraft:brown_wool",
+    "I": "minecraft:rabbit"
   },
   "result": {
-    "item": "assorted-discoveries:gold_rabbit_plushie"
+    "id": "assorted-discoveries:gold_rabbit_plushie"
   },
   "fabric:load_conditions": [
     {

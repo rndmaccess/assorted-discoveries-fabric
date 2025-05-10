@@ -1,21 +1,13 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    {
-      "item": "minecraft:bowl"
-    },
-    {
-      "item": "minecraft:milk_bucket"
-    },
-    {
-      "item": "minecraft:sugar"
-    },
-    {
-      "item": "minecraft:egg"
-    }
+    "minecraft:bowl",
+    "minecraft:milk_bucket",
+    "minecraft:sugar",
+    "minecraft:egg"
   ],
   "result": {
-    "item": "assorted-discoveries:pudding"
+    "id": "assorted-discoveries:pudding"
   },
   "fabric:load_conditions": [
     {

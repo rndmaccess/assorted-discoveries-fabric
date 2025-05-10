@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "assorted-discoveries:squid_plushies",
+  "group": "squid_plushies",
   "key": {
     "B": "minecraft:blue_wool",
     "b": "minecraft:black_wool",

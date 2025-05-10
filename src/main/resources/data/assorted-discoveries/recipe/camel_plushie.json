@@ -6,18 +6,12 @@
     "YYY"
   ],
   "key": {
-    "Y": {
-      "item": "minecraft:yellow_wool"
-    },
-    "B": {
-      "item": "minecraft:black_wool"
-    },
-    "I": {
-      "item": "minecraft:leather"
-    }
+    "Y": "minecraft:yellow_wool",
+    "B": "minecraft:black_wool",
+    "I": "minecraft:leather"
   },
   "result": {
-    "item": "assorted-discoveries:camel_plushie"
+    "id": "assorted-discoveries:camel_plushie"
   },
   "fabric:load_conditions": [
     {

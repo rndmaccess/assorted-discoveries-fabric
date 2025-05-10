@@ -4,12 +4,10 @@
     "###"
   ],
   "key": {
-    "#": {
-      "item": "assorted-discoveries:dripstone_bricks"
-    }
+    "#": "assorted-discoveries:dripstone_bricks"
   },
   "result": {
-    "item": "assorted-discoveries:dripstone_brick_slab",
+    "id": "assorted-discoveries:dripstone_brick_slab",
     "count": 6
   },
   "fabric:load_conditions": [

@@ -4,12 +4,10 @@
     "###"
   ],
   "key": {
-    "#": {
-      "item": "assorted-discoveries:mossy_bauxite_bricks"
-    }
+    "#": "assorted-discoveries:mossy_bauxite_bricks"
   },
   "result": {
-    "item": "assorted-discoveries:mossy_bauxite_brick_slab",
+    "id": "assorted-discoveries:mossy_bauxite_brick_slab",
     "count": 6
   },
   "fabric:load_conditions": [

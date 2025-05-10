@@ -5,12 +5,10 @@
     "##"
   ],
   "key": {
-    "#": {
-      "item": "minecraft:calcite"
-    }
+    "#": "minecraft:calcite"
   },
   "result": {
-    "item": "assorted-discoveries:calcite_bricks",
+    "id": "assorted-discoveries:calcite_bricks",
     "count": 4
   },
   "fabric:load_conditions": [

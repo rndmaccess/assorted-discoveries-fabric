@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "wooden_ladder",
+  "group": "rope_ladders",
   "key": {
     "X": "minecraft:string",
     "#": "minecraft:warped_planks"

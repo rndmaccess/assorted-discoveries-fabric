@@ -1,11 +1,12 @@
 {
   "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "assorted-discoveries:calcite_bricks"
-  },
-  "result": "assorted-discoveries:cracked_calcite_bricks",
-  "experience": 0.1,
+  "category": "blocks",
   "cookingtime": 200,
+  "experience": 0.1,
+  "ingredient": "assorted-discoveries:calcite_bricks",
+  "result": {
+    "id": "assorted-discoveries:cracked_calcite_bricks"
+  },
   "fabric:load_conditions": [
     {
       "condition": "fabric:and",

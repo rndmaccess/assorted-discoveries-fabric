@@ -4,14 +4,10 @@
     "###"
   ],
   "key": {
-    "#": [
-      {
-        "item": "minecraft:quartz_bricks"
-      }
-    ]
+    "#": "minecraft:quartz_bricks"
   },
   "result": {
-    "item": "assorted-discoveries:quartz_brick_slab",
+    "id": "assorted-discoveries:quartz_brick_slab",
     "count": 6
   },
   "fabric:load_conditions": [

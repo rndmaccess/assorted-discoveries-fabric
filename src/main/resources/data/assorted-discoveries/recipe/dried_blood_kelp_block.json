@@ -6,12 +6,10 @@
     "###"
   ],
   "key": {
-    "#": {
-      "item": "assorted-discoveries:dried_blood_kelp"
-    }
+    "#": "assorted-discoveries:dried_blood_kelp"
   },
   "result": {
-    "item": "assorted-discoveries:dried_blood_kelp_block"
+    "id": "assorted-discoveries:dried_blood_kelp_block"
   },
   "fabric:load_conditions": [
     {

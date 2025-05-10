@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "dyed_lantern",
+  "group": "dyed_lanterns",
   "category": "misc",
   "ingredients": [
     "minecraft:red_dye",

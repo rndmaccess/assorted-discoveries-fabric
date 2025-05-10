@@ -4,12 +4,10 @@
     "###"
   ],
   "key": {
-    "#": {
-      "item": "assorted-discoveries:polished_calcite"
-    }
+    "#": "assorted-discoveries:polished_calcite"
   },
   "result": {
-    "item": "assorted-discoveries:polished_calcite_slab",
+    "id": "assorted-discoveries:polished_calcite_slab",
     "count": 6
   },
   "fabric:load_conditions": [

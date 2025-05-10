@@ -1,11 +1,12 @@
 {
   "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "minecraft:sugar"
-  },
-  "result": "assorted-discoveries:caramel",
-  "experience": 0.1,
+  "category": "food",
   "cookingtime": 200,
+  "experience": 0.1,
+  "ingredient": "minecraft:sugar",
+  "result": {
+    "id": "assorted-discoveries:caramel"
+  },
   "fabric:load_conditions": [
     {
       "condition": "assorted-discoveries:config_entry_enabled",

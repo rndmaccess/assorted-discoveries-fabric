@@ -1,11 +1,12 @@
 {
   "type": "minecraft:campfire_cooking",
-  "ingredient": {
-    "item": "assorted-discoveries:blood_kelp"
-  },
-  "result": "assorted-discoveries:dried_blood_kelp",
-  "experience": 0.1,
+  "category": "food",
   "cookingtime": 600,
+  "experience": 0.1,
+  "ingredient": "assorted-discoveries:blood_kelp",
+  "result": {
+    "id": "assorted-discoveries:dried_blood_kelp"
+  },
   "fabric:load_conditions": [
     {
       "condition": "assorted-discoveries:config_entry_enabled",

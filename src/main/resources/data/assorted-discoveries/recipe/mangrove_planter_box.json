@@ -1,21 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "overworld_planter_box",
+  "category": "building",
+  "group": "planter_boxes",
   "pattern": [
     "# #",
     "#D#",
     "###"
   ],
   "key": {
-    "#": {
-      "item": "minecraft:mangrove_slab"
-    },
-    "D": {
-      "item": "minecraft:dirt"
-    }
+    "#": "minecraft:mangrove_slab",
+    "D": "minecraft:dirt"
   },
   "result": {
-    "item": "assorted-discoveries:mangrove_planter_box"
+    "id": "assorted-discoveries:mangrove_planter_box"
   },
   "fabric:load_conditions": [
     {

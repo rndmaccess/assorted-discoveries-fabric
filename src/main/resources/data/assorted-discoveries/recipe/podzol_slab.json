@@ -4,12 +4,10 @@
     "###"
   ],
   "key": {
-    "#": {
-      "item": "minecraft:podzol"
-    }
+    "#": "minecraft:podzol"
   },
   "result": {
-    "item": "assorted-discoveries:podzol_slab",
+    "id": "assorted-discoveries:podzol_slab",
     "count": 6
   },
   "fabric:load_conditions": [

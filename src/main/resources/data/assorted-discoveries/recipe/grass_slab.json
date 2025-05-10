@@ -4,12 +4,10 @@
     "###"
   ],
   "key": {
-    "#": {
-      "item": "minecraft:grass_block"
-    }
+    "#": "minecraft:grass_block"
   },
   "result": {
-    "item": "assorted-discoveries:grass_slab",
+    "id": "assorted-discoveries:grass_slab",
     "count": 6
   },
   "fabric:load_conditions": [

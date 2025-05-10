@@ -4,14 +4,10 @@
     "###"
   ],
   "key": {
-    "#": [
-      {
-        "item": "minecraft:cracked_stone_bricks"
-      }
-    ]
+    "#": "minecraft:cracked_stone_bricks"
   },
   "result": {
-    "item": "assorted-discoveries:cracked_stone_brick_slab",
+    "id": "assorted-discoveries:cracked_stone_brick_slab",
     "count": 6
   },
   "fabric:load_conditions": [

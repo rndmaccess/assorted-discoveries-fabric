@@ -6,18 +6,12 @@
     "BBB"
   ],
   "key": {
-    "M": {
-      "item": "minecraft:phantom_membrane"
-    },
-    "B": {
-      "item": "minecraft:blue_wool"
-    },
-    "L": {
-      "item": "minecraft:lime_wool"
-    }
+    "M": "minecraft:phantom_membrane",
+    "B": "minecraft:blue_wool",
+    "L": "minecraft:lime_wool"
   },
   "result": {
-    "item": "assorted-discoveries:phantom_plushie"
+    "id": "assorted-discoveries:phantom_plushie"
   },
   "fabric:load_conditions": [
     {

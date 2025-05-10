@@ -6,21 +6,13 @@
     "WWW"
   ],
   "key": {
-    "Y": {
-      "item": "minecraft:yellow_wool"
-    },
-    "B": {
-      "item": "minecraft:light_blue_wool"
-    },
-    "W": {
-      "item": "minecraft:white_wool"
-    },
-    "P": {
-      "item": "minecraft:pufferfish"
-    }
+    "Y": "minecraft:yellow_wool",
+    "B": "minecraft:light_blue_wool",
+    "W": "minecraft:white_wool",
+    "P": "minecraft:pufferfish"
   },
   "result": {
-    "item": "assorted-discoveries:pufferfish_plushie"
+    "id": "assorted-discoveries:pufferfish_plushie"
   },
   "fabric:load_conditions": [
     {

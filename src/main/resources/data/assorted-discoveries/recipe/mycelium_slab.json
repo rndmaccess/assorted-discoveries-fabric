@@ -4,12 +4,10 @@
     "###"
   ],
   "key": {
-    "#": {
-      "item": "minecraft:mycelium"
-    }
+    "#": "minecraft:mycelium"
   },
   "result": {
-    "item": "assorted-discoveries:mycelium_slab",
+    "id": "assorted-discoveries:mycelium_slab",
     "count": 6
   },
   "fabric:load_conditions": [

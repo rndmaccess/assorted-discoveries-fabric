@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "dyed_torch",
+  "group": "dyed_torches",
   "category": "misc",
   "ingredients": [
     "minecraft:red_dye",

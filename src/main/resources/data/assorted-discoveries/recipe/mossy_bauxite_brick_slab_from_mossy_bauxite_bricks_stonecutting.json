@@ -1,10 +1,10 @@
 {
   "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "assorted-discoveries:mossy_bauxite_bricks"
+  "ingredient": "assorted-discoveries:mossy_bauxite_bricks",
+  "result": {
+    "id": "assorted-discoveries:mossy_bauxite_brick_slab",
+    "count": 2
   },
-  "result": "assorted-discoveries:mossy_bauxite_brick_slab",
-  "count": 2,
   "fabric:load_conditions": [
     {
       "condition": "fabric:and",

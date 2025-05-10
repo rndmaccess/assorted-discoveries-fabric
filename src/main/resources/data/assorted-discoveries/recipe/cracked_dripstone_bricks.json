@@ -1,11 +1,12 @@
 {
   "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "assorted-discoveries:dripstone_bricks"
-  },
-  "result": "assorted-discoveries:cracked_dripstone_bricks",
-  "experience": 0.1,
+  "category": "blocks",
   "cookingtime": 200,
+  "experience": 0.1,
+  "ingredient": "assorted-discoveries:dripstone_bricks",
+  "result": {
+    "id": "assorted-discoveries:cracked_dripstone_bricks"
+  },
   "fabric:load_conditions": [
     {
       "condition": "assorted-discoveries:config_entry_enabled",

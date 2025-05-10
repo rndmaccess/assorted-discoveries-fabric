@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "assorted-discoveries:mooshroom_plushies",
+  "group": "mooshroom_plushies",
   "category": "misc",
   "key": {
     "R": "minecraft:red_wool",

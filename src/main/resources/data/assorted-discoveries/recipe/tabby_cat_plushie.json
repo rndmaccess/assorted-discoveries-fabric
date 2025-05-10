@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "assorted-discoveries:cat_plushies",
+  "group": "cat_plushies",
   "pattern": [
     "BBB",
     "OFO",
@@ -9,7 +9,7 @@
   "key": {
     "B": "minecraft:brown_wool",
     "O": "minecraft:orange_wool",
-    "F": "#c:raw_fish"
+    "F": "#c:raw_fishes"
   },
   "result": {
     "id": "assorted-discoveries:tabby_cat_plushie"

@@ -1,24 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "assorted-discoveries:squid_plushies",
+  "group": "squid_plushies",
   "pattern": [
     "BBB",
     "CIC",
     "BBB"
   ],
   "key": {
-    "B": {
-      "item": "minecraft:light_blue_wool"
-    },
-    "C": {
-      "item": "minecraft:cyan_wool"
-    },
-    "I": {
-      "item": "minecraft:glow_ink_sac"
-    }
+    "B": "minecraft:light_blue_wool",
+    "C": "minecraft:cyan_wool",
+    "I": "minecraft:glow_ink_sac"
   },
   "result": {
-    "item": "assorted-discoveries:glow_squid_plushie"
+    "id": "assorted-discoveries:glow_squid_plushie"
   },
   "fabric:load_conditions": [
     {

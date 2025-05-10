@@ -5,12 +5,10 @@
     "#"
   ],
   "key": {
-    "#": {
-      "item": "assorted-discoveries:calcite_brick_slab"
-    }
+    "#": "assorted-discoveries:calcite_brick_slab"
   },
   "result": {
-    "item": "assorted-discoveries:chiseled_calcite_bricks"
+    "id": "assorted-discoveries:chiseled_calcite_bricks"
   },
   "fabric:load_conditions": [
     {

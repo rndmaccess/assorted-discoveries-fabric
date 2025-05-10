@@ -1,27 +1,19 @@
 {
-  "type": "crafting_shaped",
-  "group": "assorted-discoveries:zombie_villager_plushies",
+  "type": "minecraft:crafting_shaped",
+  "group": "zombie_villager_plushies",
   "pattern": [
     "HHH",
     "HRH",
     "CIC"
   ],
   "key": {
-    "H": {
-      "item": "minecraft:green_wool"
-    },
-    "C": {
-      "item": "minecraft:yellow_wool"
-    },
-    "R": {
-      "item": "minecraft:rotten_flesh"
-    },
-    "I": {
-      "item": "minecraft:jungle_sapling"
-    }
+    "H": "minecraft:green_wool",
+    "C": "minecraft:yellow_wool",
+    "R": "minecraft:rotten_flesh",
+    "I": "minecraft:jungle_sapling"
   },
   "result": {
-    "item": "assorted-discoveries:jungle_zombie_villager_plushie"
+    "id": "assorted-discoveries:jungle_zombie_villager_plushie"
   },
   "fabric:load_conditions": [
     {

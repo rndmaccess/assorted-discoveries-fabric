@@ -1,11 +1,12 @@
 {
   "type": "minecraft:smoking",
-  "ingredient": {
-    "item": "minecraft:egg"
-  },
-  "result": "assorted-discoveries:fried_egg",
-  "experience": 0.1,
+  "category": "food",
   "cookingtime": 100,
+  "experience": 0.1,
+  "ingredient": "minecraft:egg",
+  "result": {
+    "id": "assorted-discoveries:fried_egg"
+  },
   "fabric:load_conditions": [
     {
       "condition": "assorted-discoveries:config_entry_enabled",

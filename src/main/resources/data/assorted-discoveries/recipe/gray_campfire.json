@@ -1,16 +1,12 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "colored_campfire",
+  "group": "dyed_campfires",
   "ingredients": [
-    {
-      "item": "minecraft:gray_dye"
-    },
-    {
-      "item": "minecraft:campfire"
-    }
+    "minecraft:gray_dye",
+    "minecraft:campfire"
   ],
   "result": {
-    "item": "assorted-discoveries:gray_campfire"
+    "id": "assorted-discoveries:gray_campfire"
   },
   "fabric:load_conditions": [
     {

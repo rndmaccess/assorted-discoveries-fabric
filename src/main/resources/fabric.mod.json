@@ -2,9 +2,8 @@
   "schemaVersion": 1,
   "id": "assorted-discoveries",
   "version": "${version}",
-
   "name": "Assorted Discoveries",
-  "description": "Experience Minecraft like never before with new blocks, items, structures, and much much more with Assorted Discoveries!",
+  "description": "Experience Minecraft like never before with new blocks, items, and much much more with Assorted Discoveries!",
   "authors": [
     "rndm_access"
   ],
@@ -12,10 +11,8 @@
     "homepage": "https://www.curseforge.com/minecraft/mc-mods/assorted-discoveries",
     "sources": "https://github.com/rndmaccess/assorted-discoveries-fabric"
   },
-
   "license": "MIT",
   "icon": "assets/assorted-discoveries/icon.png",
-
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -32,7 +29,7 @@
     "assorted-discoveries.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.16.9",
+    "fabricloader": ">=0.16.14",
     "minecraft": "~1.21.4",
     "java": ">=21",
     "fabric-api": "*"

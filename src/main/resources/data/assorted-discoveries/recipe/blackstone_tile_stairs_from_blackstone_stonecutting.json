@@ -1,10 +1,10 @@
 {
   "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "minecraft:blackstone"
+  "ingredient": "minecraft:blackstone",
+  "result": {
+    "id": "assorted-discoveries:blackstone_tile_stairs",
+    "count": 1
   },
-  "result": "assorted-discoveries:blackstone_tile_stairs",
-  "count": 1,
   "fabric:load_conditions": [
     {
       "condition": "assorted-discoveries:config_entry_enabled",

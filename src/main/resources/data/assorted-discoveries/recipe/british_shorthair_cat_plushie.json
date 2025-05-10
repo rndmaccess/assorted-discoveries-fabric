@@ -9,10 +9,10 @@
   "key": {
     "G": "minecraft:light_gray_wool",
     "B": "minecraft:black_wool",
-    "F": "#c:raw_fish"
+    "F": "#c:raw_fishes"
   },
   "result": {
-    "item": "assorted-discoveries:british_shorthair_cat_plushie"
+    "id": "assorted-discoveries:british_shorthair_cat_plushie"
   },
   "fabric:load_conditions": [
     {

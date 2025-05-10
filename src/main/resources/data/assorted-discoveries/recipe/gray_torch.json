@@ -6,7 +6,7 @@
     "minecraft:torch"
   ],
   "result": {
-    "item": "assorted-discoveries:gray_torch"
+    "id": "assorted-discoveries:gray_torch"
   },
   "fabric:load_conditions": [
     {

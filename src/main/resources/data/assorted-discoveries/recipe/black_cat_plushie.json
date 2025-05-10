@@ -7,18 +7,12 @@
     "BBB"
   ],
   "key": {
-    "B": {
-      "item": "minecraft:black_wool"
-    },
-    "O": {
-      "item": "minecraft:orange_wool"
-    },
-    "F": {
-      "tag": "c:raw_fishes"
-    }
+    "B": "minecraft:black_wool",
+    "O": "minecraft:orange_wool",
+    "F": "#c:raw_fishes"
   },
   "result": {
-    "item": "assorted-discoveries:black_cat_plushie"
+    "id": "assorted-discoveries:black_cat_plushie"
   },
   "fabric:load_conditions": [
     {

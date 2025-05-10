@@ -6,7 +6,7 @@
     "minecraft:campfire"
   ],
   "result": {
-    "item": "assorted-discoveries:blue_campfire"
+    "id": "assorted-discoveries:blue_campfire"
   },
   "fabric:load_conditions": [
     {

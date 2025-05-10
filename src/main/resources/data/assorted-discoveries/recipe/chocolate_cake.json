@@ -9,7 +9,7 @@
     "A": "minecraft:milk_bucket",
     "B": "minecraft:sugar",
     "C": "minecraft:cocoa_beans",
-    "E": "minecraft:egg"
+    "E": "#c:eggs"
   },
   "result": {
     "id": "assorted-discoveries:chocolate_cake"

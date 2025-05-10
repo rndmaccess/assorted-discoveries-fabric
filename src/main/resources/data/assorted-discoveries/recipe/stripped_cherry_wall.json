@@ -9,7 +9,7 @@
     "###"
   ],
   "result": {
-    "item": "assorted-discoveries:stripped_cherry_wall",
+    "id": "assorted-discoveries:stripped_cherry_wall",
     "count": 6
   },
   "fabric:load_conditions": [

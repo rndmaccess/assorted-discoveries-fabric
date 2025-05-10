@@ -6,14 +6,10 @@
     "###"
   ],
   "key": {
-    "#": [
-      {
-        "item": "assorted-discoveries:blackstone_tiles"
-      }
-    ]
+    "#": "assorted-discoveries:blackstone_tiles"
   },
   "result": {
-    "item": "assorted-discoveries:blackstone_tile_stairs",
+    "id": "assorted-discoveries:blackstone_tile_stairs",
     "count": 4
   },
   "fabric:load_conditions": [

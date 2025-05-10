@@ -9,7 +9,7 @@
     "###"
   ],
   "result": {
-    "item": "assorted-discoveries:smoky_quartz_wall",
+    "id": "assorted-discoveries:smoky_quartz_wall",
     "count": 6
   },
   "fabric:load_conditions": [

@@ -1,24 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "assorted-discoveries:horse_plushies",
+  "group": "horse_plushies",
   "pattern": [
     "BBB",
     "GIG",
     "BBB"
   ],
   "key": {
-    "B": {
-      "item": "minecraft:black_wool"
-    },
-    "G": {
-      "item": "minecraft:gray_wool"
-    },
-    "I": {
-      "item": "minecraft:leather"
-    }
+    "B": "minecraft:black_wool",
+    "G": "minecraft:gray_wool",
+    "I": "minecraft:leather"
   },
   "result": {
-    "item": "assorted-discoveries:black_horse_plushie"
+    "id": "assorted-discoveries:black_horse_plushie"
   },
   "fabric:load_conditions": [
     {

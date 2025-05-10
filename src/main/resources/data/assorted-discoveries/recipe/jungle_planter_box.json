@@ -8,15 +8,11 @@
     "###"
   ],
   "key": {
-    "#": {
-      "item": "minecraft:jungle_slab"
-    },
-    "D": {
-      "item": "minecraft:dirt"
-    }
+    "#": "minecraft:jungle_slab",
+    "D": "minecraft:dirt"
   },
   "result": {
-    "item": "assorted-discoveries:jungle_planter_box"
+    "id": "assorted-discoveries:jungle_planter_box"
   },
   "fabric:load_conditions": [
     {

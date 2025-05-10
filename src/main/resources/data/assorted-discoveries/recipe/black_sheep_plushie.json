@@ -1,21 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "assorted-discoveries:sheep_plushies",
+  "group": "sheep_plushies",
   "pattern": [
     "BBB",
     "BIB",
     "BBB"
   ],
   "key": {
-    "B": {
-      "item": "minecraft:black_wool"
-    },
-    "I": {
-      "item": "minecraft:mutton"
-    }
+    "B": "minecraft:black_wool",
+    "I": "minecraft:mutton"
   },
   "result": {
-    "item": "assorted-discoveries:black_sheep_plushie"
+    "id": "assorted-discoveries:black_sheep_plushie"
   },
   "fabric:load_conditions": [
     {

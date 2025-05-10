@@ -6,7 +6,7 @@
     ]
   },
   "criteria": {
-    "has_raw_fish": {
+    "has_raw_fishes": {
       "conditions": {
         "items": [
           {

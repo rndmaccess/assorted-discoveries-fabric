@@ -8,7 +8,7 @@
     "###"
   ],
   "result": {
-    "item": "assorted-discoveries:weeping_blackstone_slab",
+    "id": "assorted-discoveries:weeping_blackstone_slab",
     "count": 6
   },
   "fabric:load_conditions": [

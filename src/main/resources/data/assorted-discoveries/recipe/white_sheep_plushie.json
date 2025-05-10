@@ -12,7 +12,7 @@
     "I": "minecraft:mutton"
   },
   "result": {
-    "item": "assorted-discoveries:white_sheep_plushie"
+    "id": "assorted-discoveries:white_sheep_plushie"
   },
   "fabric:load_conditions": [
     {

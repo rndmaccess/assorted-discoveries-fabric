@@ -7,7 +7,7 @@
     "###"
   ],
   "result": {
-    "item": "assorted-discoveries:twisted_polished_blackstone_brick_slab",
+    "id": "assorted-discoveries:twisted_polished_blackstone_brick_slab",
     "count": 6
   },
   "fabric:load_conditions": [

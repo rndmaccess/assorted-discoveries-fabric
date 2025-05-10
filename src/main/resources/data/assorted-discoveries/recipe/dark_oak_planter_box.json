@@ -12,7 +12,7 @@
     "D": "minecraft:dirt"
   },
   "result": {
-    "item": "assorted-discoveries:dark_oak_planter_box"
+    "id": "assorted-discoveries:dark_oak_planter_box"
   },
   "fabric:load_conditions": [
     {

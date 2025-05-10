@@ -9,7 +9,7 @@
     "###"
   ],
   "result": {
-    "item": "assorted-discoveries:weeping_nether_brick_wall",
+    "id": "assorted-discoveries:weeping_nether_brick_wall",
     "count": 6
   },
   "fabric:load_conditions": [

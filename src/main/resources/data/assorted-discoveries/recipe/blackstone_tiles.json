@@ -5,12 +5,10 @@
     "##"
   ],
   "key": {
-    "#": {
-      "item": "minecraft:polished_blackstone_bricks"
-    }
+    "#": "minecraft:polished_blackstone_bricks"
   },
   "result": {
-    "item": "assorted-discoveries:blackstone_tiles",
+    "id": "assorted-discoveries:blackstone_tiles",
     "count": 4
   },
   "fabric:load_conditions": [

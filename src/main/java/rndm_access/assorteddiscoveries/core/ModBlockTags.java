@@ -14,6 +14,9 @@ public final class ModBlockTags {
     public static final TagKey<Block> OVERWORLD_PLANTER_BOXES;
     public static final TagKey<Block> NETHER_PLANTER_BOXES;
     public static final TagKey<Block> WOODEN_WALLS;
+    public static final TagKey<Block> SNOW_SLABS;
+    public static final TagKey<Block> SNOW_STAIRS;
+    public static final TagKey<Block> SNOW_WALLS;
 
     /**
      * @param path The name of the tag.
@@ -32,5 +35,8 @@ public final class ModBlockTags {
         OVERWORLD_PLANTER_BOXES = of("overworld_planter_boxes");
         NETHER_PLANTER_BOXES = of("nether_planter_boxes");
         WOODEN_WALLS = of("wooden_walls");
+        SNOW_SLABS = of("snow_slabs");
+        SNOW_STAIRS = of("snow_stairs");
+        SNOW_WALLS = of("snow_walls");
     }
 }

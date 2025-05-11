@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import rndm_access.assorteddiscoveries.core.CommonBlockTags;
+import rndm_access.assorteddiscoveries.core.ModBlockTags;
 
 @Mixin(SnowyBlock.class)
 public abstract class SnowyBlockMixin {
@@ -43,7 +43,7 @@ public abstract class SnowyBlockMixin {
     @Unique
     private boolean isSnowSlabOrStairs(WorldView world, BlockPos pos, BlockState state) {
         boolean isCovered = state.isSideSolidFullSquare(world, pos, Direction.DOWN);
-        return (state.isIn(CommonBlockTags.SNOW_STAIRS) && isCovered)
-                || (state.isIn(CommonBlockTags.SNOW_SLABS) && isCovered);
+        return (state.isIn(ModBlockTags.SNOW_STAIRS) && isCovered)
+                || (state.isIn(ModBlockTags.SNOW_SLABS) && isCovered);
     }
 }

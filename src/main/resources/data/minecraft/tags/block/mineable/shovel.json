@@ -2,11 +2,7 @@
   "replace": false,
   "values": [
     "assorted-discoveries:snow_bricks",
-    "assorted-discoveries:snow_brick_stairs",
-    "assorted-discoveries:snow_brick_slab",
     "assorted-discoveries:packed_snow",
-    "assorted-discoveries:packed_snow_stairs",
-    "assorted-discoveries:packed_snow_slab",
     "assorted-discoveries:grass_slab",
     "assorted-discoveries:podzol_slab",
     "assorted-discoveries:mycelium_slab",
@@ -14,6 +10,8 @@
     "assorted-discoveries:dirt_slab",
     "assorted-discoveries:rooted_dirt_slab",
     "assorted-discoveries:coarse_dirt_slab",
-    "#c:snow_walls"
+    "#assorted-discoveries:snow_slabs",
+    "#assorted-discoveries:snow_stairs",
+    "#assorted-discoveries:snow_walls"
   ]
 }

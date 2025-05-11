@@ -15,8 +15,8 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
+import rndm_access.assorteddiscoveries.core.ModBlockTags;
 import rndm_access.assorteddiscoveries.core.ModBlocks;
-import rndm_access.assorteddiscoveries.core.CommonBlockTags;
 
 public class SnowySlabBlock extends SlabBlock {
     public static final MapCodec<SnowySlabBlock> CODEC;
@@ -51,9 +51,9 @@ public class SnowySlabBlock extends SlabBlock {
     private static boolean isSnow(WorldView world, BlockState state, BlockPos neighborPos,
                                   BlockState neighborState) {
         return (neighborState.isIn(BlockTags.SNOW) && !isBottom(state)) ||
-                (neighborState.isIn(CommonBlockTags.SNOW_STAIRS) && !isBottom(state) &&
+                (neighborState.isIn(ModBlockTags.SNOW_STAIRS) && !isBottom(state) &&
                         isCovered(world, neighborPos, neighborState)) ||
-                (neighborState.isIn(CommonBlockTags.SNOW_SLABS) && !isBottom(state) &&
+                (neighborState.isIn(ModBlockTags.SNOW_SLABS) && !isBottom(state) &&
                         isCovered(world, neighborPos, neighborState));
     }
 

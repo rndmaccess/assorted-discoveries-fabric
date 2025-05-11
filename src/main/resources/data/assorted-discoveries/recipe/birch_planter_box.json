@@ -1,7 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "building",
-  "group": "overworld_planter_box",
+  "group": "planter_boxes",
   "key": {
     "#": "minecraft:birch_slab",
     "D": "minecraft:dirt"

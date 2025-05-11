@@ -13,6 +13,7 @@ public final class ModBlockTags {
     public static final TagKey<Block> FROSTBITE_BERRY_BUSH_PLANTABLE_ON;
     public static final TagKey<Block> OVERWORLD_PLANTER_BOXES;
     public static final TagKey<Block> NETHER_PLANTER_BOXES;
+    public static final TagKey<Block> WOODEN_WALLS;
 
     /**
      * @param path The name of the tag.
@@ -30,5 +31,6 @@ public final class ModBlockTags {
         FROSTBITE_BERRY_BUSH_PLANTABLE_ON = of("frostbite_berry_bush_plantable_on");
         OVERWORLD_PLANTER_BOXES = of("overworld_planter_boxes");
         NETHER_PLANTER_BOXES = of("nether_planter_boxes");
+        WOODEN_WALLS = of("wooden_walls");
     }
 }

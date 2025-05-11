@@ -9,7 +9,6 @@ public final class CommonBlockTags {
     public static final TagKey<Block> SNOW_SLABS;
     public static final TagKey<Block> SNOW_STAIRS;
     public static final TagKey<Block> SNOW_WALLS;
-    public static final TagKey<Block> WOODEN_WALLS;
 
     /**
      * @param path The name of the tag.
@@ -23,6 +22,5 @@ public final class CommonBlockTags {
         SNOW_SLABS = of("snow_slabs");
         SNOW_STAIRS = of("snow_stairs");
         SNOW_WALLS = of("snow_walls");
-        WOODEN_WALLS = of("wooden_walls");
     }
 }

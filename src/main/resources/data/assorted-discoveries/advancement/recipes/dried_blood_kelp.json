@@ -10,9 +10,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "assorted-discoveries:dried_blood_kelp_block"
-            ]
+            "items": "assorted-discoveries:dried_blood_kelp_block"
           }
         ]
       },

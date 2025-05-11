@@ -10,7 +10,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "c:stripped_jungle_logs"
+            "items": "#c:stripped_jungle_logs"
           }
         ]
       },

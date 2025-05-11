@@ -10,7 +10,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "c:stripped_acacia_logs"
+            "items": "#c:stripped_acacia_logs"
           }
         ]
       },

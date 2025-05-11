@@ -10,7 +10,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "c:natural_jungle_logs"
+            "items": "#c:natural_jungle_logs"
           }
         ]
       },

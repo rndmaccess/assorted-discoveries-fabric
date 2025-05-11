@@ -10,9 +10,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "assorted-discoveries:mossy_calcite_bricks"
-            ]
+            "items": "assorted-discoveries:mossy_calcite_bricks"
           }
         ]
       },

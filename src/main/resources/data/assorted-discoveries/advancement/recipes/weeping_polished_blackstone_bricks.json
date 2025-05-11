@@ -10,7 +10,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "c:crimson_vegetation"
+            "items": "#c:crimson_vegetation"
           }
         ]
       },

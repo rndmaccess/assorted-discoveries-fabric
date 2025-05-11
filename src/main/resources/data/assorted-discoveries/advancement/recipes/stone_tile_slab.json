@@ -10,9 +10,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "assorted-discoveries:stone_tiles"
-            ]
+            "items": "assorted-discoveries:stone_tiles"
           }
         ]
       },

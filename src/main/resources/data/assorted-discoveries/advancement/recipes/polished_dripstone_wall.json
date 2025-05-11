@@ -10,9 +10,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "assorted-discoveries:polished_dripstone"
-            ]
+            "items": "assorted-discoveries:polished_dripstone"
           }
         ]
       },

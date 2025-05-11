@@ -10,7 +10,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "c:stripped_crimson_stems"
+            "items": "#c:stripped_crimson_stems"
           }
         ]
       },

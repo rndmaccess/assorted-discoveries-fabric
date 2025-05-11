@@ -2,17 +2,15 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "assorted-discoveries:brown_dye_from_cattail"
+      "assorted-discoveries:purple_dye_from_snapdragon"
     ]
   },
   "criteria": {
-    "has_cattail": {
+    "has_snapdragon": {
       "conditions": {
         "items": [
           {
-            "items": [
-              "assorted-discoveries:cattail"
-            ]
+            "items": "assorted-discoveries:snapdragon"
           }
         ]
       },
@@ -20,14 +18,14 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "assorted-discoveries:brown_dye_from_cattail"
+        "recipe": "assorted-discoveries:purple_dye_from_snapdragon"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_cattail",
+      "has_snapdragon",
       "has_the_recipe"
     ]
   ],

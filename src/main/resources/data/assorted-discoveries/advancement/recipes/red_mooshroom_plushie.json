@@ -10,9 +10,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:red_mushroom"
-            ]
+            "items": "minecraft:red_mushroom"
           }
         ]
       },

@@ -10,9 +10,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "assorted-discoveries:blood_kelp"
-            ]
+            "items": "assorted-discoveries:blood_kelp"
           }
         ]
       },

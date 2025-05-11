@@ -10,9 +10,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "assorted-discoveries:cracked_bauxite_bricks"
-            ]
+            "items": "assorted-discoveries:cracked_bauxite_bricks"
           }
         ]
       },

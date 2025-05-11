@@ -1,18 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
-  "rewards": {
-    "recipes": [
-      "assorted-discoveries:bauxite"
-    ]
-  },
   "criteria": {
     "has_granite": {
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:granite"
-            ]
+            "items": "minecraft:granite"
           }
         ]
       },
@@ -22,9 +15,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:terracotta"
-            ]
+            "items": "minecraft:terracotta"
           }
         ]
       },
@@ -44,6 +35,11 @@
       "has_the_recipe"
     ]
   ],
+  "rewards": {
+    "recipes": [
+      "assorted-discoveries:bauxite"
+    ]
+  },
   "fabric:load_conditions": [
     {
       "condition": "assorted-discoveries:config_entry_enabled",

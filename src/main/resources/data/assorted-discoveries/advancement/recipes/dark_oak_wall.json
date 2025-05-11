@@ -10,7 +10,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "c:natural_dark_oak_logs"
+            "items": "#c:natural_dark_oak_logs"
           }
         ]
       },

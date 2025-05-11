@@ -3,7 +3,7 @@
   "category": "food",
   "cookingtime": 100,
   "experience": 0.1,
-  "ingredient": "minecraft:egg",
+  "ingredient": "#c:eggs",
   "result": {
     "id": "assorted-discoveries:fried_egg"
   },

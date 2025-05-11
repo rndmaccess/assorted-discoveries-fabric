@@ -1,18 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
-  "rewards": {
-    "recipes": [
-      "assorted-discoveries:bamboo_planter_box"
-    ]
-  },
   "criteria": {
     "has_bamboo_slab": {
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:bamboo_slab"
-            ]
+            "items": "minecraft:bamboo_slab"
           }
         ]
       },
@@ -31,6 +24,11 @@
       "has_the_recipe"
     ]
   ],
+  "rewards": {
+    "recipes": [
+      "assorted-discoveries:bamboo_planter_box"
+    ]
+  },
   "fabric:load_conditions": [
     {
       "condition": "assorted-discoveries:config_entry_enabled",

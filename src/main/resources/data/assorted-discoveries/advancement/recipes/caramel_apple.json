@@ -10,9 +10,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "assorted-discoveries:caramel"
-            ]
+            "items": "assorted-discoveries:caramel"
           }
         ]
       },

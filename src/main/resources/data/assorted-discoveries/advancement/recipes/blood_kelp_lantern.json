@@ -10,9 +10,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "assorted-discoveries:blood_kelp_seed_cluster"
-            ]
+            "items": "assorted-discoveries:blood_kelp_seed_cluster"
           }
         ]
       },

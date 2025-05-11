@@ -10,7 +10,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "c:stripped_oak_logs"
+            "items": "#c:stripped_oak_logs"
           }
         ]
       },

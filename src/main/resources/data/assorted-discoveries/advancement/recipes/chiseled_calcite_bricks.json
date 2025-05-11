@@ -10,9 +10,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "assorted-discoveries:calcite_brick_slab"
-            ]
+            "items": "assorted-discoveries:calcite_brick_slab"
           }
         ]
       },

@@ -10,7 +10,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "c:natural_crimson_stems"
+            "items": "#c:natural_crimson_stems"
           }
         ]
       },

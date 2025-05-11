@@ -10,9 +10,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "assorted-discoveries:mossy_stone_tiles"
-            ]
+            "items": "assorted-discoveries:mossy_stone_tiles"
           }
         ]
       },

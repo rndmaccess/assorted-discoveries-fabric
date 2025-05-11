@@ -10,7 +10,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "c:warped_vegetation"
+            "items": "#c:warped_vegetation"
           }
         ]
       },

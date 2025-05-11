@@ -10,7 +10,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "c:stripped_cherry_logs"
+            "items": "#c:stripped_cherry_logs"
           }
         ]
       },

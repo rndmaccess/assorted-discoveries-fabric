@@ -10,9 +10,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "assorted-discoveries:smooth_smoky_quartz"
-            ]
+            "items": "assorted-discoveries:smooth_smoky_quartz"
           }
         ]
       },

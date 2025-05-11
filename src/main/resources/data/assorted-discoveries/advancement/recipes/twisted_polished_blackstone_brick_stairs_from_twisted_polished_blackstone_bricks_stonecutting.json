@@ -10,9 +10,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "assorted-discoveries:twisted_polished_blackstone_bricks"
-            ]
+            "items": "assorted-discoveries:twisted_polished_blackstone_bricks"
           }
         ]
       },

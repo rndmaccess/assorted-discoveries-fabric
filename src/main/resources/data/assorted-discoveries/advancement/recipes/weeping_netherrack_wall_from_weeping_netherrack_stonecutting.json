@@ -10,9 +10,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "assorted-discoveries:weeping_netherrack"
-            ]
+            "items": "assorted-discoveries:weeping_netherrack"
           }
         ]
       },

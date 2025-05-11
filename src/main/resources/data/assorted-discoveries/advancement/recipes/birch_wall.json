@@ -10,7 +10,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "c:natural_birch_logs"
+            "items": "#c:natural_birch_logs"
           }
         ]
       },

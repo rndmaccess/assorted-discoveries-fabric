@@ -10,9 +10,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "assorted-discoveries:nether_smoky_quartz_ore"
-            ]
+            "items": "assorted-discoveries:nether_smoky_quartz_ore"
           }
         ]
       },

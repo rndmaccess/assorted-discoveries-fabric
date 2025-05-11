@@ -10,9 +10,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "assorted-discoveries:bauxite"
-            ]
+            "items": "assorted-discoveries:bauxite"
           }
         ]
       },

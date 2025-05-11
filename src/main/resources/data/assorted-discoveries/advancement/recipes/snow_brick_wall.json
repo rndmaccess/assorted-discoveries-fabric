@@ -10,9 +10,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "assorted-discoveries:snow_bricks"
-            ]
+            "items": "assorted-discoveries:snow_bricks"
           }
         ]
       },

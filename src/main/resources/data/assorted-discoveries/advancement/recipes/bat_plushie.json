@@ -10,7 +10,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "c:natural_stones"
+            "items": "#c:natural_stones"
           }
         ]
       },

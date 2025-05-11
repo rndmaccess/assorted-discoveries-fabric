@@ -10,9 +10,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "assorted-discoveries:blueberries"
-            ]
+            "items": "assorted-discoveries:blueberries"
           }
         ]
       },

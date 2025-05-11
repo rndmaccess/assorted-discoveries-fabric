@@ -1,7 +1,8 @@
 {
   "display": {
     "icon": {
-      "item": "assorted-discoveries:calcite_bricks"
+      "count": 1,
+      "id": "assorted-discoveries:calcite_bricks"
     },
     "title": {
       "translate": "advancements.assorted-discoveries.story.root.title"

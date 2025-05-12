@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "category": "building",
+  "category": "blocks",
   "ingredients": [
     "#c:crimson_vegetation",
     "minecraft:polished_blackstone_bricks"

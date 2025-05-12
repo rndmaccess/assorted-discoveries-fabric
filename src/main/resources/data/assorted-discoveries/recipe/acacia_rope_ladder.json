@@ -1,7 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "misc",
-  "group": "wooden_rope_ladder",
+  "group": "rope_ladders",
   "key": {
     "X": "minecraft:string",
     "#": "minecraft:acacia_planks"

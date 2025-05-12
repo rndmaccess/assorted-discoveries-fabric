@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "building",
   "key": {
     "#": [
       "assorted-discoveries:chiseled_smoky_quartz_block",

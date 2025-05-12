@@ -1,5 +1,5 @@
 {
-  "type": "crafting_shaped",
+  "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
     "#": "assorted-discoveries:weeping_polished_blackstone_bricks"

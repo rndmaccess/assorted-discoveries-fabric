@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "blocks",
   "key": {
     "#": "assorted-discoveries:smoky_quartz"
   },

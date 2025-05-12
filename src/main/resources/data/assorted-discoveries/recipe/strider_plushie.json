@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "key": {
     "R": "minecraft:red_wool",
     "B": "minecraft:black_wool",

@@ -1,5 +1,6 @@
 {
   "type": "crafting_shaped",
+  "category": "misc",
   "group": "smoky_quartz_walls",
   "key": {
     "#": "assorted-discoveries:smoky_quartz_block"

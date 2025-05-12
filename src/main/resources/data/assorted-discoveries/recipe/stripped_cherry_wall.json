@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "group": "stripped_wooden_walls",
   "key": {
     "#": "#c:stripped_cherry_logs"

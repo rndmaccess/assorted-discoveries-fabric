@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "group": "illager_plushies",
   "key": {
     "H": "minecraft:cyan_terracotta",

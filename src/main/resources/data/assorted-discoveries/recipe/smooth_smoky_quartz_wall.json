@@ -1,5 +1,6 @@
 {
-  "type": "crafting_shaped",
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "group": "smoky_quartz_walls",
   "key": {
     "#": "assorted-discoveries:smooth_smoky_quartz"

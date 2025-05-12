@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "group": "zombie_villager_plushies",
   "key": {
     "H": "minecraft:green_wool",

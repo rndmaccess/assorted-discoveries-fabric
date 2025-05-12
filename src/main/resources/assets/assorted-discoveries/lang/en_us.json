@@ -569,5 +569,7 @@
   "text.cloth-config.assorted-discoveries.option.farming.enable_ender_plants": "Enable Ender Plants",
 
   "category.cloth-config.assorted-discoveries.option.misc": "Misc",
-  "text.cloth-config.assorted-discoveries.option.misc.rabbits_safe_fall_increased": "Rabbit's Safe Fall Increased"
+  "text.cloth-config.assorted-discoveries.option.misc.rabbits_safe_fall_increased": "Rabbit's Safe Fall Increased",
+
+  "tag.item.assorted-discoveries.juices": "Assorted Discoveries Juices"
 }

@@ -12,7 +12,7 @@ public final class ModSoundEvents {
 
     public static void register() {
         register(BLOCK_MUSHROOM_BOUNCE);
-        AssortedDiscoveries.LOGGER.info("Registered sound events.");
+        AssortedDiscoveries.LOGGER.info("Registered sound events");
     }
 
     private static void register(SoundEvent soundEvent) {

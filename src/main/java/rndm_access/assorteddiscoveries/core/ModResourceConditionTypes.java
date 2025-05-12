@@ -17,7 +17,7 @@ public final class ModResourceConditionTypes {
 
     public static void register() {
         ResourceConditions.register(CONFIG_ENTRY_ENABLED);
-        AssortedDiscoveries.LOGGER.info("Registered resource conditions!");
+        AssortedDiscoveries.LOGGER.info("Registered resource conditions");
     }
 
     static {

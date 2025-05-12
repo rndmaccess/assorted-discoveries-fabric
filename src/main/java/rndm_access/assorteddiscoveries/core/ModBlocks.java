@@ -1680,6 +1680,6 @@ public class ModBlocks {
      * is registered and available later during gameplay.
      */
     public static void register() {
-        AssortedDiscoveries.LOGGER.info("Registered blocks!");
+        AssortedDiscoveries.LOGGER.info("Registered blocks");
     }
 }

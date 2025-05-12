@@ -571,5 +571,27 @@
   "category.cloth-config.assorted-discoveries.option.misc": "Misc",
   "text.cloth-config.assorted-discoveries.option.misc.rabbits_safe_fall_increased": "Rabbit's Safe Fall Increased",
 
-  "tag.item.assorted-discoveries.juices": "Assorted Discoveries Juices"
+  "tag.item.assorted-discoveries.juices": "Juices",
+  "tag.item.c.crimson_vegetation": "Crimson Vegetation",
+  "tag.item.c.natural_acacia_logs": "Natural Acacia Logs",
+  "tag.item.c.natural_birch_logs": "Natural Birch Logs",
+  "tag.item.c.natural_cherry_logs": "Natural Cherry Logs",
+  "tag.item.c.natural_crimson_stems": "Natural Crimson Stems",
+  "tag.item.c.natural_dark_oak_logs": "Natural Dark Oak Logs",
+  "tag.item.c.natural_jungle_logs": "Natural Jungle Logs",
+  "tag.item.c.natural_mangrove_logs": "Natural Mangrove Logs",
+  "tag.item.c.natural_oak_logs": "Natural Oak Logs",
+  "tag.item.c.natural_spruce_logs": "Natural Spruce Logs",
+  "tag.item.c.natural_warped_stems": "Natural Warped Stems",
+  "tag.item.c.stripped_acacia_logs": "Stripped Acacia Logs",
+  "tag.item.c.stripped_birch_logs": "Stripped Birch Logs",
+  "tag.item.c.stripped_cherry_logs": "Stripped Cherry Logs",
+  "tag.item.c.stripped_crimson_stems": "Stripped Crimson Stems",
+  "tag.item.c.stripped_dark_oak_logs": "Stripped Dark Oak Logs",
+  "tag.item.c.stripped_jungle_logs": "Stripped Jungle Logs",
+  "tag.item.c.stripped_mangrove_logs": "Stripped Mangrove Logs",
+  "tag.item.c.stripped_oak_logs": "Stripped Oak Logs",
+  "tag.item.c.stripped_spruce_logs": "Stripped Spruce Logs",
+  "tag.item.c.stripped_warped_stems": "Stripped Warped Stems",
+  "tag.item.c.warped_vegetation": "Warped Vegetation"
 }

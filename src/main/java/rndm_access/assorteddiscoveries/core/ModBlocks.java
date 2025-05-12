@@ -1388,6 +1388,12 @@ public class ModBlocks {
     public static final Block SNIFFER_PLUSHIE
             = register(new SnifferPlushieBlock(makePlushieSettings(SNIFFER_PLUSHIE_KEY)),
             SNIFFER_PLUSHIE_KEY, true);
+    public static final RegistryKey<Block> STRIPPED_PALE_OAK_WALL_KEY = makeRegistryKey("stripped_pale_oak_wall");
+    public static final Block STRIPPED_PALE_OAK_WALL = registerWall(STRIPPED_PALE_OAK_WALL_KEY,
+            AbstractBlock.Settings.copy(Blocks.PALE_OAK_PLANKS).registryKey(STRIPPED_PALE_OAK_WALL_KEY));
+    public static final RegistryKey<Block> PALE_OAK_WALL_KEY = makeRegistryKey("pale_oak_wall");
+    public static final Block PALE_OAK_WALL = registerWall(PALE_OAK_WALL_KEY,
+            AbstractBlock.Settings.copy(Blocks.PALE_OAK_PLANKS).registryKey(PALE_OAK_WALL_KEY));
 
     private static RegistryKey<Block> makeRegistryKey(String name) {
         return RegistryKey.of(RegistryKeys.BLOCK, ADReference.makeModId(name));

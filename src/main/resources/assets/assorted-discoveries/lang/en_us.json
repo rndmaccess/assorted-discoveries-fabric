@@ -399,6 +399,8 @@
   "item.assorted-discoveries.quartz_brick_slab": "Quartz Brick Slab",
   "item.assorted-discoveries.quartz_brick_wall": "Quartz Brick Wall",
   "item.assorted-discoveries.sniffer_plushie": "Sniffer Plushie",
+  "item.assorted-discoveries.stripped_pale_oak_wall": "Stripped Pale Oak Wall",
+  "item.assorted-discoveries.pale_oak_wall": "Pale Oak Wall",
 
   "block.assorted-discoveries.blood_kelp": "Blood Kelp",
 
@@ -581,6 +583,7 @@
   "tag.item.c.natural_jungle_logs": "Natural Jungle Logs",
   "tag.item.c.natural_mangrove_logs": "Natural Mangrove Logs",
   "tag.item.c.natural_oak_logs": "Natural Oak Logs",
+  "tag.item.c.natural_pale_oak_logs": "Natural Pale Oak Logs",
   "tag.item.c.natural_spruce_logs": "Natural Spruce Logs",
   "tag.item.c.natural_warped_stems": "Natural Warped Stems",
   "tag.item.c.stripped_acacia_logs": "Stripped Acacia Logs",
@@ -591,6 +594,7 @@
   "tag.item.c.stripped_jungle_logs": "Stripped Jungle Logs",
   "tag.item.c.stripped_mangrove_logs": "Stripped Mangrove Logs",
   "tag.item.c.stripped_oak_logs": "Stripped Oak Logs",
+  "tag.item.c.stripped_pale_oak_logs": "Stripped Pale Oak Logs",
   "tag.item.c.stripped_spruce_logs": "Stripped Spruce Logs",
   "tag.item.c.stripped_warped_stems": "Stripped Warped Stems",
   "tag.item.c.warped_vegetation": "Warped Vegetation"

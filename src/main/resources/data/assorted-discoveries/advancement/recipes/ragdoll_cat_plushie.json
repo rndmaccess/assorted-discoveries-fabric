@@ -6,11 +6,11 @@
     ]
   },
   "criteria": {
-    "has_raw_fishes": {
+    "has_cat_food": {
       "conditions": {
         "items": [
           {
-            "items": "#c:raw_fishes"
+            "items": "#minecraft:cat_food"
           }
         ]
       },
@@ -25,7 +25,7 @@
   },
   "requirements": [
     [
-      "has_raw_fishes",
+      "has_cat_food",
       "has_the_recipe"
     ]
   ],

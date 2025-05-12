@@ -4,7 +4,7 @@
   "key": {
     "W": "minecraft:white_wool",
     "B": "minecraft:black_wool",
-    "F": "#c:raw_fishes"
+    "F": "#minecraft:cat_food"
   },
   "pattern": [
     "WWW",

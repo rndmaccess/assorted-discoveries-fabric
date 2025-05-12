@@ -9,7 +9,7 @@
   "key": {
     "B": "minecraft:brown_wool",
     "O": "minecraft:orange_wool",
-    "F": "#c:raw_fishes"
+    "F": "#minecraft:cat_food"
   },
   "result": {
     "id": "assorted-discoveries:tabby_cat_plushie"

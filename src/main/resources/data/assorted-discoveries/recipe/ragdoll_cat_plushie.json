@@ -10,7 +10,7 @@
     "W": "minecraft:white_wool",
     "G": "minecraft:light_gray_wool",
     "B": "minecraft:blue_wool",
-    "F": "#c:raw_fishes"
+    "F": "#minecraft:cat_food"
   },
   "result": {
     "id": "assorted-discoveries:ragdoll_cat_plushie"

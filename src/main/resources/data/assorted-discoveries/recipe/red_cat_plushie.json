@@ -5,7 +5,7 @@
   "key": {
     "O": "minecraft:orange_wool",
     "G": "minecraft:green_wool",
-    "F": "#c:raw_fishes"
+    "F": "#minecraft:cat_food"
   },
   "pattern": [
     "OOO",

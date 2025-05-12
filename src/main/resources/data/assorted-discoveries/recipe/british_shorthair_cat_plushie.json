@@ -9,7 +9,7 @@
   "key": {
     "G": "minecraft:light_gray_wool",
     "B": "minecraft:black_wool",
-    "F": "#c:raw_fishes"
+    "F": "#minecraft:cat_food"
   },
   "result": {
     "id": "assorted-discoveries:british_shorthair_cat_plushie"

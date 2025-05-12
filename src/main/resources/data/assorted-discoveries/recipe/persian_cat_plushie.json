@@ -9,7 +9,7 @@
   "key": {
     "Y": "minecraft:yellow_wool",
     "B": "minecraft:black_wool",
-    "F": "#c:raw_fishes"
+    "F": "#minecraft:cat_food"
   },
   "result": {
     "id": "assorted-discoveries:persian_cat_plushie"

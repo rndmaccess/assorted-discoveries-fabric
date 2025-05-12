@@ -11,7 +11,7 @@
     "B": "minecraft:black_wool",
     "W": "minecraft:white_wool",
     "G": "minecraft:green_wool",
-    "F": "#c:raw_fishes"
+    "F": "#minecraft:cat_food"
   },
   "result": {
     "id": "assorted-discoveries:calico_cat_plushie"

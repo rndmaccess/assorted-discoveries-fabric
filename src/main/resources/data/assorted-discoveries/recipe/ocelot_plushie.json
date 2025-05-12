@@ -10,7 +10,7 @@
     "Y": "minecraft:yellow_wool",
     "B": "minecraft:black_wool",
     "b": "minecraft:brown_wool",
-    "F": "#c:raw_fishes"
+    "F": "#minecraft:cat_food"
   },
   "result": {
     "id": "assorted-discoveries:ocelot_plushie"

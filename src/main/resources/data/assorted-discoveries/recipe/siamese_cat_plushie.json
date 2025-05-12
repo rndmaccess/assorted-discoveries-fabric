@@ -6,7 +6,7 @@
     "b": "minecraft:black_wool",
     "B": "minecraft:brown_wool",
     "W": "minecraft:white_wool",
-    "F": "#c:raw_fishes"
+    "F": "#minecraft:cat_food"
   },
   "pattern": [
     "BBB",

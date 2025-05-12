@@ -1,7 +1,8 @@
 {
   "replace": false,
   "values": [
-    "#c:netherrack",
-    "#c:netherracks"
+    "#c:netherracks",
+    "minecraft:warped_nylium",
+    "minecraft:crimson_nylium"
   ]
 }

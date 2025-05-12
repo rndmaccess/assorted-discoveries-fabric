@@ -1,11 +1,6 @@
 {
   "replace": false,
   "values": [
-    "#assorted-discoveries:overgrown_netherrack",
-    "#assorted-discoveries:overgrown_blackstones",
-    "assorted-discoveries:nether_smoky_quartz_ore",
-    "minecraft:crimson_nylium",
-    "minecraft:warped_nylium",
-    "minecraft:netherrack"
+    "#assorted-discoveries:overgrown_netherracks"
   ]
 }

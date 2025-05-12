@@ -4,7 +4,7 @@
   "key": {
     "G": "minecraft:light_gray_wool",
     "B": "minecraft:black_wool",
-    "S": "#c:natural_stones"
+    "S": "#c:stones"
   },
   "pattern": [
     "GGG",

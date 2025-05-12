@@ -6,11 +6,11 @@
     ]
   },
   "criteria": {
-    "has_natural_stones": {
+    "has_stones": {
       "conditions": {
         "items": [
           {
-            "items": "#c:natural_stones"
+            "items": "#c:stones"
           }
         ]
       },
@@ -25,7 +25,7 @@
   },
   "requirements": [
     [
-      "has_natural_stones",
+      "has_stones",
       "has_the_recipe"
     ]
   ],

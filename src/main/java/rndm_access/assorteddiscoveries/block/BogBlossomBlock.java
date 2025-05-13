@@ -48,7 +48,7 @@ public class BogBlossomBlock extends Block implements Fertilizable {
                 double floatingY = mutable.getY() + random.nextDouble();
                 double floatingZ = mutable.getZ() + random.nextDouble();
 
-                world.addParticle(ModParticleTypes.BOG_BLOSSOM_AIR_NECTAR, floatingX, floatingY, floatingZ,
+                world.addParticleClient(ModParticleTypes.BOG_BLOSSOM_AIR_NECTAR, floatingX, floatingY, floatingZ,
                         0.0D, 0.0D, 0.0D);
             }
         }

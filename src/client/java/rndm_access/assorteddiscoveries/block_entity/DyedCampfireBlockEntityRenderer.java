@@ -6,11 +6,12 @@ import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.item.ItemDisplayContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ModelTransformationMode;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.RotationAxis;
+import net.minecraft.util.math.Vec3d;
 
 public class DyedCampfireBlockEntityRenderer implements BlockEntityRenderer<DyedCampfireBlockEntity> {
     private static final float SCALE = 0.375F;
@@ -22,7 +23,7 @@ public class DyedCampfireBlockEntityRenderer implements BlockEntityRenderer<Dyed
 
     @Override
     public void render(DyedCampfireBlockEntity blockEntity, float tickDelta, MatrixStack matrices,
-                       VertexConsumerProvider vertexConsumers, int light, int overlay) {
+                       VertexConsumerProvider vertexConsumers, int light, int overlay, Vec3d vec3d) {
         Direction direction = blockEntity.getCachedState().get(CampfireBlock.FACING);
         DefaultedList<ItemStack> defaultedList = blockEntity.getItemsBeingCooked();
         int k = (int) blockEntity.getPos().asLong();
@@ -38,7 +39,7 @@ public class DyedCampfireBlockEntityRenderer implements BlockEntityRenderer<Dyed
                 matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(90.0F));
                 matrices.translate(-0.3125F, -0.3125F, 0.0F);
                 matrices.scale(SCALE, SCALE, SCALE);
-                this.itemRenderer.renderItem(itemStack, ModelTransformationMode.FIXED,
+                this.itemRenderer.renderItem(itemStack, ItemDisplayContext.FIXED,
                         light, overlay, matrices, vertexConsumers, blockEntity.getWorld(), k + l);
                 matrices.pop();
             }

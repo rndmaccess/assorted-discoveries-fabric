@@ -57,7 +57,7 @@ public class CindersnapBerryBushBlock extends AbstractBerryBushBlock {
         double randNum = random.nextDouble();
 
         if(randNum < 0.3) {
-            world.addParticle(ParticleTypes.LAVA, x, y, z, 0.0D, 0.0D, 0.0D);
+            world.addParticleClient(ParticleTypes.LAVA, x, y, z, 0.0D, 0.0D, 0.0D);
         }
     }
 

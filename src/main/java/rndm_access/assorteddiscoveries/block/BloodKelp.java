@@ -40,7 +40,7 @@ public interface BloodKelp {
         double z = pos.getZ() + (random.nextDouble() / 2.0);
 
         if (state.get(LIT)) {
-            world.addParticle(ModParticleTypes.BLOOD_KELP_SPORE, x, y, z, 0.0D,
+            world.addParticleClient(ModParticleTypes.BLOOD_KELP_SPORE, x, y, z, 0.0D,
                     0.0D, 0.0D);
         }
     }

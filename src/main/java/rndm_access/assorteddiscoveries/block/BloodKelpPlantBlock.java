@@ -2,6 +2,7 @@ package rndm_access.assorteddiscoveries.block;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
@@ -76,8 +77,8 @@ public class BloodKelpPlantBlock extends AbstractPlantBlock implements FluidFill
         builder.add(LIT);
     }
 
-    public boolean canFillWithFluid(@Nullable PlayerEntity player, BlockView world, BlockPos pos,
-                                    BlockState state, Fluid fluid) {
+    public boolean canFillWithFluid(@Nullable LivingEntity filler, BlockView world, BlockPos pos, BlockState state,
+                                    Fluid fluid) {
         return false;
     }
 

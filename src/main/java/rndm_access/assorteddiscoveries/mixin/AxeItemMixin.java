@@ -37,10 +37,10 @@ public abstract class AxeItemMixin {
         if(STRIPPABLE_WALLS.containsKey(block) && block instanceof WallBlock) {
             world.playSound(player, pos, SoundEvents.ITEM_AXE_STRIP, SoundCategory.BLOCKS, 1.0F, 1.0F);
             world.setBlockState(pos, STRIPPABLE_WALLS.get(block).getDefaultState()
-                    .with(WallBlock.NORTH_SHAPE, state.get(WallBlock.NORTH_SHAPE))
-                    .with(WallBlock.SOUTH_SHAPE, state.get(WallBlock.SOUTH_SHAPE))
-                    .with(WallBlock.WEST_SHAPE, state.get(WallBlock.WEST_SHAPE))
-                    .with(WallBlock.EAST_SHAPE, state.get(WallBlock.EAST_SHAPE))
+                    .with(WallBlock.NORTH_WALL_SHAPE, state.get(WallBlock.NORTH_WALL_SHAPE))
+                    .with(WallBlock.SOUTH_WALL_SHAPE, state.get(WallBlock.SOUTH_WALL_SHAPE))
+                    .with(WallBlock.WEST_WALL_SHAPE, state.get(WallBlock.WEST_WALL_SHAPE))
+                    .with(WallBlock.EAST_WALL_SHAPE, state.get(WallBlock.EAST_WALL_SHAPE))
                     .with(WallBlock.UP, state.get(WallBlock.UP))
                     .with(WallBlock.WATERLOGGED, state.get(WallBlock.WATERLOGGED)));
             cir.setReturnValue(ActionResult.SUCCESS);

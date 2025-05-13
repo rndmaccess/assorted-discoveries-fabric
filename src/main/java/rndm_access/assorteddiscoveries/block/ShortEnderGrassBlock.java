@@ -34,7 +34,7 @@ public class ShortEnderGrassBlock extends PlantBlock {
         double y = pos.getY() + random.nextDouble();
         double z = pos.getZ() + random.nextDouble();
 
-        world.addParticle(ParticleTypes.PORTAL, x, y, z, 0.0D, 0.0D, 0.0D);
+        world.addParticleClient(ParticleTypes.PORTAL, x, y, z, 0.0D, 0.0D, 0.0D);
     }
 
     @Override

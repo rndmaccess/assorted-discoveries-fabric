@@ -20,6 +20,6 @@ public class PottedSnapdragonBlock extends FlowerPotBlock {
         double y = (double) pos.getY() + random.nextFloat();
         double z = (double) pos.getZ() + random.nextFloat();
 
-        world.addParticle(ParticleTypes.PORTAL, x, y, z, 0.0D, 0.0D, 0.0D);
+        world.addParticleClient(ParticleTypes.PORTAL, x, y, z, 0.0D, 0.0D, 0.0D);
     }
 }

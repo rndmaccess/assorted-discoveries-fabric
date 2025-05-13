@@ -65,7 +65,7 @@ public class WitchsCradleBlock extends AbstractBerryBushBlock {
         double y = pos.getY() + random.nextDouble();
         double z = pos.getZ() + random.nextDouble();
 
-        world.addParticle(ModParticleTypes.WITCHS_CRADLE_SPORE, x, y, z, 0.0D,
+        world.addParticleClient(ModParticleTypes.WITCHS_CRADLE_SPORE, x, y, z, 0.0D,
                 0.0D, 0.0D);
     }
 

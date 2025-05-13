@@ -3,6 +3,7 @@ package rndm_access.assorteddiscoveries.block;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCollisionHandler;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -84,7 +85,8 @@ public abstract class AbstractBerryBushBlock extends PlantBlock implements Ferti
     }
 
     @Override
-    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity,
+                                  EntityCollisionHandler handler) {
         if (entity.getType().isIn(this.mobsImmune())) {
             return;
         }

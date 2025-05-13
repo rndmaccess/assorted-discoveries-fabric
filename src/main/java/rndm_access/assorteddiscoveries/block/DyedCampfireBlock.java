@@ -33,7 +33,7 @@ public class DyedCampfireBlock extends CampfireBlock {
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
         if (state.get(LIT)) {
             if (random.nextInt(10) == 0) {
-                world.playSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D,
+                world.playSoundClient(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D,
                         SoundEvents.BLOCK_CAMPFIRE_CRACKLE, SoundCategory.BLOCKS, 0.5F + random.nextFloat(),
                         random.nextFloat() * 0.7F + 0.6F, false);
             }
@@ -41,7 +41,7 @@ public class DyedCampfireBlock extends CampfireBlock {
             // Spawn the spark particle randomly.
             if (random.nextInt(5) == 0) {
                 for (int i = 0; i < random.nextInt(1) + 1; ++i) {
-                    world.addParticle(emberParticle, pos.getX() + 0.5D, pos.getY() + 0.5D,
+                    world.addParticleClient(emberParticle, pos.getX() + 0.5D, pos.getY() + 0.5D,
                             pos.getZ() + 0.5D, random.nextFloat() / 2.0F, 5.0E-5D,
                             random.nextFloat() / 2.0F);
                 }

@@ -19,8 +19,7 @@ public class PurpleMushroomBlock extends MushroomBlock {
     }
 
     @Override
-    public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity,
-                             float fallDistance) {
+    public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, double fallDistance) {
         SoundEvent sound = ModSoundEvents.BLOCK_MUSHROOM_BOUNCE;
         Random random = world.getRandom();
         int x = pos.getX();
@@ -28,10 +27,10 @@ public class PurpleMushroomBlock extends MushroomBlock {
         int z = pos.getZ();
 
         if(entity.isSneaking()) {
-            world.playSound(x, y, z, sound, SoundCategory.BLOCKS,
+            world.playSoundClient(x, y, z, sound, SoundCategory.BLOCKS,
                     1.0F, 0.8F + random.nextFloat() / 0.4F, true);
         } else {
-            world.playSound(x, y, z, sound, SoundCategory.BLOCKS, 1.0F,
+            world.playSoundClient(x, y, z, sound, SoundCategory.BLOCKS, 1.0F,
                     0.8F + random.nextFloat() * 0.4F, true);
         }
     }

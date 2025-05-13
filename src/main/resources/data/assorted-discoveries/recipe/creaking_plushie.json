@@ -9,7 +9,7 @@
   "key": {
     "B": "minecraft:gray_wool",
     "E": "minecraft:yellow_wool",
-    "I": "minecraft:dark_oak_log"
+    "I": "minecraft:pale_oak_log"
   },
   "result": {
     "id": "assorted-discoveries:creaking_plushie"

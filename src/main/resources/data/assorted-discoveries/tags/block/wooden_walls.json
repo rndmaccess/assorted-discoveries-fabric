@@ -12,6 +12,7 @@
     "assorted-discoveries:crimson_wall",
     "assorted-discoveries:cherry_wall",
     "assorted-discoveries:pale_oak_wall",
+    "assorted-discoveries:bamboo_wall",
     "assorted-discoveries:stripped_oak_wall",
     "assorted-discoveries:stripped_spruce_wall",
     "assorted-discoveries:stripped_birch_wall",
@@ -22,6 +23,7 @@
     "assorted-discoveries:stripped_warped_wall",
     "assorted-discoveries:stripped_crimson_wall",
     "assorted-discoveries:stripped_cherry_wall",
-    "assorted-discoveries:stripped_pale_oak_wall"
+    "assorted-discoveries:stripped_pale_oak_wall",
+    "assorted-discoveries:stripped_bamboo_wall"
   ]
 }

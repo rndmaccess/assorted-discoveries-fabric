@@ -509,6 +509,7 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.DARK_OAK_WALL.asItem());
                 entries.add(ModBlocks.MANGROVE_WALL.asItem());
                 entries.add(ModBlocks.CHERRY_WALL.asItem());
+                entries.add(ModBlocks.BAMBOO_WALL.asItem());
                 entries.add(ModBlocks.PALE_OAK_WALL.asItem());
                 entries.add(ModBlocks.CRIMSON_WALL.asItem());
                 entries.add(ModBlocks.WARPED_WALL.asItem());
@@ -524,6 +525,7 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.STRIPPED_DARK_OAK_WALL.asItem());
                 entries.add(ModBlocks.STRIPPED_MANGROVE_WALL.asItem());
                 entries.add(ModBlocks.STRIPPED_CHERRY_WALL.asItem());
+                entries.add(ModBlocks.STRIPPED_BAMBOO_WALL.asItem());
                 entries.add(ModBlocks.STRIPPED_PALE_OAK_WALL.asItem());
                 entries.add(ModBlocks.STRIPPED_CRIMSON_WALL.asItem());
                 entries.add(ModBlocks.STRIPPED_WARPED_WALL.asItem());

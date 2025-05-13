@@ -1396,6 +1396,12 @@ public class ModBlocks {
             AbstractBlock.Settings.copy(Blocks.PALE_OAK_PLANKS).registryKey(PALE_OAK_WALL_KEY));
     public static final RegistryKey<Block> BAMBOO_ROPE_LADDER_KEY = makeRegistryKey("bamboo_rope_ladder");
     public static final Block BAMBOO_ROPE_LADDER = registerRopeLadder(BAMBOO_ROPE_LADDER_KEY);
+    public static final RegistryKey<Block> STRIPPED_BAMBOO_WALL_KEY = makeRegistryKey("stripped_bamboo_wall");
+    public static final Block STRIPPED_BAMBOO_WALL = registerWall(STRIPPED_BAMBOO_WALL_KEY,
+            AbstractBlock.Settings.copy(Blocks.BAMBOO_PLANKS).registryKey(STRIPPED_BAMBOO_WALL_KEY));
+    public static final RegistryKey<Block> BAMBOO_WALL_KEY = makeRegistryKey("bamboo_wall");
+    public static final Block BAMBOO_WALL = registerWall(BAMBOO_WALL_KEY,
+            AbstractBlock.Settings.copy(Blocks.BAMBOO_PLANKS).registryKey(BAMBOO_WALL_KEY));
 
     private static RegistryKey<Block> makeRegistryKey(String name) {
         return RegistryKey.of(RegistryKeys.BLOCK, ADReference.makeModId(name));

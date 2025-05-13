@@ -443,6 +443,8 @@
   
   "itemGroup.assorted-discoveries": "Assorted Discoveries Mod",
 
+  "title.assorted-discoveries.config": "Assorted Discoveries Config",
+
   "category.cloth-config.assorted-discoveries.option.building_blocks": "Building Blocks",
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_dyed_campfires": "Enable Dyed Campfires",
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_dyed_lanterns": "Enable Dyed Lanterns",

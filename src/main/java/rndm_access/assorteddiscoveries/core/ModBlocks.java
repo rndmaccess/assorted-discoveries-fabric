@@ -1394,6 +1394,8 @@ public class ModBlocks {
     public static final RegistryKey<Block> PALE_OAK_WALL_KEY = makeRegistryKey("pale_oak_wall");
     public static final Block PALE_OAK_WALL = registerWall(PALE_OAK_WALL_KEY,
             AbstractBlock.Settings.copy(Blocks.PALE_OAK_PLANKS).registryKey(PALE_OAK_WALL_KEY));
+    public static final RegistryKey<Block> BAMBOO_ROPE_LADDER_KEY = makeRegistryKey("bamboo_rope_ladder");
+    public static final Block BAMBOO_ROPE_LADDER = registerRopeLadder(BAMBOO_ROPE_LADDER_KEY);
 
     private static RegistryKey<Block> makeRegistryKey(String name) {
         return RegistryKey.of(RegistryKeys.BLOCK, ADReference.makeModId(name));

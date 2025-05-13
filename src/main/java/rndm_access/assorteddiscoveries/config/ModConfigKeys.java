@@ -51,7 +51,7 @@ public class ModConfigKeys {
     public static final String ENABLE_CREAKING_PLUSHIE;
     public static final String ENABLE_WOODEN_WALLS;
     public static final String ENABLE_STRIPPED_WOODEN_WALLS;
-    public static final String ENABLE_WOODEN_ROPE_LADDERS;
+    public static final String ENABLE_ROPE_LADDERS;
     public static final String ENABLE_IRON_LADDERS;
     public static final String ENABLE_BLACKSTONE_TILES;
     public static final String ENABLE_TWISTED_BLACKSTONE;
@@ -77,7 +77,7 @@ public class ModConfigKeys {
     public static final String ENABLE_CRACKED_STONE_TILES;
     public static final String ENABLE_MOSSY_STONE_TILES;
     public static final String ENABLE_CRACKED_STONE_BRICK_BLOCKS;
-    public static final String ENABLE_WOODEN_PLANTER_BOXES;
+    public static final String ENABLE_PLANTER_BOXES;
     public static final String ENABLE_GREEN_ONIONS;
     public static final String ENABLE_NOODLE_SOUP;
     public static final String ENABLE_BLUEBERRIES;
@@ -168,7 +168,7 @@ public class ModConfigKeys {
         ENABLE_CREAKING_PLUSHIE = registerKey("enable_creaking_plushie");
         ENABLE_WOODEN_WALLS = registerKey("enable_wooden_walls");
         ENABLE_STRIPPED_WOODEN_WALLS = registerKey("enable_stripped_wooden_walls");
-        ENABLE_WOODEN_ROPE_LADDERS = registerKey("enable_wooden_rope_ladders");
+        ENABLE_ROPE_LADDERS = registerKey("enable_rope_ladders");
         ENABLE_IRON_LADDERS = registerKey("enable_iron_ladders");
         ENABLE_BLACKSTONE_TILES = registerKey("enable_blackstone_tiles");
         ENABLE_TWISTED_BLACKSTONE = registerKey("enable_twisted_blackstone");
@@ -194,7 +194,7 @@ public class ModConfigKeys {
         ENABLE_CRACKED_STONE_TILES = registerKey("enable_cracked_stone_tiles");
         ENABLE_MOSSY_STONE_TILES = registerKey("enable_mossy_stone_tiles");
         ENABLE_CRACKED_STONE_BRICK_BLOCKS = registerKey("enable_cracked_stone_brick_blocks");
-        ENABLE_WOODEN_PLANTER_BOXES = registerKey("enable_wooden_planter_boxes");
+        ENABLE_PLANTER_BOXES = registerKey("enable_planter_boxes");
         ENABLE_GREEN_ONIONS = registerKey("enable_green_onions");
         ENABLE_NOODLE_SOUP = registerKey("enable_noodle_soup");
         ENABLE_BLUEBERRIES = registerKey("enable_blueberries");

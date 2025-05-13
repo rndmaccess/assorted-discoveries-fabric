@@ -482,8 +482,7 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.SNIFFER_PLUSHIE.asItem());
             }
 
-            configEntry = (BooleanConfigEntry) config
-                    .getEntry(ModConfigKeys.ENABLE_WOODEN_PLANTER_BOXES);
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_PLANTER_BOXES);
             if (configEntry.getValue()) {
                 entries.add(ModBlocks.OAK_PLANTER_BOX.asItem());
                 entries.add(ModBlocks.SPRUCE_PLANTER_BOX.asItem());
@@ -531,7 +530,7 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.STRIPPED_WARPED_WALL.asItem());
             }
 
-            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_WOODEN_ROPE_LADDERS);
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_ROPE_LADDERS);
             if (configEntry.getValue()) {
                 entries.add(ModBlocks.OAK_ROPE_LADDER.asItem());
                 entries.add(ModBlocks.SPRUCE_ROPE_LADDER.asItem());

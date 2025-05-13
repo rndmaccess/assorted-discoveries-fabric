@@ -449,7 +449,7 @@
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_dyed_torches": "Enable Dyed Torches",
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_wooden_walls": "Enable Wooden Walls",
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_stripped_wooden_walls": "Enable Stripped Wooden Walls",
-  "text.cloth-config.assorted-discoveries.option.building_blocks.enable_wooden_rope_ladders": "Enable Wooden Rope Ladders",
+  "text.cloth-config.assorted-discoveries.option.building_blocks.enable_rope_ladders": "Enable Rope Ladders",
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_iron_ladders": "Enable Iron Ladders",
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_blackstone_tiles": "Enable Blackstone Tiles",
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_twisted_blackstone": "Enable Twisted Blackstone",
@@ -550,7 +550,7 @@
   "text.cloth-config.assorted-discoveries.option.hostile_plushies.enable_creaking_plushie": "Enable Creaking Plushie",
 
   "category.cloth-config.assorted-discoveries.option.farming": "Farming",
-  "text.cloth-config.assorted-discoveries.option.farming.enable_wooden_planter_boxes": "Enable Wooden Planter Boxes",
+  "text.cloth-config.assorted-discoveries.option.farming.enable_planter_boxes": "Enable Planter Boxes",
   "text.cloth-config.assorted-discoveries.option.farming.enable_green_onions": "Enable Green Onions",
   "text.cloth-config.assorted-discoveries.option.farming.enable_noodle_soup": "Enable Noodle Soup",
   "text.cloth-config.assorted-discoveries.option.farming.enable_blueberries": "Enable Blueberries",

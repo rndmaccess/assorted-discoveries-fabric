@@ -71,7 +71,7 @@ public class ModConfigScreen {
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_STRIPPED_WOODEN_WALLS, categoryName);
         category.addEntry(configEntry);
-        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_WOODEN_ROPE_LADDERS, categoryName);
+        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_ROPE_LADDERS, categoryName);
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_IRON_LADDERS, categoryName);
         category.addEntry(configEntry);
@@ -250,7 +250,7 @@ public class ModConfigScreen {
         categoryName = "farming";
         category = makeCategory(configBuilder, categoryName);
 
-        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_WOODEN_PLANTER_BOXES, categoryName);
+        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_PLANTER_BOXES, categoryName);
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_GREEN_ONIONS, categoryName);
         category.addEntry(configEntry);

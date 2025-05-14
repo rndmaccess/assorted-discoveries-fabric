@@ -247,9 +247,10 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.JELLIE_CAT_PLUSHIE.asItem());
             }
 
-            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_PALE_WOLF_PLUSHIE);
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_WOLF_PLUSHIES);
             if (configEntry.getValue()) {
                 entries.add(ModBlocks.PALE_WOLF_PLUSHIE.asItem());
+                entries.add(ModBlocks.BLACK_WOLF_PLUSHIE.asItem());
             }
 
             configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_ZOMBIE_PLUSHIE);

@@ -30,7 +30,7 @@ public class ModConfigKeys {
     public static final String ENABLE_PIGLIN_PLUSHIES;
     public static final String ENABLE_POLAR_BEAR_PLUSHIE;
     public static final String ENABLE_SPIDER_PLUSHIE;
-    public static final String ENABLE_PALE_WOLF_PLUSHIE;
+    public static final String ENABLE_WOLF_PLUSHIES;
     public static final String ENABLE_BLAZE_PLUSHIE;
     public static final String ENABLE_CREEPER_PLUSHIE;
     public static final String ENABLE_GHAST_PLUSHIE;
@@ -147,7 +147,7 @@ public class ModConfigKeys {
         ENABLE_PIGLIN_PLUSHIES = registerKey("enable_piglin_plushies");
         ENABLE_POLAR_BEAR_PLUSHIE = registerKey("enable_polar_bear_plushie");
         ENABLE_SPIDER_PLUSHIE = registerKey("enable_spider_plushie");
-        ENABLE_PALE_WOLF_PLUSHIE = registerKey("enable_pale_wolf_plushie");
+        ENABLE_WOLF_PLUSHIES = registerKey("enable_wolf_plushies");
         ENABLE_BLAZE_PLUSHIE = registerKey("enable_blaze_plushie");
         ENABLE_CREEPER_PLUSHIE = registerKey("enable_creeper_plushie");
         ENABLE_GHAST_PLUSHIE = registerKey("enable_ghast_plushie");

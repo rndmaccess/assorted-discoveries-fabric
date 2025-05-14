@@ -122,7 +122,7 @@ public class ModConfig {
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_PIGLIN_PLUSHIES))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_POLAR_BEAR_PLUSHIE))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_SPIDER_PLUSHIE))
-                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_PALE_WOLF_PLUSHIE)).build();
+                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_WOLF_PLUSHIES)).build();
 
         ConfigCategory hostilePlushiesCategory = new ConfigCategory.Builder("hostile_plushies")
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_BLAZE_PLUSHIE))

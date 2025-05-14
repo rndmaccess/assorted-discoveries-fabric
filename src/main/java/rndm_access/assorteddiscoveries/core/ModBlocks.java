@@ -226,9 +226,7 @@ public class ModBlocks {
     public static final Block WITCH_PLUSHIE = register(new WitchPlushieBlock(makePlushieSettings(WITCH_PLUSHIE_KEY)),
             WITCH_PLUSHIE_KEY, true);
     public static final RegistryKey<Block> PALE_WOLF_PLUSHIE_KEY = makeRegistryKey("pale_wolf_plushie");
-    public static final Block PALE_WOLF_PLUSHIE
-            = register(new WolfPlushieBlock(makePlushieSettings(PALE_WOLF_PLUSHIE_KEY)),
-            PALE_WOLF_PLUSHIE_KEY, true);
+    public static final Block PALE_WOLF_PLUSHIE = registerWolfPlushie(PALE_WOLF_PLUSHIE_KEY);
     public static final RegistryKey<Block> ZOMBIE_PLUSHIE_KEY = makeRegistryKey("zombie_plushie");
     public static final Block ZOMBIE_PLUSHIE = registerZombiePlushie(ZOMBIE_PLUSHIE_KEY);
     public static final RegistryKey<Block> PIGLIN_PLUSHIE_KEY = makeRegistryKey("piglin_plushie");
@@ -1402,6 +1400,8 @@ public class ModBlocks {
     public static final RegistryKey<Block> BAMBOO_WALL_KEY = makeRegistryKey("bamboo_wall");
     public static final Block BAMBOO_WALL = registerWall(BAMBOO_WALL_KEY,
             AbstractBlock.Settings.copy(Blocks.BAMBOO_PLANKS).registryKey(BAMBOO_WALL_KEY));
+    public static final RegistryKey<Block> BLACK_WOLF_PLUSHIE_KEY = makeRegistryKey("black_wolf_plushie");
+    public static final Block BLACK_WOLF_PLUSHIE = registerWolfPlushie(BLACK_WOLF_PLUSHIE_KEY);
 
     private static RegistryKey<Block> makeRegistryKey(String name) {
         return RegistryKey.of(RegistryKeys.BLOCK, ADReference.makeModId(name));
@@ -1441,6 +1441,11 @@ public class ModBlocks {
     private static Block registerMooshroomPlushie(RegistryKey<Block> blockKey) {
         Block mooshroomPlushieBlock = new MooshroomPlushieBlock(makePlushieSettings(blockKey));
         return register(mooshroomPlushieBlock, blockKey, true);
+    }
+
+    private static Block registerWolfPlushie(RegistryKey<Block> blockKey) {
+        Block wolfPlushieBlock = new WolfPlushieBlock(makePlushieSettings(blockKey));
+        return register(wolfPlushieBlock, blockKey, true);
     }
 
     private static Block registerCatPlushie(RegistryKey<Block> blockKey) {

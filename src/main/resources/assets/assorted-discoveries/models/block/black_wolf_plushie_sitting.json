@@ -2,7 +2,7 @@
 	"__comment": "Designed by rndm_access with Cubik Studio - https://cubik.studio",
 	"parent": "assorted-discoveries:block/plushie_block",
 	"textures": {
-		"particle": "block/white_wool",
+		"particle": "block/black_wool",
 		"face": "block/gray_wool",
 		"body": "block/black_wool"
 	},

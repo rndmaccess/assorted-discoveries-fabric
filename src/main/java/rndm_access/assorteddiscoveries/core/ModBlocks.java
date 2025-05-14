@@ -1404,6 +1404,8 @@ public class ModBlocks {
     public static final Block BLACK_WOLF_PLUSHIE = registerWolfPlushie(BLACK_WOLF_PLUSHIE_KEY);
     public static final RegistryKey<Block> ASHEN_WOLF_PLUSHIE_KEY = makeRegistryKey("ashen_wolf_plushie");
     public static final Block ASHEN_WOLF_PLUSHIE = registerWolfPlushie(ASHEN_WOLF_PLUSHIE_KEY);
+    public static final RegistryKey<Block> CHESTNUT_WOLF_PLUSHIE_KEY = makeRegistryKey("chestnut_wolf_plushie");
+    public static final Block CHESTNUT_WOLF_PLUSHIE = registerWolfPlushie(CHESTNUT_WOLF_PLUSHIE_KEY);
 
     private static RegistryKey<Block> makeRegistryKey(String name) {
         return RegistryKey.of(RegistryKeys.BLOCK, ADReference.makeModId(name));

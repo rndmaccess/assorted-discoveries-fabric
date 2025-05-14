@@ -1,18 +1,33 @@
 {
   "variants": {
-    "facing=north": {
-      "model": "assorted-discoveries:block/pale_wolf_plushie"
+    "facing=north,is_sitting=false": {
+      "model": "assorted-discoveries:block/pale_wolf_plushie_standing"
     },
-    "facing=south": {
-      "model": "assorted-discoveries:block/pale_wolf_plushie",
+    "facing=south,is_sitting=false": {
+      "model": "assorted-discoveries:block/pale_wolf_plushie_standing",
       "y": 180
     },
-    "facing=west": {
-      "model": "assorted-discoveries:block/pale_wolf_plushie",
+    "facing=west,is_sitting=false": {
+      "model": "assorted-discoveries:block/pale_wolf_plushie_standing",
       "y": 270
     },
-    "facing=east": {
-      "model": "assorted-discoveries:block/pale_wolf_plushie",
+    "facing=east,is_sitting=false": {
+      "model": "assorted-discoveries:block/pale_wolf_plushie_standing",
+      "y": 90
+    },
+    "facing=north,is_sitting=true": {
+      "model": "assorted-discoveries:block/pale_wolf_plushie_sitting"
+    },
+    "facing=south,is_sitting=true": {
+      "model": "assorted-discoveries:block/pale_wolf_plushie_sitting",
+      "y": 180
+    },
+    "facing=west,is_sitting=true": {
+      "model": "assorted-discoveries:block/pale_wolf_plushie_sitting",
+      "y": 270
+    },
+    "facing=east,is_sitting=true": {
+      "model": "assorted-discoveries:block/pale_wolf_plushie_sitting",
       "y": 90
     }
   }

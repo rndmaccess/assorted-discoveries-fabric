@@ -77,6 +77,7 @@
   "item.assorted-discoveries.taiga_zombie_villager_plushie": "Taiga Zombie Villager Plushie",
   "item.assorted-discoveries.witch_plushie": "Witch Plushie",
   "item.assorted-discoveries.pale_wolf_plushie": "Pale Wolf Plushie",
+  "item.assorted-discoveries.black_wolf_plushie": "Black Wolf Plushie",
   "item.assorted-discoveries.zombie_plushie": "Zombie Plushie",
   "item.assorted-discoveries.piglin_plushie": "Piglin Plushie",
   "item.assorted-discoveries.zombified_piglin_plushie": "Zombified Piglin Plushie",
@@ -529,7 +530,7 @@
   "text.cloth-config.assorted-discoveries.option.neutral_plushies.enable_piglin_plushies": "Enable Piglin Plushies",
   "text.cloth-config.assorted-discoveries.option.neutral_plushies.enable_polar_bear_plushie": "Enable Polar Bear Plushies",
   "text.cloth-config.assorted-discoveries.option.neutral_plushies.enable_spider_plushie": "Enable Spider Plushie",
-  "text.cloth-config.assorted-discoveries.option.neutral_plushies.enable_pale_wolf_plushie": "Enable Pale Wolf Plushie",
+  "text.cloth-config.assorted-discoveries.option.neutral_plushies.enable_wolf_plushies": "Enable Wolf Plushies",
 
   "category.cloth-config.assorted-discoveries.option.hostile_plushies": "Hostile Plushies",
   "text.cloth-config.assorted-discoveries.option.hostile_plushies.enable_blaze_plushie": "Enable Blaze Plushie",

@@ -3,17 +3,17 @@
   "category": "misc",
   "group": "wolf_plushies",
   "pattern": [
-    "WWW",
-    "BIB",
-    "WWW"
+    "BBB",
+    "GIG",
+    "BBB"
   ],
   "key": {
-    "W": "minecraft:white_wool",
     "B": "minecraft:black_wool",
+    "G": "minecraft:gray_wool",
     "I": "minecraft:bone"
   },
   "result": {
-    "id": "assorted-discoveries:pale_wolf_plushie"
+    "id": "assorted-discoveries:black_wolf_plushie"
   },
   "fabric:load_conditions": [
     {

@@ -204,7 +204,7 @@ public class ModConfigScreen {
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_SPIDER_PLUSHIE, categoryName);
         category.addEntry(configEntry);
-        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_PALE_WOLF_PLUSHIE, categoryName);
+        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_WOLF_PLUSHIES, categoryName);
         category.addEntry(configEntry);
 
         categoryName = "hostile_plushies";

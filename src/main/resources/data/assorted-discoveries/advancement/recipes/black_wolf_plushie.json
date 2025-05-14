@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "assorted-discoveries:pale_wolf_plushie"
+      "assorted-discoveries:black_wolf_plushie"
     ]
   },
   "criteria": {
@@ -18,7 +18,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "assorted-discoveries:pale_wolf_plushie"
+        "recipe": "assorted-discoveries:black_wolf_plushie"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

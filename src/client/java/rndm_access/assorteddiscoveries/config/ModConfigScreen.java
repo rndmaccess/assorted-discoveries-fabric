@@ -162,9 +162,9 @@ public class ModConfigScreen {
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_CAT_PLUSHIES, categoryName);
         category.addEntry(configEntry);
-        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_CHICKEN_PLUSHIE, categoryName);
+        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_CHICKEN_PLUSHIES, categoryName);
         category.addEntry(configEntry);
-        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_COW_PLUSHIE, categoryName);
+        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_COW_PLUSHIES, categoryName);
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_HORSE_PLUSHIES, categoryName);
         category.addEntry(configEntry);
@@ -172,7 +172,7 @@ public class ModConfigScreen {
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_OCELOT_PLUSHIE, categoryName);
         category.addEntry(configEntry);
-        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_PIG_PLUSHIE, categoryName);
+        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_PIG_PLUSHIES, categoryName);
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_PUFFERFISH_PLUSHIE, categoryName);
         category.addEntry(configEntry);

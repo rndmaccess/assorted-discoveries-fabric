@@ -12,12 +12,12 @@
     "C": "minecraft:chicken"
   },
   "result": {
-    "id": "assorted-discoveries:chicken_plushie"
+    "id": "assorted-discoveries:temperate_chicken_plushie"
   },
   "fabric:load_conditions": [
     {
       "condition": "assorted-discoveries:config_entry_enabled",
-      "value": "assorted-discoveries:enable_chicken_plushie"
+      "value": "assorted-discoveries:enable_chicken_plushies"
     }
   ]
 }

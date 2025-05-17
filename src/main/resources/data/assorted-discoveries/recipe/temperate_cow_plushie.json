@@ -12,12 +12,12 @@
     "I": "minecraft:beef"
   },
   "result": {
-    "id": "assorted-discoveries:cow_plushie"
+    "id": "assorted-discoveries:temperate_cow_plushie"
   },
   "fabric:load_conditions": [
     {
       "condition": "assorted-discoveries:config_entry_enabled",
-      "value": "assorted-discoveries:enable_cow_plushie"
+      "value": "assorted-discoveries:enable_cow_plushies"
     }
   ]
 }

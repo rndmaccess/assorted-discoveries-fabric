@@ -36,13 +36,16 @@ public class ModBlocks {
     public static final Block CAVE_SPIDER_PLUSHIE
             = register(new CaveSpiderPlushieBlock(makePlushieSettings(CAVE_SPIDER_PLUSHIE_KEY)),
             CAVE_SPIDER_PLUSHIE_KEY, true);
-    public static final RegistryKey<Block> CHICKEN_PLUSHIE_KEY = makeRegistryKey("chicken_plushie");
-    public static final Block CHICKEN_PLUSHIE
-            = register(new ChickenPlushieBlock(makePlushieSettings(CHICKEN_PLUSHIE_KEY)),
-            CHICKEN_PLUSHIE_KEY, true);
-    public static final RegistryKey<Block> COW_PLUSHIE_KEY = makeRegistryKey("cow_plushie");
-    public static final Block COW_PLUSHIE = register(new CowPlushieBlock(makePlushieSettings(COW_PLUSHIE_KEY)),
-            COW_PLUSHIE_KEY, true);
+    public static final RegistryKey<Block> TEMPERATE_CHICKEN_PLUSHIE_KEY
+            = makeRegistryKey("temperate_chicken_plushie");
+    public static final Block TEMPERATE_CHICKEN_PLUSHIE
+            = register(new ChickenPlushieBlock(makePlushieSettings(TEMPERATE_CHICKEN_PLUSHIE_KEY)),
+            TEMPERATE_CHICKEN_PLUSHIE_KEY, true);
+    public static final RegistryKey<Block> TEMPERATE_COW_PLUSHIE_KEY
+            = makeRegistryKey("temperate_cow_plushie");
+    public static final Block TEMPERATE_COW_PLUSHIE
+            = register(new CowPlushieBlock(makePlushieSettings(TEMPERATE_COW_PLUSHIE_KEY)),
+            TEMPERATE_COW_PLUSHIE_KEY, true);
     public static final RegistryKey<Block> CREEPER_PLUSHIE_KEY = makeRegistryKey("creeper_plushie");
     public static final Block CREEPER_PLUSHIE
             = register(new CreeperPlushieBlock(makePlushieSettings(CREEPER_PLUSHIE_KEY)),
@@ -101,9 +104,11 @@ public class ModBlocks {
     public static final Block JELLIE_CAT_PLUSHIE = registerCatPlushie(JELLIE_CAT_PLUSHIE_KEY);
     public static final RegistryKey<Block> BLACK_CAT_PLUSHIE_KEY = makeRegistryKey("black_cat_plushie");
     public static final Block BLACK_CAT_PLUSHIE = registerCatPlushie(BLACK_CAT_PLUSHIE_KEY);
-    public static final RegistryKey<Block> PIG_PLUSHIE_KEY = makeRegistryKey("pig_plushie");
-    public static final Block PIG_PLUSHIE = register(new PigPlushieBlock(makePlushieSettings(PIG_PLUSHIE_KEY)),
-            PIG_PLUSHIE_KEY, true);
+    public static final RegistryKey<Block> TEMPERATE_PIG_PLUSHIE_KEY
+            = makeRegistryKey("temperate_pig_plushie");
+    public static final Block TEMPERATE_PIG_PLUSHIE
+            = register(new PigPlushieBlock(makePlushieSettings(TEMPERATE_PIG_PLUSHIE_KEY)),
+            TEMPERATE_PIG_PLUSHIE_KEY, true);
     public static final RegistryKey<Block> BROWN_RABBIT_PLUSHIE_KEY = makeRegistryKey("brown_rabbit_plushie");
     public static final Block BROWN_RABBIT_PLUSHIE = registerRabbitPlushie(BROWN_RABBIT_PLUSHIE_KEY);
     public static final RegistryKey<Block> WHITE_RABBIT_PLUSHIE_KEY = makeRegistryKey("white_rabbit_plushie");

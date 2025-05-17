@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "assorted-discoveries:chicken_plushie"
+          "name": "assorted-discoveries:temperate_pig_plushie"
         }
       ],
       "conditions": [
@@ -16,5 +16,5 @@
       ]
     }
   ],
-  "random_sequence": "assorted-discoveries:blocks/chicken_plushie"
+  "random_sequence": "assorted-discoveries:blocks/temperate_pig_plushie"
 }

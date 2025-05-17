@@ -339,19 +339,19 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.SHIVERING_STRIDER_PLUSHIE.asItem());
             }
 
-            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CHICKEN_PLUSHIE);
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CHICKEN_PLUSHIES);
             if (configEntry.getValue()) {
-                entries.add(ModBlocks.CHICKEN_PLUSHIE.asItem());
+                entries.add(ModBlocks.TEMPERATE_CHICKEN_PLUSHIE.asItem());
             }
 
-            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_PIG_PLUSHIE);
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_PIG_PLUSHIES);
             if (configEntry.getValue()) {
-                entries.add(ModBlocks.PIG_PLUSHIE.asItem());
+                entries.add(ModBlocks.TEMPERATE_PIG_PLUSHIE.asItem());
             }
 
-            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_COW_PLUSHIE);
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_COW_PLUSHIES);
             if (configEntry.getValue()) {
-                entries.add(ModBlocks.COW_PLUSHIE.asItem());
+                entries.add(ModBlocks.TEMPERATE_COW_PLUSHIE.asItem());
             }
 
             configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_MOOSHROOM_PLUSHIES);

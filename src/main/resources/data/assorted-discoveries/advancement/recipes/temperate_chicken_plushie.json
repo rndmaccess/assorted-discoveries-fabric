@@ -2,15 +2,15 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "assorted-discoveries:cow_plushie"
+      "assorted-discoveries:temperate_chicken_plushie"
     ]
   },
   "criteria": {
-    "has_beef": {
+    "has_chicken": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:beef"
+            "items": "minecraft:chicken"
           }
         ]
       },
@@ -18,21 +18,21 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "assorted-discoveries:cow_plushie"
+        "recipe": "assorted-discoveries:temperate_chicken_plushie"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_beef",
+      "has_chicken",
       "has_the_recipe"
     ]
   ],
   "fabric:load_conditions": [
     {
       "condition": "assorted-discoveries:config_entry_enabled",
-      "value": "assorted-discoveries:enable_cow_plushie"
+      "value": "assorted-discoveries:enable_chicken_plushies"
     }
   ]
 }

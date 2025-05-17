@@ -2,15 +2,15 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "assorted-discoveries:pig_plushie"
+      "assorted-discoveries:temperate_cow_plushie"
     ]
   },
   "criteria": {
-    "has_porkchop": {
+    "has_beef": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:porkchop"
+            "items": "minecraft:beef"
           }
         ]
       },
@@ -18,21 +18,21 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "assorted-discoveries:pig_plushie"
+        "recipe": "assorted-discoveries:temperate_cow_plushie"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_porkchop",
+      "has_beef",
       "has_the_recipe"
     ]
   ],
   "fabric:load_conditions": [
     {
       "condition": "assorted-discoveries:config_entry_enabled",
-      "value": "assorted-discoveries:enable_pig_plushie"
+      "value": "assorted-discoveries:enable_cow_plushies"
     }
   ]
 }

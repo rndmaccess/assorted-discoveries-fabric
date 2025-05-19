@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "wolf_plushies",
+  "pattern": [
+    "RRR",
+    "BIB",
+    "WWW"
+  ],
+  "key": {
+    "W": "minecraft:white_wool",
+    "R": "minecraft:brown_wool",
+    "B": "minecraft:black_wool",
+    "I": "minecraft:bone"
+  },
+  "result": {
+    "id": "assorted-discoveries:rusty_wolf_plushie"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_wolf_plushies"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "assorted-discoveries:block/template_wolf_plushie_standing",
+  "textures": {
+    "atlas": "assorted-discoveries:block/rusty_wolf_plushie",
+    "particle": "block/brown_wool"
+  }
+}

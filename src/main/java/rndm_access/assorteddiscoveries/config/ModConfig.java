@@ -9,8 +9,8 @@ import rndm_access.assorteddiscoveries.config.json.deserializer.entries.CommentC
 import java.nio.file.Files;
 
 public class ModConfig {
-    public static JsonConfig createOrInitConfig() {
-        JsonConfig config = ModConfig.getInternalConfig();
+    public static JsonConfig createOrLoad() {
+        JsonConfig config = new ModConfig().getDefaultConfig();
 
         if (!Files.exists(config.getPath())) {
             config.create();
@@ -19,7 +19,7 @@ public class ModConfig {
         return config;
     }
 
-    public static JsonConfig getInternalConfig() {
+    private JsonConfig getDefaultConfig() {
         CommentConfigEntry blackstoneTileComment = new CommentConfigEntry("This option requires " +
                 "blackstone tiles!");
         CommentConfigEntry smokyQuartzBlocksComment = new CommentConfigEntry("This option requires " +

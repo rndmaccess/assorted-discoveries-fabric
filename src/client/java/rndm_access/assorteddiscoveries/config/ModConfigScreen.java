@@ -299,7 +299,7 @@ public class ModConfigScreen {
         category.addEntry(configEntry);
 
         configBuilder.setSavingRunnable(() -> {
-            JsonConfig config = ModConfig.getInternalConfig();
+            JsonConfig config = ModConfig.createOrLoad();
             config.load();
             config.save(ENTRY_VALUE_CHANGES);
         });
@@ -347,9 +347,7 @@ public class ModConfigScreen {
     }
 
     private static JsonConfig getConfig() {
-        JsonConfig config = ModConfig.getInternalConfig();
-        config.load();
-        return config;
+        return ModConfig.createOrLoad();
     }
 
     /**

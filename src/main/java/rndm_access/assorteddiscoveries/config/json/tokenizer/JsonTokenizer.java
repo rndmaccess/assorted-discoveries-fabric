@@ -2,10 +2,12 @@ package rndm_access.assorteddiscoveries.config.json.tokenizer;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
+import rndm_access.assorteddiscoveries.config.json.exceptions.JsonConfigException;
 import rndm_access.assorteddiscoveries.config.json.exceptions.JsonSyntaxException;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
@@ -25,6 +27,10 @@ public class JsonTokenizer {
 
     public TokenList tokenize() {
         File file = new File(String.valueOf(path));
+
+        if (path == null || !Files.exists(path)) {
+            throw new JsonConfigException("Couldn't load config at " + path + " because it does not exist!");
+        }
 
         try (LineIterator iterator = FileUtils.lineIterator(file)) {
             while (iterator.hasNext()) {
@@ -139,7 +145,7 @@ public class JsonTokenizer {
 
     private Token scanString(String line, StringBuilder builder) {
         Token.Builder token = new Token.Builder().setLine(lineNum);
-        require('"');
+        requireQuote();
         consumeChar(line);
         builder.append('"');
         while (pos < line.length() && curChar != '"') {
@@ -147,7 +153,7 @@ public class JsonTokenizer {
             consumeChar(line);
         }
         builder.append('"');
-        require('"');
+        requireQuote();
         consumeChar(line);
         consumeWhitespace(line);
 
@@ -169,11 +175,11 @@ public class JsonTokenizer {
         }
     }
 
-    private void require(char character) {
-        if (this.curChar != character) {
+    private void requireQuote() {
+        if (this.curChar != '"') {
             int reportedLine = this.lineNum + 1;
 
-            throw new JsonSyntaxException("Expected '" + character
+            throw new JsonSyntaxException("Expected '" + '"'
                     + "', got '" + this.curChar
                     + "' at line " + reportedLine);
         }

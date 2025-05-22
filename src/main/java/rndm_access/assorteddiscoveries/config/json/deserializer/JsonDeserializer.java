@@ -38,6 +38,7 @@ public class JsonDeserializer {
 
         requireToken(TokenType.LEFT_CURLY);
         deserialize(config);
+        requireToken(TokenType.RIGHT_CURLY);
         return config.build();
     }
 
@@ -111,7 +112,7 @@ public class JsonDeserializer {
                 requireToken(TokenType.COMMA, TokenType.RIGHT_CURLY);
             }
         }
-        tokenList.consumeToken();
+        tokenList.consumeToken(); // Consume the closing right curly for this entry!
     }
 
     private boolean isPosInteger(String value) {

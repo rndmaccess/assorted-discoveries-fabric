@@ -300,7 +300,6 @@ public class ModConfigScreen {
 
         configBuilder.setSavingRunnable(() -> {
             JsonConfig config = ModConfig.createOrLoad();
-            config.load();
             config.save(ENTRY_VALUE_CHANGES);
         });
         return configBuilder;

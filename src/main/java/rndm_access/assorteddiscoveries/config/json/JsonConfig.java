@@ -4,11 +4,9 @@ import net.fabricmc.loader.api.FabricLoader;
 import rndm_access.assorteddiscoveries.config.json.deserializer.ConfigObject;
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.CommentConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.exceptions.JsonConfigException;
-import rndm_access.assorteddiscoveries.config.json.deserializer.JsonDeserializer;
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.AbstractConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.deserializer.ConfigCategory;
 
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
@@ -17,11 +15,13 @@ public class JsonConfig {
     private final List<ConfigObject> objects;
     private final HashMap<String, ConfigCategory> categories;
     private final Path path;
+    private final String name;
 
     public JsonConfig(JsonConfig.Builder builder) {
         this.objects = builder.objects;
         this.categories = builder.categories;
         this.path = FabricLoader.getInstance().getConfigDir().resolve(builder.name + ".json5");
+        this.name = builder.name;
     }
 
     public Path getPath() {
@@ -73,22 +73,9 @@ public class JsonConfig {
         return objects;
     }
 
-    public void load() {
-        if (path == null || !Files.exists(path)) {
-            throw new JsonConfigException("Couldn't load the config because it does not exist!");
-        }
-
-        try {
-            JsonDeserializer deserializer = new JsonDeserializer(this, path);
-            deserializer.parse();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public void create() {
         if (path == null) {
-            throw new JsonConfigException("The config hasn't been loaded!");
+            throw new JsonConfigException("The config path has not been set!");
         }
 
         if (!Files.exists(path)) {
@@ -106,6 +93,46 @@ public class JsonConfig {
             JsonSerializer serializer = new JsonSerializer(this, path);
             serializer.serialize(entryChangeList);
         }
+    }
+
+    public JsonConfig merge(JsonConfig anotherConfig) {
+        JsonConfig.Builder config = new JsonConfig.Builder(this.name);
+
+        for (ConfigObject object : this.getObjects()) {
+            if (object.isComment()) {
+                CommentConfigEntry comment = (CommentConfigEntry) object;
+                config.addComment(comment);
+                continue;
+            }
+
+            String categoryKey = object.getKey();
+            ConfigCategory category = this.getCategory(categoryKey);
+
+            if (anotherConfig.hasCategory(categoryKey)) {
+                ConfigCategory.Builder categoryBuilder = new ConfigCategory.Builder(categoryKey);
+
+                for (ConfigObject categoryObject : category.getJsonObjects()) {
+                    if (categoryObject.isComment()) {
+                        CommentConfigEntry comment = (CommentConfigEntry) categoryObject;
+                        categoryBuilder.addComment(comment);
+                    } else if (category.hasEntry(categoryObject.getKey())) {
+                        String entryKey = categoryObject.getKey();
+
+                        if (anotherConfig.getCategory(categoryKey).hasEntry(entryKey)) {
+                            AbstractConfigEntry<?> configEntry = anotherConfig.getCategory(categoryKey).getEntry(entryKey);
+                            categoryBuilder.addEntry(configEntry);
+                        } else {
+                            AbstractConfigEntry<?> configEntry = category.getEntry(entryKey);
+                            categoryBuilder.addEntry(configEntry);
+                        }
+                    }
+                }
+                config.addCategory(categoryBuilder.build());
+            } else {
+                config.addCategory(category);
+            }
+        }
+        return config.build();
     }
 
     public static class Builder {

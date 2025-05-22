@@ -35,30 +35,6 @@ public class ConfigCategory extends ConfigObject {
         return entries.get(name);
     }
 
-    public BooleanConfigEntry getBooleanEntry(String name) {
-        if(!this.hasBooleanEntry(name)) {
-            throw new NoSuchElementException("The category " + this.getKey() + " does not have boolean entry "
-                    + name);
-        }
-        return (BooleanConfigEntry) entries.get(name);
-    }
-
-    public IntegerConfigEntry getIntegerEntry(String name) {
-        if(!this.hasIntegerEntry(name)) {
-            throw new NoSuchElementException("The category " + this.getKey() + " does not have integer entry "
-                    + name);
-        }
-        return (IntegerConfigEntry) entries.get(name);
-    }
-
-    public StringConfigEntry getStringEntry(String name) {
-        if(!this.hasStringEntry(name)) {
-            throw new NoSuchElementException("The category " + this.getKey() + " does not have string entry "
-                    + name);
-        }
-        return (StringConfigEntry) entries.get(name);
-    }
-
     public ConfigCategory getSubcategory(String name) {
         if(!this.hasSubcategory(name)) {
             throw new NoSuchElementException("The category " + this.getKey() + " does not have subcategory "
@@ -69,14 +45,6 @@ public class ConfigCategory extends ConfigObject {
 
     public boolean hasEntry(String name) {
         return entries.containsKey(name) && entries.get(name) instanceof AbstractConfigEntry<?>;
-    }
-
-    public boolean hasBooleanEntry(String name) {
-        return entries.containsKey(name) && entries.get(name) instanceof BooleanConfigEntry;
-    }
-
-    public boolean hasIntegerEntry(String name) {
-        return entries.containsKey(name) && entries.get(name) instanceof IntegerConfigEntry;
     }
 
     public boolean hasStringEntry(String name) {

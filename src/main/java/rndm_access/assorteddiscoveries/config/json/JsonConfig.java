@@ -109,30 +109,44 @@ public class JsonConfig {
             ConfigCategory category = this.getCategory(categoryKey);
 
             if (anotherConfig.hasCategory(categoryKey)) {
-                ConfigCategory.Builder categoryBuilder = new ConfigCategory.Builder(categoryKey);
-
-                for (ConfigObject categoryObject : category.getJsonObjects()) {
-                    if (categoryObject.isComment()) {
-                        CommentConfigEntry comment = (CommentConfigEntry) categoryObject;
-                        categoryBuilder.addComment(comment);
-                    } else if (category.hasEntry(categoryObject.getKey())) {
-                        String entryKey = categoryObject.getKey();
-
-                        if (anotherConfig.getCategory(categoryKey).hasEntry(entryKey)) {
-                            AbstractConfigEntry<?> configEntry = anotherConfig.getCategory(categoryKey).getEntry(entryKey);
-                            categoryBuilder.addEntry(configEntry);
-                        } else {
-                            AbstractConfigEntry<?> configEntry = category.getEntry(entryKey);
-                            categoryBuilder.addEntry(configEntry);
-                        }
-                    }
-                }
-                config.addCategory(categoryBuilder.build());
+                this.mergeCategories(config, anotherConfig, categoryKey, category);
             } else {
                 config.addCategory(category);
             }
         }
         return config.build();
+    }
+
+    private void mergeCategories(JsonConfig.Builder configBuilder, JsonConfig anotherConfig, String categoryKey,
+                                 ConfigCategory category) {
+        ConfigCategory.Builder categoryBuilder = new ConfigCategory.Builder(categoryKey);
+
+        for (ConfigObject categoryObject : category.getJsonObjects()) {
+            String key = categoryObject.getKey();
+
+            if (categoryObject.isComment()) {
+                CommentConfigEntry comment = (CommentConfigEntry) categoryObject;
+                categoryBuilder.addComment(comment);
+            } else if (category.hasEntry(key)) {
+                this.mergeEntries(anotherConfig, categoryBuilder, categoryObject, categoryKey, category);
+            } else {
+                this.mergeCategories(configBuilder, anotherConfig, key, category); // Also merge subcategories!
+            }
+        }
+        configBuilder.addCategory(categoryBuilder.build());
+    }
+
+    private void mergeEntries(JsonConfig anotherConfig, ConfigCategory.Builder categoryBuilder,
+                              ConfigObject categoryObject, String categoryKey, ConfigCategory category) {
+        String entryKey = categoryObject.getKey();
+
+        if (anotherConfig.getCategory(categoryKey).hasEntry(entryKey)) {
+            AbstractConfigEntry<?> configEntry = anotherConfig.getCategory(categoryKey).getEntry(entryKey);
+            categoryBuilder.addEntry(configEntry);
+        } else {
+            AbstractConfigEntry<?> configEntry = category.getEntry(entryKey);
+            categoryBuilder.addEntry(configEntry);
+        }
     }
 
     public static class Builder {

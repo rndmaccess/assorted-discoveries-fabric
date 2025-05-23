@@ -1,8 +1,7 @@
 {
-  "parent": "assorted-discoveries:block/template_two_colored_cat_plushie_standing",
+  "parent": "assorted-discoveries:block/template_cat_plushie_standing",
   "textures": {
-    "primary_body": "minecraft:block/brown_wool",
-    "eyes": "minecraft:block/orange_wool",
-    "secondary_body": "minecraft:block/white_wool"
+    "atlas": "assorted-discoveries:block/tabby_cat_plushie",
+    "particle": "block/brown_wool"
   }
 }

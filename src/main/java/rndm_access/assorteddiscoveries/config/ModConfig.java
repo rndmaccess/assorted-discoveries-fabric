@@ -183,7 +183,9 @@ public class ModConfig {
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_BOG_BLOSSOMS))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_BLOOD_KELP))
                 .addComment(new CommentConfigEntry("Whether patches of ender grass and snapdragons should spawn!"))
-                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_ENDER_PLANTS)).build();
+                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_ENDER_PLANTS))
+                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CINDERSNAP_BERRY_JUICE))
+                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_FROSTBITE_BERRY_JUICE)).build();
 
         JsonConfig.Builder config = new JsonConfig.Builder(ADReference.MOD_ID)
                 .addComment(requiredRestartComment)

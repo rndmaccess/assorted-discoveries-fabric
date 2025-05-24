@@ -72,11 +72,11 @@ public final class ModItems {
             new Item.Settings().food(ModFoodComponents.BLUEBERRIES).registryKey(BLUEBERRIES_KEY));
     public static final RegistryKey<Item> SWEET_BERRY_JUICE_KEY = makeRegistryKey("sweet_berry_juice");
     public static final Item SWEET_BERRY_JUICE = register(new Item(new Item.Settings()
-                .food(ModFoodComponents.SWEET_BERRY_JUICE, ConsumableComponents.DRINK).maxCount(16)
+                .food(ModFoodComponents.JUICE, ConsumableComponents.DRINK).maxCount(16)
                 .useRemainder(Items.GLASS_BOTTLE).registryKey(SWEET_BERRY_JUICE_KEY)), SWEET_BERRY_JUICE_KEY);
     public static final RegistryKey<Item> BLUEBERRY_JUICE_KEY = makeRegistryKey("blueberry_juice");
     public static final Item BLUEBERRY_JUICE = register(new Item(new Item.Settings()
-                .food(ModFoodComponents.BLUEBERRY_JUICE, ConsumableComponents.DRINK).maxCount(16)
+                .food(ModFoodComponents.JUICE, ConsumableComponents.DRINK).maxCount(16)
                 .useRemainder(Items.GLASS_BOTTLE).registryKey(BLUEBERRY_JUICE_KEY)), BLUEBERRY_JUICE_KEY);
     public static final RegistryKey<Item> NOODLES_KEY = makeRegistryKey("noodles");
     public static final Item NOODLES = register(new Item(new Item.Settings().registryKey(NOODLES_KEY)), NOODLES_KEY);
@@ -138,6 +138,14 @@ public final class ModItems {
     public static final Item FROSTBITE_BERRIES = registerBlockItem(FROSTBITE_BERRIES_KEY,
             ModBlocks.FROSTBITE_BERRY_BUSH, new Item.Settings().food(ModFoodComponents.NETHER_BERRIES)
                     .registryKey(FROSTBITE_BERRIES_KEY));
+    public static final RegistryKey<Item> CINDERSNAP_BERRY_JUICE_KEY = makeRegistryKey("cindersnap_berry_juice");
+    public static final Item CINDERSNAP_BERRY_JUICE = register(new Item(new Item.Settings()
+                .food(ModFoodComponents.JUICE, ModConsumableComponents.NETHER_JUICES).maxCount(16)
+                .useRemainder(Items.GLASS_BOTTLE).registryKey(CINDERSNAP_BERRY_JUICE_KEY)), CINDERSNAP_BERRY_JUICE_KEY);
+    public static final RegistryKey<Item> FROSTBITE_BERRY_JUICE_KEY = makeRegistryKey("frostbite_berry_juice");
+    public static final Item FROSTBITE_BERRY_JUICE = register(new Item(new Item.Settings()
+            .food(ModFoodComponents.JUICE, ModConsumableComponents.NETHER_JUICES).maxCount(16)
+            .useRemainder(Items.GLASS_BOTTLE).registryKey(FROSTBITE_BERRY_JUICE_KEY)), FROSTBITE_BERRY_JUICE_KEY);
 
     private static RegistryKey<Item> makeRegistryKey(String name) {
         return RegistryKey.of(RegistryKeys.ITEM, ADReference.makeModId(name));

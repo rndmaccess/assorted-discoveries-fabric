@@ -13,8 +13,7 @@ public final class ModFoodComponents {
     public static final FoodComponent WITCHS_CRADLE_BRANCH;
     public static final FoodComponent WITCHS_CRADLE_SOUP;
     public static final FoodComponent BLUEBERRIES;
-    public static final FoodComponent SWEET_BERRY_JUICE;
-    public static final FoodComponent BLUEBERRY_JUICE;
+    public static final FoodComponent JUICE;
     public static final FoodComponent SPRUCE_CONE;
     public static final FoodComponent FORESTS_BOUNTY;
     public static final FoodComponent HOGLIN_STEW;
@@ -35,11 +34,10 @@ public final class ModFoodComponents {
         WITCHS_CRADLE_BRANCH = new FoodComponent.Builder().nutrition(2).saturationModifier(0.1F).build();
         WITCHS_CRADLE_SOUP = new FoodComponent.Builder().nutrition(6).saturationModifier(0.6F).alwaysEdible().build();
         BLUEBERRIES = new FoodComponent.Builder().nutrition(2).saturationModifier(0.1F).build();
-        SWEET_BERRY_JUICE = new FoodComponent.Builder().nutrition(6).saturationModifier(0.6F).build();
-        BLUEBERRY_JUICE = new FoodComponent.Builder().nutrition(6).saturationModifier(0.6F).build();
+        JUICE = new FoodComponent.Builder().nutrition(6).saturationModifier(0.6F).build();
         SPRUCE_CONE = new FoodComponent.Builder().nutrition(2).saturationModifier(0.3F).build();
         FORESTS_BOUNTY = createBasicStew(5);
         HOGLIN_STEW = new FoodComponent.Builder().nutrition(8).saturationModifier(0.8F).build();
-        NETHER_BERRIES = new FoodComponent.Builder().nutrition(2).saturationModifier(0.2F).build();
+        NETHER_BERRIES = new FoodComponent.Builder().nutrition(3).saturationModifier(0.2F).build();
     }
 }

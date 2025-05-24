@@ -115,6 +115,8 @@ public class ModConfigKeys {
     public static final String ENABLE_PACKED_SNOW;
     public static final String ENABLE_DIRT_SLABS;
     public static final String ENABLE_SNIFFER_PLUSHIE;
+    public static final String ENABLE_CINDERSNAP_BERRY_JUICE;
+    public static final String ENABLE_FROSTBITE_BERRY_JUICE;
 
     private static String registerKey(String key) {
         CONFIG_KEYS.add(key); // This list is used in the config entry resource condition.
@@ -232,5 +234,7 @@ public class ModConfigKeys {
         ENABLE_PACKED_SNOW = registerKey("enable_packed_snow");
         ENABLE_DIRT_SLABS = registerKey("enable_dirt_slabs");
         ENABLE_SNIFFER_PLUSHIE = registerKey("enable_sniffer_plushie");
+        ENABLE_CINDERSNAP_BERRY_JUICE = registerKey("enable_cindersnap_berry_juice");
+        ENABLE_FROSTBITE_BERRY_JUICE = registerKey("enable_frostbite_berry_juice");
     }
 }

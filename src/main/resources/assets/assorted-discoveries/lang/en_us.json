@@ -436,6 +436,8 @@
   "item.assorted-discoveries.hoglin_stew": "Hoglin Stew",
   "item.assorted-discoveries.cindersnap_berries": "Cindersnap Berries",
   "item.assorted-discoveries.frostbite_berries": "Frostbite Berries",
+  "item.assorted-discoveries.cindersnap_berry_juice": "Cindersnap Berry Juice",
+  "item.assorted-discoveries.frostbite_berry_juice": "Frostbite Berry Juice",
 
   "painting.assorted-discoveries.starry_night.title": "Starry Night",
   "painting.assorted-discoveries.starry_night.author": "rndm_access",
@@ -578,6 +580,8 @@
   "text.cloth-config.assorted-discoveries.option.farming.enable_bog_blossoms": "Enable Bog Blossoms",
   "text.cloth-config.assorted-discoveries.option.farming.enable_blood_kelp": "Enable Blood Kelp",
   "text.cloth-config.assorted-discoveries.option.farming.enable_ender_plants": "Enable Ender Plants",
+  "text.cloth-config.assorted-discoveries.option.farming.enable_cindersnap_berry_juice": "Enable Cindersnap Berry Juice",
+  "text.cloth-config.assorted-discoveries.option.farming.enable_frostbite_berry_juice": "Enable Frostbite Berry Juice",
 
   "category.cloth-config.assorted-discoveries.option.misc": "Misc",
   "text.cloth-config.assorted-discoveries.option.misc.rabbits_safe_fall_increased": "Rabbit's Safe Fall Increased",

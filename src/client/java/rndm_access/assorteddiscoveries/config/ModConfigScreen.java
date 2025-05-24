@@ -297,6 +297,10 @@ public class ModConfigScreen {
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_ENDER_PLANTS, categoryName);
         category.addEntry(configEntry);
+        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_CINDERSNAP_BERRY_JUICE, categoryName);
+        category.addEntry(configEntry);
+        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_FROSTBITE_BERRY_JUICE, categoryName);
+        category.addEntry(configEntry);
 
         configBuilder.setSavingRunnable(() -> {
             JsonConfig config = ModConfig.createOrLoad();

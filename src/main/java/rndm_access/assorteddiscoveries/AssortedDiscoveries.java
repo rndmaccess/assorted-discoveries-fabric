@@ -1059,6 +1059,16 @@ public class AssortedDiscoveries implements ModInitializer {
             if (configEntry.getValue()) {
                 entries.add(ModItems.SWEET_BERRY_JUICE);
             }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CINDERSNAP_BERRY_JUICE);
+            if (configEntry.getValue()) {
+                entries.add(ModItems.CINDERSNAP_BERRY_JUICE);
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_FROSTBITE_BERRY_JUICE);
+            if (configEntry.getValue()) {
+                entries.add(ModItems.FROSTBITE_BERRY_JUICE);
+            }
         });
 	}
 }

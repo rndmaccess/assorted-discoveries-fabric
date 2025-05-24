@@ -25,7 +25,7 @@ import rndm_access.assorteddiscoveries.item.RopeLadderBlockItem;
 import java.util.function.ToIntFunction;
 
 @SuppressWarnings("unused")
-public class ModBlocks {
+public final class ModBlocks {
     public static final RegistryKey<Block> BAT_PLUSHIE_KEY = makeRegistryKey("bat_plushie");
     public static final Block BAT_PLUSHIE = register(new BatPlushieBlock(makePlushieSettings(BAT_PLUSHIE_KEY)),
             BAT_PLUSHIE_KEY, true);

@@ -28,6 +28,9 @@ public class ModConfigScreen {
         categoryName = "building_blocks";
         category = makeCategory(configBuilder, categoryName);
 
+        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_PLANTER_BOXES, categoryName);
+        category.addEntry(configEntry);
+
         // Dyed Blocks
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_DYED_CAMPFIRES, categoryName);
         category.addEntry(configEntry);
@@ -247,27 +250,12 @@ public class ModConfigScreen {
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_CREAKING_PLUSHIE, categoryName);
         category.addEntry(configEntry);
 
-        categoryName = "farming";
+        categoryName = "foods";
         category = makeCategory(configBuilder, categoryName);
 
-        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_PLANTER_BOXES, categoryName);
-        category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_GREEN_ONIONS, categoryName);
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_NOODLE_SOUP, categoryName);
-        category.addEntry(configEntry);
-        BooleanListEntry enableBlueberries = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_BLUEBERRIES,
-                categoryName);
-        category.addEntry(enableBlueberries);
-        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_BLUEBERRY_PIE, categoryName,
-                enableBlueberries);
-        category.addEntry(configEntry);
-        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_BLUEBERRY_JUICE, categoryName,
-                enableBlueberries);
-        category.addEntry(configEntry);
-        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_SWEET_BERRY_PIE, categoryName);
-        category.addEntry(configEntry);
-        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_SWEET_BERRY_JUICE, categoryName);
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_CHOCOLATE_CAKE, categoryName);
         category.addEntry(configEntry);
@@ -285,7 +273,31 @@ public class ModConfigScreen {
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_CARAMEL_APPLE, categoryName);
         category.addEntry(configEntry);
+        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_SWEET_BERRY_PIE, categoryName);
+        category.addEntry(configEntry);
+        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_SWEET_BERRY_JUICE, categoryName);
+        category.addEntry(configEntry);
+
+        BooleanListEntry enableBlueberries = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_BLUEBERRIES,
+                categoryName);
+        category.addEntry(enableBlueberries);
+        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_BLUEBERRY_PIE, categoryName,
+                enableBlueberries);
+        category.addEntry(configEntry);
+        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_BLUEBERRY_JUICE, categoryName,
+                enableBlueberries);
+        category.addEntry(configEntry);
+
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_NETHER_BERRIES, categoryName);
+        category.addEntry(configEntry);
+        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_CINDERSNAP_BERRY_JUICE, categoryName);
+        category.addEntry(configEntry);
+        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_FROSTBITE_BERRY_JUICE, categoryName);
+        category.addEntry(configEntry);
+
+        categoryName = "plants";
+        category = makeCategory(configBuilder, categoryName);
+        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_BLOOD_KELP, categoryName);
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_PURPLE_MUSHROOMS, categoryName);
         category.addEntry(configEntry);
@@ -293,13 +305,7 @@ public class ModConfigScreen {
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_BOG_BLOSSOMS, categoryName);
         category.addEntry(configEntry);
-        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_BLOOD_KELP, categoryName);
-        category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_ENDER_PLANTS, categoryName);
-        category.addEntry(configEntry);
-        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_CINDERSNAP_BERRY_JUICE, categoryName);
-        category.addEntry(configEntry);
-        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_FROSTBITE_BERRY_JUICE, categoryName);
         category.addEntry(configEntry);
 
         configBuilder.setSavingRunnable(() -> {

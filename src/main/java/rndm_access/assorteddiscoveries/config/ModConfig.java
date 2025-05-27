@@ -47,6 +47,7 @@ public class ModConfig {
                 "requires a game restart!");
 
         ConfigCategory buildingBlocksCategory = new ConfigCategory.Builder("building_blocks")
+                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_PLANTER_BOXES))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_DYED_CAMPFIRES))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_DYED_LANTERNS))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_DYED_TORCHES))
@@ -160,15 +161,9 @@ public class ModConfig {
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_ZOMBIE_VILLAGER_PLUSHIES))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CREAKING_PLUSHIE)).build();
 
-        ConfigCategory farmingCategory = new ConfigCategory.Builder("farming")
-                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_PLANTER_BOXES))
+        ConfigCategory foodCategory = new ConfigCategory.Builder("foods")
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_GREEN_ONIONS))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_NOODLE_SOUP))
-                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_BLUEBERRIES))
-                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_BLUEBERRY_PIE))
-                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_BLUEBERRY_JUICE))
-                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_SWEET_BERRY_PIE))
-                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_SWEET_BERRY_JUICE))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CHOCOLATE_CAKE))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_RED_VELVET_CAKE))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_FRIED_EGG))
@@ -177,15 +172,22 @@ public class ModConfig {
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_WITCHS_CRADLE_SOUP))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_PUDDING))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CARAMEL_APPLE))
+                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_SWEET_BERRY_PIE))
+                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_SWEET_BERRY_JUICE))
+                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_BLUEBERRIES))
+                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_BLUEBERRY_PIE))
+                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_BLUEBERRY_JUICE))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_NETHER_BERRIES))
+                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CINDERSNAP_BERRY_JUICE))
+                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_FROSTBITE_BERRY_JUICE)).build();
+
+        ConfigCategory plantsCategory = new ConfigCategory.Builder("plants")
+                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_BLOOD_KELP))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_PURPLE_MUSHROOMS))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CATTAILS))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_BOG_BLOSSOMS))
-                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_BLOOD_KELP))
                 .addComment(new CommentConfigEntry("Whether patches of ender grass and snapdragons should spawn!"))
-                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_ENDER_PLANTS))
-                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CINDERSNAP_BERRY_JUICE))
-                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_FROSTBITE_BERRY_JUICE)).build();
+                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_ENDER_PLANTS)).build();
 
         JsonConfig.Builder config = new JsonConfig.Builder(ADReference.MOD_ID)
                 .addComment(requiredRestartComment)
@@ -193,7 +195,8 @@ public class ModConfig {
                 .addCategory(passivePlushiesCategory)
                 .addCategory(neutralPlushiesCategory)
                 .addCategory(hostilePlushiesCategory)
-                .addCategory(farmingCategory);
+                .addCategory(foodCategory)
+                .addCategory(plantsCategory);
         return config.build();
     }
 }

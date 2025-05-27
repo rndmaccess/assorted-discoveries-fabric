@@ -941,51 +941,6 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.PURPLE_MUSHROOM_BLOCK.asItem());
             }
 
-            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CHOCOLATE_CAKE);
-            if (configEntry.getValue()) {
-                entries.add(ModBlocks.CHOCOLATE_CAKE.asItem());
-            }
-
-            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_RED_VELVET_CAKE);
-            if (configEntry.getValue()) {
-                entries.add(ModBlocks.RED_VELVET_CAKE.asItem());
-            }
-
-            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_SWEET_BERRY_PIE);
-            if (configEntry.getValue()) {
-                entries.add(ModBlocks.SWEET_BERRY_PIE.asItem());
-            }
-
-            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_BLUEBERRIES);
-            boolean blueberriesEnabled = configEntry.getValue();
-            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_BLUEBERRY_PIE);
-            if (blueberriesEnabled && configEntry.getValue()) {
-                entries.add(ModBlocks.BLUEBERRY_PIE.asItem());
-            }
-
-            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_GREEN_ONIONS);
-            if (configEntry.getValue()) {
-                entries.add(ModBlocks.WILD_GREEN_ONIONS.asItem());
-                entries.add(ModItems.GREEN_ONION_SEEDS);
-                entries.add(ModItems.GREEN_ONION);
-            }
-
-            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_NOODLE_SOUP);
-            if (configEntry.getValue()) {
-                entries.add(ModItems.NOODLES);
-                entries.add(ModItems.NOODLE_SOUP);
-            }
-
-            if (blueberriesEnabled) {
-                entries.add(ModItems.BLUEBERRIES);
-            }
-
-            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_NETHER_BERRIES);
-            if (configEntry.getValue()) {
-                entries.add(ModItems.CINDERSNAP_BERRIES);
-                entries.add(ModItems.FROSTBITE_BERRIES);
-            }
-
             configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CATTAILS);
             if (configEntry.getValue()) {
                 entries.add(ModBlocks.CATTAIL.asItem());
@@ -1007,17 +962,6 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.PURPLE_MUSHROOM.asItem());
             }
 
-            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CARAMEL_APPLE);
-            if (configEntry.getValue()) {
-                entries.add(ModItems.CARAMEL_APPLE);
-                entries.add(ModItems.CARAMEL);
-            }
-
-            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_FRIED_EGG);
-            if (configEntry.getValue()) {
-                entries.add(ModItems.FRIED_EGG);
-            }
-
             configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_BLOOD_KELP);
             if (configEntry.getValue()) {
                 entries.add(ModBlocks.DRIED_BLOOD_KELP_BLOCK);
@@ -1027,21 +971,75 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModItems.DRIED_BLOOD_KELP);
             }
 
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_GREEN_ONIONS);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.WILD_GREEN_ONIONS.asItem());
+                entries.add(ModItems.GREEN_ONION_SEEDS);
+                entries.add(ModItems.GREEN_ONION);
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CARAMEL_APPLE);
+            boolean caramelAppleEnabled = configEntry.getValue();
+            if (caramelAppleEnabled) {
+                entries.add(ModItems.CARAMEL);
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_FORESTS_BOUNTY);
+            boolean forestsBountyEnabled = configEntry.getValue();
+            if (forestsBountyEnabled) {
+                entries.add(ModItems.SPRUCE_CONE);
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_NOODLE_SOUP);
+            boolean noodleSoupEnabled = configEntry.getValue();
+            if (noodleSoupEnabled) {
+                entries.add(ModItems.NOODLES);
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_WITCHS_CRADLE_SOUP);
+            boolean witchsCradleEnabled = configEntry.getValue();
+            if (witchsCradleEnabled) {
+                entries.add(ModItems.WITCHS_CRADLE_BRANCH);
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_BLUEBERRIES);
+            boolean blueberriesEnabled = configEntry.getValue();
+            if (blueberriesEnabled) {
+                entries.add(ModItems.BLUEBERRIES);
+            }
+
+            configEntry = ((BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_NETHER_BERRIES));
+            boolean netherBerriesEnabled = configEntry.getValue();
+            if (netherBerriesEnabled) {
+                entries.add(ModItems.CINDERSNAP_BERRIES);
+                entries.add(ModItems.FROSTBITE_BERRIES);
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_FRIED_EGG);
+            if (configEntry.getValue()) {
+                entries.add(ModItems.FRIED_EGG);
+            }
+
+            if (caramelAppleEnabled) {
+                entries.add(ModItems.CARAMEL_APPLE);
+            }
+
+            if (forestsBountyEnabled) {
+                entries.add(ModItems.FORESTS_BOUNTY);
+            }
+
+            if (noodleSoupEnabled) {
+                entries.add(ModItems.NOODLE_SOUP);
+            }
+
             configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_HOGLIN_STEW);
             if (configEntry.getValue()) {
                 entries.add(ModItems.HOGLIN_STEW);
             }
 
-            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_FORESTS_BOUNTY);
-            if (configEntry.getValue()) {
-                entries.add(ModItems.FORESTS_BOUNTY);
-                entries.add(ModItems.SPRUCE_CONE);
-            }
-
-            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_WITCHS_CRADLE_SOUP);
-            if (configEntry.getValue()) {
+            if (witchsCradleEnabled) {
                 entries.add(ModItems.WITCHS_CRADLE_SOUP);
-                entries.add(ModItems.WITCHS_CRADLE_BRANCH);
             }
 
             configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_PUDDING);
@@ -1061,13 +1059,33 @@ public class AssortedDiscoveries implements ModInitializer {
             }
 
             configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CINDERSNAP_BERRY_JUICE);
-            if (configEntry.getValue()) {
+            if (configEntry.getValue() && netherBerriesEnabled) {
                 entries.add(ModItems.CINDERSNAP_BERRY_JUICE);
             }
 
             configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_FROSTBITE_BERRY_JUICE);
-            if (configEntry.getValue()) {
+            if (configEntry.getValue() && netherBerriesEnabled) {
                 entries.add(ModItems.FROSTBITE_BERRY_JUICE);
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_BLUEBERRY_PIE);
+            if (blueberriesEnabled && configEntry.getValue()) {
+                entries.add(ModBlocks.BLUEBERRY_PIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_SWEET_BERRY_PIE);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.SWEET_BERRY_PIE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CHOCOLATE_CAKE);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.CHOCOLATE_CAKE.asItem());
+            }
+
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_RED_VELVET_CAKE);
+            if (configEntry.getValue()) {
+                entries.add(ModBlocks.RED_VELVET_CAKE.asItem());
             }
         });
 	}

@@ -13,7 +13,23 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class ModConfig {
-    public static JsonConfig createOrLoad() {
+    private static JsonConfig config;
+
+    public static JsonConfig getInstance() {
+        if (config == null) {
+            config = createOrLoad();
+        }
+        return config;
+    }
+
+    /**
+     * This method will reparse the config from the config file!
+     */
+    public static void update() {
+        config = createOrLoad();
+    }
+
+    private static JsonConfig createOrLoad() {
         JsonConfig defaultConfig = getDefaultConfig();
         Path configPath = FabricLoader.getInstance().getConfigDir().resolve(ADReference.MOD_ID + ".json5");
 

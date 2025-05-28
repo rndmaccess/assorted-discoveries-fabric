@@ -51,7 +51,7 @@ public class AssortedDiscoveries implements ModInitializer {
 	@Override
 	public void onInitialize() {
         // Config
-        JsonConfig config = ModConfig.createOrLoad();
+        JsonConfig config = ModConfig.getInstance();
         ModResourceConditionTypes.register();
 
 		// General Registries

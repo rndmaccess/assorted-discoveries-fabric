@@ -12,6 +12,7 @@ import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.ModConfig;
 import rndm_access.assorteddiscoveries.config.ModConfigKeys;
 import rndm_access.assorteddiscoveries.config.json.JsonConfig;
+import rndm_access.assorteddiscoveries.config.json.deserializer.entries.AbstractConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.BooleanConfigEntry;
 import rndm_access.assorteddiscoveries.core.ModResourceConditionTypes;
 
@@ -48,14 +49,16 @@ public record ConfigEntryEnabledResourceCondition(String configKey) implements R
     }
 
     private static Map<String, Boolean> resolveEntries() {
-        // By calling this method we make sure that there is a config to load!
         JsonConfig config = ModConfig.getInstance();
         Map<String, Boolean> entries = new HashMap<>();
 
         for (String key : ModConfigKeys.CONFIG_KEYS) {
-            BooleanConfigEntry entry = (BooleanConfigEntry) config.getEntry(key);
-            boolean val = entry.getValue();
-            entries.put(ADReference.makeModId(key).toString(), val);
+            AbstractConfigEntry<?> configEntry = config.getEntry(key);
+
+            if (configEntry instanceof BooleanConfigEntry) {
+                boolean val = ((BooleanConfigEntry) configEntry).getValue();
+                entries.put(ADReference.makeModId(key).toString(), val);
+            }
         }
         return entries;
     }

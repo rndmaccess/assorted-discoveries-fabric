@@ -322,7 +322,7 @@ public class ModConfigScreen {
 
     private static BooleanListEntry makeBoolConfigEntry(ConfigEntryBuilder entryBuilder, String key,
                                                         String categoryName) {
-        BooleanConfigEntry entry = (BooleanConfigEntry) ModConfigScreen.getConfig().getEntry(key);
+        BooleanConfigEntry entry = (BooleanConfigEntry) ModConfig.createOrLoad().getEntry(key);
         final String entryName = entry.getKey();
         final boolean entryValue = entry.getValue();
         Text displayText = makeEntryText(categoryName, entryName);
@@ -338,7 +338,7 @@ public class ModConfigScreen {
     @SuppressWarnings("UnstableApiUsage")
     private static BooleanListEntry makeBoolConfigEntry(ConfigEntryBuilder entryBuilder, String key,
                                                         String categoryName, BooleanListEntry... dependencies) {
-        BooleanConfigEntry entry = (BooleanConfigEntry) ModConfigScreen.getConfig().getEntry(key);
+        BooleanConfigEntry entry = (BooleanConfigEntry) ModConfig.createOrLoad().getEntry(key);
         final String entryName = entry.getKey();
         final boolean entryValue = entry.getValue();
         Text requirementText = makeEntryRequirementText(categoryName, entryName);
@@ -353,10 +353,6 @@ public class ModConfigScreen {
                     }
                 }).setDefaultValue(true).requireRestart().setRequirement(Requirement.all(requirements))
                 .setTooltipSupplier(requirementTooltip).build();
-    }
-
-    private static JsonConfig getConfig() {
-        return ModConfig.createOrLoad();
     }
 
     /**

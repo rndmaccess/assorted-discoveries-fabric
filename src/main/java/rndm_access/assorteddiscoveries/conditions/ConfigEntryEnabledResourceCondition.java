@@ -7,21 +7,17 @@ import net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition;
 import net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditionType;
 import net.minecraft.registry.RegistryOps;
 import org.jetbrains.annotations.Nullable;
-import rndm_access.assorteddiscoveries.ADReference;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.ModConfig;
-import rndm_access.assorteddiscoveries.config.ModConfigKeys;
 import rndm_access.assorteddiscoveries.config.json.JsonConfig;
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.AbstractConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.BooleanConfigEntry;
 import rndm_access.assorteddiscoveries.core.ModResourceConditionTypes;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 
 public record ConfigEntryEnabledResourceCondition(String configKey) implements ResourceCondition {
-    private static final Map<String, Boolean> ENTRIES;
     public static final MapCodec<ConfigEntryEnabledResourceCondition> CODEC
             = RecordCodecBuilder.mapCodec((instance) -> {
         Function<ConfigEntryEnabledResourceCondition, String> key = ConfigEntryEnabledResourceCondition::getConfigKey;
@@ -41,29 +37,40 @@ public record ConfigEntryEnabledResourceCondition(String configKey) implements R
 
     @Override
     public boolean test(@Nullable RegistryOps.@Nullable RegistryInfoGetter registryInfo) {
-        if (ENTRIES.containsKey(this.configKey)) {
-            return ENTRIES.get(this.configKey);
-        }
-        AssortedDiscoveries.LOGGER.error("{} is not a known config entry!", this.configKey);
-        return false; // Don't load the resource if we encounter an unknown config key!
-    }
-
-    private static Map<String, Boolean> resolveEntries() {
         JsonConfig config = ModConfig.getInstance();
-        Map<String, Boolean> entries = new HashMap<>();
+        int colonIndex = configKey.indexOf(':');
 
-        for (String key : ModConfigKeys.CONFIG_KEYS) {
-            AbstractConfigEntry<?> configEntry = config.getEntry(key);
+        if (colonIndex != -1) {
+            String[] keys = configKey.split(":");
+            String configKey = keys[0];
+            String entryKey = keys[1];
 
-            if (configEntry instanceof BooleanConfigEntry) {
-                boolean val = ((BooleanConfigEntry) configEntry).getValue();
-                entries.put(ADReference.makeModId(key).toString(), val);
+            if (!Objects.equals(config.getName(), configKey)) {
+                AssortedDiscoveries.LOGGER.error("{} is not a known config entry in unknown config {}!", entryKey, configKey);
+                return false; // Don't load the resource if we encounter an unknown config key!
             }
-        }
-        return entries;
-    }
 
-    static {
-        ENTRIES = resolveEntries();
+            AbstractConfigEntry<?> entry = config.getEntry(entryKey);
+            if (entry == null) {
+                AssortedDiscoveries.LOGGER.error("{} is not a known config entry in config {}!", entryKey, configKey);
+                return false; // Don't load the resource if we encounter an unknown config key!
+            }
+
+            if (entry instanceof BooleanConfigEntry) {
+                return ((BooleanConfigEntry) entry).getValue();
+            }
+            return false;
+        }
+
+        AbstractConfigEntry<?> entry = config.getEntry(configKey);
+        if (entry == null) {
+            AssortedDiscoveries.LOGGER.error("{} is not a known config entry!", this.configKey);
+            return false; // Don't load the resource if we encounter an unknown config key!
+        }
+
+        if (entry instanceof BooleanConfigEntry) {
+            return ((BooleanConfigEntry) entry).getValue();
+        }
+        return false;
     }
 }

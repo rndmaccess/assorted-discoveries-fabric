@@ -51,24 +51,23 @@ public class AssortedDiscoveries implements ModInitializer {
 	@Override
 	public void onInitialize() {
         // Config
-        JsonConfig config = ModConfig.getInstance();
         ModResourceConditionTypes.register();
 
 		// General Registries
 		ModBlocks.register();
 		ModItems.register();
-        AssortedDiscoveries.addItemGroups(config);
+        AssortedDiscoveries.addItemGroups();
 		ModBlockEntityTypes.register();
 		ModParticleTypes.register();
 		ModSoundEvents.register();
 		AssortedDiscoveries.registerFuel();
 		AssortedDiscoveries.registerCompostables();
-		AssortedDiscoveries.modifyLootTables(config);
+		AssortedDiscoveries.modifyLootTables();
         AssortedDiscoveries.registerVillagerInteractions();
 
 		// World Generation Registries
 		ModFeatures.register();
-		AssortedDiscoveries.addFeaturesToBiomes(config);
+		AssortedDiscoveries.addFeaturesToBiomes();
 	}
 
     private static void registerVillagerInteractions() {
@@ -76,7 +75,8 @@ public class AssortedDiscoveries implements ModInitializer {
         VillagerInteractionRegistries.registerFood(ModItems.GREEN_ONION, 1);
     }
 
-	private static void addFeaturesToBiomes(JsonConfig config) {
+	private static void addFeaturesToBiomes() {
+        JsonConfig config = ModConfig.getInstance();
         BooleanConfigEntry configEntry;
 
         configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CATTAILS);
@@ -185,8 +185,9 @@ public class AssortedDiscoveries implements ModInitializer {
         CompostingChanceRegistry.INSTANCE.add(ModItems.GREEN_ONION_SEEDS, 0.3F);
 	}
 
-	private static void modifyLootTables(JsonConfig config) {
+	private static void modifyLootTables() {
 		Optional<RegistryKey<LootTable>> spruceLeavesLootTableId = Blocks.SPRUCE_LEAVES.getLootTableKey();
+        JsonConfig config = ModConfig.getInstance();
         BooleanConfigEntry configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_FORESTS_BOUNTY);
 
         if (configEntry.getValue()) {
@@ -212,9 +213,10 @@ public class AssortedDiscoveries implements ModInitializer {
         }
 	}
 
-	private static void addItemGroups(JsonConfig config) {
+	private static void addItemGroups() {
         Registry.register(Registries.ITEM_GROUP, MOD_ITEM_GROUP_KEY, MOD_ITEM_GROUP);
         ItemGroupEvents.modifyEntriesEvent(MOD_ITEM_GROUP_KEY).register((entries) -> {
+            JsonConfig config = ModConfig.getInstance();
             BooleanConfigEntry configEntry;
 
             configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_SLIME_PLUSHIE);

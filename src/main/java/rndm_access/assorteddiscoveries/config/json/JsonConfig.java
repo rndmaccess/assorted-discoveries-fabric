@@ -28,6 +28,14 @@ public class JsonConfig {
         return path;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param entryName The config entry key we are looking for
+     * @return The config entry associated with the key if it's found otherwise null
+     */
     public AbstractConfigEntry<?> getEntry(String entryName) {
         ArrayDeque<ConfigCategory> stack = new ArrayDeque<>();
 

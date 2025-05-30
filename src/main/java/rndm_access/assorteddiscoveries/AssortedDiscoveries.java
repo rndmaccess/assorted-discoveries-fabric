@@ -21,10 +21,7 @@ import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.*;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.text.Text;
 import net.minecraft.world.gen.GenerationStep;
@@ -54,7 +51,7 @@ public class AssortedDiscoveries implements ModInitializer {
         ModResourceConditionTypes.register();
 
 		// General Registries
-		ModBlocks.register();
+        ModBlocks.register();
 		ModItems.register();
         AssortedDiscoveries.addItemGroups();
 		ModBlockEntityTypes.register();
@@ -187,31 +184,34 @@ public class AssortedDiscoveries implements ModInitializer {
 
 	private static void modifyLootTables() {
 		Optional<RegistryKey<LootTable>> spruceLeavesLootTableId = Blocks.SPRUCE_LEAVES.getLootTableKey();
+
+        LootTableEvents.MODIFY.register((key, tableBuilder, source,
+                                         registries) -> {
+            if(source.isBuiltin() && spruceLeavesLootTableId.isPresent() && spruceLeavesLootTableId.get().equals(key)) {
+                modifySpruceLeavesLootTable(registries, tableBuilder);
+            }
+        });
+	}
+
+    private static void modifySpruceLeavesLootTable(RegistryWrapper.WrapperLookup registries, LootTable.Builder builder) {
         JsonConfig config = ModConfig.getInstance();
         BooleanConfigEntry configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_FORESTS_BOUNTY);
 
         if (configEntry.getValue()) {
-            LootTableEvents.MODIFY.register((key, tableBuilder, source,
-                                             registries) -> {
-                if(source.isBuiltin() && spruceLeavesLootTableId.isPresent()
-                        && spruceLeavesLootTableId.get().equals(key)) {
-                    Optional<RegistryEntry.Reference<Enchantment>> optionalFortuneEffect
-                            = registries.getOptionalEntry(Enchantments.FORTUNE);
-                    assert optionalFortuneEffect.isPresent();
-                    RegistryEntry<Enchantment> fortuneEffect = RegistryEntry.of(optionalFortuneEffect.get().value());
+            Optional<RegistryEntry.Reference<Enchantment>> fortune = registries.getOptionalEntry(Enchantments.FORTUNE);
+            assert fortune.isPresent();
+            RegistryEntry<Enchantment> fortuneEnchant = RegistryEntry.of(fortune.get().value());
 
-                    LootPool.Builder poolBuilder = LootPool.builder()
-                            .rolls(ConstantLootNumberProvider.create(1))
-                            .conditionally(TableBonusLootCondition.builder(fortuneEffect, 0.02F, 0.023F,
-                                    0.025F, 0.035F, 0.1F))
-                            .with(ItemEntry.builder(ModItems.SPRUCE_CONE))
-                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 2.0F)));
+            LootPool.Builder poolBuilder = LootPool.builder()
+                    .rolls(ConstantLootNumberProvider.create(1))
+                    .conditionally(TableBonusLootCondition.builder(fortuneEnchant, 0.02F, 0.023F,
+                            0.025F, 0.035F, 0.1F))
+                    .with(ItemEntry.builder(ModItems.SPRUCE_CONE))
+                    .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 2.0F)));
 
-                    tableBuilder.pool(poolBuilder);
-                }
-            });
+            builder.pool(poolBuilder);
         }
-	}
+    }
 
 	private static void addItemGroups() {
         Registry.register(Registries.ITEM_GROUP, MOD_ITEM_GROUP_KEY, MOD_ITEM_GROUP);

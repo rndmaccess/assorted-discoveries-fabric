@@ -108,9 +108,9 @@
 			"faces": {
 				"down": { "uv": [ 8, 4.5, 8.5, 5 ], "texture": "#atlas", "cullface": "down" },
 				"north": { "uv": [ 8, 5, 8.5, 6 ], "texture": "#atlas" },
-				"south": { "uv": [ 8, 5, 8.5, 6 ], "texture": "#atlas" },
-				"west": { "uv": [ 8, 5, 8.5, 6 ], "texture": "#atlas" },
-				"east": { "uv": [ 8, 5, 8.5, 6 ], "texture": "#atlas" }
+				"south": { "uv": [ 8.5, 5, 9, 6 ], "texture": "#atlas" },
+				"west": { "uv": [ 9, 5, 9.5, 6 ], "texture": "#atlas" },
+				"east": { "uv": [ 9.5, 5, 10, 6 ], "texture": "#atlas" }
 			}
 		},
 		{

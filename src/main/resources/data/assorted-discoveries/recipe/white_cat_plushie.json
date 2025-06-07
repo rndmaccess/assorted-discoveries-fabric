@@ -4,12 +4,13 @@
   "group": "cat_plushies",
   "key": {
     "W": "minecraft:white_wool",
-    "B": "minecraft:black_wool",
+    "L": "minecraft:light_blue_wool",
+    "Y": "minecraft:yellow_wool",
     "F": "#minecraft:cat_food"
   },
   "pattern": [
     "WWW",
-    "BFB",
+    "YFL",
     "WWW"
   ],
   "result": {

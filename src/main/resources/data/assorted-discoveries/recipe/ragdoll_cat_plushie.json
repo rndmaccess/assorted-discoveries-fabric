@@ -4,13 +4,13 @@
   "category": "misc",
   "pattern": [
     "GWG",
-    "BFB",
+    "LFL",
     "WWW"
   ],
   "key": {
     "W": "minecraft:white_wool",
     "G": "minecraft:light_gray_wool",
-    "B": "minecraft:blue_wool",
+    "L": "minecraft:light_blue_wool",
     "F": "#minecraft:cat_food"
   },
   "result": {

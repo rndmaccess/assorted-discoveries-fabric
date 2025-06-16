@@ -288,11 +288,14 @@ public class ModConfigScreen {
                 enableBlueberries);
         category.addEntry(configEntry);
 
-        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_NETHER_BERRIES, categoryName);
+        BooleanListEntry enableNetherBerries = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_NETHER_BERRIES,
+                categoryName);
+        category.addEntry(enableNetherBerries);
+        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_CINDERSNAP_BERRY_JUICE, categoryName,
+                enableNetherBerries);
         category.addEntry(configEntry);
-        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_CINDERSNAP_BERRY_JUICE, categoryName);
-        category.addEntry(configEntry);
-        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_FROSTBITE_BERRY_JUICE, categoryName);
+        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_FROSTBITE_BERRY_JUICE, categoryName,
+                enableNetherBerries);
         category.addEntry(configEntry);
 
         categoryName = "plants";

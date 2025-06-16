@@ -578,6 +578,9 @@
   "text.cloth-config.assorted-discoveries.option.foods.enable_cindersnap_berry_juice": "Enable Cindersnap Berry Juice",
   "text.cloth-config.assorted-discoveries.option.foods.enable_frostbite_berry_juice": "Enable Frostbite Berry Juice",
 
+  "requirement.cloth-config.assorted-discoveries.option.foods.enable_cindersnap_berry_juice": "Requires Nether Berries",
+  "requirement.cloth-config.assorted-discoveries.option.foods.enable_frostbite_berry_juice": "Requires Nether Berries",
+
   "category.cloth-config.assorted-discoveries.option.plants": "Plants",
   "text.cloth-config.assorted-discoveries.option.plants.enable_purple_mushrooms": "Enable Purple Mushrooms",
   "text.cloth-config.assorted-discoveries.option.plants.enable_cattails": "Enable Cattails",

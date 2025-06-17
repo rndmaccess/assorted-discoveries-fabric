@@ -104,7 +104,7 @@ public class AssortedDiscoveries implements ModInitializer {
                     GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatureKeys.PATCH_BLUEBERRY_RARE);
         }
 
-        configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_WITCHS_CRADLE_SOUP);
+        configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_WITCHS_CRADLES);
         if (configEntry.getValue()) {
             BiomeModifications.addFeature(BiomeSelectors.tag(ModBiomeTags.PATCH_WITCHS_CRADLE),
                     GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatureKeys.PATCH_WITCHS_CRADLE_COMMON);
@@ -1003,7 +1003,7 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModItems.NOODLES);
             }
 
-            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_WITCHS_CRADLE_SOUP);
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_WITCHS_CRADLES);
             boolean witchsCradleEnabled = configEntry.getValue();
             if (witchsCradleEnabled) {
                 entries.add(ModItems.WITCHS_CRADLE_BRANCH);

@@ -267,8 +267,6 @@ public class ModConfigScreen {
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_FORESTS_BOUNTY, categoryName);
         category.addEntry(configEntry);
-        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_WITCHS_CRADLE_SOUP, categoryName);
-        category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_PUDDING, categoryName);
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_CARAMEL_APPLE, categoryName);
@@ -313,6 +311,8 @@ public class ModConfigScreen {
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_BOG_BLOSSOMS, categoryName);
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_ENDER_PLANTS, categoryName);
+        category.addEntry(configEntry);
+        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_WITCHS_CRADLES, categoryName);
         category.addEntry(configEntry);
 
         configBuilder.setSavingRunnable(() -> {

@@ -566,7 +566,6 @@
   "text.cloth-config.assorted-discoveries.option.foods.enable_fried_egg": "Enable Fried Egg",
   "text.cloth-config.assorted-discoveries.option.foods.enable_hoglin_stew": "Enable Hoglin Stew",
   "text.cloth-config.assorted-discoveries.option.foods.enable_forests_bounty": "Enable Forest's Bounty",
-  "text.cloth-config.assorted-discoveries.option.foods.enable_witchs_cradle_soup": "Enable Witch's Cradle Soup",
   "text.cloth-config.assorted-discoveries.option.foods.enable_pudding": "Enable Pudding",
   "text.cloth-config.assorted-discoveries.option.foods.enable_caramel_apple": "Enable Caramel Apple",
   "text.cloth-config.assorted-discoveries.option.foods.enable_sweet_berry_pie": "Enable Sweet Berry Pie",
@@ -588,6 +587,7 @@
   "text.cloth-config.assorted-discoveries.option.plants.enable_bog_blossoms": "Enable Bog Blossoms",
   "text.cloth-config.assorted-discoveries.option.plants.enable_blood_kelp": "Enable Blood Kelp",
   "text.cloth-config.assorted-discoveries.option.plants.enable_ender_plants": "Enable Ender Plants",
+  "text.cloth-config.assorted-discoveries.option.plants.enable_witchs_cradles": "Enable Witch's Cradles",
 
   "tag.item.assorted-discoveries.juices": "Juices",
   "tag.item.c.crimson_vegetation": "Crimson Vegetation",

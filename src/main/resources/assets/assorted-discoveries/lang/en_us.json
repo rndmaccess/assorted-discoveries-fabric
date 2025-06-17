@@ -574,12 +574,13 @@
   "text.cloth-config.assorted-discoveries.option.foods.enable_blueberries": "Enable Blueberries",
   "text.cloth-config.assorted-discoveries.option.foods.enable_blueberry_pie": "Enable Blueberry Pie",
   "text.cloth-config.assorted-discoveries.option.foods.enable_blueberry_juice": "Enable Blueberry Juice",
-  "text.cloth-config.assorted-discoveries.option.foods.enable_nether_berries": "Enable Nether Berries",
+  "text.cloth-config.assorted-discoveries.option.foods.enable_cindersnap_berries": "Enable Cindersnap Berries",
+  "text.cloth-config.assorted-discoveries.option.foods.enable_frostbite_berries": "Enable Frostbite Berries",
   "text.cloth-config.assorted-discoveries.option.foods.enable_cindersnap_berry_juice": "Enable Cindersnap Berry Juice",
   "text.cloth-config.assorted-discoveries.option.foods.enable_frostbite_berry_juice": "Enable Frostbite Berry Juice",
 
-  "requirement.cloth-config.assorted-discoveries.option.foods.enable_cindersnap_berry_juice": "Requires Nether Berries",
-  "requirement.cloth-config.assorted-discoveries.option.foods.enable_frostbite_berry_juice": "Requires Nether Berries",
+  "requirement.cloth-config.assorted-discoveries.option.foods.enable_cindersnap_berry_juice": "Requires Cindersnap Berries",
+  "requirement.cloth-config.assorted-discoveries.option.foods.enable_frostbite_berry_juice": "Requires Frostbite Berries",
 
   "category.cloth-config.assorted-discoveries.option.plants": "Plants",
   "text.cloth-config.assorted-discoveries.option.plants.enable_purple_mushrooms": "Enable Purple Mushrooms",

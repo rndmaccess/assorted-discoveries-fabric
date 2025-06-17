@@ -138,12 +138,16 @@ public class AssortedDiscoveries implements ModInitializer {
                     GenerationStep.Feature.UNDERGROUND_ORES, ModPlacedFeatureKeys.ORE_BAUXITE_UPPER);
         }
 
-        configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_NETHER_BERRIES);
+        configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CINDERSNAP_BERRIES);
         if (configEntry.getValue()) {
             BiomeModifications.addFeature(BiomeSelectors.tag(ModBiomeTags.PATCH_CINDERSNAP_BERRY_BUSH),
                     GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatureKeys.PATCH_CINDERSNAP_BERRY_BUSH_COMMON);
             BiomeModifications.addFeature(BiomeSelectors.tag(ModBiomeTags.PATCH_CINDERSNAP_BERRY_BUSH),
                     GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatureKeys.PATCH_CINDERSNAP_BERRY_BUSH_RARE);
+        }
+
+        configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_FROSTBITE_BERRIES);
+        if (configEntry.getValue()) {
             BiomeModifications.addFeature(BiomeSelectors.tag(ModBiomeTags.PATCH_FROSTBITE_BERRY_BUSH),
                     GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatureKeys.PATCH_FROSTBITE_BERRY_BUSH_COMMON);
             BiomeModifications.addFeature(BiomeSelectors.tag(ModBiomeTags.PATCH_FROSTBITE_BERRY_BUSH),
@@ -1011,10 +1015,15 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModItems.BLUEBERRIES);
             }
 
-            configEntry = ((BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_NETHER_BERRIES));
-            boolean netherBerriesEnabled = configEntry.getValue();
-            if (netherBerriesEnabled) {
+            configEntry = ((BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CINDERSNAP_BERRIES));
+            boolean cindersnapBerriesEnabled = configEntry.getValue();
+            if (cindersnapBerriesEnabled) {
                 entries.add(ModItems.CINDERSNAP_BERRIES);
+            }
+
+            configEntry = ((BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_FROSTBITE_BERRIES));
+            boolean frostbiteBerriesEnabled = configEntry.getValue();
+            if (frostbiteBerriesEnabled) {
                 entries.add(ModItems.FROSTBITE_BERRIES);
             }
 
@@ -1061,12 +1070,12 @@ public class AssortedDiscoveries implements ModInitializer {
             }
 
             configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CINDERSNAP_BERRY_JUICE);
-            if (configEntry.getValue() && netherBerriesEnabled) {
+            if (configEntry.getValue() && cindersnapBerriesEnabled) {
                 entries.add(ModItems.CINDERSNAP_BERRY_JUICE);
             }
 
             configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_FROSTBITE_BERRY_JUICE);
-            if (configEntry.getValue() && netherBerriesEnabled) {
+            if (configEntry.getValue() && frostbiteBerriesEnabled) {
                 entries.add(ModItems.FROSTBITE_BERRY_JUICE);
             }
 

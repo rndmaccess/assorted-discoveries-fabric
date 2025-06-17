@@ -89,7 +89,8 @@ public class ModConfigKeys {
     public static final String ENABLE_WITCHS_CRADLE_SOUP;
     public static final String ENABLE_PUDDING;
     public static final String ENABLE_CARAMEL_APPLE;
-    public static final String ENABLE_NETHER_BERRIES;
+    public static final String ENABLE_CINDERSNAP_BERRIES;
+    public static final String ENABLE_FROSTBITE_BERRIES;
     public static final String ENABLE_PURPLE_MUSHROOMS;
     public static final String ENABLE_CATTAILS;
     public static final String ENABLE_BOG_BLOSSOMS;
@@ -203,7 +204,8 @@ public class ModConfigKeys {
         ENABLE_WITCHS_CRADLE_SOUP = "enable_witchs_cradle_soup";
         ENABLE_PUDDING = "enable_pudding";
         ENABLE_CARAMEL_APPLE = "enable_caramel_apple";
-        ENABLE_NETHER_BERRIES = "enable_nether_berries";
+        ENABLE_CINDERSNAP_BERRIES = "enable_cindersnap_berries";
+        ENABLE_FROSTBITE_BERRIES = "enable_frostbite_berries";
         ENABLE_PURPLE_MUSHROOMS = "enable_purple_mushrooms";
         ENABLE_CATTAILS = "enable_cattails";
         ENABLE_BOG_BLOSSOMS = "enable_bog_blossoms";

@@ -48,7 +48,7 @@
       "values": [
         {
           "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "assorted-discoveries:enable_nether_berries"
+          "value": "assorted-discoveries:enable_frostbite_berries"
         },
         {
           "condition": "assorted-discoveries:config_entry_enabled",

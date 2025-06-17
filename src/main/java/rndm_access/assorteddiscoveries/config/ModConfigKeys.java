@@ -86,7 +86,7 @@ public class ModConfigKeys {
     public static final String ENABLE_FRIED_EGG;
     public static final String ENABLE_HOGLIN_STEW;
     public static final String ENABLE_FORESTS_BOUNTY;
-    public static final String ENABLE_WITCHS_CRADLE_SOUP;
+    public static final String ENABLE_WITCHS_CRADLES;
     public static final String ENABLE_PUDDING;
     public static final String ENABLE_CARAMEL_APPLE;
     public static final String ENABLE_CINDERSNAP_BERRIES;
@@ -201,7 +201,7 @@ public class ModConfigKeys {
         ENABLE_FRIED_EGG = "enable_fried_egg";
         ENABLE_HOGLIN_STEW = "enable_hoglin_stew";
         ENABLE_FORESTS_BOUNTY = "enable_forests_bounty";
-        ENABLE_WITCHS_CRADLE_SOUP = "enable_witchs_cradle_soup";
+        ENABLE_WITCHS_CRADLES = "enable_witchs_cradles";
         ENABLE_PUDDING = "enable_pudding";
         ENABLE_CARAMEL_APPLE = "enable_caramel_apple";
         ENABLE_CINDERSNAP_BERRIES = "enable_cindersnap_berries";

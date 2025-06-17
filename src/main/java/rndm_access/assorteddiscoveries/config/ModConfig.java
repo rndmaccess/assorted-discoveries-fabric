@@ -185,7 +185,6 @@ public class ModConfig {
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_FRIED_EGG))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_HOGLIN_STEW))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_FORESTS_BOUNTY))
-                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_WITCHS_CRADLE_SOUP))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_PUDDING))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CARAMEL_APPLE))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_SWEET_BERRY_PIE))
@@ -204,7 +203,8 @@ public class ModConfig {
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CATTAILS))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_BOG_BLOSSOMS))
                 .addComment(new CommentConfigEntry("Whether patches of ender grass and snapdragons should spawn!"))
-                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_ENDER_PLANTS)).build();
+                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_ENDER_PLANTS))
+                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_WITCHS_CRADLES)).build();
 
         JsonConfig.Builder config = new JsonConfig.Builder(ADReference.MOD_ID)
                 .addComment(requiredRestartComment)

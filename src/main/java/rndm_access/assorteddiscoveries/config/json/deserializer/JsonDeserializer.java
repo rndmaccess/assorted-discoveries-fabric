@@ -15,7 +15,7 @@ import java.nio.file.Path;
 import java.util.Objects;
 
 public class JsonDeserializer {
-    private final TokenList tokenList;
+    private TokenList tokenList;
     private final Path configPath;
     private final String configName;
 
@@ -25,10 +25,11 @@ public class JsonDeserializer {
     public JsonDeserializer(String configName) throws IOException {
         this.configName = configName;
         this.configPath = FabricLoader.getInstance().getConfigDir().resolve(configName + ".json5");
-        this.tokenList = new JsonTokenizer(configPath).tokenize();
     }
 
-    public JsonConfig deserialize() {
+    public JsonConfig deserialize() throws JsonSyntaxException {
+        // We tokenize here in case this method throws a JsonConfigException
+        this.tokenList = new JsonTokenizer(configPath).tokenize();
         JsonConfig.Builder config = new JsonConfig.Builder(configName);
 
         if(tokenList.isEmpty()) {
@@ -42,7 +43,7 @@ public class JsonDeserializer {
         return config.build();
     }
 
-    private void deserialize(JsonConfig.Builder config) {
+    private void deserialize(JsonConfig.Builder config) throws JsonSyntaxException {
         while (tokenList.hasNextToken() && !tokenList.match(TokenType.RIGHT_CURLY)) {
             Token keyToken = requireToken(TokenType.KEY);
             requireToken(TokenType.COLON);
@@ -69,14 +70,14 @@ public class JsonDeserializer {
         return input;
     }
 
-    private ConfigCategory parseCategory(Token keyToken) {
+    private ConfigCategory parseCategory(Token keyToken) throws JsonSyntaxException {
         String categoryName = parseString(keyToken.getValue());
         ConfigCategory.Builder category = new ConfigCategory.Builder(categoryName);
         parseEntry(category);
         return category.build();
     }
 
-    private void parseEntry(ConfigCategory.Builder category) {
+    private void parseEntry(ConfigCategory.Builder category) throws JsonSyntaxException {
         while (tokenList.hasNextToken() && !tokenList.match(TokenType.RIGHT_CURLY)) {
             Token keyToken = requireToken(TokenType.KEY);
             String key = parseString(keyToken.getValue());
@@ -124,7 +125,7 @@ public class JsonDeserializer {
         return true;
     }
 
-    public Token requireToken(TokenType... types) {
+    public Token requireToken(TokenType... types) throws JsonSyntaxException {
         if (!tokenList.match(types)) {
             throw new JsonSyntaxException(getSyntaxErrorMessage(types));
         }

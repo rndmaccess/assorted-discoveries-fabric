@@ -2,18 +2,25 @@ package rndm_access.assorteddiscoveries.config;
 
 import net.fabricmc.loader.api.FabricLoader;
 import rndm_access.assorteddiscoveries.ADReference;
+import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.json.*;
 import rndm_access.assorteddiscoveries.config.json.deserializer.JsonDeserializer;
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.BooleanConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.deserializer.ConfigCategory;
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.CommentConfigEntry;
+import rndm_access.assorteddiscoveries.config.json.exceptions.JsonSyntaxException;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class ModConfig {
+    private static String configError;
     private static JsonConfig config;
+
+    public static String getConfigError() {
+        return configError;
+    }
 
     public static JsonConfig getInstance() {
         if (config == null) {
@@ -37,17 +44,23 @@ public class ModConfig {
             defaultConfig.create();
             return defaultConfig;
         }
-        JsonConfig loadedConfig = loadConfig();
-
-        return defaultConfig.merge(loadedConfig);
+        return loadConfig(defaultConfig);
     }
 
-    private static JsonConfig loadConfig() {
+    private static JsonConfig loadConfig(JsonConfig defaultConfig) {
         try {
             JsonDeserializer deserializer = new JsonDeserializer(ADReference.MOD_ID);
-            return deserializer.deserialize();
+            JsonConfig loadedConfig = deserializer.deserialize();
+            return defaultConfig.merge(loadedConfig);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            AssortedDiscoveries.LOGGER.error("The config file is unreadable! Using the default config!");
+            return defaultConfig;
+        } catch (JsonSyntaxException e) {
+            String errorMessage = e.getMessage();
+            AssortedDiscoveries.LOGGER.error("Using the default config, because the config file could not be loaded:");
+            AssortedDiscoveries.LOGGER.error(errorMessage);
+            configError = errorMessage;
+            return defaultConfig;
         }
     }
 

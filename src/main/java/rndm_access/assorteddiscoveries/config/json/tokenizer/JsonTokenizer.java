@@ -25,7 +25,7 @@ public class JsonTokenizer {
         this.jsonTokens = new ArrayList<>();
     }
 
-    public TokenList tokenize() {
+    public TokenList tokenize() throws JsonSyntaxException {
         File file = new File(String.valueOf(path));
 
         if (path == null || !Files.exists(path)) {
@@ -43,7 +43,7 @@ public class JsonTokenizer {
         return new TokenList(jsonTokens);
     }
 
-    private void tokenizeLine(String line) {
+    private void tokenizeLine(String line) throws JsonSyntaxException {
         // If the line is empty we don't have to tokenize it!
         if (line.isEmpty()) {
             return;
@@ -143,7 +143,7 @@ public class JsonTokenizer {
         }
     }
 
-    private Token scanString(String line, StringBuilder builder) {
+    private Token scanString(String line, StringBuilder builder) throws JsonSyntaxException {
         Token.Builder token = new Token.Builder().setLine(lineNum);
         requireQuote();
         consumeChar(line);
@@ -175,7 +175,7 @@ public class JsonTokenizer {
         }
     }
 
-    private void requireQuote() {
+    private void requireQuote() throws JsonSyntaxException {
         if (this.curChar != '"') {
             int reportedLine = this.lineNum + 1;
 

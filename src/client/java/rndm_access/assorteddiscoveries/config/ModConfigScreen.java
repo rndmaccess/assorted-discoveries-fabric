@@ -4,7 +4,7 @@ import me.shedaniel.clothconfig2.api.*;
 import me.shedaniel.clothconfig2.gui.entries.BooleanListEntry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import rndm_access.assorteddiscoveries.ADReference;
+import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.json.JsonConfig;
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.BooleanConfigEntry;
 
@@ -15,7 +15,7 @@ public class ModConfigScreen {
     public static final HashMap<String, Object> ENTRY_VALUE_CHANGES;
 
     public static ConfigBuilder getConfigScreenBuilder() {
-        Text title = Text.translatable("title." + ADReference.MOD_ID + ".config");
+        Text title = Text.translatable("title." + AssortedDiscoveries.MOD_ID + ".config");
         ConfigBuilder configBuilder = ConfigBuilder.create().setTitle(title);
         configBuilder.setDefaultBackgroundTexture(Identifier.of("assorted-discoveries:textures/block/calcite_bricks.png"));
         configBuilder.setGlobalized(true);
@@ -402,17 +402,17 @@ public class ModConfigScreen {
     }
 
     private static Text makeEntryText(String categoryName, String entryName) {
-        return Text.translatable("text.cloth-config." + ADReference.MOD_ID
+        return Text.translatable("text.cloth-config." + AssortedDiscoveries.MOD_ID
                 + ".option." + categoryName + "." + entryName);
     }
 
     private static Text makeEntryRequirementText(String categoryName, String entryName) {
-        return Text.translatable("requirement.cloth-config." + ADReference.MOD_ID
+        return Text.translatable("requirement.cloth-config." + AssortedDiscoveries.MOD_ID
                 + ".option." + categoryName + "." + entryName);
     }
 
     private static Text makeCategoryText(String categoryName) {
-        return Text.translatable("category.cloth-config." + ADReference.MOD_ID
+        return Text.translatable("category.cloth-config." + AssortedDiscoveries.MOD_ID
                 + ".option." + categoryName);
     }
 

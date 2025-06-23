@@ -3,7 +3,7 @@ package rndm_access.assorteddiscoveries.core;
 import net.minecraft.block.Block;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
-import rndm_access.assorteddiscoveries.ADReference;
+import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 
 public final class ModBlockTags {
     public static final TagKey<Block> END_BONE_MEALABLE_BLOCKS;
@@ -23,7 +23,7 @@ public final class ModBlockTags {
      * @return The tag from the location or an empty tag if none exists.
      */
     private static TagKey<Block> of(String path) {
-        return TagKey.of(RegistryKeys.BLOCK, ADReference.makeModId(path));
+        return TagKey.of(RegistryKeys.BLOCK, AssortedDiscoveries.makeModId(path));
     }
 
     static {

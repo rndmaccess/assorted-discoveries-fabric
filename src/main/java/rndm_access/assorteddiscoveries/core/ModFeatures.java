@@ -6,7 +6,6 @@ import net.minecraft.world.gen.ProbabilityConfig;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.FeatureConfig;
-import rndm_access.assorteddiscoveries.ADReference;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.worldgen.feature.BloodKelpFeature;
 import rndm_access.assorteddiscoveries.worldgen.feature.CattailFeature;
@@ -16,7 +15,7 @@ public final class ModFeatures {
     public static final Feature<DefaultFeatureConfig> BLOOD_KELP;
 
     private static <C extends FeatureConfig, F extends Feature<C>> void register(String path, F feature) {
-        Registry.register(Registries.FEATURE, ADReference.makeModId(path), feature);
+        Registry.register(Registries.FEATURE, AssortedDiscoveries.makeModId(path), feature);
     }
 
     /**

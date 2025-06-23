@@ -3,7 +3,7 @@ package rndm_access.assorteddiscoveries.core;
 import net.minecraft.entity.EntityType;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
-import rndm_access.assorteddiscoveries.ADReference;
+import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 
 public final class ModEntityTypeTags {
     public static final TagKey<EntityType<?>> BLUEBERRY_BUSH_IMMUNE_ENTITY_TYPES;
@@ -12,7 +12,7 @@ public final class ModEntityTypeTags {
     public static final TagKey<EntityType<?>> WITCHS_CRADLE_IMMUNE_ENTITY_TYPES;
 
     private static TagKey<EntityType<?>> of(String path) {
-        return TagKey.of(RegistryKeys.ENTITY_TYPE, ADReference.makeModId(path));
+        return TagKey.of(RegistryKeys.ENTITY_TYPE, AssortedDiscoveries.makeModId(path));
     }
 
     static {

@@ -3,7 +3,6 @@ package rndm_access.assorteddiscoveries.core;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.SoundEvent;
-import rndm_access.assorteddiscoveries.ADReference;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 
 public final class ModSoundEvents {
@@ -20,7 +19,7 @@ public final class ModSoundEvents {
     }
 
     private static SoundEvent makeSoundEvent(String name) {
-        return SoundEvent.of(ADReference.makeModId(name));
+        return SoundEvent.of(AssortedDiscoveries.makeModId(name));
     }
 
     static {

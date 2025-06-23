@@ -3,7 +3,7 @@ package rndm_access.assorteddiscoveries.core;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.world.biome.Biome;
-import rndm_access.assorteddiscoveries.ADReference;
+import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 
 public final class ModBiomeTags {
     public static final TagKey<Biome> ORE_SMOKY_QUARTZ;
@@ -21,7 +21,7 @@ public final class ModBiomeTags {
     public static final TagKey<Biome> PATCH_WILD_GREEN_ONIONS;
 
     private static TagKey<Biome> of(String path) {
-        return TagKey.of(RegistryKeys.BIOME, ADReference.makeModId(path));
+        return TagKey.of(RegistryKeys.BIOME, AssortedDiscoveries.makeModId(path));
     }
 
     static {

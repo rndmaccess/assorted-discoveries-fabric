@@ -24,6 +24,7 @@ import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.registry.*;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 import net.minecraft.world.gen.GenerationStep;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,12 +38,13 @@ import rndm_access.assorteddiscoveries.core.*;
 import java.util.Optional;
 
 public class AssortedDiscoveries implements ModInitializer {
+    public static final String MOD_ID = "assorted-discoveries";
 	public static final Logger LOGGER = LoggerFactory.getLogger("AssortedDiscoveries");
 	private static final RegistryKey<ItemGroup> MOD_ITEM_GROUP_KEY = RegistryKey.of(
-			RegistryKeys.ITEM_GROUP, ADReference.makeModId("item_group"));
+			RegistryKeys.ITEM_GROUP, makeModId("item_group"));
     public static final ItemGroup MOD_ITEM_GROUP = FabricItemGroup.builder()
             .icon(() -> new ItemStack(ModBlocks.ENDERMAN_PLUSHIE.asItem()))
-            .displayName(Text.translatable("itemGroup." + ADReference.MOD_ID))
+            .displayName(Text.translatable("itemGroup." + MOD_ID))
             .build();
 
 	@Override
@@ -66,6 +68,10 @@ public class AssortedDiscoveries implements ModInitializer {
 		ModFeatures.register();
 		AssortedDiscoveries.addFeaturesToBiomes();
 	}
+
+    public static Identifier makeModId(String path) {
+        return Identifier.of(MOD_ID, path);
+    }
 
     private static void registerVillagerInteractions() {
         VillagerInteractionRegistries.registerCompostable(ModItems.GREEN_ONION);

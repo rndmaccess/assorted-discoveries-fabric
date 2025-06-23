@@ -1,7 +1,6 @@
 package rndm_access.assorteddiscoveries.config;
 
 import net.fabricmc.loader.api.FabricLoader;
-import rndm_access.assorteddiscoveries.ADReference;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.json.*;
 import rndm_access.assorteddiscoveries.config.json.deserializer.JsonDeserializer;
@@ -38,7 +37,7 @@ public class ModConfig {
 
     private static JsonConfig createOrLoad() {
         JsonConfig defaultConfig = getDefaultConfig();
-        Path configPath = FabricLoader.getInstance().getConfigDir().resolve(ADReference.MOD_ID + ".json5");
+        Path configPath = FabricLoader.getInstance().getConfigDir().resolve(AssortedDiscoveries.MOD_ID + ".json5");
 
         if (!Files.exists(configPath)) {
             defaultConfig.create();
@@ -49,7 +48,7 @@ public class ModConfig {
 
     private static JsonConfig loadConfig(JsonConfig defaultConfig) {
         try {
-            JsonDeserializer deserializer = new JsonDeserializer(ADReference.MOD_ID);
+            JsonDeserializer deserializer = new JsonDeserializer(AssortedDiscoveries.MOD_ID);
             JsonConfig loadedConfig = deserializer.deserialize();
             return defaultConfig.merge(loadedConfig);
         } catch (IOException e) {
@@ -219,7 +218,7 @@ public class ModConfig {
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_ENDER_PLANTS))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_WITCHS_CRADLES)).build();
 
-        JsonConfig.Builder config = new JsonConfig.Builder(ADReference.MOD_ID)
+        JsonConfig.Builder config = new JsonConfig.Builder(AssortedDiscoveries.MOD_ID)
                 .addComment(requiredRestartComment)
                 .addCategory(buildingBlocksCategory)
                 .addCategory(passivePlushiesCategory)

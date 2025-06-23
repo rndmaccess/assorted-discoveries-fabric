@@ -9,7 +9,6 @@ import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.math.Direction;
-import rndm_access.assorteddiscoveries.ADReference;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 
 public final class ModItems {
@@ -148,7 +147,7 @@ public final class ModItems {
             .useRemainder(Items.GLASS_BOTTLE).registryKey(FROSTBITE_BERRY_JUICE_KEY)), FROSTBITE_BERRY_JUICE_KEY);
 
     private static RegistryKey<Item> makeRegistryKey(String name) {
-        return RegistryKey.of(RegistryKeys.ITEM, ADReference.makeModId(name));
+        return RegistryKey.of(RegistryKeys.ITEM, AssortedDiscoveries.makeModId(name));
     }
 
     private static Item register(Item item, RegistryKey<Item> key) {

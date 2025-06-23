@@ -4,7 +4,6 @@ import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.minecraft.particle.SimpleParticleType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import rndm_access.assorteddiscoveries.ADReference;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 
 public final class ModParticleTypes {
@@ -46,7 +45,7 @@ public final class ModParticleTypes {
     public static final SimpleParticleType SOUL_EMBER;
 
     private static void register(String path, SimpleParticleType particleType) {
-        Registry.register(Registries.PARTICLE_TYPE, ADReference.makeModId(path), particleType);
+        Registry.register(Registries.PARTICLE_TYPE, AssortedDiscoveries.makeModId(path), particleType);
     }
 
     /**

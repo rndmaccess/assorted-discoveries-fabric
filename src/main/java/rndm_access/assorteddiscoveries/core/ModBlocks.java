@@ -17,7 +17,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
-import rndm_access.assorteddiscoveries.ADReference;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.block.*;
 import rndm_access.assorteddiscoveries.item.RopeLadderBlockItem;
@@ -1415,7 +1414,7 @@ public final class ModBlocks {
     public static final Block RUSTY_WOLF_PLUSHIE = registerWolfPlushie(RUSTY_WOLF_PLUSHIE_KEY);
 
     private static RegistryKey<Block> makeRegistryKey(String name) {
-        return RegistryKey.of(RegistryKeys.BLOCK, ADReference.makeModId(name));
+        return RegistryKey.of(RegistryKeys.BLOCK, AssortedDiscoveries.makeModId(name));
     }
 
     private static boolean always(BlockState state, BlockView world, BlockPos pos) {

@@ -3,7 +3,7 @@ package rndm_access.assorteddiscoveries.core;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.world.gen.feature.PlacedFeature;
-import rndm_access.assorteddiscoveries.ADReference;
+import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 
 public final class ModPlacedFeatureKeys {
     public static final RegistryKey<PlacedFeature> PATCH_CATTAIL_MANGROVE_SWAMP;
@@ -27,7 +27,7 @@ public final class ModPlacedFeatureKeys {
     public static final RegistryKey<PlacedFeature> PATCH_WILD_GREEN_ONIONS_RARE;
 
     public static RegistryKey<PlacedFeature> of(String path) {
-        return RegistryKey.of(RegistryKeys.PLACED_FEATURE, ADReference.makeModId(path));
+        return RegistryKey.of(RegistryKeys.PLACED_FEATURE, AssortedDiscoveries.makeModId(path));
     }
 
     static {

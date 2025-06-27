@@ -14,7 +14,7 @@
     "show_toast": false,
     "announce_to_chat": false,
     "hidden": false,
-    "background": "assorted-discoveries:textures/gui/advancements/backgrounds/calcite_bricks.png"
+    "background": "assorted-discoveries:gui/advancements/backgrounds/calcite_bricks"
   },
   "criteria": {
     "tick": {

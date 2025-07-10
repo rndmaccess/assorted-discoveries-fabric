@@ -13,6 +13,7 @@ import net.minecraft.registry.*;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.property.Properties;
+import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.world.BlockView;
@@ -124,38 +125,38 @@ public final class ModBlocks {
     public static final RegistryKey<Block> SALT_RABBIT_PLUSHIE_KEY = makeRegistryKey("salt_rabbit_plushie");
     public static final Block SALT_RABBIT_PLUSHIE = registerRabbitPlushie(SALT_RABBIT_PLUSHIE_KEY);
     public static final RegistryKey<Block> WHITE_SHEEP_PLUSHIE_KEY = makeRegistryKey("white_sheep_plushie");
-    public static final Block WHITE_SHEEP_PLUSHIE = registerSheepPlushie(WHITE_SHEEP_PLUSHIE_KEY);
+    public static final Block WHITE_SHEEP_PLUSHIE = registerSheepPlushie(DyeColor.WHITE, WHITE_SHEEP_PLUSHIE_KEY);
     public static final RegistryKey<Block> ORANGE_SHEEP_PLUSHIE_KEY = makeRegistryKey("orange_sheep_plushie");
-    public static final Block ORANGE_SHEEP_PLUSHIE = registerSheepPlushie(ORANGE_SHEEP_PLUSHIE_KEY);
+    public static final Block ORANGE_SHEEP_PLUSHIE = registerSheepPlushie(DyeColor.ORANGE, ORANGE_SHEEP_PLUSHIE_KEY);
     public static final RegistryKey<Block> MAGENTA_SHEEP_PLUSHIE_KEY = makeRegistryKey("magenta_sheep_plushie");
-    public static final Block MAGENTA_SHEEP_PLUSHIE = registerSheepPlushie(MAGENTA_SHEEP_PLUSHIE_KEY);
+    public static final Block MAGENTA_SHEEP_PLUSHIE = registerSheepPlushie(DyeColor.MAGENTA, MAGENTA_SHEEP_PLUSHIE_KEY);
     public static final RegistryKey<Block> LIGHT_BLUE_SHEEP_PLUSHIE_KEY
             = makeRegistryKey("light_blue_sheep_plushie");
-    public static final Block LIGHT_BLUE_SHEEP_PLUSHIE = registerSheepPlushie(LIGHT_BLUE_SHEEP_PLUSHIE_KEY);
+    public static final Block LIGHT_BLUE_SHEEP_PLUSHIE = registerSheepPlushie(DyeColor.LIGHT_BLUE, LIGHT_BLUE_SHEEP_PLUSHIE_KEY);
     public static final RegistryKey<Block> YELLOW_SHEEP_PLUSHIE_KEY = makeRegistryKey("yellow_sheep_plushie");
-    public static final Block YELLOW_SHEEP_PLUSHIE = registerSheepPlushie(YELLOW_SHEEP_PLUSHIE_KEY);
+    public static final Block YELLOW_SHEEP_PLUSHIE = registerSheepPlushie(DyeColor.YELLOW, YELLOW_SHEEP_PLUSHIE_KEY);
     public static final RegistryKey<Block> LIME_SHEEP_PLUSHIE_KEY = makeRegistryKey("lime_sheep_plushie");
-    public static final Block LIME_SHEEP_PLUSHIE = registerSheepPlushie(LIME_SHEEP_PLUSHIE_KEY);
+    public static final Block LIME_SHEEP_PLUSHIE = registerSheepPlushie(DyeColor.LIME, LIME_SHEEP_PLUSHIE_KEY);
     public static final RegistryKey<Block> PINK_SHEEP_PLUSHIE_KEY = makeRegistryKey("pink_sheep_plushie");
-    public static final Block PINK_SHEEP_PLUSHIE = registerSheepPlushie(PINK_SHEEP_PLUSHIE_KEY);
+    public static final Block PINK_SHEEP_PLUSHIE = registerSheepPlushie(DyeColor.PINK, PINK_SHEEP_PLUSHIE_KEY);
     public static final RegistryKey<Block> GRAY_SHEEP_PLUSHIE_KEY = makeRegistryKey("gray_sheep_plushie");
-    public static final Block GRAY_SHEEP_PLUSHIE = registerSheepPlushie(GRAY_SHEEP_PLUSHIE_KEY);
+    public static final Block GRAY_SHEEP_PLUSHIE = registerSheepPlushie(DyeColor.GRAY, GRAY_SHEEP_PLUSHIE_KEY);
     public static final RegistryKey<Block> LIGHT_GRAY_SHEEP_PLUSHIE_KEY = makeRegistryKey("light_gray_sheep_plushie");
-    public static final Block LIGHT_GRAY_SHEEP_PLUSHIE = registerSheepPlushie(LIGHT_GRAY_SHEEP_PLUSHIE_KEY);
+    public static final Block LIGHT_GRAY_SHEEP_PLUSHIE = registerSheepPlushie(DyeColor.LIGHT_GRAY, LIGHT_GRAY_SHEEP_PLUSHIE_KEY);
     public static final RegistryKey<Block> CYAN_SHEEP_PLUSHIE_KEY = makeRegistryKey("cyan_sheep_plushie");
-    public static final Block CYAN_SHEEP_PLUSHIE = registerSheepPlushie(CYAN_SHEEP_PLUSHIE_KEY);
+    public static final Block CYAN_SHEEP_PLUSHIE = registerSheepPlushie(DyeColor.CYAN, CYAN_SHEEP_PLUSHIE_KEY);
     public static final RegistryKey<Block> PURPLE_SHEEP_PLUSHIE_KEY = makeRegistryKey("purple_sheep_plushie");
-    public static final Block PURPLE_SHEEP_PLUSHIE = registerSheepPlushie(PURPLE_SHEEP_PLUSHIE_KEY);
+    public static final Block PURPLE_SHEEP_PLUSHIE = registerSheepPlushie(DyeColor.PURPLE, PURPLE_SHEEP_PLUSHIE_KEY);
     public static final RegistryKey<Block> BLUE_SHEEP_PLUSHIE_KEY = makeRegistryKey("blue_sheep_plushie");
-    public static final Block BLUE_SHEEP_PLUSHIE = registerSheepPlushie(BLUE_SHEEP_PLUSHIE_KEY);
+    public static final Block BLUE_SHEEP_PLUSHIE = registerSheepPlushie(DyeColor.BLUE, BLUE_SHEEP_PLUSHIE_KEY);
     public static final RegistryKey<Block> BROWN_SHEEP_PLUSHIE_KEY = makeRegistryKey("brown_sheep_plushie");
-    public static final Block BROWN_SHEEP_PLUSHIE = registerSheepPlushie(BROWN_SHEEP_PLUSHIE_KEY);
+    public static final Block BROWN_SHEEP_PLUSHIE = registerSheepPlushie(DyeColor.BROWN, BROWN_SHEEP_PLUSHIE_KEY);
     public static final RegistryKey<Block> GREEN_SHEEP_PLUSHIE_KEY = makeRegistryKey("green_sheep_plushie");
-    public static final Block GREEN_SHEEP_PLUSHIE = registerSheepPlushie(GREEN_SHEEP_PLUSHIE_KEY);
+    public static final Block GREEN_SHEEP_PLUSHIE = registerSheepPlushie(DyeColor.GREEN, GREEN_SHEEP_PLUSHIE_KEY);
     public static final RegistryKey<Block> RED_SHEEP_PLUSHIE_KEY = makeRegistryKey("red_sheep_plushie");
-    public static final Block RED_SHEEP_PLUSHIE = registerSheepPlushie(RED_SHEEP_PLUSHIE_KEY);
+    public static final Block RED_SHEEP_PLUSHIE = registerSheepPlushie(DyeColor.RED, RED_SHEEP_PLUSHIE_KEY);
     public static final RegistryKey<Block> BLACK_SHEEP_PLUSHIE_KEY = makeRegistryKey("black_sheep_plushie");
-    public static final Block BLACK_SHEEP_PLUSHIE = registerSheepPlushie(BLACK_SHEEP_PLUSHIE_KEY);
+    public static final Block BLACK_SHEEP_PLUSHIE = registerSheepPlushie(DyeColor.BLACK, BLACK_SHEEP_PLUSHIE_KEY);
     public static final RegistryKey<Block> SKELETON_PLUSHIE_KEY = makeRegistryKey("skeleton_plushie");
     public static final Block SKELETON_PLUSHIE
             = register(new SkeletonPlushieBlock(makePlushieSettings(SKELETON_PLUSHIE_KEY)),
@@ -1468,8 +1469,8 @@ public final class ModBlocks {
         return register(rabbitPlushieBlock, blockKey, true);
     }
 
-    private static Block registerSheepPlushie(RegistryKey<Block> blockKey) {
-        Block sheepPlushieBlock = new SheepPlushieBlock(makePlushieSettings(blockKey));
+    private static Block registerSheepPlushie(DyeColor color, RegistryKey<Block> blockKey) {
+        Block sheepPlushieBlock = new SheepPlushieBlock(color, makePlushieSettings(blockKey));
         return register(sheepPlushieBlock, blockKey, true);
     }
 

@@ -1,21 +1,27 @@
 package rndm_access.assorteddiscoveries.block;
 
 import com.mojang.serialization.MapCodec;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.block.*;
 import net.minecraft.state.StateManager;
+import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 
 public class SheepPlushieBlock extends AbstractSimplePlushieBlock {
     public static final MapCodec<SheepPlushieBlock> CODEC;
     private static final VoxelShape NORTH_SHAPE;
+    private final DyeColor color;
 
-    public SheepPlushieBlock(AbstractBlock.Settings settings) {
+    public SheepPlushieBlock(DyeColor color, AbstractBlock.Settings settings) {
         super(settings);
         this.setDefaultState(this.getStateManager().getDefaultState().with(WATERLOGGED, false)
                 .with(FACING, Direction.NORTH));
+        this.color = color;
+    }
+
+    public DyeColor getColor() {
+        return color;
     }
 
     @Override
@@ -34,7 +40,10 @@ public class SheepPlushieBlock extends AbstractSimplePlushieBlock {
     }
 
     static {
-        CODEC = createCodec(SheepPlushieBlock::new);
+        CODEC = RecordCodecBuilder.mapCodec((instance) ->
+                instance.group(DyeColor.CODEC.fieldOf("color")
+                        .forGetter(SheepPlushieBlock::getColor), createSettingsCodec())
+                        .apply(instance, SheepPlushieBlock::new));
         NORTH_SHAPE = Block.createCuboidShape(4.0D, 0.0D, 2.0D, 12.0D,
                 12.0D, 14.0D);
     }

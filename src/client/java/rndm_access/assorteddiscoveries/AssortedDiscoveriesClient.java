@@ -9,6 +9,7 @@ import net.minecraft.client.particle.FlameParticle;
 import net.minecraft.client.particle.LavaEmberParticle;
 import net.minecraft.client.render.BlockRenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
+import rndm_access.assorteddiscoveries.block.SheepPlushieBlock;
 import rndm_access.assorteddiscoveries.block_entity.DyedCampfireBlockEntityRenderer;
 import rndm_access.assorteddiscoveries.core.*;
 import rndm_access.assorteddiscoveries.particle.AirNectarParticle;
@@ -34,6 +35,18 @@ public class AssortedDiscoveriesClient implements ClientModInitializer {
             }
             return -1;
         }, ModBlocks.ENDERMAN_PLUSHIE, ModBlocks.GRASS_SLAB);
+
+        ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> {
+            if (view != null && state != null) {
+                return ((SheepPlushieBlock) state.getBlock()).getColor().getEntityColor();
+            }
+            return -1;
+        }, ModBlocks.WHITE_SHEEP_PLUSHIE, ModBlocks.ORANGE_SHEEP_PLUSHIE, ModBlocks.MAGENTA_SHEEP_PLUSHIE,
+                ModBlocks.LIGHT_BLUE_SHEEP_PLUSHIE, ModBlocks.YELLOW_SHEEP_PLUSHIE, ModBlocks.LIME_SHEEP_PLUSHIE,
+                ModBlocks.PINK_SHEEP_PLUSHIE, ModBlocks.GRAY_SHEEP_PLUSHIE, ModBlocks.LIGHT_GRAY_SHEEP_PLUSHIE,
+                ModBlocks.CYAN_SHEEP_PLUSHIE, ModBlocks.PURPLE_SHEEP_PLUSHIE, ModBlocks.BLUE_SHEEP_PLUSHIE,
+                ModBlocks.BROWN_SHEEP_PLUSHIE, ModBlocks.GREEN_SHEEP_PLUSHIE, ModBlocks.RED_SHEEP_PLUSHIE,
+                ModBlocks.BLACK_SHEEP_PLUSHIE);
     }
 
     private static void registerParticleFactories() {

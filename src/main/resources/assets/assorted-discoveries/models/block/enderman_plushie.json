@@ -2,12 +2,8 @@
 	"__comment": "Designed by rndm_access with Cubik Studio - https://cubik.studio",
 	"parent": "assorted-discoveries:block/plushie_block",
 	"textures": {
-		"particle": "block/black_wool",
-		"atlas": "assorted-discoveries:block/enderman_plushie",
-		"grass_top": "block/grass_block_top",
-		"grass_side_overlay": "block/grass_block_side_overlay",
-		"grass_side": "block/grass_block_side",
-		"dirt": "block/dirt"
+		"particle": "minecraft:block/black_wool",
+		"atlas": "assorted-discoveries:block/enderman_plushie"
 	},
 	"elements": [ 	 
 		{
@@ -118,12 +114,12 @@
 			"from": [ 5.5, 0.5, 3.5 ],
 			"to": [ 9.5, 4.5, 7.5 ],
 			"faces": {
-				"down": { "uv": [ 5.5, 8.5, 9.5, 12.5 ], "texture": "#dirt" },
-				"up": { "uv": [ 5.5, 3.5, 9.5, 7.5 ], "texture": "#grass_top", "tintindex": 1 },
-				"north": { "uv": [ 6, 1, 10, 5 ], "texture": "#grass_side" },
-				"south": { "uv": [ 1, 1, 5, 5 ], "texture": "#grass_side" },
-				"west": { "uv": [ 3, 1, 7, 5 ], "texture": "#grass_side" },
-				"east": { "uv": [ 8, 1, 12, 5 ], "texture": "#grass_side" }
+				"down": { "uv": [ 4, 0, 6, 2 ], "texture": "#atlas" },
+				"up": { "uv": [ 6, 0, 8, 2 ], "texture": "#atlas", "tintindex": 1 },
+				"north": { "uv": [ 8, 0, 10, 2 ], "texture": "#atlas" },
+				"south": { "uv": [ 10, 0, 12, 2 ], "texture": "#atlas" },
+				"west": { "uv": [ 12, 0, 14, 2 ], "texture": "#atlas" },
+				"east": { "uv": [ 14, 0, 16, 2 ], "texture": "#atlas" }
 			}
 		},
 		{
@@ -131,10 +127,10 @@
 			"from": [ 5.5, 0.5, 3.5 ],
 			"to": [ 9.5, 4.5, 7.5 ],
 			"faces": {
-				"north": { "uv": [ 6, 1, 10, 5 ], "texture": "#grass_side_overlay", "tintindex": 1 },
-				"south": { "uv": [ 1, 1, 5, 5 ], "texture": "#grass_side_overlay", "tintindex": 1 },
-				"west": { "uv": [ 3, 1, 7, 5 ], "texture": "#grass_side_overlay", "tintindex": 1 },
-				"east": { "uv": [ 8, 1, 12, 5 ], "texture": "#grass_side_overlay", "tintindex": 1 }
+				"north": { "uv": [ 8, 2, 10, 4 ], "texture": "#atlas", "tintindex": 1 },
+				"south": { "uv": [ 10, 2, 12, 4 ], "texture": "#atlas", "tintindex": 1 },
+				"west": { "uv": [ 12, 2, 14, 4 ], "texture": "#atlas", "tintindex": 1 },
+				"east": { "uv": [ 14, 2, 16, 4 ], "texture": "#atlas", "tintindex": 1 }
 			}
 		}
 	]

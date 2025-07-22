@@ -145,12 +145,14 @@ public final class ModItems {
     public static final Item FROSTBITE_BERRY_JUICE = register(new Item(new Item.Settings()
             .food(ModFoodComponents.JUICE, ModConsumableComponents.NETHER_FOOD).maxCount(16)
             .useRemainder(Items.GLASS_BOTTLE).registryKey(FROSTBITE_BERRY_JUICE_KEY)), FROSTBITE_BERRY_JUICE_KEY);
-    public static final RegistryKey<Item> WARPED_FORAGE_KEY = makeRegistryKey("warped_forage");
-    public static final Item WARPED_FORAGE = register(new Item(new Item.Settings()
-            .food(ModFoodComponents.NETHER_FORAGE, ModConsumableComponents.NETHER_FOOD).registryKey(WARPED_FORAGE_KEY)), WARPED_FORAGE_KEY);
-    public static final RegistryKey<Item> CRIMSON_FORAGE_KEY = makeRegistryKey("crimson_forage");
-    public static final Item CRIMSON_FORAGE = register(new Item(new Item.Settings()
-            .food(ModFoodComponents.NETHER_FORAGE, ModConsumableComponents.NETHER_FOOD).registryKey(CRIMSON_FORAGE_KEY)), CRIMSON_FORAGE_KEY);
+    public static final RegistryKey<Item> WARPED_FORAGE_MIX_KEY = makeRegistryKey("warped_forage_mix");
+    public static final Item WARPED_FORAGE_MIX = register(new Item(new Item.Settings()
+            .food(ModFoodComponents.NETHER_FORAGE, ModConsumableComponents.NETHER_FOOD)
+            .registryKey(WARPED_FORAGE_MIX_KEY)), WARPED_FORAGE_MIX_KEY);
+    public static final RegistryKey<Item> CRIMSON_FORAGE_MIX_KEY = makeRegistryKey("crimson_forage_mix");
+    public static final Item CRIMSON_FORAGE_MIX = register(new Item(new Item.Settings()
+            .food(ModFoodComponents.NETHER_FORAGE, ModConsumableComponents.NETHER_FOOD)
+            .registryKey(CRIMSON_FORAGE_MIX_KEY)), CRIMSON_FORAGE_MIX_KEY);
 
     private static RegistryKey<Item> makeRegistryKey(String name) {
         return RegistryKey.of(RegistryKeys.ITEM, AssortedDiscoveries.makeModId(name));

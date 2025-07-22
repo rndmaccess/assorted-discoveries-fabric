@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "assorted-discoveries:item/crimson_forage"
+    "layer0": "assorted-discoveries:item/crimson_forage_mix"
   }
 }

@@ -3,10 +3,14 @@
   "category": "misc",
   "ingredients": [
     "assorted-discoveries:frostbite_berries",
+    "assorted-discoveries:frostbite_berries",
+    "assorted-discoveries:frostbite_berries",
+    "#c:warped_vegetation",
+    "#c:warped_vegetation",
     "#c:warped_vegetation"
   ],
   "result": {
-    "id": "assorted-discoveries:warped_forage"
+    "id": "assorted-discoveries:warped_forage_mix"
   },
   "fabric:load_conditions": [
     {

@@ -584,9 +584,13 @@
   "text.cloth-config.assorted-discoveries.option.foods.enable_frostbite_berries": "Enable Frostbite Berries",
   "text.cloth-config.assorted-discoveries.option.foods.enable_cindersnap_berry_juice": "Enable Cindersnap Berry Juice",
   "text.cloth-config.assorted-discoveries.option.foods.enable_frostbite_berry_juice": "Enable Frostbite Berry Juice",
+  "text.cloth-config.assorted-discoveries.option.foods.enable_crimson_forage_mix": "Enable Crimson Forage Mix",
+  "text.cloth-config.assorted-discoveries.option.foods.enable_warped_forage_mix": "Enable Warped Forage Mix",
 
   "requirement.cloth-config.assorted-discoveries.option.foods.enable_cindersnap_berry_juice": "Requires Cindersnap Berries",
   "requirement.cloth-config.assorted-discoveries.option.foods.enable_frostbite_berry_juice": "Requires Frostbite Berries",
+  "requirement.cloth-config.assorted-discoveries.option.foods.enable_crimson_forage_mix": "Requires Cindersnap Berries",
+  "requirement.cloth-config.assorted-discoveries.option.foods.enable_warped_forage_mix": "Requires Frostbite Berries",
 
   "category.cloth-config.assorted-discoveries.option.plants": "Plants",
   "text.cloth-config.assorted-discoveries.option.plants.enable_purple_mushrooms": "Enable Purple Mushrooms",

@@ -8,14 +8,14 @@ import net.minecraft.item.consume.ApplyEffectsConsumeEffect;
 
 public final class ModConsumableComponents {
     public static final ConsumableComponent WITCHS_CRADLE_SOUP;
-    public static final ConsumableComponent NETHER_JUICES;
+    public static final ConsumableComponent NETHER_FOOD;
 
     static {
         WITCHS_CRADLE_SOUP = ConsumableComponents.food()
                 .consumeEffect(new ApplyEffectsConsumeEffect(
                         new StatusEffectInstance(StatusEffects.NIGHT_VISION, 2400, 0,
                                 true, true))).build();
-        NETHER_JUICES = ConsumableComponents.drink()
+        NETHER_FOOD = ConsumableComponents.drink()
                 .consumeEffect(new ApplyEffectsConsumeEffect(
                         new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 2400,
                                 0, true, true))).build();

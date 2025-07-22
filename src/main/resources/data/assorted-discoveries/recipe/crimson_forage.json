@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "assorted-discoveries:cindersnap_berries",
+    "#c:crimson_vegetation"
+  ],
+  "result": {
+    "id": "assorted-discoveries:crimson_forage"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_cindersnap_berries"
+    }
+  ]
+}

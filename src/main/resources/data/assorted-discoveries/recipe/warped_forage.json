@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "assorted-discoveries:frostbite_berries",
+    "#c:warped_vegetation"
+  ],
+  "result": {
+    "id": "assorted-discoveries:warped_forage"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "assorted-discoveries:enable_frostbite_berries"
+    }
+  ]
+}

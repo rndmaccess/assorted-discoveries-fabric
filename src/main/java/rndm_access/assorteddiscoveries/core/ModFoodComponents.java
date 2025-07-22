@@ -18,6 +18,7 @@ public final class ModFoodComponents {
     public static final FoodComponent FORESTS_BOUNTY;
     public static final FoodComponent HOGLIN_STEW;
     public static final FoodComponent NETHER_BERRIES;
+    public static final FoodComponent NETHER_FORAGE;
 
     private static FoodComponent createBasicStew(int hunger) {
         return new FoodComponent.Builder().nutrition(hunger).saturationModifier(0.6F).build();
@@ -39,5 +40,6 @@ public final class ModFoodComponents {
         FORESTS_BOUNTY = createBasicStew(5);
         HOGLIN_STEW = new FoodComponent.Builder().nutrition(8).saturationModifier(0.8F).build();
         NETHER_BERRIES = new FoodComponent.Builder().nutrition(3).saturationModifier(0.2F).build();
+        NETHER_FORAGE = new FoodComponent.Builder().nutrition(8).saturationModifier(0.8F).build();
     }
 }

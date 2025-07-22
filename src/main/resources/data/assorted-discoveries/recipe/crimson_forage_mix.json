@@ -3,10 +3,14 @@
   "category": "misc",
   "ingredients": [
     "assorted-discoveries:cindersnap_berries",
+    "assorted-discoveries:cindersnap_berries",
+    "assorted-discoveries:cindersnap_berries",
+    "#c:crimson_vegetation",
+    "#c:crimson_vegetation",
     "#c:crimson_vegetation"
   ],
   "result": {
-    "id": "assorted-discoveries:crimson_forage"
+    "id": "assorted-discoveries:crimson_forage_mix"
   },
   "fabric:load_conditions": [
     {

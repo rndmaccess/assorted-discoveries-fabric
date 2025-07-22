@@ -31,8 +31,17 @@
   ],
   "fabric:load_conditions": [
     {
-      "condition": "assorted-discoveries:config_entry_enabled",
-      "value": "assorted-discoveries:enable_cindersnap_berries"
+      "condition": "fabric:and",
+      "values": [
+        {
+          "condition": "assorted-discoveries:config_entry_enabled",
+          "value": "assorted-discoveries:enable_cindersnap_berries"
+        },
+        {
+          "condition": "assorted-discoveries:config_entry_enabled",
+          "value": "assorted-discoveries:enable_crimson_forage_mix"
+        }
+      ]
     }
   ]
 }

@@ -114,6 +114,8 @@ public class ModConfigKeys {
     public static final String ENABLE_SNIFFER_PLUSHIE;
     public static final String ENABLE_CINDERSNAP_BERRY_JUICE;
     public static final String ENABLE_FROSTBITE_BERRY_JUICE;
+    public static final String ENABLE_CRIMSON_FORAGE_MIX;
+    public static final String ENABLE_WARPED_FORAGE_MIX;
 
     static {
         ENABLE_DYED_CAMPFIRES = "enable_dyed_campfires";
@@ -229,5 +231,7 @@ public class ModConfigKeys {
         ENABLE_SNIFFER_PLUSHIE = "enable_sniffer_plushie";
         ENABLE_CINDERSNAP_BERRY_JUICE = "enable_cindersnap_berry_juice";
         ENABLE_FROSTBITE_BERRY_JUICE = "enable_frostbite_berry_juice";
+        ENABLE_CRIMSON_FORAGE_MIX = "enable_crimson_forage_mix";
+        ENABLE_WARPED_FORAGE_MIX = "enable_warped_forage_mix";
     }
 }

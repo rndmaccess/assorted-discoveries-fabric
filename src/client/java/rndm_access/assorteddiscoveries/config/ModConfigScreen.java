@@ -21,12 +21,26 @@ public class ModConfigScreen {
         configBuilder.setGlobalized(true);
         configBuilder.setGlobalizedExpanded(false);
         ConfigEntryBuilder entryBuilder = configBuilder.entryBuilder();
-        String categoryName;
-        ConfigCategory category;
-        BooleanListEntry configEntry;
 
-        categoryName = "building_blocks";
-        category = makeCategory(configBuilder, categoryName);
+        addBuildingBlocksCategory(configBuilder, entryBuilder);
+        addPassivePlushiesCategory(configBuilder, entryBuilder);
+        addNeutralPlushiesCategory(configBuilder, entryBuilder);
+        addHostilePlushiesCategory(configBuilder, entryBuilder);
+        addFoodsCategory(configBuilder, entryBuilder);
+        addPlantsCategory(configBuilder, entryBuilder);
+
+        configBuilder.setSavingRunnable(() -> {
+            JsonConfig config = ModConfig.getInstance();
+            config.save(ENTRY_VALUE_CHANGES);
+            ModConfig.update();
+        });
+        return configBuilder;
+    }
+
+    private static void addBuildingBlocksCategory(ConfigBuilder configBuilder, ConfigEntryBuilder entryBuilder) {
+        String categoryName = "building_blocks";
+        ConfigCategory category = makeCategory(configBuilder, categoryName);
+        BooleanListEntry configEntry;
 
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_PLANTER_BOXES, categoryName);
         category.addEntry(configEntry);
@@ -153,9 +167,12 @@ public class ModConfigScreen {
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_PACKED_SNOW, categoryName);
         category.addEntry(configEntry);
+    }
 
-        categoryName = "passive_plushies";
-        category = makeCategory(configBuilder, categoryName);
+    private static void addPassivePlushiesCategory(ConfigBuilder configBuilder, ConfigEntryBuilder entryBuilder) {
+        String categoryName = "passive_plushies";
+        ConfigCategory category = makeCategory(configBuilder, categoryName);
+        BooleanListEntry configEntry;
 
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_ALLAY_PLUSHIE, categoryName);
         category.addEntry(configEntry);
@@ -191,9 +208,12 @@ public class ModConfigScreen {
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_SNIFFER_PLUSHIE, categoryName);
         category.addEntry(configEntry);
+    }
 
-        categoryName = "neutral_plushies";
-        category = makeCategory(configBuilder, categoryName);
+    private static void addNeutralPlushiesCategory(ConfigBuilder configBuilder, ConfigEntryBuilder entryBuilder) {
+        String categoryName = "neutral_plushies";
+        ConfigCategory category = makeCategory(configBuilder, categoryName);
+        BooleanListEntry configEntry;
 
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_BEE_PLUSHIE, categoryName);
         category.addEntry(configEntry);
@@ -209,9 +229,12 @@ public class ModConfigScreen {
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_WOLF_PLUSHIES, categoryName);
         category.addEntry(configEntry);
+    }
 
-        categoryName = "hostile_plushies";
-        category = makeCategory(configBuilder, categoryName);
+    private static void addHostilePlushiesCategory(ConfigBuilder configBuilder, ConfigEntryBuilder entryBuilder) {
+        String categoryName = "hostile_plushies";
+        ConfigCategory category = makeCategory(configBuilder, categoryName);
+        BooleanListEntry configEntry;
 
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_BLAZE_PLUSHIE, categoryName);
         category.addEntry(configEntry);
@@ -249,9 +272,12 @@ public class ModConfigScreen {
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_CREAKING_PLUSHIE, categoryName);
         category.addEntry(configEntry);
+    }
 
-        categoryName = "foods";
-        category = makeCategory(configBuilder, categoryName);
+    private static void addFoodsCategory(ConfigBuilder configBuilder, ConfigEntryBuilder entryBuilder) {
+        String categoryName = "foods";
+        ConfigCategory category = makeCategory(configBuilder, categoryName);
+        BooleanListEntry configEntry;
 
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_GREEN_ONIONS, categoryName);
         category.addEntry(configEntry);
@@ -275,7 +301,6 @@ public class ModConfigScreen {
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_SWEET_BERRY_JUICE, categoryName);
         category.addEntry(configEntry);
-
         BooleanListEntry enableBlueberries = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_BLUEBERRIES,
                 categoryName);
         category.addEntry(enableBlueberries);
@@ -292,6 +317,9 @@ public class ModConfigScreen {
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_CINDERSNAP_BERRY_JUICE, categoryName,
                 enableCindersnapBerries);
         category.addEntry(configEntry);
+        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_CRIMSON_FORAGE_MIX, categoryName,
+                enableCindersnapBerries);
+        category.addEntry(configEntry);
 
         BooleanListEntry enableFrostbiteBerries = makeBoolConfigEntry(entryBuilder,
                 ModConfigKeys.ENABLE_FROSTBITE_BERRIES, categoryName);
@@ -299,9 +327,16 @@ public class ModConfigScreen {
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_FROSTBITE_BERRY_JUICE, categoryName,
                 enableFrostbiteBerries);
         category.addEntry(configEntry);
+        configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_WARPED_FORAGE_MIX, categoryName,
+                enableFrostbiteBerries);
+        category.addEntry(configEntry);
+    }
 
-        categoryName = "plants";
-        category = makeCategory(configBuilder, categoryName);
+    private static void addPlantsCategory(ConfigBuilder configBuilder, ConfigEntryBuilder entryBuilder) {
+        String categoryName = "plants";
+        ConfigCategory category = makeCategory(configBuilder, categoryName);
+        BooleanListEntry configEntry;
+
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_BLOOD_KELP, categoryName);
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_PURPLE_MUSHROOMS, categoryName);
@@ -314,13 +349,6 @@ public class ModConfigScreen {
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModConfigKeys.ENABLE_WITCHS_CRADLES, categoryName);
         category.addEntry(configEntry);
-
-        configBuilder.setSavingRunnable(() -> {
-            JsonConfig config = ModConfig.getInstance();
-            config.save(ENTRY_VALUE_CHANGES);
-            ModConfig.update();
-        });
-        return configBuilder;
     }
 
     private static ConfigCategory makeCategory(ConfigBuilder builder, String categoryName) {

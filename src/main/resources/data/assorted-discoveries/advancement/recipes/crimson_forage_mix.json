@@ -2,15 +2,15 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "assorted-discoveries:warped_forage"
+      "assorted-discoveries:crimson_forage_mix"
     ]
   },
   "criteria": {
-    "has_frostbite_berries": {
+    "has_cindersnap_berries": {
       "conditions": {
         "items": [
           {
-            "items": "assorted-discoveries:frostbite_berries"
+            "items": "assorted-discoveries:cindersnap_berries"
           }
         ]
       },
@@ -18,21 +18,21 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "assorted-discoveries:warped_forage"
+        "recipe": "assorted-discoveries:crimson_forage_mix"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_frostbite_berries",
+      "has_cindersnap_berries",
       "has_the_recipe"
     ]
   ],
   "fabric:load_conditions": [
     {
       "condition": "assorted-discoveries:config_entry_enabled",
-      "value": "assorted-discoveries:enable_frostbite_berries"
+      "value": "assorted-discoveries:enable_cindersnap_berries"
     }
   ]
 }

@@ -1065,6 +1065,14 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModItems.PUDDING);
             }
 
+            if (frostbiteBerriesEnabled) {
+                entries.add(ModItems.WARPED_FORAGE);
+            }
+
+            if (cindersnapBerriesEnabled) {
+                entries.add(ModItems.CRIMSON_FORAGE);
+            }
+
             configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_BLUEBERRY_JUICE);
             if (blueberriesEnabled && configEntry.getValue()) {
                 entries.add(ModItems.BLUEBERRY_JUICE);

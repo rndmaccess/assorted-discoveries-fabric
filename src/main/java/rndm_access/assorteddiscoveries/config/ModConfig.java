@@ -207,7 +207,9 @@ public class ModConfig {
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CINDERSNAP_BERRIES))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_FROSTBITE_BERRIES))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CINDERSNAP_BERRY_JUICE))
-                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_FROSTBITE_BERRY_JUICE)).build();
+                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CRIMSON_FORAGE_MIX))
+                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_FROSTBITE_BERRY_JUICE))
+                .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_WARPED_FORAGE_MIX)).build();
 
         ConfigCategory plantsCategory = new ConfigCategory.Builder("plants")
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_BLOOD_KELP))

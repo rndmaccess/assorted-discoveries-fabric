@@ -1065,11 +1065,13 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModItems.PUDDING);
             }
 
-            if (frostbiteBerriesEnabled) {
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_WARPED_FORAGE_MIX);
+            if (frostbiteBerriesEnabled && configEntry.getValue()) {
                 entries.add(ModItems.WARPED_FORAGE_MIX);
             }
 
-            if (cindersnapBerriesEnabled) {
+            configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CRIMSON_FORAGE_MIX);
+            if (cindersnapBerriesEnabled && configEntry.getValue()) {
                 entries.add(ModItems.CRIMSON_FORAGE_MIX);
             }
 

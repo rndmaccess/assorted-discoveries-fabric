@@ -48,11 +48,11 @@
       "values": [
         {
           "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "assorted-discoveries:enable_frostbite_berries"
+          "value": "enable_frostbite_berries"
         },
         {
           "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "assorted-discoveries:enable_frostbite_berry_juice"
+          "value": "enable_frostbite_berry_juice"
         }
       ]
     }

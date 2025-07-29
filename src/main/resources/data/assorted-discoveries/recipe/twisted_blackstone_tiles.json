@@ -14,11 +14,11 @@
       "values": [
         {
           "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "assorted-discoveries:enable_blackstone_tiles"
+          "value": "enable_blackstone_tiles"
         },
         {
           "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "assorted-discoveries:enable_twisted_blackstone_tiles"
+          "value": "enable_twisted_blackstone_tiles"
         }
       ]
     }

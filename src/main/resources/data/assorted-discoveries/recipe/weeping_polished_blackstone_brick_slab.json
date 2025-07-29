@@ -14,7 +14,7 @@
   "fabric:load_conditions": [
     {
       "condition": "assorted-discoveries:config_entry_enabled",
-      "value": "assorted-discoveries:enable_weeping_polished_blackstone_bricks"
+      "value": "enable_weeping_polished_blackstone_bricks"
     }
   ]
 }

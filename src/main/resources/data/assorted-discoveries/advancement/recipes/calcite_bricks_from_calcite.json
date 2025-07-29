@@ -35,13 +35,13 @@
       "values": [
         {
           "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "assorted-discoveries:enable_calcite_bricks"
+          "value": "enable_calcite_bricks"
         },
         {
           "condition": "fabric:not",
           "value": {
             "condition": "assorted-discoveries:config_entry_enabled",
-            "value": "assorted-discoveries:enable_polished_calcite"
+            "value": "enable_polished_calcite"
           }
         }
       ]

@@ -14,7 +14,6 @@ import rndm_access.assorteddiscoveries.config.json.deserializer.entries.Abstract
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.BooleanConfigEntry;
 import rndm_access.assorteddiscoveries.core.ModResourceConditionTypes;
 
-import java.util.Objects;
 import java.util.function.Function;
 
 public record ConfigEntryEnabledResourceCondition(String configKey) implements ResourceCondition {
@@ -38,29 +37,6 @@ public record ConfigEntryEnabledResourceCondition(String configKey) implements R
     @Override
     public boolean test(@Nullable RegistryOps.@Nullable RegistryInfoGetter registryInfo) {
         JsonConfig config = ModConfig.getInstance();
-        int colonIndex = configKey.indexOf(':');
-
-        if (colonIndex != -1) {
-            String[] keys = configKey.split(":");
-            String configKey = keys[0];
-            String entryKey = keys[1];
-
-            if (!Objects.equals(config.getName(), configKey)) {
-                AssortedDiscoveries.LOGGER.error("{} is not a known config entry in unknown config {}!", entryKey, configKey);
-                return false; // Don't load the resource if we encounter an unknown config key!
-            }
-
-            AbstractConfigEntry<?> entry = config.getEntry(entryKey);
-            if (entry == null) {
-                AssortedDiscoveries.LOGGER.error("{} is not a known config entry in config {}!", entryKey, configKey);
-                return false; // Don't load the resource if we encounter an unknown config key!
-            }
-
-            if (entry instanceof BooleanConfigEntry) {
-                return ((BooleanConfigEntry) entry).getValue();
-            }
-            return false;
-        }
 
         AbstractConfigEntry<?> entry = config.getEntry(configKey);
         if (entry == null) {

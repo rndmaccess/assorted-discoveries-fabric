@@ -18,15 +18,15 @@
       "values": [
         {
           "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "assorted-discoveries:enable_bauxite_bricks"
+          "value": "enable_bauxite_bricks"
         },
         {
           "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "assorted-discoveries:enable_cracked_bauxite_bricks"
+          "value": "enable_cracked_bauxite_bricks"
         },
         {
           "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "assorted-discoveries:enable_bauxite"
+          "value": "enable_bauxite"
         }
       ]
     }

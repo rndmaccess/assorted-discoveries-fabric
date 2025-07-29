@@ -17,11 +17,11 @@
       "values": [
         {
           "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "assorted-discoveries:enable_stone_tiles"
+          "value": "enable_stone_tiles"
         },
         {
           "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "assorted-discoveries:enable_mossy_stone_tiles"
+          "value": "enable_mossy_stone_tiles"
         }
       ]
     }

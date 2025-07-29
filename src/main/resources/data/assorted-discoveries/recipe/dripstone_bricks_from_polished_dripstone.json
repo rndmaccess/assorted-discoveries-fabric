@@ -18,11 +18,11 @@
       "values": [
         {
           "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "assorted-discoveries:enable_polished_dripstone"
+          "value": "enable_polished_dripstone"
         },
         {
           "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "assorted-discoveries:enable_dripstone_bricks"
+          "value": "enable_dripstone_bricks"
         }
       ]
     }

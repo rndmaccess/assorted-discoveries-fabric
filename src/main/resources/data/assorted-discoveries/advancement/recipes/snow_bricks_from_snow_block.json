@@ -35,13 +35,13 @@
       "values": [
         {
           "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "assorted-discoveries:enable_snow_bricks"
+          "value": "enable_snow_bricks"
         },
         {
           "condition": "fabric:not",
           "value": {
             "condition": "assorted-discoveries:config_entry_enabled",
-            "value": "assorted-discoveries:enable_packed_snow"
+            "value": "enable_packed_snow"
           }
         }
       ]

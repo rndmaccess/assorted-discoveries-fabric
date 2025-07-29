@@ -48,11 +48,11 @@
       "values": [
         {
           "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "assorted-discoveries:enable_cindersnap_berries"
+          "value": "enable_cindersnap_berries"
         },
         {
           "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "assorted-discoveries:enable_cindersnap_berry_juice"
+          "value": "enable_cindersnap_berry_juice"
         }
       ]
     }

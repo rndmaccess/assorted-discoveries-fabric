@@ -17,11 +17,11 @@
       "values": [
         {
           "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "assorted-discoveries:enable_smoky_quartz_blocks"
+          "value": "enable_smoky_quartz_blocks"
         },
         {
           "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "assorted-discoveries:enable_smoky_quartz_bricks"
+          "value": "enable_smoky_quartz_bricks"
         }
       ]
     }

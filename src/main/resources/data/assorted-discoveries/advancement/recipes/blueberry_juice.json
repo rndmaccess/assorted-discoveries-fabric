@@ -48,11 +48,11 @@
       "values": [
         {
           "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "assorted-discoveries:enable_blueberries"
+          "value": "enable_blueberries"
         },
         {
           "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "assorted-discoveries:enable_blueberry_juice"
+          "value": "enable_blueberry_juice"
         }
       ]
     }

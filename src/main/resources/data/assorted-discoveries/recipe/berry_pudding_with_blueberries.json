@@ -15,11 +15,11 @@
       "values": [
         {
           "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "assorted-discoveries:enable_blueberries"
+          "value": "enable_blueberries"
         },
         {
           "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "assorted-discoveries:enable_pudding"
+          "value": "enable_pudding"
         }
       ]
     }

@@ -10,6 +10,7 @@ import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
@@ -29,6 +30,7 @@ import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.registry.*;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.gen.GenerationStep;
@@ -68,7 +70,10 @@ public class AssortedDiscoveries implements ModInitializer {
             }
         });
 
-        ServerPlayerEvents.JOIN.register((player) -> {
+        ServerPlayConnectionEvents.JOIN.register((serverPlay, sender,
+                                                  server) -> {
+            ServerPlayerEntity player = serverPlay.getPlayer();
+
             if (!player.getWorld().isClient) {
                 ConfigS2CPayload payload = new ConfigS2CPayload(config);
 

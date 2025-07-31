@@ -15,13 +15,13 @@ import java.nio.file.Path;
 
 public class ModConfig {
     private static String configError;
-    private static JsonConfig config;
+    private static volatile ServerConfig config;
 
     public static String getConfigError() {
         return configError;
     }
 
-    public static JsonConfig getInstance() {
+    public static synchronized ServerConfig getInstance() {
         if (config == null) {
             config = createOrLoad();
         }
@@ -31,12 +31,12 @@ public class ModConfig {
     /**
      * This method will reparse the config from the config file!
      */
-    public static void update() {
+    public static synchronized void update() {
         config = createOrLoad();
     }
 
-    private static JsonConfig createOrLoad() {
-        JsonConfig defaultConfig = getDefaultConfig();
+    private static ServerConfig createOrLoad() {
+        ServerConfig defaultConfig = getDefaultConfig();
         Path configPath = FabricLoader.getInstance().getConfigDir().resolve(AssortedDiscoveries.MOD_ID + ".json5");
 
         if (!Files.exists(configPath)) {
@@ -46,10 +46,10 @@ public class ModConfig {
         return loadConfig(defaultConfig);
     }
 
-    private static JsonConfig loadConfig(JsonConfig defaultConfig) {
+    private static ServerConfig loadConfig(ServerConfig defaultConfig) {
         try {
             JsonDeserializer deserializer = new JsonDeserializer(AssortedDiscoveries.MOD_ID);
-            JsonConfig loadedConfig = deserializer.deserialize();
+            ServerConfig loadedConfig = deserializer.deserialize();
             return defaultConfig.merge(loadedConfig);
         } catch (IOException e) {
             AssortedDiscoveries.LOGGER.error("The config file is unreadable! Using the default config!");
@@ -63,7 +63,7 @@ public class ModConfig {
         }
     }
 
-    private static JsonConfig getDefaultConfig() {
+    private static ServerConfig getDefaultConfig() {
         CommentConfigEntry blackstoneTileComment = new CommentConfigEntry("This option requires " +
                 "blackstone tiles!");
         CommentConfigEntry smokyQuartzBlocksComment = new CommentConfigEntry("This option requires " +
@@ -220,7 +220,7 @@ public class ModConfig {
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_ENDER_PLANTS))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_WITCHS_CRADLES)).build();
 
-        JsonConfig.Builder config = new JsonConfig.Builder(AssortedDiscoveries.MOD_ID)
+        ServerConfig.Builder config = new ServerConfig.Builder(AssortedDiscoveries.MOD_ID)
                 .addComment(requiredRestartComment)
                 .addCategory(buildingBlocksCategory)
                 .addCategory(passivePlushiesCategory)

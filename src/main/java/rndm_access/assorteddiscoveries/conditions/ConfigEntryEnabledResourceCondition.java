@@ -9,7 +9,7 @@ import net.minecraft.registry.RegistryOps;
 import org.jetbrains.annotations.Nullable;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.ModConfig;
-import rndm_access.assorteddiscoveries.config.json.JsonConfig;
+import rndm_access.assorteddiscoveries.config.json.ServerConfig;
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.AbstractConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.BooleanConfigEntry;
 import rndm_access.assorteddiscoveries.core.ModResourceConditionTypes;
@@ -36,7 +36,7 @@ public record ConfigEntryEnabledResourceCondition(String configKey) implements R
 
     @Override
     public boolean test(@Nullable RegistryOps.@Nullable RegistryInfoGetter registryInfo) {
-        JsonConfig config = ModConfig.getInstance();
+        ServerConfig config = ModConfig.getInstance();
 
         AbstractConfigEntry<?> entry = config.getEntry(configKey);
         if (entry == null) {

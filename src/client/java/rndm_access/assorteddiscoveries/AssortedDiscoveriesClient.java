@@ -2,6 +2,7 @@ package rndm_access.assorteddiscoveries;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.minecraft.client.color.world.BiomeColors;
@@ -11,6 +12,7 @@ import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import rndm_access.assorteddiscoveries.block.SheepPlushieBlock;
 import rndm_access.assorteddiscoveries.block_entity.DyedCampfireBlockEntityRenderer;
+import rndm_access.assorteddiscoveries.config.ConfigS2CPayload;
 import rndm_access.assorteddiscoveries.core.*;
 import rndm_access.assorteddiscoveries.particle.AirNectarParticle;
 import rndm_access.assorteddiscoveries.particle.SporeParticle;
@@ -22,6 +24,9 @@ public class AssortedDiscoveriesClient implements ClientModInitializer {
         registerParticleFactories();
         registerRenderLayers();
         registerBlockEntityRenderers();
+
+        ClientPlayNetworking.registerGlobalReceiver(ConfigS2CPayload.ID,
+                (payload, context) -> AssortedDiscoveries.CONFIG = payload.configMap());
     }
 
     private static void registerBlockEntityRenderers() {

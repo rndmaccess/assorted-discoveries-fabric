@@ -11,13 +11,13 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 
-public class JsonConfig {
+public class ServerConfig {
     private final List<ConfigObject> objects;
     private final HashMap<String, ConfigCategory> categories;
     private final Path path;
     private final String name;
 
-    public JsonConfig(JsonConfig.Builder builder) {
+    public ServerConfig(ServerConfig.Builder builder) {
         this.objects = builder.objects;
         this.categories = builder.categories;
         this.path = FabricLoader.getInstance().getConfigDir().resolve(builder.name + ".json5");
@@ -30,6 +30,17 @@ public class JsonConfig {
 
     public String getName() {
         return name;
+    }
+
+    public Map<String, Boolean> toEntryMap() {
+        Map<String, Boolean> hashMap = new HashMap<>();
+
+        for (ConfigCategory category : categories.values()) {
+            for (AbstractConfigEntry<?> entry : category.getEntries()) {
+                hashMap.put(entry.getKey(), (Boolean) entry.getValue());
+            }
+        }
+        return hashMap;
     }
 
     /**
@@ -88,7 +99,7 @@ public class JsonConfig {
         }
 
         if (!Files.exists(path)) {
-            JsonSerializer serializer = new JsonSerializer(this, path);
+            ConfigSerializer serializer = new ConfigSerializer(this, path);
             serializer.serialize();
         }
     }
@@ -99,13 +110,13 @@ public class JsonConfig {
         }
 
         if (Files.exists(path)) {
-            JsonSerializer serializer = new JsonSerializer(this, path);
+            ConfigSerializer serializer = new ConfigSerializer(this, path);
             serializer.serialize(entryChangeList);
         }
     }
 
-    public JsonConfig merge(JsonConfig anotherConfig) {
-        JsonConfig.Builder config = new JsonConfig.Builder(this.name);
+    public ServerConfig merge(ServerConfig anotherConfig) {
+        ServerConfig.Builder config = new ServerConfig.Builder(this.name);
 
         for (ConfigObject object : this.getObjects()) {
             if (object.isComment()) {
@@ -126,7 +137,7 @@ public class JsonConfig {
         return config.build();
     }
 
-    private void mergeCategories(JsonConfig.Builder configBuilder, JsonConfig anotherConfig, String categoryKey,
+    private void mergeCategories(ServerConfig.Builder configBuilder, ServerConfig anotherConfig, String categoryKey,
                                  ConfigCategory category) {
         ConfigCategory.Builder categoryBuilder = new ConfigCategory.Builder(categoryKey);
 
@@ -145,7 +156,7 @@ public class JsonConfig {
         configBuilder.addCategory(categoryBuilder.build());
     }
 
-    private void mergeEntries(JsonConfig anotherConfig, ConfigCategory.Builder categoryBuilder,
+    private void mergeEntries(ServerConfig anotherConfig, ConfigCategory.Builder categoryBuilder,
                               ConfigObject categoryObject, String categoryKey, ConfigCategory category) {
         String entryKey = categoryObject.getKey();
 
@@ -167,19 +178,19 @@ public class JsonConfig {
             this.name = name;
         }
 
-        public JsonConfig.Builder addComment(CommentConfigEntry comment) {
+        public ServerConfig.Builder addComment(CommentConfigEntry comment) {
             objects.add(comment);
             return this;
         }
 
-        public JsonConfig.Builder addCategory(ConfigCategory category) {
+        public ServerConfig.Builder addCategory(ConfigCategory category) {
             categories.put(category.getKey(), category);
             objects.add(category);
             return this;
         }
 
-        public JsonConfig build() {
-            return new JsonConfig(this);
+        public ServerConfig build() {
+            return new ServerConfig(this);
         }
     }
 }

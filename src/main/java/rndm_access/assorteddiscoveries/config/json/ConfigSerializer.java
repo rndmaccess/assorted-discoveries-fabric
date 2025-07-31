@@ -11,13 +11,13 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.*;
 
-public class JsonSerializer {
+public class ConfigSerializer {
     private int line;
     private int depth;
     private final Path configPath;
-    private final JsonConfig config;
+    private final ServerConfig config;
 
-    public JsonSerializer(JsonConfig config, Path configPath) {
+    public ConfigSerializer(ServerConfig config, Path configPath) {
         line = 0;
         depth = 0;
         this.configPath = configPath;

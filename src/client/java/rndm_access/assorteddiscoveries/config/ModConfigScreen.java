@@ -5,7 +5,7 @@ import me.shedaniel.clothconfig2.gui.entries.BooleanListEntry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
-import rndm_access.assorteddiscoveries.config.json.JsonConfig;
+import rndm_access.assorteddiscoveries.config.json.ServerConfig;
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.BooleanConfigEntry;
 
 import java.util.*;
@@ -30,7 +30,7 @@ public class ModConfigScreen {
         addPlantsCategory(configBuilder, entryBuilder);
 
         configBuilder.setSavingRunnable(() -> {
-            JsonConfig config = ModConfig.getInstance();
+            ServerConfig config = ModConfig.getInstance();
             config.save(ENTRY_VALUE_CHANGES);
             ModConfig.update();
         });

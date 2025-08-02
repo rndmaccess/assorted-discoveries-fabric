@@ -25,8 +25,10 @@ public class AssortedDiscoveriesClient implements ClientModInitializer {
         registerRenderLayers();
         registerBlockEntityRenderers();
 
-        ClientPlayNetworking.registerGlobalReceiver(ConfigS2CPayload.ID,
-                (payload, context) -> AssortedDiscoveries.CONFIG = payload.configMap());
+        ClientPlayNetworking.registerGlobalReceiver(ConfigS2CPayload.ID, (payload, context) -> {
+            AssortedDiscoveries.CONFIG = payload.configMap();
+            AssortedDiscoveries.LOGGER.info("{} received the server config data", context.player().getName().getString());
+        });
     }
 
     private static void registerBlockEntityRenderers() {

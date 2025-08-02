@@ -52,6 +52,13 @@ public class AssortedDiscoveries implements ModInitializer {
             .icon(() -> new ItemStack(ModBlocks.ENDERMAN_PLUSHIE.asItem()))
             .displayName(Text.translatable("itemGroup." + MOD_ID))
             .build();
+    /**
+     Ideally this map would be used to get all config entries in all events,
+     but because its loaded so late on the client. This representation of
+     the config is only used in the addItemGroups event!
+     Since the item groups are handled mostly on the client,
+     and they are processed in game!
+    */
     public static Map<String, Boolean> CONFIG = null;
 
 	@Override

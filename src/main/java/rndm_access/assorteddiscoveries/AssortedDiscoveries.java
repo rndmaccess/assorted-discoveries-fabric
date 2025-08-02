@@ -57,26 +57,7 @@ public class AssortedDiscoveries implements ModInitializer {
 	@Override
 	public void onInitialize() {
         // Config
-        PayloadTypeRegistry.playS2C().register(ConfigS2CPayload.ID, ConfigS2CPayload.CODEC);
-        Map<String, Boolean> config = ModConfig.getInstance().toEntryMap();
-
-        ServerLifecycleEvents.SERVER_STARTED.register((server) -> {
-            if (!server.getOverworld().isClient()) {
-                CONFIG = config;
-                LOGGER.info("Loaded server config");
-            }
-        });
-
-        ServerPlayerEvents.JOIN.register((player) -> {
-            if (!player.getWorld().isClient) {
-                ConfigS2CPayload payload = new ConfigS2CPayload(config);
-                String playerName = player.getName().getString();
-
-                ServerPlayNetworking.send(player, payload);
-                LOGGER.info("Sent server config request to player {}", playerName);
-            }
-        });
-
+        registerConfigEvents();
         ModResourceConditionTypes.register();
 
 		// General Registries
@@ -98,6 +79,27 @@ public class AssortedDiscoveries implements ModInitializer {
 
     public static Identifier makeModId(String path) {
         return Identifier.of(MOD_ID, path);
+    }
+    private static void registerConfigEvents() {
+        PayloadTypeRegistry.playS2C().register(ConfigS2CPayload.ID, ConfigS2CPayload.CODEC);
+
+        ServerLifecycleEvents.SERVER_STARTED.register((server) -> {
+            if (!server.getOverworld().isClient()) {
+                CONFIG = ModConfig.getInstance().toEntryMap();
+                LOGGER.info("Loaded server config");
+            }
+        });
+
+        ServerPlayerEvents.JOIN.register((player) -> {
+            if (!player.getWorld().isClient) {
+                Map<String, Boolean> config = ModConfig.getInstance().toEntryMap();
+                ConfigS2CPayload payload = new ConfigS2CPayload(config);
+                String playerName = player.getName().getString();
+
+                ServerPlayNetworking.send(player, payload);
+                LOGGER.info("Sent server config request to player {}", playerName);
+            }
+        });
     }
 
     private static void registerVillagerInteractions() {

@@ -1,6 +1,5 @@
 package rndm_access.assorteddiscoveries;
 
-import net.fabricmc.api.EnvType;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
@@ -14,7 +13,6 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
 import net.fabricmc.fabric.api.registry.VillagerInteractionRegistries;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
@@ -63,16 +61,19 @@ public class AssortedDiscoveries implements ModInitializer {
         Map<String, Boolean> config = ModConfig.getInstance().toEntryMap();
 
         ServerLifecycleEvents.SERVER_STARTED.register((server) -> {
-            if (FabricLoader.getInstance().getEnvironmentType() == EnvType.SERVER) {
+            if (!server.getOverworld().isClient()) {
                 CONFIG = config;
+                LOGGER.info("Loaded server config");
             }
         });
 
         ServerPlayerEvents.JOIN.register((player) -> {
             if (!player.getWorld().isClient) {
                 ConfigS2CPayload payload = new ConfigS2CPayload(config);
+                String playerName = player.getName().getString();
 
                 ServerPlayNetworking.send(player, payload);
+                LOGGER.info("Sent server config request to player {}", playerName);
             }
         });
 

@@ -61,14 +61,14 @@ public class AssortedDiscoveries implements ModInitializer {
         Map<String, Boolean> config = ModConfig.getInstance().toEntryMap();
 
         ServerLifecycleEvents.SERVER_STARTED.register((server) -> {
-            if (!server.getOverworld().isClient()) {
+            if (CONFIG == null && !server.getOverworld().isClient()) {
                 CONFIG = config;
                 LOGGER.info("Loaded server config");
             }
         });
 
         ServerPlayerEvents.JOIN.register((player) -> {
-            if (!player.getWorld().isClient) {
+            if (CONFIG == null && !player.getWorld().isClient) {
                 ConfigS2CPayload payload = new ConfigS2CPayload(config);
                 String playerName = player.getName().getString();
 

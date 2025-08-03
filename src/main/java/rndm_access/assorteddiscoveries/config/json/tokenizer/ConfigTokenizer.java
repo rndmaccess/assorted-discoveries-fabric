@@ -11,14 +11,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
-public class JsonTokenizer {
+public class ConfigTokenizer {
     private int lineNum;
     private int pos;
     private Character curChar;
     private final Path path;
     private final ArrayList<Token> jsonTokens;
 
-    public JsonTokenizer(Path path) {
+    public ConfigTokenizer(Path path) {
         this.lineNum = 0;
         this.pos = 0;
         this.path = path;

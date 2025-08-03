@@ -7,14 +7,14 @@ import rndm_access.assorteddiscoveries.config.json.exceptions.JsonSyntaxExceptio
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.*;
 import rndm_access.assorteddiscoveries.config.json.tokenizer.Token;
 import rndm_access.assorteddiscoveries.config.json.tokenizer.TokenList;
-import rndm_access.assorteddiscoveries.config.json.tokenizer.JsonTokenizer;
+import rndm_access.assorteddiscoveries.config.json.tokenizer.ConfigTokenizer;
 import rndm_access.assorteddiscoveries.config.json.tokenizer.TokenType;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Objects;
 
-public class JsonDeserializer {
+public class ConfigDeserializer {
     private TokenList tokenList;
     private final Path configPath;
     private final String configName;
@@ -22,14 +22,14 @@ public class JsonDeserializer {
     /**
      * @param configName The name of the config without the file suffix.
      */
-    public JsonDeserializer(String configName) throws IOException {
+    public ConfigDeserializer(String configName) throws IOException {
         this.configName = configName;
         this.configPath = FabricLoader.getInstance().getConfigDir().resolve(configName + ".json5");
     }
 
     public ServerConfig deserialize() throws JsonSyntaxException {
         // We tokenize here in case this method throws a JsonConfigException
-        this.tokenList = new JsonTokenizer(configPath).tokenize();
+        this.tokenList = new ConfigTokenizer(configPath).tokenize();
         ServerConfig.Builder config = new ServerConfig.Builder(configName);
 
         if(tokenList.isEmpty()) {

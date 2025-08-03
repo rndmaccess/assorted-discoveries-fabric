@@ -100,8 +100,7 @@ public class AssortedDiscoveries implements ModInitializer {
 
         ServerPlayerEvents.JOIN.register((player) -> {
             if (!player.getWorld().isClient) {
-                Map<String, Boolean> config = ModServerConfig.getInstance().toEntryMap();
-                ConfigS2CPayload payload = new ConfigS2CPayload(config);
+                ConfigS2CPayload payload = new ConfigS2CPayload(SERVER_CONFIG_ENTRIES);
                 String playerName = player.getName().getString();
 
                 ServerPlayNetworking.send(player, payload);

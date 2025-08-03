@@ -2,6 +2,7 @@ package rndm_access.assorteddiscoveries.config.json;
 
 import net.fabricmc.loader.api.FabricLoader;
 import rndm_access.assorteddiscoveries.config.json.deserializer.ConfigObject;
+import rndm_access.assorteddiscoveries.config.json.deserializer.entries.BooleanConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.CommentConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.exceptions.JsonConfigException;
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.AbstractConfigEntry;
@@ -37,7 +38,9 @@ public class ServerConfig {
 
         for (ConfigCategory category : categories.values()) {
             for (AbstractConfigEntry<?> entry : category.getEntries()) {
-                hashMap.put(entry.getKey(), (Boolean) entry.getValue());
+                if (entry instanceof BooleanConfigEntry) {
+                    hashMap.put(entry.getKey(), (Boolean) entry.getValue());
+                }
             }
         }
         return hashMap;

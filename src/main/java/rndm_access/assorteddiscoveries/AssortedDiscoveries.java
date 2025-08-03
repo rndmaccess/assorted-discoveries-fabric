@@ -55,7 +55,7 @@ public class AssortedDiscoveries implements ModInitializer {
     /**
      * This is a map of all entries within the server's config!
      * Ideally this map would be used in all events,
-     * but because it isn't initialised until the plater joins the game on the client.
+     * but because it isn't initialised on the client until the player joins the game.
      * It's only used in the addItemGroups event!
      * This representation's entries are synced across the server and client so the
      * items appear correctly in the creative tab!

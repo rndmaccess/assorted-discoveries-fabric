@@ -53,7 +53,7 @@ public class AssortedDiscoveries implements ModInitializer {
             .displayName(Text.translatable("itemGroup." + MOD_ID))
             .build();
     /**
-     * This is a map of all entries within the server's config!
+     * This is a map of all boolean entries within the server's config!
      * Ideally this map would be used in all events,
      * but because it isn't initialised on the client until the player joins the game.
      * It's only used in the addItemGroups event!

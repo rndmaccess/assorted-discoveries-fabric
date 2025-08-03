@@ -11,7 +11,7 @@ import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 public class ModMenuIntegration implements ModMenuApi {
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
-        if (ModConfig.getConfigError() != null) {
+        if (ModServerConfig.getConfigError() != null) {
             Text config_errors_title = Text.translatable("config_error." + AssortedDiscoveries.MOD_ID + ".screen.title");
             return parent -> new ModConfigErrorScreen(config_errors_title, parent);
         }

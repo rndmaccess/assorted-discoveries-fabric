@@ -21,7 +21,7 @@ public class ModConfigErrorScreen extends Screen {
         super.render(context, mouseX, mouseY, deltaTicks);
 
         final MultilineText multilineError = MultilineText.create(textRenderer,
-                Text.literal(ModConfig.getConfigError()), width - 80);
+                Text.literal(ModServerConfig.getConfigError()), width - 80);
         Text desc_line_one = Text.translatable("config_error." + AssortedDiscoveries.MOD_ID
                 + ".screen.description.line_one");
         Text desc_line_two = Text.translatable("config_error." + AssortedDiscoveries.MOD_ID

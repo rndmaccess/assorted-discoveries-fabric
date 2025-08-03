@@ -33,9 +33,9 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.gen.GenerationStep;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import rndm_access.assorteddiscoveries.config.ConfigS2CPayload;
-import rndm_access.assorteddiscoveries.config.ModConfig;
-import rndm_access.assorteddiscoveries.config.ModConfigKeys;
+import rndm_access.assorteddiscoveries.config.BooleanEntriesS2CPayload;
+import rndm_access.assorteddiscoveries.config.ModServerConfig;
+import rndm_access.assorteddiscoveries.config.ModServerConfigKeys;
 import rndm_access.assorteddiscoveries.config.json.ServerConfig;
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.BooleanConfigEntry;
 import rndm_access.assorteddiscoveries.core.ModResourceConditionTypes;
@@ -53,7 +53,15 @@ public class AssortedDiscoveries implements ModInitializer {
             .icon(() -> new ItemStack(ModBlocks.ENDERMAN_PLUSHIE.asItem()))
             .displayName(Text.translatable("itemGroup." + MOD_ID))
             .build();
-    public static Map<String, Boolean> CONFIG = null;
+    /**
+     * This is a map of all boolean entries within the server's config!
+     * Ideally this map would be used in all events,
+     * but because it isn't initialised on the client until the player joins the game.
+     * It's only used in the addItemGroups event!
+     * This representation's entries are synced across the server and client so the
+     * items appear correctly in the creative tab!
+     */
+    public static Map<String, Boolean> BOOL_SERVER_CONFIG_ENTRIES = null;
 
 	@Override
 	public void onInitialize() {
@@ -82,11 +90,11 @@ public class AssortedDiscoveries implements ModInitializer {
         return Identifier.of(MOD_ID, path);
     }
     private static void registerConfigEvents() {
-        PayloadTypeRegistry.playS2C().register(ConfigS2CPayload.ID, ConfigS2CPayload.CODEC);
+        PayloadTypeRegistry.playS2C().register(BooleanEntriesS2CPayload.ID, BooleanEntriesS2CPayload.CODEC);
 
         ServerLifecycleEvents.SERVER_STARTED.register((server) -> {
             if (!server.getOverworld().isClient()) {
-                CONFIG = ModConfig.getInstance().toEntryMap();
+                BOOL_SERVER_CONFIG_ENTRIES = ModServerConfig.getInstance().toEntryMap();
                 LOGGER.info("Loaded server config");
             }
         });
@@ -96,7 +104,7 @@ public class AssortedDiscoveries implements ModInitializer {
             ServerPlayerEntity player = serverPlay.getPlayer();
 
             if (!player.getWorld().isClient) {
-                ConfigS2CPayload payload = new ConfigS2CPayload(CONFIG);
+                BooleanEntriesS2CPayload payload = new BooleanEntriesS2CPayload(BOOL_SERVER_CONFIG_ENTRIES);
                 String playerName = player.getName().getString();
 
                 ServerPlayNetworking.send(player, payload);
@@ -111,10 +119,10 @@ public class AssortedDiscoveries implements ModInitializer {
     }
 
 	private static void addFeaturesToBiomes() {
-        ServerConfig config = ModConfig.getInstance();
+        ServerConfig config = ModServerConfig.getInstance();
         BooleanConfigEntry configEntry;
 
-        configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CATTAILS);
+        configEntry = (BooleanConfigEntry) config.getEntry(ModServerConfigKeys.ENABLE_CATTAILS);
         if (configEntry.getValue()) {
             BiomeModifications.addFeature(BiomeSelectors.tag(ModBiomeTags.PATCH_CATTAIL_MANGROVE_SWAMP),
                     GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatureKeys.PATCH_CATTAIL_MANGROVE_SWAMP);
@@ -122,19 +130,19 @@ public class AssortedDiscoveries implements ModInitializer {
                     GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatureKeys.PATCH_CATTAIL_RIVER);
         }
 
-        configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_SMOKY_QUARTZ_BLOCKS);
+        configEntry = (BooleanConfigEntry) config.getEntry(ModServerConfigKeys.ENABLE_SMOKY_QUARTZ_BLOCKS);
         if (configEntry.getValue()) {
             BiomeModifications.addFeature(BiomeSelectors.tag(ModBiomeTags.ORE_SMOKY_QUARTZ),
                     GenerationStep.Feature.UNDERGROUND_ORES, ModPlacedFeatureKeys.ORE_SMOKY_QUARTZ);
         }
 
-        configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_PURPLE_MUSHROOMS);
+        configEntry = (BooleanConfigEntry) config.getEntry(ModServerConfigKeys.ENABLE_PURPLE_MUSHROOMS);
         if (configEntry.getValue()) {
             BiomeModifications.addFeature(BiomeSelectors.tag(ModBiomeTags.PATCH_HUGE_PURPLE_MUSHROOM),
                     GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatureKeys.PATCH_HUGE_PURPLE_MUSHROOM);
         }
 
-        configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_BLUEBERRIES);
+        configEntry = (BooleanConfigEntry) config.getEntry(ModServerConfigKeys.ENABLE_BLUEBERRIES);
         if (configEntry.getValue()) {
             BiomeModifications.addFeature(BiomeSelectors.tag(ModBiomeTags.PATCH_BLUEBERRY_BUSH),
                     GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatureKeys.PATCH_BLUEBERRY_COMMON);
@@ -142,7 +150,7 @@ public class AssortedDiscoveries implements ModInitializer {
                     GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatureKeys.PATCH_BLUEBERRY_RARE);
         }
 
-        configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_WITCHS_CRADLES);
+        configEntry = (BooleanConfigEntry) config.getEntry(ModServerConfigKeys.ENABLE_WITCHS_CRADLES);
         if (configEntry.getValue()) {
             BiomeModifications.addFeature(BiomeSelectors.tag(ModBiomeTags.PATCH_WITCHS_CRADLE),
                     GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatureKeys.PATCH_WITCHS_CRADLE_COMMON);
@@ -150,25 +158,25 @@ public class AssortedDiscoveries implements ModInitializer {
                     GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatureKeys.PATCH_WITCHS_CRADLE_RARE);
         }
 
-        configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_ENDER_PLANTS);
+        configEntry = (BooleanConfigEntry) config.getEntry(ModServerConfigKeys.ENABLE_ENDER_PLANTS);
         if (configEntry.getValue()) {
             BiomeModifications.addFeature(BiomeSelectors.tag(ModBiomeTags.PATCH_ENDER_PLANTS),
                     GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatureKeys.PATCH_ENDER_PLANTS);
         }
 
-        configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_BLOOD_KELP);
+        configEntry = (BooleanConfigEntry) config.getEntry(ModServerConfigKeys.ENABLE_BLOOD_KELP);
         if (configEntry.getValue()) {
             BiomeModifications.addFeature(BiomeSelectors.tag(ModBiomeTags.BLOOD_KELP),
                     GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatureKeys.BLOOD_KELP);
         }
 
-        configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_BOG_BLOSSOMS);
+        configEntry = (BooleanConfigEntry) config.getEntry(ModServerConfigKeys.ENABLE_BOG_BLOSSOMS);
         if (configEntry.getValue()) {
             BiomeModifications.addFeature(BiomeSelectors.tag(ModBiomeTags.BOG_BLOSSOM),
                     GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatureKeys.BOG_BLOSSOM);
         }
 
-        configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_BAUXITE);
+        configEntry = (BooleanConfigEntry) config.getEntry(ModServerConfigKeys.ENABLE_BAUXITE);
         if (configEntry.getValue()) {
             BiomeModifications.addFeature(BiomeSelectors.tag(ModBiomeTags.ORE_BAUXITE),
                     GenerationStep.Feature.UNDERGROUND_ORES, ModPlacedFeatureKeys.ORE_BAUXITE_LOWER);
@@ -176,7 +184,7 @@ public class AssortedDiscoveries implements ModInitializer {
                     GenerationStep.Feature.UNDERGROUND_ORES, ModPlacedFeatureKeys.ORE_BAUXITE_UPPER);
         }
 
-        configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_CINDERSNAP_BERRIES);
+        configEntry = (BooleanConfigEntry) config.getEntry(ModServerConfigKeys.ENABLE_CINDERSNAP_BERRIES);
         if (configEntry.getValue()) {
             BiomeModifications.addFeature(BiomeSelectors.tag(ModBiomeTags.PATCH_CINDERSNAP_BERRY_BUSH),
                     GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatureKeys.PATCH_CINDERSNAP_BERRY_BUSH_COMMON);
@@ -184,7 +192,7 @@ public class AssortedDiscoveries implements ModInitializer {
                     GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatureKeys.PATCH_CINDERSNAP_BERRY_BUSH_RARE);
         }
 
-        configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_FROSTBITE_BERRIES);
+        configEntry = (BooleanConfigEntry) config.getEntry(ModServerConfigKeys.ENABLE_FROSTBITE_BERRIES);
         if (configEntry.getValue()) {
             BiomeModifications.addFeature(BiomeSelectors.tag(ModBiomeTags.PATCH_FROSTBITE_BERRY_BUSH),
                     GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatureKeys.PATCH_FROSTBITE_BERRY_BUSH_COMMON);
@@ -192,7 +200,7 @@ public class AssortedDiscoveries implements ModInitializer {
                     GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatureKeys.PATCH_FROSTBITE_BERRY_BUSH_RARE);
         }
 
-        configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_GREEN_ONIONS);
+        configEntry = (BooleanConfigEntry) config.getEntry(ModServerConfigKeys.ENABLE_GREEN_ONIONS);
         if (configEntry.getValue()) {
             BiomeModifications.addFeature(BiomeSelectors.tag(ModBiomeTags.PATCH_WILD_GREEN_ONIONS),
                     GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatureKeys.PATCH_WILD_GREEN_ONIONS_COMMON);
@@ -236,8 +244,8 @@ public class AssortedDiscoveries implements ModInitializer {
 	}
 
     private static void modifySpruceLeavesLootTable(RegistryWrapper.WrapperLookup registries, LootTable.Builder builder) {
-        ServerConfig config = ModConfig.getInstance();
-        BooleanConfigEntry configEntry = (BooleanConfigEntry) config.getEntry(ModConfigKeys.ENABLE_FORESTS_BOUNTY);
+        ServerConfig config = ModServerConfig.getInstance();
+        BooleanConfigEntry configEntry = (BooleanConfigEntry) config.getEntry(ModServerConfigKeys.ENABLE_FORESTS_BOUNTY);
 
         if (configEntry.getValue()) {
             Optional<RegistryEntry.Reference<Enchantment>> fortune = registries.getOptionalEntry(Enchantments.FORTUNE);
@@ -258,19 +266,19 @@ public class AssortedDiscoveries implements ModInitializer {
 	private static void addItemGroups() {
         Registry.register(Registries.ITEM_GROUP, MOD_ITEM_GROUP_KEY, MOD_ITEM_GROUP);
         ItemGroupEvents.modifyEntriesEvent(MOD_ITEM_GROUP_KEY).register((entries) -> {
-            if (CONFIG.get(ModConfigKeys.ENABLE_SLIME_PLUSHIE)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_SLIME_PLUSHIE)) {
                 entries.add(ModBlocks.SLIME_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_MAGMA_CUBE_PLUSHIE)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_MAGMA_CUBE_PLUSHIE)) {
                 entries.add(ModBlocks.MAGMA_CUBE_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_OCELOT_PLUSHIE)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_OCELOT_PLUSHIE)) {
                 entries.add(ModBlocks.OCELOT_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_CAT_PLUSHIES)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_CAT_PLUSHIES)) {
                 entries.add(ModBlocks.WHITE_CAT_PLUSHIE.asItem());
                 entries.add(ModBlocks.TABBY_CAT_PLUSHIE.asItem());
                 entries.add(ModBlocks.TUXEDO_CAT_PLUSHIE.asItem());
@@ -284,7 +292,7 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.JELLIE_CAT_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_WOLF_PLUSHIES)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_WOLF_PLUSHIES)) {
                 entries.add(ModBlocks.PALE_WOLF_PLUSHIE.asItem());
                 entries.add(ModBlocks.BLACK_WOLF_PLUSHIE.asItem());
                 entries.add(ModBlocks.ASHEN_WOLF_PLUSHIE.asItem());
@@ -292,92 +300,92 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.RUSTY_WOLF_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_ZOMBIE_PLUSHIE)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_ZOMBIE_PLUSHIE)) {
                 entries.add(ModBlocks.ZOMBIE_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_SKELETON_PLUSHIE)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_SKELETON_PLUSHIE)) {
                 entries.add(ModBlocks.SKELETON_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_ENDERMAN_PLUSHIE)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_ENDERMAN_PLUSHIE)) {
                 entries.add(ModBlocks.ENDERMAN_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_CREEPER_PLUSHIE)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_CREEPER_PLUSHIE)) {
                 entries.add(ModBlocks.CREEPER_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_SPIDER_PLUSHIE)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_SPIDER_PLUSHIE)) {
                 entries.add(ModBlocks.SPIDER_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_CAVE_SPIDER_PLUSHIE)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_CAVE_SPIDER_PLUSHIE)) {
                 entries.add(ModBlocks.CAVE_SPIDER_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_GUARDIAN_PLUSHIE)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_GUARDIAN_PLUSHIE)) {
                 entries.add(ModBlocks.GUARDIAN_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_PHANTOM_PLUSHIE)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_PHANTOM_PLUSHIE)) {
                 entries.add(ModBlocks.PHANTOM_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_BAT_PLUSHIE)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_BAT_PLUSHIE)) {
                 entries.add(ModBlocks.BAT_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_SQUID_PLUSHIES)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_SQUID_PLUSHIES)) {
                 entries.add(ModBlocks.SQUID_PLUSHIE.asItem());
                 entries.add(ModBlocks.GLOW_SQUID_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_BEE_PLUSHIE)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_BEE_PLUSHIE)) {
                 entries.add(ModBlocks.BEE_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_PIGLIN_PLUSHIES)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_PIGLIN_PLUSHIES)) {
                 entries.add(ModBlocks.PIGLIN_PLUSHIE.asItem());
                 entries.add(ModBlocks.ZOMBIFIED_PIGLIN_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_HOGLIN_PLUSHIES)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_HOGLIN_PLUSHIES)) {
                 entries.add(ModBlocks.HOGLIN_PLUSHIE.asItem());
                 entries.add(ModBlocks.ZOGLIN_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_GHAST_PLUSHIE)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_GHAST_PLUSHIE)) {
                 entries.add(ModBlocks.GHAST_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_BLAZE_PLUSHIE)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_BLAZE_PLUSHIE)) {
                 entries.add(ModBlocks.BLAZE_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_STRIDER_PLUSHIES)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_STRIDER_PLUSHIES)) {
                 entries.add(ModBlocks.STRIDER_PLUSHIE.asItem());
                 entries.add(ModBlocks.SHIVERING_STRIDER_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_CHICKEN_PLUSHIES)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_CHICKEN_PLUSHIES)) {
                 entries.add(ModBlocks.TEMPERATE_CHICKEN_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_PIG_PLUSHIES)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_PIG_PLUSHIES)) {
                 entries.add(ModBlocks.TEMPERATE_PIG_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_COW_PLUSHIES)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_COW_PLUSHIES)) {
                 entries.add(ModBlocks.TEMPERATE_COW_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_MOOSHROOM_PLUSHIES)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_MOOSHROOM_PLUSHIES)) {
                 entries.add(ModBlocks.RED_MOOSHROOM_PLUSHIE.asItem());
                 entries.add(ModBlocks.BROWN_MOOSHROOM_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_SHEEP_PLUSHIES)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_SHEEP_PLUSHIES)) {
                 entries.add(ModBlocks.WHITE_SHEEP_PLUSHIE.asItem());
                 entries.add(ModBlocks.ORANGE_SHEEP_PLUSHIE.asItem());
                 entries.add(ModBlocks.MAGENTA_SHEEP_PLUSHIE.asItem());
@@ -396,7 +404,7 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.BLACK_SHEEP_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_HORSE_PLUSHIES)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_HORSE_PLUSHIES)) {
                 entries.add(ModBlocks.WHITE_HORSE_PLUSHIE.asItem());
                 entries.add(ModBlocks.GRAY_HORSE_PLUSHIE.asItem());
                 entries.add(ModBlocks.LIGHT_GRAY_HORSE_PLUSHIE.asItem());
@@ -404,7 +412,7 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.BLACK_HORSE_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_RABBIT_PLUSHIES)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_RABBIT_PLUSHIES)) {
                 entries.add(ModBlocks.BROWN_RABBIT_PLUSHIE.asItem());
                 entries.add(ModBlocks.WHITE_RABBIT_PLUSHIE.asItem());
                 entries.add(ModBlocks.BLACK_RABBIT_PLUSHIE.asItem());
@@ -414,13 +422,13 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.SALT_RABBIT_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_ILLAGER_PLUSHIES)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_ILLAGER_PLUSHIES)) {
                 entries.add(ModBlocks.PILLAGER_PLUSHIE.asItem());
                 entries.add(ModBlocks.VINDICATOR_PLUSHIE.asItem());
                 entries.add(ModBlocks.EVOKER_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_VILLAGER_PLUSHIES)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_VILLAGER_PLUSHIES)) {
                 entries.add(ModBlocks.PLAINS_VILLAGER_PLUSHIE.asItem());
                 entries.add(ModBlocks.DESERT_VILLAGER_PLUSHIE.asItem());
                 entries.add(ModBlocks.JUNGLE_VILLAGER_PLUSHIE.asItem());
@@ -431,7 +439,7 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.WANDERING_TRADER_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_ZOMBIE_VILLAGER_PLUSHIES)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_ZOMBIE_VILLAGER_PLUSHIES)) {
                 entries.add(ModBlocks.PLAINS_ZOMBIE_VILLAGER_PLUSHIE.asItem());
                 entries.add(ModBlocks.DESERT_ZOMBIE_VILLAGER_PLUSHIE.asItem());
                 entries.add(ModBlocks.JUNGLE_ZOMBIE_VILLAGER_PLUSHIE.asItem());
@@ -441,51 +449,51 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.TAIGA_ZOMBIE_VILLAGER_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_WITCH_PLUSHIE)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_WITCH_PLUSHIE)) {
                 entries.add(ModBlocks.WITCH_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_PUFFERFISH_PLUSHIE)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_PUFFERFISH_PLUSHIE)) {
                 entries.add(ModBlocks.PUFFERFISH_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_WITHER_PLUSHIE)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_WITHER_PLUSHIE)) {
                 entries.add(ModBlocks.WITHER_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_POLAR_BEAR_PLUSHIE)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_POLAR_BEAR_PLUSHIE)) {
                 entries.add(ModBlocks.POLAR_BEAR_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_ALLAY_PLUSHIE)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_ALLAY_PLUSHIE)) {
                 entries.add(ModBlocks.ALLAY_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_VEX_PLUSHIE)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_VEX_PLUSHIE)) {
                 entries.add(ModBlocks.VEX_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_RAVAGER_PLUSHIE)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_RAVAGER_PLUSHIE)) {
                 entries.add(ModBlocks.RAVAGER_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_SHULKER_PLUSHIE)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_SHULKER_PLUSHIE)) {
                 entries.add(ModBlocks.SHULKER_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_CAMEL_PLUSHIE)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_CAMEL_PLUSHIE)) {
                 entries.add(ModBlocks.CAMEL_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_CREAKING_PLUSHIE)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_CREAKING_PLUSHIE)) {
                 entries.add(ModBlocks.CREAKING_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_SNIFFER_PLUSHIE)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_SNIFFER_PLUSHIE)) {
                 entries.add(ModBlocks.SNIFFER_PLUSHIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_PLANTER_BOXES)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_PLANTER_BOXES)) {
                 entries.add(ModBlocks.OAK_PLANTER_BOX.asItem());
                 entries.add(ModBlocks.SPRUCE_PLANTER_BOX.asItem());
                 entries.add(ModBlocks.BIRCH_PLANTER_BOX.asItem());
@@ -500,7 +508,7 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.WARPED_PLANTER_BOX.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_WOODEN_WALLS)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_WOODEN_WALLS)) {
                 entries.add(ModBlocks.OAK_WALL.asItem());
                 entries.add(ModBlocks.SPRUCE_WALL.asItem());
                 entries.add(ModBlocks.BIRCH_WALL.asItem());
@@ -515,7 +523,7 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.WARPED_WALL.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_STRIPPED_WOODEN_WALLS)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_STRIPPED_WOODEN_WALLS)) {
                 entries.add(ModBlocks.STRIPPED_OAK_WALL.asItem());
                 entries.add(ModBlocks.STRIPPED_SPRUCE_WALL.asItem());
                 entries.add(ModBlocks.STRIPPED_BIRCH_WALL.asItem());
@@ -530,7 +538,7 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.STRIPPED_WARPED_WALL.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_ROPE_LADDERS)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_ROPE_LADDERS)) {
                 entries.add(ModBlocks.OAK_ROPE_LADDER.asItem());
                 entries.add(ModBlocks.SPRUCE_ROPE_LADDER.asItem());
                 entries.add(ModBlocks.BIRCH_ROPE_LADDER.asItem());
@@ -545,11 +553,11 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.WARPED_ROPE_LADDER.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_IRON_LADDERS)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_IRON_LADDERS)) {
                 entries.add(ModBlocks.IRON_LADDER.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_DYED_CAMPFIRES)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_DYED_CAMPFIRES)) {
                 entries.add(ModBlocks.WHITE_CAMPFIRE.asItem());
                 entries.add(ModBlocks.ORANGE_CAMPFIRE.asItem());
                 entries.add(ModBlocks.MAGENTA_CAMPFIRE.asItem());
@@ -568,7 +576,7 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.BLACK_CAMPFIRE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_DYED_LANTERNS)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_DYED_LANTERNS)) {
                 entries.add(ModBlocks.WHITE_LANTERN.asItem());
                 entries.add(ModBlocks.ORANGE_LANTERN.asItem());
                 entries.add(ModBlocks.MAGENTA_LANTERN.asItem());
@@ -587,7 +595,7 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.BLACK_LANTERN.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_DYED_TORCHES)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_DYED_TORCHES)) {
                 entries.add(ModItems.WHITE_TORCH);
                 entries.add(ModItems.ORANGE_TORCH);
                 entries.add(ModItems.MAGENTA_TORCH);
@@ -606,63 +614,63 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModItems.BLACK_TORCH);
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_TWISTED_NETHERRACK)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_TWISTED_NETHERRACK)) {
                 entries.add(ModBlocks.TWISTED_NETHERRACK.asItem());
                 entries.add(ModBlocks.TWISTED_NETHERRACK_STAIRS.asItem());
                 entries.add(ModBlocks.TWISTED_NETHERRACK_SLAB.asItem());
                 entries.add(ModBlocks.TWISTED_NETHERRACK_WALL.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_WEEPING_NETHERRACK)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_WEEPING_NETHERRACK)) {
                 entries.add(ModBlocks.WEEPING_NETHERRACK.asItem());
                 entries.add(ModBlocks.WEEPING_NETHERRACK_STAIRS.asItem());
                 entries.add(ModBlocks.WEEPING_NETHERRACK_SLAB.asItem());
                 entries.add(ModBlocks.WEEPING_NETHERRACK_WALL.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_TWISTED_NETHER_BRICKS)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_TWISTED_NETHER_BRICKS)) {
                 entries.add(ModBlocks.TWISTED_NETHER_BRICKS.asItem());
                 entries.add(ModBlocks.TWISTED_NETHER_BRICK_STAIRS.asItem());
                 entries.add(ModBlocks.TWISTED_NETHER_BRICK_SLAB.asItem());
                 entries.add(ModBlocks.TWISTED_NETHER_BRICK_WALL.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_WEEPING_NETHER_BRICKS)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_WEEPING_NETHER_BRICKS)) {
                 entries.add(ModBlocks.WEEPING_NETHER_BRICKS.asItem());
                 entries.add(ModBlocks.WEEPING_NETHER_BRICK_STAIRS.asItem());
                 entries.add(ModBlocks.WEEPING_NETHER_BRICK_SLAB.asItem());
                 entries.add(ModBlocks.WEEPING_NETHER_BRICK_WALL.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_TWISTED_BLACKSTONE)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_TWISTED_BLACKSTONE)) {
                 entries.add(ModBlocks.TWISTED_BLACKSTONE.asItem());
                 entries.add(ModBlocks.TWISTED_BLACKSTONE_STAIRS.asItem());
                 entries.add(ModBlocks.TWISTED_BLACKSTONE_SLAB.asItem());
                 entries.add(ModBlocks.TWISTED_BLACKSTONE_WALL.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_WEEPING_BLACKSTONE)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_WEEPING_BLACKSTONE)) {
                 entries.add(ModBlocks.WEEPING_BLACKSTONE.asItem());
                 entries.add(ModBlocks.WEEPING_BLACKSTONE_STAIRS.asItem());
                 entries.add(ModBlocks.WEEPING_BLACKSTONE_SLAB.asItem());
                 entries.add(ModBlocks.WEEPING_BLACKSTONE_WALL.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_TWISTED_POLISHED_BLACKSTONE_BRICKS)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_TWISTED_POLISHED_BLACKSTONE_BRICKS)) {
                 entries.add(ModBlocks.TWISTED_POLISHED_BLACKSTONE_BRICKS.asItem());
                 entries.add(ModBlocks.TWISTED_POLISHED_BLACKSTONE_BRICK_STAIRS.asItem());
                 entries.add(ModBlocks.TWISTED_POLISHED_BLACKSTONE_BRICK_SLAB.asItem());
                 entries.add(ModBlocks.TWISTED_POLISHED_BLACKSTONE_BRICK_WALL.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_WEEPING_POLISHED_BLACKSTONE_BRICKS)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_WEEPING_POLISHED_BLACKSTONE_BRICKS)) {
                 entries.add(ModBlocks.WEEPING_POLISHED_BLACKSTONE_BRICKS.asItem());
                 entries.add(ModBlocks.WEEPING_POLISHED_BLACKSTONE_BRICK_STAIRS.asItem());
                 entries.add(ModBlocks.WEEPING_POLISHED_BLACKSTONE_BRICK_SLAB.asItem());
                 entries.add(ModBlocks.WEEPING_POLISHED_BLACKSTONE_BRICK_WALL.asItem());
             }
 
-            boolean blackstoneTilesEnabled = CONFIG.get(ModConfigKeys.ENABLE_BLACKSTONE_TILES);
+            boolean blackstoneTilesEnabled = BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_BLACKSTONE_TILES);
             if (blackstoneTilesEnabled) {
                 entries.add(ModBlocks.BLACKSTONE_TILES.asItem());
                 entries.add(ModBlocks.BLACKSTONE_TILE_STAIRS.asItem());
@@ -670,21 +678,21 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.BLACKSTONE_TILE_WALL.asItem());
             }
 
-            if (blackstoneTilesEnabled && CONFIG.get(ModConfigKeys.ENABLE_TWISTED_BLACKSTONE_TILES)) {
+            if (blackstoneTilesEnabled && BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_TWISTED_BLACKSTONE_TILES)) {
                 entries.add(ModBlocks.TWISTED_BLACKSTONE_TILES.asItem());
                 entries.add(ModBlocks.TWISTED_BLACKSTONE_TILE_STAIRS.asItem());
                 entries.add(ModBlocks.TWISTED_BLACKSTONE_TILE_SLAB.asItem());
                 entries.add(ModBlocks.TWISTED_BLACKSTONE_TILE_WALL.asItem());
             }
 
-            if (blackstoneTilesEnabled && CONFIG.get(ModConfigKeys.ENABLE_WEEPING_BLACKSTONE_TILES)) {
+            if (blackstoneTilesEnabled && BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_WEEPING_BLACKSTONE_TILES)) {
                 entries.add(ModBlocks.WEEPING_BLACKSTONE_TILES.asItem());
                 entries.add(ModBlocks.WEEPING_BLACKSTONE_TILE_STAIRS.asItem());
                 entries.add(ModBlocks.WEEPING_BLACKSTONE_TILE_SLAB.asItem());
                 entries.add(ModBlocks.WEEPING_BLACKSTONE_TILE_WALL.asItem());
             }
 
-            boolean smokyQuartzBlocksEnabled = CONFIG.get(ModConfigKeys.ENABLE_SMOKY_QUARTZ_BLOCKS);
+            boolean smokyQuartzBlocksEnabled = BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_SMOKY_QUARTZ_BLOCKS);
             if (smokyQuartzBlocksEnabled) {
                 entries.add(ModBlocks.NETHER_SMOKY_QUARTZ_ORE.asItem());
                 entries.add(ModItems.SMOKY_QUARTZ);
@@ -696,39 +704,39 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.SMOKY_QUARTZ_PILLAR.asItem());
             }
 
-            if (smokyQuartzBlocksEnabled && CONFIG.get(ModConfigKeys.ENABLE_SMOKY_QUARTZ_BRICKS)) {
+            if (smokyQuartzBlocksEnabled && BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_SMOKY_QUARTZ_BRICKS)) {
                 entries.add(ModBlocks.SMOKY_QUARTZ_BRICKS.asItem());
                 entries.add(ModBlocks.SMOKY_QUARTZ_BRICK_STAIRS.asItem());
                 entries.add(ModBlocks.SMOKY_QUARTZ_BRICK_SLAB.asItem());
                 entries.add(ModBlocks.SMOKY_QUARTZ_BRICK_WALL.asItem());
             }
 
-            if (smokyQuartzBlocksEnabled && CONFIG.get(ModConfigKeys.ENABLE_SMOOTH_SMOKY_QUARTZ)) {
+            if (smokyQuartzBlocksEnabled && BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_SMOOTH_SMOKY_QUARTZ)) {
                 entries.add(ModBlocks.SMOOTH_SMOKY_QUARTZ.asItem());
                 entries.add(ModBlocks.SMOOTH_SMOKY_QUARTZ_STAIRS.asItem());
                 entries.add(ModBlocks.SMOOTH_SMOKY_QUARTZ_SLAB.asItem());
                 entries.add(ModBlocks.SMOOTH_SMOKY_QUARTZ_WALL.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_QUARTZ_BRICK_BLOCKS)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_QUARTZ_BRICK_BLOCKS)) {
                 entries.add(ModBlocks.QUARTZ_BRICK_STAIRS.asItem());
                 entries.add(ModBlocks.QUARTZ_BRICK_SLAB.asItem());
                 entries.add(ModBlocks.QUARTZ_BRICK_WALL.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_QUARTZ_TILES)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_QUARTZ_TILES)) {
                 entries.add(ModBlocks.QUARTZ_TILES.asItem());
                 entries.add(ModBlocks.QUARTZ_TILE_STAIRS.asItem());
                 entries.add(ModBlocks.QUARTZ_TILE_SLAB.asItem());
                 entries.add(ModBlocks.QUARTZ_TILE_WALL.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_QUARTZ_WALLS)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_QUARTZ_WALLS)) {
                 entries.add(ModBlocks.QUARTZ_WALL.asItem());
                 entries.add(ModBlocks.SMOOTH_QUARTZ_WALL.asItem());
             }
 
-            boolean bauxiteEnabled = CONFIG.get(ModConfigKeys.ENABLE_BAUXITE);
+            boolean bauxiteEnabled = BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_BAUXITE);
             if (bauxiteEnabled) {
                 entries.add(ModBlocks.BAUXITE.asItem());
                 entries.add(ModBlocks.BAUXITE_SLAB.asItem());
@@ -736,7 +744,7 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.BAUXITE_WALL.asItem());
             }
 
-            boolean bauxiteBricksEnabled = CONFIG.get(ModConfigKeys.ENABLE_BAUXITE_BRICKS);
+            boolean bauxiteBricksEnabled = BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_BAUXITE_BRICKS);
             if (bauxiteEnabled && bauxiteBricksEnabled) {
                 entries.add(ModBlocks.BAUXITE_BRICKS.asItem());
                 entries.add(ModBlocks.BAUXITE_BRICK_STAIRS.asItem());
@@ -744,21 +752,21 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.BAUXITE_BRICK_WALL.asItem());
             }
 
-            if (bauxiteEnabled && bauxiteBricksEnabled && CONFIG.get(ModConfigKeys.ENABLE_CRACKED_BAUXITE_BRICKS)) {
+            if (bauxiteEnabled && bauxiteBricksEnabled && BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_CRACKED_BAUXITE_BRICKS)) {
                 entries.add(ModBlocks.CRACKED_BAUXITE_BRICKS.asItem());
                 entries.add(ModBlocks.CRACKED_BAUXITE_BRICK_STAIRS.asItem());
                 entries.add(ModBlocks.CRACKED_BAUXITE_BRICK_SLAB.asItem());
                 entries.add(ModBlocks.CRACKED_BAUXITE_BRICK_WALL.asItem());
             }
 
-            if (bauxiteEnabled && bauxiteBricksEnabled && CONFIG.get(ModConfigKeys.ENABLE_MOSSY_BAUXITE_BRICKS)) {
+            if (bauxiteEnabled && bauxiteBricksEnabled && BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_MOSSY_BAUXITE_BRICKS)) {
                 entries.add(ModBlocks.MOSSY_BAUXITE_BRICKS.asItem());
                 entries.add(ModBlocks.MOSSY_BAUXITE_BRICK_STAIRS.asItem());
                 entries.add(ModBlocks.MOSSY_BAUXITE_BRICK_SLAB.asItem());
                 entries.add(ModBlocks.MOSSY_BAUXITE_BRICK_WALL.asItem());
             }
 
-            boolean stoneTilesEnabled = CONFIG.get(ModConfigKeys.ENABLE_STONE_TILES);
+            boolean stoneTilesEnabled = BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_STONE_TILES);
             if (stoneTilesEnabled) {
                 entries.add(ModBlocks.STONE_TILES.asItem());
                 entries.add(ModBlocks.STONE_TILE_SLAB.asItem());
@@ -766,44 +774,44 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.STONE_TILE_WALL.asItem());
             }
 
-            if (stoneTilesEnabled && CONFIG.get(ModConfigKeys.ENABLE_CRACKED_STONE_TILES)) {
+            if (stoneTilesEnabled && BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_CRACKED_STONE_TILES)) {
                 entries.add(ModBlocks.CRACKED_STONE_TILES.asItem());
                 entries.add(ModBlocks.CRACKED_STONE_TILE_SLAB.asItem());
                 entries.add(ModBlocks.CRACKED_STONE_TILE_STAIRS.asItem());
                 entries.add(ModBlocks.CRACKED_STONE_TILE_WALL.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_MOSSY_STONE_TILES)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_MOSSY_STONE_TILES)) {
                 entries.add(ModBlocks.MOSSY_STONE_TILES.asItem());
                 entries.add(ModBlocks.MOSSY_STONE_TILE_SLAB.asItem());
                 entries.add(ModBlocks.MOSSY_STONE_TILE_STAIRS.asItem());
                 entries.add(ModBlocks.MOSSY_STONE_TILE_WALL.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_CRACKED_STONE_BRICK_BLOCKS)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_CRACKED_STONE_BRICK_BLOCKS)) {
                 entries.add(ModBlocks.CRACKED_STONE_BRICK_STAIRS.asItem());
                 entries.add(ModBlocks.CRACKED_STONE_BRICK_SLAB.asItem());
                 entries.add(ModBlocks.CRACKED_STONE_BRICK_WALL.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_STONE_WALLS)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_STONE_WALLS)) {
                 entries.add(ModBlocks.STONE_WALL.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_CALCITE_BLOCKS)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_CALCITE_BLOCKS)) {
                 entries.add(ModBlocks.CALCITE_STAIRS.asItem());
                 entries.add(ModBlocks.CALCITE_SLAB.asItem());
                 entries.add(ModBlocks.CALCITE_WALL.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_POLISHED_CALCITE)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_POLISHED_CALCITE)) {
                 entries.add(ModBlocks.POLISHED_CALCITE.asItem());
                 entries.add(ModBlocks.POLISHED_CALCITE_STAIRS.asItem());
                 entries.add(ModBlocks.POLISHED_CALCITE_SLAB.asItem());
                 entries.add(ModBlocks.POLISHED_CALCITE_WALL.asItem());
             }
 
-            boolean calciteBricksEnabled = CONFIG.get(ModConfigKeys.ENABLE_CALCITE_BRICKS);
+            boolean calciteBricksEnabled = BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_CALCITE_BRICKS);
             if (calciteBricksEnabled) {
                 entries.add(ModBlocks.CALCITE_BRICKS.asItem());
                 entries.add(ModBlocks.CALCITE_BRICK_STAIRS.asItem());
@@ -812,34 +820,34 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.CHISELED_CALCITE_BRICKS.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_CRACKED_CALCITE_BRICKS) && calciteBricksEnabled) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_CRACKED_CALCITE_BRICKS) && calciteBricksEnabled) {
                 entries.add(ModBlocks.CRACKED_CALCITE_BRICKS.asItem());
                 entries.add(ModBlocks.CRACKED_CALCITE_BRICK_STAIRS.asItem());
                 entries.add(ModBlocks.CRACKED_CALCITE_BRICK_SLAB.asItem());
                 entries.add(ModBlocks.CRACKED_CALCITE_BRICK_WALL.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_MOSSY_CALCITE_BRICKS) && calciteBricksEnabled) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_MOSSY_CALCITE_BRICKS) && calciteBricksEnabled) {
                 entries.add(ModBlocks.MOSSY_CALCITE_BRICKS.asItem());
                 entries.add(ModBlocks.MOSSY_CALCITE_BRICK_STAIRS.asItem());
                 entries.add(ModBlocks.MOSSY_CALCITE_BRICK_SLAB.asItem());
                 entries.add(ModBlocks.MOSSY_CALCITE_BRICK_WALL.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_DRIPSTONE_BLOCKS)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_DRIPSTONE_BLOCKS)) {
                 entries.add(ModBlocks.DRIPSTONE_STAIRS.asItem());
                 entries.add(ModBlocks.DRIPSTONE_SLAB.asItem());
                 entries.add(ModBlocks.DRIPSTONE_WALL.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_POLISHED_DRIPSTONE)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_POLISHED_DRIPSTONE)) {
                 entries.add(ModBlocks.POLISHED_DRIPSTONE.asItem());
                 entries.add(ModBlocks.POLISHED_DRIPSTONE_STAIRS.asItem());
                 entries.add(ModBlocks.POLISHED_DRIPSTONE_SLAB.asItem());
                 entries.add(ModBlocks.POLISHED_DRIPSTONE_WALL.asItem());
             }
 
-            boolean dripstoneBricksEnabled = CONFIG.get(ModConfigKeys.ENABLE_DRIPSTONE_BRICKS);
+            boolean dripstoneBricksEnabled = BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_DRIPSTONE_BRICKS);
             if (dripstoneBricksEnabled) {
                 entries.add(ModBlocks.DRIPSTONE_BRICKS.asItem());
                 entries.add(ModBlocks.DRIPSTONE_BRICK_STAIRS.asItem());
@@ -848,35 +856,35 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.CHISELED_DRIPSTONE_BRICKS.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_CRACKED_DRIPSTONE_BRICKS) && dripstoneBricksEnabled) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_CRACKED_DRIPSTONE_BRICKS) && dripstoneBricksEnabled) {
                 entries.add(ModBlocks.CRACKED_DRIPSTONE_BRICKS.asItem());
                 entries.add(ModBlocks.CRACKED_DRIPSTONE_BRICK_STAIRS.asItem());
                 entries.add(ModBlocks.CRACKED_DRIPSTONE_BRICK_SLAB.asItem());
                 entries.add(ModBlocks.CRACKED_DRIPSTONE_BRICK_WALL.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_MOSSY_DRIPSTONE_BRICKS) && dripstoneBricksEnabled) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_MOSSY_DRIPSTONE_BRICKS) && dripstoneBricksEnabled) {
                 entries.add(ModBlocks.MOSSY_DRIPSTONE_BRICKS.asItem());
                 entries.add(ModBlocks.MOSSY_DRIPSTONE_BRICK_STAIRS.asItem());
                 entries.add(ModBlocks.MOSSY_DRIPSTONE_BRICK_SLAB.asItem());
                 entries.add(ModBlocks.MOSSY_DRIPSTONE_BRICK_WALL.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_SNOW_BRICKS)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_SNOW_BRICKS)) {
                 entries.add(ModBlocks.SNOW_BRICKS.asItem());
                 entries.add(ModBlocks.SNOW_BRICK_STAIRS.asItem());
                 entries.add(ModBlocks.SNOW_BRICK_SLAB.asItem());
                 entries.add(ModBlocks.SNOW_BRICK_WALL.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_PACKED_SNOW)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_PACKED_SNOW)) {
                 entries.add(ModBlocks.PACKED_SNOW.asItem());
                 entries.add(ModBlocks.PACKED_SNOW_STAIRS.asItem());
                 entries.add(ModBlocks.PACKED_SNOW_SLAB.asItem());
                 entries.add(ModBlocks.PACKED_SNOW_WALL.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_DIRT_SLABS)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_DIRT_SLABS)) {
                 entries.add(ModBlocks.GRASS_SLAB.asItem());
                 entries.add(ModBlocks.PODZOL_SLAB.asItem());
                 entries.add(ModBlocks.MYCELIUM_SLAB.asItem());
@@ -886,28 +894,28 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.COARSE_DIRT_SLAB.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_PURPLE_MUSHROOMS)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_PURPLE_MUSHROOMS)) {
                 entries.add(ModBlocks.PURPLE_MUSHROOM_BLOCK.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_CATTAILS)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_CATTAILS)) {
                 entries.add(ModBlocks.CATTAIL.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_BOG_BLOSSOMS)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_BOG_BLOSSOMS)) {
                 entries.add(ModBlocks.BOG_BLOSSOM.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_ENDER_PLANTS)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_ENDER_PLANTS)) {
                 entries.add(ModBlocks.SNAPDRAGON.asItem());
                 entries.add(ModBlocks.SHORT_ENDER_GRASS.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_PURPLE_MUSHROOMS)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_PURPLE_MUSHROOMS)) {
                 entries.add(ModBlocks.PURPLE_MUSHROOM.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_BLOOD_KELP)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_BLOOD_KELP)) {
                 entries.add(ModBlocks.DRIED_BLOOD_KELP_BLOCK);
                 entries.add(ModBlocks.BLOOD_KELP_LANTERN);
                 entries.add(ModItems.BLOOD_KELP_SEED_CLUSTER);
@@ -915,48 +923,48 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModItems.DRIED_BLOOD_KELP);
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_GREEN_ONIONS)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_GREEN_ONIONS)) {
                 entries.add(ModBlocks.WILD_GREEN_ONIONS.asItem());
                 entries.add(ModItems.GREEN_ONION_SEEDS);
                 entries.add(ModItems.GREEN_ONION);
             }
 
-            boolean caramelAppleEnabled = CONFIG.get(ModConfigKeys.ENABLE_CARAMEL_APPLE);
+            boolean caramelAppleEnabled = BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_CARAMEL_APPLE);
             if (caramelAppleEnabled) {
                 entries.add(ModItems.CARAMEL);
             }
 
-            boolean forestsBountyEnabled = CONFIG.get(ModConfigKeys.ENABLE_FORESTS_BOUNTY);
+            boolean forestsBountyEnabled = BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_FORESTS_BOUNTY);
             if (forestsBountyEnabled) {
                 entries.add(ModItems.SPRUCE_CONE);
             }
 
-            boolean noodleSoupEnabled = CONFIG.get(ModConfigKeys.ENABLE_NOODLE_SOUP);
+            boolean noodleSoupEnabled = BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_NOODLE_SOUP);
             if (noodleSoupEnabled) {
                 entries.add(ModItems.NOODLES);
             }
 
-            boolean witchsCradleEnabled = CONFIG.get(ModConfigKeys.ENABLE_WITCHS_CRADLES);
+            boolean witchsCradleEnabled = BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_WITCHS_CRADLES);
             if (witchsCradleEnabled) {
                 entries.add(ModItems.WITCHS_CRADLE_BRANCH);
             }
 
-            boolean blueberriesEnabled = CONFIG.get(ModConfigKeys.ENABLE_BLUEBERRIES);
+            boolean blueberriesEnabled = BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_BLUEBERRIES);
             if (blueberriesEnabled) {
                 entries.add(ModItems.BLUEBERRIES);
             }
 
-            boolean cindersnapBerriesEnabled = CONFIG.get(ModConfigKeys.ENABLE_CINDERSNAP_BERRIES);
+            boolean cindersnapBerriesEnabled = BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_CINDERSNAP_BERRIES);
             if (cindersnapBerriesEnabled) {
                 entries.add(ModItems.CINDERSNAP_BERRIES);
             }
 
-            boolean frostbiteBerriesEnabled = CONFIG.get(ModConfigKeys.ENABLE_FROSTBITE_BERRIES);
+            boolean frostbiteBerriesEnabled = BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_FROSTBITE_BERRIES);
             if (frostbiteBerriesEnabled) {
                 entries.add(ModItems.FROSTBITE_BERRIES);
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_FRIED_EGG)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_FRIED_EGG)) {
                 entries.add(ModItems.FRIED_EGG);
             }
 
@@ -972,7 +980,7 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModItems.NOODLE_SOUP);
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_HOGLIN_STEW)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_HOGLIN_STEW)) {
                 entries.add(ModItems.HOGLIN_STEW);
             }
 
@@ -980,48 +988,48 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModItems.WITCHS_CRADLE_SOUP);
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_PUDDING)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_PUDDING)) {
                 entries.add(ModItems.BERRY_PUDDING);
                 entries.add(ModItems.PUDDING);
             }
 
-            if (frostbiteBerriesEnabled && CONFIG.get(ModConfigKeys.ENABLE_WARPED_FORAGE_MIX)) {
+            if (frostbiteBerriesEnabled && BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_WARPED_FORAGE_MIX)) {
                 entries.add(ModItems.WARPED_FORAGE_MIX);
             }
 
-            if (cindersnapBerriesEnabled && CONFIG.get(ModConfigKeys.ENABLE_CRIMSON_FORAGE_MIX)) {
+            if (cindersnapBerriesEnabled && BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_CRIMSON_FORAGE_MIX)) {
                 entries.add(ModItems.CRIMSON_FORAGE_MIX);
             }
 
-            if (blueberriesEnabled && CONFIG.get(ModConfigKeys.ENABLE_BLUEBERRY_JUICE)) {
+            if (blueberriesEnabled && BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_BLUEBERRY_JUICE)) {
                 entries.add(ModItems.BLUEBERRY_JUICE);
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_SWEET_BERRY_JUICE)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_SWEET_BERRY_JUICE)) {
                 entries.add(ModItems.SWEET_BERRY_JUICE);
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_CINDERSNAP_BERRY_JUICE) && cindersnapBerriesEnabled) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_CINDERSNAP_BERRY_JUICE) && cindersnapBerriesEnabled) {
                 entries.add(ModItems.CINDERSNAP_BERRY_JUICE);
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_FROSTBITE_BERRY_JUICE) && frostbiteBerriesEnabled) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_FROSTBITE_BERRY_JUICE) && frostbiteBerriesEnabled) {
                 entries.add(ModItems.FROSTBITE_BERRY_JUICE);
             }
 
-            if (blueberriesEnabled && CONFIG.get(ModConfigKeys.ENABLE_BLUEBERRY_PIE)) {
+            if (blueberriesEnabled && BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_BLUEBERRY_PIE)) {
                 entries.add(ModBlocks.BLUEBERRY_PIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_SWEET_BERRY_PIE)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_SWEET_BERRY_PIE)) {
                 entries.add(ModBlocks.SWEET_BERRY_PIE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_CHOCOLATE_CAKE)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_CHOCOLATE_CAKE)) {
                 entries.add(ModBlocks.CHOCOLATE_CAKE.asItem());
             }
 
-            if (CONFIG.get(ModConfigKeys.ENABLE_RED_VELVET_CAKE)) {
+            if (BOOL_SERVER_CONFIG_ENTRIES.get(ModServerConfigKeys.ENABLE_RED_VELVET_CAKE)) {
                 entries.add(ModBlocks.RED_VELVET_CAKE.asItem());
             }
         });

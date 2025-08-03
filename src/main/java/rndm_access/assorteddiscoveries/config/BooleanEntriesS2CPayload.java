@@ -11,9 +11,9 @@ import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import java.util.HashMap;
 import java.util.Map;
 
-public record ConfigS2CPayload(Map<String, Boolean> configMap) implements CustomPayload {
+public record BooleanEntriesS2CPayload(Map<String, Boolean> configMap) implements CustomPayload {
     public static final Identifier CONFIG_PAYLOAD_ID = AssortedDiscoveries.makeModId("config");
-    public static final CustomPayload.Id<ConfigS2CPayload> ID = new CustomPayload.Id<>(CONFIG_PAYLOAD_ID);
+    public static final CustomPayload.Id<BooleanEntriesS2CPayload> ID = new CustomPayload.Id<>(CONFIG_PAYLOAD_ID);
     public static final PacketCodec<ByteBuf, Map<String, Boolean>> PACKET_CODEC = new PacketCodec<>() {
         public Map<String, Boolean> decode(ByteBuf byteBuf) {
             int size = byteBuf.readInt();
@@ -35,8 +35,8 @@ public record ConfigS2CPayload(Map<String, Boolean> configMap) implements Custom
             }
         }
     };
-    public static final PacketCodec<RegistryByteBuf, ConfigS2CPayload> CODEC
-            = PacketCodec.tuple(PACKET_CODEC, ConfigS2CPayload::configMap, ConfigS2CPayload::new);
+    public static final PacketCodec<RegistryByteBuf, BooleanEntriesS2CPayload> CODEC
+            = PacketCodec.tuple(PACKET_CODEC, BooleanEntriesS2CPayload::configMap, BooleanEntriesS2CPayload::new);
 
     @Override
     public Id<? extends CustomPayload> getId() {

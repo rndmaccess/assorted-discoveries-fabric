@@ -63,38 +63,31 @@ public class ConfigTokenizer {
                 Token token = scanString(line, stringBuilder);
                 jsonTokens.add(token);
             } else if (curChar == ':') {
-                Token token = new Token.Builder().setType(TokenType.COLON)
-                        .setValue(String.valueOf(curChar)).setLine(lineNum).build();
+                Token token = new Token(TokenType.COLON, String.valueOf(curChar), lineNum);
                 jsonTokens.add(token);
                 consumeChar(line);
             } else if (curChar == '{') {
-                Token token = new Token.Builder().setType(TokenType.LEFT_CURLY)
-                        .setValue(String.valueOf(curChar)).setLine(lineNum).build();
+                Token token = new Token(TokenType.LEFT_CURLY, String.valueOf(curChar), lineNum);
                 jsonTokens.add(token);
                 consumeChar(line);
             } else if (curChar == '}') {
-                Token token = new Token.Builder().setType(TokenType.RIGHT_CURLY)
-                        .setValue(String.valueOf(curChar)).setLine(lineNum).build();
+                Token token = new Token(TokenType.RIGHT_CURLY, String.valueOf(curChar), lineNum);
                 jsonTokens.add(token);
                 consumeChar(line);
             } else if (curChar == '[') {
-                Token token = new Token.Builder().setType(TokenType.LEFT_BRACKET)
-                        .setValue(String.valueOf(curChar)).setLine(lineNum).build();
+                Token token = new Token(TokenType.LEFT_BRACKET, String.valueOf(curChar), lineNum);
                 jsonTokens.add(token);
                 consumeChar(line);
             } else if (curChar == ']') {
-                Token token = new Token.Builder().setType(TokenType.RIGHT_BRACKET)
-                        .setValue(String.valueOf(curChar)).setLine(lineNum).build();
+                Token token = new Token(TokenType.RIGHT_BRACKET, String.valueOf(curChar), lineNum);
                 jsonTokens.add(token);
                 consumeChar(line);
             } else if (curChar == ',') {
-                Token token = new Token.Builder().setType(TokenType.COMMA)
-                        .setValue(String.valueOf(curChar)).setLine(lineNum).build();
+                Token token = new Token(TokenType.COMMA, String.valueOf(curChar), lineNum);
                 jsonTokens.add(token);
                 consumeChar(line);
             } else {
                 Token token = scanObject(line);
-
                 jsonTokens.add(token);
             }
         }
@@ -122,10 +115,9 @@ public class ConfigTokenizer {
     }
 
     private Token scanObject(String line) {
-        Token.Builder tokenBuilder = new Token.Builder();
         StringBuilder objectBuilder = new StringBuilder();
+        int tokenLine = lineNum;
 
-        tokenBuilder.setLine(lineNum);
         while (pos < line.length() && curChar != '"' && curChar != ':' && curChar != ',' && curChar != '{'
                 && curChar != '}' && curChar != '[' && curChar != ']') {
             if(!Character.isWhitespace(curChar)) {
@@ -137,14 +129,13 @@ public class ConfigTokenizer {
         boolean isBool = value.equalsIgnoreCase("true") || value.equalsIgnoreCase("false");
 
         if (isBool || isInteger(value)) {
-            return tokenBuilder.setType(TokenType.VALUE).setValue(value.toLowerCase()).build();
-        } else {
-            return tokenBuilder.setType(TokenType.ERROR).setValue(value).build();
+            return new Token(TokenType.VALUE, value.toLowerCase(), tokenLine);
         }
+        return new Token(TokenType.ERROR, value, tokenLine);
     }
 
     private Token scanString(String line, StringBuilder builder) throws JsonSyntaxException {
-        Token.Builder token = new Token.Builder().setLine(lineNum);
+        int tokenLine = lineNum;
         requireQuote();
         consumeChar(line);
         builder.append('"');
@@ -158,13 +149,9 @@ public class ConfigTokenizer {
         consumeWhitespace(line);
 
         if (curChar == ':') {
-            token.setType(TokenType.KEY);
-        } else {
-            token.setType(TokenType.VALUE);
+            return new Token(TokenType.KEY, builder.toString(), tokenLine);
         }
-
-        token.setValue(builder.toString());
-        return token.build();
+        return new Token(TokenType.VALUE, builder.toString(), tokenLine);
     }
 
     private void consumeChar(String line) {

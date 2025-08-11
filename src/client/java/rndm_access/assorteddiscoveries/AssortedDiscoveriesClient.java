@@ -13,6 +13,7 @@ import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import rndm_access.assorteddiscoveries.block.SheepPlushieBlock;
 import rndm_access.assorteddiscoveries.block_entity.DyedCampfireBlockEntityRenderer;
 import rndm_access.assorteddiscoveries.config.BooleanEntriesS2CPayload;
+import rndm_access.assorteddiscoveries.config.ModClientConfig;
 import rndm_access.assorteddiscoveries.core.*;
 import rndm_access.assorteddiscoveries.particle.AirNectarParticle;
 import rndm_access.assorteddiscoveries.particle.SporeParticle;
@@ -26,7 +27,7 @@ public class AssortedDiscoveriesClient implements ClientModInitializer {
         registerBlockEntityRenderers();
 
         ClientPlayNetworking.registerGlobalReceiver(BooleanEntriesS2CPayload.ID, (payload, context) -> {
-            AssortedDiscoveries.BOOL_SERVER_CONFIG_ENTRIES = payload.configMap();
+            ModClientConfig.update(payload.configMap());
             AssortedDiscoveries.LOGGER.info("{} received the server config data", context.player().getName().getString());
         });
     }

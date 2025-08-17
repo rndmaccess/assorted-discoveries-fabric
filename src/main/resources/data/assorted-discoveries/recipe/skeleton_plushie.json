@@ -3,12 +3,12 @@
   "category": "misc",
   "key": {
     "W": "minecraft:white_wool",
-    "G": "minecraft:gray_wool",
+    "B": "minecraft:black_wool",
     "I": "minecraft:arrow"
   },
   "pattern": [
     "WWW",
-    "GIG",
+    "BIB",
     "WWW"
   ],
   "result": {

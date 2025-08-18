@@ -98,8 +98,10 @@ public class AssortedDiscoveries implements ModInitializer {
                 BooleanEntriesS2CPayload payload = new BooleanEntriesS2CPayload(ModClientConfig.get());
                 String playerName = player.getName().getString();
 
-                ServerPlayNetworking.send(player, payload);
-                LOGGER.info("Sent server config request to player {}", playerName);
+                if (ServerPlayNetworking.canSend(player, payload.getId())) {
+                    ServerPlayNetworking.send(player, payload);
+                    LOGGER.info("Sent server config request to player {}", playerName);
+                }
             }
         });
     }

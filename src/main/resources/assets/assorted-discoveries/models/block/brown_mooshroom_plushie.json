@@ -1,8 +1,7 @@
 {
   "parent": "assorted-discoveries:block/template_mooshroom_plushie",
   "textures": {
-    "body": "block/brown_wool",
-    "spot": "block/terracotta",
-    "horns": "block/terracotta"
+    "particle": "minecraft:block/brown_wool",
+    "atlas": "assorted-discoveries:block/brown_mooshroom_plushie"
   }
 }

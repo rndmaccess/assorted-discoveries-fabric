@@ -46,40 +46,41 @@ import java.util.Optional;
 
 public class AssortedDiscoveries implements ModInitializer {
     public static final String MOD_ID = "assorted-discoveries";
-	public static final Logger LOGGER = LoggerFactory.getLogger("AssortedDiscoveries");
-	private static final RegistryKey<ItemGroup> MOD_ITEM_GROUP_KEY = RegistryKey.of(
-			RegistryKeys.ITEM_GROUP, makeModId("item_group"));
+    public static final Logger LOGGER = LoggerFactory.getLogger("AssortedDiscoveries");
+    private static final RegistryKey<ItemGroup> MOD_ITEM_GROUP_KEY = RegistryKey.of(
+            RegistryKeys.ITEM_GROUP, makeModId("item_group"));
     public static final ItemGroup MOD_ITEM_GROUP = FabricItemGroup.builder()
             .icon(() -> new ItemStack(ModBlocks.ENDERMAN_PLUSHIE.asItem()))
             .displayName(Text.translatable("itemGroup." + MOD_ID))
             .build();
 
-	@Override
-	public void onInitialize() {
+    @Override
+    public void onInitialize() {
         // Config
-        registerConfigEvents();
+        AssortedDiscoveries.registerConfigEvents();
         ModResourceConditionTypes.register();
 
-		// General Registries
+        // General Registries
         ModBlocks.register();
-		ModItems.register();
+        ModItems.register();
         AssortedDiscoveries.addItemGroups();
-		ModBlockEntityTypes.register();
-		ModParticleTypes.register();
-		ModSoundEvents.register();
-		AssortedDiscoveries.registerFuel();
-		AssortedDiscoveries.registerCompostables();
-		AssortedDiscoveries.modifyLootTables();
+        ModBlockEntityTypes.register();
+        ModParticleTypes.register();
+        ModSoundEvents.register();
+        AssortedDiscoveries.registerFuel();
+        AssortedDiscoveries.registerCompostables();
+        AssortedDiscoveries.modifyLootTables();
         AssortedDiscoveries.registerVillagerInteractions();
 
-		// World Generation Registries
-		ModFeatures.register();
-		AssortedDiscoveries.addFeaturesToBiomes();
-	}
+        // World Generation Registries
+        ModFeatures.register();
+        AssortedDiscoveries.addFeaturesToBiomes();
+    }
 
     public static Identifier makeModId(String path) {
         return Identifier.of(MOD_ID, path);
     }
+
     private static void registerConfigEvents() {
         PayloadTypeRegistry.playS2C().register(BooleanEntriesS2CPayload.ID, BooleanEntriesS2CPayload.CODEC);
 
@@ -111,7 +112,7 @@ public class AssortedDiscoveries implements ModInitializer {
         VillagerInteractionRegistries.registerFood(ModItems.GREEN_ONION, 1);
     }
 
-	private static void addFeaturesToBiomes() {
+    private static void addFeaturesToBiomes() {
         ServerConfig config = ModServerConfig.getInstance();
         BooleanConfigEntry configEntry;
 
@@ -200,14 +201,14 @@ public class AssortedDiscoveries implements ModInitializer {
             BiomeModifications.addFeature(BiomeSelectors.tag(ModBiomeTags.PATCH_WILD_GREEN_ONIONS),
                     GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatureKeys.PATCH_WILD_GREEN_ONIONS_RARE);
         }
-	}
+    }
 
-	private static void registerFuel() {
+    private static void registerFuel() {
         FuelRegistryEvents.BUILD.register((builder, context) ->
                 builder.add(ModBlocks.DRIED_BLOOD_KELP_BLOCK, 4000));
-	}
+    }
 
-	private static void registerCompostables() {
+    private static void registerCompostables() {
         CompostingChanceRegistry.INSTANCE.add(ModItems.BLUEBERRIES, 0.3F);
         CompostingChanceRegistry.INSTANCE.add(ModItems.CINDERSNAP_BERRIES, 0.3F);
         CompostingChanceRegistry.INSTANCE.add(ModItems.FROSTBITE_BERRIES, 0.3F);
@@ -223,10 +224,10 @@ public class AssortedDiscoveries implements ModInitializer {
         CompostingChanceRegistry.INSTANCE.add(ModBlocks.CATTAIL, 0.5F);
         CompostingChanceRegistry.INSTANCE.add(ModItems.GREEN_ONION, 0.65F);
         CompostingChanceRegistry.INSTANCE.add(ModItems.GREEN_ONION_SEEDS, 0.3F);
-	}
+    }
 
-	private static void modifyLootTables() {
-		Optional<RegistryKey<LootTable>> spruceLeavesLootTableId = Blocks.SPRUCE_LEAVES.getLootTableKey();
+    private static void modifyLootTables() {
+        Optional<RegistryKey<LootTable>> spruceLeavesLootTableId = Blocks.SPRUCE_LEAVES.getLootTableKey();
 
         LootTableEvents.MODIFY.register((key, tableBuilder, source,
                                          registries) -> {
@@ -234,7 +235,7 @@ public class AssortedDiscoveries implements ModInitializer {
                 modifySpruceLeavesLootTable(registries, tableBuilder);
             }
         });
-	}
+    }
 
     private static void modifySpruceLeavesLootTable(RegistryWrapper.WrapperLookup registries, LootTable.Builder builder) {
         ServerConfig config = ModServerConfig.getInstance();
@@ -256,7 +257,7 @@ public class AssortedDiscoveries implements ModInitializer {
         }
     }
 
-	private static void addItemGroups() {
+    private static void addItemGroups() {
         Registry.register(Registries.ITEM_GROUP, MOD_ITEM_GROUP_KEY, MOD_ITEM_GROUP);
         ItemGroupEvents.modifyEntriesEvent(MOD_ITEM_GROUP_KEY).register((entries) -> {
             if (ModClientConfig.get().get(ModServerConfigKeys.ENABLE_SLIME_PLUSHIE)) {
@@ -1026,5 +1027,5 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.RED_VELVET_CAKE.asItem());
             }
         });
-	}
+    }
 }

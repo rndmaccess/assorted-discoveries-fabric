@@ -1,7 +1,7 @@
 {
   "parent": "assorted-discoveries:block/template_squid_plushie",
   "textures": {
-    "body": "block/blue_wool",
-	"eyes": "block/black_wool"
+    "particle": "minecraft:block/blue_wool",
+    "atlas": "assorted-discoveries:block/squid_plushie"
   }
 }

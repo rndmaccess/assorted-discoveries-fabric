@@ -150,7 +150,6 @@ public class ModServerConfig {
                 .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_COW_PLUSHIES))
                 .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_HORSE_PLUSHIES))
                 .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_MOOSHROOM_PLUSHIES))
-                .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_OCELOT_PLUSHIE))
                 .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_PIG_PLUSHIES))
                 .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_PUFFERFISH_PLUSHIE))
                 .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_RABBIT_PLUSHIES))

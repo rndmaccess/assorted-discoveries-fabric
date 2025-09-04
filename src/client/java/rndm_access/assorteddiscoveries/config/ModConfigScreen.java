@@ -190,8 +190,6 @@ public class ModConfigScreen {
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModServerConfigKeys.ENABLE_MOOSHROOM_PLUSHIES, categoryName);
         category.addEntry(configEntry);
-        configEntry = makeBoolConfigEntry(entryBuilder, ModServerConfigKeys.ENABLE_OCELOT_PLUSHIE, categoryName);
-        category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModServerConfigKeys.ENABLE_PIG_PLUSHIES, categoryName);
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModServerConfigKeys.ENABLE_PUFFERFISH_PLUSHIE, categoryName);

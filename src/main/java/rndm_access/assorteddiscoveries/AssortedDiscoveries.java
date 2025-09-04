@@ -264,11 +264,8 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.MAGMA_CUBE_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.get().get(ModServerConfigKeys.ENABLE_OCELOT_PLUSHIE)) {
-                entries.add(ModBlocks.OCELOT_PLUSHIE.asItem());
-            }
-
             if (ModClientConfig.get().get(ModServerConfigKeys.ENABLE_CAT_PLUSHIES)) {
+                entries.add(ModBlocks.OCELOT_PLUSHIE.asItem());
                 entries.add(ModBlocks.WHITE_CAT_PLUSHIE.asItem());
                 entries.add(ModBlocks.TABBY_CAT_PLUSHIE.asItem());
                 entries.add(ModBlocks.TUXEDO_CAT_PLUSHIE.asItem());

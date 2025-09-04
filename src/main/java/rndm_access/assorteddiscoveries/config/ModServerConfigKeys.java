@@ -12,7 +12,6 @@ public class ModServerConfigKeys {
     public static final String ENABLE_COW_PLUSHIES;
     public static final String ENABLE_HORSE_PLUSHIES;
     public static final String ENABLE_MOOSHROOM_PLUSHIES;
-    public static final String ENABLE_OCELOT_PLUSHIE;
     public static final String ENABLE_PIG_PLUSHIES;
     public static final String ENABLE_PUFFERFISH_PLUSHIE;
     public static final String ENABLE_RABBIT_PLUSHIES;
@@ -129,7 +128,6 @@ public class ModServerConfigKeys {
         ENABLE_COW_PLUSHIES = "enable_cow_plushies";
         ENABLE_HORSE_PLUSHIES = "enable_horse_plushies";
         ENABLE_MOOSHROOM_PLUSHIES = "enable_mooshroom_plushies";
-        ENABLE_OCELOT_PLUSHIE = "enable_ocelot_plushie";
         ENABLE_PIG_PLUSHIES = "enable_pig_plushies";
         ENABLE_PUFFERFISH_PLUSHIE = "enable_pufferfish_plushie";
         ENABLE_RABBIT_PLUSHIES = "enable_rabbit_plushies";

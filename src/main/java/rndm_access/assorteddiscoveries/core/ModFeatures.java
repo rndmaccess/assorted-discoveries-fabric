@@ -10,26 +10,21 @@ import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.worldgen.feature.BloodKelpFeature;
 import rndm_access.assorteddiscoveries.worldgen.feature.CattailFeature;
 
+@SuppressWarnings("unused")
 public final class ModFeatures {
-    public static final Feature<ProbabilityConfig> CATTAIL;
-    public static final Feature<DefaultFeatureConfig> BLOOD_KELP;
+    public static final Feature<ProbabilityConfig> CATTAIL
+            = register("cattail", new CattailFeature(ProbabilityConfig.CODEC));
+    public static final Feature<DefaultFeatureConfig> BLOOD_KELP
+            = register("blood_kelp", new BloodKelpFeature(DefaultFeatureConfig.CODEC));
 
-    private static <C extends FeatureConfig, F extends Feature<C>> void register(String path, F feature) {
-        Registry.register(Registries.FEATURE, AssortedDiscoveries.makeModId(path), feature);
+    private static <C extends FeatureConfig, F extends Feature<C>> F register(String name, F feature) {
+        return Registry.register(Registries.FEATURE, AssortedDiscoveries.makeModId(name), feature);
     }
 
     /**
      * Called during initialization to register every feature.
      */
     public static void register() {
-        register("cattail", CATTAIL);
-        register("blood_kelp", BLOOD_KELP);
-
         AssortedDiscoveries.LOGGER.info("Registered features");
-    }
-
-    static {
-        CATTAIL = new CattailFeature(ProbabilityConfig.CODEC);
-        BLOOD_KELP = new BloodKelpFeature(DefaultFeatureConfig.CODEC);
     }
 }

@@ -6,23 +6,14 @@ import net.minecraft.sound.SoundEvent;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 
 public final class ModSoundEvents {
-    public static final SoundEvent BLOCK_MUSHROOM_BOUNCE;
+    public static final SoundEvent BLOCK_MUSHROOM_BOUNCE = register("block.mushroom_bounce");
 
+    private static SoundEvent register(String name) {
+        SoundEvent sound = SoundEvent.of(AssortedDiscoveries.makeModId(name));
+        return Registry.register(Registries.SOUND_EVENT, sound.id(), sound);
+    }
 
     public static void register() {
-        register(BLOCK_MUSHROOM_BOUNCE);
         AssortedDiscoveries.LOGGER.info("Registered sound events");
-    }
-
-    private static void register(SoundEvent soundEvent) {
-        Registry.register(Registries.SOUND_EVENT, soundEvent.id(), soundEvent);
-    }
-
-    private static SoundEvent makeSoundEvent(String name) {
-        return SoundEvent.of(AssortedDiscoveries.makeModId(name));
-    }
-
-    static {
-        BLOCK_MUSHROOM_BOUNCE = makeSoundEvent("block.mushroom_bounce");
     }
 }

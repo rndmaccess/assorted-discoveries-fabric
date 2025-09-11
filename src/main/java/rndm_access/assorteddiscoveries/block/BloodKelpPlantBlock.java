@@ -23,7 +23,7 @@ import org.jetbrains.annotations.Nullable;
 import rndm_access.assorteddiscoveries.core.ModBlocks;
 
 public class BloodKelpPlantBlock extends AbstractPlantBlock implements FluidFillable, BloodKelp {
-    public static final MapCodec<BloodKelpPlantBlock> CODEC;
+    public static final MapCodec<BloodKelpPlantBlock> CODEC = createCodec(BloodKelpPlantBlock::new);
 
     public BloodKelpPlantBlock(AbstractBlock.Settings settings) {
         super(settings, Direction.UP, VoxelShapes.fullCube(), true);
@@ -84,9 +84,5 @@ public class BloodKelpPlantBlock extends AbstractPlantBlock implements FluidFill
 
     public boolean tryFillWithFluid(WorldAccess world, BlockPos pos, BlockState state, FluidState fluidState) {
         return false;
-    }
-
-    static {
-        CODEC = createCodec(BloodKelpPlantBlock::new);
     }
 }

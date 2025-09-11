@@ -18,8 +18,8 @@ import net.minecraft.world.tick.ScheduledTickView;
 import rndm_access.assorteddiscoveries.block.state.ModBlockStateProperties;
 
 public class RopeLadderBlock extends LadderBlock {
-    public static final IntProperty LENGTH;
-    public static final BooleanProperty DOWN;
+    public static final IntProperty LENGTH = ModBlockStateProperties.LENGTH;
+    public static final BooleanProperty DOWN = Properties.DOWN;
 
     public RopeLadderBlock(AbstractBlock.Settings settings) {
         super(settings);
@@ -140,10 +140,5 @@ public class RopeLadderBlock extends LadderBlock {
 
     private boolean isWaterSource(FluidState fluidState) {
         return fluidState.isIn(FluidTags.WATER) && fluidState.isStill();
-    }
-
-    static {
-        LENGTH = ModBlockStateProperties.LENGTH;
-        DOWN = Properties.DOWN;
     }
 }

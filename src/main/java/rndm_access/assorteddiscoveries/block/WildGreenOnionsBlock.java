@@ -7,8 +7,9 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 
 public class WildGreenOnionsBlock extends PlantBlock {
-    public static final MapCodec<WildGreenOnionsBlock> CODEC;
-    private static final VoxelShape SHAPE;
+    public static final MapCodec<WildGreenOnionsBlock> CODEC = createCodec(WildGreenOnionsBlock::new);
+    private static final VoxelShape SHAPE = Block.createCuboidShape(1.0D, 0.0D, 1.0D,
+            15.0D, 16.0D, 15.0D);
 
     public WildGreenOnionsBlock(Settings settings) {
         super(settings);
@@ -23,11 +24,5 @@ public class WildGreenOnionsBlock extends PlantBlock {
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos,
                                       ShapeContext context) {
         return SHAPE;
-    }
-
-    static {
-        CODEC = createCodec(WildGreenOnionsBlock::new);
-        SHAPE = Block.createCuboidShape(1.0D, 0.0D, 1.0D, 15.0D,
-                16.0D, 15.0D);
     }
 }

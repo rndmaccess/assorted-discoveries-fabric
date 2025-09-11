@@ -8,8 +8,9 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 
 public class CreeperPlushieBlock extends AbstractSimplePlushieBlock {
-    public static final MapCodec<CreeperPlushieBlock> CODEC;
-    private static final VoxelShape NORTH_SHAPE;
+    public static final MapCodec<CreeperPlushieBlock> CODEC = createCodec(CreeperPlushieBlock::new);
+    private static final VoxelShape NORTH_SHAPE = Block.createCuboidShape(4.0D, 0.0D, 2.0D,
+            12.0D, 12.0D, 14.0D);
 
     public CreeperPlushieBlock(Settings settings) {
         super(settings);
@@ -30,11 +31,5 @@ public class CreeperPlushieBlock extends AbstractSimplePlushieBlock {
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(WATERLOGGED, FACING);
-    }
-
-    static {
-        CODEC = createCodec(CreeperPlushieBlock::new);
-        NORTH_SHAPE = Block.createCuboidShape(4.0D, 0.0D, 2.0D, 12.0D,
-                12.0D, 14.0D);
     }
 }

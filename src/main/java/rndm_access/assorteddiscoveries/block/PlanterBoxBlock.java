@@ -26,11 +26,11 @@ import java.util.HashMap;
 import java.util.List;
 
 public class PlanterBoxBlock extends Block {
-    public static final BooleanProperty NORTH;
-    public static final BooleanProperty SOUTH;
-    public static final BooleanProperty WEST;
-    public static final BooleanProperty EAST;
-    private static final HashMap<List<Boolean>, VoxelShape> SHAPES;
+    public static final BooleanProperty NORTH = Properties.NORTH;
+    public static final BooleanProperty SOUTH = Properties.SOUTH;
+    public static final BooleanProperty WEST = Properties.WEST;
+    public static final BooleanProperty EAST = Properties.EAST;
+    private static final HashMap<List<Boolean>, VoxelShape> SHAPES = collectStateShapes();
 
     public PlanterBoxBlock(AbstractBlock.Settings settings) {
         super(settings);
@@ -138,13 +138,5 @@ public class PlanterBoxBlock extends Block {
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(NORTH, SOUTH, WEST, EAST);
-    }
-
-    static {
-        NORTH = Properties.NORTH;
-        SOUTH = Properties.SOUTH;
-        WEST = Properties.WEST;
-        EAST = Properties.EAST;
-        SHAPES = collectStateShapes();
     }
 }

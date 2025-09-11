@@ -30,12 +30,18 @@ import rndm_access.assorteddiscoveries.util.HashPair;
 import java.util.Map;
 
 public class ModdedCandleCakeBlock extends AbstractCandleBlock {
-    public static final MapCodec<ModdedCandleCakeBlock> CODEC;
-    public static final BooleanProperty LIT;
-    private static final VoxelShape CAKE_SHAPE;
-    private static final VoxelShape CANDLE_SHAPE;
-    private static final VoxelShape SHAPE;
-    private static final Map<HashPair<Block, Block>, ModdedCandleCakeBlock> CANDLES_TO_CANDLE_CAKES;
+    public static final MapCodec<ModdedCandleCakeBlock> CODEC
+            = RecordCodecBuilder.mapCodec((instance) -> instance.group(
+            Registries.BLOCK.getCodec().fieldOf("cake").forGetter((block) -> block.cake),
+            Registries.BLOCK.getCodec().fieldOf("candle").forGetter((item) -> item.candle),
+            createSettingsCodec()).apply(instance, ModdedCandleCakeBlock::new));
+    public static final BooleanProperty LIT = AbstractCandleBlock.LIT;
+    private static final VoxelShape CAKE_SHAPE = Block.createCuboidShape(1.0D, 0.0D, 1.0D,
+            15.0D, 8.0D, 15.0D);
+    private static final VoxelShape CANDLE_SHAPE = Block.createCuboidShape(7.0D, 8.0D, 7.0D,
+            9.0D, 14.0D, 9.0D);
+    private static final VoxelShape SHAPE = VoxelShapes.union(CAKE_SHAPE, CANDLE_SHAPE);
+    private static final Map<HashPair<Block, Block>, ModdedCandleCakeBlock> CANDLES_TO_CANDLE_CAKES = Maps.newHashMap();
     private final Block cake;
     private final Block candle;
 
@@ -133,19 +139,5 @@ public class ModdedCandleCakeBlock extends AbstractCandleBlock {
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(LIT);
-    }
-
-    static {
-       CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
-               Registries.BLOCK.getCodec().fieldOf("cake").forGetter((block) -> block.cake),
-               Registries.BLOCK.getCodec().fieldOf("candle").forGetter((item) -> item.candle),
-               createSettingsCodec()).apply(instance, ModdedCandleCakeBlock::new));
-        LIT = AbstractCandleBlock.LIT;
-        CAKE_SHAPE = Block.createCuboidShape(1.0D, 0.0D, 1.0D, 15.0D,
-                8.0D, 15.0D);
-        CANDLE_SHAPE = Block.createCuboidShape(7.0D, 8.0D, 7.0D, 9.0D,
-                14.0D, 9.0D);
-        SHAPE = VoxelShapes.union(CAKE_SHAPE, CANDLE_SHAPE);
-        CANDLES_TO_CANDLE_CAKES = Maps.newHashMap();
     }
 }

@@ -17,7 +17,7 @@ import rndm_access.assorteddiscoveries.core.ModEntityTypeTags;
 import rndm_access.assorteddiscoveries.core.ModItems;
 
 public class CindersnapBerryBushBlock extends AbstractBerryBushBlock {
-    public static final MapCodec<CindersnapBerryBushBlock> CODEC;
+    public static final MapCodec<CindersnapBerryBushBlock> CODEC = createCodec(CindersnapBerryBushBlock::new);
 
     public CindersnapBerryBushBlock(Settings settings) {
         super(settings);
@@ -69,9 +69,5 @@ public class CindersnapBerryBushBlock extends AbstractBerryBushBlock {
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(AGE);
-    }
-
-    static {
-        CODEC = createCodec(CindersnapBerryBushBlock::new);
     }
 }

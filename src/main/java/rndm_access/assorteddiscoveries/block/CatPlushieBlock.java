@@ -15,8 +15,8 @@ import net.minecraft.world.World;
 import rndm_access.assorteddiscoveries.block.state.ModBlockStateProperties;
 
 public class CatPlushieBlock extends AbstractSimplePlushieBlock {
-    public static final BooleanProperty IS_SITTING;
-    public static final MapCodec<CatPlushieBlock> CODEC;
+    public static final BooleanProperty IS_SITTING = ModBlockStateProperties.IS_SITTING;
+    public static final MapCodec<CatPlushieBlock> CODEC = createCodec(CatPlushieBlock::new);
     private static final VoxelShape NORTH_SHAPE = Block.createCuboidShape(4.5D, 0.0D, 1.0D,
             11.5D, 9.5D, 14.5D);
 
@@ -47,10 +47,5 @@ public class CatPlushieBlock extends AbstractSimplePlushieBlock {
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(WATERLOGGED, FACING, IS_SITTING);
-    }
-
-    static {
-        IS_SITTING = ModBlockStateProperties.IS_SITTING;
-        CODEC = createCodec(CatPlushieBlock::new);
     }
 }

@@ -19,8 +19,8 @@ import rndm_access.assorteddiscoveries.core.ModBlocks;
 import java.util.HashMap;
 
 public class DirtPathSlabBlock extends SlabBlock {
+    public static final MapCodec<DirtPathSlabBlock> CODEC = createCodec(DirtPathSlabBlock::new);
     protected static final HashMap<SlabType, VoxelShape> SHAPE;
-    public static final MapCodec<DirtPathSlabBlock> CODEC;
 
     public DirtPathSlabBlock(Settings settings) {
         super(settings);
@@ -61,6 +61,5 @@ public class DirtPathSlabBlock extends SlabBlock {
                 16.0));
         SHAPE.put(SlabType.TOP, Block.createCuboidShape(0.0, 8.0, 0.0, 16.0, 15.0,
                 16.0));
-        CODEC = createCodec(DirtPathSlabBlock::new);
     }
 }

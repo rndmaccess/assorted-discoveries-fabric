@@ -16,7 +16,7 @@ import net.minecraft.world.WorldView;
 import net.minecraft.world.tick.ScheduledTickView;
 
 public abstract class AbstractPlushieBlock extends HorizontalFacingBlock implements Waterloggable {
-    public static final BooleanProperty WATERLOGGED;
+    public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
 
     protected AbstractPlushieBlock(AbstractBlock.Settings settings) {
         super(settings);
@@ -56,9 +56,5 @@ public abstract class AbstractPlushieBlock extends HorizontalFacingBlock impleme
     @Override
     public FluidState getFluidState(BlockState state) {
         return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : Fluids.EMPTY.getDefaultState();
-    }
-
-    static {
-        WATERLOGGED = Properties.WATERLOGGED;
     }
 }

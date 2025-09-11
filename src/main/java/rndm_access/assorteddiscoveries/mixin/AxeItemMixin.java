@@ -24,7 +24,17 @@ import java.util.Map;
 @Mixin(AxeItem.class)
 public abstract class AxeItemMixin {
     @Unique
-    private static final Map<Block, Block> STRIPPABLE_WALLS;
+    private static final Map<Block, Block> STRIPPABLE_WALLS = new ImmutableMap.Builder<Block, Block>()
+            .put(ModBlocks.OAK_WALL, ModBlocks.STRIPPED_OAK_WALL)
+            .put(ModBlocks.SPRUCE_WALL, ModBlocks.STRIPPED_SPRUCE_WALL)
+            .put(ModBlocks.BIRCH_WALL, ModBlocks.STRIPPED_BIRCH_WALL)
+            .put(ModBlocks.JUNGLE_WALL, ModBlocks.STRIPPED_JUNGLE_WALL)
+            .put(ModBlocks.ACACIA_WALL, ModBlocks.STRIPPED_ACACIA_WALL)
+            .put(ModBlocks.DARK_OAK_WALL, ModBlocks.STRIPPED_DARK_OAK_WALL)
+            .put(ModBlocks.MANGROVE_WALL, ModBlocks.STRIPPED_MANGROVE_WALL)
+            .put(ModBlocks.CRIMSON_WALL, ModBlocks.STRIPPED_CRIMSON_WALL)
+            .put(ModBlocks.WARPED_WALL, ModBlocks.STRIPPED_WARPED_WALL)
+            .put(ModBlocks.CHERRY_WALL, ModBlocks.STRIPPED_CHERRY_WALL).build();
 
     @Inject(method = "useOnBlock", at = @At("HEAD"), cancellable = true)
     private void useOnBlock(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir) {
@@ -34,7 +44,7 @@ public abstract class AxeItemMixin {
         BlockState state = world.getBlockState(pos);
         Block block = state.getBlock();
 
-        if(STRIPPABLE_WALLS.containsKey(block) && block instanceof WallBlock) {
+        if (STRIPPABLE_WALLS.containsKey(block) && block instanceof WallBlock) {
             world.playSound(player, pos, SoundEvents.ITEM_AXE_STRIP, SoundCategory.BLOCKS, 1.0F, 1.0F);
             world.setBlockState(pos, STRIPPABLE_WALLS.get(block).getDefaultState()
                     .with(WallBlock.NORTH_WALL_SHAPE, state.get(WallBlock.NORTH_WALL_SHAPE))
@@ -45,19 +55,5 @@ public abstract class AxeItemMixin {
                     .with(WallBlock.WATERLOGGED, state.get(WallBlock.WATERLOGGED)));
             cir.setReturnValue(ActionResult.SUCCESS);
         }
-    }
-
-    static {
-        STRIPPABLE_WALLS = new ImmutableMap.Builder<Block, Block>()
-                .put(ModBlocks.OAK_WALL, ModBlocks.STRIPPED_OAK_WALL)
-                .put(ModBlocks.SPRUCE_WALL, ModBlocks.STRIPPED_SPRUCE_WALL)
-                .put(ModBlocks.BIRCH_WALL, ModBlocks.STRIPPED_BIRCH_WALL)
-                .put(ModBlocks.JUNGLE_WALL, ModBlocks.STRIPPED_JUNGLE_WALL)
-                .put(ModBlocks.ACACIA_WALL, ModBlocks.STRIPPED_ACACIA_WALL)
-                .put(ModBlocks.DARK_OAK_WALL, ModBlocks.STRIPPED_DARK_OAK_WALL)
-                .put(ModBlocks.MANGROVE_WALL, ModBlocks.STRIPPED_MANGROVE_WALL)
-                .put(ModBlocks.CRIMSON_WALL, ModBlocks.STRIPPED_CRIMSON_WALL)
-                .put(ModBlocks.WARPED_WALL, ModBlocks.STRIPPED_WARPED_WALL)
-                .put(ModBlocks.CHERRY_WALL, ModBlocks.STRIPPED_CHERRY_WALL).build();
     }
 }

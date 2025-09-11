@@ -9,8 +9,9 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 
 public class BlazePlushieBlock extends AbstractSimplePlushieBlock {
-    public static final MapCodec<BlazePlushieBlock> CODEC;
-    private static final VoxelShape NORTH_SHAPE;
+    public static final MapCodec<BlazePlushieBlock> CODEC = createCodec(BlazePlushieBlock::new);
+    private static final VoxelShape NORTH_SHAPE = Block.createCuboidShape(2.0D, 0.0D, 3.0D,
+            13.5D, 15.5D, 12.0D);
 
     public BlazePlushieBlock(AbstractBlock.Settings settings) {
         super(settings);
@@ -31,11 +32,5 @@ public class BlazePlushieBlock extends AbstractSimplePlushieBlock {
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(WATERLOGGED, FACING);
-    }
-
-    static {
-        CODEC = createCodec(BlazePlushieBlock::new);
-        NORTH_SHAPE = Block.createCuboidShape(2.0D, 0.0D, 3.0D, 13.5D,
-                15.5D, 12.0D);
     }
 }

@@ -12,7 +12,7 @@ import java.util.*;
 import java.util.function.Supplier;
 
 public class ModConfigScreen {
-    public static final HashMap<String, Object> ENTRY_VALUE_CHANGES;
+    public static final HashMap<String, Object> ENTRY_VALUE_CHANGES = new HashMap<>();
 
     public static ConfigBuilder getConfigScreenBuilder() {
         Text title = Text.translatable("title." + AssortedDiscoveries.MOD_ID + ".config");
@@ -440,9 +440,5 @@ public class ModConfigScreen {
     private static Text makeCategoryText(String categoryName) {
         return Text.translatable("category.cloth-config." + AssortedDiscoveries.MOD_ID
                 + ".option." + categoryName);
-    }
-
-    static {
-        ENTRY_VALUE_CHANGES = new HashMap<>();
     }
 }

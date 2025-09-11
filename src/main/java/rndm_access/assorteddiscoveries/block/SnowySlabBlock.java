@@ -13,14 +13,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
+import net.minecraft.world.tick.ScheduledTickView;
 import rndm_access.assorteddiscoveries.core.ModBlockTags;
 import rndm_access.assorteddiscoveries.core.ModBlocks;
 
 public class SnowySlabBlock extends SlabBlock {
-    public static final MapCodec<SnowySlabBlock> CODEC;
-    public static final BooleanProperty SNOWY;
+    public static final MapCodec<SnowySlabBlock> CODEC = createCodec(SnowySlabBlock::new);
+    public static final BooleanProperty SNOWY = Properties.SNOWY;
 
     public SnowySlabBlock(Settings settings) {
         super(settings);
@@ -33,12 +33,14 @@ public class SnowySlabBlock extends SlabBlock {
         return CODEC;
     }
 
-    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState,
-                                                WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        return direction == Direction.UP ? state.with(SNOWY, isSnow(world, state, neighborPos, neighborState))
-                : state;
+    @Override
+    protected BlockState getStateForNeighborUpdate(BlockState state, WorldView world, ScheduledTickView tickView,
+                                                   BlockPos pos, Direction direction, BlockPos neighborPos,
+                                                   BlockState neighborState, Random random) {
+        return direction == Direction.UP ? state.with(SNOWY, isSnow(world, state, neighborPos, neighborState)) : state;
     }
 
+    @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         World world = ctx.getWorld();
         BlockPos neighborPos = ctx.getBlockPos().up();
@@ -89,10 +91,5 @@ public class SnowySlabBlock extends SlabBlock {
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(TYPE, WATERLOGGED, SNOWY);
-    }
-
-    static {
-        CODEC = createCodec(SnowySlabBlock::new);
-        SNOWY = Properties.SNOWY;
     }
 }

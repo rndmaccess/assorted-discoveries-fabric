@@ -20,14 +20,17 @@ import rndm_access.assorteddiscoveries.util.ShapeHelper;
 import java.util.HashMap;
 
 public class PufferfishPlushieBlock extends AbstractPlushieBlock {
-    public static final MapCodec<PufferfishPlushieBlock> CODEC;
-    public static final IntProperty PUFFED;
-    private static final VoxelShape SMALL_NORTH_SHAPE;
-    private static final VoxelShape MEDIUM_NORTH_SHAPE;
-    private static final VoxelShape LARGE_NORTH_SHAPE;
-    private static final HashMap<Direction, VoxelShape> SMALL_SHAPES;
-    private static final HashMap<Direction, VoxelShape> MEDIUM_SHAPES;
-    private static final HashMap<Direction, VoxelShape> LARGE_SHAPES;
+    public static final MapCodec<PufferfishPlushieBlock> CODEC = createCodec(PufferfishPlushieBlock::new);
+    public static final IntProperty PUFFED = ModBlockStateProperties.PUFFED;
+    private static final VoxelShape SMALL_NORTH_SHAPE = Block.createCuboidShape(4.0D, 0.0D, 3.0D,
+            12.0D, 6.0D, 14.0D);
+    private static final VoxelShape MEDIUM_NORTH_SHAPE = Block.createCuboidShape(1.5D, 0.0D, 2.5D,
+            14.5D, 8.5D, 11.5D);
+    private static final VoxelShape LARGE_NORTH_SHAPE = Block.createCuboidShape(0.5D, 0.0D, 1.5D,
+            15.5D, 9.5D, 12.5D);
+    private static final HashMap<Direction, VoxelShape> SMALL_SHAPES = ShapeHelper.makeShapeRotMap(SMALL_NORTH_SHAPE);
+    private static final HashMap<Direction, VoxelShape> MEDIUM_SHAPES = ShapeHelper.makeShapeRotMap(MEDIUM_NORTH_SHAPE);
+    private static final HashMap<Direction, VoxelShape> LARGE_SHAPES = ShapeHelper.makeShapeRotMap(LARGE_NORTH_SHAPE);
 
     public PufferfishPlushieBlock(AbstractBlock.Settings settings) {
         super(settings);
@@ -72,19 +75,5 @@ public class PufferfishPlushieBlock extends AbstractPlushieBlock {
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING, WATERLOGGED, PUFFED);
-    }
-
-    static {
-        CODEC = createCodec(PufferfishPlushieBlock::new);
-        PUFFED = ModBlockStateProperties.PUFFED;
-        SMALL_NORTH_SHAPE = Block.createCuboidShape(4.0D, 0.0D, 3.0D, 12.0D,
-                6.0D, 14.0D);
-        MEDIUM_NORTH_SHAPE = Block.createCuboidShape(1.5D, 0.0D, 2.5D, 14.5D,
-                8.5D, 11.5D);
-        LARGE_NORTH_SHAPE = Block.createCuboidShape(0.5D, 0.0D, 1.5D, 15.5D,
-                9.5D, 12.5D);
-        SMALL_SHAPES = ShapeHelper.makeShapeRotMap(SMALL_NORTH_SHAPE);
-        MEDIUM_SHAPES = ShapeHelper.makeShapeRotMap(MEDIUM_NORTH_SHAPE);
-        LARGE_SHAPES = ShapeHelper.makeShapeRotMap(LARGE_NORTH_SHAPE);
     }
 }

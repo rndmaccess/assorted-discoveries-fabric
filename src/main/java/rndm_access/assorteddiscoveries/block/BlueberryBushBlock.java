@@ -12,7 +12,7 @@ import rndm_access.assorteddiscoveries.core.ModEntityTypeTags;
 import rndm_access.assorteddiscoveries.core.ModItems;
 
 public class BlueberryBushBlock extends AbstractBerryBushBlock {
-    public static final MapCodec<BlueberryBushBlock> CODEC;
+    public static final MapCodec<BlueberryBushBlock> CODEC = createCodec(BlueberryBushBlock::new);
 
     public BlueberryBushBlock(AbstractBlock.Settings settings) {
         super(settings);
@@ -47,9 +47,5 @@ public class BlueberryBushBlock extends AbstractBerryBushBlock {
     @Override
     protected boolean needsLightToGrow() {
         return true;
-    }
-
-    static {
-        CODEC = createCodec(BlueberryBushBlock::new);
     }
 }

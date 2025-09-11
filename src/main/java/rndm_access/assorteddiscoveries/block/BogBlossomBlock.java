@@ -13,8 +13,9 @@ import net.minecraft.world.tick.ScheduledTickView;
 import rndm_access.assorteddiscoveries.core.ModParticleTypes;
 
 public class BogBlossomBlock extends Block implements Fertilizable {
-    private static final VoxelShape SHAPE;
-    public static final MapCodec<BogBlossomBlock> CODEC;
+    private static final VoxelShape SHAPE = Block.createCuboidShape(2.0, 0.0, 2.0,
+            14.0, 3.0, 14.0);
+    public static final MapCodec<BogBlossomBlock> CODEC = createCodec(BogBlossomBlock::new);
 
     public BogBlossomBlock(Settings settings) {
         super(settings);
@@ -103,10 +104,5 @@ public class BogBlossomBlock extends Block implements Fertilizable {
             tries++;
             mutablePos = pos.mutableCopy();
         } while (!placed && tries < 24); // Try to place a block 24 times before giving up!
-    }
-
-    static {
-        SHAPE = Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 3.0, 14.0);
-        CODEC = createCodec(BogBlossomBlock::new);
     }
 }

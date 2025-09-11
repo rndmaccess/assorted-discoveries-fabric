@@ -8,8 +8,9 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 
 public class SnifferPlushieBlock extends AbstractSimplePlushieBlock {
-    public static final MapCodec<SnifferPlushieBlock> CODEC;
-    private static final VoxelShape NORTH_SHAPE;
+    public static final MapCodec<SnifferPlushieBlock> CODEC = createCodec(SnifferPlushieBlock::new);
+    private static final VoxelShape NORTH_SHAPE = Block.createCuboidShape(2.0D, 0.0D, 1.0D,
+            14.0D, 9.5D, 15.0D);
 
     public SnifferPlushieBlock(Settings settings) {
         super(settings);
@@ -30,11 +31,5 @@ public class SnifferPlushieBlock extends AbstractSimplePlushieBlock {
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(WATERLOGGED, FACING);
-    }
-
-    static {
-        CODEC = createCodec(SnifferPlushieBlock::new);
-        NORTH_SHAPE = Block.createCuboidShape(2.0D, 0.0D, 1.0D, 14.0D,
-                9.5D, 15.0D);
     }
 }

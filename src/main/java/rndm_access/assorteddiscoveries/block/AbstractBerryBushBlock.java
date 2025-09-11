@@ -32,9 +32,11 @@ import net.minecraft.world.event.GameEvent;
 import java.util.Objects;
 
 public abstract class AbstractBerryBushBlock extends PlantBlock implements Fertilizable {
-    public static IntProperty AGE;
-    public static VoxelShape SMALL_SHAPE;
-    public static VoxelShape LARGE_SHAPE;
+    public static IntProperty AGE = Properties.AGE_3;
+    public static VoxelShape SMALL_SHAPE = Block.createCuboidShape(3.0, 0.0, 3.0,
+            13.0, 8.0, 13.0);
+    public static VoxelShape LARGE_SHAPE = Block.createCuboidShape(1.0, 0.0, 1.0,
+            15.0, 16.0, 15.0);
 
     public AbstractBerryBushBlock(AbstractBlock.Settings settings) {
         super(settings);
@@ -165,11 +167,5 @@ public abstract class AbstractBerryBushBlock extends PlantBlock implements Ferti
     @Override
     protected boolean canPathfindThrough(BlockState state, NavigationType type) {
         return !this.bushDamages();
-    }
-
-    static {
-        AGE = Properties.AGE_3;
-        SMALL_SHAPE = Block.createCuboidShape(3.0, 0.0, 3.0, 13.0, 8.0, 13.0);
-        LARGE_SHAPE = Block.createCuboidShape(1.0, 0.0, 1.0, 15.0, 16.0, 15.0);
     }
 }

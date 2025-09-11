@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 import rndm_access.assorteddiscoveries.core.*;
 
 public class FrostbiteBerryBushBlock extends AbstractBerryBushBlock {
-    public static final MapCodec<FrostbiteBerryBushBlock> CODEC;
+    public static final MapCodec<FrostbiteBerryBushBlock> CODEC = createCodec(FrostbiteBerryBushBlock::new);
 
     public FrostbiteBerryBushBlock(Settings settings) {
         super(settings);
@@ -67,9 +67,5 @@ public class FrostbiteBerryBushBlock extends AbstractBerryBushBlock {
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(AGE);
-    }
-
-    static {
-        CODEC = createCodec(FrostbiteBerryBushBlock::new);
     }
 }

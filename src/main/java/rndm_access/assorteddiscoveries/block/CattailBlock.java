@@ -20,8 +20,8 @@ import net.minecraft.world.tick.ScheduledTickView;
 import org.jetbrains.annotations.Nullable;
 
 public class CattailBlock extends TallPlantBlock implements Fertilizable {
-    public static final MapCodec<CattailBlock> CODEC;
-    public static final BooleanProperty WATERLOGGED;
+    public static final MapCodec<CattailBlock> CODEC = createCodec(CattailBlock::new);
+    public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
 
     public CattailBlock(AbstractBlock.Settings settings) {
         super(settings);
@@ -158,10 +158,5 @@ public class CattailBlock extends TallPlantBlock implements Fertilizable {
     @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
         dropStack(world, pos, new ItemStack(this));
-    }
-
-    static {
-        CODEC = createCodec(CattailBlock::new);
-        WATERLOGGED = Properties.WATERLOGGED;
     }
 }

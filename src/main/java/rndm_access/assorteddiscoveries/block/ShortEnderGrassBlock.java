@@ -11,8 +11,9 @@ import net.minecraft.world.World;
 import rndm_access.assorteddiscoveries.core.ModBlockTags;
 
 public class ShortEnderGrassBlock extends PlantBlock {
-    public static final MapCodec<ShortEnderGrassBlock> CODEC;
-    protected static final VoxelShape ENDER_GRASS_SHAPE;
+    public static final MapCodec<ShortEnderGrassBlock> CODEC = createCodec(ShortEnderGrassBlock::new);
+    private static final VoxelShape SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D,
+            16.0D, 10.0D, 16.0D);
 
     public ShortEnderGrassBlock(AbstractBlock.Settings settings) {
         super(settings);
@@ -40,12 +41,6 @@ public class ShortEnderGrassBlock extends PlantBlock {
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos,
                                       ShapeContext context) {
-        return ENDER_GRASS_SHAPE;
-    }
-
-    static {
-        CODEC = createCodec(ShortEnderGrassBlock::new);
-        ENDER_GRASS_SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D,
-                10.0D, 16.0D);
+        return SHAPE;
     }
 }

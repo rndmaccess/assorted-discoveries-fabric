@@ -451,7 +451,7 @@
   
   "itemGroup.assorted-discoveries": "Assorted Discoveries Mod",
 
-  "title.assorted-discoveries.config": "Assorted Discoveries Config",
+  "title.assorted-discoveries.config": "Assorted Discoveries Config (Singleplayer)",
   "config_error.assorted-discoveries.screen.close_button": "Close",
   "config_error.assorted-discoveries.screen.title": "Assorted Discoveries Config Errors",
   "config_error.assorted-discoveries.screen.description.line_one": "The config could not be loaded because of the following error,",

@@ -97,7 +97,7 @@ public class AssortedDiscoveries implements ModInitializer {
 
                 if (ServerPlayNetworking.canSend(player, payload.getId())) {
                     ServerPlayNetworking.send(player, payload);
-                    LOGGER.info("Sent server config request to player {}", playerName);
+                    LOGGER.info("Sent server config data to {}!", playerName);
                 }
             }
         });

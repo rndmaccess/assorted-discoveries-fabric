@@ -28,7 +28,7 @@ public class AssortedDiscoveriesClient implements ClientModInitializer {
 
         ClientPlayNetworking.registerGlobalReceiver(BooleanEntriesS2CPayload.ID, (payload, context) -> {
             ModClientConfig.update(payload.configMap());
-            AssortedDiscoveries.LOGGER.info("{} received the server config data", context.player().getName().getString());
+            AssortedDiscoveries.LOGGER.info("{} received the server config data!", context.player().getName().getString());
         });
     }
 

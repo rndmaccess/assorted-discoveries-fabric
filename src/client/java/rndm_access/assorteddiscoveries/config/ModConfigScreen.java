@@ -23,9 +23,7 @@ public class ModConfigScreen {
         ConfigEntryBuilder entryBuilder = configBuilder.entryBuilder();
 
         addBuildingBlocksCategory(configBuilder, entryBuilder);
-        addPassivePlushiesCategory(configBuilder, entryBuilder);
-        addNeutralPlushiesCategory(configBuilder, entryBuilder);
-        addHostilePlushiesCategory(configBuilder, entryBuilder);
+        addPlushiesCategory(configBuilder, entryBuilder);
         addFoodsCategory(configBuilder, entryBuilder);
         addPlantsCategory(configBuilder, entryBuilder);
 
@@ -169,8 +167,8 @@ public class ModConfigScreen {
         category.addEntry(configEntry);
     }
 
-    private static void addPassivePlushiesCategory(ConfigBuilder configBuilder, ConfigEntryBuilder entryBuilder) {
-        String categoryName = "passive_plushies";
+    private static void addPlushiesCategory(ConfigBuilder configBuilder, ConfigEntryBuilder entryBuilder) {
+        String categoryName = "plushies";
         ConfigCategory category = makeCategory(configBuilder, categoryName);
         BooleanListEntry configEntry;
 
@@ -206,13 +204,6 @@ public class ModConfigScreen {
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModServerConfigKeys.ENABLE_SNIFFER_PLUSHIE, categoryName);
         category.addEntry(configEntry);
-    }
-
-    private static void addNeutralPlushiesCategory(ConfigBuilder configBuilder, ConfigEntryBuilder entryBuilder) {
-        String categoryName = "neutral_plushies";
-        ConfigCategory category = makeCategory(configBuilder, categoryName);
-        BooleanListEntry configEntry;
-
         configEntry = makeBoolConfigEntry(entryBuilder, ModServerConfigKeys.ENABLE_BEE_PLUSHIE, categoryName);
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModServerConfigKeys.ENABLE_CAVE_SPIDER_PLUSHIE, categoryName);
@@ -227,13 +218,6 @@ public class ModConfigScreen {
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModServerConfigKeys.ENABLE_WOLF_PLUSHIES, categoryName);
         category.addEntry(configEntry);
-    }
-
-    private static void addHostilePlushiesCategory(ConfigBuilder configBuilder, ConfigEntryBuilder entryBuilder) {
-        String categoryName = "hostile_plushies";
-        ConfigCategory category = makeCategory(configBuilder, categoryName);
-        BooleanListEntry configEntry;
-
         configEntry = makeBoolConfigEntry(entryBuilder, ModServerConfigKeys.ENABLE_BLAZE_PLUSHIE, categoryName);
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModServerConfigKeys.ENABLE_CREEPER_PLUSHIE, categoryName);

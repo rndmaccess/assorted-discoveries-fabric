@@ -141,7 +141,7 @@ public class ModServerConfig {
                 .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_PACKED_SNOW))
                 .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_DIRT_SLABS)).build();
 
-        ConfigCategory passivePlushiesCategory = new ConfigCategory.Builder("passive_plushies")
+        ConfigCategory plushiesCategory = new ConfigCategory.Builder("plushies")
                 .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_ALLAY_PLUSHIE))
                 .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_BAT_PLUSHIE))
                 .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_CAMEL_PLUSHIE))
@@ -157,18 +157,14 @@ public class ModServerConfig {
                 .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_SQUID_PLUSHIES))
                 .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_STRIDER_PLUSHIES))
                 .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_VILLAGER_PLUSHIES))
-                .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_SNIFFER_PLUSHIE)).build();
-
-        ConfigCategory neutralPlushiesCategory = new ConfigCategory.Builder("neutral_plushies")
+                .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_SNIFFER_PLUSHIE))
                 .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_BEE_PLUSHIE))
                 .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_CAVE_SPIDER_PLUSHIE))
                 .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_ENDERMAN_PLUSHIE))
                 .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_PIGLIN_PLUSHIES))
                 .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_POLAR_BEAR_PLUSHIE))
                 .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_SPIDER_PLUSHIE))
-                .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_WOLF_PLUSHIES)).build();
-
-        ConfigCategory hostilePlushiesCategory = new ConfigCategory.Builder("hostile_plushies")
+                .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_WOLF_PLUSHIES))
                 .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_BLAZE_PLUSHIE))
                 .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_CREEPER_PLUSHIE))
                 .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_GHAST_PLUSHIE))
@@ -222,9 +218,7 @@ public class ModServerConfig {
         ServerConfig.Builder config = new ServerConfig.Builder(AssortedDiscoveries.MOD_ID)
                 .addComment(requiredRestartComment)
                 .addCategory(buildingBlocksCategory)
-                .addCategory(passivePlushiesCategory)
-                .addCategory(neutralPlushiesCategory)
-                .addCategory(hostilePlushiesCategory)
+                .addCategory(plushiesCategory)
                 .addCategory(foodCategory)
                 .addCategory(plantsCategory);
         return config.build();

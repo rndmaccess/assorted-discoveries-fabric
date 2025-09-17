@@ -178,6 +178,8 @@ public class ModConfigScreen {
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModServerConfigKeys.ENABLE_CAMEL_PLUSHIE, categoryName);
         category.addEntry(configEntry);
+        configEntry = makeBoolConfigEntry(entryBuilder, ModServerConfigKeys.ENABLE_WOLF_PLUSHIES, categoryName);
+        category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModServerConfigKeys.ENABLE_CAT_PLUSHIES, categoryName);
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModServerConfigKeys.ENABLE_CHICKEN_PLUSHIES, categoryName);
@@ -215,8 +217,6 @@ public class ModConfigScreen {
         configEntry = makeBoolConfigEntry(entryBuilder, ModServerConfigKeys.ENABLE_POLAR_BEAR_PLUSHIE, categoryName);
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModServerConfigKeys.ENABLE_SPIDER_PLUSHIE, categoryName);
-        category.addEntry(configEntry);
-        configEntry = makeBoolConfigEntry(entryBuilder, ModServerConfigKeys.ENABLE_WOLF_PLUSHIES, categoryName);
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModServerConfigKeys.ENABLE_BLAZE_PLUSHIE, categoryName);
         category.addEntry(configEntry);

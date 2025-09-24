@@ -8,14 +8,14 @@ import net.minecraft.util.math.MathHelper;
 
 import java.util.Optional;
 
-public class AirNectarParticle extends SpriteBillboardParticle {
+public class BogBlossomNectarParticle extends SpriteBillboardParticle {
     @Override
     public ParticleTextureSheet getType() {
         return ParticleTextureSheet.PARTICLE_SHEET_OPAQUE;
     }
 
-    protected AirNectarParticle(ClientWorld clientWorld, SpriteProvider spriteProvider, double x, double y, double z,
-                                double velocityX, double velocityY, double velocityZ) {
+    protected BogBlossomNectarParticle(ClientWorld clientWorld, SpriteProvider spriteProvider, double x, double y, double z,
+                                       double velocityX, double velocityY, double velocityZ) {
         super(clientWorld, x, y - 0.125D, z, velocityX, velocityY, velocityZ);
         this.setBoundingBoxSpacing(0.01F, 0.01F);
         this.setSprite(spriteProvider);
@@ -52,7 +52,7 @@ public class AirNectarParticle extends SpriteBillboardParticle {
         @Override
         public Particle createParticle(SimpleParticleType particle, ClientWorld world, double x, double y, double z,
                                        double velocityX, double velocityY, double velocityZ) {
-            return new AirNectarParticle(world, this.spriteProvider, x, y, z,
+            return new BogBlossomNectarParticle(world, this.spriteProvider, x, y, z,
                     0.0D, -0.8D, 0.0D) {
                 public Optional<ParticleGroup> getGroup() {
                     return Optional.of(ParticleGroup.SPORE_BLOSSOM_AIR);

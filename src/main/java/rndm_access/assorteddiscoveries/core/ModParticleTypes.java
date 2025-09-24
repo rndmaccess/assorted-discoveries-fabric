@@ -41,7 +41,7 @@ public final class ModParticleTypes {
     public static final SimpleParticleType BLACK_FLAME = register("black_flame");
     public static final SimpleParticleType BLOOD_KELP_SPORE = register("blood_kelp_spore");
     public static final SimpleParticleType WITCHS_CRADLE_SPORE = register("witchs_cradle_spore");
-    public static final SimpleParticleType BOG_BLOSSOM_AIR_NECTAR = register("bog_blossom_air_nectar");
+    public static final SimpleParticleType BOG_BLOSSOM_NECTAR = register("bog_blossom_nectar");
     public static final SimpleParticleType SOUL_EMBER = register("soul_ember");
 
     private static SimpleParticleType register(String name) {

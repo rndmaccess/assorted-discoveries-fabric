@@ -33,9 +33,21 @@ public class BogBlossomBlock extends Block implements Fertilizable {
 
     private void playAirNectarParticles(World world, Random random, int x, int y, int z) {
         BlockPos.Mutable mutable = new BlockPos.Mutable();
-        int floatingCount = 14;
+        int floatingCount = 10;
         int floatingArea = random.nextInt(4) + 10;
+        int risingNum = random.nextInt(2) + 1;
 
+        // Play rising particles
+        for (int l = 0; l < risingNum; l++) {
+            double risingX = x + random.nextDouble();
+            double risingY = y + random.nextDouble();
+            double risingZ = z + random.nextDouble();
+
+            world.addParticleClient(ModParticleTypes.BOG_BLOSSOM_AIR_NECTAR, risingX, risingY, risingZ,
+                    random.nextDouble(), 2 + random.nextDouble(), random.nextDouble());
+        }
+
+        // Play floating particles
         for(int l = 0; l < floatingCount; ++l) {
             int floatingXOrigin = x + MathHelper.nextInt(random, -floatingArea, floatingArea);
             int floatingYOrigin = y + random.nextInt(floatingArea);

@@ -15,7 +15,7 @@ import rndm_access.assorteddiscoveries.block_entity.DyedCampfireBlockEntityRende
 import rndm_access.assorteddiscoveries.config.BooleanEntriesS2CPayload;
 import rndm_access.assorteddiscoveries.config.ModClientConfig;
 import rndm_access.assorteddiscoveries.core.*;
-import rndm_access.assorteddiscoveries.particle.AirNectarParticle;
+import rndm_access.assorteddiscoveries.particle.BogBlossomNectarParticle;
 import rndm_access.assorteddiscoveries.particle.SporeParticle;
 
 public class AssortedDiscoveriesClient implements ClientModInitializer {
@@ -94,7 +94,7 @@ public class AssortedDiscoveriesClient implements ClientModInitializer {
         factoryRegistry.register(ModParticleTypes.BLACK_FLAME, FlameParticle.Factory::new);
         factoryRegistry.register(ModParticleTypes.BLOOD_KELP_SPORE, SporeParticle.Factory::new);
         factoryRegistry.register(ModParticleTypes.WITCHS_CRADLE_SPORE, SporeParticle.Factory::new);
-        factoryRegistry.register(ModParticleTypes.BOG_BLOSSOM_AIR_NECTAR, AirNectarParticle.Factory::new);
+        factoryRegistry.register(ModParticleTypes.BOG_BLOSSOM_NECTAR, BogBlossomNectarParticle.Factory::new);
         factoryRegistry.register(ModParticleTypes.SOUL_EMBER, LavaEmberParticle.Factory::new);
     }
 

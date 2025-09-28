@@ -666,7 +666,7 @@ public final class ModBlocks {
     public static final Block BLACK_WALL_TORCH = registerWallTorch(BLACK_WALL_TORCH_KEY, ModParticleTypes.BLACK_FLAME);
     public static final RegistryKey<Block> WITCHS_CRADLE_KEY = makeRegistryKey("witchs_cradle");
     public static final Block WITCHS_CRADLE = register(new WitchsCradleBlock(AbstractBlock.Settings
-            .copy(Blocks.SWEET_BERRY_BUSH).luminance((state) -> 10).registryKey(WITCHS_CRADLE_KEY)),
+            .copy(Blocks.SWEET_BERRY_BUSH).luminance((state) -> 8).registryKey(WITCHS_CRADLE_KEY)),
             WITCHS_CRADLE_KEY, false);
     public static final RegistryKey<Block> BAUXITE_KEY = makeRegistryKey("bauxite");
     public static final Block BAUXITE = register(new Block(makeBauxiteSettings(BAUXITE_KEY)),
@@ -1267,7 +1267,7 @@ public final class ModBlocks {
     public static final RegistryKey<Block> BOG_BLOSSOM_KEY = makeRegistryKey("bog_blossom");
     public static final Block BOG_BLOSSOM = register(new BogBlossomBlock(AbstractBlock.Settings.create()
             .mapColor(MapColor.DARK_GREEN).breakInstantly().noCollision().sounds(BlockSoundGroup.SPORE_BLOSSOM)
-            .pistonBehavior(PistonBehavior.DESTROY).luminance((state) -> 10).registryKey(BOG_BLOSSOM_KEY)),
+            .pistonBehavior(PistonBehavior.DESTROY).luminance((state) -> 5).registryKey(BOG_BLOSSOM_KEY)),
             BOG_BLOSSOM_KEY, true);
     public static final RegistryKey<Block> CINDERSNAP_BERRY_BUSH_KEY = makeRegistryKey("cindersnap_berry_bush");
     public static final Block CINDERSNAP_BERRY_BUSH

@@ -1,6 +1,6 @@
 {
   "replace": false,
   "values": [
-    "#c:is_small_end_islands"
+    "#c:is_outer_end_island"
   ]
 }

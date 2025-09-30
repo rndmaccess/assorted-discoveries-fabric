@@ -1,6 +1,6 @@
 {
   "replace": false,
   "values": [
-    "#c:is_normal_swamp"
+    "#c:is_swamp"
   ]
 }

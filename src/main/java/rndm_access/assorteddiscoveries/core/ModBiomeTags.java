@@ -8,8 +8,7 @@ import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 public final class ModBiomeTags {
     public static final TagKey<Biome> ORE_SMOKY_QUARTZ = of("has_feature/ore_smoky_quartz");
     public static final TagKey<Biome> PATCH_BLUEBERRY_BUSH = of("has_feature/patch_blueberry_bush");
-    public static final TagKey<Biome> PATCH_CATTAIL_MANGROVE_SWAMP
-            = of("has_feature/patch_cattail_mangrove_swamp");
+    public static final TagKey<Biome> PATCH_CATTAIL_SWAMP = of("has_feature/patch_cattail_swamp");
     public static final TagKey<Biome> PATCH_CATTAIL_RIVER = of("has_feature/patch_cattail_river");
     public static final TagKey<Biome> PATCH_ENDER_PLANTS = of("has_feature/patch_ender_plants");
     public static final TagKey<Biome> PATCH_HUGE_PURPLE_MUSHROOM = of("has_feature/patch_huge_purple_mushroom");

@@ -6,8 +6,8 @@ import net.minecraft.world.gen.feature.PlacedFeature;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 
 public final class ModPlacedFeatureKeys {
-    public static final RegistryKey<PlacedFeature> PATCH_CATTAIL_MANGROVE_SWAMP
-            = of("patch_cattail_mangrove_swamp");
+    public static final RegistryKey<PlacedFeature> PATCH_CATTAIL_SWAMP
+            = of("patch_cattail_swamp");
     public static final RegistryKey<PlacedFeature> PATCH_CATTAIL_RIVER = of("patch_cattail_river");
     public static final RegistryKey<PlacedFeature> ORE_SMOKY_QUARTZ = of("ore_smoky_quartz");
     public static final RegistryKey<PlacedFeature> PATCH_HUGE_PURPLE_MUSHROOM = of("patch_huge_purple_mushroom");

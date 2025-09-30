@@ -799,10 +799,10 @@ public final class ModBlocks {
             AbstractBlock.Settings.copy(Blocks.NETHERRACK).registryKey(WEEPING_NETHERRACK_WALL_KEY));
     public static final RegistryKey<Block> SNAPDRAGON_KEY = makeRegistryKey("snapdragon");
     public static final Block SNAPDRAGON = registerSnapdragon(SNAPDRAGON_KEY, StatusEffects.LUCK, 8,
-            AbstractBlock.Settings.copy(Blocks.POPPY).luminance((state) -> 7).registryKey(SNAPDRAGON_KEY));
+            AbstractBlock.Settings.copy(Blocks.POPPY).luminance((state) -> 8).registryKey(SNAPDRAGON_KEY));
     public static final RegistryKey<Block> POTTED_SNAPDRAGON_KEY = makeRegistryKey("potted_snapdragon");
     public static final Block POTTED_SNAPDRAGON = registerPottedSnapdragon(AbstractBlock.Settings
-            .copy(Blocks.POTTED_POPPY).luminance((state) -> 7).registryKey(POTTED_SNAPDRAGON_KEY));
+            .copy(Blocks.POTTED_POPPY).luminance((state) -> 8).registryKey(POTTED_SNAPDRAGON_KEY));
     public static final RegistryKey<Block> POTTED_PURPLE_MUSHROOM_KEY = makeRegistryKey("potted_purple_mushroom");
     public static final Block POTTED_PURPLE_MUSHROOM = register(new FlowerPotBlock(ModBlocks.PURPLE_MUSHROOM,
             AbstractBlock.Settings.copy(Blocks.POTTED_RED_MUSHROOM).registryKey(POTTED_PURPLE_MUSHROOM_KEY)),
@@ -810,7 +810,7 @@ public final class ModBlocks {
     public static final RegistryKey<Block> SHORT_ENDER_GRASS_KEY = makeRegistryKey("short_ender_grass");
     public static final Block SHORT_ENDER_GRASS
         = register(new ShortEnderGrassBlock(AbstractBlock.Settings.copy(Blocks.SHORT_GRASS)
-            .luminance((state) -> 7).registryKey(SHORT_ENDER_GRASS_KEY)),
+            .luminance((state) -> 8).registryKey(SHORT_ENDER_GRASS_KEY)),
             SHORT_ENDER_GRASS_KEY, true);
     public static final RegistryKey<Block> CATTAIL_KEY = makeRegistryKey("cattail");
     public static final Block CATTAIL = register(new CattailBlock(AbstractBlock.Settings.create()

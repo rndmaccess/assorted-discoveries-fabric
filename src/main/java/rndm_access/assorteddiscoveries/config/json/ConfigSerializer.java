@@ -40,10 +40,9 @@ public class ConfigSerializer {
         List<String> newContent = this.getContent(changeList);
 
         // To prevent partial files we first save it to a temporary file, then replace the config file!
-        try {
-            Path tempFile = Files.createTempFile(configPath.getFileName().toString(), null);
-            Files.write(tempFile, newContent);
-            Files.move(tempFile, configPath, StandardCopyOption.REPLACE_EXISTING);
+        try (TempConfig tempFile = new TempConfig(configPath)) {
+            Files.write(tempFile.getFile(), newContent);
+            Files.move(tempFile.getFile(), configPath, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             throw new RuntimeException("Failed to save the file!", e);
         }

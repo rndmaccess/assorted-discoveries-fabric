@@ -5,6 +5,7 @@ import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.pathing.NavigationType;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -94,14 +95,19 @@ public abstract class AbstractBerryBushBlock extends PlantBlock implements Ferti
 
         entity.slowMovement(state, new Vec3d(0.8D, 0.75D, 0.8D));
 
-        if (this.bushDamages() && !world.isClient() && state.get(AGE) > 0
-                && (entity.lastRenderX != entity.getX() || entity.lastRenderZ != entity.getZ())) {
-            double minMovementForDamage = 0.003D;
-            double d = Math.abs(entity.getX() - entity.lastRenderX);
-            double e = Math.abs(entity.getZ() - entity.lastRenderZ);
+        if (this.bushDamages() && world instanceof ServerWorld serverWorld && state.get(AGE) > 0) {
+            Vec3d vec3d = entity.isControlledByPlayer() ? entity.getMovement() : entity.getLastRenderPos().subtract(entity.getPos());
 
-            if (!world.isClient() && (d >= minMovementForDamage || e >= minMovementForDamage)) {
-                entity.damage((ServerWorld) world, world.getDamageSources().sweetBerryBush(), 1.0F);
+            if (vec3d.horizontalLengthSquared() > 0.0) {
+                double minMovementForDamage = 0.003D;
+                double d = Math.abs(vec3d.getX());
+                double e = Math.abs(vec3d.getZ());
+
+                if (d >= minMovementForDamage || e >= minMovementForDamage) {
+                    DamageSource sweet_berry_damage_source = world.getDamageSources().sweetBerryBush();
+
+                    entity.damage(serverWorld, sweet_berry_damage_source, 1.0F);
+                }
             }
         }
     }

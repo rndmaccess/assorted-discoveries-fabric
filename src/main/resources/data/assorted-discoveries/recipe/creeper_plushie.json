@@ -2,14 +2,14 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "pattern": [
-    "LLL",
-    "BGB",
-    "LLL"
+    "GGG",
+    "BIB",
+    "GGG"
   ],
   "key": {
-    "L": "minecraft:lime_wool",
+    "G": "minecraft:green_wool",
 	"B": "minecraft:black_wool",
-    "G": "minecraft:gunpowder"
+    "I": "minecraft:gunpowder"
   },
   "result": {
     "id": "assorted-discoveries:creeper_plushie"

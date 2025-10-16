@@ -107,6 +107,15 @@ public class ServerConfig {
         }
     }
 
+    public void save() {
+        if (path == null) {
+            throw new JsonConfigException("The config path has not been set!");
+        }
+
+        ConfigSerializer serializer = new ConfigSerializer(this, path);
+        serializer.serialize();
+    }
+
     public void save(Map<String, Object> entryChangeList) {
         if (path == null) {
             throw new JsonConfigException("The config path has not been set!");

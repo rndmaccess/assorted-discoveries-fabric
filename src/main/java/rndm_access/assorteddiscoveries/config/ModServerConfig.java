@@ -50,7 +50,10 @@ public class ModServerConfig {
         try {
             ConfigDeserializer deserializer = new ConfigDeserializer(AssortedDiscoveries.MOD_ID);
             ServerConfig loadedConfig = deserializer.deserialize();
-            return defaultConfig.merge(loadedConfig);
+            ServerConfig newConfig = defaultConfig.merge(loadedConfig);
+            newConfig.save(); // Re-save the config with the values in memory when we load it so
+                              // we can ensure any new default values are in the config file!
+            return newConfig;
         } catch (IOException e) {
             AssortedDiscoveries.LOGGER.error("The config file is unreadable! Using the default config!");
             return defaultConfig;

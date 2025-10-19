@@ -46,6 +46,16 @@ public class ModServerConfig {
         return loadConfig(defaultConfig);
     }
 
+    /**
+     * This method loads the config from the server (The local config). This representation should only be used in
+     * places that primarily run on the server such as in datapacks. For client side code such as item group additions
+     * use the read-only hashmap representation found in the ModClientConfig class!
+     *
+     * @param defaultConfig A config that has all of its values set to their defaults. This config is merged with the
+     *                      user config to autofill in default values so they are added to
+     *                      the user config after its loaded!
+     * @return The server config with every category, entry, and comment from the config file
+     */
     private static ServerConfig loadConfig(ServerConfig defaultConfig) {
         try {
             ConfigDeserializer deserializer = new ConfigDeserializer(AssortedDiscoveries.MOD_ID);

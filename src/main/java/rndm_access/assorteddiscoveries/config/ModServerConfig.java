@@ -53,8 +53,9 @@ public class ModServerConfig {
      *
      * @param defaultConfig A config that has all of its values set to their defaults. This config is merged with the
      *                      user config to autofill in default values so they are added to
-     *                      the user config after its loaded!
-     * @return The server config with every category, entry, and comment from the config file
+     *                      the user config after its loaded if no exception occurs!
+     * @return The server config with every category, entry, and comment from the config file.
+     *         If there is an exception then the defaultConfig.
      */
     private static ServerConfig loadConfig(ServerConfig defaultConfig) {
         try {

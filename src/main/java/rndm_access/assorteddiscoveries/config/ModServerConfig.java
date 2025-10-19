@@ -49,7 +49,7 @@ public class ModServerConfig {
     /**
      * This method loads the config from the server (The local config). This representation should only be used in
      * places that primarily run on the server such as in datapacks. For client side code such as item group additions
-     * use the read-only hashmap representation found in the ModClientConfig class!
+     * use the read-only hashmap representation found in the {@link ModClientConfig} class!
      *
      * @param defaultConfig A config that has all of its values set to their defaults. This config is merged with the
      *                      user config to autofill in default values so they are added to

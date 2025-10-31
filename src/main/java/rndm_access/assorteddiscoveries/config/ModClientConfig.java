@@ -12,11 +12,11 @@ public class ModClientConfig {
      * @return A read-only copy of all config entries from the server config that can be used for client based
      * applications such as tab groups!
      */
-    public static synchronized Map<String, Boolean> get() {
+    public static synchronized Map<String, Boolean> getBoolEntries() {
         return boolServerConfigEntries;
     }
 
-    public static synchronized void update(Map<String, Boolean> entries) {
+    public static synchronized void updateBoolEntries(Map<String, Boolean> entries) {
         boolServerConfigEntries = entries;
     }
 }

@@ -65,10 +65,6 @@ public final class ModBlocks {
     public static final Block WHITE_HORSE_PLUSHIE = registerHorsePlushie(WHITE_HORSE_PLUSHIE_KEY);
     public static final RegistryKey<Block> GRAY_HORSE_PLUSHIE_KEY = makeRegistryKey("gray_horse_plushie");
     public static final Block GRAY_HORSE_PLUSHIE = registerHorsePlushie(GRAY_HORSE_PLUSHIE_KEY);
-    public static final RegistryKey<Block> LIGHT_GRAY_HORSE_PLUSHIE_KEY
-            = makeRegistryKey("light_gray_horse_plushie");
-    public static final Block LIGHT_GRAY_HORSE_PLUSHIE
-            = registerHorsePlushie(LIGHT_GRAY_HORSE_PLUSHIE_KEY);
     public static final RegistryKey<Block> BROWN_HORSE_PLUSHIE_KEY = makeRegistryKey("brown_horse_plushie");
     public static final Block BROWN_HORSE_PLUSHIE = registerHorsePlushie(BROWN_HORSE_PLUSHIE_KEY);
     public static final RegistryKey<Block> BLACK_HORSE_PLUSHIE_KEY = makeRegistryKey("black_horse_plushie");

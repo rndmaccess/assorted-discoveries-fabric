@@ -394,7 +394,6 @@ public class AssortedDiscoveries implements ModInitializer {
             if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_HORSE_PLUSHIES)) {
                 entries.add(ModBlocks.WHITE_HORSE_PLUSHIE.asItem());
                 entries.add(ModBlocks.GRAY_HORSE_PLUSHIE.asItem());
-                entries.add(ModBlocks.LIGHT_GRAY_HORSE_PLUSHIE.asItem());
                 entries.add(ModBlocks.BROWN_HORSE_PLUSHIE.asItem());
                 entries.add(ModBlocks.BLACK_HORSE_PLUSHIE.asItem());
             }

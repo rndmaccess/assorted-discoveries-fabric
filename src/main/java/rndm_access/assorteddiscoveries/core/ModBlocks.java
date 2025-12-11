@@ -3,21 +3,18 @@ package rndm_access.assorteddiscoveries.core;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.block.piston.PistonBehavior;
-import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.SimpleParticleType;
 import net.minecraft.registry.*;
-import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.world.BlockView;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.block.*;
 import rndm_access.assorteddiscoveries.item.RopeLadderBlockItem;
@@ -282,8 +279,10 @@ public final class ModBlocks {
             = register(new CamelPlushieBlock(makePlushieSettings(CAMEL_PLUSHIE_KEY)),
             CAMEL_PLUSHIE_KEY, true);
     public static final RegistryKey<Block> NETHER_SMOKY_QUARTZ_ORE_KEY = makeRegistryKey("nether_smoky_quartz_ore");
-    public static final Block NETHER_SMOKY_QUARTZ_ORE = registerOre(NETHER_SMOKY_QUARTZ_ORE_KEY,
-            UniformIntProvider.create(2, 5));
+    public static final Block NETHER_SMOKY_QUARTZ_ORE
+            = register(new ExperienceDroppingBlock(UniformIntProvider.create(2, 5),
+            AbstractBlock.Settings.copy(Blocks.NETHER_QUARTZ_ORE).registryKey(NETHER_SMOKY_QUARTZ_ORE_KEY)),
+            NETHER_SMOKY_QUARTZ_ORE_KEY, true);
     public static final RegistryKey<Block> SMOKY_QUARTZ_BLOCK_KEY = makeRegistryKey("smoky_quartz_block");
     public static final Block SMOKY_QUARTZ_BLOCK
             = register(new Block(makeSmokyQuartzSettings(SMOKY_QUARTZ_BLOCK_KEY)),
@@ -520,7 +519,11 @@ public final class ModBlocks {
             = registerWall(PACKED_SNOW_WALL_KEY, makePackedSnowSettings(PACKED_SNOW_WALL_KEY));
     public static final RegistryKey<Block> PURPLE_MUSHROOM_KEY = makeRegistryKey("purple_mushroom");
     public static final Block PURPLE_MUSHROOM
-            = registerPurpleMushroom(PURPLE_MUSHROOM_KEY, ModTreeConfiguredFeatures.HUGE_PURPLE_MUSHROOM);
+            = register(new MushroomPlantBlock(ModTreeConfiguredFeatures.HUGE_PURPLE_MUSHROOM,
+            AbstractBlock.Settings.create().mapColor(MapColor.PURPLE)
+                    .pistonBehavior(PistonBehavior.DESTROY).noCollision().ticksRandomly().breakInstantly()
+                    .sounds(BlockSoundGroup.GRASS).postProcess(ModBlocks::always).registryKey(PURPLE_MUSHROOM_KEY)),
+            PURPLE_MUSHROOM_KEY, true);
     public static final RegistryKey<Block> PURPLE_MUSHROOM_BLOCK_KEY = makeRegistryKey("purple_mushroom_block");
     public static final Block PURPLE_MUSHROOM_BLOCK
             = register(new PurpleMushroomBlock(AbstractBlock.Settings.create().mapColor(MapColor.PURPLE)
@@ -794,8 +797,9 @@ public final class ModBlocks {
     public static final Block WEEPING_NETHERRACK_WALL = registerWall(WEEPING_NETHERRACK_WALL_KEY,
             AbstractBlock.Settings.copy(Blocks.NETHERRACK).registryKey(WEEPING_NETHERRACK_WALL_KEY));
     public static final RegistryKey<Block> SNAPDRAGON_KEY = makeRegistryKey("snapdragon");
-    public static final Block SNAPDRAGON = registerSnapdragon(SNAPDRAGON_KEY, StatusEffects.LUCK, 8,
-            AbstractBlock.Settings.copy(Blocks.POPPY).luminance((state) -> 8).registryKey(SNAPDRAGON_KEY));
+    public static final Block SNAPDRAGON = register(new SnapdragonBlock(StatusEffects.LUCK, 8,
+            AbstractBlock.Settings.copy(Blocks.POPPY).luminance((state) -> 8)
+                    .registryKey(SNAPDRAGON_KEY)), SNAPDRAGON_KEY, true);
     public static final RegistryKey<Block> POTTED_SNAPDRAGON_KEY = makeRegistryKey("potted_snapdragon");
     public static final Block POTTED_SNAPDRAGON = registerPottedSnapdragon(AbstractBlock.Settings
             .copy(Blocks.POTTED_POPPY).luminance((state) -> 8).registryKey(POTTED_SNAPDRAGON_KEY));
@@ -1246,11 +1250,13 @@ public final class ModBlocks {
             CHISELED_DRIPSTONE_BRICKS_KEY, true);
     public static final RegistryKey<Block> BLOOD_KELP_KEY = makeRegistryKey("blood_kelp");
     public static final Block BLOOD_KELP
-            = register(new BloodKelpBlock(makeBloodKelpSettings(BLOOD_KELP_KEY)),
+            = register(new BloodKelpBlock(AbstractBlock.Settings.copy(Blocks.KELP)
+                    .luminance(getLuminanceFromState()).registryKey(BLOOD_KELP_KEY)),
             BLOOD_KELP_KEY, false);
     public static final RegistryKey<Block> BLOOD_KELP_PLANT_KEY = makeRegistryKey("blood_kelp_plant");
     public static final Block BLOOD_KELP_PLANT
-            = register(new BloodKelpPlantBlock(makeBloodKelpPlantSettings(BLOOD_KELP_PLANT_KEY)),
+            = register(new BloodKelpPlantBlock(AbstractBlock.Settings.copy(Blocks.KELP_PLANT)
+                    .luminance(getLuminanceFromState()).registryKey(BLOOD_KELP_PLANT_KEY)),
             BLOOD_KELP_PLANT_KEY, false);
     public static final RegistryKey<Block> DRIED_BLOOD_KELP_BLOCK_KEY = makeRegistryKey("dried_blood_kelp_block");
     public static final Block DRIED_BLOOD_KELP_BLOCK
@@ -1258,7 +1264,9 @@ public final class ModBlocks {
                     .registryKey(DRIED_BLOOD_KELP_BLOCK_KEY)), DRIED_BLOOD_KELP_BLOCK_KEY, true);
     public static final RegistryKey<Block> BLOOD_KELP_LANTERN_KEY = makeRegistryKey("blood_kelp_lantern");
     public static final Block BLOOD_KELP_LANTERN
-            = register(new PillarBlock(makeBloodKelpLanternSettings(BLOOD_KELP_LANTERN_KEY)),
+            = register(new PillarBlock(AbstractBlock.Settings.create().mapColor(MapColor.PALE_YELLOW).strength(0.3F)
+                    .sounds(BlockSoundGroup.GLASS).luminance((state) -> 15)
+                    .registryKey(BLOOD_KELP_LANTERN_KEY)),
             BLOOD_KELP_LANTERN_KEY, true);
     public static final RegistryKey<Block> BOG_BLOSSOM_KEY = makeRegistryKey("bog_blossom");
     public static final Block BOG_BLOSSOM = register(new BogBlossomBlock(AbstractBlock.Settings.create()
@@ -1510,21 +1518,6 @@ public final class ModBlocks {
         return register(allayPlushieBlock, blockKey, true);
     }
 
-    private static Block registerPurpleMushroom(RegistryKey<Block> blockKey, RegistryKey<ConfiguredFeature<?,?>> hugeMushroom) {
-        AbstractBlock.Settings settings = AbstractBlock.Settings.create().mapColor(MapColor.PURPLE)
-                .pistonBehavior(PistonBehavior.DESTROY).noCollision().ticksRandomly().breakInstantly()
-                .sounds(BlockSoundGroup.GRASS).postProcess(ModBlocks::always).registryKey(blockKey);
-        Block mushroomBlock = new MushroomPlantBlock(hugeMushroom, settings);
-        return register(mushroomBlock, blockKey, true);
-    }
-
-    private static Block registerOre(RegistryKey<Block> blockKey, UniformIntProvider experience) {
-        AbstractBlock.Settings oreSettings = AbstractBlock.Settings
-                .copy(Blocks.NETHER_QUARTZ_ORE).registryKey(blockKey);
-        Block oreBlock = new ExperienceDroppingBlock(experience, oreSettings);
-        return register(oreBlock, blockKey, true);
-    }
-
     private static Block registerPlanterBox(RegistryKey<Block> blockKey, MapColor color, BlockSoundGroup soundGroup) {
         AbstractBlock.Settings planterBoxSettings = AbstractBlock.Settings.create().mapColor(color)
                 .strength(2.5F).sounds(soundGroup).burnable().registryKey(blockKey);
@@ -1586,12 +1579,6 @@ public final class ModBlocks {
     private static Block registerLantern(RegistryKey<Block> blockKey) {
         Block lanternBlock = new LanternBlock(AbstractBlock.Settings.copy(Blocks.LANTERN).registryKey(blockKey));
         return register(lanternBlock, blockKey, true);
-    }
-
-    private static Block registerSnapdragon(RegistryKey<Block> blockKey, RegistryEntry<StatusEffect> effect,
-                                            int effectDuration, AbstractBlock.Settings settings) {
-        Block snapdragonBlock = new SnapdragonBlock(effect, effectDuration, settings);
-        return register(snapdragonBlock, blockKey, true);
     }
 
     private static Block registerPottedSnapdragon(AbstractBlock.Settings settings) {
@@ -1686,19 +1673,6 @@ public final class ModBlocks {
 
     private static AbstractBlock.Settings makeDripstoneSettings(RegistryKey<Block> blockKey) {
         return AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK).registryKey(blockKey);
-    }
-
-    private static AbstractBlock.Settings makeBloodKelpSettings(RegistryKey<Block> blockKey) {
-        return AbstractBlock.Settings.copy(Blocks.KELP).luminance(getLuminanceFromState()).registryKey(blockKey);
-    }
-
-    private static AbstractBlock.Settings makeBloodKelpPlantSettings(RegistryKey<Block> blockKey) {
-        return AbstractBlock.Settings.copy(Blocks.KELP_PLANT).luminance(getLuminanceFromState()).registryKey(blockKey);
-    }
-
-    private static AbstractBlock.Settings makeBloodKelpLanternSettings(RegistryKey<Block> blockKey) {
-        return AbstractBlock.Settings.create().mapColor(MapColor.PALE_YELLOW).strength(0.3F)
-                .sounds(BlockSoundGroup.GLASS).luminance((state) -> 15).registryKey(blockKey);
     }
 
     /**

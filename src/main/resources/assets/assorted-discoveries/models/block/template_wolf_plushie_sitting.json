@@ -2,6 +2,7 @@
 	"__comment": "Designed by rndm_access with Cubik Studio - https://cubik.studio",
 	"parent": "assorted-discoveries:block/plushie_block",
 	"textures": {
+		"particle": "#particle",
 		"atlas": "#atlas"
 	},
 	"elements": [ 	 

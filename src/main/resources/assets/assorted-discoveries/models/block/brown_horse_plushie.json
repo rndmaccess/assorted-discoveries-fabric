@@ -1,9 +1,7 @@
 {
   "parent": "assorted-discoveries:block/template_horse_plushie",
   "textures": {
-    "body": "block/brown_wool",
-    "eyes": "block/black_wool",
-    "hooves": "block/black_wool",
-    "tail": "block/black_wool"
+    "particle": "minecraft:block/brown_wool",
+    "atlas": "assorted-discoveries:block/brown_horse_plushie"
   }
 }

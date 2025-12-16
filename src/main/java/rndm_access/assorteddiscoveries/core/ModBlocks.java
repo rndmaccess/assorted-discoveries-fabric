@@ -27,7 +27,7 @@ public final class ModBlocks {
     public static final Block BAT_PLUSHIE = register(new BatPlushieBlock(makePlushieSettings(BAT_PLUSHIE_KEY)),
             BAT_PLUSHIE_KEY, true);
     public static final RegistryKey<Block> BLAZE_PLUSHIE_KEY = makeRegistryKey("blaze_plushie");
-    public static final Block BLAZE_PLUSHIE = register(new BlazePlushieBlock(makePlushieSettings(BLAZE_PLUSHIE_KEY)),
+    public static final Block BLAZE_PLUSHIE = register(new BlazePlushieBlock(makeGlowingPlushieSettings(BLAZE_PLUSHIE_KEY)),
             BLAZE_PLUSHIE_KEY, true);
     public static final RegistryKey<Block> CAVE_SPIDER_PLUSHIE_KEY = makeRegistryKey("cave_spider_plushie");
     public static final Block CAVE_SPIDER_PLUSHIE

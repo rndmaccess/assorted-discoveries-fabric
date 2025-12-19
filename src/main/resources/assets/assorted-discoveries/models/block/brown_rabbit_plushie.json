@@ -1,9 +1,7 @@
 {
   "parent": "assorted-discoveries:block/template_rabbit_plushie",
   "textures": {
-    "body": "block/brown_wool",
-    "nose": "block/pink_wool",
-    "eyes": "block/black_wool",
-    "ears": "block/pink_wool"
+    "atlas": "assorted-discoveries:block/brown_rabbit_plushie",
+    "particle": "minecraft:block/brown_wool"
   }
 }

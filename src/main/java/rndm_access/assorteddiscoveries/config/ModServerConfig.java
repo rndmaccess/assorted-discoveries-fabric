@@ -187,7 +187,6 @@ public class ModServerConfig {
                 .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_ILLAGER_PLUSHIES))
                 .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_MAGMA_CUBE_PLUSHIE))
                 .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_PHANTOM_PLUSHIE))
-                .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_RAVAGER_PLUSHIE))
                 .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_SHULKER_PLUSHIE))
                 .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_SKELETON_PLUSHIE))
                 .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_SLIME_PLUSHIE))

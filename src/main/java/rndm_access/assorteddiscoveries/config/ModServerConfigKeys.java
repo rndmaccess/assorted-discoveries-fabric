@@ -34,7 +34,6 @@ public final class ModServerConfigKeys {
     public static final String ENABLE_ILLAGER_PLUSHIES = "enable_illager_plushies";
     public static final String ENABLE_MAGMA_CUBE_PLUSHIE = "enable_magma_cube_plushie";
     public static final String ENABLE_PHANTOM_PLUSHIE = "enable_phantom_plushie";
-    public static final String ENABLE_RAVAGER_PLUSHIE = "enable_ravager_plushie";
     public static final String ENABLE_SHULKER_PLUSHIE = "enable_shulker_plushie";
     public static final String ENABLE_SKELETON_PLUSHIE = "enable_skeleton_plushie";
     public static final String ENABLE_SLIME_PLUSHIE = "enable_slime_plushie";

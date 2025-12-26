@@ -234,8 +234,6 @@ public class ModConfigScreen {
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModServerConfigKeys.ENABLE_PHANTOM_PLUSHIE, categoryName);
         category.addEntry(configEntry);
-        configEntry = makeBoolConfigEntry(entryBuilder, ModServerConfigKeys.ENABLE_RAVAGER_PLUSHIE, categoryName);
-        category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModServerConfigKeys.ENABLE_SHULKER_PLUSHIE, categoryName);
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModServerConfigKeys.ENABLE_SKELETON_PLUSHIE, categoryName);

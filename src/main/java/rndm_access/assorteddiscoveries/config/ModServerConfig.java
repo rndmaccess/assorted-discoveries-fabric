@@ -194,7 +194,6 @@ public class ModServerConfig {
                 .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_WITCH_PLUSHIE))
                 .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_WITHER_PLUSHIE))
                 .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_ZOMBIE_PLUSHIE))
-                .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_ZOMBIE_VILLAGER_PLUSHIES))
                 .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_CREAKING_PLUSHIE)).build();
 
         ConfigCategory foodCategory = new ConfigCategory.Builder("foods")

@@ -429,16 +429,6 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.WANDERING_TRADER_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_ZOMBIE_VILLAGER_PLUSHIES)) {
-                entries.add(ModBlocks.PLAINS_ZOMBIE_VILLAGER_PLUSHIE.asItem());
-                entries.add(ModBlocks.DESERT_ZOMBIE_VILLAGER_PLUSHIE.asItem());
-                entries.add(ModBlocks.JUNGLE_ZOMBIE_VILLAGER_PLUSHIE.asItem());
-                entries.add(ModBlocks.SAVANNA_ZOMBIE_VILLAGER_PLUSHIE.asItem());
-                entries.add(ModBlocks.SNOW_ZOMBIE_VILLAGER_PLUSHIE.asItem());
-                entries.add(ModBlocks.SWAMP_ZOMBIE_VILLAGER_PLUSHIE.asItem());
-                entries.add(ModBlocks.TAIGA_ZOMBIE_VILLAGER_PLUSHIE.asItem());
-            }
-
             if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_WITCH_PLUSHIE)) {
                 entries.add(ModBlocks.WITCH_PLUSHIE.asItem());
             }

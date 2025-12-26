@@ -266,8 +266,6 @@ public final class ModBlocks {
     public static final Block VINDICATOR_PLUSHIE = registerVillagerPlushie(VINDICATOR_PLUSHIE_KEY);
     public static final RegistryKey<Block> EVOKER_PLUSHIE_KEY = makeRegistryKey("evoker_plushie");
     public static final Block EVOKER_PLUSHIE = registerVillagerPlushie(EVOKER_PLUSHIE_KEY);
-    public static final RegistryKey<Block> RAVAGER_PLUSHIE_KEY = makeRegistryKey("ravager_plushie");
-    public static final Block RAVAGER_PLUSHIE = registerHoglinPlushie(RAVAGER_PLUSHIE_KEY);
     public static final RegistryKey<Block> SHULKER_PLUSHIE_KEY = makeRegistryKey("shulker_plushie");
     public static final Block SHULKER_PLUSHIE
             = register(new ShulkerPlushieBlock(makePlushieSettings(SHULKER_PLUSHIE_KEY)),

@@ -248,8 +248,6 @@ public class ModConfigScreen {
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModServerConfigKeys.ENABLE_ZOMBIE_PLUSHIE, categoryName);
         category.addEntry(configEntry);
-        configEntry = makeBoolConfigEntry(entryBuilder, ModServerConfigKeys.ENABLE_ZOMBIE_VILLAGER_PLUSHIES, categoryName);
-        category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModServerConfigKeys.ENABLE_CREAKING_PLUSHIE, categoryName);
         category.addEntry(configEntry);
     }

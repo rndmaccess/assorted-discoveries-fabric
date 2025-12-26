@@ -459,10 +459,6 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.VEX_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_RAVAGER_PLUSHIE)) {
-                entries.add(ModBlocks.RAVAGER_PLUSHIE.asItem());
-            }
-
             if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_SHULKER_PLUSHIE)) {
                 entries.add(ModBlocks.SHULKER_PLUSHIE.asItem());
             }

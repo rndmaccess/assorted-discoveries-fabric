@@ -191,35 +191,6 @@ public final class ModBlocks {
     public static final Block TAIGA_VILLAGER_PLUSHIE = registerVillagerPlushie(TAIGA_VILLAGER_PLUSHIE_KEY);
     public static final RegistryKey<Block> WANDERING_TRADER_PLUSHIE_KEY = makeRegistryKey("wandering_trader_plushie");
     public static final Block WANDERING_TRADER_PLUSHIE = registerShortHatVillagerPlushie(WANDERING_TRADER_PLUSHIE_KEY);
-    public static final RegistryKey<Block> PLAINS_ZOMBIE_VILLAGER_PLUSHIE_KEY
-            = makeRegistryKey("plains_zombie_villager_plushie");
-    public static final Block PLAINS_ZOMBIE_VILLAGER_PLUSHIE
-            = registerZombieVillagerPlushie(PLAINS_ZOMBIE_VILLAGER_PLUSHIE_KEY);
-    public static final RegistryKey<Block> DESERT_ZOMBIE_VILLAGER_PLUSHIE_KEY
-            = makeRegistryKey("desert_zombie_villager_plushie");
-    public static final Block DESERT_ZOMBIE_VILLAGER_PLUSHIE
-            = register(new DesertZombieVillagerPlushieBlock(makePlushieSettings(DESERT_ZOMBIE_VILLAGER_PLUSHIE_KEY)),
-            DESERT_ZOMBIE_VILLAGER_PLUSHIE_KEY, true);
-    public static final RegistryKey<Block> JUNGLE_ZOMBIE_VILLAGER_PLUSHIE_KEY
-            = makeRegistryKey("jungle_zombie_villager_plushie");
-    public static final Block JUNGLE_ZOMBIE_VILLAGER_PLUSHIE
-            = registerZombieVillagerPlushie(JUNGLE_ZOMBIE_VILLAGER_PLUSHIE_KEY);
-    public static final RegistryKey<Block> SAVANNA_ZOMBIE_VILLAGER_PLUSHIE_KEY
-            = makeRegistryKey("savanna_zombie_villager_plushie");
-    public static final Block SAVANNA_ZOMBIE_VILLAGER_PLUSHIE
-            = registerZombieVillagerPlushie(SAVANNA_ZOMBIE_VILLAGER_PLUSHIE_KEY);
-    public static final RegistryKey<Block> SNOW_ZOMBIE_VILLAGER_PLUSHIE_KEY
-            = makeRegistryKey("snow_zombie_villager_plushie");
-    public static final Block SNOW_ZOMBIE_VILLAGER_PLUSHIE
-            = registerShortHatZombieVillagerPlushie(SNOW_ZOMBIE_VILLAGER_PLUSHIE_KEY);
-    public static final RegistryKey<Block> SWAMP_ZOMBIE_VILLAGER_PLUSHIE_KEY
-            = makeRegistryKey("swamp_zombie_villager_plushie");
-    public static final Block SWAMP_ZOMBIE_VILLAGER_PLUSHIE
-            = registerShortHatZombieVillagerPlushie(SWAMP_ZOMBIE_VILLAGER_PLUSHIE_KEY);
-    public static final RegistryKey<Block> TAIGA_ZOMBIE_VILLAGER_PLUSHIE_KEY
-            = makeRegistryKey("taiga_zombie_villager_plushie");
-    public static final Block TAIGA_ZOMBIE_VILLAGER_PLUSHIE
-            = registerZombieVillagerPlushie(TAIGA_ZOMBIE_VILLAGER_PLUSHIE_KEY);
     public static final RegistryKey<Block> WITCH_PLUSHIE_KEY = makeRegistryKey("witch_plushie");
     public static final Block WITCH_PLUSHIE = register(new WitchPlushieBlock(makePlushieSettings(WITCH_PLUSHIE_KEY)),
             WITCH_PLUSHIE_KEY, true);
@@ -1484,16 +1455,6 @@ public final class ModBlocks {
     private static Block registerShortHatVillagerPlushie(RegistryKey<Block> blockKey) {
         Block shortHatVillagerPlushieBlock = new ShortHatVillagerPlushieBlock(makePlushieSettings(blockKey));
         return register(shortHatVillagerPlushieBlock, blockKey, true);
-    }
-
-    private static Block registerZombieVillagerPlushie(RegistryKey<Block> blockKey) {
-        Block zombieVillagerPlushieBlock = new ZombieVillagerPlushieBlock(makePlushieSettings(blockKey));
-        return register(zombieVillagerPlushieBlock, blockKey, true);
-    }
-
-    private static Block registerShortHatZombieVillagerPlushie(RegistryKey<Block> blockKey) {
-        Block shortHatZombieVillagerPlushieBlock = new ShortHatZombieVillagerPlushieBlock(makePlushieSettings(blockKey));
-        return register(shortHatZombieVillagerPlushieBlock, blockKey, true);
     }
 
     private static Block registerZombiePlushie(RegistryKey<Block> blockKey) {

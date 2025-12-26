@@ -41,7 +41,6 @@ public final class ModServerConfigKeys {
     public static final String ENABLE_WITCH_PLUSHIE = "enable_witch_plushie";
     public static final String ENABLE_WITHER_PLUSHIE = "enable_wither_plushie";
     public static final String ENABLE_ZOMBIE_PLUSHIE = "enable_zombie_plushie";
-    public static final String ENABLE_ZOMBIE_VILLAGER_PLUSHIES = "enable_zombie_villager_plushies";
     public static final String ENABLE_CREAKING_PLUSHIE = "enable_creaking_plushie";
     public static final String ENABLE_WOODEN_WALLS = "enable_wooden_walls";
     public static final String ENABLE_STRIPPED_WOODEN_WALLS = "enable_stripped_wooden_walls";

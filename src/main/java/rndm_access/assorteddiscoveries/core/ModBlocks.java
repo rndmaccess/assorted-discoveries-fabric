@@ -183,8 +183,8 @@ public final class ModBlocks {
     public static final RegistryKey<Block> SAVANNA_VILLAGER_PLUSHIE_KEY
             = makeRegistryKey("savanna_villager_plushie");
     public static final Block SAVANNA_VILLAGER_PLUSHIE = registerVillagerPlushie(SAVANNA_VILLAGER_PLUSHIE_KEY);
-    public static final RegistryKey<Block> SNOW_VILLAGER_PLUSHIE_KEY = makeRegistryKey("snow_villager_plushie");
-    public static final Block SNOW_VILLAGER_PLUSHIE = registerShortHatVillagerPlushie(SNOW_VILLAGER_PLUSHIE_KEY);
+    public static final RegistryKey<Block> SNOWY_VILLAGER_PLUSHIE_KEY = makeRegistryKey("snowy_villager_plushie");
+    public static final Block SNOWY_VILLAGER_PLUSHIE = registerShortHatVillagerPlushie(SNOWY_VILLAGER_PLUSHIE_KEY);
     public static final RegistryKey<Block> SWAMP_VILLAGER_PLUSHIE_KEY = makeRegistryKey("swamp_villager_plushie");
     public static final Block SWAMP_VILLAGER_PLUSHIE = registerShortHatVillagerPlushie(SWAMP_VILLAGER_PLUSHIE_KEY);
     public static final RegistryKey<Block> TAIGA_VILLAGER_PLUSHIE_KEY = makeRegistryKey("taiga_villager_plushie");

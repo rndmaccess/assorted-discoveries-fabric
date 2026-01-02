@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "assorted-discoveries:snow_villager_plushie"
+      "assorted-discoveries:snowy_villager_plushie"
     ]
   },
   "criteria": {
@@ -18,7 +18,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "assorted-discoveries:snow_villager_plushie"
+        "recipe": "assorted-discoveries:snowy_villager_plushie"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

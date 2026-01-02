@@ -1,7 +1,7 @@
 {
   "parent": "assorted-discoveries:block/template_villager_plushie",
   "textures": {
-    "shirt": "block/yellow_wool",
-    "arms": "block/brown_wool"
+    "particle": "minecraft:block/yellow_wool",
+    "atlas": "assorted-discoveries:block/jungle_villager_plushie"
   }
 }

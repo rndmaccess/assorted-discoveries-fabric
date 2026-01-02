@@ -153,9 +153,9 @@
 		},
 		{
 			"name": "PomPom",
-			"from": [8, 13, 7],
-			"to": [10, 14, 9],
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 13, 6]},
+			"from": [7, 13, 7.5],
+			"to": [9, 14, 9.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7, 13, 6]},
 			"faces": {
 				"north": {"uv": [8, 7.5, 9, 8], "texture": "#atlas"},
 				"east": {"uv": [9, 7.5, 10, 8], "texture": "#atlas"},

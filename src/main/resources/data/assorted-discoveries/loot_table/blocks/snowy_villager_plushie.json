@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "assorted-discoveries:snow_villager_plushie"
+          "name": "assorted-discoveries:snowy_villager_plushie"
         }
       ],
       "conditions": [
@@ -16,5 +16,5 @@
       ]
     }
   ],
-  "random_sequence": "assorted-discoveries:blocks/snow_villager_plushie"
+  "random_sequence": "assorted-discoveries:blocks/snowy_villager_plushie"
 }

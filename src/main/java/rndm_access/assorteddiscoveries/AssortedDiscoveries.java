@@ -423,7 +423,7 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.DESERT_VILLAGER_PLUSHIE.asItem());
                 entries.add(ModBlocks.JUNGLE_VILLAGER_PLUSHIE.asItem());
                 entries.add(ModBlocks.SAVANNA_VILLAGER_PLUSHIE.asItem());
-                entries.add(ModBlocks.SNOW_VILLAGER_PLUSHIE.asItem());
+                entries.add(ModBlocks.SNOWY_VILLAGER_PLUSHIE.asItem());
                 entries.add(ModBlocks.SWAMP_VILLAGER_PLUSHIE.asItem());
                 entries.add(ModBlocks.TAIGA_VILLAGER_PLUSHIE.asItem());
                 entries.add(ModBlocks.WANDERING_TRADER_PLUSHIE.asItem());

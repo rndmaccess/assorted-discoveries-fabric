@@ -422,7 +422,6 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.SNOWY_VILLAGER_PLUSHIE.asItem());
                 entries.add(ModBlocks.SWAMP_VILLAGER_PLUSHIE.asItem());
                 entries.add(ModBlocks.TAIGA_VILLAGER_PLUSHIE.asItem());
-                entries.add(ModBlocks.WANDERING_TRADER_PLUSHIE.asItem());
             }
 
             if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_WITCH_PLUSHIE)) {

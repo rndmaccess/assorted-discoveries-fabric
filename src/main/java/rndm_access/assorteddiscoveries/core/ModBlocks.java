@@ -189,8 +189,6 @@ public final class ModBlocks {
     public static final Block SWAMP_VILLAGER_PLUSHIE = registerShortHatVillagerPlushie(SWAMP_VILLAGER_PLUSHIE_KEY);
     public static final RegistryKey<Block> TAIGA_VILLAGER_PLUSHIE_KEY = makeRegistryKey("taiga_villager_plushie");
     public static final Block TAIGA_VILLAGER_PLUSHIE = registerVillagerPlushie(TAIGA_VILLAGER_PLUSHIE_KEY);
-    public static final RegistryKey<Block> WANDERING_TRADER_PLUSHIE_KEY = makeRegistryKey("wandering_trader_plushie");
-    public static final Block WANDERING_TRADER_PLUSHIE = registerShortHatVillagerPlushie(WANDERING_TRADER_PLUSHIE_KEY);
     public static final RegistryKey<Block> WITCH_PLUSHIE_KEY = makeRegistryKey("witch_plushie");
     public static final Block WITCH_PLUSHIE = register(new WitchPlushieBlock(makePlushieSettings(WITCH_PLUSHIE_KEY)),
             WITCH_PLUSHIE_KEY, true);

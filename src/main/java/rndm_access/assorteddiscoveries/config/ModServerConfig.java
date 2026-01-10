@@ -177,7 +177,6 @@ public class ModServerConfig {
                 .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_CAVE_SPIDER_PLUSHIE))
                 .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_ENDERMAN_PLUSHIE))
                 .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_PIGLIN_PLUSHIES))
-                .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_POLAR_BEAR_PLUSHIE))
                 .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_SPIDER_PLUSHIE))
                 .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_BLAZE_PLUSHIE))
                 .addEntry(new BooleanConfigEntry(ModServerConfigKeys.ENABLE_CREEPER_PLUSHIE))

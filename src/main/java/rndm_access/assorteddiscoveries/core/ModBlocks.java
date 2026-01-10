@@ -225,10 +225,6 @@ public final class ModBlocks {
     public static final Block HOGLIN_PLUSHIE = registerHoglinPlushie(HOGLIN_PLUSHIE_KEY);
     public static final RegistryKey<Block> ZOGLIN_PLUSHIE_KEY = makeRegistryKey("zoglin_plushie");
     public static final Block ZOGLIN_PLUSHIE = registerHoglinPlushie(ZOGLIN_PLUSHIE_KEY);
-    public static final RegistryKey<Block> POLAR_BEAR_PLUSHIE_KEY = makeRegistryKey("polar_bear_plushie");
-    public static final Block POLAR_BEAR_PLUSHIE
-            = register(new PolarBearPlushieBlock(makePlushieSettings(POLAR_BEAR_PLUSHIE_KEY)),
-            POLAR_BEAR_PLUSHIE_KEY, true);
     public static final RegistryKey<Block> ALLAY_PLUSHIE_KEY = makeRegistryKey("allay_plushie");
     public static final Block ALLAY_PLUSHIE = registerAllayPlushie(ALLAY_PLUSHIE_KEY);
     public static final RegistryKey<Block> PILLAGER_PLUSHIE_KEY = makeRegistryKey("pillager_plushie");

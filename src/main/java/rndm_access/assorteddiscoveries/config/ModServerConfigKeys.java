@@ -23,7 +23,6 @@ public final class ModServerConfigKeys {
     public static final String ENABLE_CAVE_SPIDER_PLUSHIE = "enable_cave_spider_plushie";
     public static final String ENABLE_ENDERMAN_PLUSHIE = "enable_enderman_plushie";
     public static final String ENABLE_PIGLIN_PLUSHIES = "enable_piglin_plushies";
-    public static final String ENABLE_POLAR_BEAR_PLUSHIE = "enable_polar_bear_plushie";
     public static final String ENABLE_SPIDER_PLUSHIE = "enable_spider_plushie";
     public static final String ENABLE_WOLF_PLUSHIES = "enable_wolf_plushies";
     public static final String ENABLE_BLAZE_PLUSHIE = "enable_blaze_plushie";

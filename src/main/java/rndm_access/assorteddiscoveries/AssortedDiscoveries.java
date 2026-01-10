@@ -437,10 +437,6 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.add(ModBlocks.WITHER_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_POLAR_BEAR_PLUSHIE)) {
-                entries.add(ModBlocks.POLAR_BEAR_PLUSHIE.asItem());
-            }
-
             if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_ALLAY_PLUSHIE)) {
                 entries.add(ModBlocks.ALLAY_PLUSHIE.asItem());
             }

@@ -90,7 +90,7 @@ public abstract class AbstractBerryBushBlock extends PlantBlock implements Ferti
 
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity,
-                                  EntityCollisionHandler handler) {
+                                  EntityCollisionHandler handler, boolean bl) {
         if (entity.getType().isIn(this.mobsImmune())) {
             return;
         }

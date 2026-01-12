@@ -98,7 +98,7 @@ public abstract class AbstractBerryBushBlock extends PlantBlock implements Ferti
         entity.slowMovement(state, new Vec3d(0.8D, 0.75D, 0.8D));
 
         if (this.bushDamages() && world instanceof ServerWorld serverWorld && state.get(AGE) > 0) {
-            Vec3d vec3d = entity.isControlledByPlayer() ? entity.getMovement() : entity.getLastRenderPos().subtract(entity.getPos());
+            Vec3d vec3d = entity.isControlledByPlayer() ? entity.getMovement() : entity.getLastRenderPos().subtract(entity.getEntityPos());
 
             if (vec3d.horizontalLengthSquared() > 0.0) {
                 double minMovementForDamage = 0.003D;

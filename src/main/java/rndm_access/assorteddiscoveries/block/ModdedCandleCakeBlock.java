@@ -122,7 +122,7 @@ public class ModdedCandleCakeBlock extends AbstractCandleBlock {
     }
 
     @Override
-    public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
+    public int getComparatorOutput(BlockState state, World world, BlockPos pos, Direction direction) {
         return CakeBlock.DEFAULT_COMPARATOR_OUTPUT;
     }
 

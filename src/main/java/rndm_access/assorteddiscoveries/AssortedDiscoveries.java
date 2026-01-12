@@ -91,7 +91,7 @@ public class AssortedDiscoveries implements ModInitializer {
         });
 
         ServerPlayerEvents.JOIN.register((player) -> {
-            if (!player.getWorld().isClient) {
+            if (!player.getEntityWorld().isClient()) {
                 BooleanEntriesS2CPayload payload = new BooleanEntriesS2CPayload(ModClientConfig.getBoolEntries());
                 String playerName = player.getName().getString();
 

@@ -62,7 +62,7 @@ public class PieBlock extends Block {
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-        if (world.isClient && this.tryEat(world, pos, state, player).isAccepted()) {
+        if (world.isClient() && this.tryEat(world, pos, state, player).isAccepted()) {
             return ActionResult.SUCCESS;
         }
         return this.tryEat(world, pos, state, player);

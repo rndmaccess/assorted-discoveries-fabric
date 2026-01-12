@@ -1,24 +1,25 @@
 package rndm_access.assorteddiscoveries.particle;
 
 import net.minecraft.client.particle.*;
+import net.minecraft.client.texture.Sprite;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.ParticleGroup;
 import net.minecraft.particle.SimpleParticleType;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.random.Random;
 
 import java.util.Optional;
 
-public class BogBlossomNectarParticle extends SpriteBillboardParticle {
+public class BogBlossomNectarParticle extends BillboardParticle {
     @Override
-    public ParticleTextureSheet getType() {
-        return ParticleTextureSheet.PARTICLE_SHEET_OPAQUE;
+    public RenderType getRenderType() {
+        return BillboardParticle.RenderType.PARTICLE_ATLAS_OPAQUE;
     }
 
-    protected BogBlossomNectarParticle(ClientWorld clientWorld, SpriteProvider spriteProvider, double x, double y, double z,
-                                       double velocityX, double velocityY, double velocityZ) {
-        super(clientWorld, x, y - 0.125D, z, velocityX, velocityY, velocityZ);
+    protected BogBlossomNectarParticle(ClientWorld clientWorld, double x, double y, double z,
+                                       double velocityX, double velocityY, double velocityZ, Sprite sprite) {
+        super(clientWorld, x, y - 0.125D, z, velocityX, velocityY, velocityZ, sprite);
         this.setBoundingBoxSpacing(0.01F, 0.01F);
-        this.setSprite(spriteProvider);
         this.scale *= this.random.nextFloat() * 0.6F + 0.6F;
         this.maxAge = MathHelper.nextBetween(clientWorld.random, 500, 1000);
         this.collidesWithWorld = false;
@@ -51,9 +52,9 @@ public class BogBlossomNectarParticle extends SpriteBillboardParticle {
 
         @Override
         public Particle createParticle(SimpleParticleType particle, ClientWorld world, double x, double y, double z,
-                                       double velocityX, double velocityY, double velocityZ) {
-            return new BogBlossomNectarParticle(world, this.spriteProvider, x, y, z,
-                    0.0D, -0.8D, 0.0D) {
+                                       double velocityX, double velocityY, double velocityZ, Random random) {
+            return new BogBlossomNectarParticle(world, x, y, z,
+                    0.0D, -0.8D, 0.0D, this.spriteProvider.getSprite(random)) {
                 public Optional<ParticleGroup> getGroup() {
                     return Optional.of(ParticleGroup.SPORE_BLOSSOM_AIR);
                 }

@@ -1,12 +1,15 @@
 package rndm_access.assorteddiscoveries.particle;
 
 import net.minecraft.client.particle.*;
+import net.minecraft.client.texture.Sprite;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.SimpleParticleType;
+import net.minecraft.util.math.random.Random;
 
-public class SporeParticle extends SpriteBillboardParticle {
-    protected SporeParticle(ClientWorld clientWorld, double x, double y, double z, double xd, double yd, double zd) {
-        super(clientWorld, x, y, z);
+public class SporeParticle extends BillboardParticle {
+    protected SporeParticle(ClientWorld clientWorld, double x, double y, double z,
+                            double xd, double yd, double zd, Sprite sprite) {
+        super(clientWorld, x, y, z, sprite);
         this.setBoundingBoxSpacing(0.01F, 0.01F);
         this.velocityX = xd * 0.2F + (Math.random() * 2.0D - 1.0D) * 0.02F;
         this.velocityY = yd * 0.2F + (Math.random() * 2.0D - 1.0D) * 0.02F;
@@ -20,8 +23,8 @@ public class SporeParticle extends SpriteBillboardParticle {
     }
 
     @Override
-    public ParticleTextureSheet getType() {
-        return ParticleTextureSheet.PARTICLE_SHEET_OPAQUE;
+    public RenderType getRenderType() {
+        return RenderType.PARTICLE_ATLAS_OPAQUE;
     }
 
     @Override
@@ -40,13 +43,11 @@ public class SporeParticle extends SpriteBillboardParticle {
         }
     }
 
-    public record Factory(SpriteProvider sprite) implements ParticleFactory<SimpleParticleType> {
+    public record Factory(SpriteProvider spriteProvider) implements ParticleFactory<SimpleParticleType> {
         @Override
         public Particle createParticle(SimpleParticleType type, ClientWorld world,
-                                       double x, double y, double z, double xd, double yd, double zd) {
-            SporeParticle particle = new SporeParticle(world, x, y, z, xd, yd, zd);
-            particle.setSprite(this.sprite);
-            return particle;
+                                       double x, double y, double z, double xd, double yd, double zd, Random random) {
+            return new SporeParticle(world, x, y, z, xd, yd, zd, this.spriteProvider.getSprite(random));
         }
     }
 }

@@ -36,7 +36,7 @@ public class ModConfigErrorScreen extends Screen {
                 height / 2 - 65, 0xffffff);
         context.drawCenteredTextWithShadow(textRenderer, desc_line_three, width / 2,
                 height / 2 - 50, 0xffffff);
-        multilineError.drawWithShadow(context, 30, height / 2 - 30, 16, 0xff5555);
+        multilineError.draw(context, MultilineText.Alignment.LEFT, height / 2 - 30, 16, 30, true, 0xff5555);
     }
 
     @Override

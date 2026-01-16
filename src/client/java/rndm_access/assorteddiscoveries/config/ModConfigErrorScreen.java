@@ -4,6 +4,8 @@ import net.minecraft.client.font.MultilineText;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
+import net.minecraft.text.MutableText;
+import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 
@@ -19,9 +21,9 @@ public class ModConfigErrorScreen extends Screen {
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float deltaTicks) {
         super.render(context, mouseX, mouseY, deltaTicks);
-
-        final MultilineText multilineError = MultilineText.create(textRenderer,
-                Text.literal(ModServerConfig.getConfigError()), width - 80);
+        MutableText errorText = Text.literal(ModServerConfig.getConfigError());
+        errorText.setStyle(Style.EMPTY.withColor(0xff5555));
+        final MultilineText multilineError = MultilineText.create(textRenderer, errorText, width - 80);
         Text desc_line_one = Text.translatable("config_error." + AssortedDiscoveries.MOD_ID
                 + ".screen.description.line_one");
         Text desc_line_two = Text.translatable("config_error." + AssortedDiscoveries.MOD_ID
@@ -36,7 +38,9 @@ public class ModConfigErrorScreen extends Screen {
                 height / 2 - 65, 0xffffff);
         context.drawCenteredTextWithShadow(textRenderer, desc_line_three, width / 2,
                 height / 2 - 50, 0xffffff);
-        multilineError.draw(context, MultilineText.Alignment.LEFT, height / 2 - 30, 16, 30, true, 0xff5555);
+        //context.drawTextWithShadow(textRenderer, multilineError, height / 2 - 30, 16, 30);
+
+        //multilineError.draw(Alignment.LEFT, , DrawnTextConsumer);
     }
 
     @Override

@@ -1,85 +1,89 @@
 package rndm_access.assorteddiscoveries.block;
 
-import net.minecraft.block.*;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.IntProperty;
-import net.minecraft.state.property.Properties;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
-import net.minecraft.world.WorldView;
-import net.minecraft.world.tick.ScheduledTickView;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class PieBlock extends Block {
-    public static final IntProperty BITES = Properties.BITES;
+    public static final IntegerProperty BITES = BlockStateProperties.BITES;
     private static final VoxelShape[] SHAPE_BY_BITE = new VoxelShape[] {
-            Block.createCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 6.0D, 15.0D),
-            Block.createCuboidShape(3.0D, 0.0D, 1.0D, 15.0D, 6.0D, 15.0D),
-            Block.createCuboidShape(5.0D, 0.0D, 1.0D, 15.0D, 6.0D, 15.0D),
-            Block.createCuboidShape(7.0D, 0.0D, 1.0D, 15.0D, 6.0D, 15.0D),
-            Block.createCuboidShape(9.0D, 0.0D, 1.0D, 15.0D, 6.0D, 15.0D),
-            Block.createCuboidShape(11.0D, 0.0D, 1.0D, 15.0D, 6.0D, 15.0D),
-            Block.createCuboidShape(13.0D, 0.0D, 1.0D, 15.0D, 6.0D, 15.0D)
+            Block.box(1.0D, 0.0D, 1.0D, 15.0D, 6.0D, 15.0D),
+            Block.box(3.0D, 0.0D, 1.0D, 15.0D, 6.0D, 15.0D),
+            Block.box(5.0D, 0.0D, 1.0D, 15.0D, 6.0D, 15.0D),
+            Block.box(7.0D, 0.0D, 1.0D, 15.0D, 6.0D, 15.0D),
+            Block.box(9.0D, 0.0D, 1.0D, 15.0D, 6.0D, 15.0D),
+            Block.box(11.0D, 0.0D, 1.0D, 15.0D, 6.0D, 15.0D),
+            Block.box(13.0D, 0.0D, 1.0D, 15.0D, 6.0D, 15.0D)
     };
     private final int nutrition;
     private final float saturationMod;
 
-    public PieBlock(AbstractBlock.Settings settings, int nutrition, float saturationMod) {
+    public PieBlock(BlockBehaviour.Properties settings, int nutrition, float saturationMod) {
         super(settings);
         this.nutrition = nutrition;
         this.saturationMod = saturationMod;
     }
 
     @Override
-    public BlockState getStateForNeighborUpdate(BlockState state, WorldView world, ScheduledTickView tickView,
+    public BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess tickView,
                                                 BlockPos pos, Direction direction, BlockPos neighborPos,
-                                                BlockState neighborState, Random random) {
-        if (direction == Direction.DOWN && !state.canPlaceAt(world, pos)) {
-            return Blocks.AIR.getDefaultState();
+                                                BlockState neighborState, RandomSource random) {
+        if (direction == Direction.DOWN && !state.canSurvive(world, pos)) {
+            return Blocks.AIR.defaultBlockState();
         }
         return state;
     }
 
     @SuppressWarnings("deprecation")
     @Override
-    public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-        BlockPos floorPos = pos.down();
+    public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
+        BlockPos floorPos = pos.below();
 
         return world.getBlockState(floorPos).isSolid();
     }
 
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPE_BY_BITE[state.get(BITES)];
+    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+        return SHAPE_BY_BITE[state.getValue(BITES)];
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-        if (world.isClient() && this.tryEat(world, pos, state, player).isAccepted()) {
-            return ActionResult.SUCCESS;
+    public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
+        if (world.isClientSide() && this.tryEat(world, pos, state, player).consumesAction()) {
+            return InteractionResult.SUCCESS;
         }
         return this.tryEat(world, pos, state, player);
     }
 
-    private ActionResult tryEat(WorldAccess world, BlockPos pos, BlockState state, PlayerEntity player) {
-        if (player.canConsume(false)) {
-            int bitesTaken = state.get(BITES);
+    private InteractionResult tryEat(LevelAccessor world, BlockPos pos, BlockState state, Player player) {
+        if (player.canEat(false)) {
+            int bitesTaken = state.getValue(BITES);
 
-            player.getHungerManager().add(this.nutrition, this.saturationMod);
+            player.getFoodData().eat(this.nutrition, this.saturationMod);
             return ModdedCakeBlock.eat(world, pos, state, player, bitesTaken, BITES);
         }
-        return ActionResult.PASS;
+        return InteractionResult.PASS;
     }
 
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(BITES);
     }
 }

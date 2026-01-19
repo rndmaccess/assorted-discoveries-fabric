@@ -1,95 +1,106 @@
 package rndm_access.assorteddiscoveries.block;
 
 import com.mojang.serialization.MapCodec;
-import net.minecraft.block.*;
-import net.minecraft.block.enums.SlabType;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.registry.tag.BlockTags;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.Properties;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldView;
-import net.minecraft.world.tick.ScheduledTickView;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.SlabType;
+import org.jspecify.annotations.NonNull;
 import rndm_access.assorteddiscoveries.core.ModBlockTags;
 import rndm_access.assorteddiscoveries.core.ModBlocks;
 
 public class SnowySlabBlock extends SlabBlock {
-    public static final MapCodec<SnowySlabBlock> CODEC = createCodec(SnowySlabBlock::new);
-    public static final BooleanProperty SNOWY = Properties.SNOWY;
+    public static final MapCodec<SnowySlabBlock> CODEC = simpleCodec(SnowySlabBlock::new);
+    public static final BooleanProperty SNOWY = BlockStateProperties.SNOWY;
 
-    public SnowySlabBlock(Settings settings) {
+    public SnowySlabBlock(Properties settings) {
         super(settings);
-        this.setDefaultState(this.getStateManager().getDefaultState().with(SNOWY, false)
-                .with(WATERLOGGED, false).with(TYPE, SlabType.BOTTOM));
+        this.registerDefaultState(this.getStateDefinition().any().setValue(SNOWY, false)
+                .setValue(WATERLOGGED, false).setValue(TYPE, SlabType.BOTTOM));
     }
 
     @Override
-    public MapCodec<SnowySlabBlock> getCodec() {
+    public @NonNull MapCodec<SnowySlabBlock> codec() {
         return CODEC;
     }
 
     @Override
-    protected BlockState getStateForNeighborUpdate(BlockState state, WorldView world, ScheduledTickView tickView,
-                                                   BlockPos pos, Direction direction, BlockPos neighborPos,
-                                                   BlockState neighborState, Random random) {
-        return direction == Direction.UP ? state.with(SNOWY, isSnow(world, state, neighborPos, neighborState)) : state;
+    protected @NonNull BlockState updateShape(@NonNull BlockState state, @NonNull LevelReader world,
+                                              @NonNull ScheduledTickAccess tickView, @NonNull BlockPos pos,
+                                              @NonNull Direction direction, @NonNull BlockPos neighborPos,
+                                              @NonNull BlockState neighborState, @NonNull RandomSource random) {
+        return direction == Direction.UP ? state.setValue(SNOWY, isSnow(world, state, neighborPos, neighborState)) : state;
     }
 
     @Override
-    public BlockState getPlacementState(ItemPlacementContext ctx) {
-        World world = ctx.getWorld();
-        BlockPos neighborPos = ctx.getBlockPos().up();
+    public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+        Level world = ctx.getLevel();
+        BlockPos neighborPos = ctx.getClickedPos().above();
         BlockState neighborState = world.getBlockState(neighborPos);
-        BlockState state = super.getPlacementState(ctx);
+        BlockState state = super.getStateForPlacement(ctx);
 
-        return state != null ? state.with(SNOWY, isSnow(world, state, neighborPos, neighborState)) : null;
+        return state != null ? state.setValue(SNOWY, isSnow(world, state, neighborPos, neighborState)) : null;
     }
 
-    private static boolean isSnow(WorldView world, BlockState state, BlockPos neighborPos,
+    private static boolean isSnow(LevelReader world, BlockState state, BlockPos neighborPos,
                                   BlockState neighborState) {
-        return (neighborState.isIn(BlockTags.SNOW) && !isBottom(state)) ||
-                (neighborState.isIn(ModBlockTags.SNOW_STAIRS) && !isBottom(state) &&
+        return (neighborState.is(BlockTags.SNOW) && !isBottom(state)) ||
+                (neighborState.is(ModBlockTags.SNOW_STAIRS) && !isBottom(state) &&
                         isCovered(world, neighborPos, neighborState)) ||
-                (neighborState.isIn(ModBlockTags.SNOW_SLABS) && !isBottom(state) &&
+                (neighborState.is(ModBlockTags.SNOW_SLABS) && !isBottom(state) &&
                         isCovered(world, neighborPos, neighborState));
     }
 
-    public static boolean canSurvive(BlockState state, WorldView world, BlockPos pos) {
-        BlockPos neighborPos = pos.up();
+    @Override
+    protected boolean canSurvive(@NonNull BlockState blockState, @NonNull LevelReader levelReader,
+                                 @NonNull BlockPos blockPos) {
+        return canStay(blockState, levelReader, blockPos);
+    }
+
+    public static boolean canStay(BlockState state, LevelReader world, BlockPos pos) {
+        BlockPos neighborPos = pos.above();
         BlockState neighborState = world.getBlockState(neighborPos);
 
         if (isSnow(world, state, neighborPos, neighborState)) {
             return true;
-        } else if (neighborState.getFluidState().getLevel() == 8 || state.get(WATERLOGGED)) {
+        } else if (neighborState.getFluidState().getAmount() == 8 || state.getValue(WATERLOGGED)) {
             return false;
         } else {
-            return !isCovered(world, neighborPos, neighborState) || isBottom(state) || !neighborState.isOpaque();
+            return !isCovered(world, neighborPos, neighborState) || isBottom(state) || !neighborState.canOcclude();
         }
     }
 
-    private static boolean isCovered(WorldView world, BlockPos neighborPos, BlockState neighborState) {
-        return neighborState.isSideSolidFullSquare(world, neighborPos, Direction.DOWN);
+    private static boolean isCovered(LevelReader world, BlockPos neighborPos, BlockState neighborState) {
+        return neighborState.isFaceSturdy(world, neighborPos, Direction.DOWN);
     }
 
     private static boolean isBottom(BlockState state) {
-        return state.get(TYPE).equals(SlabType.BOTTOM);
+        return state.getValue(TYPE).equals(SlabType.BOTTOM);
     }
 
     @Override
-    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+    public void randomTick(@NonNull BlockState state, @NonNull ServerLevel world,
+                           @NonNull BlockPos pos, @NonNull RandomSource random) {
         if(!canSurvive(state, world, pos)) {
-            world.setBlockState(pos, ModBlocks.DIRT_SLAB.getDefaultState().with(TYPE, state.get(TYPE))
-                    .with(WATERLOGGED, state.get(WATERLOGGED)));
+            world.setBlockAndUpdate(pos, ModBlocks.DIRT_SLAB.defaultBlockState().setValue(TYPE, state.getValue(TYPE))
+                    .setValue(WATERLOGGED, state.getValue(WATERLOGGED)));
         }
     }
 
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(TYPE, WATERLOGGED, SNOWY);
     }
 }

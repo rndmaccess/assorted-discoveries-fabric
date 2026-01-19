@@ -1,88 +1,93 @@
 package rndm_access.assorteddiscoveries.block;
 
 import com.mojang.serialization.MapCodec;
-import net.minecraft.block.*;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.state.StateManager;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
-import net.minecraft.world.WorldView;
-import net.minecraft.world.tick.ScheduledTickView;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.GrowingPlantBodyBlock;
+import net.minecraft.world.level.block.GrowingPlantHeadBlock;
+import net.minecraft.world.level.block.LiquidBlockContainer;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.Shapes;
 import org.jetbrains.annotations.Nullable;
 import rndm_access.assorteddiscoveries.core.ModBlocks;
 
-public class BloodKelpPlantBlock extends AbstractPlantBlock implements FluidFillable, BloodKelp {
-    public static final MapCodec<BloodKelpPlantBlock> CODEC = createCodec(BloodKelpPlantBlock::new);
+public class BloodKelpPlantBlock extends GrowingPlantBodyBlock implements LiquidBlockContainer, BloodKelp {
+    public static final MapCodec<BloodKelpPlantBlock> CODEC = simpleCodec(BloodKelpPlantBlock::new);
 
-    public BloodKelpPlantBlock(AbstractBlock.Settings settings) {
-        super(settings, Direction.UP, VoxelShapes.fullCube(), true);
-        this.setDefaultState(this.getStateManager().getDefaultState().with(LIT, false));
+    public BloodKelpPlantBlock(BlockBehaviour.Properties settings) {
+        super(settings, Direction.UP, Shapes.block(), true);
+        this.registerDefaultState(this.getStateDefinition().any().setValue(LIT, false));
     }
 
     @Override
-    protected MapCodec<BloodKelpPlantBlock> getCodec() {
+    protected MapCodec<BloodKelpPlantBlock> codec() {
         return CODEC;
     }
 
     @Override
-    protected AbstractPlantStemBlock getStem() {
-        return (AbstractPlantStemBlock) ModBlocks.BLOOD_KELP;
+    protected GrowingPlantHeadBlock getHeadBlock() {
+        return (GrowingPlantHeadBlock) ModBlocks.BLOOD_KELP;
     }
 
-    public BlockState getPlantState(Random random) {
-        return this.getDefaultState().with(LIT, BloodKelp.isLit(random));
+    public BlockState getPlantState(RandomSource random) {
+        return this.defaultBlockState().setValue(LIT, BloodKelp.isLit(random));
     }
 
     @Override
-    public BlockState getStateForNeighborUpdate(BlockState state, WorldView world, ScheduledTickView tickView,
+    public BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess tickView,
                                                 BlockPos pos, Direction direction, BlockPos neighborPos,
-                                                BlockState neighborState, Random random) {
-        return super.getStateForNeighborUpdate(state, world, tickView, pos, direction, neighborPos,
-                        neighborState, random).with(LIT, state.get(LIT));
+                                                BlockState neighborState, RandomSource random) {
+        return super.updateShape(state, world, tickView, pos, direction, neighborPos,
+                        neighborState, random).setValue(LIT, state.getValue(LIT));
     }
 
     @Override
-    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+    public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
         BloodKelp.playParticles(world, state, pos, random);
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+    public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
         return BloodKelp.pickSeedCluster(world, player, state, pos);
     }
 
     @Override
-    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
-        return !state.get(LIT) && super.isFertilizable(world, pos, state);
+    public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state) {
+        return !state.getValue(LIT) && super.isValidBonemealTarget(world, pos, state);
     }
 
     @Override
     public FluidState getFluidState(BlockState state) {
-        return Fluids.WATER.getStill(false);
+        return Fluids.WATER.getSource(false);
     }
 
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(LIT);
     }
 
-    public boolean canFillWithFluid(@Nullable LivingEntity filler, BlockView world, BlockPos pos, BlockState state,
+    public boolean canPlaceLiquid(@Nullable LivingEntity filler, BlockGetter world, BlockPos pos, BlockState state,
                                     Fluid fluid) {
         return false;
     }
 
-    public boolean tryFillWithFluid(WorldAccess world, BlockPos pos, BlockState state, FluidState fluidState) {
+    public boolean placeLiquid(LevelAccessor world, BlockPos pos, BlockState state, FluidState fluidState) {
         return false;
     }
 }

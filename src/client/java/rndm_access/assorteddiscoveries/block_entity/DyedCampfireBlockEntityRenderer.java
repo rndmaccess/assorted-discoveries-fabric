@@ -1,77 +1,78 @@
 package rndm_access.assorteddiscoveries.block_entity;
 
-import net.minecraft.block.CampfireBlock;
-import net.minecraft.client.item.ItemModelManager;
-import net.minecraft.client.render.OverlayTexture;
-import net.minecraft.client.render.block.entity.BlockEntityRenderer;
-import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
-import net.minecraft.client.render.block.entity.state.BlockEntityRenderState;
-import net.minecraft.client.render.block.entity.state.CampfireBlockEntityRenderState;
-import net.minecraft.client.render.command.ModelCommandRenderer;
-import net.minecraft.client.render.command.OrderedRenderCommandQueue;
-import net.minecraft.client.render.item.ItemRenderState;
-import net.minecraft.client.render.state.CameraRenderState;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.item.ItemDisplayContext;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.RotationAxis;
-import net.minecraft.util.math.Vec3d;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Axis;
+import net.minecraft.client.renderer.SubmitNodeCollector;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
+import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState;
+import net.minecraft.client.renderer.blockentity.state.CampfireRenderState;
+import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
+import net.minecraft.client.renderer.item.ItemModelResolver;
+import net.minecraft.client.renderer.item.ItemStackRenderState;
+import net.minecraft.client.renderer.state.CameraRenderState;
+import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.core.Direction;
+import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.world.level.block.CampfireBlock;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DyedCampfireBlockEntityRenderer implements BlockEntityRenderer<DyedCampfireBlockEntity, CampfireBlockEntityRenderState> {
+public class DyedCampfireBlockEntityRenderer implements BlockEntityRenderer<DyedCampfireBlockEntity, CampfireRenderState> {
     private static final float SCALE = 0.375F;
-    private final ItemModelManager itemModelManager;
+    private final ItemModelResolver itemModelResolver;
 
-    public DyedCampfireBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
-        this.itemModelManager = ctx.itemModelManager();
+    public DyedCampfireBlockEntityRenderer(BlockEntityRendererProvider.Context ctx) {
+        this.itemModelResolver = ctx.itemModelResolver();
     }
 
     @Override
-    public CampfireBlockEntityRenderState createRenderState() {
-        return new CampfireBlockEntityRenderState();
+    public CampfireRenderState createRenderState() {
+        return new CampfireRenderState();
     }
 
     @Override
-    public void updateRenderState(DyedCampfireBlockEntity blockEntity, CampfireBlockEntityRenderState renderState,
-                                  float f, Vec3d vec3d,
-                                  @Nullable ModelCommandRenderer.CrumblingOverlayCommand crumblingOverlayCommand) {
-        BlockEntityRenderState.updateBlockEntityRenderState(blockEntity, renderState, crumblingOverlayCommand);
-        renderState.facing = blockEntity.getCachedState().get(CampfireBlock.FACING);
-        int i = (int) blockEntity.getPos().asLong();
-        renderState.cookedItemStates = new ArrayList<>();
+    public void extractRenderState(DyedCampfireBlockEntity dyedCampfireBlockEntity, CampfireRenderState renderState,
+                                   float f, @NonNull Vec3 vec3,
+                                   @Nullable ModelFeatureRenderer.CrumblingOverlay crumblingOverlay) {
+        BlockEntityRenderState.extractBase(dyedCampfireBlockEntity, renderState, crumblingOverlay);
+        renderState.facing = dyedCampfireBlockEntity.getBlockState().getValue(CampfireBlock.FACING);
+        int i = (int) dyedCampfireBlockEntity.getBlockPos().asLong();
+        renderState.items = new ArrayList<>();
 
-        for(int j = 0; j < blockEntity.getItemsBeingCooked().size(); ++j) {
-            ItemRenderState itemRenderState = new ItemRenderState();
-            this.itemModelManager.clearAndUpdate(itemRenderState, blockEntity.getItemsBeingCooked().get(j),
-                    ItemDisplayContext.FIXED, blockEntity.getWorld(), null, i + j);
-            renderState.cookedItemStates.add(itemRenderState);
+        for(int j = 0; j < dyedCampfireBlockEntity.getItems().size(); ++j) {
+            ItemStackRenderState itemRenderState = new ItemStackRenderState();
+            this.itemModelResolver.updateForTopItem(itemRenderState, dyedCampfireBlockEntity.getItems().get(j),
+                    ItemDisplayContext.FIXED, dyedCampfireBlockEntity.getLevel(), null, i + j);
+            renderState.items.add(itemRenderState);
         }
 
     }
 
     @Override
-    public void render(CampfireBlockEntityRenderState renderState, MatrixStack matrixStack,
-                       OrderedRenderCommandQueue orderedRenderCommandQueue, CameraRenderState cameraRenderState) {
+    public void submit(CampfireRenderState renderState, @NonNull PoseStack poseStack,
+                       @NonNull SubmitNodeCollector submitNodeCollector, @NonNull CameraRenderState cameraRenderState) {
         Direction direction = renderState.facing;
-        List<ItemRenderState> cookedItemStates = renderState.cookedItemStates;
+        List<ItemStackRenderState> cookedItems = renderState.items;
 
-        for (int i = 0; i < cookedItemStates.size(); ++i) {
-            ItemRenderState itemRenderState = cookedItemStates.get(i);
+        for (int i = 0; i < cookedItems.size(); ++i) {
+            ItemStackRenderState itemRenderState = cookedItems.get(i);
             if (!itemRenderState.isEmpty()) {
-                matrixStack.push();
-                matrixStack.translate(0.5F, 0.44921875F, 0.5F);
-                Direction direction2 = Direction.fromHorizontalQuarterTurns((i + direction.getHorizontalQuarterTurns()) % 4);
-                float f = -direction2.getPositiveHorizontalDegrees();
-                matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(f));
-                matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(90.0F));
-                matrixStack.translate(-0.3125F, -0.3125F, 0.0F);
-                matrixStack.scale(SCALE, SCALE, SCALE);
-                itemRenderState.render(matrixStack, orderedRenderCommandQueue, renderState.lightmapCoordinates,
-                        OverlayTexture.DEFAULT_UV, 0);
-                matrixStack.pop();
+                poseStack.pushPose();
+                poseStack.translate(0.5F, 0.44921875F, 0.5F);
+                Direction direction2 = Direction.from2DDataValue((i + direction.get2DDataValue()) % 4);
+                float f = -direction2.toYRot();
+                poseStack.mulPose(Axis.YP.rotationDegrees(f));
+                poseStack.mulPose(Axis.XP.rotationDegrees(90.0F));
+                poseStack.translate(-0.3125F, -0.3125F, 0.0F);
+                poseStack.scale(SCALE, SCALE, SCALE);
+                itemRenderState.submit(poseStack, submitNodeCollector, renderState.lightCoords,
+                        OverlayTexture.NO_OVERLAY, 0);
+                poseStack.popPose();
             }
         }
     }

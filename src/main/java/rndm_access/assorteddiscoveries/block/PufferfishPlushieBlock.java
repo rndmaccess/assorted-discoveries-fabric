@@ -1,71 +1,74 @@
 package rndm_access.assorteddiscoveries.block;
 
 import com.mojang.serialization.MapCodec;
-import net.minecraft.block.*;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.IntProperty;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import rndm_access.assorteddiscoveries.block.state.ModBlockStateProperties;
 import rndm_access.assorteddiscoveries.util.ShapeHelper;
 
 import java.util.HashMap;
 
 public class PufferfishPlushieBlock extends AbstractPlushieBlock {
-    public static final MapCodec<PufferfishPlushieBlock> CODEC = createCodec(PufferfishPlushieBlock::new);
-    public static final IntProperty PUFFED = ModBlockStateProperties.PUFFED;
-    private static final VoxelShape SMALL_NORTH_SHAPE = Block.createCuboidShape(4.0D, 0.0D, 3.0D,
+    public static final MapCodec<PufferfishPlushieBlock> CODEC = simpleCodec(PufferfishPlushieBlock::new);
+    public static final IntegerProperty PUFFED = ModBlockStateProperties.PUFFED;
+    private static final VoxelShape SMALL_NORTH_SHAPE = Block.box(4.0D, 0.0D, 3.0D,
             12.0D, 6.0D, 14.0D);
-    private static final VoxelShape MEDIUM_NORTH_SHAPE = Block.createCuboidShape(1.5D, 0.0D, 2.5D,
+    private static final VoxelShape MEDIUM_NORTH_SHAPE = Block.box(1.5D, 0.0D, 2.5D,
             14.5D, 8.5D, 11.5D);
-    private static final VoxelShape LARGE_NORTH_SHAPE = Block.createCuboidShape(0.5D, 0.0D, 1.5D,
+    private static final VoxelShape LARGE_NORTH_SHAPE = Block.box(0.5D, 0.0D, 1.5D,
             15.5D, 9.5D, 12.5D);
     private static final HashMap<Direction, VoxelShape> SMALL_SHAPES = ShapeHelper.makeShapeRotMap(SMALL_NORTH_SHAPE);
     private static final HashMap<Direction, VoxelShape> MEDIUM_SHAPES = ShapeHelper.makeShapeRotMap(MEDIUM_NORTH_SHAPE);
     private static final HashMap<Direction, VoxelShape> LARGE_SHAPES = ShapeHelper.makeShapeRotMap(LARGE_NORTH_SHAPE);
 
-    public PufferfishPlushieBlock(AbstractBlock.Settings settings) {
+    public PufferfishPlushieBlock(BlockBehaviour.Properties settings) {
         super(settings);
-        this.setDefaultState(this.getStateManager().getDefaultState().with(WATERLOGGED, false)
-                .with(FACING, Direction.NORTH).with(PUFFED, 0));
+        this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
+                .setValue(FACING, Direction.NORTH).setValue(PUFFED, 0));
     }
 
     @Override
-    protected MapCodec<PufferfishPlushieBlock> getCodec() {
+    protected MapCodec<PufferfishPlushieBlock> codec() {
         return CODEC;
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-        int puffedLevel = state.get(PUFFED);
+    public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
+        int puffedLevel = state.getValue(PUFFED);
         float pitch = 0.8F + world.getRandom().nextFloat() * 0.4F;
 
         if (puffedLevel < 2) {
-            world.playSound(null, pos, SoundEvents.ENTITY_PUFFER_FISH_BLOW_UP,
-                    SoundCategory.BLOCKS, 1.0F, pitch);
-            world.setBlockState(pos, state.with(PUFFED, puffedLevel + 1));
+            world.playSound(null, pos, SoundEvents.PUFFER_FISH_BLOW_UP,
+                    SoundSource.BLOCKS, 1.0F, pitch);
+            world.setBlockAndUpdate(pos, state.setValue(PUFFED, puffedLevel + 1));
         } else {
-            world.playSound(null, pos, SoundEvents.ENTITY_PUFFER_FISH_BLOW_OUT,
-                    SoundCategory.BLOCKS, 1.0F, pitch);
-            world.setBlockState(pos, state.with(PUFFED, 0));
+            world.playSound(null, pos, SoundEvents.PUFFER_FISH_BLOW_OUT,
+                    SoundSource.BLOCKS, 1.0F, pitch);
+            world.setBlockAndUpdate(pos, state.setValue(PUFFED, 0));
         }
-        return ActionResult.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos,
-                                      ShapeContext context) {
-        Direction direction = state.get(FACING);
+    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos,
+                                      CollisionContext context) {
+        Direction direction = state.getValue(FACING);
 
-        return switch (state.get(PUFFED)) {
+        return switch (state.getValue(PUFFED)) {
             case 0 -> SMALL_SHAPES.get(direction);
             case 1 -> MEDIUM_SHAPES.get(direction);
             default -> LARGE_SHAPES.get(direction);
@@ -73,7 +76,7 @@ public class PufferfishPlushieBlock extends AbstractPlushieBlock {
     }
 
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING, WATERLOGGED, PUFFED);
     }
 }

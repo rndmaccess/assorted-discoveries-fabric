@@ -1,41 +1,41 @@
 package rndm_access.assorteddiscoveries.block;
 
 import com.mojang.serialization.MapCodec;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Fertilizable;
-import net.minecraft.block.SlabBlock;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldView;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.BonemealableBlock;
+import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import rndm_access.assorteddiscoveries.core.ModBlocks;
 
-public class DirtSlabBlock extends SlabBlock implements Fertilizable {
-    public static final MapCodec<DirtSlabBlock> CODEC = createCodec(DirtSlabBlock::new);
+public class DirtSlabBlock extends SlabBlock implements BonemealableBlock {
+    public static final MapCodec<DirtSlabBlock> CODEC = simpleCodec(DirtSlabBlock::new);
 
-    public DirtSlabBlock(Settings settings) {
+    public DirtSlabBlock(Properties settings) {
         super(settings);
     }
 
     @Override
-    public MapCodec<DirtSlabBlock> getCodec() {
+    public MapCodec<DirtSlabBlock> codec() {
         return CODEC;
     }
 
     @Override
-    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
-        return SnowySlabBlock.canSurvive(state, world, pos);
+    public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state) {
+        return SnowySlabBlock.canStay(state, world, pos);
     }
 
     @Override
-    public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
+    public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
         return true;
     }
 
     @Override
-    public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-        world.setBlockState(pos, ModBlocks.GRASS_SLAB.getDefaultState().with(TYPE, state.get(TYPE))
-                .with(WATERLOGGED, state.get(WATERLOGGED)), 3);
+    public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
+        world.setBlock(pos, ModBlocks.GRASS_SLAB.defaultBlockState().setValue(TYPE, state.getValue(TYPE))
+                .setValue(WATERLOGGED, state.getValue(WATERLOGGED)), 3);
     }
 }

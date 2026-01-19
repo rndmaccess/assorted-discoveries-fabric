@@ -2,26 +2,28 @@ package rndm_access.assorteddiscoveries.block;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.block.*;
-import net.minecraft.state.StateManager;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.core.Direction;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class SheepPlushieBlock extends AbstractSimplePlushieBlock {
     public static final MapCodec<SheepPlushieBlock> CODEC
             = RecordCodecBuilder.mapCodec((instance) ->
             instance.group(DyeColor.CODEC.fieldOf("color")
-                            .forGetter(SheepPlushieBlock::getColor), createSettingsCodec())
+                            .forGetter(SheepPlushieBlock::getColor), propertiesCodec())
                     .apply(instance, SheepPlushieBlock::new));
-    private static final VoxelShape NORTH_SHAPE = Block.createCuboidShape(4.0D, 0.0D, 2.0D,
+    private static final VoxelShape NORTH_SHAPE = Block.box(4.0D, 0.0D, 2.0D,
             12.0D, 12.0D, 14.0D);
     private final DyeColor color;
 
-    public SheepPlushieBlock(DyeColor color, AbstractBlock.Settings settings) {
+    public SheepPlushieBlock(DyeColor color, BlockBehaviour.Properties settings) {
         super(settings);
-        this.setDefaultState(this.getStateManager().getDefaultState().with(WATERLOGGED, false)
-                .with(FACING, Direction.NORTH));
+        this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
+                .setValue(FACING, Direction.NORTH));
         this.color = color;
     }
 
@@ -30,7 +32,7 @@ public class SheepPlushieBlock extends AbstractSimplePlushieBlock {
     }
 
     @Override
-    protected MapCodec<SheepPlushieBlock> getCodec() {
+    protected MapCodec<SheepPlushieBlock> codec() {
         return CODEC;
     }
 
@@ -40,7 +42,7 @@ public class SheepPlushieBlock extends AbstractSimplePlushieBlock {
     }
 
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(WATERLOGGED, FACING);
     }
 }

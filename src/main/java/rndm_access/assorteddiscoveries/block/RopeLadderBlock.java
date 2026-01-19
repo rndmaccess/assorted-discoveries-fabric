@@ -1,39 +1,43 @@
 package rndm_access.assorteddiscoveries.block;
 
-import net.minecraft.block.*;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.registry.tag.FluidTags;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.IntProperty;
-import net.minecraft.state.property.Properties;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldView;
-import net.minecraft.world.tick.ScheduledTickView;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LadderBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
 import rndm_access.assorteddiscoveries.block.state.ModBlockStateProperties;
 
 public class RopeLadderBlock extends LadderBlock {
-    public static final IntProperty LENGTH = ModBlockStateProperties.LENGTH;
-    public static final BooleanProperty DOWN = Properties.DOWN;
+    public static final IntegerProperty LENGTH = ModBlockStateProperties.LENGTH;
+    public static final BooleanProperty DOWN = BlockStateProperties.DOWN;
 
-    public RopeLadderBlock(AbstractBlock.Settings settings) {
+    public RopeLadderBlock(BlockBehaviour.Properties settings) {
         super(settings);
-        this.setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH)
-                .with(WATERLOGGED, false).with(LENGTH, 0).with(DOWN, false));
+        this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH)
+                .setValue(WATERLOGGED, false).setValue(LENGTH, 0).setValue(DOWN, false));
     }
 
     @Override
-    public BlockState getPlacementState(ItemPlacementContext context) {
-        World world = context.getWorld();
-        BlockPos pos = context.getBlockPos();
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        Level world = context.getLevel();
+        BlockPos pos = context.getClickedPos();
         FluidState fluidState = world.getFluidState(pos);
-        BlockState placedState = this.getDefaultState().with(WATERLOGGED, this.isWaterSource(fluidState))
-                .with(DOWN, this.isEnd(world, pos));
+        BlockState placedState = this.defaultBlockState().setValue(WATERLOGGED, this.isWaterSource(fluidState))
+                .setValue(DOWN, this.isEnd(world, pos));
 
         if (this.hasSupport(world, pos)) {
             return this.placeHangingLadder(world, pos, placedState);
@@ -42,58 +46,58 @@ public class RopeLadderBlock extends LadderBlock {
         }
     }
 
-    private BlockState placeHangingLadder(World world, BlockPos pos, BlockState placedState) {
-        BlockState stateAboveLadder = world.getBlockState(pos.up());
-        Direction facing = stateAboveLadder.get(FACING);
+    private BlockState placeHangingLadder(Level world, BlockPos pos, BlockState placedState) {
+        BlockState stateAboveLadder = world.getBlockState(pos.above());
+        Direction facing = stateAboveLadder.getValue(FACING);
         int length = this.getNextLength(world, pos);
 
         if (length <= this.getMaxLength()) {
             if (!this.hasSupportingBlock(world, facing, pos)) {
-                return placedState.with(LENGTH, length).with(FACING, facing);
+                return placedState.setValue(LENGTH, length).setValue(FACING, facing);
             }
-            return placedState.with(FACING, facing);
+            return placedState.setValue(FACING, facing);
         }
         return null;
     }
 
-    private BlockState placeLadder(ItemPlacementContext context, BlockState placedState) {
-        for (Direction direction : context.getPlacementDirections()) {
+    private BlockState placeLadder(BlockPlaceContext context, BlockState placedState) {
+        for (Direction direction : context.getNearestLookingDirections()) {
             if (direction.getAxis().isHorizontal()) {
-                return placedState.with(FACING, direction.getOpposite());
+                return placedState.setValue(FACING, direction.getOpposite());
             }
         }
         return null;
     }
 
     @Override
-    public BlockState getStateForNeighborUpdate(BlockState state, WorldView world, ScheduledTickView tickView,
+    public BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess tickView,
                                                 BlockPos pos, Direction direction, BlockPos neighborPos,
-                                                BlockState neighborState, Random random) {
-        Direction facing = state.get(FACING);
-        BlockState stateAbove = world.getBlockState(pos.up());
+                                                BlockState neighborState, RandomSource random) {
+        Direction facing = state.getValue(FACING);
+        BlockState stateAbove = world.getBlockState(pos.above());
 
-        if (canPlaceAt(state, world, pos)) {
-            if (state.get(WATERLOGGED)) {
-                tickView.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+        if (canSurvive(state, world, pos)) {
+            if (state.getValue(WATERLOGGED)) {
+                tickView.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
             }
 
             // Set the ladder's length to 0 when a block is placed behind it.
             if (this.hasSupportingBlock(world, facing, pos)) {
-                return state.with(LENGTH, 0).with(DOWN, this.isEnd(world, pos));
+                return state.setValue(LENGTH, 0).setValue(DOWN, this.isEnd(world, pos));
             }
 
             // Update each ladders length after the new support block to keep each ladder's length consistent.
             if (this.isRopeLadder(stateAbove)) {
-                return state.with(LENGTH, this.getNextLength(world, pos)).with(DOWN, this.isEnd(world, pos));
+                return state.setValue(LENGTH, this.getNextLength(world, pos)).setValue(DOWN, this.isEnd(world, pos));
             }
         }
-        return Blocks.AIR.getDefaultState();
+        return Blocks.AIR.defaultBlockState();
     }
 
     @Override
-    public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-        Direction facing = state.get(FACING);
-        BlockState stateAboveLadder = world.getBlockState(pos.up());
+    public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
+        Direction facing = state.getValue(FACING);
+        BlockState stateAboveLadder = world.getBlockState(pos.above());
 
         if (this.isRopeLadder(stateAboveLadder)) {
             int length = this.getNextLength(world, pos);
@@ -103,19 +107,19 @@ public class RopeLadderBlock extends LadderBlock {
     }
 
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(LENGTH, DOWN, FACING, WATERLOGGED);
     }
 
-    private boolean hasSupportingBlock(WorldView world, Direction facing, BlockPos pos) {
-        BlockPos posBehindLadder = pos.offset(facing.getOpposite());
+    private boolean hasSupportingBlock(LevelReader world, Direction facing, BlockPos pos) {
+        BlockPos posBehindLadder = pos.relative(facing.getOpposite());
         BlockState stateBehindLadder = world.getBlockState(posBehindLadder);
 
-        return stateBehindLadder.isSideSolidFullSquare(world, posBehindLadder, facing);
+        return stateBehindLadder.isFaceSturdy(world, posBehindLadder, facing);
     }
 
-    private boolean isEnd(WorldView world, BlockPos pos) {
-        BlockState stateBelowLadder = world.getBlockState(pos.down());
+    private boolean isEnd(LevelReader world, BlockPos pos) {
+        BlockState stateBelowLadder = world.getBlockState(pos.below());
 
         return this.isRopeLadder(stateBelowLadder);
     }
@@ -124,21 +128,21 @@ public class RopeLadderBlock extends LadderBlock {
         return 16;
     }
 
-    private int getNextLength(WorldView world, BlockPos pos) {
-        BlockState stateAboveLadder = world.getBlockState(pos.up());
+    private int getNextLength(LevelReader world, BlockPos pos) {
+        BlockState stateAboveLadder = world.getBlockState(pos.above());
 
-        return stateAboveLadder.get(LENGTH) + 1;
+        return stateAboveLadder.getValue(LENGTH) + 1;
     }
 
     private boolean isRopeLadder(BlockState state) {
-        return state.isOf(this);
+        return state.is(this);
     }
 
-    private boolean hasSupport(World world, BlockPos pos) {
-        return this.isRopeLadder(world.getBlockState(pos.up()));
+    private boolean hasSupport(Level world, BlockPos pos) {
+        return this.isRopeLadder(world.getBlockState(pos.above()));
     }
 
     private boolean isWaterSource(FluidState fluidState) {
-        return fluidState.isIn(FluidTags.WATER) && fluidState.isStill();
+        return fluidState.is(FluidTags.WATER) && fluidState.isSource();
     }
 }

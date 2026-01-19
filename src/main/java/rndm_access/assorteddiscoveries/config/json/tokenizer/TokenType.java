@@ -1,8 +1,9 @@
 package rndm_access.assorteddiscoveries.config.json.tokenizer;
 
-import net.minecraft.util.StringIdentifiable;
+import net.minecraft.util.StringRepresentable;
+import org.jspecify.annotations.NonNull;
 
-public enum TokenType implements StringIdentifiable {
+public enum TokenType implements StringRepresentable {
     LEFT_CURLY("{"), RIGHT_CURLY("}"),
     LEFT_BRACKET("["), RIGHT_BRACKET("]"),
     COLON(":"), COMMA(","),
@@ -16,7 +17,7 @@ public enum TokenType implements StringIdentifiable {
     }
 
     @Override
-    public String asString() {
+    public @NonNull String getSerializedName() {
         return string;
     }
 }

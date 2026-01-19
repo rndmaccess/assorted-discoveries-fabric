@@ -2,8 +2,7 @@ package rndm_access.assorteddiscoveries.config;
 
 import me.shedaniel.clothconfig2.api.*;
 import me.shedaniel.clothconfig2.gui.entries.BooleanListEntry;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import net.minecraft.network.chat.Component;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.json.ServerConfig;
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.BooleanConfigEntry;
@@ -15,9 +14,9 @@ public class ModConfigScreen {
     public static final HashMap<String, Object> ENTRY_VALUE_CHANGES = new HashMap<>();
 
     public static ConfigBuilder getConfigScreenBuilder() {
-        Text title = Text.translatable("title." + AssortedDiscoveries.MOD_ID + ".config");
+        Component title = Component.translatable("title." + AssortedDiscoveries.MOD_ID + ".config");
         ConfigBuilder configBuilder = ConfigBuilder.create().setTitle(title);
-        configBuilder.setDefaultBackgroundTexture(Identifier.of("assorted-discoveries:textures/block/calcite_bricks.png"));
+        configBuilder.setDefaultBackgroundTexture(AssortedDiscoveries.makeModId("textures/block/calcite_bricks.png"));
         configBuilder.setGlobalized(true);
         configBuilder.setGlobalizedExpanded(false);
         ConfigEntryBuilder entryBuilder = configBuilder.entryBuilder();
@@ -328,7 +327,7 @@ public class ModConfigScreen {
     }
 
     private static ConfigCategory makeCategory(ConfigBuilder builder, String categoryName) {
-        Text categoryText = makeCategoryText(categoryName);
+        Component categoryText = makeCategoryText(categoryName);
         return builder.getOrCreateCategory(categoryText);
     }
 
@@ -337,7 +336,7 @@ public class ModConfigScreen {
         BooleanConfigEntry entry = (BooleanConfigEntry) ModServerConfig.getInstance().getEntry(key);
         final String entryName = entry.getKey();
         final boolean entryValue = entry.getValue();
-        Text displayText = makeEntryText(categoryName, entryName);
+        Component displayText = makeEntryText(categoryName, entryName);
 
         return entryBuilder.startBooleanToggle(displayText, entryValue)
                 .setSaveConsumer(newValue -> {
@@ -353,9 +352,9 @@ public class ModConfigScreen {
         BooleanConfigEntry entry = (BooleanConfigEntry) ModServerConfig.getInstance().getEntry(key);
         final String entryName = entry.getKey();
         final boolean entryValue = entry.getValue();
-        Text requirementText = makeEntryRequirementText(categoryName, entryName);
-        Supplier<Optional<Text[]>> requirementTooltip = getRequirementToolTip(requirementText, dependencies);
-        Text displayText = makeEntryText(categoryName, entryName);
+        Component requirementText = makeEntryRequirementText(categoryName, entryName);
+        Supplier<Optional<Component[]>> requirementTooltip = getRequirementToolTip(requirementText, dependencies);
+        Component displayText = makeEntryText(categoryName, entryName);
         Requirement[] requirements = getTrueRequirements(dependencies);
 
         return entryBuilder.startBooleanToggle(displayText, entryValue)
@@ -373,10 +372,10 @@ public class ModConfigScreen {
      * @return If the requirement is met the tooltip to show otherwise nothing.
      */
     @SuppressWarnings("UnstableApiUsage")
-    private static Supplier<Optional<Text[]>> getRequirementToolTip(Text requirementText, BooleanListEntry... dependencies) {
+    private static Supplier<Optional<Component[]>> getRequirementToolTip(Component requirementText, BooleanListEntry... dependencies) {
         return () -> {
             Requirement[] requirements = getFalseRequirements(dependencies);
-            Text[] requirementTextArray = new Text[]{requirementText};
+            Component[] requirementTextArray = new Component[]{requirementText};
 
             if(Requirement.any(requirements).check()) {
                 return Optional.of(requirementTextArray);
@@ -405,18 +404,18 @@ public class ModConfigScreen {
         return requirementsList.toArray(Requirement[]::new);
     }
 
-    private static Text makeEntryText(String categoryName, String entryName) {
-        return Text.translatable("text.cloth-config." + AssortedDiscoveries.MOD_ID
+    private static Component makeEntryText(String categoryName, String entryName) {
+        return Component.translatable("text.cloth-config." + AssortedDiscoveries.MOD_ID
                 + ".option." + categoryName + "." + entryName);
     }
 
-    private static Text makeEntryRequirementText(String categoryName, String entryName) {
-        return Text.translatable("requirement.cloth-config." + AssortedDiscoveries.MOD_ID
+    private static Component makeEntryRequirementText(String categoryName, String entryName) {
+        return Component.translatable("requirement.cloth-config." + AssortedDiscoveries.MOD_ID
                 + ".option." + categoryName + "." + entryName);
     }
 
-    private static Text makeCategoryText(String categoryName) {
-        return Text.translatable("category.cloth-config." + AssortedDiscoveries.MOD_ID
+    private static Component makeCategoryText(String categoryName) {
+        return Component.translatable("category.cloth-config." + AssortedDiscoveries.MOD_ID
                 + ".option." + categoryName);
     }
 }

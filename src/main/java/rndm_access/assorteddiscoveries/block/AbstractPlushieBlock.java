@@ -1,60 +1,64 @@
 package rndm_access.assorteddiscoveries.block;
 
 import com.mojang.serialization.MapCodec;
-import net.minecraft.block.*;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.Properties;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldView;
-import net.minecraft.world.tick.ScheduledTickView;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.SimpleWaterloggedBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
 
-public abstract class AbstractPlushieBlock extends HorizontalFacingBlock implements Waterloggable {
-    public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
+public abstract class AbstractPlushieBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    protected AbstractPlushieBlock(AbstractBlock.Settings settings) {
+    protected AbstractPlushieBlock(BlockBehaviour.Properties settings) {
         super(settings);
     }
 
     @Override
-    protected abstract MapCodec<? extends AbstractPlushieBlock> getCodec();
+    protected abstract MapCodec<? extends AbstractPlushieBlock> codec();
 
     @Override
-    protected abstract void appendProperties(StateManager.Builder<Block, BlockState> builder);
+    protected abstract void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder);
 
     @Override
-    public BlockState getPlacementState(ItemPlacementContext context) {
-        BlockPos pos = context.getBlockPos();
-        World world = context.getWorld();
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        BlockPos pos = context.getClickedPos();
+        Level world = context.getLevel();
         FluidState fluidState = world.getFluidState(pos);
 
-        for (Direction direction : context.getPlacementDirections()) {
+        for (Direction direction : context.getNearestLookingDirections()) {
             if (direction.getAxis().isHorizontal()) {
-                return this.getDefaultState().with(FACING, direction.getOpposite())
-                        .with(WATERLOGGED, fluidState.isOf(Fluids.WATER));
+                return this.defaultBlockState().setValue(FACING, direction.getOpposite())
+                        .setValue(WATERLOGGED, fluidState.is(Fluids.WATER));
             }
         }
         return null;
     }
 
     @Override
-    public BlockState getStateForNeighborUpdate(BlockState state, WorldView world, ScheduledTickView tickView,
+    public BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess tickView,
                                                 BlockPos pos, Direction direction, BlockPos neighborPos,
-                                                BlockState neighborState, Random random) {
-        if (state.get(WATERLOGGED)) {
-            tickView.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+                                                BlockState neighborState, RandomSource random) {
+        if (state.getValue(WATERLOGGED)) {
+            tickView.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
         }
-        return direction.getAxis().isHorizontal() ? state.with(FACING, state.get(FACING)) : state;
+        return direction.getAxis().isHorizontal() ? state.setValue(FACING, state.getValue(FACING)) : state;
     }
 
     @Override
     public FluidState getFluidState(BlockState state) {
-        return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : Fluids.EMPTY.getDefaultState();
+        return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : Fluids.EMPTY.defaultFluidState();
     }
 }

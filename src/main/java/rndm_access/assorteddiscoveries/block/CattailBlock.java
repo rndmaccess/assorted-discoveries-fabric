@@ -1,97 +1,105 @@
 package rndm_access.assorteddiscoveries.block;
 
 import com.mojang.serialization.MapCodec;
-import net.minecraft.block.*;
-import net.minecraft.block.enums.DoubleBlockHalf;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.Properties;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.*;
-import net.minecraft.world.tick.ScheduledTickView;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.BonemealableBlock;
+import net.minecraft.world.level.block.DoublePlantBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
 import org.jetbrains.annotations.Nullable;
 
-public class CattailBlock extends TallPlantBlock implements Fertilizable {
-    public static final MapCodec<CattailBlock> CODEC = createCodec(CattailBlock::new);
-    public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
+public class CattailBlock extends DoublePlantBlock implements BonemealableBlock {
+    public static final MapCodec<CattailBlock> CODEC = simpleCodec(CattailBlock::new);
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    public CattailBlock(AbstractBlock.Settings settings) {
+    public CattailBlock(BlockBehaviour.Properties settings) {
         super(settings);
-        this.setDefaultState(this.stateManager.getDefaultState().with(HALF, DoubleBlockHalf.LOWER)
-                .with(WATERLOGGED, false));
+        this.registerDefaultState(this.stateDefinition.any().setValue(HALF, DoubleBlockHalf.LOWER)
+                .setValue(WATERLOGGED, false));
     }
 
     @Override
-    public MapCodec<CattailBlock> getCodec() {
+    public MapCodec<CattailBlock> codec() {
         return CODEC;
     }
 
     @Override
-    protected boolean canPlantOnTop(BlockState floorState, BlockView world, BlockPos floorPos) {
-        return floorState.isSideSolidFullSquare(world, floorPos, Direction.UP)
-                && !floorState.isOf(Blocks.MAGMA_BLOCK);
+    protected boolean mayPlaceOn(BlockState floorState, BlockGetter world, BlockPos floorPos) {
+        return floorState.isFaceSturdy(world, floorPos, Direction.UP)
+                && !floorState.is(Blocks.MAGMA_BLOCK);
     }
 
     @Nullable
     @Override
-    public BlockState getPlacementState(ItemPlacementContext ctx) {
-        BlockPos blockPos = ctx.getBlockPos();
-        World world = ctx.getWorld();
-        return world.getBlockState(blockPos.up()).canReplace(ctx)
-                ? this.getDefaultState().with(WATERLOGGED, world.isWater(blockPos))
+    public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+        BlockPos blockPos = ctx.getClickedPos();
+        Level world = ctx.getLevel();
+        return world.getBlockState(blockPos.above()).canBeReplaced(ctx)
+                ? this.defaultBlockState().setValue(WATERLOGGED, world.isWaterAt(blockPos))
                 : null;
     }
 
     @Override
-    public BlockState onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        boolean isUpperHalf = state.get(HALF) == DoubleBlockHalf.UPPER;
+    public BlockState playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
+        boolean isUpperHalf = state.getValue(HALF) == DoubleBlockHalf.UPPER;
 
         // Break the other half when the top is broken and drop an item.
-        if(!world.isClient() && isUpperHalf && !player.isCreative()) {
-            BlockPos bottomHalfPos = pos.down();
+        if(!world.isClientSide() && isUpperHalf && !player.isCreative()) {
+            BlockPos bottomHalfPos = pos.below();
             BlockState bottomState = world.getBlockState(bottomHalfPos);
-            BlockState newState = bottomState.getFluidState().isOf(Fluids.WATER) ? Blocks.WATER.getDefaultState()
-                    : Blocks.AIR.getDefaultState();
+            BlockState newState = bottomState.getFluidState().is(Fluids.WATER) ? Blocks.WATER.defaultBlockState()
+                    : Blocks.AIR.defaultBlockState();
 
-            dropStacks(bottomState, world, bottomHalfPos, null, player, player.getMainHandStack());
-            world.setBlockState(bottomHalfPos, newState, 3);
-            world.syncWorldEvent(player, 2001, bottomHalfPos, Block.getRawIdFromState(bottomState));
+            dropResources(bottomState, world, bottomHalfPos, null, player, player.getMainHandItem());
+            world.setBlock(bottomHalfPos, newState, 3);
+            world.levelEvent(player, 2001, bottomHalfPos, Block.getId(bottomState));
         }
-        return super.onBreak(world, pos, state, player);
+        return super.playerWillDestroy(world, pos, state, player);
     }
 
     @Override
-    public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-        BlockPos upperPos = pos.up();
-        BlockPos floorPos = pos.down();
+    public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
+        BlockPos upperPos = pos.above();
+        BlockPos floorPos = pos.below();
         BlockState upperState = world.getBlockState(upperPos);
         FluidState upperFluidState = world.getFluidState(upperPos);
-        boolean hasRootsInWater = world.isWater(pos);
-        boolean isUpperHalf = state.get(HALF) == DoubleBlockHalf.UPPER;
+        boolean hasRootsInWater = world.isWaterAt(pos);
+        boolean isUpperHalf = state.getValue(HALF) == DoubleBlockHalf.UPPER;
 
         if (isUpperHalf) {
-            return state.isReplaceable() && super.canPlaceAt(state, world, pos);
+            return state.canBeReplaced() && super.canSurvive(state, world, pos);
         }
 
-        return ((this.isWaterAdjacent(world, floorPos) && upperState.isReplaceable() && upperFluidState.isEmpty())
-                || (hasRootsInWater && upperState.isReplaceable() && upperFluidState.isEmpty())
-                && super.canPlaceAt(state, world, pos));
+        return ((this.isWaterAdjacent(world, floorPos) && upperState.canBeReplaced() && upperFluidState.isEmpty())
+                || (hasRootsInWater && upperState.canBeReplaced() && upperFluidState.isEmpty())
+                && super.canSurvive(state, world, pos));
     }
 
-    private boolean isWaterAdjacent(WorldView world, BlockPos floorPos) {
+    private boolean isWaterAdjacent(LevelReader world, BlockPos floorPos) {
         for(Direction direction : Direction.values()) {
             if(direction.getAxis().isHorizontal()) {
-                BlockPos adjacentPos = floorPos.offset(direction);
+                BlockPos adjacentPos = floorPos.relative(direction);
 
-                if(world.isWater(adjacentPos)) {
+                if(world.isWaterAt(adjacentPos)) {
                     return true;
                 }
             }
@@ -100,36 +108,36 @@ public class CattailBlock extends TallPlantBlock implements Fertilizable {
     }
 
     @Override
-    public BlockState getStateForNeighborUpdate(BlockState state, WorldView world, ScheduledTickView tickView,
+    public BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess tickView,
                                                 BlockPos pos, Direction direction, BlockPos neighborPos,
-                                                BlockState neighborState, Random random) {
-        if (state.get(WATERLOGGED)) {
-            tickView.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+                                                BlockState neighborState, RandomSource random) {
+        if (state.getValue(WATERLOGGED)) {
+            tickView.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
         }
 
         if(this.canStay(state, neighborState, direction, world, pos)) {
             return state;
         }
-        return Blocks.AIR.getDefaultState();
+        return Blocks.AIR.defaultBlockState();
     }
 
     private boolean canStay(BlockState state, BlockState neighborState, Direction direction,
-                            WorldView world, BlockPos pos) {
-        boolean isUpperHalf = state.get(HALF) == DoubleBlockHalf.UPPER;
-        boolean isLowerHalf = state.get(HALF) == DoubleBlockHalf.LOWER;
-        boolean hasRootsInWater = world.isWater(pos);
+                            LevelReader world, BlockPos pos) {
+        boolean isUpperHalf = state.getValue(HALF) == DoubleBlockHalf.UPPER;
+        boolean isLowerHalf = state.getValue(HALF) == DoubleBlockHalf.LOWER;
+        boolean hasRootsInWater = world.isWaterAt(pos);
 
         // Break the other half when the bottom is broken.
         // We don't check the top here so tall plants can be replaced!
         if(direction == Direction.DOWN && isUpperHalf) {
-            return neighborState.isOf(state.getBlock());
+            return neighborState.is(state.getBlock());
         } else {
-            BlockPos soilPos = pos.down();
+            BlockPos soilPos = pos.below();
             BlockState soilState = world.getBlockState(soilPos);
 
             if(isLowerHalf) {
-                return canPlantOnTop(soilState, world, soilPos) && isWaterAdjacent(world, soilPos)
-                        || canPlantOnTop(soilState, world, soilPos) && hasRootsInWater;
+                return mayPlaceOn(soilState, world, soilPos) && isWaterAdjacent(world, soilPos)
+                        || mayPlaceOn(soilState, world, soilPos) && hasRootsInWater;
             }
             return true;
         }
@@ -137,26 +145,26 @@ public class CattailBlock extends TallPlantBlock implements Fertilizable {
 
     @Override
     public FluidState getFluidState(BlockState state) {
-        return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : Fluids.EMPTY.getDefaultState();
+        return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : Fluids.EMPTY.defaultFluidState();
     }
 
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(WATERLOGGED, HALF);
     }
 
     @Override
-    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
+    public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state) {
         return true;
     }
 
     @Override
-    public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
+    public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
         return true;
     }
 
     @Override
-    public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-        dropStack(world, pos, new ItemStack(this));
+    public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
+        popResource(world, pos, new ItemStack(this));
     }
 }

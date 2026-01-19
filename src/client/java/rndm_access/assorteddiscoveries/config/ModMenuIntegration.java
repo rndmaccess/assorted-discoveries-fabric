@@ -4,7 +4,7 @@ import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 
 @Environment(EnvType.CLIENT)
@@ -12,7 +12,7 @@ public class ModMenuIntegration implements ModMenuApi {
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
         if (ModServerConfig.getConfigError() != null) {
-            Text config_errors_title = Text.translatable("config_error." + AssortedDiscoveries.MOD_ID + ".screen.title");
+            Component config_errors_title = Component.translatable("config_error." + AssortedDiscoveries.MOD_ID + ".screen.title");
             return parent -> new ModConfigErrorScreen(config_errors_title, parent);
         }
         return parent -> ModConfigScreen.getConfigScreenBuilder().setParentScreen(parent).build();

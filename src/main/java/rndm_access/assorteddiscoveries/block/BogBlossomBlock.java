@@ -1,38 +1,45 @@
 package rndm_access.assorteddiscoveries.block;
 
 import com.mojang.serialization.MapCodec;
-import net.minecraft.block.*;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.*;
-import net.minecraft.world.tick.ScheduledTickView;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.BonemealableBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import rndm_access.assorteddiscoveries.core.ModParticleTypes;
 
-public class BogBlossomBlock extends Block implements Fertilizable {
-    private static final VoxelShape SHAPE = Block.createCuboidShape(2.0, 0.0, 2.0,
+public class BogBlossomBlock extends Block implements BonemealableBlock {
+    private static final VoxelShape SHAPE = Block.box(2.0, 0.0, 2.0,
             14.0, 3.0, 14.0);
-    public static final MapCodec<BogBlossomBlock> CODEC = createCodec(BogBlossomBlock::new);
+    public static final MapCodec<BogBlossomBlock> CODEC = simpleCodec(BogBlossomBlock::new);
 
-    public BogBlossomBlock(Settings settings) {
+    public BogBlossomBlock(Properties settings) {
         super(settings);
     }
 
     @Override
-    protected MapCodec<BogBlossomBlock> getCodec() {
+    protected MapCodec<BogBlossomBlock> codec() {
         return CODEC;
     }
 
     @Override
-    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+    public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
         this.playAirNectarParticles(world, random, pos.getX(), pos.getY(), pos.getZ());
     }
 
-    private void playAirNectarParticles(World world, Random random, int x, int y, int z) {
-        BlockPos.Mutable mutable = new BlockPos.Mutable();
+    private void playAirNectarParticles(Level world, RandomSource random, int x, int y, int z) {
+        BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
         int floatingCount = 10;
         int floatingArea = random.nextInt(4) + 10;
         int risingNum = random.nextInt(2) + 1;
@@ -43,61 +50,61 @@ public class BogBlossomBlock extends Block implements Fertilizable {
             double risingY = y + random.nextDouble();
             double risingZ = z + random.nextDouble();
 
-            world.addParticleClient(ModParticleTypes.BOG_BLOSSOM_NECTAR, risingX, risingY, risingZ,
+            world.addParticle(ModParticleTypes.BOG_BLOSSOM_NECTAR, risingX, risingY, risingZ,
                     random.nextDouble(), 2 + random.nextDouble(), random.nextDouble());
         }
 
         // Play floating particles
         for(int l = 0; l < floatingCount; ++l) {
-            int floatingXOrigin = x + MathHelper.nextInt(random, -floatingArea, floatingArea);
+            int floatingXOrigin = x + Mth.nextInt(random, -floatingArea, floatingArea);
             int floatingYOrigin = y + random.nextInt(floatingArea);
-            int floatingZOrigin = z + MathHelper.nextInt(random, -floatingArea, floatingArea);
+            int floatingZOrigin = z + Mth.nextInt(random, -floatingArea, floatingArea);
 
             mutable.set(floatingXOrigin, floatingYOrigin, floatingZOrigin);
             BlockState blockState = world.getBlockState(mutable);
 
-            if (!blockState.isFullCube(world, mutable)) {
+            if (!blockState.isCollisionShapeFullBlock(world, mutable)) {
                 double floatingX = mutable.getX() + random.nextDouble();
                 double floatingY = mutable.getY() + random.nextDouble();
                 double floatingZ = mutable.getZ() + random.nextDouble();
 
-                world.addParticleClient(ModParticleTypes.BOG_BLOSSOM_NECTAR, floatingX, floatingY, floatingZ,
+                world.addParticle(ModParticleTypes.BOG_BLOSSOM_NECTAR, floatingX, floatingY, floatingZ,
                         0.0D, 0.0D, 0.0D);
             }
         }
     }
 
     @Override
-    public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-        return Block.sideCoversSmallSquare(world, pos.down(), Direction.DOWN) && !world.isWater(pos);
+    public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
+        return Block.canSupportCenter(world, pos.below(), Direction.DOWN) && !world.isWaterAt(pos);
     }
 
     @Override
-    public BlockState getStateForNeighborUpdate(BlockState state, WorldView world, ScheduledTickView tickView,
+    public BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess tickView,
                                                 BlockPos pos, Direction direction, BlockPos neighborPos,
-                                                BlockState neighborState, Random random) {
-        return direction == Direction.DOWN && !this.canPlaceAt(state, world, pos) ? Blocks.AIR.getDefaultState()
+                                                BlockState neighborState, RandomSource random) {
+        return direction == Direction.DOWN && !this.canSurvive(state, world, pos) ? Blocks.AIR.defaultBlockState()
                 : state;
     }
 
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return SHAPE;
     }
 
     @Override
-    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
+    public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state) {
         return true;
     }
 
     @Override
-    public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
+    public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
         return true;
     }
 
     @Override
-    public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-        BlockPos.Mutable mutablePos = pos.mutableCopy();
+    public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
+        BlockPos.MutableBlockPos mutablePos = pos.mutable();
         boolean placed = false;
         int tries = 0;
 
@@ -106,15 +113,15 @@ public class BogBlossomBlock extends Block implements Fertilizable {
             int yOffset = random.nextInt(4) - random.nextInt(4);
             int zOffset = random.nextInt(4) - random.nextInt(4);
             mutablePos.move(xOffset, yOffset, zOffset);
-            BlockPos placePos = mutablePos.toImmutable();
+            BlockPos placePos = mutablePos.immutable();
             BlockState worldState = world.getBlockState(placePos);
 
-            if (this.canPlaceAt(null, world, placePos) && (worldState.isAir() || worldState.isReplaceable())) {
-                world.setBlockState(placePos, this.getDefaultState());
+            if (this.canSurvive(null, world, placePos) && (worldState.isAir() || worldState.canBeReplaced())) {
+                world.setBlockAndUpdate(placePos, this.defaultBlockState());
                 placed = true;
             }
             tries++;
-            mutablePos = pos.mutableCopy();
+            mutablePos = pos.mutable();
         } while (!placed && tries < 24); // Try to place a block 24 times before giving up!
     }
 }

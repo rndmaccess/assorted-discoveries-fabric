@@ -5,7 +5,7 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition;
 import net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditionType;
-import net.minecraft.registry.RegistryOps;
+import net.minecraft.resources.RegistryOps;
 import org.jetbrains.annotations.Nullable;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.ModServerConfig;
@@ -35,7 +35,7 @@ public record ConfigEntryEnabledResourceCondition(String configKey) implements R
     }
 
     @Override
-    public boolean test(@Nullable RegistryOps.@Nullable RegistryInfoGetter registryInfo) {
+    public boolean test(@Nullable RegistryOps.@Nullable RegistryInfoLookup registryInfo) {
         ServerConfig config = ModServerConfig.getInstance();
 
         AbstractConfigEntry<?> entry = config.getEntry(configKey);

@@ -4,27 +4,32 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.block.*;
-import net.minecraft.entity.ai.pathing.NavigationType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.registry.Registries;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldView;
-import net.minecraft.world.tick.ScheduledTickView;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
+import net.minecraft.world.level.block.AbstractCandleBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CakeBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.pathfinder.PathComputationType;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import rndm_access.assorteddiscoveries.util.HashPair;
 
 import java.util.Map;
@@ -32,22 +37,22 @@ import java.util.Map;
 public class ModdedCandleCakeBlock extends AbstractCandleBlock {
     public static final MapCodec<ModdedCandleCakeBlock> CODEC
             = RecordCodecBuilder.mapCodec((instance) -> instance.group(
-            Registries.BLOCK.getCodec().fieldOf("cake").forGetter((block) -> block.cake),
-            Registries.BLOCK.getCodec().fieldOf("candle").forGetter((item) -> item.candle),
-            createSettingsCodec()).apply(instance, ModdedCandleCakeBlock::new));
+            BuiltInRegistries.BLOCK.byNameCodec().fieldOf("cake").forGetter((block) -> block.cake),
+            BuiltInRegistries.BLOCK.byNameCodec().fieldOf("candle").forGetter((item) -> item.candle),
+            propertiesCodec()).apply(instance, ModdedCandleCakeBlock::new));
     public static final BooleanProperty LIT = AbstractCandleBlock.LIT;
-    private static final VoxelShape CAKE_SHAPE = Block.createCuboidShape(1.0D, 0.0D, 1.0D,
+    private static final VoxelShape CAKE_SHAPE = Block.box(1.0D, 0.0D, 1.0D,
             15.0D, 8.0D, 15.0D);
-    private static final VoxelShape CANDLE_SHAPE = Block.createCuboidShape(7.0D, 8.0D, 7.0D,
+    private static final VoxelShape CANDLE_SHAPE = Block.box(7.0D, 8.0D, 7.0D,
             9.0D, 14.0D, 9.0D);
-    private static final VoxelShape SHAPE = VoxelShapes.union(CAKE_SHAPE, CANDLE_SHAPE);
+    private static final VoxelShape SHAPE = Shapes.or(CAKE_SHAPE, CANDLE_SHAPE);
     private static final Map<HashPair<Block, Block>, ModdedCandleCakeBlock> CANDLES_TO_CANDLE_CAKES = Maps.newHashMap();
     private final Block cake;
     private final Block candle;
 
-    public ModdedCandleCakeBlock(Block cake, Block candle, Settings settings) {
+    public ModdedCandleCakeBlock(Block cake, Block candle, Properties settings) {
         super(settings);
-        this.setDefaultState(this.stateManager.getDefaultState().with(LIT, false));
+        this.registerDefaultState(this.stateDefinition.any().setValue(LIT, false));
         this.cake = cake;
         this.candle = candle;
 
@@ -55,39 +60,39 @@ public class ModdedCandleCakeBlock extends AbstractCandleBlock {
     }
 
     @Override
-    public ItemStack getPickStack(WorldView world, BlockPos pos, BlockState state, boolean includeData) {
+    public ItemStack getCloneItemStack(LevelReader world, BlockPos pos, BlockState state, boolean includeData) {
         return new ItemStack(cake);
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-        Hand hand = player.getActiveHand();
-        ItemStack handStack = player.getStackInHand(hand);
+    public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
+        InteractionHand hand = player.getUsedItemHand();
+        ItemStack handStack = player.getItemInHand(hand);
 
-        if (handStack.isOf(Items.FLINT_AND_STEEL) && handStack.isOf(Items.FIRE_CHARGE)) {
-            return ActionResult.PASS;
+        if (handStack.is(Items.FLINT_AND_STEEL) && handStack.is(Items.FIRE_CHARGE)) {
+            return InteractionResult.PASS;
         }
 
-        if (isHittingCandle(hit) && player.getStackInHand(hand).isEmpty() && state.get(LIT)) {
+        if (isHittingCandle(hit) && player.getItemInHand(hand).isEmpty() && state.getValue(LIT)) {
             extinguish(player, state, world, pos);
-            return ActionResult.SUCCESS;
+            return InteractionResult.SUCCESS;
         } else {
-            ActionResult actionResult = ModdedCakeBlock.tryEatCake(world, pos,
-                    this.cake.getDefaultState(), player);
+            InteractionResult actionResult = ModdedCakeBlock.tryEatCake(world, pos,
+                    this.cake.defaultBlockState(), player);
 
-            if (actionResult.isAccepted()) {
-                dropStacks(state, world, pos);
+            if (actionResult.consumesAction()) {
+                dropResources(state, world, pos);
             }
             return actionResult;
         }
     }
 
     private static boolean isHittingCandle(BlockHitResult hitResult) {
-        return hitResult.getPos().y - (double)hitResult.getBlockPos().getY() > 0.5D;
+        return hitResult.getLocation().y - (double)hitResult.getBlockPos().getY() > 0.5D;
     }
 
     public static BlockState getCandleCake(Block cake, Block candle) {
-        return CANDLES_TO_CANDLE_CAKES.get(new HashPair<>(cake, candle)).getDefaultState();
+        return CANDLES_TO_CANDLE_CAKES.get(new HashPair<>(cake, candle)).defaultBlockState();
     }
 
     public static boolean containsCandleCake(Block cake, Block candle) {
@@ -95,49 +100,49 @@ public class ModdedCandleCakeBlock extends AbstractCandleBlock {
     }
 
     @Override
-    protected MapCodec<? extends AbstractCandleBlock> getCodec() {
+    protected MapCodec<? extends AbstractCandleBlock> codec() {
         return CODEC;
     }
 
     @Override
-    protected Iterable<Vec3d> getParticleOffsets(BlockState state) {
-        return ImmutableList.of(new Vec3d(0.5D, 1.0D, 0.5D));
+    protected Iterable<Vec3> getParticleOffsets(BlockState state) {
+        return ImmutableList.of(new Vec3(0.5D, 1.0D, 0.5D));
     }
 
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return SHAPE;
     }
 
     @Override
-    public BlockState getStateForNeighborUpdate(BlockState state, WorldView world, ScheduledTickView tickView,
+    public BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess tickView,
                                                 BlockPos pos, Direction direction, BlockPos neighborPos,
-                                                BlockState neighborState, Random random) {
-        return direction == Direction.DOWN && !state.canPlaceAt(world, pos) ? Blocks.AIR.getDefaultState() : state;
+                                                BlockState neighborState, RandomSource random) {
+        return direction == Direction.DOWN && !state.canSurvive(world, pos) ? Blocks.AIR.defaultBlockState() : state;
     }
 
     @Override
-    public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-        return world.getBlockState(pos.down()).isSolidBlock(world, pos);
+    public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
+        return world.getBlockState(pos.below()).isRedstoneConductor(world, pos);
     }
 
     @Override
-    public int getComparatorOutput(BlockState state, World world, BlockPos pos, Direction direction) {
-        return CakeBlock.DEFAULT_COMPARATOR_OUTPUT;
+    public int getAnalogOutputSignal(BlockState state, Level world, BlockPos pos, Direction direction) {
+        return CakeBlock.FULL_CAKE_SIGNAL;
     }
 
     @Override
-    public boolean hasComparatorOutput(BlockState state) {
+    public boolean hasAnalogOutputSignal(BlockState state) {
         return true;
     }
 
     @Override
-    protected boolean canPathfindThrough(BlockState state, NavigationType type) {
+    protected boolean isPathfindable(BlockState state, PathComputationType type) {
         return false;
     }
 
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(LIT);
     }
 }

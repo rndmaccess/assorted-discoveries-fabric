@@ -164,6 +164,8 @@ public class ModConfigScreen {
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(entryBuilder, ModServerConfigKeys.ENABLE_PACKED_SNOW, categoryName);
         category.addEntry(configEntry);
+        configEntry = makeBoolConfigEntry(entryBuilder, ModServerConfigKeys.ENABLE_DIRT_SLABS, categoryName);
+        category.addEntry(configEntry);
     }
 
     private static void addPlushiesCategory(ConfigBuilder configBuilder, ConfigEntryBuilder entryBuilder) {

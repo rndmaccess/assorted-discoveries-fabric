@@ -494,6 +494,7 @@
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_mossy_dripstone_bricks": "Enable Mossy Dripstone Bricks",
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_snow_bricks": "Enable Snow Bricks",
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_packed_snow": "Enable Packed Snow",
+  "text.cloth-config.assorted-discoveries.option.building_blocks.enable_dirt_slabs": "Enable Dirt Slabs",
 
   "requirement.cloth-config.assorted-discoveries.option.building_blocks.enable_bauxite_bricks": "Requires Bauxite",
   "requirement.cloth-config.assorted-discoveries.option.building_blocks.enable_mossy_bauxite_bricks": "Requires Bauxite And Bauxite Bricks",

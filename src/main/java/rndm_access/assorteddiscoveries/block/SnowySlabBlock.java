@@ -54,22 +54,7 @@ public class SnowySlabBlock extends SlabBlock {
         return state != null ? state.setValue(SNOWY, isSnow(world, state, neighborPos, neighborState)) : null;
     }
 
-    private static boolean isSnow(LevelReader world, BlockState state, BlockPos neighborPos,
-                                  BlockState neighborState) {
-        return (neighborState.is(BlockTags.SNOW) && !isBottom(state)) ||
-                (neighborState.is(ModBlockTags.SNOW_STAIRS) && !isBottom(state) &&
-                        isCovered(world, neighborPos, neighborState)) ||
-                (neighborState.is(ModBlockTags.SNOW_SLABS) && !isBottom(state) &&
-                        isCovered(world, neighborPos, neighborState));
-    }
-
-    @Override
-    protected boolean canSurvive(@NonNull BlockState blockState, @NonNull LevelReader levelReader,
-                                 @NonNull BlockPos blockPos) {
-        return canStay(blockState, levelReader, blockPos);
-    }
-
-    public static boolean canStay(BlockState state, LevelReader world, BlockPos pos) {
+    public static boolean canGrowGrass(BlockState state, LevelReader world, BlockPos pos) {
         BlockPos neighborPos = pos.above();
         BlockState neighborState = world.getBlockState(neighborPos);
 
@@ -80,6 +65,15 @@ public class SnowySlabBlock extends SlabBlock {
         } else {
             return !isCovered(world, neighborPos, neighborState) || isBottom(state) || !neighborState.canOcclude();
         }
+    }
+
+    public static boolean isSnow(LevelReader world, BlockState state, BlockPos neighborPos,
+                                  BlockState neighborState) {
+        return (neighborState.is(BlockTags.SNOW) && !isBottom(state)) ||
+                (neighborState.is(ModBlockTags.SNOW_STAIRS) && !isBottom(state) &&
+                        isCovered(world, neighborPos, neighborState)) ||
+                (neighborState.is(ModBlockTags.SNOW_SLABS) && !isBottom(state) &&
+                        isCovered(world, neighborPos, neighborState));
     }
 
     private static boolean isCovered(LevelReader world, BlockPos neighborPos, BlockState neighborState) {
@@ -93,7 +87,7 @@ public class SnowySlabBlock extends SlabBlock {
     @Override
     public void randomTick(@NonNull BlockState state, @NonNull ServerLevel world,
                            @NonNull BlockPos pos, @NonNull RandomSource random) {
-        if(!canSurvive(state, world, pos)) {
+        if(!canGrowGrass(state, world, pos)) {
             world.setBlockAndUpdate(pos, ModBlocks.DIRT_SLAB.defaultBlockState().setValue(TYPE, state.getValue(TYPE))
                     .setValue(WATERLOGGED, state.getValue(WATERLOGGED)));
         }

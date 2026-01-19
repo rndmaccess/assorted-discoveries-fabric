@@ -14,7 +14,7 @@ import rndm_access.assorteddiscoveries.core.ModBlockTags;
 @Mixin(SpreadingSnowyDirtBlock.class)
 public abstract class SpreadableBlockMixin {
     @Inject(method = "canBeGrass", at = @At("HEAD"), cancellable = true)
-    private static void canSurvive(BlockState state, LevelReader world, BlockPos pos,
+    private static void canBeGrass(BlockState state, LevelReader world, BlockPos pos,
                                                        CallbackInfoReturnable<Boolean> info) {
         BlockState blockState = world.getBlockState(pos.above());
 

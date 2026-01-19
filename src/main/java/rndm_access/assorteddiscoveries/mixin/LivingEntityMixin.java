@@ -14,7 +14,7 @@ public abstract class LivingEntityMixin {
     @Shadow protected abstract int calculateFallDamage(double fallDistance, float damagePerDistance);
 
     @Inject(method = "causeFallDamage", at = @At("HEAD"), cancellable = true)
-    public void handleFallDamage(double fallDistance, float damagePerDistance, DamageSource damageSource,
+    public void causeFallDamage(double fallDistance, float damagePerDistance, DamageSource damageSource,
                                  CallbackInfoReturnable<Boolean> info) {
         boolean isRabbit = ((EntityAccessor) this).getType().equals(EntityType.RABBIT);
 

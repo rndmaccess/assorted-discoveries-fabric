@@ -13,7 +13,7 @@ import rndm_access.assorteddiscoveries.core.ModBlockTags;
 @Mixin(NetherSproutsBlock.class)
 public abstract class SproutsBlockMixin {
     @Inject(method = "mayPlaceOn", at = @At("HEAD"), cancellable = true)
-    private void canPlantOnTop(BlockState floor, BlockGetter world,
+    private void mayPlaceOn(BlockState floor, BlockGetter world,
                                BlockPos pos, CallbackInfoReturnable<Boolean> info) {
         if(floor.is(ModBlockTags.NETHER_PLANTER_BOXES)) {
             info.setReturnValue(true);

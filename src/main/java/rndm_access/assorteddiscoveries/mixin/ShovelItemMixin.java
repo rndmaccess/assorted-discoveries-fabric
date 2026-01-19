@@ -27,7 +27,7 @@ public abstract class ShovelItemMixin {
     private static final HashSet<Block> DIRT_SLAB_LIST;
 
     @Inject(method = "useOn", at = @At("HEAD"), cancellable = true)
-    private void useOnBlock(UseOnContext context, CallbackInfoReturnable<InteractionResult> cir) {
+    private void useOn(UseOnContext context, CallbackInfoReturnable<InteractionResult> cir) {
         Level world = context.getLevel();
         BlockPos pos = context.getClickedPos();
         Player player = context.getPlayer();

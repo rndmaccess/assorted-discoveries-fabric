@@ -27,7 +27,7 @@ public abstract class BoneMealItemMixin {
     public static void addGrowthParticles(LevelAccessor world, BlockPos pos, int count) {}
 
     @Inject(method = "useOn", at = @At("HEAD"), cancellable = true)
-    private void useOnBlock(UseOnContext context, CallbackInfoReturnable<InteractionResult> info) {
+    private void useOn(UseOnContext context, CallbackInfoReturnable<InteractionResult> info) {
         BlockPos pos = context.getClickedPos();
         Level world = context.getLevel();
         ItemStack boneMealStack = context.getItemInHand();

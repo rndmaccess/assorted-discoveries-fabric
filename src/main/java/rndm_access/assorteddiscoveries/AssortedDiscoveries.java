@@ -21,7 +21,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
@@ -47,7 +46,6 @@ import rndm_access.assorteddiscoveries.config.json.ServerConfig;
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.BooleanConfigEntry;
 import rndm_access.assorteddiscoveries.core.*;
 
-import java.io.IOException;
 import java.util.Optional;
 
 public class AssortedDiscoveries implements ModInitializer {
@@ -100,19 +98,17 @@ public class AssortedDiscoveries implements ModInitializer {
         ServerPlayerEvents.JOIN.register(AssortedDiscoveries::onJoin);
     }
 
+    @SuppressWarnings("resource")
     private static void onJoin(ServerPlayer player) {
-        try (ServerLevel level = player.level()) {
-            if (!level.isClientSide()) {
-                BooleanEntriesS2CPayload payload = new BooleanEntriesS2CPayload(ModClientConfig.getBoolEntries());
-                String playerName = player.getName().getString();
+        // If I use the auto-closable on level it closes the world too early and breaks loading!
+        if (!player.level().isClientSide()) {
+            BooleanEntriesS2CPayload payload = new BooleanEntriesS2CPayload(ModClientConfig.getBoolEntries());
+            String playerName = player.getName().getString();
 
-                if (ServerPlayNetworking.canSend(player, payload.type())) {
-                    ServerPlayNetworking.send(player, payload);
-                    LOGGER.info("Sent server config data to {}!", playerName);
-                }
+            if (ServerPlayNetworking.canSend(player, payload.type())) {
+                ServerPlayNetworking.send(player, payload);
+                LOGGER.info("Sent server config data to {}!", playerName);
             }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
     }
 

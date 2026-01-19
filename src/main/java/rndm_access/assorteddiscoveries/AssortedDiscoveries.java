@@ -21,6 +21,8 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -34,6 +36,7 @@ import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import rndm_access.assorteddiscoveries.config.BooleanEntriesS2CPayload;
@@ -44,12 +47,13 @@ import rndm_access.assorteddiscoveries.config.json.ServerConfig;
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.BooleanConfigEntry;
 import rndm_access.assorteddiscoveries.core.*;
 
+import java.io.IOException;
 import java.util.Optional;
 
 public class AssortedDiscoveries implements ModInitializer {
     public static final String MOD_ID = "assorted-discoveries";
     public static final Logger LOGGER = LoggerFactory.getLogger("AssortedDiscoveries");
-    private static final ResourceKey<CreativeModeTab> MOD_ITEM_GROUP_KEY = ResourceKey.create(
+    private static final ResourceKey<@NotNull CreativeModeTab> MOD_ITEM_GROUP_KEY = ResourceKey.create(
             Registries.CREATIVE_MODE_TAB, makeModId("item_group"));
     public static final CreativeModeTab MOD_ITEM_GROUP = FabricItemGroup.builder()
             .icon(() -> new ItemStack(ModBlocks.ENDERMAN_PLUSHIE.asItem()))
@@ -93,8 +97,12 @@ public class AssortedDiscoveries implements ModInitializer {
             }
         });
 
-        ServerPlayerEvents.JOIN.register((player) -> {
-            if (!player.level().isClientSide()) {
+        ServerPlayerEvents.JOIN.register(AssortedDiscoveries::onJoin);
+    }
+
+    private static void onJoin(ServerPlayer player) {
+        try (ServerLevel level = player.level()) {
+            if (!level.isClientSide()) {
                 BooleanEntriesS2CPayload payload = new BooleanEntriesS2CPayload(ModClientConfig.getBoolEntries());
                 String playerName = player.getName().getString();
 
@@ -103,7 +111,9 @@ public class AssortedDiscoveries implements ModInitializer {
                     LOGGER.info("Sent server config data to {}!", playerName);
                 }
             }
-        });
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private static void registerVillagerInteractions() {
@@ -226,7 +236,7 @@ public class AssortedDiscoveries implements ModInitializer {
     }
 
     private static void modifyLootTables() {
-        Optional<ResourceKey<LootTable>> spruceLeavesLootTableId = Blocks.SPRUCE_LEAVES.getLootTable();
+        Optional<ResourceKey<@NotNull LootTable>> spruceLeavesLootTableId = Blocks.SPRUCE_LEAVES.getLootTable();
 
         LootTableEvents.MODIFY.register((key, tableBuilder, source,
                                          registries) -> {

@@ -10,7 +10,7 @@ public class ModClientConfig {
      * after the world is started!
      *
      * @return A read-only copy of all config entries from the server config that can be used for client based
-     * applications such as tab groups!
+     * applications such as for creative tabs!
      */
     public static synchronized Map<String, Boolean> getBoolEntries() {
         return boolServerConfigEntries;

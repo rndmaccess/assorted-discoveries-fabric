@@ -143,8 +143,8 @@
 		},
 		{
 			"name": "RightEar",
-			"from": [6, 11, 6.5],
-			"to": [7, 12, 7.5],
+			"from": [6, 11, 6.5001],
+			"to": [7, 12, 7.5001],
 			"rotation": {"angle": 45, "axis": "z", "origin": [6, 11, 6.5]},
 			"faces": {
 				"north": {"uv": [13.5, 9, 14, 9.5], "texture": "#atlas"},
@@ -156,8 +156,8 @@
 		},
 		{
 			"name": "LeftEar",
-			"from": [9.5, 11, 6.5],
-			"to": [10.5, 12, 7.5],
+			"from": [9.5, 11, 6.5001],
+			"to": [10.5, 12, 7.5001],
 			"rotation": {"angle": 45, "axis": "z", "origin": [9.5, 11, 6.5]},
 			"faces": {
 				"north": {"uv": [3, 11, 3.5, 11.5], "texture": "#atlas"},

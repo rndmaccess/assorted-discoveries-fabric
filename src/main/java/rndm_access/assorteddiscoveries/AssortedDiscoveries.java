@@ -21,6 +21,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
@@ -88,27 +89,32 @@ public class AssortedDiscoveries implements ModInitializer {
     private static void registerConfigEvents() {
         PayloadTypeRegistry.playS2C().register(BooleanEntriesS2CPayload.ID, BooleanEntriesS2CPayload.CODEC);
 
-        ServerLifecycleEvents.SERVER_STARTED.register((server) -> {
-            if (!server.overworld().isClientSide()) {
-                ModClientConfig.updateBoolEntries(ModServerConfig.getInstance().toEntryMap());
-                LOGGER.info("Loaded server config");
-            }
-        });
-
+        ServerLifecycleEvents.SERVER_STARTED.register(AssortedDiscoveries::initConfigOnServer);
         ServerPlayerEvents.JOIN.register(AssortedDiscoveries::onJoin);
+    }
+
+    private static void initConfigOnServer(MinecraftServer server) {
+        if (!server.overworld().isClientSide()) {
+            ModClientConfig.updateBoolEntries(ModServerConfig.getInstance().toEntryMap());
+            LOGGER.info("Loaded server config");
+        }
     }
 
     @SuppressWarnings("resource")
     private static void onJoin(ServerPlayer player) {
         // If I use the auto-closable on level it closes the world too early and breaks loading!
         if (!player.level().isClientSide()) {
-            BooleanEntriesS2CPayload payload = new BooleanEntriesS2CPayload(ModClientConfig.getBoolEntries());
-            String playerName = player.getName().getString();
+            sendConfigEntriesToPlayers(player);
+        }
+    }
 
-            if (ServerPlayNetworking.canSend(player, payload.type())) {
-                ServerPlayNetworking.send(player, payload);
-                LOGGER.info("Sent server config data to {}!", playerName);
-            }
+    private static void sendConfigEntriesToPlayers(ServerPlayer player) {
+        BooleanEntriesS2CPayload payload = new BooleanEntriesS2CPayload(ModClientConfig.getBoolEntries());
+        String playerName = player.getName().getString();
+
+        if (ServerPlayNetworking.canSend(player, payload.type())) {
+            ServerPlayNetworking.send(player, payload);
+            LOGGER.info("Sent server config data to {}!", playerName);
         }
     }
 

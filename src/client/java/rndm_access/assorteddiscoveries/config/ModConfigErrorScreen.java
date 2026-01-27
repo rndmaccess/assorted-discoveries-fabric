@@ -12,17 +12,21 @@ import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 public class ModConfigErrorScreen extends Screen {
     private static final int DEFAULT_TEXT_COLOR = 0xFFFFFFFF;
     private static final int ERROR_TEXT_COLOR = 0xFF5555;
+    private static final Component DESC_LINE_ONE
+            = Component.translatable("config_error." + AssortedDiscoveries.MOD_ID
+            + ".screen.description.line_one");
+    private static final Component DESC_LINE_TWO
+            = Component.translatable("config_error." + AssortedDiscoveries.MOD_ID
+            + ".screen.description.line_two");
+    private static final Component DESC_LINE_THREE
+            = Component.translatable("config_error." + AssortedDiscoveries.MOD_ID
+            + ".screen.description.line_three");
+    private static final Component DESC_LINE_FOUR
+            = Component.translatable("config_error." + AssortedDiscoveries.MOD_ID
+            + ".screen.description.line_four");
     private final Screen parent;
     public Button goBackButton;
     public Button continueButton;
-    private final Component desc_line_one = Component.translatable("config_error." + AssortedDiscoveries.MOD_ID
-            + ".screen.description.line_one");
-    private final Component desc_line_two = Component.translatable("config_error." + AssortedDiscoveries.MOD_ID
-            + ".screen.description.line_two");
-    private final Component desc_line_three = Component.translatable("config_error." + AssortedDiscoveries.MOD_ID
-            + ".screen.description.line_three");
-    private final Component desc_line_four = Component.translatable("config_error." + AssortedDiscoveries.MOD_ID
-            + ".screen.description.line_four");
 
     protected ModConfigErrorScreen(Component title, Screen parent) {
         super(title);
@@ -37,10 +41,10 @@ public class ModConfigErrorScreen extends Screen {
         int centeredX = this.width / 2;
 
         gui.drawCenteredString(this.font, this.title, centeredX, 40 - this.font.lineHeight - 10, DEFAULT_TEXT_COLOR);
-        gui.drawCenteredString(this.font, desc_line_one, centeredX, 60 - this.font.lineHeight - 10, DEFAULT_TEXT_COLOR);
-        gui.drawCenteredString(this.font, desc_line_two, centeredX, 70 - this.font.lineHeight - 10, DEFAULT_TEXT_COLOR);
-        gui.drawCenteredString(this.font, desc_line_three, centeredX, 80 - this.font.lineHeight - 10, DEFAULT_TEXT_COLOR);
-        gui.drawCenteredString(this.font, desc_line_four, centeredX, 90 - this.font.lineHeight - 10, DEFAULT_TEXT_COLOR);
+        gui.drawCenteredString(this.font, DESC_LINE_ONE, centeredX, 60 - this.font.lineHeight - 10, DEFAULT_TEXT_COLOR);
+        gui.drawCenteredString(this.font, DESC_LINE_TWO, centeredX, 70 - this.font.lineHeight - 10, DEFAULT_TEXT_COLOR);
+        gui.drawCenteredString(this.font, DESC_LINE_THREE, centeredX, 80 - this.font.lineHeight - 10, DEFAULT_TEXT_COLOR);
+        gui.drawCenteredString(this.font, DESC_LINE_FOUR, centeredX, 90 - this.font.lineHeight - 10, DEFAULT_TEXT_COLOR);
         gui.drawWordWrap(this.font, errorText, centeredX - 80, 110 - this.font.lineHeight - 10, 200, DEFAULT_TEXT_COLOR);
     }
 

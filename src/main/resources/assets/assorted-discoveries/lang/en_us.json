@@ -442,11 +442,13 @@
   "itemGroup.assorted-discoveries": "Assorted Discoveries Mod",
 
   "title.assorted-discoveries.config": "Assorted Discoveries Config (Singleplayer)",
-  "config_error.assorted-discoveries.screen.close_button": "Close",
+  "config_error.assorted-discoveries.screen.go_back_button": "Go Back",
+  "config_error.assorted-discoveries.screen.continue_button": "Continue",
   "config_error.assorted-discoveries.screen.title": "Assorted Discoveries Config Errors",
   "config_error.assorted-discoveries.screen.description.line_one": "The config could not be loaded because of the following error,",
-  "config_error.assorted-discoveries.screen.description.line_two": "please fix this error at the specified path before continuing!",
-  "config_error.assorted-discoveries.screen.description.line_three": "Assorted Discoveries has fallen back to using all default config options.",
+  "config_error.assorted-discoveries.screen.description.line_two": "Assorted Discoveries has fallen back to using all default config options.",
+  "config_error.assorted-discoveries.screen.description.line_three": "Would you like to go back and fix the error manually",
+  "config_error.assorted-discoveries.screen.description.line_four": "or continue and overrite the existing config file with a new one?",
 
   "category.cloth-config.assorted-discoveries.option.building_blocks": "Building Blocks",
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_planter_boxes": "Enable Planter Boxes",

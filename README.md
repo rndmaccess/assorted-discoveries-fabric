@@ -4,6 +4,10 @@
 
 This project is available under the [MIT](https://github.com/rndmaccess/assorted-discoveries-fabric/blob/1.21.9/LICENSE) license.
 
+## Download Links
+
+[Curseforge](https://www.curseforge.com/minecraft/mc-mods/assorted-discoveries)
+
 ## About
 
 Experience Minecraft like never before with Assorted Discoveries! 

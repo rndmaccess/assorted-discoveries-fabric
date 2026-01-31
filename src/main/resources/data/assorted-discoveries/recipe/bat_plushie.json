@@ -2,14 +2,14 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "G": "minecraft:light_gray_wool",
+    "R": "minecraft:brown_wool",
     "B": "minecraft:black_wool",
     "S": "#c:stones"
   },
   "pattern": [
-    "GGG",
+    "RRR",
     "BSB",
-    "GGG"
+    "RRR"
   ],
   "result": {
     "id": "assorted-discoveries:bat_plushie"

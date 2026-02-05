@@ -2,13 +2,17 @@ package rndm_access.assorteddiscoveries.block;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import rndm_access.assorteddiscoveries.core.CommonBlockTag;
 import rndm_access.assorteddiscoveries.core.ModBlocks;
 
 public class DirtSlabBlock extends SlabBlock implements BonemealableBlock {
@@ -38,8 +42,34 @@ public class DirtSlabBlock extends SlabBlock implements BonemealableBlock {
         BlockPos neighborPos = pos.above();
         BlockState neighborState = world.getBlockState(neighborPos);
 
-        world.setBlock(pos, ModBlocks.GRASS_SLAB.defaultBlockState().setValue(TYPE, state.getValue(TYPE))
-                .setValue(WATERLOGGED, state.getValue(WATERLOGGED))
-                .setValue(SnowySlabBlock.SNOWY, SnowySlabBlock.isSnow(world, state, neighborPos, neighborState)), 3);
+        if (checkNeighbors(world, pos, CommonBlockTag.PODZOL)) {
+            world.setBlock(pos, ModBlocks.PODZOL_SLAB.defaultBlockState().setValue(TYPE, state.getValue(TYPE))
+                    .setValue(WATERLOGGED, state.getValue(WATERLOGGED))
+                    .setValue(SnowySlabBlock.SNOWY, SnowySlabBlock.isSnow(world, state, neighborPos, neighborState)), 3);
+        } else if (checkNeighbors(world, pos, CommonBlockTag.MYCELIUM)) {
+            world.setBlock(pos, ModBlocks.MYCELIUM_SLAB.defaultBlockState().setValue(TYPE, state.getValue(TYPE))
+                    .setValue(WATERLOGGED, state.getValue(WATERLOGGED))
+                    .setValue(SnowySlabBlock.SNOWY, SnowySlabBlock.isSnow(world, state, neighborPos, neighborState)), 3);
+        } else {
+            world.setBlock(pos, ModBlocks.GRASS_SLAB.defaultBlockState().setValue(TYPE, state.getValue(TYPE))
+                    .setValue(WATERLOGGED, state.getValue(WATERLOGGED))
+                    .setValue(SnowySlabBlock.SNOWY, SnowySlabBlock.isSnow(world, state, neighborPos, neighborState)), 3);
+        }
+    }
+
+    private boolean checkNeighbors(ServerLevel world, BlockPos originPos, TagKey<Block> soilTag) {
+        BlockPos[] poses = {originPos.below(), originPos, originPos.above()};
+
+        for (BlockPos pose : poses) {
+            for (Direction dir : Direction.Plane.HORIZONTAL) {
+                BlockPos neighborPos = pose.relative(dir);
+                BlockState neighborState = world.getBlockState(neighborPos);
+
+                if (neighborState.is(soilTag)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

@@ -5,7 +5,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 
-public class CommonBlockTag {
+public final class CommonBlockTags {
     public static final TagKey<Block> MYCELIUM = bind("mycelium");
     public static final TagKey<Block> PODZOL = bind("podzol");
 

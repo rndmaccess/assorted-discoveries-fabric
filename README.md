@@ -7,6 +7,7 @@ This project is available under the [MIT](https://github.com/rndmaccess/assorted
 ## Download Links
 
 [Curseforge](https://www.curseforge.com/minecraft/mc-mods/assorted-discoveries)
+[Modrinth](https://modrinth.com/mod/assorted-discoveries)
 
 ## About
 

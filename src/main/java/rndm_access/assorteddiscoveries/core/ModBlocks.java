@@ -1519,8 +1519,8 @@ public final class ModBlocks {
         return register(torchBlock, blockKey, false);
     }
 
-    private static Block registerWallTorch(ResourceKey<Block> blockKey, Block baseTorch, SimpleParticleType particle) {
-        BlockBehaviour.Properties wallTorchSettings = wallVariant(baseTorch).noCollision().instabreak()
+    private static Block registerWallTorch(ResourceKey<Block> blockKey, Block standingTorch, SimpleParticleType particle) {
+        BlockBehaviour.Properties wallTorchSettings = wallVariant(standingTorch).noCollision().instabreak()
                 .lightLevel((blockState) -> 14).sound(SoundType.WOOD).pushReaction(PushReaction.DESTROY)
                 .setId(blockKey);
         Block wallTorchBlock = new WallTorchBlock(particle, wallTorchSettings);
@@ -1528,9 +1528,8 @@ public final class ModBlocks {
     }
 
     private static BlockBehaviour.Properties wallVariant(Block block) {
-        BlockBehaviour.Properties properties = BlockBehaviour.Properties.of().overrideLootTable(block.getLootTable());
-        properties = properties.overrideDescription(block.getDescriptionId());
-        return properties;
+        return BlockBehaviour.Properties.of().overrideLootTable(block.getLootTable())
+                .overrideDescription(block.getDescriptionId());
     }
 
     private static Block registerStairs(ResourceKey<Block> blockKey, BlockBehaviour.Properties settings, Block baseBlock) {

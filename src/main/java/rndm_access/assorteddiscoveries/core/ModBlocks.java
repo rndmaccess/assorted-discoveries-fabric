@@ -787,7 +787,7 @@ public final class ModBlocks {
     public static final ResourceKey<Block> POTTED_PURPLE_MUSHROOM_KEY = makeRegistryKey("potted_purple_mushroom");
     public static final Block POTTED_PURPLE_MUSHROOM = register(new FlowerPotBlock(ModBlocks.PURPLE_MUSHROOM,
             BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_RED_MUSHROOM).setId(POTTED_PURPLE_MUSHROOM_KEY)),
-            POTTED_PURPLE_MUSHROOM_KEY, true);
+            POTTED_PURPLE_MUSHROOM_KEY, false);
     public static final ResourceKey<Block> SHORT_ENDER_GRASS_KEY = makeRegistryKey("short_ender_grass");
     public static final Block SHORT_ENDER_GRASS
         = register(new ShortEnderGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS)
@@ -1317,7 +1317,7 @@ public final class ModBlocks {
     public static final ResourceKey<Block> POTTED_CATTAIL_KEY = makeRegistryKey("potted_cattail");
     public static final Block POTTED_CATTAIL = register(new FlowerPotBlock(ModBlocks.CATTAIL,
                     BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_RED_MUSHROOM).setId(POTTED_CATTAIL_KEY)),
-            POTTED_CATTAIL_KEY, true);
+            POTTED_CATTAIL_KEY, false);
     public static final ResourceKey<Block> STONE_WALL_KEY = makeRegistryKey("stone_wall");
     public static final Block STONE_WALL = registerWall(STONE_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
             .setId(STONE_WALL_KEY));
@@ -1554,7 +1554,7 @@ public final class ModBlocks {
 
     private static Block registerPottedSnapdragon(BlockBehaviour.Properties settings) {
         Block pottedSnapdragonBlock = new PottedSnapdragonBlock(ModBlocks.SNAPDRAGON, settings);
-        return register(pottedSnapdragonBlock, ModBlocks.POTTED_SNAPDRAGON_KEY, true);
+        return register(pottedSnapdragonBlock, ModBlocks.POTTED_SNAPDRAGON_KEY, false);
     }
 
     private static Block registerCake(ResourceKey<Block> blockKey) {

@@ -4,12 +4,12 @@
   "group": "rabbit_plushies",
   "key": {
     "W": "minecraft:white_wool",
-    "R": "minecraft:red_wool",
+    "B": "minecraft:black_wool",
     "I": "minecraft:rabbit"
   },
   "pattern": [
     "WWW",
-    "RIR",
+    "BIB",
     "WWW"
   ],
   "result": {

@@ -1,0 +1,7 @@
+.main-container {
+    max-width: 1200px; /* Limits the width of your site */
+    margin: 0 auto;    /* Centers the container horizontally */
+    padding: 0 20px;   /* Adds a nice margin/padding on the sides */
+    /* Optional: add background or border to visualize it */
+    background-color: #f4f4f4;
+}

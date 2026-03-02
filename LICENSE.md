@@ -4,7 +4,7 @@
 
 This License applies to any files under the following directories:
 
-./src/assets/assorted-discoveries/
+[./src/main/resources/assets/assorted-discoveries](./src/main/resources/assets/assorted-discoveries)
 
 ## Code License (MIT):
 

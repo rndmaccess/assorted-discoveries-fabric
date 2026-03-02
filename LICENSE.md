@@ -1,6 +1,6 @@
 ## Assets License (All Rights Reserved)
 
-© 2026 rndmaccess. All rights reserved.
+© 2026 rndmaccess. All rights reserved. Components from Minecraft are property of Mojang.
 
 This License applies to any files under the following directories:
 

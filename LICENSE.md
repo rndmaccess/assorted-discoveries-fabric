@@ -1,3 +1,15 @@
+## Assets License (All Rights Reserved)
+
+© 2026 rndmaccess. All rights reserved.
+
+This License applies to any files under the following directories:
+
+./src/assets/assorted-discoveries/
+
+## Code License (MIT):
+
+All other files are licensed under the MIT License:
+
 The MIT License (MIT)
 Copyright © 2022 rndm_access
 

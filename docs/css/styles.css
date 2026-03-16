@@ -1,5 +1,7 @@
 body {
-    background-color: #121212;
+    /* Dark gradient from top-left to bottom-right */
+    background: linear-gradient(135deg, #121212 0%, #1a1a1a 100%);
+    font-family: sans-serif;
 }
 
 .main-container {
@@ -7,20 +9,25 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 40px;
-    background-color: #212121;
+
+    /* Gradient background for container */
+    background: linear-gradient(145deg, #212121 0%, #2a2a2a 100%);
     color: #F5F5F5;
 
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    gap: 40px
+    gap: 40px;
+
+    /* Optional: subtle shadow to lift container */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .top-content-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 40px; /* Adds the space between the right image and left container */
+    gap: 40px;
 }
 
 .content-left {
@@ -36,7 +43,7 @@ body {
 .main-image {
     display: block;
     border-radius: 15px;
-    background-color: #454545;
+    background: #454545 linear-gradient(135deg, #454545 0%, #5a5a5a 100%);
     max-width: 400px;
     width: 100%;
     height: auto;

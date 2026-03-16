@@ -1,17 +1,20 @@
 body {
-    /* Dark gradient from top-left to bottom-right */
-    background: linear-gradient(135deg, #121212 0%, #1a1a1a 100%);
-    font-family: sans-serif;
+    /* Sleek dark gradient with deep blue-black */
+    background: linear-gradient(135deg, #0d0d0d 0%, #1a1a2e 50%, #0a0f1a 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #F5F5F5;
+    min-height: 100vh;
 }
 
 .main-container {
     border-radius: 15px;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 40px auto;
     padding: 40px;
 
-    /* Gradient background for container */
-    background: linear-gradient(145deg, #212121 0%, #2a2a2a 100%);
+    /* Darker container gradient to complement body */
+    background: linear-gradient(145deg, #1f1f2e 0%, #1a2436 100%);
+
     color: #F5F5F5;
 
     display: flex;
@@ -19,8 +22,8 @@ body {
     flex-direction: column;
     gap: 40px;
 
-    /* Optional: subtle shadow to lift container */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    /* Subtle shadow for depth */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
 }
 
 .top-content-wrapper {
@@ -43,10 +46,12 @@ body {
 .main-image {
     display: block;
     border-radius: 15px;
-    background: #454545 linear-gradient(135deg, #454545 0%, #5a5a5a 100%);
     max-width: 400px;
     width: 100%;
     height: auto;
+
+    /* Darker gradient overlay for images */
+    background: linear-gradient(135deg, #454565 0%, #1a2436 100%);
 }
 
 .video-container {

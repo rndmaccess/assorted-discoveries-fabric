@@ -4,6 +4,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #F5F5F5;
     min-height: 100vh;
+    font-size: 2em;
 }
 
 .main-container {
@@ -36,8 +37,7 @@ body {
 }
 
 .content-left {
-    flex: 1;
-    max-width: 600px;
+    flex: 1; /* Space the items equally */
 }
 
 .main-img {
@@ -54,7 +54,7 @@ body {
     display: block;
     flex-shrink: 0;
 
-    max-width: 400px;
+    max-width: 100%;
     width: 100%;
     height: auto;
 
@@ -84,16 +84,19 @@ th, td {
 
 @media (min-width: 1024px) {
     body {
-        font-size: 2em;
+        font-size: 1em;
     }
 
     .top-content-wrapper {
         flex-direction: row;
         align-items: flex-start;
-        max-width: 80%;
     }
 
     .main-img {
         max-width: 50%; /* Make the image smaller on desktops! */
+    }
+
+    .img-container {
+        max-width: 30%;
     }
 }

@@ -29,6 +29,10 @@ body {
     transition: border-bottom-color 0.15s ease-out;
 }
 
+.planter-btn:active {
+    border-bottom-color: #73A5C6;
+}
+
 .main-container {
     border-radius: 1rem;
     max-width: 75rem;
@@ -100,9 +104,40 @@ table {
     table-layout: fixed;
 }
 
-th, td {
+.img-desc {
     padding: 0.75rem;
     text-align: left;
+}
+
+.crafting-area {
+    display: grid;
+    grid-template-rows: auto min-content 16px;
+    grid-template-columns: 1fr;
+    width: fit-content; /* Keeps container tight to the back image */
+}
+
+.back {
+    grid-area: 1 / 1 / 4 / 2;
+    z-index: 1;
+}
+
+.front {
+    grid-area: 1 / 1 / 4 / 2;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Aligns items to the left */
+    justify-self: start;     /* Aligns the .front container to the left of the grid */
+
+    border-collapse: collapse;
+    text-align: left;        /* Changed from center to left */
+    vertical-align: baseline;
+    padding: 0 10px;
+}
+
+.crafting-item {
+    height: 50px;
 }
 
 /* Desktop properties */

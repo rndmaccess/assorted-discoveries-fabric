@@ -28,7 +28,10 @@ body {
 .top-content-wrapper {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+
+    flex-direction: column-reverse;
+    align-items: center; /* Center image on mobile */
+
     gap: 40px;
 }
 
@@ -40,7 +43,7 @@ body {
 .main-img {
     display: block;
     margin: auto;
-    max-width: 50%;
+    max-width: 100%;
 }
 
 .img-heading {
@@ -79,13 +82,13 @@ th, td {
     text-align: left;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 1024px) {
     .top-content-wrapper {
-        flex-direction: column-reverse;
-        align-items: center; /* Center image on mobile */
+        flex-direction: row;
+        align-items: flex-start;
     }
 
     .main-img {
-        max-width: 100%; /* Make the image bigger on mobile! */
+        max-width: 50%; /* Make the image smaller on desktops! */
     }
 }

@@ -37,13 +37,20 @@ body {
     max-width: 600px;
 }
 
+.main-img {
+    display: block;
+    margin: auto;
+    max-width: 50%;
+}
+
+.img-heading {
+    text-align: center;
+}
+
 .img-container {
     display: block;
     flex-shrink: 0;
-}
 
-.main-image {
-    display: block;
     max-width: 400px;
     width: 100%;
     height: auto;
@@ -54,7 +61,6 @@ body {
     background-color: #1f1f2e;
 
     border-radius: 15px;
-    border: thin solid #0d0d0d;
 }
 
 .video-container {

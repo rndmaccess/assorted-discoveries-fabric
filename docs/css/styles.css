@@ -4,14 +4,14 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #F5F5F5;
     min-height: 100vh;
-    font-size: 2em;
+    font-size: 2rem;
 }
 
 .main-container {
     border-radius: 15px;
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 40px;
+    max-width: 75em;
+    margin: 2.5em auto;
+    padding: 2.5em;
 
     /* Darker container gradient to complement body */
     background: linear-gradient(145deg, #1f1f2e 0%, #1a2436 100%);
@@ -20,7 +20,7 @@ body {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    gap: 40px;
+    gap: 2.5em;
 
     /* Subtle shadow for depth */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
@@ -33,7 +33,7 @@ body {
     flex-direction: column-reverse;
     align-items: center; /* Center image on mobile */
 
-    gap: 40px;
+    gap: 2.5em;
 }
 
 .content-left {
@@ -62,7 +62,7 @@ body {
 
     background-color: #1f1f2e;
 
-    border-radius: 15px;
+    border-radius: 1em;
 }
 
 .video-container {
@@ -77,13 +77,13 @@ table {
 }
 
 th, td {
-    padding: 0.75rem;
+    padding: 0.75em;
     text-align: left;
 }
 
 @media (min-width: 1024px) {
     body {
-        font-size: 1em;
+        font-size: 1rem;
     }
 
     .top-content-wrapper {

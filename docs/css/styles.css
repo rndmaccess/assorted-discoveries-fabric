@@ -4,7 +4,6 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #F5F5F5;
     min-height: 100vh;
-    font-size: 3rem;
 }
 
 .main-container {
@@ -82,10 +81,6 @@ th, td {
 }
 
 @media (min-width: 1024px) {
-    body {
-        font-size: 1rem;
-    }
-
     .top-content-wrapper {
         flex-direction: row;
         align-items: flex-start;

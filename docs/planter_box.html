@@ -29,20 +29,23 @@
                 <h1 class="img-heading">
                     Planter Box
                 </h1>
-                <span id="oak">Oak</span>
-                <span id="spruce">Spruce</span>
-                <span id="birch">Birch</span>
-                <span id="jungle">Jungle</span>
-                <span id="acacia">Acacia</span>
-                <span id="dark_oak">Dark Oak</span>
-                <span id="mangrove">Mangrove</span>
-                <span id="cherry">Cherry</span>
-                <span id="pale_oak">Pale Oak</span>
-                <span id="bamboo">Bamboo</span>
-                <span id="crimson">Crimson</span>
-                <span id="warped">Warped</span>
 
-                <img class="main-img" id="main-img" src="image_renders/acacia_planter_box.png" alt="A picture of an acacia planter box">
+                <div id="button-container">
+                    <button class="planter-btn" data-type="oak">Oak</button>
+                    <button class="planter-btn" data-type="spruce">Spruce</button>
+                    <button class="planter-btn" data-type="birch">Birch</button>
+                    <button class="planter-btn" data-type="jungle">Jungle</button>
+                    <button class="planter-btn" data-type="acacia">Acacia</button>
+                    <button class="planter-btn" data-type="dark_oak">Dark Oak</button>
+                    <button class="planter-btn" data-type="mangrove">Mangrove</button>
+                    <button class="planter-btn" data-type="cherry">Cherry</button>
+                    <button class="planter-btn" data-type="pale_oak">Pale Oak</button>
+                    <button class="planter-btn" data-type="bamboo">Bamboo</button>
+                    <button class="planter-btn" data-type="crimson">Crimson</button>
+                    <button class="planter-btn" data-type="warped">Warped</button>
+                </div>
+
+                <img class="main-img" id="main-img" src="image_renders/oak_planter_box.png" alt="A picture of a oak planter box">
                 <table style="margin: 15px;">
                     <tr>
                         <td>Renewable</td>
@@ -96,28 +99,16 @@
 </html>
 
 <script>
-    const main_img = document.getElementById("main-img")
+    const mainImg = document.getElementById('main-img');
+    const container = document.getElementById('button-container');
 
-    const oak = document.getElementById("oak")
-    const spruce = document.getElementById("spruce")
-    const birch = document.getElementById("birch")
-    const jungle = document.getElementById("jungle")
-    const acacia = document.getElementById("acacia")
-    const dark_oak = document.getElementById("dark_oak")
-    const mangrove = document.getElementById("mangrove")
-    const cherry = document.getElementById("cherry")
-    const pale_oak = document.getElementById("pale_oak")
-    const bamboo = document.getElementById("bamboo")
-    const crimson = document.getElementById("crimson")
-    const warped = document.getElementById("warped")
+    container.addEventListener('click', (e) => {
+        const button = e.target.closest('.planter-btn');
+        if (!button) return;
 
-    const set_img = (type) => {
-        const img_alt = "A picture of a(n) " + type + " acacia planter box"
-        main_img.src = "image_renders/" + type + "_planter_box.png"
-        main_img.alt = img_alt
-    }
+        const type = button.dataset.type;
 
-    oak.addEventListener("click", () => {
-        set_img("jungle")
-    })
+        mainImg.src = `image_renders/${type}_planter_box.png`;
+        mainImg.alt = `A picture of a ${type} planter box`;
+    });
 </script>

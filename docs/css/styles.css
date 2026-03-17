@@ -7,6 +7,28 @@ body {
     font-size: 1.125rem;
 }
 
+#button-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.planter-btn {
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #F5F5F5;
+    color: #F5F5F5;
+    padding: 5px 10px;
+    cursor: pointer;
+    text-decoration: none;
+    margin: 5px;
+}
+
+.planter-btn:hover {
+    border-bottom-color: #73A5C6;
+    transition: border-bottom-color 0.15s ease-out;
+}
+
 .main-container {
     border-radius: 1rem;
     max-width: 75rem;

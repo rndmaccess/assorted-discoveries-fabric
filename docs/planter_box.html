@@ -17,20 +17,26 @@
                 <p>
                     The planter box is a decorative block that can be dynamically expanded by placing more planter boxes next to each other!
                 </p>
+                <h1>
+                    Crafting
+                </h1>
+                <p>
+                    The planter box can be crafted with the appropriate type of slab and a piece of dirt!
+                </p>
                 <div class="crafting-area">
-                    <img class="back" src="./gui_images/crafting_table_display.png" alt="An image on how to craft the planter boxes. Any planter box can be crafted using its appropriate wood slab and a piece of dirt!">
+                    <img class="back" src="./gui_images/crafting_table_display.png" alt="">
                     <div class="front">
-                        <div class="slot"><img class="crafting-item" src="./minecraft_renders/acacia_slab.png" alt=""></div>
-                        <div class="slot"><img class="crafting-item" src="./minecraft_renders/acacia_slab.png" alt=""></div>
-                        <div class="slot"><img class="crafting-item" src="./minecraft_renders/acacia_slab.png" alt=""></div>
+                        <div class="slot"><img class="crafting-item" data-type="slab" src="./minecraft_renders/acacia_slab.png" alt=""></div>
+                        <div class="slot"></div>
+                        <div class="slot"><img class="crafting-item" data-type="slab" src="./minecraft_renders/acacia_slab.png" alt=""></div>
 
-                        <div class="slot"><img class="crafting-item" src="./minecraft_renders/acacia_slab.png" alt=""></div>
-                        <div class="slot"><img class="crafting-item" src="./minecraft_renders/acacia_slab.png" alt=""></div>
-                        <div class="slot"><img class="crafting-item" src="./minecraft_renders/acacia_slab.png" alt=""></div>
+                        <div class="slot"><img class="crafting-item" data-type="slab" src="./minecraft_renders/acacia_slab.png" alt=""></div>
+                        <div class="slot"><img class="crafting-item" data-type="dirt" src="./minecraft_renders/dirt.png" alt=""></div>
+                        <div class="slot"><img class="crafting-item" data-type="slab" src="./minecraft_renders/acacia_slab.png" alt=""></div>
 
-                        <div class="slot"><img class="crafting-item" src="./minecraft_renders/acacia_slab.png" alt=""></div>
-                        <div class="slot"><img class="crafting-item" src="./minecraft_renders/acacia_slab.png" alt=""></div>
-                        <div class="slot"><img class="crafting-item" src="./minecraft_renders/acacia_slab.png" alt=""></div>
+                        <div class="slot"><img class="crafting-item" data-type="slab" src="./minecraft_renders/acacia_slab.png" alt=""></div>
+                        <div class="slot"><img class="crafting-item" data-type="slab" src="./minecraft_renders/acacia_slab.png" alt=""></div>
+                        <div class="slot"><img class="crafting-item" data-type="slab" src="./minecraft_renders/acacia_slab.png" alt=""></div>
                     </div>
                 </div>
             </div>
@@ -109,8 +115,34 @@
 </html>
 
 <script>
+    let i = 0
     const mainImg = document.getElementById('main-img');
     const container = document.getElementById('button-container');
+    const crafting_items = document.getElementsByClassName('crafting-item')
+
+    async function cycle_recipe() {
+        let items = ["oak", "spruce", "birch", "jungle", "acacia", "dark_oak", "mangrove",
+            "cherry", "pale_oak", "bamboo", "crimson", "warped"]
+
+        if (i < items.length - 1) {
+            i += 1
+        } else {
+            i = 0
+        }
+
+        for (let j = 0; j < crafting_items.length; j++) {
+            let item = crafting_items[j];
+            let type = item.dataset.type;
+
+            if (item.hasAttribute("src") && type === "slab") {
+                item.setAttribute("src", "./minecraft_renders/" + items[i] + "_slab.png")
+            }
+        }
+    }
+
+    setInterval(function() {
+        cycle_recipe()
+    }, 1000);
 
     container.addEventListener('click', (e) => {
         const button = e.target.closest('.planter-btn');

@@ -26,17 +26,20 @@
                 <div class="crafting-area">
                     <img class="back" src="./gui_images/crafting_table_display.png" alt="">
                     <div class="front">
-                        <div class="slot"><img class="crafting-item" data-type="slab" src="./minecraft_renders/acacia_slab.png" alt=""></div>
+                        <div class="slot"><img class="crafting-item cycle-item" data-type="slab" src="./minecraft_renders/oak_slab.png" alt="an oak slab in a crafting area"></div>
                         <div class="slot"></div>
-                        <div class="slot"><img class="crafting-item" data-type="slab" src="./minecraft_renders/acacia_slab.png" alt=""></div>
+                        <div class="slot"><img class="crafting-item cycle-item" data-type="slab" src="./minecraft_renders/oak_slab.png" alt="an oak slab in a crafting area"></div>
 
-                        <div class="slot"><img class="crafting-item" data-type="slab" src="./minecraft_renders/acacia_slab.png" alt=""></div>
-                        <div class="slot"><img class="crafting-item" data-type="dirt" src="./minecraft_renders/dirt.png" alt=""></div>
-                        <div class="slot"><img class="crafting-item" data-type="slab" src="./minecraft_renders/acacia_slab.png" alt=""></div>
+                        <div class="slot"><img class="crafting-item cycle-item" data-type="slab" src="./minecraft_renders/oak_slab.png" alt="an oak slab in a crafting area"></div>
+                        <div class="slot"><img class="crafting-item" src="./minecraft_renders/dirt.png" alt="a dirt block in a crafting area"></div>
+                        <div class="slot"><img class="crafting-item cycle-item" data-type="slab" src="./minecraft_renders/oak_slab.png" alt="an oak slab in a crafting area"></div>
 
-                        <div class="slot"><img class="crafting-item" data-type="slab" src="./minecraft_renders/acacia_slab.png" alt=""></div>
-                        <div class="slot"><img class="crafting-item" data-type="slab" src="./minecraft_renders/acacia_slab.png" alt=""></div>
-                        <div class="slot"><img class="crafting-item" data-type="slab" src="./minecraft_renders/acacia_slab.png" alt=""></div>
+                        <div class="slot"><img class="crafting-item cycle-item" data-type="slab" src="./minecraft_renders/oak_slab.png" alt="an oak slab in a crafting area"></div>
+                        <div class="slot"><img class="crafting-item cycle-item" data-type="slab" src="./minecraft_renders/oak_slab.png" alt="an oak slab in a crafting area"></div>
+                        <div class="slot"><img class="crafting-item cycle-item" data-type="slab" src="./minecraft_renders/oak_slab.png" alt="an oak slab in a crafting area"></div>
+                    </div>
+                    <div class="front-result">
+                        <div><img class="result-item cycle-item" data-type="planter_box" src="./image_renders/oak_planter_box.png" alt=""></div>
                     </div>
                 </div>
             </div>
@@ -118,7 +121,7 @@
     let i = 0
     const mainImg = document.getElementById('main-img');
     const container = document.getElementById('button-container');
-    const crafting_items = document.getElementsByClassName('crafting-item')
+    const cycle_items = document.getElementsByClassName('cycle-item')
 
     async function cycle_recipe() {
         let items = ["oak", "spruce", "birch", "jungle", "acacia", "dark_oak", "mangrove",
@@ -130,12 +133,24 @@
             i = 0
         }
 
-        for (let j = 0; j < crafting_items.length; j++) {
-            let item = crafting_items[j];
+        for (let j = 0; j < cycle_items.length; j++) {
+            let item = cycle_items[j];
             let type = item.dataset.type;
 
-            if (item.hasAttribute("src") && type === "slab") {
-                item.setAttribute("src", "./minecraft_renders/" + items[i] + "_slab.png")
+            if (item.hasAttribute("src")) {
+                let a = "a "
+
+                if (items[i] === "oak" || items[i] === "acacia") {
+                    a = "an "
+                }
+
+                if (type === "slab") {
+                    item.setAttribute("src", "./minecraft_renders/" + items[i] + "_slab.png")
+                    item.setAttribute("alt", a + items[i] + " slab in a crafting area")
+                } else if (type === "planter_box") {
+                    item.setAttribute("src", "./image_renders/" + items[i] + "_planter_box.png")
+                    item.setAttribute("alt", a + items[i] + " planter box in a crafting area")
+                }
             }
         }
     }

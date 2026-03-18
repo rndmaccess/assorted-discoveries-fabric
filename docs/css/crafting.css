@@ -32,6 +32,32 @@
     gap: 6% 0;
 }
 
+.front-result {
+    /* Stack it on top of the background */
+    grid-area: 1 / 1;
+    z-index: 3;
+    position: relative; /* This allows us to position the item inside it */
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.result-item {
+    position: absolute;
+
+    /* 1. Position the item inside the result slot */
+    /* Adjust these % values until it sits perfectly in the gray box */
+    left: 87%;
+    top: 25%;
+
+    /* 2. Set a fixed size relative to the grid, not the "leftover" space */
+    width: 12%;
+    height: auto;
+
+    /* 3. Keep it centered on its own anchor point */
+    transform: translate(-50%, -50%);
+}
+
 .slot {
     display: flex;
     align-items: center;

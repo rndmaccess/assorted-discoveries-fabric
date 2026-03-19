@@ -25,9 +25,8 @@
     width: 50%;
 }
 
-a { text-decoration: underline; }
-a:link { color: #73A5C6; }
-a:visited { color: #737cc6; }
-a:active { color: #c673a5; }
-a:hover { cursor: pointer; }
-
+#search {
+    background-color: #1f1f2e;
+    color: #F5F5F5;
+    border-color: #F5F5F5;
+}

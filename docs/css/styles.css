@@ -53,6 +53,13 @@ body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
 }
 
+/* Styled links */
+a { text-decoration: underline; }
+a:link { color: #73A5C6; }
+a:visited { color: #737cc6; }
+a:active { color: #c673a5; }
+a:hover { cursor: pointer; }
+
 .top-content-wrapper {
     display: flex;
     justify-content: space-between;

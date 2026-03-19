@@ -12,6 +12,9 @@
             Welcome to the Assorted Discoveries Wiki
         </h1>
 
+        <label for="search"></label>
+        <input type="text" id="search" name="search">
+
         <h2>
             Here are some pages to get you started:
         </h2>
@@ -30,3 +33,45 @@
     </div>
 </body>
 </html>
+
+<script src=" https://cdn.jsdelivr.net/npm/minisearch@7.2.0/dist/umd/index.min.js "></script>
+
+<script>
+    let miniSearch = new MiniSearch({
+        fields: ['title'],
+        storeFields: ['title']
+    })
+
+    const documents = [
+        {
+            id: 1,
+            title: 'bog_blossom'
+        },
+        {
+            id: 2,
+            title: 'planter box'
+        }
+    ]
+
+    miniSearch.addAll(documents)
+
+    const searchInput = document.getElementById('search')
+
+    searchInput.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+            const query = event.target.value.toLowerCase();
+
+            if (query.trim() === '') return;
+
+            let results = miniSearch.search(query, {
+                prefix: true, // partial word matching
+                fuzzy: 0.2    // allow minor misspellings
+            });
+
+            const topResult = results[0].title
+
+            window.location.href = (topResult + '.html').replaceAll(' ', '_')
+        }
+    })
+
+</script>

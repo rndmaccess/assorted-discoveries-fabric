@@ -14,6 +14,10 @@
     width: 100%;
     z-index: 1;
     object-fit: contain;
+
+    /* A rounded border around the crafting gui */
+    background-color: #C6C6C6;
+    border-radius: 0.5rem;
 }
 
 .front {

@@ -33,7 +33,6 @@
 }
 
 #suggestion-list {
-    /*position: absolute;*/
     top: 100%; /* Puts it directly below the input */
     left: 0;
     margin: 0;
@@ -53,9 +52,6 @@
 .suggestion:last-child {
     border: none;
 }
-.suggestion.selected {
+.suggestion:hover {
     background: #73A5C6;
-}
-.suggestion:hover:not(.selected) {
-    background-color: #1f1f2e
 }

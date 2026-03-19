@@ -29,7 +29,7 @@ body {
     transition: border-bottom-color 0.15s ease-out;
 }
 
-.planter-btn:active {
+#selected {
     border-bottom-color: #73A5C6;
 }
 

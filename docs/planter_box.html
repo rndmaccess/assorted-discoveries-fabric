@@ -54,7 +54,7 @@
                 </h1>
 
                 <div id="button-container">
-                    <button class="planter-btn" data-type="oak">Oak</button>
+                    <button class="planter-btn" id="selected" data-type="oak">Oak</button>
                     <button class="planter-btn" data-type="spruce">Spruce</button>
                     <button class="planter-btn" data-type="birch">Birch</button>
                     <button class="planter-btn" data-type="jungle">Jungle</button>
@@ -105,18 +105,6 @@
                 </table>
             </div>
         </div>
-
-        <h1 style="text-align: center;">
-            Video Demonstration
-        </h1>
-        <div class="video-container">
-            <div class="video">
-                <video width="640" height="360" controls>
-                    <source src="videos/bog_blossom.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-        </div>
     </div>
 </body>
 </html>
@@ -164,6 +152,7 @@
     }, 1000);
 
     container.addEventListener('click', (e) => {
+        const selectedElement = document.getElementById('selected')
         const button = e.target.closest('.planter-btn');
         if (!button) return;
 
@@ -171,5 +160,7 @@
 
         mainImg.src = `image_renders/${type}_planter_box.png`;
         mainImg.alt = `A picture of a ${type} planter box`;
+        selectedElement.removeAttribute('id')
+        button.setAttribute('id', 'selected')
     });
 </script>

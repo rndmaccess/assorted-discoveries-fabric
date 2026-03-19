@@ -1,0 +1,33 @@
+.recommendation-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.recommendation-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+
+    box-shadow: inset 0 0 0.625rem #0a0f1a;
+
+    background-color: #1f1f2e;
+    border-radius: 1rem;
+    padding: 1rem;
+    font-size: 1.5rem;
+}
+
+.recommendation-img {
+    display: block;
+    margin: auto;
+
+    width: 50%;
+}
+
+a { text-decoration: underline; }
+a:link { color: #73A5C6; }
+a:visited { color: #737cc6; }
+a:active { color: #c673a5; }
+a:hover { cursor: pointer; }
+

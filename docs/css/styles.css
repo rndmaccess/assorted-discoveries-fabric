@@ -22,6 +22,7 @@ body {
     cursor: pointer;
     text-decoration: none;
     margin: 5px;
+    font-size: 1.5rem;
 }
 
 .planter-btn:hover {
@@ -126,6 +127,10 @@ table {
 
     .img-container {
         max-width: 30%;
+        font-size: 1rem;
+    }
+
+    .planter-btn {
         font-size: 1rem;
     }
 }

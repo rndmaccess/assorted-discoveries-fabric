@@ -94,7 +94,7 @@
                     <button class="planter-btn" data-type="warped">Warped</button>
                 </div>
 
-                <img class="main-img" id="main-img" src="image_renders/oak_planter_box.png" alt="A picture of a oak planter box">
+                <img class="main-img" id="main-img" src="image_renders/oak_planter_box.png" alt="An image of an oak planter box">
                 <table style="margin: 15px;">
                     <tr>
                         <td class="img-desc">Renewable</td>
@@ -145,8 +145,6 @@
     async function cycle_recipe() {
         let items = ["oak", "spruce", "birch", "jungle", "acacia", "dark_oak", "mangrove",
             "cherry", "pale_oak", "bamboo", "crimson", "warped"]
-        let alt_items = ["oak", "spruce", "birch", "jungle", "acacia", "dark oak", "mangrove",
-            "cherry", "pale oak", "bamboo", "crimson", "warped"]
 
         if (typeIndex < items.length - 1) {
             typeIndex += 1
@@ -154,21 +152,25 @@
             typeIndex = 0
         }
 
+        const woodType = items[typeIndex]
+
         for (let itemIndex = 0; itemIndex < cycleItems.length; itemIndex++) {
             let item = cycleItems[itemIndex];
-            let type = item.dataset.type;
+            let blockType = item.dataset.type;
 
             if (item.hasAttribute("src")) {
 
-                if (type === "slab") {
-                    item.setAttribute("src", "./minecraft_renders/" + items[typeIndex] + "_slab.png")
-                } else if (type === "planter_box") {
-                    item.setAttribute("src", "./image_renders/" + items[typeIndex] + "_planter_box.png")
+                if (blockType === "slab") {
+                    item.setAttribute("src", "./minecraft_renders/" + woodType + "_slab.png")
+                } else if (blockType === "planter_box") {
+                    item.setAttribute("src", "./image_renders/" + woodType + "_planter_box.png")
                 }
             }
         }
-        const alt_text = `A Minecraft 3x3 crafting grid with seven ${alt_items[typeIndex]} slabs arranged in a U-shape
-        and one dirt block in the center, producing an ${alt_items[typeIndex]} planter box, with planter box variations cycling.`
+        const woodTypeName = woodType.replaceAll("_", " ")
+
+        const alt_text = `A Minecraft 3x3 crafting grid with seven ${woodTypeName} slabs arranged in a U-shape
+        and one dirt block in the center, producing an ${woodTypeName} planter box, with planter box variations cycling.`
 
         craftingGui.setAttribute("alt", alt_text)
     }
@@ -183,9 +185,10 @@
         if (!button) return;
 
         const type = button.dataset.type;
+        const typeName = type.replaceAll("_", " ")
 
         mainImg.src = `image_renders/${type}_planter_box.png`;
-        mainImg.alt = `A picture of a ${type} planter box`;
+        mainImg.alt = `A picture of a ${typeName} planter box`;
         selectedElement.removeAttribute('id')
         button.setAttribute('id', 'selected')
     });

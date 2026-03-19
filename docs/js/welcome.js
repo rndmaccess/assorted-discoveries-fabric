@@ -20,6 +20,7 @@ const searchInput = document.getElementById('search')
 const suggestionsList = document.getElementById('suggestion-list')
 
 const getSuggestions = (query) => {
+
     return miniSearch.autoSuggest(query, {
         prefix: true, // partial word matching
         fuzzy: 0.2    // allow minor misspellings
@@ -28,8 +29,9 @@ const getSuggestions = (query) => {
 
 const renderSuggestions = (suggestions) => {
     suggestionsList.innerHTML = suggestions.map(({ suggestion }) => {
-        return `<li class="Suggestion">${suggestion}</li>`
+        return `<li class="suggestion">${suggestion}</li>`
     }).join('\n')
+    suggestionsList.style.display = 'block'
 }
 
 // Typing into search bar updates search results and suggestions
@@ -37,16 +39,13 @@ searchInput.addEventListener('input', () => {
     const query = searchInput.value
 
     const suggestions = (query.length > 1) ? getSuggestions(query) : []
-    renderSuggestions(suggestions)
-})
 
-/*
-document.addEventListener("click", function(event) {
-    if (!event.target.closest(".search-container")) {
-        suggestionsList.style.display = "none";
+    if (suggestions.length === 0) {
+        suggestionsList.style.display = 'none'
+    } else {
+        renderSuggestions(suggestions)
     }
-});
-*/
+})
 
 const getSearchResults = (query) => {
     const searchOptions = {

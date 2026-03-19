@@ -29,4 +29,33 @@
     background-color: #1f1f2e;
     color: #F5F5F5;
     border-color: #F5F5F5;
+    width: 50%;
+}
+
+#suggestion-list {
+    /*position: absolute;*/
+    top: 100%; /* Puts it directly below the input */
+    left: 0;
+    margin: 0;
+    padding: 0;
+    background-color: #1f1f2e;
+    border: 1px solid #0a0f1a;
+    z-index: 1000; /* Ensures it's on top */
+    width: 50%;
+    display: none; /* Hidden by default */
+    list-style: none;
+}
+
+.suggestion {
+    padding: 0.5em 1em;
+    border-bottom: 1px solid #0a0f1a;
+}
+.suggestion:last-child {
+    border: none;
+}
+.suggestion.selected {
+    background: #73A5C6;
+}
+.suggestion:hover:not(.selected) {
+    background-color: #1f1f2e
 }

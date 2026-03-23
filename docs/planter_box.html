@@ -58,7 +58,7 @@
                             <div class="slot"><img class="crafting-item" data-type="slab" src="./minecraft_renders/warped_slab.png" alt=""></div>
 
                             <div class="slot"><img class="crafting-item" data-type="slab" src="./minecraft_renders/warped_slab.png" alt=""></div>
-                            <div class="slot"><img class="crafting-item cycle-item" src="./minecraft_renders/dirt.png" alt=""></div>
+                            <div class="slot"><img class="crafting-item cycle-item" data-type="soul_soil" src="./minecraft_renders/dirt.png" alt=""></div>
                             <div class="slot"><img class="crafting-item" data-type="slab" src="./minecraft_renders/warped_slab.png" alt=""></div>
 
                             <div class="slot"><img class="crafting-item" data-type="slab" src="./minecraft_renders/warped_slab.png" alt=""></div>
@@ -78,7 +78,7 @@
                             <div class="slot"><img class="crafting-item" data-type="slab" src="./minecraft_renders/crimson_slab.png" alt=""></div>
 
                             <div class="slot"><img class="crafting-item" data-type="slab" src="./minecraft_renders/crimson_slab.png" alt=""></div>
-                            <div class="slot"><img class="crafting-item cycle-item" src="./minecraft_renders/dirt.png" alt=""></div>
+                            <div class="slot"><img class="crafting-item cycle-item" data-type="soul_soil" src="./minecraft_renders/dirt.png" alt=""></div>
                             <div class="slot"><img class="crafting-item" data-type="slab" src="./minecraft_renders/crimson_slab.png" alt=""></div>
 
                             <div class="slot"><img class="crafting-item" data-type="slab" src="./minecraft_renders/crimson_slab.png" alt=""></div>
@@ -207,6 +207,8 @@
                     item.setAttribute("src", "./minecraft_renders/" + woodType + "_slab.png")
                 } else if (blockType === "planter_box") {
                     item.setAttribute("src", "./image_renders/" + woodType + "_planter_box.png")
+                } else if (blockType === "soul_soil") {
+                    item.setAttribute("src", "./minecraft_renders/" + woodType + ".png")
                 }
             }
         }

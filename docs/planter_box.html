@@ -26,8 +26,8 @@
                 <h2>
                     Overworld
                 </h2>
-                <div class="crafting-area">
-                    <img class="back" id="crafting-gui" src="./gui_images/crafting_table_display.png" alt="A Minecraft 3x3 crafting grid with seven oak slabs arranged in a U-shape and one dirt block in the center, producing an oak planter box, with planter box variations cycling.">
+                <div class="crafting-area" id="overworld-crafting-gui">
+                    <img class="back" src="./gui_images/crafting_table_display.png" alt="A Minecraft 3x3 crafting grid with seven oak slabs arranged in a U-shape and one dirt block in the center, producing an oak planter box, with planter box variations cycling.">
                     <div class="front">
                         <div class="slot"><img class="crafting-item cycle-item" data-type="slab" src="./minecraft_renders/oak_slab.png" alt=""></div>
                         <div class="slot"></div>
@@ -49,23 +49,45 @@
                 <h2>
                     Nether
                 </h2>
-                <div class="crafting-area">
-                    <img class="back" src="./gui_images/crafting_table_display.png" alt="A Minecraft 3x3 crafting grid with seven oak slabs arranged in a U-shape and one dirt block in the center, producing an oak planter box, with planter box variations cycling.">
-                    <div class="front">
-                        <div class="slot"><img class="crafting-item cycle-item" data-type="slab" src="./minecraft_renders/oak_slab.png" alt=""></div>
-                        <div class="slot"></div>
-                        <div class="slot"><img class="crafting-item cycle-item" data-type="slab" src="./minecraft_renders/oak_slab.png" alt=""></div>
+                <div class="multi-craft">
+                    <div class="crafting-area" id="warped-crafting-gui">
+                        <img class="back" src="./gui_images/crafting_table_display.png" alt="A Minecraft 3x3 crafting grid with seven warped slabs arranged in a U-shape and any soul soil block in the center cycling, giving a warped planter box.">
+                        <div class="front">
+                            <div class="slot"><img class="crafting-item" data-type="slab" src="./minecraft_renders/warped_slab.png" alt=""></div>
+                            <div class="slot"></div>
+                            <div class="slot"><img class="crafting-item" data-type="slab" src="./minecraft_renders/warped_slab.png" alt=""></div>
 
-                        <div class="slot"><img class="crafting-item cycle-item" data-type="slab" src="./minecraft_renders/oak_slab.png" alt=""></div>
-                        <div class="slot"><img class="crafting-item" src="./minecraft_renders/dirt.png" alt=""></div>
-                        <div class="slot"><img class="crafting-item cycle-item" data-type="slab" src="./minecraft_renders/oak_slab.png" alt=""></div>
+                            <div class="slot"><img class="crafting-item" data-type="slab" src="./minecraft_renders/warped_slab.png" alt=""></div>
+                            <div class="slot"><img class="crafting-item cycle-item" src="./minecraft_renders/dirt.png" alt=""></div>
+                            <div class="slot"><img class="crafting-item" data-type="slab" src="./minecraft_renders/warped_slab.png" alt=""></div>
 
-                        <div class="slot"><img class="crafting-item cycle-item" data-type="slab" src="./minecraft_renders/oak_slab.png" alt=""></div>
-                        <div class="slot"><img class="crafting-item cycle-item" data-type="slab" src="./minecraft_renders/oak_slab.png" alt=""></div>
-                        <div class="slot"><img class="crafting-item cycle-item" data-type="slab" src="./minecraft_renders/oak_slab.png" alt=""></div>
+                            <div class="slot"><img class="crafting-item" data-type="slab" src="./minecraft_renders/warped_slab.png" alt=""></div>
+                            <div class="slot"><img class="crafting-item" data-type="slab" src="./minecraft_renders/warped_slab.png" alt=""></div>
+                            <div class="slot"><img class="crafting-item" data-type="slab" src="./minecraft_renders/warped_slab.png" alt=""></div>
+                        </div>
+                        <div class="front-result">
+                            <div><img class="result-item" data-type="planter_box" src="./image_renders/warped_planter_box.png" alt=""></div>
+                        </div>
                     </div>
-                    <div class="front-result">
-                        <div><img class="result-item cycle-item" data-type="planter_box" src="./image_renders/oak_planter_box.png" alt=""></div>
+
+                    <div class="crafting-area" id="crimson-crafting-gui">
+                        <img class="back" src="./gui_images/crafting_table_display.png" alt="A Minecraft 3x3 crafting grid with seven crimson slabs arranged in a U-shape and any soul soil block in the center cycling, giving a crimson planter box.">
+                        <div class="front">
+                            <div class="slot"><img class="crafting-item" data-type="slab" src="./minecraft_renders/crimson_slab.png" alt=""></div>
+                            <div class="slot"></div>
+                            <div class="slot"><img class="crafting-item" data-type="slab" src="./minecraft_renders/crimson_slab.png" alt=""></div>
+
+                            <div class="slot"><img class="crafting-item" data-type="slab" src="./minecraft_renders/crimson_slab.png" alt=""></div>
+                            <div class="slot"><img class="crafting-item cycle-item" src="./minecraft_renders/dirt.png" alt=""></div>
+                            <div class="slot"><img class="crafting-item" data-type="slab" src="./minecraft_renders/crimson_slab.png" alt=""></div>
+
+                            <div class="slot"><img class="crafting-item" data-type="slab" src="./minecraft_renders/crimson_slab.png" alt=""></div>
+                            <div class="slot"><img class="crafting-item" data-type="slab" src="./minecraft_renders/crimson_slab.png" alt=""></div>
+                            <div class="slot"><img class="crafting-item" data-type="slab" src="./minecraft_renders/crimson_slab.png" alt=""></div>
+                        </div>
+                        <div class="front-result">
+                            <div><img class="result-item" data-type="planter_box" src="./image_renders/crimson_planter_box.png" alt=""></div>
+                        </div>
                     </div>
                 </div>
 
@@ -162,20 +184,18 @@
 </html>
 
 <script>
-    let typeIndex = 0
     const mainImg = document.getElementById('main-img');
     const container = document.getElementById('button-container');
-    const cycleItems = document.getElementsByClassName('cycle-item')
-    const craftingGui = document.getElementById('crafting-gui')
+    const overworldCraftingGui = document.getElementById('overworld-crafting-gui')
+    const warpedCraftingGui = document.getElementById('warped-crafting-gui')
+    const crimsonCraftingGui = document.getElementById('crimson-crafting-gui')
+    const woodTypes = ["oak", "spruce", "birch", "jungle", "acacia", "dark_oak", "mangrove",
+        "cherry", "pale_oak", "bamboo"]
+    const soilTypes = ["soul_soil", "soul_sand"]
 
-    async function cycle_recipe(items) {
-        if (typeIndex < items.length - 1) {
-            typeIndex += 1
-        } else {
-            typeIndex = 0
-        }
-
-        const woodType = items[typeIndex]
+    async function cycle_recipe(items, backImg, cycleItems, state) {
+        state.typeIndex = (state.typeIndex + 1) % items.length;
+        const woodType = items[state.typeIndex]
 
         for (let itemIndex = 0; itemIndex < cycleItems.length; itemIndex++) {
             let item = cycleItems[itemIndex];
@@ -195,15 +215,22 @@
         const alt_text = `A Minecraft 3x3 crafting grid with seven ${woodTypeName} slabs arranged in a U-shape
         and one dirt block in the center, producing an ${woodTypeName} planter box, with planter box variations cycling.`
 
-        craftingGui.setAttribute("alt", alt_text)
+        backImg.setAttribute("alt", alt_text)
     }
 
-    setInterval(function() {
-        let items = ["oak", "spruce", "birch", "jungle", "acacia", "dark_oak", "mangrove",
-            "cherry", "pale_oak", "bamboo", "crimson", "warped"]
+    function createRecipeCycle(items, guiId) {
+        let state = { typeIndex: 0 };
+        const backImg = guiId.getElementsByClassName(".back")[0]
+        const cycleItems = guiId.getElementsByClassName('cycle-item')
 
-        cycle_recipe(items)
-    }, 1000);
+        setInterval(function() {
+            cycle_recipe(items, backImg, cycleItems, state)
+        }, 1000);
+    }
+
+    createRecipeCycle(woodTypes, overworldCraftingGui)
+    createRecipeCycle(soilTypes, warpedCraftingGui)
+    createRecipeCycle(soilTypes, crimsonCraftingGui)
 
     container.addEventListener('click', (e) => {
         const selectedElement = document.getElementById('selected')

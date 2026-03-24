@@ -7,16 +7,17 @@ async function cycle_recipe(items, backImg, cycleItems, state) {
         const pattern = item.dataset.srcPattern;
 
         if (pattern && item.hasAttribute("src")) {
-            const newSrc = pattern.replace("{blockType}", woodType);
+            const newSrc = pattern.replaceAll("{blockType}", woodType);
             item.setAttribute("src", newSrc);
         }
     }
     const woodTypeName = woodType.replaceAll("_", " ")
+    const pattern = backImg.dataset.altPattern;
 
-    const alt_text = `A Minecraft 3x3 crafting grid with seven ${woodTypeName} slabs arranged in a U-shape
-        and one dirt block in the center, producing an ${woodTypeName} planter box, with planter box variations cycling.`
-
-    backImg.setAttribute("alt", alt_text)
+    if(pattern) {
+        const newAlt = pattern.replaceAll("{blockType}", woodTypeName);
+        backImg.setAttribute("alt", newAlt)
+    }
 }
 
 function createRecipeCycle(items, guiId) {

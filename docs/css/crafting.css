@@ -26,17 +26,17 @@
     z-index: 2;
 
     /* Creates 3 equal columns and rows that scale with the container */
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 3.5rem);
+    grid-template-rows: repeat(3, 3.5rem);
 
     width: 47%;
     height: auto;
 
-    padding-top: 3%;
-    padding-left: 1.5%;
+    padding-top: 2.25%;
+    padding-left: 2.25%;
 
     box-sizing: border-box;
-    gap: 8% 0;
+
 }
 
 .slot {

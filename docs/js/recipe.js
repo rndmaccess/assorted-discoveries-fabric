@@ -1,3 +1,5 @@
+const vowels = new Set(['a', 'e', 'i', 'o', 'u']);
+
 async function cycle_recipe(items, backImg, cycleItems, state) {
     state.typeIndex = (state.typeIndex + 1) % items.length; // Moves to the next index. When we hit the last index it will return to 0.
     const woodType = items[state.typeIndex]
@@ -15,9 +17,16 @@ async function cycle_recipe(items, backImg, cycleItems, state) {
     const pattern = backImg.dataset.altPattern;
 
     if(pattern) {
-        const newAlt = pattern.replaceAll("{blockType}", woodTypeName);
+        const firstLetter = woodType[0]
+        const a = isVowel(firstLetter) ? "an" : "a"
+        const newAlt = pattern.replaceAll("{blockType}", woodTypeName).replaceAll("{a}", a);
         backImg.setAttribute("alt", newAlt)
     }
+}
+
+function isVowel(char) {
+    char = char.toLowerCase()
+    return vowels.has(char)
 }
 
 function createRecipeCycle(items, guiId) {

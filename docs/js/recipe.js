@@ -47,6 +47,27 @@ function isVowel(char) {
  * on the recipe gui image,
  * data-src-pattern="./image_renders/{blockType}_slab.png"
  * on a gui item. This pattern defines a slab of {blockType} from the image_renders folder.
+ *
+ * Here is a full example of a cycling recipe:
+ * <div class="crafting-area" id="crafting-gui">
+ *     <img class="back" src="./gui_images/crafting_table_display.png" data-alt-pattern="A Minecraft 3x3 crafting grid with three {blockType} planks lined up in the center three slots and four string in the four corners of the crafting grid, giving {a} {blockType} rope ladder, with rope ladder variations cycling." alt="A Minecraft 3x3 crafting grid with three oak planks lined up in the center three slots and four string in the four corner slots of the crafting grid, giving an oak rope ladder, with rope ladder variations cycling.">
+ *     <div class="front">
+ *         <div class="slot"><img class="crafting-item" loading="lazy" src="image_renders/string.png" alt=""></div>
+ *         <div class="slot"></div>
+ *         <div class="slot"><img class="crafting-item" loading="lazy" src="image_renders/string.png" alt=""></div>
+ *
+ *         <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-src-pattern="./image_renders/{blockType}_planks.png" src="image_renders/oak_planks.png" alt=""></div>
+ *         <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-src-pattern="./image_renders/{blockType}_planks.png" src="image_renders/oak_planks.png" alt=""></div>
+ *         <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-src-pattern="./image_renders/{blockType}_planks.png" src="image_renders/oak_planks.png" alt=""></div>
+ *
+ *         <div class="slot"><img class="crafting-item" loading="lazy" src="image_renders/string.png" alt=""></div>
+ *         <div class="slot"><div class="crafting-item"></div></div>
+ *         <div class="slot"><img class="crafting-item" loading="lazy" src="image_renders/string.png" alt=""></div>
+ *     </div>
+ *     <div class="front-result">
+ *         <div><img class="result-item cycle-item" loading="lazy" data-src-pattern="./image_renders/{blockType}_rope_ladder.png" src="./image_renders/oak_rope_ladder.png" alt=""></div>
+ *     </div>
+ * </div>
  */
 function createRecipeCycle(items, guiId) {
     let state = { typeIndex: 0 };

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/crafting.css">
     <meta charset="UTF-8">
     <title>Planter Box - Assorted Discoveries Wiki</title>
@@ -21,11 +21,8 @@
                 Crafting
             </h1>
             <p>
-                The planter box can be crafted with the appropriate type of slab and a piece of dirt:
+                The planter box can be crafted with the appropriate type of wood and some string:
             </p>
-            <h2>
-                Overworld
-            </h2>
             <div class="crafting-area" id="crafting-gui">
                 <img class="back" src="./gui_images/crafting_table_display.png" alt="A Minecraft 3x3 crafting grid with seven oak slabs arranged in a U-shape and one dirt block in the center, producing an oak planter box, with planter box variations cycling.">
                 <div class="front">
@@ -81,18 +78,18 @@
             </h1>
 
             <div id="button-container">
-                <button class="rope-ladder-btn" id="selected" data-type="oak">Oak</button>
-                <button class="rope-ladder-btn" data-type="spruce">Spruce</button>
-                <button class="rope-ladder-btn" data-type="birch">Birch</button>
-                <button class="rope-ladder-btn" data-type="jungle">Jungle</button>
-                <button class="rope-ladder-btn" data-type="acacia">Acacia</button>
-                <button class="rope-ladder-btn" data-type="dark_oak">Dark Oak</button>
-                <button class="rope-ladder-btn" data-type="mangrove">Mangrove</button>
-                <button class="rope-ladder-btn" data-type="cherry">Cherry</button>
-                <button class="rope-ladder-btn" data-type="pale_oak">Pale Oak</button>
-                <button class="rope-ladder-btn" data-type="bamboo">Bamboo</button>
-                <button class="rope-ladder-btn" data-type="crimson">Crimson</button>
-                <button class="rope-ladder-btn" data-type="warped">Warped</button>
+                <button class="menu-btn" id="selected" data-type="oak">Oak</button>
+                <button class="menu-btn" data-type="spruce">Spruce</button>
+                <button class="menu-btn" data-type="birch">Birch</button>
+                <button class="menu-btn" data-type="jungle">Jungle</button>
+                <button class="menu-btn" data-type="acacia">Acacia</button>
+                <button class="menu-btn" data-type="dark_oak">Dark Oak</button>
+                <button class="menu-btn" data-type="mangrove">Mangrove</button>
+                <button class="menu-btn" data-type="cherry">Cherry</button>
+                <button class="menu-btn" data-type="pale_oak">Pale Oak</button>
+                <button class="menu-btn" data-type="bamboo">Bamboo</button>
+                <button class="menu-btn" data-type="crimson">Crimson</button>
+                <button class="menu-btn" data-type="warped">Warped</button>
             </div>
 
             <img class="main-img" id="main-img" src="image_renders/oak_rope_ladder.png" alt="An image of an oak rope ladder">
@@ -148,7 +145,7 @@
 
     container.addEventListener('click', (e) => {
         const selectedElement = document.getElementById('selected')
-        const button = e.target.closest('.rope-ladder-btn');
+        const button = e.target.closest('.menu-btn');
         if (!button) return;
 
         const type = button.dataset.type;

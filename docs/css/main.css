@@ -13,7 +13,7 @@ body {
     flex-wrap: wrap;
 }
 
-.planter-btn {
+.menu-btn {
     background-color: transparent;
     border: none;
     border-bottom: 2px solid #F5F5F5;
@@ -25,7 +25,7 @@ body {
     font-size: 1.125rem;
 }
 
-.planter-btn:hover {
+.menu-btn:hover {
     border-bottom-color: #73A5C6;
     transition: border-bottom-color 0.15s ease-out;
 }
@@ -137,7 +137,7 @@ table {
         font-size: 1rem;
     }
 
-    .planter-btn {
+    .menu-btn {
         font-size: 0.75rem;
     }
 }

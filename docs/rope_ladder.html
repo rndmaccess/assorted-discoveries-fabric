@@ -135,49 +135,16 @@
 </body>
 </html>
 
+<script src="./js/recipe.js"></script>
 <script>
     let typeIndex = 0
     const mainImg = document.getElementById('main-img');
-    const container = document.getElementById('button-container');
-    const cycleItems = document.getElementsByClassName('cycle-item')
+    const container = document.getElementById('button-container')
     const craftingGui = document.getElementById('crafting-gui')
+    const woodTypes = ["oak", "spruce", "birch", "jungle", "acacia", "dark_oak", "mangrove",
+        "cherry", "pale_oak", "bamboo", "warped", "crimson"]
 
-    async function cycle_recipe() {
-        let items = ["oak", "spruce", "birch", "jungle", "acacia", "dark_oak", "mangrove",
-            "cherry", "pale_oak", "bamboo", "crimson", "warped"]
-
-        if (typeIndex < items.length - 1) {
-            typeIndex += 1
-        } else {
-            typeIndex = 0
-        }
-
-        const woodType = items[typeIndex]
-
-        for (let itemIndex = 0; itemIndex < cycleItems.length; itemIndex++) {
-            let item = cycleItems[itemIndex];
-            let blockType = item.dataset.type;
-
-            if (item.hasAttribute("src")) {
-
-                if (blockType === "slab") {
-                    item.setAttribute("src", "./minecraft_renders/" + woodType + "_slab.png")
-                } else if (blockType === "planter_box") {
-                    item.setAttribute("src", "./image_renders/" + woodType + "_planter_box.png")
-                }
-            }
-        }
-        const woodTypeName = woodType.replaceAll("_", " ")
-
-        const alt_text = `A Minecraft 3x3 crafting grid with seven ${woodTypeName} slabs arranged in a U-shape
-        and one dirt block in the center, producing an ${woodTypeName} planter box, with planter box variations cycling.`
-
-        craftingGui.setAttribute("alt", alt_text)
-    }
-
-    setInterval(function() {
-        cycle_recipe()
-    }, 1000);
+    createRecipeCycle(woodTypes, craftingGui)
 
     container.addEventListener('click', (e) => {
         const selectedElement = document.getElementById('selected')

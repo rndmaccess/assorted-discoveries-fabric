@@ -4,17 +4,11 @@ async function cycle_recipe(items, backImg, cycleItems, state) {
 
     for (let itemIndex = 0; itemIndex < cycleItems.length; itemIndex++) {
         let item = cycleItems[itemIndex];
-        let blockType = item.dataset.type;
+        const pattern = item.dataset.srcPattern;
 
-        if (item.hasAttribute("src")) {
-
-            if (blockType === "slab") {
-                item.setAttribute("src", "./image_renders/" + woodType + "_slab.png")
-            } else if (blockType === "planter_box") {
-                item.setAttribute("src", "./image_renders/" + woodType + "_planter_box.png")
-            } else if (blockType === "soul_soil") {
-                item.setAttribute("src", "./image_renders/" + woodType + ".png")
-            }
+        if (pattern && item.hasAttribute("src")) {
+            const newSrc = pattern.replace("{blockType}", woodType);
+            item.setAttribute("src", newSrc);
         }
     }
     const woodTypeName = woodType.replaceAll("_", " ")
@@ -26,6 +20,7 @@ async function cycle_recipe(items, backImg, cycleItems, state) {
 }
 
 function createRecipeCycle(items, guiId) {
+    // The back class is used to define the gui image and the cycle-item class is used to choose which items should cycle!
     let state = { typeIndex: 0 };
     const backImg = guiId.getElementsByClassName("back")[0]
     const cycleItems = guiId.getElementsByClassName('cycle-item')

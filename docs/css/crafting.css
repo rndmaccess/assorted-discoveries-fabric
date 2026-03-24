@@ -26,8 +26,8 @@
     z-index: 2;
 
     /* Creates 3 equal columns and rows that scale with the container */
-    grid-template-columns: repeat(3, minmax(3.5rem, 1fr));
-    grid-template-rows: repeat(3, minmax(3.5rem, 1fr));
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
 
     width: 47%;
     height: auto;
@@ -39,6 +39,7 @@
 }
 
 .slot {
+    aspect-ratio: 1 / 1;
     display: flex;
     align-items: center;
     justify-content: center;

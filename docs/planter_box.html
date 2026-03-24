@@ -194,6 +194,7 @@
     const soilTypes = ["soul_soil", "soul_sand"]
 
     async function cycle_recipe(items, backImg, cycleItems, state) {
+        // Moves to the next index. When we hit the last index it will return to 0.
         state.typeIndex = (state.typeIndex + 1) % items.length;
         const woodType = items[state.typeIndex]
 

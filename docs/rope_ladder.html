@@ -8,138 +8,138 @@
     <link rel="icon" href="icon.png" type="image/png">
 </head>
 <body>
-    <div class="main-container">
-        <div class="top-content-wrapper">
-            <div class="content-left">
-                <h1>
-                    About
-                </h1>
-                <p>
-                    The planter box is a decorative block that can be dynamically expanded by placing more planter boxes next to each other!
-                </p>
-                <h1>
-                    Crafting
-                </h1>
-                <p>
-                    The planter box can be crafted with the appropriate type of slab and a piece of dirt:
-                </p>
-                <div class="crafting-area">
-                    <img class="back" id="crafting-gui" src="./gui_images/crafting_table_display.png" alt="A Minecraft 3x3 crafting grid with seven oak slabs arranged in a U-shape and one dirt block in the center, producing an oak planter box, with planter box variations cycling.">
-                    <div class="front">
-                        <div class="slot"><img class="crafting-item cycle-item" data-type="slab" src="image_renders/oak_slab.png" alt=""></div>
-                        <div class="slot"></div>
-                        <div class="slot"><img class="crafting-item cycle-item" data-type="slab" src="image_renders/oak_slab.png" alt=""></div>
+<div class="main-container">
+    <div class="top-content-wrapper">
+        <div class="content-left">
+            <h1>
+                About
+            </h1>
+            <p>
+                The rope ladder is a decorative block that can be hung from blocks!
+            </p>
+            <h1>
+                Crafting
+            </h1>
+            <p>
+                The planter box can be crafted with the appropriate type of slab and a piece of dirt:
+            </p>
+            <h2>
+                Overworld
+            </h2>
+            <div class="crafting-area" id="crafting-gui">
+                <img class="back" src="./gui_images/crafting_table_display.png" alt="A Minecraft 3x3 crafting grid with seven oak slabs arranged in a U-shape and one dirt block in the center, producing an oak planter box, with planter box variations cycling.">
+                <div class="front">
+                    <div class="slot"><img class="crafting-item cycle-item" data-src-pattern="./image_renders/{blockType}_slab.png" src="image_renders/oak_slab.png" alt=""></div>
+                    <div class="slot"></div>
+                    <div class="slot"><img class="crafting-item cycle-item" data-src-pattern="./image_renders/{blockType}_slab.png" src="image_renders/oak_slab.png" alt=""></div>
 
-                        <div class="slot"><img class="crafting-item cycle-item" data-type="slab" src="image_renders/oak_slab.png" alt=""></div>
-                        <div class="slot"><img class="crafting-item" src="image_renders/dirt.png" alt=""></div>
-                        <div class="slot"><img class="crafting-item cycle-item" data-type="slab" src="image_renders/oak_slab.png" alt=""></div>
+                    <div class="slot"><img class="crafting-item cycle-item" data-src-pattern="./image_renders/{blockType}_slab.png" src="image_renders/oak_slab.png" alt=""></div>
+                    <div class="slot"><img class="crafting-item" src="image_renders/dirt.png" alt=""></div>
+                    <div class="slot"><img class="crafting-item cycle-item" data-src-pattern="./image_renders/{blockType}_slab.png" src="image_renders/oak_slab.png" alt=""></div>
 
-                        <div class="slot"><img class="crafting-item cycle-item" data-type="slab" src="image_renders/oak_slab.png" alt=""></div>
-                        <div class="slot"><img class="crafting-item cycle-item" data-type="slab" src="image_renders/oak_slab.png" alt=""></div>
-                        <div class="slot"><img class="crafting-item cycle-item" data-type="slab" src="image_renders/oak_slab.png" alt=""></div>
-                    </div>
-                    <div class="front-result">
-                        <div><img class="result-item cycle-item" data-type="planter_box" src="./image_renders/oak_planter_box.png" alt=""></div>
-                    </div>
+                    <div class="slot"><img class="crafting-item cycle-item" data-src-pattern="./image_renders/{blockType}_slab.png" src="image_renders/oak_slab.png" alt=""></div>
+                    <div class="slot"><img class="crafting-item cycle-item" data-src-pattern="./image_renders/{blockType}_slab.png" src="image_renders/oak_slab.png" alt=""></div>
+                    <div class="slot"><img class="crafting-item cycle-item" data-src-pattern="./image_renders/{blockType}_slab.png" src="image_renders/oak_slab.png" alt=""></div>
                 </div>
-
-                <h1>
-                    Expansion
-                </h1>
-                <p>
-                    Planter boxes of different types won't connect. Planter boxes need to share the same wood type to expand.
-                </p>
-                <h1>
-                    Sapling Behavior
-                </h1>
-                <p>
-                    When a sapling grows into a tree the planter box underneath will not be converted to dirt.
-                </p>
-                <h1>
-                    Compatible Plants
-                </h1>
-                <p>
-                    Most vanilla and modded plants can grow in planter boxes.
-                    The exception would be if a mod has hardcoded the plants to specific soils
-                    or uses a custom tag that I am not aware of.
-                </p>
-                <h1>
-                    Farming
-                </h1>
-                <p>
-                    Planter boxes that are made from overworld wood allow overworld plants to thrive in them!
-                    Nether wood planter boxes on the other hand only support nether plants.
-                    These plants will grow in the planter box the same way that they would if they were planted
-                    on wet farmland or soul soil!
-                </p>
+                <div class="front-result">
+                    <div><img class="result-item cycle-item" data-src-pattern="./image_renders/{blockType}_rope_ladder.png" src="./image_renders/oak_rope_ladder.png" alt=""></div>
+                </div>
             </div>
 
-            <div class="img-container">
-                <h1 class="img-heading">
-                    Planter Box
-                </h1>
+            <h1>
+                Expansion
+            </h1>
+            <p>
+                Planter boxes of different types won't connect. Planter boxes need to share the same wood type to expand.
+            </p>
+            <h1>
+                Sapling Behavior
+            </h1>
+            <p>
+                When a sapling grows into a tree the planter box underneath will not be converted to dirt.
+            </p>
+            <h1>
+                Compatible Plants
+            </h1>
+            <p>
+                All vanilla plants and most modded plants can grow in planter boxes.
+            </p>
+            <h1>
+                Farming
+            </h1>
+            <p>
+                Planter boxes that are made from overworld wood allow overworld plants to thrive in them!
+                Nether wood planter boxes on the other hand only support nether plants.
+                These plants will grow in the planter box the same way that they would if they were planted
+                on wet farmland or soul soil!
+            </p>
+        </div>
 
-                <div id="button-container">
-                    <button class="planter-btn" id="selected" data-type="oak">Oak</button>
-                    <button class="planter-btn" data-type="spruce">Spruce</button>
-                    <button class="planter-btn" data-type="birch">Birch</button>
-                    <button class="planter-btn" data-type="jungle">Jungle</button>
-                    <button class="planter-btn" data-type="acacia">Acacia</button>
-                    <button class="planter-btn" data-type="dark_oak">Dark Oak</button>
-                    <button class="planter-btn" data-type="mangrove">Mangrove</button>
-                    <button class="planter-btn" data-type="cherry">Cherry</button>
-                    <button class="planter-btn" data-type="pale_oak">Pale Oak</button>
-                    <button class="planter-btn" data-type="bamboo">Bamboo</button>
-                    <button class="planter-btn" data-type="crimson">Crimson</button>
-                    <button class="planter-btn" data-type="warped">Warped</button>
-                </div>
+        <div class="img-container">
+            <h1 class="img-heading">
+                Planter Box
+            </h1>
 
-                <img class="main-img" id="main-img" src="image_renders/oak_planter_box.png" alt="An image of an oak planter box">
-                <table style="margin: 15px;">
-                    <tr>
-                        <td class="img-desc">Renewable</td>
-                        <td class="img-desc">Yes (Crafting)</td>
-                    </tr>
-                    <tr>
-                        <td class="img-desc">Stackable</td>
-                        <td class="img-desc">Yes (64)</td>
-                    </tr>
-                    <tr>
-                        <td class="img-desc">Tool</td>
-                        <td class="img-desc">Any tool, but the axe is the quickest!</td>
-                    </tr>
-                    <tr>
-                        <td class="img-desc">Blast Resistance</td>
-                        <td class="img-desc">2.5</td>
-                    </tr>
-                    <tr>
-                        <td class="img-desc">Hardness</td>
-                        <td class="img-desc">2.5</td>
-                    </tr>
-                    <tr>
-                        <td class="img-desc">Luminous</td>
-                        <td class="img-desc">No</td>
-                    </tr>
-                    <tr>
-                        <td class="img-desc">Transparent</td>
-                        <td class="img-desc">No</td>
-                    </tr>
-                    <tr>
-                        <td class="img-desc">Catches fire from lava</td>
-                        <td class="img-desc">Yes</td>
-                    </tr>
-                </table>
+            <div id="button-container">
+                <button class="rope-ladder-btn" id="selected" data-type="oak">Oak</button>
+                <button class="rope-ladder-btn" data-type="spruce">Spruce</button>
+                <button class="rope-ladder-btn" data-type="birch">Birch</button>
+                <button class="rope-ladder-btn" data-type="jungle">Jungle</button>
+                <button class="rope-ladder-btn" data-type="acacia">Acacia</button>
+                <button class="rope-ladder-btn" data-type="dark_oak">Dark Oak</button>
+                <button class="rope-ladder-btn" data-type="mangrove">Mangrove</button>
+                <button class="rope-ladder-btn" data-type="cherry">Cherry</button>
+                <button class="rope-ladder-btn" data-type="pale_oak">Pale Oak</button>
+                <button class="rope-ladder-btn" data-type="bamboo">Bamboo</button>
+                <button class="rope-ladder-btn" data-type="crimson">Crimson</button>
+                <button class="rope-ladder-btn" data-type="warped">Warped</button>
             </div>
+
+            <img class="main-img" id="main-img" src="image_renders/oak_rope_ladder.png" alt="An image of an oak rope ladder">
+            <table style="margin: 15px;">
+                <tr>
+                    <td class="img-desc">Renewable</td>
+                    <td class="img-desc">Yes (Crafting)</td>
+                </tr>
+                <tr>
+                    <td class="img-desc">Stackable</td>
+                    <td class="img-desc">Yes (64)</td>
+                </tr>
+                <tr>
+                    <td class="img-desc">Tool</td>
+                    <td class="img-desc">Any tool, but the axe is the quickest!</td>
+                </tr>
+                <tr>
+                    <td class="img-desc">Blast Resistance</td>
+                    <td class="img-desc">2.5</td>
+                </tr>
+                <tr>
+                    <td class="img-desc">Hardness</td>
+                    <td class="img-desc">2.5</td>
+                </tr>
+                <tr>
+                    <td class="img-desc">Luminous</td>
+                    <td class="img-desc">No</td>
+                </tr>
+                <tr>
+                    <td class="img-desc">Transparent</td>
+                    <td class="img-desc">No</td>
+                </tr>
+                <tr>
+                    <td class="img-desc">Catches fire from lava</td>
+                    <td class="img-desc">Yes</td>
+                </tr>
+            </table>
         </div>
     </div>
+</div>
 </body>
 </html>
 
 <script src="./js/recipe.js"></script>
 <script>
-    let typeIndex = 0
     const mainImg = document.getElementById('main-img');
-    const container = document.getElementById('button-container')
+    const container = document.getElementById('button-container');
     const craftingGui = document.getElementById('crafting-gui')
     const woodTypes = ["oak", "spruce", "birch", "jungle", "acacia", "dark_oak", "mangrove",
         "cherry", "pale_oak", "bamboo", "warped", "crimson"]
@@ -148,14 +148,14 @@
 
     container.addEventListener('click', (e) => {
         const selectedElement = document.getElementById('selected')
-        const button = e.target.closest('.planter-btn');
+        const button = e.target.closest('.rope-ladder-btn');
         if (!button) return;
 
         const type = button.dataset.type;
         const typeName = type.replaceAll("_", " ")
 
-        mainImg.src = `image_renders/${type}_planter_box.png`;
-        mainImg.alt = `A picture of a ${typeName} planter box`;
+        mainImg.src = `image_renders/${type}_rope_ladder.png`;
+        mainImg.alt = `A picture of a ${typeName} rope ladder`;
         selectedElement.removeAttribute('id')
         button.setAttribute('id', 'selected')
     });

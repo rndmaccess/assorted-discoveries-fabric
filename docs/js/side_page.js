@@ -45,8 +45,8 @@ function isVowel(char) {
  * on the recipe gui image,
  * data-src-pattern="./image_renders/{blockType}_slab.png"
  * on a gui item. This pattern defines a slab of {blockType} from the image_renders folder.
- * @param {items} list: This should be the item names to cycle through.
- * @param {guiId} Element: This should be the id for that recipe.
+ * @param items type list<string>: This should be the item names to cycle through.
+ * @param guiId type Element: This should be the id for that recipe.
  * The id should be on the outermost parent element surrounding the recipe.
  */
 function createRecipeCycle(items, guiId) {

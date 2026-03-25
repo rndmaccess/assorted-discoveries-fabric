@@ -30,23 +30,18 @@ function isVowel(char) {
 }
 
 /**
- * The back HTML class must be on the crafting background image. This is used to update the alt text.
- * The cycle-item HTML class must be on the items you would like to cycle!
+ * Cycles item types within a crafting GUI.
  *
- * {a}: Dynamically fills in 'a' or 'an' based on whether the current {blockType} starts with a vowel.
+ * HTML Classes:
+ * .back: Required on the background image for alt-text updates.
+ * .cycle-item: Required on any element that should change per cycle.
+ * .crafting-area: Sets dimensions and text-wrap.
+ * .front / .back / .slot: Layout and positioning for grid items.
+ * .crafting-item / .result-item: Sizing for specific icons.
  *
- * {blockType}: Can be used in the data-alt-pattern or data-src-pattern to insert the item name from the list of items passed.
- *
- * data-alt-pattern and data-src-pattern should define the pattern of the new src and alt the cycle method
- * to use for the image and alt text.
- *
- * Style classes:
- * crafting-area: Defines the crafting area's size and content flow around the crafting area.
- * front: Used for items these are positioned in front of the gui background element.
- * back: Styles the crafting area's background image.
- * slot: Centers the element in a crafting area slot.
- * crafting-item: Determines the size of the crafting item.
- * front-result and result-item: Works together to position the result item in the result slot.
+ * Dynamic Placeholders:
+ * {blockType}: Injected from the 'items' list into data-alt-pattern or data-src-pattern.
+ * {a}: Auto-resolves to 'a' or 'an' based on whether the following {blockType} starts with a vowel in data-alt-pattern.
  *
  * @example
  * HTML:
@@ -76,9 +71,8 @@ function isVowel(char) {
  *         "cherry", "pale_oak", "bamboo"]
  * createRecipeCycle(woodTypes, craftingGui)
  *
- * @param items type list<string>: This should be the item names to cycle through.
- * @param guiId type string (ID): This should be the id for that recipe.
- * The id should be on the outermost parent element surrounding the recipe.
+ * @param items {string[]}: List of item names to cycle through.
+ * @param guiId {HTMLElement}: The parent container of the recipe.
  */
 function createRecipeCycle(items, guiId) {
     let state = { typeIndex: 0 };

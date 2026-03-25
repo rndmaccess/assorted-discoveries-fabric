@@ -40,6 +40,14 @@ function isVowel(char) {
  * data-alt-pattern and data-src-pattern should define the pattern of the new src and alt the cycle method
  * to use for the image and alt text.
  *
+ * Style classes:
+ * crafting-area: Defines the crafting area's size and content flow around the crafting area.
+ * front: Used for items these are positioned in front of the gui background element.
+ * back: Styles the crafting area's background image.
+ * slot: Centers the element in a crafting area slot.
+ * crafting-item: Determines the size of the crafting item.
+ * front-result and result-item: Works together to position the result item in the result slot.
+ *
  * @example
  * HTML:
  * <div class="crafting-area" id="crafting-gui">

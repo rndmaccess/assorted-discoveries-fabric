@@ -33,17 +33,21 @@ function isVowel(char) {
  *
  * The back HTML class must be on the crafting background image. This is used to update the alt text.
  * The cycle-item HTML class must be on the items you would like to cycle!
- * {a}: Can be used in a data-alt-pattern or data-src-pattern to insert a or an into the string.
+ *
+ * {a}: Can be used in a data-alt-pattern or data-src-pattern to insert a or an into the string dynamically.
+ *
  * {blockType}: Can be used in a data-alt-pattern or data-src-pattern to insert the item name from the list of items passed.
  *
  * data-alt-pattern and data-src-pattern should define the pattern of the new src and alt the cycle method
  * to use for the image and alt text.
  *
- * ex:
+ * @example
  * data-alt-pattern="A Minecraft 3x3 crafting grid with seven {blockType} slabs arranged in a U-shape and one dirt block in the center, giving {a} {blockType} planter box, with planter box variations cycling."
- * on the recipe gui image,
+ * This would be placed on the recipe gui background.
+ *
  * data-src-pattern="./image_renders/{blockType}_slab.png"
- * on a gui item. This pattern defines a slab of {blockType} from the image_renders folder.
+ * This would be placed on a gui item. This pattern defines a slab of {blockType} from the image_renders folder.
+ *
  * @param items type list<string>: This should be the item names to cycle through.
  * @param guiId type Element: This should be the id for that recipe.
  * The id should be on the outermost parent element surrounding the recipe.

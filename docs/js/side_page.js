@@ -41,7 +41,7 @@ function isVowel(char) {
  *
  * Dynamic Placeholders:
  * {blockType}: Injected from the 'items' list into data-alt-pattern or data-src-pattern.
- * {a}: Auto-resolves to 'a' or 'an' based on whether the following {blockType} starts with a vowel in data-alt-pattern.
+ * {a}: Auto-resolves to 'a' or 'an' based on whether {blockType} starts with a vowel in data-alt-pattern.
  *
  * @example
  * HTML:
@@ -71,8 +71,8 @@ function isVowel(char) {
  *         "cherry", "pale_oak", "bamboo"]
  * createRecipeCycle(woodTypes, craftingGui)
  *
- * @param items {string[]}: List of item names to cycle through.
- * @param guiId {HTMLElement}: The parent container of the recipe.
+ * @param items {string[]} List of item names to cycle through.
+ * @param guiId {HTMLElement} The parent container of the recipe.
  */
 function createRecipeCycle(items, guiId) {
     let state = { typeIndex: 0 };
@@ -87,8 +87,16 @@ function createRecipeCycle(items, guiId) {
 }
 
 /**
- * One button must start with id="selected". This ID is automatically moved to the newly clicked button.
- * Each button must be labeled with the menu-btn class to be considered.
+ * Manages button selection and dynamic attribute updates.
+ *
+ * HTML Requirements:
+ * .menu-btn: Required class for all selectable buttons.
+ * #selected: Must be present on exactly one button initially; moves on click.
+ *
+ * Placeholders:
+ * {type}: Injected from data-type into data-src-pattern or data-alt-pattern.
+ *         (Note: Underscores in {type} are converted to spaces for alt text).
+ * {a}: Dynamically resolves to 'a' or 'an' based on whether {type} starts with a vowel in data-alt-pattern.
  *
  * @example
  * HTML:
@@ -103,12 +111,7 @@ function createRecipeCycle(items, guiId) {
  *   createButtonPanel(event)
  * });
  *
- * {a}: Can be used in the data-alt-pattern to fill in 'a' or 'an' dynamically!
- *
- * {type}: Can be used in data-src-pattern or data-alt-pattern to dynamically insert a word!
- * Underscores used in the substitution will automatically be replaced by spaces in the alt text.
- *
- * @param event type PointerEvent: The event object from the click event!
+ * @param event {PointerEvent} The click event from the button container.
  */
 function createButtonPanel(event) {
     const selectedElement = document.getElementById('selected')

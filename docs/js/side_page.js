@@ -41,7 +41,8 @@ function isVowel(char) {
  * to use for the image and alt text.
  *
  * @example
- * <div class="crafting-area" id="overworld-crafting-gui">
+ * HTML:
+ * <div class="crafting-area" id="crafting-gui">
  *   <img class="back" src="./gui_images/crafting_table_display.png" data-alt-pattern="A Minecraft 3x3 crafting grid with seven {blockType} slabs arranged in a U-shape and one dirt block in the center, giving {a} {blockType} planter box, with planter box variations cycling." alt="A Minecraft 3x3 crafting grid with seven oak slabs arranged in a U-shape and one dirt block in the center, giving an oak planter box, with planter box variations cycling.">
  *   <div class="front">
  *     <div class="slot"><img class="crafting-item cycle-item" data-src-pattern="./image_renders/{blockType}_slab.png" src="image_renders/oak_slab.png" alt=""></div>
@@ -60,6 +61,12 @@ function isVowel(char) {
  *     <div><img class="result-item cycle-item" data-src-pattern="./image_renders/{blockType}_planter_box.png" src="./image_renders/oak_planter_box.png" alt=""></div>
  *   </div>
  * </div>
+ *
+ * JS:
+ * const craftingGui = document.getElementById('crafting-gui')
+ * const woodTypes = ["oak", "spruce", "birch", "jungle", "acacia", "dark_oak", "mangrove",
+ *         "cherry", "pale_oak", "bamboo"]
+ * createRecipeCycle(woodTypes, craftingGui)
  *
  * @param items type list<string>: This should be the item names to cycle through.
  * @param guiId type string (ID): This should be the id for that recipe.

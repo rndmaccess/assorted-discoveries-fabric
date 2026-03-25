@@ -30,7 +30,6 @@ function isVowel(char) {
 }
 
 /**
-
  *
  * The back HTML class must be on the crafting background image. This is used to update the alt text.
  * The cycle-item HTML class must be on the items you would like to cycle!

@@ -2,7 +2,7 @@ const VOWELS = new Set(['a', 'e', 'i', 'o', 'u']);
 
 async function cycle_recipe(items, backImg, cycleItems, state) {
     state.typeIndex = (state.typeIndex + 1) % items.length; // Moves to the next index. When we hit the last index it will return to 0.
-    const woodType = items[state.typeIndex]
+    const woodType = items[state.typeIndex];
 
     for (let itemIndex = 0; itemIndex < cycleItems.length; itemIndex++) {
         let item = cycleItems[itemIndex];
@@ -13,20 +13,20 @@ async function cycle_recipe(items, backImg, cycleItems, state) {
             item.setAttribute("src", newSrc);
         }
     }
-    const woodTypeName = woodType.replaceAll("_", " ")
+    const woodTypeName = woodType.replaceAll("_", " ");
     const pattern = backImg.dataset.altPattern;
 
     if(pattern) {
-        const firstLetter = woodType[0]
-        const a = isVowel(firstLetter) ? "an" : "a"
+        const firstLetter = woodType[0];
+        const a = isVowel(firstLetter) ? "an" : "a";
         const newAlt = pattern.replaceAll("{blockType}", woodTypeName).replaceAll("{a}", a);
-        backImg.setAttribute("alt", newAlt)
+        backImg.setAttribute("alt", newAlt);
     }
 }
 
 function isVowel(char) {
-    char = char.toLowerCase()
-    return VOWELS.has(char)
+    char = char.toLowerCase();
+    return VOWELS.has(char);
 }
 
 /**
@@ -76,13 +76,13 @@ function isVowel(char) {
  */
 function createRecipeCycle(items, guiId) {
     let state = { typeIndex: 0 };
-    const backImg = guiId.getElementsByClassName("back")[0]
-    const cycleItems = guiId.getElementsByClassName('cycle-item')
+    const backImg = guiId.getElementsByClassName("back")[0];
+    const cycleItems = guiId.getElementsByClassName('cycle-item');
 
     setInterval(function() {
         cycle_recipe(items, backImg, cycleItems, state).catch(error => {
-            console.log("An error occurred when cycling the recipe: ", error)
-        })
+            console.log("An error occurred when cycling the recipe: ", error);
+        });
     }, 1000);
 }
 
@@ -114,21 +114,21 @@ function createRecipeCycle(items, guiId) {
  * @param event {PointerEvent} The click event from the button container.
  */
 function createButtonPanel(event) {
-    const selectedElement = document.getElementById('selected')
+    const selectedElement = document.getElementById('selected');
     const button = event.target.closest('.menu-btn');
     if (!button) return;
 
     const type = button.dataset.type;
-    const typeName = type.replaceAll("_", " ")
-    const firstLetter = type[0]
-    const a = isVowel(firstLetter) ? "an" : "a"
-    const srcPattern = button.dataset.srcPattern
-    const altPattern = button.dataset.altPattern
-    const newSrc = srcPattern.replaceAll("{type}", type)
-    const newAlt = altPattern.replaceAll("{a}", a).replaceAll("{type}", typeName)
+    const typeName = type.replaceAll("_", " ");
+    const firstLetter = type[0];
+    const a = isVowel(firstLetter) ? "an" : "a";
+    const srcPattern = button.dataset.srcPattern;
+    const altPattern = button.dataset.altPattern;
+    const newSrc = srcPattern.replaceAll("{type}", type);
+    const newAlt = altPattern.replaceAll("{a}", a).replaceAll("{type}", typeName);
 
     mainImg.src = newSrc;
     mainImg.alt = newAlt;
-    selectedElement.removeAttribute('id')
-    button.setAttribute('id', 'selected')
+    selectedElement.removeAttribute('id');
+    button.setAttribute('id', 'selected');
 }

@@ -132,3 +132,6 @@ function createButtonPanel(event) {
     selectedElement.removeAttribute('id');
     button.setAttribute('id', 'selected');
 }
+
+window.createRecipeCycle = createRecipeCycle;
+window.createButtonPanel = createButtonPanel;

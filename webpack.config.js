@@ -36,7 +36,7 @@ module.exports = {
                 use: ['css-loader', 'sass-loader'], // Processes CSS and SASS
             },
             {
-                test: /\.(png|jpe?g|svg|webp|ico)$/,
+                test: /\.(png|jpe?g|svg|webp|ico|mp4|webm)$/i,
                 type: 'asset/resource', // Handles images referenced in HTML
                 generator: {
                     filename: 'assets/img/[name].[hash:8][ext]',

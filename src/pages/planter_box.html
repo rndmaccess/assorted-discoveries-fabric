@@ -192,11 +192,11 @@
         "cherry", "pale_oak", "bamboo"];
     const soilTypes = ["soul_soil", "soul_sand"];
 
-    createRecipeCycle(woodTypes, overworldCraftingGui);
-    createRecipeCycle(soilTypes, warpedCraftingGui);
-    createRecipeCycle(soilTypes, crimsonCraftingGui);
+    window.createRecipeCycle(woodTypes, overworldCraftingGui);
+    window.createRecipeCycle(soilTypes, warpedCraftingGui);
+    window.createRecipeCycle(soilTypes, crimsonCraftingGui);
 
     container.addEventListener('click', (event) => {
-        createButtonPanel(event);
+        window.createButtonPanel(event);
     });
 </script>

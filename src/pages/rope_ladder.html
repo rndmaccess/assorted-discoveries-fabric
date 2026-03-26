@@ -113,9 +113,9 @@
     const woodTypes = ["oak", "spruce", "birch", "jungle", "acacia", "dark_oak", "mangrove",
         "cherry", "pale_oak", "bamboo", "warped", "crimson"];
 
-    createRecipeCycle(woodTypes, craftingGui);
+    window.createRecipeCycle(woodTypes, craftingGui);
 
     container.addEventListener('click', (event) => {
-        createButtonPanel(event);
+        window.createButtonPanel(event);
     });
 </script>

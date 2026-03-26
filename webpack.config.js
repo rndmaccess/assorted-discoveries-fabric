@@ -31,7 +31,7 @@ module.exports = {
         }),
         new CopyPlugin({
             patterns: [
-                { from: "src/assets", to: "assets" },
+                { from: "src/img", to: "assets/static/img" },
             ],
         }),
     ],
@@ -45,7 +45,7 @@ module.exports = {
                 test: /\.(png|jpe?g|svg|webp|ico|mp4|webm)$/i,
                 type: 'asset/resource', // Handles images referenced in HTML
                 generator: {
-                    filename: 'assets/resource/[name][ext]',
+                    filename: 'assets/resource/[name].[contenthash:8][ext]',
                 },
             },
         ],

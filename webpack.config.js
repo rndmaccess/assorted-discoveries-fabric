@@ -12,7 +12,7 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         clean: true, // Cleans the dist folder before each build
 
-        filename: 'src/js/side_page.js',
+        filename: 'side_page.js',
         library: {
             type: 'module',
         },

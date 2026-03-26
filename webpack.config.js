@@ -42,10 +42,17 @@ module.exports = {
                 use: ['css-loader', 'sass-loader'], // Processes CSS and SASS
             },
             {
-                test: /\.(png|jpe?g|svg|webp|ico|mp4|webm)$/i,
+                test: /\.(png|jpe?g|svg|webp|ico)$/i,
                 type: 'asset/resource', // Handles images referenced in HTML
                 generator: {
                     filename: 'assets/img/[name].[contenthash:8][ext]',
+                },
+            },
+            {
+                test: /\.(mp4|webm)$/i,
+                type: 'asset/resource', // Handles videos referenced in HTML
+                generator: {
+                    filename: 'assets/video/[name].[contenthash:8][ext]',
                 },
             },
         ],

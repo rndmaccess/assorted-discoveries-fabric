@@ -22,7 +22,6 @@
   },
   "devDependencies": {
     "css-loader": "^7.1.4",
-    "style-loader": "^4.0.0",
     "webpack": "^5.105.4",
     "webpack-cli": "^7.0.2"
   },

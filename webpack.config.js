@@ -38,7 +38,7 @@ module.exports = {
         rules: [
             {
                 test: /\.(css)$/,
-                use: ['style-loader', 'css-loader'], // Processes CSS and SASS
+                use: ['css-loader'], // Processes CSS and SASS
             },
             {
                 test: /\.(png|jpe?g|svg|webp|ico)$/i,

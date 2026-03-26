@@ -27,7 +27,7 @@ module.exports = {
                 filename: 'assets/js/[name].[contenthash:8].js',
             },
             css: {
-                // Output for any CSS/SASS files found in your HTML
+                // Output for any CSS files found in your HTML
                 filename: 'assets/css/[name].[contenthash:8].css',
             },
         }),
@@ -53,7 +53,7 @@ module.exports = {
             },
             {
                 test: /\.(css)$/,
-                use: ['css-loader'], // Processes CSS and SASS
+                use: ['css-loader'],
             },
             {
                 test: /\.(png|jpe?g|svg|webp|ico)$/i,

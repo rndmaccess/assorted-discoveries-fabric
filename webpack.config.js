@@ -31,14 +31,7 @@ module.exports = {
         }),
         new CopyPlugin({
             patterns: [
-                {
-                    from: path.resolve(__dirname, 'src/assets/images'),
-                    // Use a relative path here
-                    to: 'assets/resource',
-                    noErrorOnMissing: true,
-                    // Force the copy even if Webpack thinks it handled it
-                    force: true,
-                },
+                { from: "src/assets", to: "assets" },
             ],
         }),
     ],
@@ -47,7 +40,14 @@ module.exports = {
             {
                 test: /\.(css|scss)$/,
                 use: ['css-loader', 'sass-loader'], // Processes CSS and SASS
-            }
+            },
+            {
+                test: /\.(png|jpe?g|svg|webp|ico|mp4|webm)$/i,
+                type: 'asset/resource', // Handles images referenced in HTML
+                generator: {
+                    filename: 'assets/resource/[name][ext]',
+                },
+            },
         ],
     },
 };

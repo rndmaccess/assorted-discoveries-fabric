@@ -39,6 +39,11 @@ replay_*.log
 *.hprof
 *.jfr
 
+# node
+
+node_modules/
+.npm/
+
 # extra folders
 
 remappedSrc

@@ -1,0 +1,31 @@
+{
+  "name": "assorted-discoveries-fabric",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/rndmaccess/assorted-discoveries-fabric#readme",
+  "bugs": {
+    "url": "https://github.com/rndmaccess/assorted-discoveries-fabric/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rndmaccess/assorted-discoveries-fabric.git"
+  },
+  "license": "ISC",
+  "author": "rndm_access",
+  "type": "commonjs",
+  "main": "index.js",
+  "directories": {
+    "doc": "src"
+  },
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack serve"
+  },
+  "devDependencies": {
+    "webpack": "^5.105.4",
+    "webpack-cli": "^7.0.2"
+  },
+  "dependencies": {
+    "html-webpack-plugin": "^5.6.6"
+  }
+}

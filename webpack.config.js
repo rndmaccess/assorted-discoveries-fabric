@@ -32,9 +32,12 @@ module.exports = {
         new CopyPlugin({
             patterns: [
                 {
-                    from: path.resolve(__dirname, 'src/assets/images'), // Adjust this to your image folder path
-                    to: path.resolve(__dirname, 'dist/assets/resource'), // Destination in dist
+                    from: path.resolve(__dirname, 'src/assets/images'),
+                    // Use a relative path here
+                    to: 'assets/resource',
                     noErrorOnMissing: true,
+                    // Force the copy even if Webpack thinks it handled it
+                    force: true,
                 },
             ],
         }),

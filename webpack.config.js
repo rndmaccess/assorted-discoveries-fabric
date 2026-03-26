@@ -14,7 +14,7 @@ module.exports = {
                 // Your HTML file is now the true entry point
                 index: 'src/index.html',
                 ...sync('src/pages/**/*.html').reduce((entries, file) => {
-                    const name = path.basename(file, '.html');
+                    const name = path.relative('src', file).replace(/\.html$/, '');
                     entries[name] = file;
                     return entries;
                 }, {}),

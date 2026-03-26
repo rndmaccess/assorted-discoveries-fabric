@@ -133,5 +133,16 @@ function createButtonPanel(event) {
     button.setAttribute('id', 'selected');
 }
 
+const preloadedImages = [];
+
+function preloadImagesAndStore(urls) {
+    urls.forEach(url => {
+        const img = new Image();
+        img.src = url;
+        // Add the image object to the persistent array
+        preloadedImages.push(img);
+    });
+}
+
 window.createRecipeCycle = createRecipeCycle;
 window.createButtonPanel = createButtonPanel;

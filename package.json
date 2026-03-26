@@ -22,14 +22,13 @@
   },
   "devDependencies": {
     "css-loader": "^7.1.4",
+    "style-loader": "^4.0.0",
     "webpack": "^5.105.4",
     "webpack-cli": "^7.0.2"
   },
   "dependencies": {
     "copy-webpack-plugin": "^14.0.0",
     "glob": "^13.0.6",
-    "html-bundler-webpack-plugin": "^4.23.0",
-    "sass": "^1.98.0",
-    "sass-loader": "^16.0.7"
+    "html-bundler-webpack-plugin": "^4.23.0"
   }
 }

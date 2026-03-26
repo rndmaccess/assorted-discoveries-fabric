@@ -105,17 +105,18 @@
 </body>
 </html>
 
-<script src="../js/side_page.js"></script>
-<script>
+<script type="module">
+    import { createRecipeCycle, createButtonPanel } from '../js/side_page.js';
+
     const mainImg = document.getElementById('main-img');
     const container = document.getElementById('button-container');
     const craftingGui = document.getElementById('crafting-gui');
     const woodTypes = ["oak", "spruce", "birch", "jungle", "acacia", "dark_oak", "mangrove",
         "cherry", "pale_oak", "bamboo", "warped", "crimson"];
 
-    window.createRecipeCycle(woodTypes, craftingGui);
+    createRecipeCycle(woodTypes, craftingGui);
 
     container.addEventListener('click', (event) => {
-        window.createButtonPanel(event);
+        createButtonPanel(event);
     });
 </script>

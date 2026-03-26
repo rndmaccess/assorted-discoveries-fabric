@@ -74,7 +74,7 @@ function isVowel(char) {
  * @param items {string[]} List of item names to cycle through.
  * @param guiId {HTMLElement} The parent container of the recipe.
  */
-function createRecipeCycle(items, guiId) {
+export function createRecipeCycle(items, guiId) {
     let state = { typeIndex: 0 };
     const backImg = guiId.getElementsByClassName("back")[0];
     const cycleItems = guiId.getElementsByClassName('cycle-item');
@@ -113,7 +113,7 @@ function createRecipeCycle(items, guiId) {
  *
  * @param event {PointerEvent} The click event from the button container.
  */
-function createButtonPanel(event) {
+export function createButtonPanel(event) {
     const selectedElement = document.getElementById('selected');
     const button = event.target.closest('.menu-btn');
     if (!button) return;
@@ -132,6 +132,3 @@ function createButtonPanel(event) {
     selectedElement.removeAttribute('id');
     button.setAttribute('id', 'selected');
 }
-
-window.createRecipeCycle = createRecipeCycle;
-window.createButtonPanel = createButtonPanel;

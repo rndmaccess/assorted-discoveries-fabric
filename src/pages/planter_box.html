@@ -181,8 +181,9 @@
 </body>
 </html>
 
-<script src="../js/side_page.js"></script>
 <script>
+    import { createRecipeCycle, createButtonPanel } from '../js/side_page.js';
+
     const mainImg = document.getElementById('main-img');
     const container = document.getElementById('button-container');
     const overworldCraftingGui = document.getElementById('overworld-crafting-gui');
@@ -192,11 +193,11 @@
         "cherry", "pale_oak", "bamboo"];
     const soilTypes = ["soul_soil", "soul_sand"];
 
-    window.createRecipeCycle(woodTypes, overworldCraftingGui);
-    window.createRecipeCycle(soilTypes, warpedCraftingGui);
-    window.createRecipeCycle(soilTypes, crimsonCraftingGui);
+    createRecipeCycle(woodTypes, overworldCraftingGui);
+    createRecipeCycle(soilTypes, warpedCraftingGui);
+    createRecipeCycle(soilTypes, crimsonCraftingGui);
 
     container.addEventListener('click', (event) => {
-        window.createButtonPanel(event);
+        createButtonPanel(event);
     });
 </script>

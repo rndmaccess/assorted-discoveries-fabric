@@ -12,7 +12,9 @@ module.exports = {
             entry: {
                 // Your HTML file is now the true entry point
                 index: 'src/index.html',
-                content: 'src/pages/*.html'
+                bog_blossom: 'src/pages/bog_blossom.html',
+                planter_box: 'src/pages/planter_box.html',
+                rope_ladder: 'src/pages/rope_ladder.html'
             },
             js: {
                 // Output for any JS files found in your HTML

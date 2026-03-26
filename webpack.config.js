@@ -11,11 +11,6 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         clean: true, // Cleans the dist folder before each build
-
-        filename: 'side_page.js',
-        library: {
-            type: 'module',
-        },
     },
     plugins: [
         new HtmlBundlerPlugin({
@@ -44,6 +39,22 @@ module.exports = {
     ],
     module: {
         rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader', // Ensure you have babel-loader installed
+                    options: {
+                        presets: ['@babel/preset-env']
+                    }
+                },
+                // This ensures it parses 'export' correctly
+                parser: {
+                    javascript: {
+                        sourceType: 'module'
+                    }
+                }
+            },
             {
                 test: /\.(css)$/,
                 use: ['css-loader'], // Processes CSS and SASS

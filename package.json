@@ -26,6 +26,7 @@
     "webpack-cli": "^7.0.2"
   },
   "dependencies": {
+    "babel-loader": "^10.1.1",
     "copy-webpack-plugin": "^14.0.0",
     "glob": "^13.0.6",
     "html-bundler-webpack-plugin": "^4.23.0"

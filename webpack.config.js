@@ -1,18 +1,41 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlBundlerPlugin = require('html-bundler-webpack-plugin');
 
 module.exports = {
-    // The entry point remains a JavaScript file
-    entry: './src/index.js',
+    mode: 'production', // Automatically minifies JS and HTML in production
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js', // Or use a hashed name like 'bundle-[hash].js'
+        clean: true, // Cleans the dist folder before each build
     },
     plugins: [
-        new HtmlWebpackPlugin({
-            template: './src/index.html', // Specifies the HTML file to use as a template
-            filename: 'index.html', // The name of the output HTML file in the 'dist' directory
-            inject: 'body', // Injects script tags into the body of the HTML file
+        new HtmlBundlerPlugin({
+            entry: {
+                // Your HTML file is now the true entry point
+                index: 'src/index.html',
+            },
+            js: {
+                // Output for any JS files found in your HTML
+                filename: 'assets/js/[name].[contenthash:8].js',
+            },
+            css: {
+                // Output for any CSS/SASS files found in your HTML
+                filename: 'assets/css/[name].[contenthash:8].css',
+            },
         }),
     ],
+    module: {
+        rules: [
+            {
+                test: /\.(css|scss)$/,
+                use: ['css-loader', 'sass-loader'], // Processes CSS and SASS
+            },
+            {
+                test: /\.(png|jpe?g|svg|webp|ico)$/,
+                type: 'asset/resource', // Handles images referenced in HTML
+                generator: {
+                    filename: 'assets/img/[name].[hash:8][ext]',
+                },
+            },
+        ],
+    },
 };

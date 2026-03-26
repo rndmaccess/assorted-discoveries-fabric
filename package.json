@@ -26,6 +26,7 @@
     "webpack-cli": "^7.0.2"
   },
   "dependencies": {
+    "html-bundler-webpack-plugin": "^4.23.0",
     "html-webpack-plugin": "^5.6.6"
   }
 }

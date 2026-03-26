@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="/src/css/main.css">
-    <link rel="stylesheet" href="/src/css/crafting.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/crafting.css">
     <meta charset="UTF-8">
     <title>Planter Box - Assorted Discoveries Wiki</title>
-    <link rel="icon" href="/src/icon.png" type="image/png">
+    <link rel="icon" href="./icon.png" type="image/png">
 </head>
 <body>
 <div class="main-container">
@@ -24,22 +24,22 @@
                 The rope ladder can be crafted with the appropriate wood type and some string:
             </p>
             <div class="crafting-area" id="crafting-gui">
-                <img class="back" src="/src/gui_images/crafting_table_display.png" data-alt-pattern="A Minecraft 3x3 crafting grid with three {blockType} planks lined up in the center three slots and four string in the four corners of the crafting grid, giving {a} {blockType} rope ladder, with rope ladder variations cycling." alt="A Minecraft 3x3 crafting grid with three oak planks lined up in the center three slots and four string in the four corner slots of the crafting grid, giving an oak rope ladder, with rope ladder variations cycling.">
+                <img class="back" src="./gui_images/crafting_table_display.png" data-alt-pattern="A Minecraft 3x3 crafting grid with three {blockType} planks lined up in the center three slots and four string in the four corners of the crafting grid, giving {a} {blockType} rope ladder, with rope ladder variations cycling." alt="A Minecraft 3x3 crafting grid with three oak planks lined up in the center three slots and four string in the four corner slots of the crafting grid, giving an oak rope ladder, with rope ladder variations cycling.">
                 <div class="front">
-                    <div class="slot"><img class="crafting-item" loading="lazy" src="/src/image_renders/string.png" alt=""></div>
+                    <div class="slot"><img class="crafting-item" loading="lazy" src="./image_renders/string.png" alt=""></div>
                     <div class="slot"></div>
-                    <div class="slot"><img class="crafting-item" loading="lazy" src="/src/image_renders/string.png" alt=""></div>
+                    <div class="slot"><img class="crafting-item" loading="lazy" src="./image_renders/string.png" alt=""></div>
 
-                    <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-src-pattern="/src/image_renders/{blockType}_planks.png" src="/src/image_renders/oak_planks.png" alt=""></div>
-                    <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-src-pattern="/src/image_renders/{blockType}_planks.png" src="/src/image_renders/oak_planks.png" alt=""></div>
-                    <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-src-pattern="/src/image_renders/{blockType}_planks.png" src="/src/image_renders/oak_planks.png" alt=""></div>
+                    <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-src-pattern="./image_renders/{blockType}_planks.png" src="./image_renders/oak_planks.png" alt=""></div>
+                    <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-src-pattern="./image_renders/{blockType}_planks.png" src="./image_renders/oak_planks.png" alt=""></div>
+                    <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-src-pattern="./image_renders/{blockType}_planks.png" src="./image_renders/oak_planks.png" alt=""></div>
 
-                    <div class="slot"><img class="crafting-item" loading="lazy" src="/src/image_renders/string.png" alt=""></div>
+                    <div class="slot"><img class="crafting-item" loading="lazy" src="./image_renders/string.png" alt=""></div>
                     <div class="slot"><div class="crafting-item"></div></div>
-                    <div class="slot"><img class="crafting-item" loading="lazy" src="/src/image_renders/string.png" alt=""></div>
+                    <div class="slot"><img class="crafting-item" loading="lazy" src="./image_renders/string.png" alt=""></div>
                 </div>
                 <div class="front-result">
-                    <div><img class="result-item cycle-item" loading="lazy" data-src-pattern="/src/image_renders/{blockType}_rope_ladder.png" src="/src/image_renders/oak_rope_ladder.png" alt=""></div>
+                    <div><img class="result-item cycle-item" loading="lazy" data-src-pattern="./image_renders/{blockType}_rope_ladder.png" src="./image_renders/oak_rope_ladder.png" alt=""></div>
                 </div>
             </div>
         </div>
@@ -50,21 +50,21 @@
             </h1>
 
             <div id="button-container">
-                <button class="menu-btn" id="selected" data-type="oak" data-src-pattern="/src/image_renders/{type}_rope_ladder.png" data-alt-pattern="A picture of {a} {type} rope ladder">Oak</button>
-                <button class="menu-btn" data-type="spruce" data-src-pattern="/src/image_renders/{type}_rope_ladder.png" data-alt-pattern="A picture of {a} {type} rope ladder">Spruce</button>
-                <button class="menu-btn" data-type="birch" data-src-pattern="/src/image_renders/{type}_rope_ladder.png" data-alt-pattern="A picture of {a} {type} rope ladder">Birch</button>
-                <button class="menu-btn" data-type="jungle" data-src-pattern="/src/image_renders/{type}_rope_ladder.png" data-alt-pattern="A picture of {a} {type} rope ladder">Jungle</button>
-                <button class="menu-btn" data-type="acacia" data-src-pattern="/src/image_renders/{type}_rope_ladder.png" data-alt-pattern="A picture of {a} {type} rope ladder">Acacia</button>
-                <button class="menu-btn" data-type="dark_oak" data-src-pattern="/src/image_renders/{type}_rope_ladder.png" data-alt-pattern="A picture of {a} {type} rope ladder">Dark Oak</button>
-                <button class="menu-btn" data-type="mangrove" data-src-pattern="/src/image_renders/{type}_rope_ladder.png" data-alt-pattern="A picture of {a} {type} rope ladder">Mangrove</button>
-                <button class="menu-btn" data-type="cherry" data-src-pattern="/src/image_renders/{type}_rope_ladder.png" data-alt-pattern="A picture of {a} {type} rope ladder">Cherry</button>
-                <button class="menu-btn" data-type="pale_oak" data-src-pattern="/src/image_renders/{type}_rope_ladder.png" data-alt-pattern="A picture of {a} {type} rope ladder">Pale Oak</button>
-                <button class="menu-btn" data-type="bamboo" data-src-pattern="/src/image_renders/{type}_rope_ladder.png" data-alt-pattern="A picture of {a} {type} rope ladder">Bamboo</button>
-                <button class="menu-btn" data-type="crimson" data-src-pattern="/src/image_renders/{type}_rope_ladder.png" data-alt-pattern="A picture of {a} {type} rope ladder">Crimson</button>
-                <button class="menu-btn" data-type="warped" data-src-pattern="/src/image_renders/{type}_rope_ladder.png" data-alt-pattern="A picture of {a} {type} rope ladder">Warped</button>
+                <button class="menu-btn" id="selected" data-type="oak" data-src-pattern="./image_renders/{type}_rope_ladder.png" data-alt-pattern="A picture of {a} {type} rope ladder">Oak</button>
+                <button class="menu-btn" data-type="spruce" data-src-pattern="./image_renders/{type}_rope_ladder.png" data-alt-pattern="A picture of {a} {type} rope ladder">Spruce</button>
+                <button class="menu-btn" data-type="birch" data-src-pattern="./image_renders/{type}_rope_ladder.png" data-alt-pattern="A picture of {a} {type} rope ladder">Birch</button>
+                <button class="menu-btn" data-type="jungle" data-src-pattern="./image_renders/{type}_rope_ladder.png" data-alt-pattern="A picture of {a} {type} rope ladder">Jungle</button>
+                <button class="menu-btn" data-type="acacia" data-src-pattern="./image_renders/{type}_rope_ladder.png" data-alt-pattern="A picture of {a} {type} rope ladder">Acacia</button>
+                <button class="menu-btn" data-type="dark_oak" data-src-pattern="./image_renders/{type}_rope_ladder.png" data-alt-pattern="A picture of {a} {type} rope ladder">Dark Oak</button>
+                <button class="menu-btn" data-type="mangrove" data-src-pattern="./image_renders/{type}_rope_ladder.png" data-alt-pattern="A picture of {a} {type} rope ladder">Mangrove</button>
+                <button class="menu-btn" data-type="cherry" data-src-pattern="./image_renders/{type}_rope_ladder.png" data-alt-pattern="A picture of {a} {type} rope ladder">Cherry</button>
+                <button class="menu-btn" data-type="pale_oak" data-src-pattern="./image_renders/{type}_rope_ladder.png" data-alt-pattern="A picture of {a} {type} rope ladder">Pale Oak</button>
+                <button class="menu-btn" data-type="bamboo" data-src-pattern="./image_renders/{type}_rope_ladder.png" data-alt-pattern="A picture of {a} {type} rope ladder">Bamboo</button>
+                <button class="menu-btn" data-type="crimson" data-src-pattern="./image_renders/{type}_rope_ladder.png" data-alt-pattern="A picture of {a} {type} rope ladder">Crimson</button>
+                <button class="menu-btn" data-type="warped" data-src-pattern="./image_renders/{type}_rope_ladder.png" data-alt-pattern="A picture of {a} {type} rope ladder">Warped</button>
             </div>
 
-            <img class="main-img" id="main-img" src="/src/image_renders/oak_rope_ladder.png" alt="An image of an oak rope ladder">
+            <img class="main-img" id="main-img" src="./image_renders/oak_rope_ladder.png" alt="An image of an oak rope ladder">
             <table style="margin: 15px;">
                 <tr>
                     <td class="img-desc">Renewable</td>
@@ -105,7 +105,7 @@
 </body>
 </html>
 
-<script src="/src/js/side_page.js"></script>
+<script src="./js/side_page.js"></script>
 <script>
     const mainImg = document.getElementById('main-img');
     const container = document.getElementById('button-container');

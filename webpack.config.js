@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlBundlerPlugin = require('html-bundler-webpack-plugin');
+const { sync } = require('glob');
 
 module.exports = {
     mode: 'production', // Automatically minifies JS and HTML in production
@@ -12,9 +13,11 @@ module.exports = {
             entry: {
                 // Your HTML file is now the true entry point
                 index: 'src/index.html',
-                bog_blossom: 'src/pages/bog_blossom.html',
-                planter_box: 'src/pages/planter_box.html',
-                rope_ladder: 'src/pages/rope_ladder.html'
+                ...sync('src/pages/**/*.html').reduce((entries, file) => {
+                    const name = path.basename(file, '.html');
+                    entries[name] = file;
+                    return entries;
+                }, {}),
             },
             js: {
                 // Output for any JS files found in your HTML

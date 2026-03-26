@@ -13,7 +13,7 @@ module.exports = {
             entry: {
                 // Your HTML file is now the true entry point
                 index: 'src/index.html',
-                about: sync('src/pages/**/*.html').reduce((entries, file) => {
+                ...sync('src/pages/**/*.html').reduce((entries, file) => {
                     const name = path.basename(file, '.html');
                     entries[name] = file;
                     return entries;

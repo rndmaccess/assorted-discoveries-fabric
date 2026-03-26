@@ -41,17 +41,13 @@ module.exports = {
         rules: [
             {
                 test: /\.js$/,
+                include: path.resolve(__dirname, 'src/js'),
                 exclude: /node_modules/,
+                type: 'javascript/auto',
                 use: {
-                    loader: 'babel-loader', // Ensure you have babel-loader installed
+                    loader: 'babel-loader',
                     options: {
                         presets: ['@babel/preset-env']
-                    }
-                },
-                // This ensures it parses 'export' correctly
-                parser: {
-                    javascript: {
-                        sourceType: 'module'
                     }
                 }
             },

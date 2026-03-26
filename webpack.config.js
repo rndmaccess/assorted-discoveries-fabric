@@ -12,7 +12,6 @@ module.exports = {
     plugins: [
         new HtmlBundlerPlugin({
             entry: {
-                // Your HTML file is now the true entry point
                 index: 'src/index.html',
                 ...sync('src/pages/**/*.html').reduce((entries, file) => {
                     const name = path.relative('src', file).replace(/\.html$/, '');
@@ -38,8 +37,8 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(css|scss)$/,
-                use: ['css-loader', 'sass-loader'], // Processes CSS and SASS
+                test: /\.(css)$/,
+                use: ['style-loader', 'css-loader'], // Processes CSS and SASS
             },
             {
                 test: /\.(png|jpe?g|svg|webp|ico)$/i,

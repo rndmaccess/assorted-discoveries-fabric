@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlBundlerPlugin = require('html-bundler-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const { sync } = require('glob');
 
 module.exports = {
@@ -27,6 +28,15 @@ module.exports = {
                 // Output for any CSS/SASS files found in your HTML
                 filename: 'assets/css/[name].[contenthash:8].css',
             },
+        }),
+        new CopyPlugin({
+            patterns: [
+                {
+                    from: path.resolve(__dirname, 'src/assets/images'), // Adjust this to your image folder path
+                    to: path.resolve(__dirname, 'dist/assets/resource'), // Destination in dist
+                    noErrorOnMissing: true,
+                },
+            ],
         }),
     ],
     module: {

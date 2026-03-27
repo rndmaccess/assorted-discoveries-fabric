@@ -25,23 +25,21 @@ module.exports = {
                 // It treats them as plain strings so Webpack never "sees" the file
                 return content;
             },
-            sources: {
-                list: [
-                    {
-                        tag: 'img',
-                        // This regex says: process images, but IGNORE any path
-                        // containing "static/" or starting with "static/"
-                        filter: (args) => !args.value.includes('static/'),
-                    },
-                    {
-                        tag: 'video',
-                        filter: (args) => !args.value.includes('static/'),
-                    },
-                    // Include defaults for scripts and links so they don't get ignored
-                    { tag: 'script', attributes: ['src'] },
-                    { tag: 'link', attributes: ['href'] },
-                ],
-            },
+            sources: [
+                {
+                    tag: 'img',
+                    // This regex says: process images, but IGNORE any path
+                    // containing "static/" or starting with "static/"
+                    filter: (args) => !args.value.includes('static/'),
+                },
+                {
+                    tag: 'video',
+                    filter: (args) => !args.value.includes('static/'),
+                },
+                // Include defaults for scripts and links so they don't get ignored
+                { tag: 'script', attributes: ['src'] },
+                { tag: 'link', attributes: ['href'] },
+            ],
             js: {
                 // Output for any JS files found in your HTML
                 filename: 'assets/js/[name].[contenthash:8].js',

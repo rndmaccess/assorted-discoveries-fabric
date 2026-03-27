@@ -7,8 +7,6 @@ const woodTypes = ["oak", "spruce", "birch", "jungle", "acacia", "dark_oak", "ma
 
 if (craftingGui) createRecipeCycle(woodTypes, craftingGui);
 
-if (container) {
-    container.addEventListener('click', (event) => {
-        createButtonPanel(event);
-    });
-}
+container.addEventListener('click', (event) => {
+    createButtonPanel(event);
+});

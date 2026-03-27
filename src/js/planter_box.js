@@ -12,8 +12,6 @@ if (overworldCraftingGui) createRecipeCycle(woodTypes, overworldCraftingGui);
 if (warpedCraftingGui) createRecipeCycle(soilTypes, warpedCraftingGui);
 if (crimsonCraftingGui) createRecipeCycle(soilTypes, crimsonCraftingGui);
 
-if (container) {
-    container.addEventListener('click', (event) => {
-        createButtonPanel(event);
-    });
-}
+container.addEventListener('click', (event) => {
+    createButtonPanel(event);
+});

@@ -22,6 +22,7 @@ module.exports = {
                     return entries;
                 }, {}),
             },
+            preprocessor: 'ejs',
             js: {
                 // Output for any JS files found in your HTML
                 filename: 'assets/js/[name].[contenthash:8].js',

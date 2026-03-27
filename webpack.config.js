@@ -20,7 +20,7 @@ module.exports = {
                 }, {}),
             },
             // Add this preprocessor section
-            preprocessor: (content, { resourcePath }) => {
+            preprocessor: (content) => {
                 // This stops the plugin from parsing attributes that contain 'static/'
                 // It treats them as plain strings so Webpack never "sees" the file
                 return content;
@@ -32,13 +32,6 @@ module.exports = {
                     // containing "static/" or starting with "static/"
                     filter: (args) => !args.value.includes('static/'),
                 },
-                {
-                    tag: 'video',
-                    filter: (args) => !args.value.includes('static/'),
-                },
-                // Include defaults for scripts and links so they don't get ignored
-                { tag: 'script', attributes: ['src'] },
-                { tag: 'link', attributes: ['href'] },
             ],
             js: {
                 // Output for any JS files found in your HTML

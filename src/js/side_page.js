@@ -133,6 +133,3 @@ export function createButtonPanel(event, mainImg) {
     selectedElement.removeAttribute('id');
     button.setAttribute('id', 'selected');
 }
-
-document.createButtonPanel = createButtonPanel
-document.createRecipeCycle = createRecipeCycle

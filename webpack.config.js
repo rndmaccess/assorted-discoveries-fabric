@@ -30,7 +30,7 @@ module.exports = {
         }),
         new CopyPlugin({
             patterns: [
-                { from: "src/img", to: "assets/static/img" },
+                { from: "src/static/img", to: "assets/static/img" },
             ],
         }),
     ],

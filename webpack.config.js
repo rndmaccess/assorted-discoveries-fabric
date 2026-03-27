@@ -25,12 +25,16 @@ module.exports = {
                 // It treats them as plain strings so Webpack never "sees" the file
                 return content;
             },
-            sources: {
-                tag: 'img',
-                filter: (args) => {
-                    return !args.value.includes('static/');
-                }
-            },
+            sources: [
+                {
+                    tag: 'img',
+                    filter: ({ value }) => {
+                        return !value.includes('static/');
+                    },
+                },
+                // 'true' tells the plugin to use default rules for everything else (scripts, links, etc.)
+                true,
+            ],
             js: {
                 // Output for any JS files found in your HTML
                 filename: 'assets/js/[name].[contenthash:8].js',

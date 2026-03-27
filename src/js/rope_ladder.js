@@ -1,5 +1,6 @@
 import { createRecipeCycle, createButtonPanel } from "./side_page";
 
+const mainImg = document.getElementById('main-img');
 const container = document.getElementById('button-container');
 const craftingGui = document.getElementById('crafting-gui');
 const woodTypes = ["oak", "spruce", "birch", "jungle", "acacia", "dark_oak", "mangrove",
@@ -7,6 +8,8 @@ const woodTypes = ["oak", "spruce", "birch", "jungle", "acacia", "dark_oak", "ma
 
 if (craftingGui) createRecipeCycle(woodTypes, craftingGui);
 
-container.addEventListener('click', (event) => {
-    createButtonPanel(event);
-});
+if (container) {
+    container.addEventListener('click', (event) => {
+        createButtonPanel(event);
+    });
+}

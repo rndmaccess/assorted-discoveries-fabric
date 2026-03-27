@@ -1,5 +1,6 @@
 import { createRecipeCycle, createButtonPanel } from "./side_page";
 
+const mainImg = document.getElementById('main-img');
 const container = document.getElementById('button-container');
 const overworldCraftingGui = document.getElementById('overworld-crafting-gui');
 const warpedCraftingGui = document.getElementById('warped-crafting-gui');

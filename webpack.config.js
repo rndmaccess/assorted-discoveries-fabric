@@ -31,9 +31,8 @@ module.exports = {
                     filter: ({ value }) => {
                         return !value.includes('static/');
                     },
-                },
+                }
                 // 'true' tells the plugin to use default rules for everything else (scripts, links, etc.)
-                true,
             ],
             js: {
                 // Output for any JS files found in your HTML

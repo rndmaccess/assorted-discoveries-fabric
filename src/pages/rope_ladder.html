@@ -105,8 +105,8 @@
 </body>
 </html>
 
-<script type="module" src="../js/side_page.js">
-    import { createRecipeCycle, createButtonPanel } from '../js/side_page.js';
+<script type="module">
+    import { createRecipeCycle, createButtonPanel } from '<%= require("../js/side_page.js") %>';
 
     const mainImg = document.getElementById('main-img');
     const container = document.getElementById('button-container');

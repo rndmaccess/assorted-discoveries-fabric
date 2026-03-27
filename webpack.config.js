@@ -38,14 +38,13 @@ module.exports = {
         rules: [
             {
                 test: /\.js$/,
-                // Keep your include and exclude to limit what esbuild processes
                 include: path.resolve(__dirname, 'src/js'),
                 exclude: /node_modules/,
+                // Add this to force Webpack to treat these as ES modules
+                type: 'javascript/auto',
                 loader: 'esbuild-loader',
                 options: {
-                    // Specify the 'loader' type (js, jsx, ts, or tsx)
                     loader: 'js',
-                    // Choose your target (e.g., 'es2015', 'esnext', or 'chrome80')
                     target: 'es2015'
                 }
             },

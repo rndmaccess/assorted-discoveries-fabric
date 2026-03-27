@@ -112,8 +112,9 @@ export function createRecipeCycle(items, guiId) {
  * });
  *
  * @param event {PointerEvent} The click event from the button container.
+ * @param mainImg The image to replace
  */
-export function createButtonPanel(event) {
+export function createButtonPanel(event, mainImg) {
     const selectedElement = document.getElementById('selected');
     const button = event.target.closest('.menu-btn');
     if (!button) return;

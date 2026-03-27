@@ -64,6 +64,6 @@ searchInput.addEventListener('keydown', function (event) {
         let results = getSearchResults(query)
         const topResult = results[0].title
 
-        window.location.href = (topResult + '.html').replaceAll(' ', '_')
+        window.location.href = ('pages/' + topResult + '.html').replaceAll(' ', '_')
     }
 })

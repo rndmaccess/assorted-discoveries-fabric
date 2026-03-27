@@ -104,21 +104,4 @@
     </div>
 </body>
 </html>
-
-<script type="module">
-    import { createRecipeCycle, createButtonPanel } from "../js/side_page.js?url";
-
-    const mainImg = document.getElementById('main-img');
-    const container = document.getElementById('button-container');
-    const craftingGui = document.getElementById('crafting-gui');
-    const woodTypes = ["oak", "spruce", "birch", "jungle", "acacia", "dark_oak", "mangrove",
-        "cherry", "pale_oak", "bamboo", "warped", "crimson"];
-
-    if (craftingGui) createRecipeCycle(woodTypes, craftingGui);
-
-    if (container) {
-        container.addEventListener('click', (event) => {
-            createButtonPanel(event);
-        });
-    }
-</script>
+<script type="module" src="../js/rope_ladder.js"></script>

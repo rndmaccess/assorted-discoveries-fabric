@@ -10,11 +10,6 @@ module.exports = {
         clean: true, // Cleans the dist folder before each build
     },
     plugins: [
-        new CopyPlugin({
-            patterns: [
-                { from: "src/static/img", to: "assets/static/img" },
-            ],
-        }),
         new HtmlBundlerPlugin({
             entry: {
                 index: 'src/index.html',
@@ -24,6 +19,12 @@ module.exports = {
                     return entries;
                 }, {}),
             },
+            sources: {
+                filter: (tag, attribute, value, resourcePath) => {
+                    // If the image path contains 'static', tell the plugin NOT to process it
+                    return !value.includes('static/');
+                },
+            },
             js: {
                 // Output for any JS files found in your HTML
                 filename: 'assets/js/[name].[contenthash:8].js',
@@ -32,6 +33,11 @@ module.exports = {
                 // Output for any CSS files found in your HTML
                 filename: 'assets/css/[name].[contenthash:8].css',
             },
+        }),
+        new CopyPlugin({
+            patterns: [
+                { from: "src/static/img", to: "assets/static/img" },
+            ],
         }),
     ],
     module: {

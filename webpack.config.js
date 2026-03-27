@@ -54,6 +54,7 @@ module.exports = {
             },
             {
                 test: /\.(png|jpe?g|svg|webp|ico)$/i,
+                exclude: /static/,
                 type: 'asset/resource', // Handles images referenced in HTML
                 generator: {
                     filename: 'assets/img/[name].[contenthash:8][ext]',

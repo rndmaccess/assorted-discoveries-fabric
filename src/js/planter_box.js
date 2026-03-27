@@ -1,3 +1,4 @@
+// No module declaration needed; esbuild-loader handles imports.
 import { createRecipeCycle, createButtonPanel } from "./side_page";
 
 const mainImg = document.getElementById('main-img');

@@ -10,6 +10,11 @@ module.exports = {
         clean: true, // Cleans the dist folder before each build
     },
     plugins: [
+        new CopyPlugin({
+            patterns: [
+                { from: "src/static/img", to: "assets/static/img" },
+            ],
+        }),
         new HtmlBundlerPlugin({
             entry: {
                 index: 'src/index.html',
@@ -27,11 +32,6 @@ module.exports = {
                 // Output for any CSS files found in your HTML
                 filename: 'assets/css/[name].[contenthash:8].css',
             },
-        }),
-        new CopyPlugin({
-            patterns: [
-                { from: "src/static/img", to: "assets/static/img" },
-            ],
         }),
     ],
     module: {

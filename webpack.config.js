@@ -20,11 +20,10 @@ module.exports = {
                 }, {}),
             },
             sources: {
-                // This is the critical part: tell the plugin to IGNORE these paths
-                filter: (tag, attribute, value) => {
-                    return !(value.startsWith('static/') || value.includes('/static/'));
-
-                },
+                tag: 'img',
+                filter: (args) => {
+                    return !args.value.includes('static/');
+                }
             },
             js: {
                 // Output for any JS files found in your HTML

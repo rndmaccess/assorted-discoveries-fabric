@@ -20,9 +20,10 @@ module.exports = {
                 }, {}),
             },
             sources: {
-                filter: (tag, attribute, value, resourcePath) => {
-                    // If the image path contains 'static', tell the plugin NOT to process it
-                    return !value.includes('static/');
+                // This is the critical part: tell the plugin to IGNORE these paths
+                filter: (tag, attribute, value) => {
+                    return !(value.startsWith('static/') || value.includes('/static/'));
+
                 },
             },
             js: {
@@ -60,7 +61,6 @@ module.exports = {
             },
             {
                 test: /\.(png|jpe?g|svg|webp|ico)$/i,
-                exclude: /static/,
                 type: 'asset/resource', // Handles images referenced in HTML
                 generator: {
                     filename: 'assets/img/[name].[contenthash:8][ext]',

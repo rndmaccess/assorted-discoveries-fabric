@@ -5,9 +5,6 @@ const { sync } = require('glob');
 
 module.exports = {
     mode: 'production', // Automatically minifies JS and HTML in production
-    experiments: {
-        outputModule: true, // Required if you want to use 'import' in HTML
-    },
     output: {
         path: path.resolve(__dirname, 'dist'),
         clean: true, // Cleans the dist folder before each build

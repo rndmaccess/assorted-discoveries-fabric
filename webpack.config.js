@@ -19,6 +19,12 @@ module.exports = {
                     return entries;
                 }, {}),
             },
+            // Add this preprocessor section
+            preprocessor: (content, { resourcePath }) => {
+                // This stops the plugin from parsing attributes that contain 'static/'
+                // It treats them as plain strings so Webpack never "sees" the file
+                return content;
+            },
             sources: {
                 tag: 'img',
                 filter: (args) => {

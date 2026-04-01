@@ -17,7 +17,7 @@ public class BogBlossomNectarParticle extends SingleQuadParticle {
         super(clientLevel, x, y - 0.125D, z, velocityX, velocityY, velocityZ, sprite);
         this.setSize(0.01F, 0.01F);
         this.quadSize *= this.random.nextFloat() * 0.6F + 0.6F;
-        this.lifetime = Mth.randomBetweenInclusive(clientLevel.random, 500, 1000);
+        this.lifetime = Mth.randomBetweenInclusive(clientLevel.getRandom(), 500, 1000);
         this.hasPhysics = false;
         this.friction = 1.0F;
         this.gravity = 0.01F;
@@ -45,18 +45,19 @@ public class BogBlossomNectarParticle extends SingleQuadParticle {
     }
 
     @Override
-    public int getLightColor(float tint) {
+    public int getLightCoords(float tint) {
         return 240;
     }
 
     public record Provider(SpriteSet spriteSet) implements ParticleProvider<SimpleParticleType> {
 
         @Override
-        public Particle createParticle(SimpleParticleType particle, ClientLevel level, double x, double y, double z,
-                                       double velocityX, double velocityY, double velocityZ, RandomSource random) {
+        public Particle createParticle(@NonNull SimpleParticleType particle, @NonNull ClientLevel level,
+                                       double x, double y, double z, double velocityX, double velocityY,
+                                       double velocityZ, @NonNull RandomSource random) {
             return new BogBlossomNectarParticle(level, x, y, z,
                     0.0D, -0.8D, 0.0D, this.spriteSet.get(random)) {
-                public Optional<ParticleLimit> getParticleLimit() {
+                public @NonNull Optional<ParticleLimit> getParticleLimit() {
                     return Optional.of(ParticleLimit.SPORE_BLOSSOM);
                 }
             };

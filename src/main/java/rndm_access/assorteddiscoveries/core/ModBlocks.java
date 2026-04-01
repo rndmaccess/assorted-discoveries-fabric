@@ -503,7 +503,7 @@ public final class ModBlocks {
             = register(new MushroomBlock(ModTreeConfiguredFeatures.HUGE_PURPLE_MUSHROOM,
             BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PURPLE)
                     .pushReaction(PushReaction.DESTROY).noCollision().randomTicks().instabreak()
-                    .sound(SoundType.GRASS).hasPostProcess(ModBlocks::always).setId(PURPLE_MUSHROOM_KEY)),
+                    .sound(SoundType.GRASS).postProcess(ModBlocks::postProcessSelf).setId(PURPLE_MUSHROOM_KEY)),
             PURPLE_MUSHROOM_KEY, true);
     public static final ResourceKey<Block> PURPLE_MUSHROOM_BLOCK_KEY = makeRegistryKey("purple_mushroom_block");
     public static final Block PURPLE_MUSHROOM_BLOCK
@@ -1403,8 +1403,8 @@ public final class ModBlocks {
         return ResourceKey.create(Registries.BLOCK, AssortedDiscoveries.makeModId(name));
     }
 
-    private static boolean always(BlockState state, BlockGetter world, BlockPos pos) {
-        return true;
+    private static BlockPos postProcessSelf(final BlockState state, final BlockGetter blockGetter, final BlockPos blockPos) {
+        return blockPos;
     }
 
     private static ToIntFunction<BlockState> getLuminanceFromState() {

@@ -1,5 +1,6 @@
 package rndm_access.assorteddiscoveries.mixin;
 
+import net.minecraft.world.level.WorldGenLevel;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -17,12 +18,11 @@ import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer;
 
 @Mixin(TrunkPlacer.class)
 public abstract class TrunkPlacerMixin {
-    @Inject(method = "setDirtAt", at = @At("HEAD"), cancellable = true)
-    private static void setToDirtAt(LevelSimulatedReader world, BiConsumer<BlockPos, BlockState> replacer,
-                                                      RandomSource random, BlockPos pos, TreeConfiguration config,
-                                                      CallbackInfo info) {
-        if(isPlanterBox(world, pos)) {
-            info.cancel();
+    @Inject(method = "placeBelowTrunkBlock", at = @At("HEAD"), cancellable = true)
+    private static void placeBelowTrunkBlock(WorldGenLevel level, BiConsumer<BlockPos, BlockState> trunkSetter,
+                                             RandomSource random, BlockPos pos, TreeConfiguration config, CallbackInfo ci) {
+        if(isPlanterBox(level, pos)) {
+            ci.cancel();
         }
     }
 

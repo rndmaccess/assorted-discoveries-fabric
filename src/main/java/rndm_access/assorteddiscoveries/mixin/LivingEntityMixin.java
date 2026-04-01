@@ -11,11 +11,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
-    @Shadow protected abstract int calculateFallDamage(double fallDistance, float damagePerDistance);
+    @Shadow protected abstract int calculateFallDamage(double fallDistance, float damageModifier);
 
     @Inject(method = "causeFallDamage", at = @At("HEAD"), cancellable = true)
-    public void causeFallDamage(double fallDistance, float damagePerDistance, DamageSource damageSource,
-                                 CallbackInfoReturnable<Boolean> info) {
+    public void causeFallDamage(double fallDistance, float damageModifier, DamageSource damageSource,
+                                CallbackInfoReturnable<Boolean> info) {
         boolean isRabbit = ((EntityAccessor) this).getType().equals(EntityType.RABBIT);
 
         // This lets rabbits fall 5 blocks before they take damage.

@@ -13,6 +13,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jspecify.annotations.NonNull;
 import rndm_access.assorteddiscoveries.block.state.ModBlockStateProperties;
 
 public class WolfPlushieBlock extends AbstractSimplePlushieBlock {
@@ -28,7 +29,7 @@ public class WolfPlushieBlock extends AbstractSimplePlushieBlock {
     }
 
     @Override
-    public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
+    public @NonNull InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
         boolean value = state.getValue(IS_SITTING);
 
         world.setBlockAndUpdate(pos, state.setValue(IS_SITTING, !value));
@@ -36,7 +37,7 @@ public class WolfPlushieBlock extends AbstractSimplePlushieBlock {
     }
 
     @Override
-    protected MapCodec<WolfPlushieBlock> codec() {
+    protected @NonNull MapCodec<WolfPlushieBlock> codec() {
         return CODEC;
     }
 

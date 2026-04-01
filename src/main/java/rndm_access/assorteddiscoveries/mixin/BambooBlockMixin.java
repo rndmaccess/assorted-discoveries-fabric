@@ -17,16 +17,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(BambooStalkBlock.class)
 public abstract class BambooBlockMixin {
     @Inject(method = "getStateForPlacement", at = @At("HEAD"), cancellable = true)
-    private void getStateForPlacement(@NotNull BlockPlaceContext ctx, CallbackInfoReturnable<BlockState> cir) {
-        if(canStay(ctx.getLevel(), ctx.getClickedPos())) {
+    private void getStateForPlacement(@NotNull BlockPlaceContext context, CallbackInfoReturnable<BlockState> cir) {
+        if(canStay(context.getLevel(), context.getClickedPos())) {
             cir.setReturnValue(null);
         }
     }
 
     @Inject(method = "canSurvive", at = @At("HEAD"), cancellable = true)
-    private void canSurvive(BlockState state, LevelReader world, BlockPos pos,
+    private void canSurvive(BlockState state, LevelReader level, BlockPos pos,
                             CallbackInfoReturnable<Boolean> cir) {
-        if(canStay(world, pos)) {
+        if(canStay(level, pos)) {
             cir.setReturnValue(false);
         }
     }

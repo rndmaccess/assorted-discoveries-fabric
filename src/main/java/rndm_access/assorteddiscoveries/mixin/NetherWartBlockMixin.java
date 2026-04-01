@@ -13,9 +13,9 @@ import rndm_access.assorteddiscoveries.core.ModBlockTags;
 @Mixin(NetherWartBlock.class)
 public abstract class NetherWartBlockMixin {
     @Inject(method = "mayPlaceOn", at = @At("HEAD"), cancellable = true)
-    private void mayPlaceOn(BlockState floor, BlockGetter world,
+    private void mayPlaceOn(BlockState state, BlockGetter level,
                             BlockPos pos, CallbackInfoReturnable<Boolean> info) {
-        if(floor.is(ModBlockTags.NETHER_PLANTER_BOXES)) {
+        if(state.is(ModBlockTags.NETHER_PLANTER_BOXES)) {
             info.setReturnValue(true);
         }
     }

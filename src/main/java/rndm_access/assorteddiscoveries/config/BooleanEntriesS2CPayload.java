@@ -1,6 +1,7 @@
 package rndm_access.assorteddiscoveries.config;
 
 import io.netty.buffer.ByteBuf;
+import org.jspecify.annotations.NonNull;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 
 import java.util.HashMap;
@@ -15,7 +16,7 @@ public record BooleanEntriesS2CPayload(Map<String, Boolean> configMap) implement
     public static final Identifier CONFIG_PAYLOAD_ID = AssortedDiscoveries.makeModId("config");
     public static final CustomPacketPayload.Type<BooleanEntriesS2CPayload> ID = new CustomPacketPayload.Type<>(CONFIG_PAYLOAD_ID);
     public static final StreamCodec<ByteBuf, Map<String, Boolean>> PACKET_CODEC = new StreamCodec<>() {
-        public Map<String, Boolean> decode(ByteBuf byteBuf) {
+        public @NonNull Map<String, Boolean> decode(ByteBuf byteBuf) {
             int size = byteBuf.readInt();
             Map<String, Boolean> hashMap = new HashMap<>();
 
@@ -39,7 +40,7 @@ public record BooleanEntriesS2CPayload(Map<String, Boolean> configMap) implement
             = StreamCodec.composite(PACKET_CODEC, BooleanEntriesS2CPayload::configMap, BooleanEntriesS2CPayload::new);
 
     @Override
-    public Type<? extends CustomPacketPayload> type() {
+    public @NonNull Type<? extends CustomPacketPayload> type() {
         return ID;
     }
 }

@@ -13,6 +13,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jspecify.annotations.NonNull;
 import rndm_access.assorteddiscoveries.core.ModEntityTypeTags;
 import rndm_access.assorteddiscoveries.core.ModItems;
 import rndm_access.assorteddiscoveries.core.ModParticleTypes;
@@ -74,8 +75,8 @@ public class WitchsCradleBlock extends AbstractBerryBushBlock {
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos,
-                                      CollisionContext context) {
+    public @NonNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos,
+                                        CollisionContext context) {
         return switch (state.getValue(AGE)) {
             case 0 -> SMALL_SHAPE;
             case 1 -> MEDIUM_SHAPE;

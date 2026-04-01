@@ -2,14 +2,17 @@ package rndm_access.assorteddiscoveries;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
-import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
-import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
+import net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.BlockColorRegistry;
+import net.minecraft.client.color.block.BlockTintSource;
 import net.minecraft.client.particle.FlameParticle;
 import net.minecraft.client.particle.LavaParticle;
 import net.minecraft.client.renderer.BiomeColors;
+import net.minecraft.client.renderer.block.BlockAndTintGetter;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
-import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.state.BlockState;
+import org.jspecify.annotations.NonNull;
 import rndm_access.assorteddiscoveries.block.SheepPlushieBlock;
 import rndm_access.assorteddiscoveries.block_entity.DyedCampfireBlockEntityRenderer;
 import rndm_access.assorteddiscoveries.config.BooleanEntriesS2CPayload;
@@ -18,12 +21,13 @@ import rndm_access.assorteddiscoveries.core.*;
 import rndm_access.assorteddiscoveries.particle.BogBlossomNectarParticle;
 import rndm_access.assorteddiscoveries.particle.SporeParticle;
 
+import java.util.List;
+
 public class AssortedDiscoveriesClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-        registerBlockColorProviders();
-        registerParticleFactories();
-        registerRenderLayers();
+        registerBlockColors();
+        registerParticleProvider();
         registerBlockEntityRenderers();
 
         ClientPlayNetworking.registerGlobalReceiver(BooleanEntriesS2CPayload.ID, (payload, context) -> {
@@ -36,21 +40,30 @@ public class AssortedDiscoveriesClient implements ClientModInitializer {
         BlockEntityRenderers.register(ModBlockEntityTypes.DYED_CAMPFIRE, DyedCampfireBlockEntityRenderer::new);
     }
 
-    private static void registerBlockColorProviders() {
-        ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> {
-            if (tintIndex == 1 && view != null) {
-                assert pos != null;
-                return BiomeColors.getAverageGrassColor(view, pos);
+    private static void registerBlockColors() {
+        BlockColorRegistry.register(List.of(new BlockTintSource() {
+            @Override
+            public int color(@NonNull BlockState state) {
+                return -1;
             }
-            return -1;
-        }, ModBlocks.ENDERMAN_PLUSHIE, ModBlocks.GRASS_SLAB);
 
-        ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> {
-            if (view != null) {
+            @Override
+            public int colorInWorld(@NonNull BlockState state, @NonNull BlockAndTintGetter level, @NonNull BlockPos pos) {
+                return BiomeColors.getAverageGrassColor(level, pos);
+            }
+        }), ModBlocks.ENDERMAN_PLUSHIE, ModBlocks.GRASS_SLAB);
+
+        BlockColorRegistry.register(List.of(new BlockTintSource() {
+            @Override
+            public int color(@NonNull BlockState state) {
+                return -1;
+            }
+
+            @Override
+            public int colorInWorld(@NonNull BlockState state, @NonNull BlockAndTintGetter level, @NonNull BlockPos pos) {
                 return ((SheepPlushieBlock) state.getBlock()).getColor().getTextureDiffuseColor();
             }
-            return -1;
-        }, ModBlocks.WHITE_SHEEP_PLUSHIE, ModBlocks.ORANGE_SHEEP_PLUSHIE, ModBlocks.MAGENTA_SHEEP_PLUSHIE,
+        }), ModBlocks.WHITE_SHEEP_PLUSHIE, ModBlocks.ORANGE_SHEEP_PLUSHIE, ModBlocks.MAGENTA_SHEEP_PLUSHIE,
                 ModBlocks.LIGHT_BLUE_SHEEP_PLUSHIE, ModBlocks.YELLOW_SHEEP_PLUSHIE, ModBlocks.LIME_SHEEP_PLUSHIE,
                 ModBlocks.PINK_SHEEP_PLUSHIE, ModBlocks.GRAY_SHEEP_PLUSHIE, ModBlocks.LIGHT_GRAY_SHEEP_PLUSHIE,
                 ModBlocks.CYAN_SHEEP_PLUSHIE, ModBlocks.PURPLE_SHEEP_PLUSHIE, ModBlocks.BLUE_SHEEP_PLUSHIE,
@@ -58,78 +71,44 @@ public class AssortedDiscoveriesClient implements ClientModInitializer {
                 ModBlocks.BLACK_SHEEP_PLUSHIE);
     }
 
-    private static void registerParticleFactories() {
-        ParticleFactoryRegistry factoryRegistry = ParticleFactoryRegistry.getInstance();
+    private static void registerParticleProvider() {
+        ParticleProviderRegistry providerRegistry = ParticleProviderRegistry.getInstance();
 
-        factoryRegistry.register(ModParticleTypes.WHITE_EMBER, LavaParticle.Provider::new);
-        factoryRegistry.register(ModParticleTypes.ORANGE_EMBER, LavaParticle.Provider::new);
-        factoryRegistry.register(ModParticleTypes.MAGENTA_EMBER, LavaParticle.Provider::new);
-        factoryRegistry.register(ModParticleTypes.LIGHT_BLUE_EMBER, LavaParticle.Provider::new);
-        factoryRegistry.register(ModParticleTypes.YELLOW_EMBER, LavaParticle.Provider::new);
-        factoryRegistry.register(ModParticleTypes.LIME_EMBER, LavaParticle.Provider::new);
-        factoryRegistry.register(ModParticleTypes.PINK_EMBER, LavaParticle.Provider::new);
-        factoryRegistry.register(ModParticleTypes.GRAY_EMBER, LavaParticle.Provider::new);
-        factoryRegistry.register(ModParticleTypes.LIGHT_GRAY_EMBER, LavaParticle.Provider::new);
-        factoryRegistry.register(ModParticleTypes.CYAN_EMBER, LavaParticle.Provider::new);
-        factoryRegistry.register(ModParticleTypes.PURPLE_EMBER, LavaParticle.Provider::new);
-        factoryRegistry.register(ModParticleTypes.BLUE_EMBER, LavaParticle.Provider::new);
-        factoryRegistry.register(ModParticleTypes.BROWN_EMBER, LavaParticle.Provider::new);
-        factoryRegistry.register(ModParticleTypes.GREEN_EMBER, LavaParticle.Provider::new);
-        factoryRegistry.register(ModParticleTypes.RED_EMBER, LavaParticle.Provider::new);
-        factoryRegistry.register(ModParticleTypes.BLACK_EMBER, LavaParticle.Provider::new);
-        factoryRegistry.register(ModParticleTypes.WHITE_FLAME, FlameParticle.Provider::new);
-        factoryRegistry.register(ModParticleTypes.ORANGE_FLAME, FlameParticle.Provider::new);
-        factoryRegistry.register(ModParticleTypes.MAGENTA_FLAME, FlameParticle.Provider::new);
-        factoryRegistry.register(ModParticleTypes.LIGHT_BLUE_FLAME, FlameParticle.Provider::new);
-        factoryRegistry.register(ModParticleTypes.YELLOW_FLAME, FlameParticle.Provider::new);
-        factoryRegistry.register(ModParticleTypes.LIME_FLAME, FlameParticle.Provider::new);
-        factoryRegistry.register(ModParticleTypes.PINK_FLAME, FlameParticle.Provider::new);
-        factoryRegistry.register(ModParticleTypes.GRAY_FLAME, FlameParticle.Provider::new);
-        factoryRegistry.register(ModParticleTypes.LIGHT_GRAY_FLAME, FlameParticle.Provider::new);
-        factoryRegistry.register(ModParticleTypes.CYAN_FLAME, FlameParticle.Provider::new);
-        factoryRegistry.register(ModParticleTypes.PURPLE_FLAME, FlameParticle.Provider::new);
-        factoryRegistry.register(ModParticleTypes.BLUE_FLAME, FlameParticle.Provider::new);
-        factoryRegistry.register(ModParticleTypes.BROWN_FLAME, FlameParticle.Provider::new);
-        factoryRegistry.register(ModParticleTypes.GREEN_FLAME, FlameParticle.Provider::new);
-        factoryRegistry.register(ModParticleTypes.RED_FLAME, FlameParticle.Provider::new);
-        factoryRegistry.register(ModParticleTypes.BLACK_FLAME, FlameParticle.Provider::new);
-        factoryRegistry.register(ModParticleTypes.BLOOD_KELP_SPORE, SporeParticle.Provider::new);
-        factoryRegistry.register(ModParticleTypes.WITCHS_CRADLE_SPORE, SporeParticle.Provider::new);
-        factoryRegistry.register(ModParticleTypes.BOG_BLOSSOM_NECTAR, BogBlossomNectarParticle.Provider::new);
-        factoryRegistry.register(ModParticleTypes.SOUL_EMBER, LavaParticle.Provider::new);
-    }
-
-    private static void registerRenderLayers() {
-        BlockRenderLayerMap.putBlocks(ChunkSectionLayer.CUTOUT,
-                ModBlocks.OAK_ROPE_LADDER, ModBlocks.SPRUCE_ROPE_LADDER, ModBlocks.BIRCH_ROPE_LADDER,
-                ModBlocks.JUNGLE_ROPE_LADDER, ModBlocks.ACACIA_ROPE_LADDER, ModBlocks.DARK_OAK_ROPE_LADDER,
-                ModBlocks.WARPED_ROPE_LADDER, ModBlocks.CRIMSON_ROPE_LADDER, ModBlocks.IRON_LADDER,
-                ModBlocks.PURPLE_MUSHROOM, ModBlocks.WHITE_CAMPFIRE, ModBlocks.ORANGE_CAMPFIRE,
-                ModBlocks.MAGENTA_CAMPFIRE, ModBlocks.LIGHT_BLUE_CAMPFIRE, ModBlocks.YELLOW_CAMPFIRE,
-                ModBlocks.LIME_CAMPFIRE, ModBlocks.PINK_CAMPFIRE, ModBlocks.LIGHT_GRAY_CAMPFIRE,
-                ModBlocks.GRAY_CAMPFIRE, ModBlocks.CYAN_CAMPFIRE, ModBlocks.PURPLE_CAMPFIRE,
-                ModBlocks.BLUE_CAMPFIRE, ModBlocks.BROWN_CAMPFIRE, ModBlocks.GREEN_CAMPFIRE,
-                ModBlocks.RED_CAMPFIRE, ModBlocks.BLACK_CAMPFIRE, ModBlocks.WHITE_LANTERN,
-                ModBlocks.ORANGE_LANTERN, ModBlocks.MAGENTA_LANTERN, ModBlocks.LIGHT_BLUE_LANTERN,
-                ModBlocks.YELLOW_LANTERN, ModBlocks.LIME_LANTERN, ModBlocks.PINK_LANTERN,
-                ModBlocks.LIGHT_GRAY_LANTERN, ModBlocks.GRAY_LANTERN, ModBlocks.CYAN_LANTERN,
-                ModBlocks.PURPLE_LANTERN, ModBlocks.BLUE_LANTERN, ModBlocks.BROWN_LANTERN,
-                ModBlocks.GREEN_LANTERN, ModBlocks.RED_LANTERN, ModBlocks.BLACK_LANTERN,
-                ModBlocks.WHITE_TORCH, ModBlocks.ORANGE_TORCH, ModBlocks.MAGENTA_TORCH,
-                ModBlocks.LIGHT_BLUE_TORCH, ModBlocks.YELLOW_TORCH, ModBlocks.LIME_TORCH,
-                ModBlocks.PINK_TORCH, ModBlocks.LIGHT_GRAY_TORCH, ModBlocks.GRAY_TORCH, ModBlocks.CYAN_TORCH,
-                ModBlocks.PURPLE_TORCH, ModBlocks.BLUE_TORCH, ModBlocks.BROWN_TORCH, ModBlocks.GREEN_TORCH,
-                ModBlocks.RED_TORCH, ModBlocks.BLACK_TORCH, ModBlocks.WHITE_WALL_TORCH, ModBlocks.ORANGE_WALL_TORCH,
-                ModBlocks.MAGENTA_WALL_TORCH, ModBlocks.LIGHT_BLUE_WALL_TORCH, ModBlocks.YELLOW_WALL_TORCH,
-                ModBlocks.LIME_WALL_TORCH, ModBlocks.PINK_WALL_TORCH, ModBlocks.LIGHT_GRAY_WALL_TORCH,
-                ModBlocks.GRAY_WALL_TORCH, ModBlocks.CYAN_WALL_TORCH, ModBlocks.PURPLE_WALL_TORCH,
-                ModBlocks.BLUE_WALL_TORCH, ModBlocks.BROWN_WALL_TORCH, ModBlocks.GREEN_WALL_TORCH,
-                ModBlocks.RED_WALL_TORCH, ModBlocks.BLACK_WALL_TORCH, ModBlocks.GREEN_ONIONS, ModBlocks.BLUEBERRY_BUSH,
-                ModBlocks.WITCHS_CRADLE, ModBlocks.SNAPDRAGON, ModBlocks.POTTED_SNAPDRAGON, ModBlocks.SHORT_ENDER_GRASS,
-                ModBlocks.CATTAIL, ModBlocks.POTTED_PURPLE_MUSHROOM, ModBlocks.BLOOD_KELP, ModBlocks.BLOOD_KELP_PLANT,
-                ModBlocks.MANGROVE_ROPE_LADDER, ModBlocks.BOG_BLOSSOM, ModBlocks.CINDERSNAP_BERRY_BUSH,
-                ModBlocks.FROSTBITE_BERRY_BUSH, ModBlocks.CHERRY_ROPE_LADDER, ModBlocks.POTTED_CATTAIL,
-                ModBlocks.WILD_GREEN_ONIONS, ModBlocks.CREAKING_PLUSHIE, ModBlocks.PALE_OAK_ROPE_LADDER,
-                ModBlocks.BAMBOO_ROPE_LADDER, ModBlocks.ENDERMAN_PLUSHIE, ModBlocks.GRASS_SLAB);
+        providerRegistry.register(ModParticleTypes.WHITE_EMBER, LavaParticle.Provider::new);
+        providerRegistry.register(ModParticleTypes.ORANGE_EMBER, LavaParticle.Provider::new);
+        providerRegistry.register(ModParticleTypes.MAGENTA_EMBER, LavaParticle.Provider::new);
+        providerRegistry.register(ModParticleTypes.LIGHT_BLUE_EMBER, LavaParticle.Provider::new);
+        providerRegistry.register(ModParticleTypes.YELLOW_EMBER, LavaParticle.Provider::new);
+        providerRegistry.register(ModParticleTypes.LIME_EMBER, LavaParticle.Provider::new);
+        providerRegistry.register(ModParticleTypes.PINK_EMBER, LavaParticle.Provider::new);
+        providerRegistry.register(ModParticleTypes.GRAY_EMBER, LavaParticle.Provider::new);
+        providerRegistry.register(ModParticleTypes.LIGHT_GRAY_EMBER, LavaParticle.Provider::new);
+        providerRegistry.register(ModParticleTypes.CYAN_EMBER, LavaParticle.Provider::new);
+        providerRegistry.register(ModParticleTypes.PURPLE_EMBER, LavaParticle.Provider::new);
+        providerRegistry.register(ModParticleTypes.BLUE_EMBER, LavaParticle.Provider::new);
+        providerRegistry.register(ModParticleTypes.BROWN_EMBER, LavaParticle.Provider::new);
+        providerRegistry.register(ModParticleTypes.GREEN_EMBER, LavaParticle.Provider::new);
+        providerRegistry.register(ModParticleTypes.RED_EMBER, LavaParticle.Provider::new);
+        providerRegistry.register(ModParticleTypes.BLACK_EMBER, LavaParticle.Provider::new);
+        providerRegistry.register(ModParticleTypes.WHITE_FLAME, FlameParticle.Provider::new);
+        providerRegistry.register(ModParticleTypes.ORANGE_FLAME, FlameParticle.Provider::new);
+        providerRegistry.register(ModParticleTypes.MAGENTA_FLAME, FlameParticle.Provider::new);
+        providerRegistry.register(ModParticleTypes.LIGHT_BLUE_FLAME, FlameParticle.Provider::new);
+        providerRegistry.register(ModParticleTypes.YELLOW_FLAME, FlameParticle.Provider::new);
+        providerRegistry.register(ModParticleTypes.LIME_FLAME, FlameParticle.Provider::new);
+        providerRegistry.register(ModParticleTypes.PINK_FLAME, FlameParticle.Provider::new);
+        providerRegistry.register(ModParticleTypes.GRAY_FLAME, FlameParticle.Provider::new);
+        providerRegistry.register(ModParticleTypes.LIGHT_GRAY_FLAME, FlameParticle.Provider::new);
+        providerRegistry.register(ModParticleTypes.CYAN_FLAME, FlameParticle.Provider::new);
+        providerRegistry.register(ModParticleTypes.PURPLE_FLAME, FlameParticle.Provider::new);
+        providerRegistry.register(ModParticleTypes.BLUE_FLAME, FlameParticle.Provider::new);
+        providerRegistry.register(ModParticleTypes.BROWN_FLAME, FlameParticle.Provider::new);
+        providerRegistry.register(ModParticleTypes.GREEN_FLAME, FlameParticle.Provider::new);
+        providerRegistry.register(ModParticleTypes.RED_FLAME, FlameParticle.Provider::new);
+        providerRegistry.register(ModParticleTypes.BLACK_FLAME, FlameParticle.Provider::new);
+        providerRegistry.register(ModParticleTypes.BLOOD_KELP_SPORE, SporeParticle.Provider::new);
+        providerRegistry.register(ModParticleTypes.WITCHS_CRADLE_SPORE, SporeParticle.Provider::new);
+        providerRegistry.register(ModParticleTypes.BOG_BLOSSOM_NECTAR, BogBlossomNectarParticle.Provider::new);
+        providerRegistry.register(ModParticleTypes.SOUL_EMBER, LavaParticle.Provider::new);
     }
 }

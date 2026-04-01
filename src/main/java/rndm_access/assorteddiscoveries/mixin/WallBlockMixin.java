@@ -12,7 +12,7 @@ import rndm_access.assorteddiscoveries.core.ModBlockTags;
 @Mixin(WallBlock.class)
 public abstract class WallBlockMixin {
     @Inject(method = "connectsTo", at = @At("HEAD"), cancellable = true)
-    private void connectTo(BlockState state, boolean faceFullSquare, Direction side,
+    private void connectTo(BlockState state, boolean faceSolid, Direction direction,
                                  CallbackInfoReturnable<Boolean> cir) {
         if(state.is(ModBlockTags.SNOW_WALLS) || state.is(ModBlockTags.WOODEN_WALLS)) {
             cir.setReturnValue(true);

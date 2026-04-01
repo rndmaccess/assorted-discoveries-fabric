@@ -8,7 +8,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.SnowyDirtBlock;
+import net.minecraft.world.level.block.SnowyBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -17,14 +17,14 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import rndm_access.assorteddiscoveries.core.ModBlockTags;
 
-@Mixin(SnowyDirtBlock.class)
+@Mixin(SnowyBlock.class)
 public abstract class SnowyBlockMixin {
     @Inject(method = "updateShape", at = @At("HEAD"), cancellable = true)
-    private void getStateForNeighborUpdate(BlockState state, LevelReader world, ScheduledTickAccess tickView, BlockPos pos,
-                                           Direction direction, BlockPos neighborPos, BlockState neighborState,
+    private void getStateForNeighborUpdate(BlockState state, LevelReader level, ScheduledTickAccess ticks, BlockPos pos,
+                                           Direction directionToNeighbour, BlockPos neighbourPos, BlockState neighbourState,
                                            RandomSource random, CallbackInfoReturnable<BlockState> cir) {
-        if(direction == Direction.UP && this.isSnowSlabOrStairs(world, neighborPos, neighborState)) {
-            cir.setReturnValue(state.setValue(SnowyDirtBlock.SNOWY, true));
+        if(directionToNeighbour == Direction.UP && this.isSnowSlabOrStairs(level, neighbourPos, neighbourState)) {
+            cir.setReturnValue(state.setValue(SnowyBlock.SNOWY, true));
         }
     }
 
@@ -36,7 +36,7 @@ public abstract class SnowyBlockMixin {
         BlockState placedState = Block.byItem(context.getItemInHand().getItem()).defaultBlockState();
 
         if(this.isSnowSlabOrStairs(world, neighborPos, neighborState)) {
-            info.setReturnValue(placedState.setValue(SnowyDirtBlock.SNOWY, true));
+            info.setReturnValue(placedState.setValue(SnowyBlock.SNOWY, true));
         }
     }
 

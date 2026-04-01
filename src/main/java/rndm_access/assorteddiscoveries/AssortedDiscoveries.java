@@ -3,16 +3,14 @@ package rndm_access.assorteddiscoveries;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
+import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
-import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
-import net.fabricmc.fabric.api.registry.VillagerInteractionRegistries;
+import net.fabricmc.fabric.api.registry.*;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.Registry;
@@ -52,9 +50,9 @@ import java.util.Optional;
 public class AssortedDiscoveries implements ModInitializer {
     public static final String MOD_ID = "assorted-discoveries";
     public static final Logger LOGGER = LoggerFactory.getLogger("AssortedDiscoveries");
-    private static final ResourceKey<@NotNull CreativeModeTab> MOD_ITEM_GROUP_KEY = ResourceKey.create(
+    private static final ResourceKey<@NotNull CreativeModeTab> MOD_CREATIVE_TAB_KEY = ResourceKey.create(
             Registries.CREATIVE_MODE_TAB, makeModId("item_group"));
-    public static final CreativeModeTab MOD_ITEM_GROUP = FabricItemGroup.builder()
+    public static final CreativeModeTab MOD_CREATIVE_TAB = FabricCreativeModeTab.builder()
             .icon(() -> new ItemStack(ModBlocks.ENDERMAN_PLUSHIE.asItem()))
             .title(Component.translatable("itemGroup." + MOD_ID))
             .build();
@@ -68,7 +66,7 @@ public class AssortedDiscoveries implements ModInitializer {
         // General Registries
         ModBlocks.register();
         ModItems.register();
-        AssortedDiscoveries.addItemGroups();
+        AssortedDiscoveries.modifyCreativeTabs();
         ModBlockEntityTypes.register();
         ModParticleTypes.register();
         ModSoundEvents.register();
@@ -87,7 +85,7 @@ public class AssortedDiscoveries implements ModInitializer {
     }
 
     private static void registerConfigEvents() {
-        PayloadTypeRegistry.playS2C().register(BooleanEntriesS2CPayload.ID, BooleanEntriesS2CPayload.CODEC);
+        PayloadTypeRegistry.clientboundPlay().register(BooleanEntriesS2CPayload.ID, BooleanEntriesS2CPayload.CODEC);
 
         ServerLifecycleEvents.SERVER_STARTED.register(AssortedDiscoveries::initConfigOnServer);
         ServerPlayerEvents.JOIN.register(AssortedDiscoveries::onJoin);
@@ -215,26 +213,26 @@ public class AssortedDiscoveries implements ModInitializer {
     }
 
     private static void registerFuel() {
-        FuelRegistryEvents.BUILD.register((builder, context) ->
+        FuelValueEvents.BUILD.register((builder, context) ->
                 builder.add(ModBlocks.DRIED_BLOOD_KELP_BLOCK, 4000));
     }
 
     private static void registerCompostables() {
-        CompostingChanceRegistry.INSTANCE.add(ModItems.BLUEBERRIES, 0.3F);
-        CompostingChanceRegistry.INSTANCE.add(ModItems.CINDERSNAP_BERRIES, 0.3F);
-        CompostingChanceRegistry.INSTANCE.add(ModItems.FROSTBITE_BERRIES, 0.3F);
-        CompostingChanceRegistry.INSTANCE.add(ModItems.WITCHS_CRADLE_BRANCH, 0.3F);
-        CompostingChanceRegistry.INSTANCE.add(ModItems.BLOOD_KELP_SEED_CLUSTER, 0.3F);
-        CompostingChanceRegistry.INSTANCE.add(ModItems.BLOOD_KELP, 0.3F);
-        CompostingChanceRegistry.INSTANCE.add(ModItems.DRIED_BLOOD_KELP, 0.3F);
-        CompostingChanceRegistry.INSTANCE.add(ModBlocks.DRIED_BLOOD_KELP_BLOCK, 0.5F);
-        CompostingChanceRegistry.INSTANCE.add(ModBlocks.SNAPDRAGON, 0.65F);
-        CompostingChanceRegistry.INSTANCE.add(ModBlocks.SHORT_ENDER_GRASS, 0.3F);
-        CompostingChanceRegistry.INSTANCE.add(ModBlocks.PURPLE_MUSHROOM_BLOCK, 0.85F);
-        CompostingChanceRegistry.INSTANCE.add(ModBlocks.PURPLE_MUSHROOM, 0.65F);
-        CompostingChanceRegistry.INSTANCE.add(ModBlocks.CATTAIL, 0.5F);
-        CompostingChanceRegistry.INSTANCE.add(ModItems.GREEN_ONION, 0.65F);
-        CompostingChanceRegistry.INSTANCE.add(ModItems.GREEN_ONION_SEEDS, 0.3F);
+        CompostableRegistry.INSTANCE.add(ModItems.BLUEBERRIES, 0.3F);
+        CompostableRegistry.INSTANCE.add(ModItems.CINDERSNAP_BERRIES, 0.3F);
+        CompostableRegistry.INSTANCE.add(ModItems.FROSTBITE_BERRIES, 0.3F);
+        CompostableRegistry.INSTANCE.add(ModItems.WITCHS_CRADLE_BRANCH, 0.3F);
+        CompostableRegistry.INSTANCE.add(ModItems.BLOOD_KELP_SEED_CLUSTER, 0.3F);
+        CompostableRegistry.INSTANCE.add(ModItems.BLOOD_KELP, 0.3F);
+        CompostableRegistry.INSTANCE.add(ModItems.DRIED_BLOOD_KELP, 0.3F);
+        CompostableRegistry.INSTANCE.add(ModBlocks.DRIED_BLOOD_KELP_BLOCK, 0.5F);
+        CompostableRegistry.INSTANCE.add(ModBlocks.SNAPDRAGON, 0.65F);
+        CompostableRegistry.INSTANCE.add(ModBlocks.SHORT_ENDER_GRASS, 0.3F);
+        CompostableRegistry.INSTANCE.add(ModBlocks.PURPLE_MUSHROOM_BLOCK, 0.85F);
+        CompostableRegistry.INSTANCE.add(ModBlocks.PURPLE_MUSHROOM, 0.65F);
+        CompostableRegistry.INSTANCE.add(ModBlocks.CATTAIL, 0.5F);
+        CompostableRegistry.INSTANCE.add(ModItems.GREEN_ONION, 0.65F);
+        CompostableRegistry.INSTANCE.add(ModItems.GREEN_ONION_SEEDS, 0.3F);
     }
 
     private static void modifyLootTables() {
@@ -268,9 +266,9 @@ public class AssortedDiscoveries implements ModInitializer {
         }
     }
 
-    private static void addItemGroups() {
-        Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, MOD_ITEM_GROUP_KEY, MOD_ITEM_GROUP);
-        ItemGroupEvents.modifyEntriesEvent(MOD_ITEM_GROUP_KEY).register((entries) -> {
+    private static void modifyCreativeTabs() {
+        Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, MOD_CREATIVE_TAB_KEY, MOD_CREATIVE_TAB);
+        CreativeModeTabEvents.modifyOutputEvent(MOD_CREATIVE_TAB_KEY).register((entries) -> {
             if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_SLIME_PLUSHIE)) {
                 entries.accept(ModBlocks.SLIME_PLUSHIE.asItem());
             }

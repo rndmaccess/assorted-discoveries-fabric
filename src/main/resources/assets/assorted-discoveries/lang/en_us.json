@@ -1009,5 +1009,7 @@
   "tag.item.c.stripped_pale_oak_logs": "Stripped Pale Oak Logs",
   "tag.item.c.stripped_spruce_logs": "Stripped Spruce Logs",
   "tag.item.c.stripped_warped_stems": "Stripped Warped Stems",
-  "tag.item.c.warped_vegetation": "Warped Vegetation"
+  "tag.item.c.warped_vegetation": "Warped Vegetation",
+
+  "tag.biome.c.is_dark_oak_forest": "Is Dark Oak Forest"
 }

@@ -14,9 +14,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(VegetationBlock.class)
 public abstract class PlantBlockMixin {
     @Inject(method = "mayPlaceOn", at = @At("HEAD"), cancellable = true)
-    private void mayPlaceOn(BlockState floor, BlockGetter world, BlockPos pos,
+    private void mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos,
                             CallbackInfoReturnable<Boolean> info) {
-        if(floor.getBlock() instanceof SlabBlock && floor.getValue(SlabBlock.TYPE).equals(SlabType.BOTTOM)) {
+        if(state.getBlock() instanceof SlabBlock && state.getValue(SlabBlock.TYPE).equals(SlabType.BOTTOM)) {
             info.setReturnValue(false);
         }
     }

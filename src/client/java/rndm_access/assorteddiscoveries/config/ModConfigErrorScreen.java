@@ -1,6 +1,6 @@
 package rndm_access.assorteddiscoveries.config;
 
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
@@ -34,18 +34,18 @@ public class ModConfigErrorScreen extends Screen {
     }
 
     @Override
-    public void render(@NonNull GuiGraphics gui, int mouseX, int mouseY, float deltaTicks) {
-        super.render(gui, mouseX, mouseY, deltaTicks);
+    public void extractBackground(@NonNull GuiGraphicsExtractor gui, int mouseX, int mouseY, float deltaTicks) {
+        super.extractBackground(gui, mouseX, mouseY, deltaTicks);
         String errorStr = ModServerConfig.getConfigError();
         FormattedText errorText = FormattedText.of(errorStr, Style.EMPTY.withColor(ERROR_TEXT_COLOR));
         int centeredX = this.width / 2;
 
-        gui.drawCenteredString(this.font, this.title, centeredX, 40 - this.font.lineHeight - 10, DEFAULT_TEXT_COLOR);
-        gui.drawCenteredString(this.font, DESC_LINE_ONE, centeredX, 60 - this.font.lineHeight - 10, DEFAULT_TEXT_COLOR);
-        gui.drawCenteredString(this.font, DESC_LINE_TWO, centeredX, 70 - this.font.lineHeight - 10, DEFAULT_TEXT_COLOR);
-        gui.drawCenteredString(this.font, DESC_LINE_THREE, centeredX, 80 - this.font.lineHeight - 10, DEFAULT_TEXT_COLOR);
-        gui.drawCenteredString(this.font, DESC_LINE_FOUR, centeredX, 90 - this.font.lineHeight - 10, DEFAULT_TEXT_COLOR);
-        gui.drawWordWrap(this.font, errorText, centeredX - 80, 110 - this.font.lineHeight - 10, 200, DEFAULT_TEXT_COLOR);
+        gui.centeredText(this.font, this.title, centeredX, 40 - this.font.lineHeight - 10, DEFAULT_TEXT_COLOR);
+        gui.centeredText(this.font, DESC_LINE_ONE, centeredX, 60 - this.font.lineHeight - 10, DEFAULT_TEXT_COLOR);
+        gui.centeredText(this.font, DESC_LINE_TWO, centeredX, 70 - this.font.lineHeight - 10, DEFAULT_TEXT_COLOR);
+        gui.centeredText(this.font, DESC_LINE_THREE, centeredX, 80 - this.font.lineHeight - 10, DEFAULT_TEXT_COLOR);
+        gui.centeredText(this.font, DESC_LINE_FOUR, centeredX, 90 - this.font.lineHeight - 10, DEFAULT_TEXT_COLOR);
+        gui.textWithWordWrap(this.font, errorText, centeredX - 80, 110 - this.font.lineHeight - 10, 200, DEFAULT_TEXT_COLOR);
     }
 
     @Override

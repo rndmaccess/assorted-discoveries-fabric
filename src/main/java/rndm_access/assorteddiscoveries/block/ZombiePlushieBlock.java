@@ -7,6 +7,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jspecify.annotations.NonNull;
 
 public class ZombiePlushieBlock extends AbstractSimplePlushieBlock {
     public static final MapCodec<ZombiePlushieBlock> CODEC = simpleCodec(ZombiePlushieBlock::new);
@@ -20,7 +21,7 @@ public class ZombiePlushieBlock extends AbstractSimplePlushieBlock {
     }
 
     @Override
-    protected MapCodec<ZombiePlushieBlock> codec() {
+    protected @NonNull MapCodec<ZombiePlushieBlock> codec() {
         return CODEC;
     }
 

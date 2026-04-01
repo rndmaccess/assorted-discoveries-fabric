@@ -13,9 +13,9 @@ import rndm_access.assorteddiscoveries.core.ModBlockTags;
 @Mixin(CropBlock.class)
 public abstract class CropBlockMixin {
     @Inject(method = "mayPlaceOn", at = @At("HEAD"), cancellable = true)
-    private void mayPlaceOn(BlockState floor, BlockGetter world, BlockPos pos,
+    private void mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos,
                             CallbackInfoReturnable<Boolean> info) {
-        if(floor.is(ModBlockTags.OVERWORLD_PLANTER_BOXES)) {
+        if(state.is(ModBlockTags.OVERWORLD_PLANTER_BOXES)) {
             info.setReturnValue(true);
         }
     }

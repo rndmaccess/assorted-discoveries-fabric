@@ -24,7 +24,7 @@ import net.minecraft.world.level.block.state.BlockState;
 @Mixin(BoneMealItem.class)
 public abstract class BoneMealItemMixin {
     @Shadow
-    public static void addGrowthParticles(LevelAccessor world, BlockPos pos, int count) {}
+    public static void addGrowthParticles(LevelAccessor level, BlockPos pos, int count) {}
 
     @Inject(method = "useOn", at = @At("HEAD"), cancellable = true)
     private void useOn(UseOnContext context, CallbackInfoReturnable<InteractionResult> info) {

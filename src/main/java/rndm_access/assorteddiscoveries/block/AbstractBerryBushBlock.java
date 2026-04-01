@@ -99,7 +99,7 @@ public abstract class AbstractBerryBushBlock extends VegetationBlock implements 
     @Override
     public void entityInside(@NonNull BlockState state, @NonNull Level world, @NonNull BlockPos pos, Entity entity,
                              @NonNull InsideBlockEffectApplier handler, boolean bl) {
-        if (entity.getType().is(this.mobsImmune())) {
+        if (entity.is(this.mobsImmune())) {
             return;
         }
 
@@ -133,7 +133,7 @@ public abstract class AbstractBerryBushBlock extends VegetationBlock implements 
 
             popResource(world, pos, berryStack);
             world.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS,
-                    1.0F, 0.8F + world.random.nextFloat() * 0.4F);
+                    1.0F, 0.8F + world.getRandom().nextFloat() * 0.4F);
             world.setBlock(pos, state.setValue(AGE, 1), 2);
             return InteractionResult.SUCCESS;
         }

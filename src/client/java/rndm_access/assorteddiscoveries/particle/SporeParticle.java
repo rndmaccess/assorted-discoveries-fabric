@@ -19,7 +19,7 @@ public class SporeParticle extends SingleQuadParticle {
     }
 
     @Override
-    public int getLightColor(float tint) {
+    public int getLightCoords(float tint) {
         return 240;
     }
 

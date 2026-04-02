@@ -5,9 +5,9 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockColorRegistry;
 import net.minecraft.client.color.block.BlockTintSource;
+import net.minecraft.client.color.block.BlockTintSources;
 import net.minecraft.client.particle.FlameParticle;
 import net.minecraft.client.particle.LavaParticle;
-import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.block.BlockAndTintGetter;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.core.BlockPos;
@@ -41,17 +41,7 @@ public class AssortedDiscoveriesClient implements ClientModInitializer {
     }
 
     private static void registerBlockColors() {
-        BlockColorRegistry.register(List.of(new BlockTintSource() {
-            @Override
-            public int color(@NonNull BlockState state) {
-                return -1;
-            }
-
-            @Override
-            public int colorInWorld(@NonNull BlockState state, @NonNull BlockAndTintGetter level, @NonNull BlockPos pos) {
-                return BiomeColors.getAverageGrassColor(level, pos);
-            }
-        }), ModBlocks.ENDERMAN_PLUSHIE, ModBlocks.GRASS_SLAB);
+        BlockColorRegistry.register(List.of(BlockTintSources.grassBlock()), ModBlocks.ENDERMAN_PLUSHIE, ModBlocks.GRASS_SLAB);
 
         BlockColorRegistry.register(List.of(new BlockTintSource() {
             @Override

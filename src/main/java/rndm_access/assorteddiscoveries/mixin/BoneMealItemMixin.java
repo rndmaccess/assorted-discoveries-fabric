@@ -1,7 +1,11 @@
 package rndm_access.assorteddiscoveries.mixin;
 
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.gameevent.GameEvent;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -9,6 +13,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import rndm_access.assorteddiscoveries.core.ModBlockTags;
 import rndm_access.assorteddiscoveries.core.ModBlocks;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
@@ -18,38 +24,63 @@ import net.minecraft.world.item.BoneMealItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 
 @Mixin(BoneMealItem.class)
 public abstract class BoneMealItemMixin {
-    @Shadow
-    public static void addGrowthParticles(LevelAccessor level, BlockPos pos, int count) {}
 
     @Inject(method = "useOn", at = @At("HEAD"), cancellable = true)
     private void useOn(UseOnContext context, CallbackInfoReturnable<InteractionResult> info) {
         BlockPos pos = context.getClickedPos();
-        Level world = context.getLevel();
+        Level level = context.getLevel();
         ItemStack boneMealStack = context.getItemInHand();
-        Random random = new Random();
-        BlockState boneMealedBlock = world.getBlockState(pos);
-        boolean isEmptyAbove = world.getBlockState(pos.above()).isAir();
+        BlockState boneMealedBlock = level.getBlockState(pos);
+        boolean isEmptyAbove = level.getBlockState(pos.above()).isAir();
 
         // Grow snapdragons and ender grass on blocks in the END_BONE_MEALABLE_BLOCKS when using bone meal.
         if (boneMealedBlock.is(ModBlockTags.END_BONE_MEALABLE_BLOCKS) && isEmptyAbove) {
-            if (!world.isClientSide()) {
-                growEnderPlants(world, pos);
+            if (!level.isClientSide()) {
+                assert context.getPlayer() != null;
+                boneMealStack.causeUseVibration(context.getPlayer(), GameEvent.ITEM_INTERACT_FINISH);
+                List<BlockPos> poses = growEnderPlants(level, pos);
+
+                if (level instanceof ServerLevel serverLevel) {
+                    for (BlockPos blockPos : poses) {
+                        spawnGrowthParticles(serverLevel, blockPos);
+                    }
+                }
             }
+
             boneMealStack.shrink(1);
-            world.playSound(null, pos, SoundEvents.BONE_MEAL_USE, SoundSource.BLOCKS);
-            addGrowthParticles(world, pos, random.nextInt(10));
+            level.playSound(null, pos, SoundEvents.BONE_MEAL_USE, SoundSource.BLOCKS);
             info.setReturnValue(InteractionResult.SUCCESS);
         }
     }
 
     @Unique
-    private static void growEnderPlants(Level world, BlockPos centerPos) {
+    private static void spawnGrowthParticles(final ServerLevel serverLevel, final BlockPos pos) {
+        final double spreadWidth = 3.0F;
+        final double spreadHeight = 1.0F;
+        final ParticleOptions particle = ParticleTypes.HAPPY_VILLAGER;
+        RandomSource random = serverLevel.getRandom();
+
+        double xVelocity = random.nextGaussian() * 0.02;
+        double yVelocity = random.nextGaussian() * 0.02;
+        double zVelocity = random.nextGaussian() * 0.02;
+        double spreadStartOffset = (double)0.5F - spreadWidth;
+        double x = (double)pos.getX() + spreadStartOffset + random.nextDouble() * spreadWidth * (double)2.0F;
+        double y = (double)pos.getY() + random.nextDouble() * spreadHeight;
+        double z = (double)pos.getZ() + spreadStartOffset + random.nextDouble() * spreadWidth * (double)2.0F;
+
+        if (!serverLevel.getBlockState(BlockPos.containing(x, y, z).below()).isAir()) {
+            serverLevel.sendParticles(particle, x + 0.5, y + 0.5, z + 0.5, 1, xVelocity, yVelocity, zVelocity, 0.05);
+        }
+    }
+
+    @Unique
+    private static List<BlockPos> growEnderPlants(Level world, BlockPos centerPos) {
         Random random = new Random();
+        List<BlockPos> poses = new ArrayList<>();
 
         for (int i = 0; i < 128; ++i) {
             // Re-center the position on the block bone mealed.
@@ -62,23 +93,29 @@ public abstract class BoneMealItemMixin {
                 mutablePos.move(xOffset, yOffset, zOffset);
                 BlockPos pos = mutablePos.immutable();
 
-                placeBlocks(world, random, pos);
+                boolean canPlace = placeBlocks(world, random, pos);
+                if (canPlace) {
+                    poses.add(pos);
+                }
             }
         }
+        return poses;
     }
 
     @Unique
-    private static void placeBlocks(Level world, Random random, BlockPos pos) {
-        BlockState state = world.getBlockState(pos);
-        BlockState soilState = world.getBlockState(pos.below());
+    private static boolean placeBlocks(Level level, Random random, BlockPos pos) {
+        BlockState state = level.getBlockState(pos);
+        BlockState soilState = level.getBlockState(pos.below());
+        boolean canPlace = soilState.is(ModBlockTags.END_BONE_MEALABLE_BLOCKS) && state.isAir();
 
-        if (soilState.is(ModBlockTags.END_BONE_MEALABLE_BLOCKS) && state.isAir()) {
+        if (canPlace) {
             // There is a 40% chance to grow a snapdragon and a 60% chance to grow some ender grass.
             if(random.nextFloat() <= 0.4) {
-                world.setBlockAndUpdate(pos, ModBlocks.SNAPDRAGON.defaultBlockState());
+                level.setBlockAndUpdate(pos, ModBlocks.SNAPDRAGON.defaultBlockState());
             } else {
-                world.setBlockAndUpdate(pos, ModBlocks.SHORT_ENDER_GRASS.defaultBlockState());
+                level.setBlockAndUpdate(pos, ModBlocks.SHORT_ENDER_GRASS.defaultBlockState());
             }
         }
+        return canPlace;
     }
 }

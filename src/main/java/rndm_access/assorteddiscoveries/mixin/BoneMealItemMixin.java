@@ -1,7 +1,8 @@
 package rndm_access.assorteddiscoveries.mixin;
 
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.util.ParticleUtils;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -18,33 +19,38 @@ import net.minecraft.world.item.BoneMealItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 
 @Mixin(BoneMealItem.class)
 public abstract class BoneMealItemMixin {
-    @Shadow
-    public static void addGrowthParticles(LevelAccessor world, BlockPos pos, int count) {}
 
     @Inject(method = "useOn", at = @At("HEAD"), cancellable = true)
     private void useOn(UseOnContext context, CallbackInfoReturnable<InteractionResult> info) {
         BlockPos pos = context.getClickedPos();
-        Level world = context.getLevel();
+        Level level = context.getLevel();
         ItemStack boneMealStack = context.getItemInHand();
-        Random random = new Random();
-        BlockState boneMealedBlock = world.getBlockState(pos);
-        boolean isEmptyAbove = world.getBlockState(pos.above()).isAir();
+        BlockState boneMealedBlock = level.getBlockState(pos);
+        boolean isEmptyAbove = level.getBlockState(pos.above()).isAir();
 
         // Grow snapdragons and ender grass on blocks in the END_BONE_MEALABLE_BLOCKS when using bone meal.
         if (boneMealedBlock.is(ModBlockTags.END_BONE_MEALABLE_BLOCKS) && isEmptyAbove) {
-            if (!world.isClientSide()) {
-                growEnderPlants(world, pos);
+            if (!level.isClientSide()) {
+                growEnderPlants(level, pos);
             }
+            spawnGrowthParticles(level, pos);
+
             boneMealStack.shrink(1);
-            world.playSound(null, pos, SoundEvents.BONE_MEAL_USE, SoundSource.BLOCKS);
-            addGrowthParticles(world, pos, random.nextInt(10));
+            level.playSound(null, pos, SoundEvents.BONE_MEAL_USE, SoundSource.BLOCKS);
             info.setReturnValue(InteractionResult.SUCCESS);
         }
+    }
+
+    @Unique
+    private static void spawnGrowthParticles(Level level, BlockPos pos) {
+        int count = level.getRandom().nextInt(10);
+        BlockPos particlePos = pos.above();
+        ParticleUtils.spawnParticles(level, particlePos, count * 3, 3.0D, 1.0D,
+                false, ParticleTypes.HAPPY_VILLAGER);
     }
 
     @Unique
@@ -71,10 +77,13 @@ public abstract class BoneMealItemMixin {
     private static void placeBlocks(Level world, Random random, BlockPos pos) {
         BlockState state = world.getBlockState(pos);
         BlockState soilState = world.getBlockState(pos.below());
+        boolean canPlace = soilState.is(ModBlockTags.END_BONE_MEALABLE_BLOCKS) && state.isAir();
+        boolean shouldPlace = world.getRandom().nextFloat() <= 0.5F; // This gives the placement a sparse look!
 
-        if (soilState.is(ModBlockTags.END_BONE_MEALABLE_BLOCKS) && state.isAir()) {
-            // There is a 40% chance to grow a snapdragon and a 60% chance to grow some ender grass.
-            if(random.nextFloat() <= 0.4) {
+        if (canPlace && shouldPlace) {
+            boolean placeSnapdragon = random.nextFloat() <= 0.4F; // 40% chance
+
+            if(placeSnapdragon) {
                 world.setBlockAndUpdate(pos, ModBlocks.SNAPDRAGON.defaultBlockState());
             } else {
                 world.setBlockAndUpdate(pos, ModBlocks.SHORT_ENDER_GRASS.defaultBlockState());

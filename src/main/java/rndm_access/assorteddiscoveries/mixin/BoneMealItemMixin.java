@@ -13,8 +13,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import rndm_access.assorteddiscoveries.core.ModBlockTags;
 import rndm_access.assorteddiscoveries.core.ModBlocks;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
@@ -42,13 +40,7 @@ public abstract class BoneMealItemMixin {
             if (!level.isClientSide()) {
                 assert context.getPlayer() != null;
                 boneMealStack.causeUseVibration(context.getPlayer(), GameEvent.ITEM_INTERACT_FINISH);
-                List<BlockPos> poses = growEnderPlants(level, pos);
-
-                if (level instanceof ServerLevel serverLevel) {
-                    for (BlockPos blockPos : poses) {
-                        spawnGrowthParticles(serverLevel, blockPos);
-                    }
-                }
+                growEnderPlants(level, pos);
             }
 
             boneMealStack.shrink(1);
@@ -78,9 +70,8 @@ public abstract class BoneMealItemMixin {
     }
 
     @Unique
-    private static List<BlockPos> growEnderPlants(Level world, BlockPos centerPos) {
+    private static void growEnderPlants(Level world, BlockPos centerPos) {
         Random random = new Random();
-        List<BlockPos> poses = new ArrayList<>();
 
         for (int i = 0; i < 128; ++i) {
             // Re-center the position on the block bone mealed.
@@ -93,17 +84,13 @@ public abstract class BoneMealItemMixin {
                 mutablePos.move(xOffset, yOffset, zOffset);
                 BlockPos pos = mutablePos.immutable();
 
-                boolean canPlace = placeBlocks(world, random, pos);
-                if (canPlace) {
-                    poses.add(pos);
-                }
+                placeBlocks(world, random, pos);
             }
         }
-        return poses;
     }
 
     @Unique
-    private static boolean placeBlocks(Level level, Random random, BlockPos pos) {
+    private static void placeBlocks(Level level, Random random, BlockPos pos) {
         BlockState state = level.getBlockState(pos);
         BlockState soilState = level.getBlockState(pos.below());
         boolean canPlace = soilState.is(ModBlockTags.END_BONE_MEALABLE_BLOCKS) && state.isAir();
@@ -116,6 +103,5 @@ public abstract class BoneMealItemMixin {
                 level.setBlockAndUpdate(pos, ModBlocks.SHORT_ENDER_GRASS.defaultBlockState());
             }
         }
-        return canPlace;
     }
 }

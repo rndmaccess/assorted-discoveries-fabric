@@ -1,9 +1,7 @@
 package rndm_access.assorteddiscoveries.mixin;
 
-import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.util.RandomSource;
+import net.minecraft.util.ParticleUtils;
 import net.minecraft.world.level.gameevent.GameEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -42,6 +40,7 @@ public abstract class BoneMealItemMixin {
                 boneMealStack.causeUseVibration(context.getPlayer(), GameEvent.ITEM_INTERACT_FINISH);
                 growEnderPlants(level, pos);
             }
+            spawnGrowthParticles(level, pos);
 
             boneMealStack.shrink(1);
             level.playSound(null, pos, SoundEvents.BONE_MEAL_USE, SoundSource.BLOCKS);
@@ -50,23 +49,11 @@ public abstract class BoneMealItemMixin {
     }
 
     @Unique
-    private static void spawnGrowthParticles(final ServerLevel serverLevel, final BlockPos pos) {
-        final double spreadWidth = 3.0F;
-        final double spreadHeight = 1.0F;
-        final ParticleOptions particle = ParticleTypes.HAPPY_VILLAGER;
-        RandomSource random = serverLevel.getRandom();
-
-        double xVelocity = random.nextGaussian() * 0.02;
-        double yVelocity = random.nextGaussian() * 0.02;
-        double zVelocity = random.nextGaussian() * 0.02;
-        double spreadStartOffset = (double)0.5F - spreadWidth;
-        double x = (double)pos.getX() + spreadStartOffset + random.nextDouble() * spreadWidth * (double)2.0F;
-        double y = (double)pos.getY() + random.nextDouble() * spreadHeight;
-        double z = (double)pos.getZ() + spreadStartOffset + random.nextDouble() * spreadWidth * (double)2.0F;
-
-        if (!serverLevel.getBlockState(BlockPos.containing(x, y, z).below()).isAir()) {
-            serverLevel.sendParticles(particle, x + 0.5, y + 0.5, z + 0.5, 1, xVelocity, yVelocity, zVelocity, 0.05);
-        }
+    private static void spawnGrowthParticles(final Level level, final BlockPos pos) {
+        int count = level.getRandom().nextInt(10);
+        BlockPos particlePos = pos.above();
+        ParticleUtils.spawnParticles(level, particlePos, count * 3, 3.0D, 1.0D,
+                false, ParticleTypes.HAPPY_VILLAGER);
     }
 
     @Unique
@@ -95,7 +82,8 @@ public abstract class BoneMealItemMixin {
         BlockState soilState = level.getBlockState(pos.below());
         boolean canPlace = soilState.is(ModBlockTags.END_BONE_MEALABLE_BLOCKS) && state.isAir();
 
-        if (canPlace) {
+        // Make the plants sparser by only spawning them half the time!
+        if (canPlace && random.nextFloat() <= 0.5F) {
             // There is a 40% chance to grow a snapdragon and a 60% chance to grow some ender grass.
             if(random.nextFloat() <= 0.4) {
                 level.setBlockAndUpdate(pos, ModBlocks.SNAPDRAGON.defaultBlockState());

@@ -2,6 +2,7 @@ package rndm_access.assorteddiscoveries.mixin;
 
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.util.ParticleUtils;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.gameevent.GameEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -27,25 +28,33 @@ public abstract class BoneMealItemMixin {
 
     @Inject(method = "useOn", at = @At("HEAD"), cancellable = true)
     private void useOn(UseOnContext context, CallbackInfoReturnable<InteractionResult> info) {
-        BlockPos pos = context.getClickedPos();
+        BlockPos clickedPos = context.getClickedPos();
         Level level = context.getLevel();
-        ItemStack boneMealStack = context.getItemInHand();
-        BlockState boneMealedBlock = level.getBlockState(pos);
-        boolean isEmptyAbove = level.getBlockState(pos.above()).isAir();
+        boolean isBoneMealable = level.getBlockState(clickedPos).is(ModBlockTags.END_BONE_MEALABLE_BLOCKS);
+        BlockPos testPos = clickedPos.above();
+        boolean isEmptyAbove = level.getBlockState(testPos).isAir();
 
         // Grow snapdragons and ender grass on blocks in the END_BONE_MEALABLE_BLOCKS when using bone meal.
-        if (boneMealedBlock.is(ModBlockTags.END_BONE_MEALABLE_BLOCKS) && isEmptyAbove) {
-            if (!level.isClientSide()) {
-                assert context.getPlayer() != null;
-                boneMealStack.causeUseVibration(context.getPlayer(), GameEvent.ITEM_INTERACT_FINISH);
-                growEnderPlants(level, pos);
-            }
-            spawnGrowthParticles(level, pos);
-
-            boneMealStack.shrink(1);
-            level.playSound(null, pos, SoundEvents.BONE_MEAL_USE, SoundSource.BLOCKS);
+        if (isBoneMealable && !level.isOutsideBuildHeight(testPos) && isEmptyAbove) {
+            applyBoneMeal(context, level, clickedPos);
             info.setReturnValue(InteractionResult.SUCCESS);
         }
+    }
+
+    @Unique
+    private static void applyBoneMeal(UseOnContext context, Level level, BlockPos clickedPos) {
+        Player player = context.getPlayer();
+        ItemStack boneMealStack = context.getItemInHand();
+
+        if (!level.isClientSide()) {
+            assert player != null;
+            boneMealStack.causeUseVibration(player, GameEvent.ITEM_INTERACT_FINISH);
+            growEnderPlants(level, clickedPos);
+        }
+        spawnGrowthParticles(level, clickedPos);
+
+        boneMealStack.shrink(1);
+        level.playSound(null, clickedPos, SoundEvents.BONE_MEAL_USE, SoundSource.BLOCKS);
     }
 
     @Unique

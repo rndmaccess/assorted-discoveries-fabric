@@ -47,8 +47,9 @@ public abstract class BoneMealItemMixin {
         ItemStack boneMealStack = context.getItemInHand();
 
         if (!level.isClientSide()) {
-            assert player != null;
-            boneMealStack.causeUseVibration(player, GameEvent.ITEM_INTERACT_FINISH);
+            if (player != null) {
+                boneMealStack.causeUseVibration(player, GameEvent.ITEM_INTERACT_FINISH);
+            }
             growEnderPlants(level, clickedPos);
         }
         spawnGrowthParticles(level, clickedPos);

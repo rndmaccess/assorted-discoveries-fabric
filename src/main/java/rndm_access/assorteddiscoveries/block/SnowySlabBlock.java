@@ -80,7 +80,7 @@ public class SnowySlabBlock extends SlabBlock {
         return neighborState.isFaceSturdy(world, neighborPos, Direction.DOWN);
     }
 
-    private static boolean isBottom(BlockState state) {
+    protected static boolean isBottom(BlockState state) {
         return state.getValue(TYPE).equals(SlabType.BOTTOM);
     }
 

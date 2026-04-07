@@ -81,11 +81,12 @@ public abstract class BoneMealItemMixin {
         BlockState state = level.getBlockState(pos);
         BlockState soilState = level.getBlockState(pos.below());
         boolean canPlace = soilState.is(ModBlockTags.END_BONE_MEALABLE_BLOCKS) && state.isAir();
+        boolean shouldPlace = level.getRandom().nextFloat() <= 0.5F; // This gives the placement a sparse look!
 
-        // Make the plants sparser by only spawning them half the time!
-        if (canPlace && random.nextFloat() <= 0.5F) {
-            // There is a 40% chance to grow a snapdragon and a 60% chance to grow some ender grass.
-            if(random.nextFloat() <= 0.4) {
+        if (canPlace && shouldPlace) {
+            boolean placeSnapdragon = random.nextFloat() <= 0.4F; // 40% chance
+
+            if(placeSnapdragon) {
                 level.setBlockAndUpdate(pos, ModBlocks.SNAPDRAGON.defaultBlockState());
             } else {
                 level.setBlockAndUpdate(pos, ModBlocks.SHORT_ENDER_GRASS.defaultBlockState());

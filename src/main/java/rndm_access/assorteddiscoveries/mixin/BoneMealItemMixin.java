@@ -21,7 +21,6 @@ import net.minecraft.world.item.BoneMealItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.state.BlockState;
 
 @Mixin(BoneMealItem.class)
 public abstract class BoneMealItemMixin {
@@ -68,32 +67,34 @@ public abstract class BoneMealItemMixin {
     @Unique
     private static void growEnderPlants(Level level, BlockPos centerPos) {
         RandomSource random = level.getRandom();
-        BlockPos.MutableBlockPos mutablePos = centerPos.mutable();
-        BlockPos.MutableBlockPos belowPos = centerPos.below().mutable();
+        BlockPos.MutableBlockPos plantPos = centerPos.mutable();
+        BlockPos.MutableBlockPos soilPos = centerPos.below().mutable();
 
-        for (int i = 0; i < 128; ++i) {
-            // Re-center the position on the block bone mealed.
-            mutablePos.set(centerPos);
+        for (int i = 0; i < 256; ++i) {
+            plantPos.set(centerPos);
 
-            for (int j = 0; j < i / 16; ++j) {
-                int xOffset = random.nextInt(3) - 1;
-                int yOffset = (random.nextInt(3) - 1) * random.nextInt(3) / 2;
-                int zOffset = random.nextInt(3) - 1;
-                mutablePos.move(xOffset, yOffset, zOffset);
-                boolean shouldPlace = random.nextFloat() > 0.5F; // This gives the placement a sparse look!
+            // A short walk ensuring that it stays relatively close to the center. This "walk" favors the center.
+            int steps = 4 + random.nextInt(5);
+            for (int j = 0; j < steps; ++j) {
+                plantPos.move(random.nextInt(3) - 1, random.nextInt(2) - random.nextInt(2), random.nextInt(3) - 1);
+            }
 
-                if (shouldPlace) continue;
+            // Skip the blocks where plants can't grow!
+            if (!level.getBlockState(plantPos).isAir()) continue;
 
-                // Skip all the blocks that are not air!
-                BlockState state = level.getBlockState(mutablePos);
-                if (!state.isAir()) continue;
+            // Calculate distance from the true center
+            double distSq = plantPos.distSqr(centerPos);
+            double maxRadiusSq = 100.0; // 10 blocks out
 
-                belowPos.set(mutablePos.getX(), (mutablePos.getY() - 1), mutablePos.getZ());
-                BlockState soilState = level.getBlockState(belowPos);
+            // 1.0 at center, tapering to 0.0 at edge
+            float chance = (float) Math.max(0, 1.0 - (distSq / maxRadiusSq));
 
-                if (soilState.is(ModBlockTags.END_BONE_MEALABLE_BLOCKS)) {
-                    placeBlock(level, random, mutablePos);
-                }
+            // High density multiplier (0.9F) keeps the center thick
+            if (random.nextFloat() > (chance * 0.9F)) continue;
+
+            soilPos.set(plantPos.getX(), plantPos.getY() - 1, plantPos.getZ());
+            if (level.getBlockState(soilPos).is(ModBlockTags.END_BONE_MEALABLE_BLOCKS)) {
+                placeBlock(level, random, plantPos);
             }
         }
     }

@@ -1328,8 +1328,9 @@ public final class ModBlocks {
     public static final Block SMOOTH_QUARTZ_WALL = registerWall(SMOOTH_QUARTZ_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.SMOOTH_QUARTZ).setId(SMOOTH_QUARTZ_WALL_KEY));
     public static final ResourceKey<Block> GRASS_SLAB_KEY = makeRegistryKey("grass_slab");
-    public static final Block GRASS_SLAB = registerSnowySlab(GRASS_SLAB_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.GRASS_BLOCK).setId(GRASS_SLAB_KEY));
+    public static final Block GRASS_SLAB
+            = register(new GrassSlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GRASS_BLOCK)
+                    .setId(GRASS_SLAB_KEY)), GRASS_SLAB_KEY, true);
     public static final ResourceKey<Block> PODZOL_SLAB_KEY = makeRegistryKey("podzol_slab");
     public static final Block PODZOL_SLAB = registerSnowySlab(PODZOL_SLAB_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.PODZOL).setId(PODZOL_SLAB_KEY));

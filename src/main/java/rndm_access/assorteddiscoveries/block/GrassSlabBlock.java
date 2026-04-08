@@ -53,7 +53,8 @@ public class GrassSlabBlock extends SnowySlabBlock implements BonemealableBlock 
                 int zOffset = random.nextInt(3) - 1;
                 testPos.move(xOffset, yOffset, zOffset);
 
-                if (!level.getBlockState(testPos.below()).is(this) || level.getBlockState(testPos).isCollisionShapeFullBlock(level, testPos)) {
+                if (!(level.getBlockState(testPos.below()).getBlock() instanceof BonemealableBlock)
+                        || level.getBlockState(testPos).isCollisionShapeFullBlock(level, testPos)) {
                     continue label48;
                 }
             }

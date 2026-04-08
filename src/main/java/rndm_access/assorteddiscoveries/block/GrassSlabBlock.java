@@ -39,7 +39,8 @@ public class GrassSlabBlock extends SnowySlabBlock implements BonemealableBlock 
         BlockPos above = pos.above();
         BlockState grassState = Blocks.SHORT_GRASS.defaultBlockState();
         Block grassBlock = grassState.getBlock();
-        Optional<Holder.Reference<PlacedFeature>> grassFeature = level.registryAccess().lookupOrThrow(Registries.PLACED_FEATURE).get(VegetationPlacements.GRASS_BONEMEAL);
+        Optional<Holder.Reference<PlacedFeature>> grassFeature = level.registryAccess()
+                .lookupOrThrow(Registries.PLACED_FEATURE).get(VegetationPlacements.GRASS_BONEMEAL);
         BlockPos.MutableBlockPos testPos = above.mutable();
 
         label48:
@@ -60,10 +61,9 @@ public class GrassSlabBlock extends SnowySlabBlock implements BonemealableBlock 
             BlockState testState = level.getBlockState(testPos);
             if (testState.is(grassBlock) && random.nextInt(10) == 0) {
                 BonemealableBlock bonemealableBlock = (BonemealableBlock) grassBlock;
-                BlockPos immutablePos = testPos.immutable();
 
-                if (bonemealableBlock.isValidBonemealTarget(level, immutablePos, testState)) {
-                    bonemealableBlock.performBonemeal(level, random, immutablePos, testState);
+                if (bonemealableBlock.isValidBonemealTarget(level, testPos, testState)) {
+                    bonemealableBlock.performBonemeal(level, random, testPos, testState);
                 }
             }
 

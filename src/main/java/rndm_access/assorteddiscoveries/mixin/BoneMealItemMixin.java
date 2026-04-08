@@ -69,6 +69,7 @@ public abstract class BoneMealItemMixin {
     private static void growEnderPlants(Level level, BlockPos centerPos) {
         RandomSource random = level.getRandom();
         BlockPos.MutableBlockPos mutablePos = centerPos.mutable();
+        BlockPos.MutableBlockPos belowPos = centerPos.below().mutable();
 
         for (int i = 0; i < 128; ++i) {
             // Re-center the position on the block bone mealed.
@@ -79,11 +80,18 @@ public abstract class BoneMealItemMixin {
                 int yOffset = (random.nextInt(3) - 1) * random.nextInt(3) / 2;
                 int zOffset = random.nextInt(3) - 1;
                 mutablePos.move(xOffset, yOffset, zOffset);
-                boolean shouldPlace = random.nextFloat() <= 0.5F; // This gives the placement a sparse look!
-                BlockState state = level.getBlockState(mutablePos);
-                BlockState soilState = level.getBlockState(mutablePos.below());
+                boolean shouldPlace = random.nextFloat() > 0.5F; // This gives the placement a sparse look!
 
-                if (state.isAir() && shouldPlace && soilState.is(ModBlockTags.END_BONE_MEALABLE_BLOCKS)) {
+                if (shouldPlace) continue;
+
+                // Skip all the blocks that are not air!
+                BlockState state = level.getBlockState(mutablePos);
+                if (!state.isAir()) continue;
+
+                belowPos.set(mutablePos.getX(), (mutablePos.getY() - 1), mutablePos.getZ());
+                BlockState soilState = level.getBlockState(belowPos);
+
+                if (soilState.is(ModBlockTags.END_BONE_MEALABLE_BLOCKS)) {
                     placeBlock(level, random, mutablePos);
                 }
             }

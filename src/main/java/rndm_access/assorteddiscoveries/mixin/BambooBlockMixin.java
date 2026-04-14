@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class BambooBlockMixin {
     @Inject(method = "getStateForPlacement", at = @At("HEAD"), cancellable = true)
     private void getStateForPlacement(@NotNull BlockPlaceContext context, CallbackInfoReturnable<BlockState> cir) {
-        if(canStay(context.getLevel(), context.getClickedPos())) {
+        if(isSlabBottom(context.getLevel(), context.getClickedPos())) {
             cir.setReturnValue(null);
         }
     }
@@ -26,13 +26,13 @@ public abstract class BambooBlockMixin {
     @Inject(method = "canSurvive", at = @At("HEAD"), cancellable = true)
     private void canSurvive(BlockState state, LevelReader level, BlockPos pos,
                             CallbackInfoReturnable<Boolean> cir) {
-        if(canStay(level, pos)) {
+        if(isSlabBottom(level, pos)) {
             cir.setReturnValue(false);
         }
     }
 
     @Unique
-    private static boolean canStay(LevelReader world, BlockPos pos) {
+    private static boolean isSlabBottom(LevelReader world, BlockPos pos) {
         BlockState soil = world.getBlockState(pos.below());
 
         return soil.getBlock() instanceof SlabBlock && soil.getValue(SlabBlock.TYPE).equals(SlabType.BOTTOM);

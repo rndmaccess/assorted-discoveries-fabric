@@ -1,11 +1,11 @@
 package rndm_access.assorteddiscoveries.mixin;
 
 import com.google.common.collect.ImmutableMap;
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import net.minecraft.world.item.context.UseOnContext;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import rndm_access.assorteddiscoveries.core.ModBlocks;
 
 import java.util.Map;
@@ -15,7 +15,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.AxeItem;
-import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.WallBlock;
@@ -36,8 +35,8 @@ public abstract class AxeItemMixin {
             .put(ModBlocks.WARPED_WALL, ModBlocks.STRIPPED_WARPED_WALL)
             .put(ModBlocks.CHERRY_WALL, ModBlocks.STRIPPED_CHERRY_WALL).build();
 
-    @Inject(method = "useOn", at = @At("HEAD"), cancellable = true)
-    private void useOn(UseOnContext context, CallbackInfoReturnable<InteractionResult> cir) {
+    @ModifyReturnValue(method = "useOn", at = @At("RETURN"))
+    private InteractionResult useOn(InteractionResult original, UseOnContext context) {
         Level world = context.getLevel();
         BlockPos pos = context.getClickedPos();
         Player player = context.getPlayer();
@@ -53,7 +52,8 @@ public abstract class AxeItemMixin {
                     .setValue(WallBlock.EAST, state.getValue(WallBlock.EAST))
                     .setValue(WallBlock.UP, state.getValue(WallBlock.UP))
                     .setValue(WallBlock.WATERLOGGED, state.getValue(WallBlock.WATERLOGGED)));
-            cir.setReturnValue(InteractionResult.SUCCESS);
+            return InteractionResult.SUCCESS;
         }
+        return original;
     }
 }

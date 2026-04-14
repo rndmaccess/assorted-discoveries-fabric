@@ -1,5 +1,6 @@
 package rndm_access.assorteddiscoveries.mixin;
 
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.RandomSource;
@@ -8,8 +9,6 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import rndm_access.assorteddiscoveries.core.ModBlockTags;
 import rndm_access.assorteddiscoveries.core.ModBlocks;
 
@@ -25,8 +24,8 @@ import net.minecraft.world.level.Level;
 @Mixin(BoneMealItem.class)
 public abstract class BoneMealItemMixin {
 
-    @Inject(method = "useOn", at = @At("HEAD"), cancellable = true)
-    private void useOn(UseOnContext context, CallbackInfoReturnable<InteractionResult> info) {
+    @ModifyReturnValue(method = "useOn", at = @At("RETURN"))
+    private InteractionResult useOn(InteractionResult original, UseOnContext context) {
         BlockPos soilPos = context.getClickedPos();
         Level level = context.getLevel();
         boolean isBoneMealable = level.getBlockState(soilPos).is(ModBlockTags.END_BONE_MEALABLE_BLOCKS);
@@ -36,8 +35,9 @@ public abstract class BoneMealItemMixin {
         // Grow snapdragons and ender grass on blocks in the END_BONE_MEALABLE_BLOCKS when using bone meal.
         if (isBoneMealable && !level.isOutsideBuildHeight(centerPos) && isEmptyAbove) {
             applyBoneMeal(context, level, centerPos);
-            info.setReturnValue(InteractionResult.SUCCESS);
+            return InteractionResult.SUCCESS;
         }
+        return original;
     }
 
     @Unique

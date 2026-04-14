@@ -1,5 +1,6 @@
 package rndm_access.assorteddiscoveries.mixin;
 
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
@@ -13,31 +14,32 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import rndm_access.assorteddiscoveries.core.ModBlockTags;
 
 @Mixin(SnowyDirtBlock.class)
 public abstract class SnowyBlockMixin {
-    @Inject(method = "updateShape", at = @At("HEAD"), cancellable = true)
-    private void getStateForNeighborUpdate(BlockState state, LevelReader world, ScheduledTickAccess tickView, BlockPos pos,
-                                           Direction direction, BlockPos neighborPos, BlockState neighborState,
-                                           RandomSource random, CallbackInfoReturnable<BlockState> cir) {
+    @ModifyReturnValue(method = "updateShape", at = @At("RETURN"))
+    private BlockState getStateForNeighborUpdate(BlockState original, BlockState state, LevelReader world,
+                                                 ScheduledTickAccess tickView, BlockPos pos, Direction direction,
+                                                 BlockPos neighborPos, BlockState neighborState,
+                                                 RandomSource random) {
         if(direction == Direction.UP && this.isSnowSlabOrStairs(world, neighborPos, neighborState)) {
-            cir.setReturnValue(state.setValue(SnowyDirtBlock.SNOWY, true));
+            return state.setValue(SnowyDirtBlock.SNOWY, true);
         }
+        return original;
     }
 
-    @Inject(method = "getStateForPlacement", at = @At("HEAD"), cancellable = true)
-    private void getPlacementState(BlockPlaceContext context, CallbackInfoReturnable<BlockState> info) {
+    @ModifyReturnValue(method = "getStateForPlacement", at = @At("RETURN"))
+    private BlockState getPlacementState(BlockState original, BlockPlaceContext context) {
         Level world = context.getLevel();
         BlockPos neighborPos = context.getClickedPos().above();
         BlockState neighborState = context.getLevel().getBlockState(neighborPos);
         BlockState placedState = Block.byItem(context.getItemInHand().getItem()).defaultBlockState();
 
         if(this.isSnowSlabOrStairs(world, neighborPos, neighborState)) {
-            info.setReturnValue(placedState.setValue(SnowyDirtBlock.SNOWY, true));
+            return placedState.setValue(SnowyDirtBlock.SNOWY, true);
         }
+        return neighborState;
     }
 
     @Unique

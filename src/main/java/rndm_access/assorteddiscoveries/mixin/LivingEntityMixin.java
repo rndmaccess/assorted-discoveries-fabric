@@ -16,9 +16,9 @@ public abstract class LivingEntityMixin {
 
         // This lets rabbits fall 5 blocks before they take damage.
         if(isRabbit) {
-            fallDistance = Math.max(fallDistance - 4.0F, 0.0F);
+            boolean isInRange = (Math.max(fallDistance - 4.0F, 0.0F)) == 0.0F;
 
-            if(fallDistance == 0.0F) {
+            if(isInRange) {
                 return false;
             }
         }

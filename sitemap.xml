@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <!-- Your Homepage -->
+    <!-- Homepage -->
     <url>
         <loc>https://rndmaccess.github.io/assorted-discoveries-fabric/</loc>
         <priority>1.0</priority>
     </url>
-    <!-- Add a <url> block for every other page on your wiki below -->
+    <!-- Subpages -->
     <url>
         <loc>https://rndmaccess.github.io/assorted-discoveries-fabric/pages/bog_blossom.html</loc>
         <priority>0.8</priority>

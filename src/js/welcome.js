@@ -70,6 +70,7 @@ suggestionsList.addEventListener('click', (e) => {
     if (li) {
         searchInput.value = li.dataset.value; // Get text from data attribute
         suggestionsList.style.display = 'none'; // Hide list
+        searchInput.focus()
     }
 });
 

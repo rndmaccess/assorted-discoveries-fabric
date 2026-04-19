@@ -9,6 +9,10 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
+import rndm_access.assorteddiscoveries.config.ModClientConfig;
+import rndm_access.assorteddiscoveries.config.ModServerConfig;
+import rndm_access.assorteddiscoveries.config.ModServerConfigKeys;
+import rndm_access.assorteddiscoveries.config.json.deserializer.entries.BooleanConfigEntry;
 import rndm_access.assorteddiscoveries.core.ModBlockTags;
 import rndm_access.assorteddiscoveries.core.ModBlocks;
 
@@ -30,6 +34,17 @@ public abstract class BoneMealItemMixin {
         boolean isBoneMealable = level.getBlockState(soilPos).is(ModBlockTags.END_BONE_MEALABLE_BLOCKS);
         BlockPos centerPos = soilPos.above();
         boolean isEmptyAbove = level.getBlockState(centerPos).isAir();
+        boolean isEnabled = ((BooleanConfigEntry) ModServerConfig.getInstance()
+                .getEntry(ModServerConfigKeys.ENABLE_ENDER_PLANTS)).getValue();
+
+        if (!level.isClientSide() && !isEnabled) {
+            return original;
+        }
+
+        boolean isEnabledClient = ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_ENDER_PLANTS);
+        if (level.isClientSide() && !isEnabledClient) {
+            return original;
+        }
 
         // Grow snapdragons and ender grass on blocks in the END_BONE_MEALABLE_BLOCKS when using bone meal.
         if (isBoneMealable && !level.isOutsideBuildHeight(centerPos) && isEmptyAbove) {

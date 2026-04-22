@@ -45,6 +45,9 @@ module.exports = {
         new CopyPlugin({
             patterns: [
                 { from: "src/static/img", to: "static/img" },
+                { from: "src/favicon.png", to: "/favicon.png"},
+                { from: "src/robots.txt", to: "/robots.txt"},
+                { from: "src/sitemap.xml", to: "/sitemap.xml"}
             ],
         }),
     ],

@@ -27,9 +27,6 @@ module.exports = {
                     return entries;
                 }, {}),
             },
-            preprocessor: (content) => {
-                return content; // Prevents webpack from parsing the files in the static folder
-            },
             sources: [
                 {
                     tag: 'img',

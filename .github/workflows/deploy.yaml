@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Build the project with Webpack
-        run: npm run build # Assuming you have a "build" script in package.json (e.g., "build": "webpack")
+        run: npm run build -- --stats verbose
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

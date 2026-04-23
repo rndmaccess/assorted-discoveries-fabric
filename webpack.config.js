@@ -27,18 +27,13 @@ module.exports = {
                     return entries;
                 }, {}),
             },
-            // Add this preprocessor section
             preprocessor: (content) => {
-                // This stops the plugin from parsing attributes that contain 'static/'
-                // It treats them as plain strings so Webpack never "sees" the file
-                return content;
+                return content; // Prevents webpack from parsing the files in the static folder
             },
             sources: [
                 {
                     tag: 'img',
-                    // This regex says: process images, but IGNORE any path
-                    // containing "static/" or starting with "static/"
-                    filter: (args) => !args.value.includes('static/'),
+                    filter: (args) => !args.value.includes('static/'), // Ignore all paths containing static/
                 },
             ],
             js: {

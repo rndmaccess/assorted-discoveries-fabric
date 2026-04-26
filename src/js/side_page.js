@@ -115,7 +115,7 @@ export function createRecipeCycle(items, guiId) {
  * @param mainImg The image to replace
  */
 export function createButtonPanel(event, mainImg) {
-    const selectedElement = document.getElementById('selected');
+    const selectedElement = event.target.closest('.selected');
     const button = event.target.closest('.menu-btn');
     if (!button) return;
 
@@ -130,6 +130,6 @@ export function createButtonPanel(event, mainImg) {
 
     mainImg.src = newSrc;
     mainImg.alt = newAlt;
-    selectedElement.removeAttribute('id');
-    button.setAttribute('id', 'selected');
+    selectedElement.classList.remove('selected');
+    button.classList.add('selected');
 }

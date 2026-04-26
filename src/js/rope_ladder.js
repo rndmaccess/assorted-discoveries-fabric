@@ -11,6 +11,6 @@ if (craftingGui) createRecipeCycle(woodTypes, craftingGui);
 
 if (container) {
     container.addEventListener('click', (event) => {
-        createButtonPanel(event, mainImg);
+        createButtonPanel(event, container, mainImg);
     });
 }

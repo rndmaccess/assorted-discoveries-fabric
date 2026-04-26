@@ -15,5 +15,5 @@ if (warpedCraftingGui) createRecipeCycle(soilTypes, warpedCraftingGui);
 if (crimsonCraftingGui) createRecipeCycle(soilTypes, crimsonCraftingGui);
 
 container.addEventListener('click', (event) => {
-    createButtonPanel(event, mainImg);
+    createButtonPanel(event, container, mainImg);
 });

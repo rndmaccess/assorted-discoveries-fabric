@@ -131,6 +131,9 @@ export function createButtonPanel(event, containerId, mainImg) {
 
     mainImg.src = newSrc;
     mainImg.alt = newAlt;
-    selectedElement.classList.remove('selected');
+
+    if (selectedElement) {
+        selectedElement.classList.remove('selected');
+    }
     button.classList.add('selected');
 }

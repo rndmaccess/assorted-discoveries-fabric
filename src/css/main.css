@@ -117,6 +117,31 @@ table {
     text-align: left;
 }
 
+.tag-container {
+    display: flex;
+    flex-wrap: wrap; /* Wraps tags to next line if space is tight */
+    gap: 8px;
+    font-family: 'Courier New', monospace; /* Professional dev look */
+}
+
+.mc-tag {
+    background: #2d2d2d;
+    color: #f1f1f1;
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    border: 1px solid #444;
+}
+
+.mc-tag small {
+    color: #888; /* Fades the namespace prefix */
+    margin-right: 2px;
+}
+
+.c-namespace {
+    border-color: #5555ff; /* Color code custom namespaces differently */
+}
+
 /* Desktop properties */
 @media (min-width: 1024px) {
     body {

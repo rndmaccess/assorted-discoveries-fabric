@@ -124,8 +124,8 @@ export function createButtonPanel(event, containerId, mainImg) {
     const typeName = type.replaceAll("_", " ");
     const firstLetter = type[0];
     const a = isVowel(firstLetter) ? "an" : "a";
-    const srcPattern = button.dataset.srcPattern;
-    const altPattern = button.dataset.altPattern;
+    const srcPattern = mainImg.dataset.srcPattern;
+    const altPattern = mainImg.dataset.altPattern;
     const newSrc = srcPattern.replaceAll("{type}", type);
     const newAlt = altPattern.replaceAll("{a}", a).replaceAll("{type}", typeName);
 

@@ -36,7 +36,7 @@ body {
 
 .main-container {
     border-radius: 1rem;
-    max-width: 75rem;
+    max-width: 90%;
     margin: 2.5rem auto;
     padding: 2.5rem;
 
@@ -142,8 +142,36 @@ table {
     border-color: #5555ff; /* Color code custom namespaces differently */
 }
 
+/* Tooltip Container */
+#mc-tooltip {
+    position: fixed;
+    pointer-events: none; /* Let clicks pass through */
+    z-index: 1000;
+    display: none;
+    padding: 8px 12px;
+    background: rgba(16, 0, 16, 0.92); /* Dark purple-black */
+
+    /* Minecraft Border: Purple Gradient */
+    border: 2px solid;
+    border-image: linear-gradient(to bottom, #5000ff, #28007f) 1;
+
+    color: white;
+    font-family: 'Minecraft', 'Courier New', monospace; /* Use a pixel font if you have one */
+    text-shadow: 2px 2px 0px #3f3f3f;
+    font-size: 16px;
+    white-space: nowrap;
+}
+
+/* Optional: Minecraft Rarity Colors */
+.tooltip-title { color: #ffffff; }
+.tooltip-description { color: #aaaaaa; display: block; font-size: 14px; }
+
 /* Desktop properties */
 @media (min-width: 1024px) {
+    .main-container {
+        max-width: 62.5%;
+    }
+
     body {
         font-size: 1rem;
     }

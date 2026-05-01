@@ -1,6 +1,6 @@
 body {
     /* Sleek dark gradient with deep blue-black */
-    background: linear-gradient(135deg, #0d0d0d 0%, #1a1a2e 50%, #0a0f1a 100%);
+    background: linear-gradient(135deg, #21213b 0%, #1a1a2e 50%, #0a0f1a 100%);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #F5F5F5;
     min-height: 100vh;
@@ -41,7 +41,7 @@ body {
     padding: 2.5rem;
 
     /* Darker container gradient to complement body */
-    background: linear-gradient(145deg, #1f1f2e 0%, #1a2436 100%);
+    background: linear-gradient(145deg, #323258 0%, #1a1a2e 100%);
     color: #F5F5F5;
 
     display: flex;
@@ -78,6 +78,7 @@ a:hover { cursor: pointer; }
     display: block;
     margin: auto;
     max-width: 100%;
+    padding-top: 2rem;
 }
 
 .img-heading {
@@ -94,7 +95,7 @@ a:hover { cursor: pointer; }
     /* Soft inner shadow to add depth */
     box-shadow: inset 0 0 0.625rem #0a0f1a;
 
-    background-color: #1f1f2e;
+    background-color: #323258;
 
     border-radius: 1rem;
     padding: 1rem;

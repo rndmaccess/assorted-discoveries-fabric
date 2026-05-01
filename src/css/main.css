@@ -118,6 +118,10 @@ table {
     text-align: left;
 }
 
+.desc-container {
+    margin: 1rem;
+}
+
 .tag-container {
     display: flex;
     flex-wrap: wrap; /* Wraps tags to next line if space is tight */

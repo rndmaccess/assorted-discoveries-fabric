@@ -122,6 +122,10 @@ table {
     margin: 1rem;
 }
 
+.title {
+    text-align: center;
+}
+
 .tag-container {
     display: flex;
     flex-wrap: wrap; /* Wraps tags to next line if space is tight */

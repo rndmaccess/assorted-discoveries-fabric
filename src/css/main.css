@@ -27,12 +27,12 @@ html, body {
 }
 
 .menu-btn:hover {
-    border-bottom-color: #73A5C6;
+    border-bottom-color: #8a8ad9;
     transition: border-bottom-color 0.15s ease-out;
 }
 
 .selected {
-    border-bottom-color: #73A5C6;
+    border-bottom-color: #8a8ad9;
 }
 
 .main-container {
@@ -141,7 +141,7 @@ table {
 }
 
 .c-namespace {
-    border-color: #5555ff; /* Color code custom namespaces differently */
+    border-color: #8a8ad9;
 }
 
 /* Tooltip Container */

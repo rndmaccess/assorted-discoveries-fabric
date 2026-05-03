@@ -1,7 +1,7 @@
 // No module declaration needed; esbuild-loader handles imports.
 import { createRecipeCycle, createButtonPanel } from "./side_page";
 
-const headerImages = document.getElementsByClassName('header-images');
+const headerImages = document.getElementsByClassName('header-image');
 const container = document.getElementById('button-container');
 const overworldCraftingGui = document.getElementById('overworld-crafting-gui');
 const warpedCraftingGui = document.getElementById('warped-crafting-gui');

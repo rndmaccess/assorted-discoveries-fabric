@@ -23,6 +23,10 @@ const documents = [
     {
         id: 5,
         title: 'zombie plushie'
+    },
+    {
+        id: 6,
+        title: 'wolf plushie'
     }
 ]
 

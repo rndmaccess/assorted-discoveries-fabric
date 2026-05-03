@@ -1,7 +1,7 @@
 // No module declaration needed; esbuild-loader handles imports.
 import { createRecipeCycle, createButtonPanel } from "./side_page";
 
-const mainImg = document.getElementById('main-img');
+const headerImages = document.getElementsByClassName('header-image');
 const container = document.getElementById('button-container');
 const craftingGui = document.getElementById('crafting-gui');
 const woodTypes = ["oak", "spruce", "birch", "jungle", "acacia", "dark_oak", "mangrove",
@@ -11,6 +11,6 @@ if (craftingGui) createRecipeCycle(woodTypes, craftingGui);
 
 if (container) {
     container.addEventListener('click', (event) => {
-        createButtonPanel(event, container, mainImg);
+        createButtonPanel(event, container, headerImages);
     });
 }

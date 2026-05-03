@@ -1,7 +1,7 @@
 // No module declaration needed; esbuild-loader handles imports.
 import { createRecipeCycle, createButtonPanel } from "./side_page";
 
-const mainImg = document.getElementById('main-img');
+const headerImages = document.getElementsByClassName('header-images');
 const container = document.getElementById('button-container');
 const overworldCraftingGui = document.getElementById('overworld-crafting-gui');
 const warpedCraftingGui = document.getElementById('warped-crafting-gui');
@@ -15,5 +15,5 @@ if (warpedCraftingGui) createRecipeCycle(soilTypes, warpedCraftingGui);
 if (crimsonCraftingGui) createRecipeCycle(soilTypes, crimsonCraftingGui);
 
 container.addEventListener('click', (event) => {
-    createButtonPanel(event, container, mainImg);
+    createButtonPanel(event, container, headerImages);
 });

@@ -54,22 +54,25 @@ export function createRecipeCycle(items, guiId) {
  *
  * @param event {PointerEvent} The click event from the button container.
  * @param containerId The container's id surrounding the button panel.
- * @param mainImg The image to change. This is where data-src-pattern and data-alt-pattern should be defined.
+ * @param headerImages The images to change. This is where each data-src-pattern and data-alt-pattern should be defined.
  */
-export function createButtonPanel(event, containerId, mainImg) {
+export function createButtonPanel(event, containerId, headerImages) {
     const selectedElement = containerId.querySelector('.selected');
     const button = event.target.closest('.menu-btn');
     if (!button) return;
 
     const type = button.dataset.type;
     const typeName = type.replaceAll("_", " ");
-    const srcPattern = mainImg.dataset.srcPattern;
-    const altPattern = mainImg.dataset.altPattern;
-    const newSrc = srcPattern.replaceAll("{type}", type);
-    const newAlt = altPattern.replaceAll("{type}", typeName);
 
-    mainImg.src = newSrc;
-    mainImg.alt = newAlt;
+    for (const headerImage of headerImages) {
+        const srcPattern = headerImage.dataset.srcPattern;
+        const altPattern = headerImage.dataset.altPattern;
+        const newSrc = srcPattern.replaceAll("{type}", type);
+        const newAlt = altPattern.replaceAll("{type}", typeName);
+
+        headerImage.src = newSrc;
+        headerImage.alt = newAlt;
+    }
 
     if (selectedElement) {
         selectedElement.classList.remove('selected');

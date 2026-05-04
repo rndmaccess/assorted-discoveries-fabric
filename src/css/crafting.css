@@ -68,8 +68,3 @@
     height: auto;
     transform: translate(-50%, -50%);
 }
-
-.multi-craft {
-    display: flex;
-    gap: 1em;
-}

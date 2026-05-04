@@ -58,7 +58,7 @@ html, body {
 /* Styled links */
 a { text-decoration: underline; }
 a:link { color: #73A5C6; }
-a:visited { color: #737cc6; }
+a:visited { color: #8a8ad9; }
 a:active { color: #c673a5; }
 a:hover { cursor: pointer; }
 
@@ -131,8 +131,8 @@ table {
     color: #f1f1f1;
     padding: 4px 10px;
     border-radius: 15px;
-    font-size: 0.9rem;
     border: 1px solid #444;
+    font-size: 1.0125rem;
 }
 
 .mc-tag small {
@@ -143,30 +143,6 @@ table {
 .c-namespace {
     border-color: #8a8ad9;
 }
-
-/* Tooltip Container */
-#mc-tooltip {
-    position: fixed;
-    pointer-events: none; /* Let clicks pass through */
-    z-index: 1000;
-    display: none;
-    padding: 8px 12px;
-    background: rgba(16, 0, 16, 0.92); /* Dark purple-black */
-
-    /* Minecraft Border: Purple Gradient */
-    border: 2px solid;
-    border-image: linear-gradient(to bottom, #5000ff, #28007f) 1;
-
-    color: white;
-    font-family: 'Minecraft', 'Courier New', monospace; /* Use a pixel font if you have one */
-    text-shadow: 2px 2px 0px #3f3f3f;
-    font-size: 16px;
-    white-space: nowrap;
-}
-
-/* Optional: Minecraft Rarity Colors */
-.tooltip-title { color: #ffffff; }
-.tooltip-description { color: #aaaaaa; display: block; font-size: 14px; }
 
 /* Desktop properties */
 @media (min-width: 1024px) {
@@ -194,5 +170,9 @@ table {
 
     .menu-btn {
         font-size: 0.75rem;
+    }
+
+    .mc-tag {
+        font-size: 0.9rem;
     }
 }

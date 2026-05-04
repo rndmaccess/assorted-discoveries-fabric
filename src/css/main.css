@@ -10,9 +10,9 @@ html, body {
 
 #button-container {
     display: flex;
-    align-items: center;
     flex-wrap: wrap;
     padding-bottom: 0.5rem;
+    justify-content: center;
 }
 
 .menu-btn {

@@ -75,11 +75,14 @@ a:hover { cursor: pointer; }
     flex: 1; /* Space the items equally */
 }
 
+#button-container {
+    padding-bottom: 0.5rem;
+}
+
 .main-img {
     display: block;
     margin: auto;
     max-width: 100%;
-    padding-top: 2rem;
 }
 
 .img-container {

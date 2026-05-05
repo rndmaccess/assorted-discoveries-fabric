@@ -3,11 +3,12 @@
   "category": "misc",
   "group": "wolf_plushies",
   "pattern": [
-    "WWW",
+    "LLL",
     "BIB",
     "WWW"
   ],
   "key": {
+    "L": "minecraft:light_gray_wool",
     "W": "minecraft:white_wool",
     "B": "minecraft:black_wool",
     "I": "minecraft:bone"

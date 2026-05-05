@@ -27,6 +27,10 @@ const documents = [
     {
         id: 6,
         title: 'wolf plushie'
+    },
+    {
+        id: 7,
+        title: 'strider plushie'
     }
 ]
 

@@ -11,7 +11,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class StriderPlushieBlock extends AbstractSimplePlushieBlock {
     public static final MapCodec<StriderPlushieBlock> CODEC = simpleCodec(StriderPlushieBlock::new);
     private static final VoxelShape NORTH_SHAPE = Block.box(2.0, 0.0, 3.0,
-            14.0, 13.0, 13.0);
+            14.0, 11.0, 13.0);
 
     public StriderPlushieBlock(BlockBehaviour.Properties settings) {
         super(settings);

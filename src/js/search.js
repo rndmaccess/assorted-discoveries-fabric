@@ -57,7 +57,6 @@ const documents = [
 
 miniSearch.addAll(documents);
 
-const searchInput = document.getElementById('search');
 const searchList = document.getElementById('search-results');
 
 const getSearchResults = (query) => {

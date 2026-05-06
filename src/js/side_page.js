@@ -5,7 +5,7 @@ async function cycle_recipe(items, cycleItems, state) {
         const item = cycleItems[itemIndex];
         const type = item.dataset.type;
 
-        if (!cycleItems.contains(type)) continue;
+        if (!cycleItems.has(type)) continue;
 
         const newSrc = items.get(type)[itemIndex];
         item.setAttribute("src", newSrc);

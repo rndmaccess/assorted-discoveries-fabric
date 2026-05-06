@@ -57,7 +57,7 @@ const documents = [
 
 miniSearch.addAll(documents);
 
-const searchList = document.getElementById('search-results');
+
 
 const getSearchResults = (query) => {
     const searchOptions = {
@@ -68,7 +68,15 @@ const getSearchResults = (query) => {
 }
 
 const renderResults = (results) => {
-    searchList.insertAdjacentHTML('beforeend', results.map((title, description, link, img ) => {
+    const searchList = document.getElementById('search-results');
+
+    if (!searchList) {
+        console.error('Search results not found');
+        return;
+    }
+
+    searchList.innerHTML = "";
+    searchList.insertAdjacentHTML('beforeend', results.map(({ title, description, link, img }) => {
         if (title === undefined) {
             return "";
         }

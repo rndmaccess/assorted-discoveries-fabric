@@ -1,3 +1,8 @@
+import allayPlushie from '../img/allay_plushie.webp';
+import vexPlushie from '../img/vex_plushie.webp';
+import striderPlushie from '../img/strider_plushie.webp';
+import endermanPlushie from '../img/enderman_plushie.webp';
+
 let miniSearch = new MiniSearch({
     fields: ['title', 'description', 'link', 'img'],
     storeFields: ['title', 'description', 'link', 'img'],
@@ -30,7 +35,7 @@ const documents = [
         title: 'enderman plushie',
         description: 'The enderman plushie',
         link: './enderman_plushie.html',
-        img: '../static/img/enderman_plushie.webp',
+        img: endermanPlushie,
     },
     {
         id: 5,
@@ -51,21 +56,21 @@ const documents = [
         title: 'strider plushie',
         description: 'The strider plushie',
         link: './strider_plushie.html',
-        img: '../static/img/strider_plushie.webp',
+        img: striderPlushie,
     },
     {
         id: 8,
         title: 'allay plushie',
         description: 'The allay plushie',
         link: './allay_plushie.html',
-        img: '../static/img/allay_plushie.webp',
+        img: allayPlushie,
     },
     {
         id: 9,
         title: 'vex plushie',
         description: 'The vex plushie',
         link: './vex_plushie.html',
-        img: '../static/img/vex_plushie.webp',
+        img: vexPlushie,
     }
 ];
 

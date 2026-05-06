@@ -58,6 +58,7 @@ const documents = [
 miniSearch.addAll(documents);
 
 const searchInput = document.getElementById('search');
+const searchList = document.getElementById('search-results');
 
 const getSearchResults = (query) => {
     const searchOptions = {
@@ -68,8 +69,6 @@ const getSearchResults = (query) => {
 }
 
 const renderResults = (results) => {
-    const searchList = document.getElementById('search-results');
-
     searchList.insertAdjacentHTML('beforeend', results.map((title, description, link, img ) => {
         if (title === undefined) {
             return "";
@@ -88,14 +87,15 @@ const renderResults = (results) => {
     }).join('\n'));
 }
 
-searchInput.addEventListener('keydown', function (event) {
-    if (event.key === 'Enter') {
-        window.location.href = ('pages/search.html');
-        const query = event.target.value.toLowerCase();
+window.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const query = urlParams.get('q');
 
-        if (query.trim() === '') return;
+    if (query) {
+        const searchInput = document.getElementById('search');
+        if (searchInput) searchInput.value = query;
 
-        let results = getSearchResults(query);
+        const results = getSearchResults(query);
         renderResults(results);
     }
-})
+});

@@ -30,7 +30,7 @@ const documents = [
         title: 'enderman plushie',
         description: 'The enderman plushie',
         link: './enderman_plushie.html',
-        img: '../img/enderman_plushie.webp',
+        img: '../static/img/enderman_plushie.webp',
     },
     {
         id: 5,
@@ -44,7 +44,7 @@ const documents = [
         title: 'wolf plushie',
         description: 'The wolf plushie',
         link: './wolf_plushie.html',
-        img: '../static/img/wolf_plushie.webp',
+        img: '../static/img/pale_wolf_plushie.webp',
     },
     {
         id: 7,

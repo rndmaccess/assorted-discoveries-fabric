@@ -6,7 +6,7 @@ async function cycle_recipe(items, cycleItems, state) {
         const variants = items[type];
         const localIndex = state.step % variants.length;
 
-        const newSrc = items.get(type)[localIndex];
+        const newSrc = variants[localIndex];
         item.setAttribute("src", newSrc);
     }
 }

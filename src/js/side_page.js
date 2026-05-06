@@ -1,13 +1,15 @@
 async function cycle_recipe(items, cycleItems, state) {
-    state.typeIndex = (state.typeIndex + 1) % items.length; // Moves to the next index. When we hit the last index it will return to 0.
+    state.step++; // Moves to the next index. When we hit the last index it will return to 0.
 
-    for (let itemIndex = 0; itemIndex < cycleItems.length; itemIndex++) {
-        const item = cycleItems[itemIndex];
+    for (let item of cycleItems) {
         const type = item.dataset.type;
 
-        if (!cycleItems.has(type)) continue;
+        if (!items.has(type)) continue;
 
-        const newSrc = items.get(type)[itemIndex];
+        const variants = items[type];
+        const localIndex = state.step % variants.length;
+
+        const newSrc = items.get(type)[localIndex];
         item.setAttribute("src", newSrc);
     }
 }
@@ -25,7 +27,7 @@ async function cycle_recipe(items, cycleItems, state) {
  * @param guiId {HTMLElement} The parent container of the recipe.
  */
 export function createRecipeCycle(items, guiId) {
-    let state = { typeIndex: 0 };
+    let state = { step: 0 };
     const cycleItems = guiId.getElementsByClassName('cycle-item');
     const timeout = 2000;
 

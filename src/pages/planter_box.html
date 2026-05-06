@@ -23,75 +23,76 @@
                 <h2>
                     Overworld
                 </h2>
-                <div class="crafting-area" id="overworld-crafting-gui">
-                    <img class="back" src="../gui_images/crafting_table_display.webp" alt="3x3 crafting grid animation showing wood slabs in a U-shape around a central dirt block. Variants use overworld wood slabs (oak, birch, jungle, etc.) to create the appropriate planter box.">
-                    <div class="front">
-                        <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-src-pattern="../static/img/{blockType}_slab.webp" src="../static/img/oak_slab.webp" alt=""></div>
-                        <div class="slot"></div>
-                        <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-src-pattern="../static/img/{blockType}_slab.webp" src="../static/img/oak_slab.webp" alt=""></div>
+                <div id="crafting">
+                    <div class="crafting-area">
+                        <img class="back" src="../gui_images/crafting_table_display.webp" alt="3x3 crafting grid animation showing wood slabs in a U-shape around a central dirt block. Variants use overworld wood slabs (oak, birch, jungle, etc.) to create the appropriate planter box.">
+                        <div class="front">
+                            <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-type="slab" src="../img/oak_slab.webp" alt=""></div>
+                            <div class="slot"></div>
+                            <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-type="slab" src="../img/oak_slab.webp" alt=""></div>
 
-                        <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-src-pattern="../static/img/{blockType}_slab.webp" src="../static/img/oak_slab.webp" alt=""></div>
-                        <div class="slot"><img class="crafting-item" loading="lazy" src="../static/img/dirt.webp" alt=""></div>
-                        <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-src-pattern="../static/img/{blockType}_slab.webp" src="../static/img/oak_slab.webp" alt=""></div>
+                            <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-type="slab" src="../img/oak_slab.webp" alt=""></div>
+                            <div class="slot"><img class="crafting-item" loading="lazy" src="../img/dirt.webp" alt=""></div>
+                            <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-type="slab" src="../img/oak_slab.webp" alt=""></div>
 
-                        <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-src-pattern="../static/img/{blockType}_slab.webp" src="../static/img/oak_slab.webp" alt=""></div>
-                        <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-src-pattern="../static/img/{blockType}_slab.webp" src="../static/img/oak_slab.webp" alt=""></div>
-                        <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-src-pattern="../static/img/{blockType}_slab.webp" src="../static/img/oak_slab.webp" alt=""></div>
+                            <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-type="slab" src="../img/oak_slab.webp" alt=""></div>
+                            <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-type="slab" src="../img/oak_slab.webp" alt=""></div>
+                            <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-type="slab" src="../img/oak_slab.webp" alt=""></div>
+                        </div>
+                        <div class="front-result">
+                            <div><img class="result-item cycle-item" loading="lazy" data-type="planter_box" src="../img/oak_planter_box.webp" alt=""></div>
+                        </div>
                     </div>
-                    <div class="front-result">
-                        <div><img class="result-item cycle-item" loading="lazy" data-src-pattern="../static/img/{blockType}_planter_box.webp" src="../static/img/oak_planter_box.webp" alt=""></div>
+
+                    <h2>
+                        Nether
+                    </h2>
+                    <h3>
+                        Warped Planter Box
+                    </h3>
+                    <div class="crafting-area">
+                        <img class="back" src="../gui_images/crafting_table_display.webp" alt="3x3 crafting grid showing warped slabs in a U-shape around any central soul soil block creating a warped planter box.">
+                        <div class="front">
+                            <div class="slot"><img class="crafting-item" loading="lazy" src="../img/warped_slab.webp" alt=""></div>
+                            <div class="slot"></div>
+                            <div class="slot"><img class="crafting-item" loading="lazy" src="../img/warped_slab.webp" alt=""></div>
+
+                            <div class="slot"><img class="crafting-item" loading="lazy" src="../img/warped_slab.webp" alt=""></div>
+                            <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-type="soul_soil" src="../img/soul_soil.webp" alt=""></div>
+                            <div class="slot"><img class="crafting-item" loading="lazy" src="../img/warped_slab.webp" alt=""></div>
+
+                            <div class="slot"><img class="crafting-item" loading="lazy" src="../img/warped_slab.webp" alt=""></div>
+                            <div class="slot"><img class="crafting-item" loading="lazy" src="../img/warped_slab.webp" alt=""></div>
+                            <div class="slot"><img class="crafting-item" loading="lazy" src="../img/warped_slab.webp" alt=""></div>
+                        </div>
+                        <div class="front-result">
+                            <div><img class="result-item" loading="lazy" src="../img/warped_planter_box.webp" alt=""></div>
+                        </div>
+                    </div>
+
+                    <h3>
+                        Crimson Planter Box
+                    </h3>
+                    <div class="crafting-area">
+                        <img class="back" src="../gui_images/crafting_table_display.webp" alt="3x3 crafting grid showing crimson slabs in a U-shape around any central soul soil block creating a crimson planter box.">
+                        <div class="front">
+                            <div class="slot"><img class="crafting-item" loading="lazy" src="../img/crimson_slab.webp" alt=""></div>
+                            <div class="slot"></div>
+                            <div class="slot"><img class="crafting-item" loading="lazy" src="../img/crimson_slab.webp" alt=""></div>
+
+                            <div class="slot"><img class="crafting-item" loading="lazy" src="../img/crimson_slab.webp" alt=""></div>
+                            <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-type="soul_soil" src="../img/soul_soil.webp" alt=""></div>
+                            <div class="slot"><img class="crafting-item" loading="lazy" src="../img/crimson_slab.webp" alt=""></div>
+
+                            <div class="slot"><img class="crafting-item" loading="lazy" src="../img/crimson_slab.webp" alt=""></div>
+                            <div class="slot"><img class="crafting-item" loading="lazy" src="../img/crimson_slab.webp" alt=""></div>
+                            <div class="slot"><img class="crafting-item" loading="lazy" src="../img/crimson_slab.webp" alt=""></div>
+                        </div>
+                        <div class="front-result">
+                            <div><img class="result-item" loading="lazy" src="../img/crimson_planter_box.webp" alt=""></div>
+                        </div>
                     </div>
                 </div>
-
-                <h2>
-                    Nether
-                </h2>
-                <h3>
-                    Warped Planter Box
-                </h3>
-                <div class="crafting-area" id="warped-crafting-gui">
-                    <img class="back" src="../gui_images/crafting_table_display.webp" alt="3x3 crafting grid showing warped slabs in a U-shape around any central soul soil block creating a warped planter box.">
-                    <div class="front">
-                        <div class="slot"><img class="crafting-item" loading="lazy" src="../static/img/warped_slab.webp" alt=""></div>
-                        <div class="slot"></div>
-                        <div class="slot"><img class="crafting-item" loading="lazy" src="../static/img/warped_slab.webp" alt=""></div>
-
-                        <div class="slot"><img class="crafting-item" loading="lazy" src="../static/img/warped_slab.webp" alt=""></div>
-                        <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-src-pattern="../static/img/{blockType}.webp" src="../static/img/soul_soil.webp" alt=""></div>
-                        <div class="slot"><img class="crafting-item" loading="lazy" src="../static/img/warped_slab.webp" alt=""></div>
-
-                        <div class="slot"><img class="crafting-item" loading="lazy" src="../static/img/warped_slab.webp" alt=""></div>
-                        <div class="slot"><img class="crafting-item" loading="lazy" src="../static/img/warped_slab.webp" alt=""></div>
-                        <div class="slot"><img class="crafting-item" loading="lazy" src="../static/img/warped_slab.webp" alt=""></div>
-                    </div>
-                    <div class="front-result">
-                        <div><img class="result-item" loading="lazy" data-src-pattern="../static/img/{blockType}_planter_box.webp" src="../static/img/warped_planter_box.webp" alt=""></div>
-                    </div>
-                </div>
-
-                <h3>
-                    Crimson Planter Box
-                </h3>
-                <div class="crafting-area" id="crimson-crafting-gui">
-                    <img class="back" src="../gui_images/crafting_table_display.webp" alt="3x3 crafting grid showing crimson slabs in a U-shape around any central soul soil block creating a crimson planter box.">
-                    <div class="front">
-                        <div class="slot"><img class="crafting-item" loading="lazy" src="../static/img/crimson_slab.webp" alt=""></div>
-                        <div class="slot"></div>
-                        <div class="slot"><img class="crafting-item" loading="lazy" src="../static/img/crimson_slab.webp" alt=""></div>
-
-                        <div class="slot"><img class="crafting-item" loading="lazy" src="../static/img/crimson_slab.webp" alt=""></div>
-                        <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-src-pattern="../static/img/{blockType}.webp" src="../static/img/soul_soil.webp" alt=""></div>
-                        <div class="slot"><img class="crafting-item" loading="lazy" src="../static/img/crimson_slab.webp" alt=""></div>
-
-                        <div class="slot"><img class="crafting-item" loading="lazy" src="../static/img/crimson_slab.webp" alt=""></div>
-                        <div class="slot"><img class="crafting-item" loading="lazy" src="../static/img/crimson_slab.webp" alt=""></div>
-                        <div class="slot"><img class="crafting-item" loading="lazy" src="../static/img/crimson_slab.webp" alt=""></div>
-                    </div>
-                    <div class="front-result">
-                        <div><img class="result-item" loading="lazy" src="../static/img/crimson_planter_box.webp" alt=""></div>
-                    </div>
-                </div>
-
                 <h1>
                     Expansion
                 </h1>
@@ -161,7 +162,7 @@
                     <button class="menu-btn" data-type="warped">Warped</button>
                 </div>
 
-                <img class="main-img header-image" src="../static/img/oak_planter_box.webp" alt="oak planter box"
+                <img class="main-img header-image" src="../img/oak_planter_box.webp" alt="oak planter box"
                      data-src-pattern="../static/img/{type}_planter_box.webp" data-alt-pattern="{type} planter box">
                 <table>
                     <tr>

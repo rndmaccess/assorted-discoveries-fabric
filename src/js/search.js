@@ -2,6 +2,11 @@ import allayPlushie from '../img/allay_plushie.webp';
 import vexPlushie from '../img/vex_plushie.webp';
 import striderPlushie from '../img/strider_plushie.webp';
 import endermanPlushie from '../img/enderman_plushie.webp';
+import oakPlanterBox from '../img/oak_planter_box.webp';
+import paleWolfPlushieStanding from '../img/pale_wolf_plushie_standing.webp';
+import zombiePlushie from '../img/zombie_plushie.webp';
+import oakRopeLadder from '../img/oak_rope_ladder.webp';
+import bogBlossom from '../img/bog_blossom.webp';
 
 let miniSearch = new MiniSearch({
     fields: ['title', 'description', 'link', 'img'],
@@ -14,21 +19,21 @@ const documents = [
         title: 'bog blossom',
         description: 'The bog blossom',
         link: './bog_blossom.html',
-        img: '../static/img/bog_blossom.webp',
+        img: bogBlossom,
     },
     {
         id: 2,
         title: 'planter box',
         description: 'The planter box',
         link: './planter_box.html',
-        img: '../static/img/oak_planter_box.webp',
+        img: oakPlanterBox,
     },
     {
         id: 3,
         title: 'rope ladder',
         description: 'The rope ladder',
         link: './rope_ladder.html',
-        img: '../static/img/oak_rope_ladder.webp',
+        img: oakRopeLadder,
     },
     {
         id: 4,
@@ -42,14 +47,14 @@ const documents = [
         title: 'zombie plushie',
         description: 'The zombie plushie',
         link: './zombie_plushie.html',
-        img: '../static/img/zombie_plushie.webp',
+        img: zombiePlushie,
     },
     {
         id: 6,
         title: 'wolf plushie',
         description: 'The wolf plushie',
         link: './wolf_plushie.html',
-        img: '../static/img/pale_wolf_plushie_standing.webp',
+        img: paleWolfPlushieStanding,
     },
     {
         id: 7,
@@ -75,8 +80,6 @@ const documents = [
 ];
 
 miniSearch.addAll(documents);
-
-
 
 const getSearchResults = (query) => {
     const searchOptions = {

@@ -1,15 +1,14 @@
-async function cycle_recipe(items, backImg, cycleItems, state) {
+async function cycle_recipe(items, cycleItems, state) {
     state.typeIndex = (state.typeIndex + 1) % items.length; // Moves to the next index. When we hit the last index it will return to 0.
-    const woodType = items[state.typeIndex];
 
     for (let itemIndex = 0; itemIndex < cycleItems.length; itemIndex++) {
-        let item = cycleItems[itemIndex];
-        const pattern = item.dataset.srcPattern;
+        const item = cycleItems[itemIndex];
+        const type = item.dataset.type;
 
-        if (pattern && item.hasAttribute("src")) {
-            const newSrc = pattern.replaceAll("{blockType}", woodType);
-            item.setAttribute("src", newSrc);
-        }
+        if (!cycleItems.contains(type)) continue;
+
+        const newSrc = items.get(type)[itemIndex];
+        item.setAttribute("src", newSrc);
     }
 }
 
@@ -22,20 +21,16 @@ async function cycle_recipe(items, backImg, cycleItems, state) {
  * .front / .back / .slot: Layout and positioning for grid items.
  * .crafting-item / .result-item: Sizing for specific icons.
  *
- * Dynamic Placeholders:
- * {blockType}: Injected from the 'items' list into data-src-pattern.
- *
- * @param items {string[]} List of item names to cycle through.
+ * @param items {map[element[]]} List of item names to cycle through.
  * @param guiId {HTMLElement} The parent container of the recipe.
  */
 export function createRecipeCycle(items, guiId) {
     let state = { typeIndex: 0 };
-    const backImg = guiId.getElementsByClassName("back")[0];
     const cycleItems = guiId.getElementsByClassName('cycle-item');
-    const timeout = 2000
+    const timeout = 2000;
 
     setInterval(function() {
-        cycle_recipe(items, backImg, cycleItems, state).catch(error => {
+        cycle_recipe(items, cycleItems, state).catch(error => {
             console.log("An error occurred when cycling the recipe: ", error);
         });
     }, timeout);

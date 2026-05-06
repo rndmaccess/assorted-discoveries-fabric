@@ -3,9 +3,6 @@ async function cycle_recipe(items, cycleItems, state) {
 
     for (let item of cycleItems) {
         const type = item.dataset.type;
-
-        if (!items.has(type)) continue;
-
         const variants = items[type];
         const localIndex = state.step % variants.length;
 

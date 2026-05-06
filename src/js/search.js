@@ -16,42 +16,42 @@ const documents = [
         title: 'planter box',
         description: 'The planter box',
         link: './planter_box.html',
-        img: './static/img/oak_planter_box.webp',
+        img: '../static/img/oak_planter_box.webp',
     },
     {
         id: 3,
         title: 'rope ladder',
         description: 'The rope ladder',
         link: './rope_ladder.html',
-        img: './static/img/oak_rope_ladder.webp',
+        img: '../static/img/oak_rope_ladder.webp',
     },
     {
         id: 4,
         title: 'enderman plushie',
         description: 'The enderman plushie',
         link: './enderman_plushie.html',
-        img: './img/enderman_plushie.webp',
+        img: '../img/enderman_plushie.webp',
     },
     {
         id: 5,
         title: 'zombie plushie',
         description: 'The zombie plushie',
         link: './zombie_plushie.html',
-        img: './static/img/zombie_plushie.webp',
+        img: '../static/img/zombie_plushie.webp',
     },
     {
         id: 6,
         title: 'wolf plushie',
         description: 'The wolf plushie',
         link: './wolf_plushie.html',
-        img: './static/img/wolf_plushie.webp',
+        img: '../static/img/wolf_plushie.webp',
     },
     {
         id: 7,
         title: 'strider plushie',
         description: 'The strider plushie',
         link: './strider_plushie.html',
-        img: './static/img/strider_plushie.webp',
+        img: '../static/img/strider_plushie.webp',
     }
 ];
 
@@ -94,15 +94,28 @@ const renderResults = (results) => {
     }).join('\n'));
 }
 
+const searchInput = document.getElementById('search');
+
 window.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const query = urlParams.get('q');
 
     if (query) {
-        const searchInput = document.getElementById('search');
         if (searchInput) searchInput.value = query;
 
         const results = getSearchResults(query);
         renderResults(results);
     }
 });
+
+searchInput.addEventListener('keydown', function (event) {
+    if (event.key === 'Enter') {
+        const query = event.target.value.toLowerCase();
+        if (query.trim() === '') return;
+        const urlParams = new URLSearchParams(window.location.search);
+        urlParams.set('q', query); // Update the url param if the user searches something new.
+
+        const results = getSearchResults(query);
+        renderResults(results);
+    }
+})

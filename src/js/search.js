@@ -9,7 +9,7 @@ const documents = [
         title: 'bog blossom',
         description: 'The bog blossom',
         link: './bog_blossom.html',
-        img: './static/img/bog_blossom.webp',
+        img: '../static/img/bog_blossom.webp',
     },
     {
         id: 2,
@@ -44,7 +44,7 @@ const documents = [
         title: 'wolf plushie',
         description: 'The wolf plushie',
         link: './wolf_plushie.html',
-        img: '../static/img/pale_wolf_plushie.webp',
+        img: '../static/img/pale_wolf_plushie_standing.webp',
     },
     {
         id: 7,
@@ -52,6 +52,20 @@ const documents = [
         description: 'The strider plushie',
         link: './strider_plushie.html',
         img: '../static/img/strider_plushie.webp',
+    },
+    {
+        id: 8,
+        title: 'allay plushie',
+        description: 'The allay plushie',
+        link: './allay_plushie.html',
+        img: '../static/img/allay_plushie.webp',
+    },
+    {
+        id: 9,
+        title: 'vex plushie',
+        description: 'The vex plushie',
+        link: './vex_plushie.html',
+        img: '../static/img/vex_plushie.webp',
     }
 ];
 

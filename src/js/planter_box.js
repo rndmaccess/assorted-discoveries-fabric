@@ -12,6 +12,7 @@ import bambooPlanterBox from '../img/bamboo_planter_box.webp';
 
 import oakSlab from '../img/oak_slab.webp';
 import spruceSlab from '../img/spruce_slab.webp';
+import birchSlab from '../img/birch_slab.webp';
 import jungleSlab from '../img/jungle_slab.webp';
 import acaciaSlab from '../img/acacia_slab.webp';
 import darkOakSlab from '../img/dark_oak_slab.webp';
@@ -29,7 +30,7 @@ import { createRecipeCycle, createButtonPanel } from "./side_page";
 const craftingLists = {
     "planter_box": [oakPlanterBox, sprucePlanterBox, birchPlanterBox, junglePlanterBox, acaciaPlanterBox,
         darkOakPlanterBox, mangrovePlanterBox, cherryPlanterBox, paleOakPlanterBox, bambooPlanterBox],
-    "slab": [oakSlab, spruceSlab, jungleSlab, acaciaSlab, darkOakSlab, mangroveSlab,
+    "slab": [oakSlab, spruceSlab, birchSlab, jungleSlab, acaciaSlab, darkOakSlab, mangroveSlab,
         cherrySlab, paleOakSlab, bambooSlab],
     "soul_soil": [soulSoil, soulSand]
 }

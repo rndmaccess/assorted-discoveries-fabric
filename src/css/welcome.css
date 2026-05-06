@@ -25,6 +25,13 @@
     width: 50%;
 }
 
+.search-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 #search {
     background-color: #1f1f2e;
     color: #F5F5F5;

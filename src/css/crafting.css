@@ -33,9 +33,10 @@
     height: auto;
 
     padding-top: 2.25%;
-    padding-left: 2.25%;
+    padding-left: 2.5%;
 
     box-sizing: border-box;
+    gap: 0.05rem;
 }
 
 .slot {
@@ -43,7 +44,7 @@
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
-    padding: 1%;
+    padding: 1.5%;
 }
 
 .crafting-item {

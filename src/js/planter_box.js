@@ -9,6 +9,8 @@ import mangrovePlanterBox from '../img/mangrove_planter_box.webp';
 import cherryPlanterBox from '../img/cherry_planter_box.webp';
 import paleOakPlanterBox from '../img/pale_oak_planter_box.webp';
 import bambooPlanterBox from '../img/bamboo_planter_box.webp';
+import warpedPlanterBox from '../img/warped_planter_box.webp';
+import crimsonPlanterBox from '../img/crimson_planter_box.webp';
 
 import oakSlab from '../img/oak_slab.webp';
 import spruceSlab from '../img/spruce_slab.webp';
@@ -93,6 +95,18 @@ const optionList = {
         {
             "src": bambooPlanterBox,
             "alt": "Bamboo Planter Box"
+        }
+    ],
+    "warped": [
+        {
+            "src": warpedPlanterBox,
+            "alt": "Warned Planter Box"
+        }
+    ],
+    "crimson": [
+        {
+            "src": crimsonPlanterBox,
+            "alt": "Crimson Planter Box"
         }
     ]
 }

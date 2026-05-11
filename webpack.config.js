@@ -12,7 +12,6 @@ module.exports = {
     plugins: [
         new CopyPlugin({
             patterns: [
-                { from: "src/static/img", to: "static/img" },
                 { from: "src/favicon.png", to: "favicon.png"},
                 { from: "src/robots.txt", to: "robots.txt"},
                 { from: "src/sitemap.xml", to: "sitemap.xml"}
@@ -27,12 +26,6 @@ module.exports = {
                     return entries;
                 }, {}),
             },
-            sources: [
-                {
-                    tag: 'img',
-                    filter: (args) => !args.value.includes('static/'), // Ignore all paths containing static/
-                },
-            ],
             js: {
                 // Output for any JS files found in your HTML
                 filename: 'assets/js/[name].[contenthash:8].js',

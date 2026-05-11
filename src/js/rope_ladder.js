@@ -38,11 +38,85 @@ const craftingLists = {
     "planks": [oakPlanks, sprucePlanks, birchPlanks, junglePlanks, acaciaPlanks, darkOakPlanks, mangrovePlanks,
         cherryPlanks, paleOakPlanks, bambooPlanks, warpedPlanks, crimsonPlanks]
 }
+const optionList = {
+    "oak": [
+        {
+            "src": oakRopeLadder,
+            "alt": "Oak Rope Ladder"
+        }
+    ],
+    "spruce": [
+        {
+            "src": spruceRopeLadder,
+            "alt": "Spruce Rope Ladder"
+        }
+    ],
+    "birch": [
+        {
+            "src": birchRopeLadder,
+            "alt": "Birch Rope Ladder"
+        }
+    ],
+    "jungle": [
+        {
+            "src": jungleRopeLadder,
+            "alt": "Jungle Rope Ladder"
+        }
+    ],
+    "acacia": [
+        {
+            "src": acaciaRopeLadder,
+            "alt": "Acacia Rope Ladder"
+        }
+    ],
+    "dark_oak": [
+        {
+            "src": darkOakRopeLadder,
+            "alt": "Dark Oak Rope Ladder"
+        }
+    ],
+    "mangrove": [
+        {
+            "src": mangroveRopeLadder,
+            "alt": "Mangrove Rope Ladder"
+        }
+    ],
+    "cherry": [
+        {
+            "src": cherryRopeLadder,
+            "alt": "Cherry Rope Ladder"
+        }
+    ],
+    "pale_oak": [
+        {
+            "src": paleOakRopeLadder,
+            "alt": "Pale Oak Rope Ladder"
+        }
+    ],
+    "bamboo": [
+        {
+            "src": bambooRopeLadder,
+            "alt": "Bamboo Rope Ladder"
+        }
+    ],
+    "warped": [
+        {
+            "src": warpedRopeLadder,
+            "alt": "Warped Rope Ladder"
+        }
+    ],
+    "crimson": [
+        {
+            "src": crimsonRopeLadder,
+            "alt": "Crimson Rope Ladder"
+        }
+    ]
+}
 
 if (craftingGui) createRecipeCycle(craftingLists, craftingGui);
 
 if (container) {
     container.addEventListener('click', (event) => {
-        createButtonPanel(event, container, headerImages);
+        createButtonPanel(event, optionList, container, headerImages);
     });
 }

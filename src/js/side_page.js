@@ -47,25 +47,33 @@ export function createRecipeCycle(items, guiId) {
  *         (Note: Underscores in {type} are converted to spaces for alt text).
  *
  * @param event {PointerEvent} The click event from the button container.
+ * @param optionList
  * @param containerId The container's id surrounding the button panel.
  * @param headerImages The images to change. This is where each data-src-pattern and data-alt-pattern should be defined.
  */
-export function createButtonPanel(event, containerId, headerImages) {
+export function createButtonPanel(event, optionList, containerId, headerImages) {
     const selectedElement = containerId.querySelector('.selected');
     const button = event.target.closest('.menu-btn');
     if (!button) return;
 
     const type = button.dataset.type;
-    const typeName = type.replaceAll("_", " ");
+    if (!type) {
+        console.log("No type for button: ", button);
+        return;
+    }
 
-    for (const headerImage of headerImages) {
-        const srcPattern = headerImage.dataset.srcPattern;
-        const altPattern = headerImage.dataset.altPattern;
-        const newSrc = srcPattern.replaceAll("{type}", type);
-        const newAlt = altPattern.replaceAll("{type}", typeName);
+    const variants = optionList[type];
 
-        headerImage.src = newSrc;
-        headerImage.alt = newAlt;
+    for (let i = 0; i < headerImages.length; i++) {
+        const headerImage = headerImages[i];
+
+        if (i >= variants.length) {
+            console.log("Missing image for index: ", i);
+            continue;
+        }
+
+        headerImage.src = variants[i].src;
+        headerImage.alt = variants[i].alt;
     }
 
     if (selectedElement) {

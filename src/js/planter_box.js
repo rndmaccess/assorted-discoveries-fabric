@@ -34,6 +34,68 @@ const craftingLists = {
         cherrySlab, paleOakSlab, bambooSlab],
     "soul_soil": [soulSoil, soulSand]
 }
+const optionList = {
+    "oak": [
+        {
+            "src": oakPlanterBox,
+            "alt": "Oak Planter Box"
+        }
+    ],
+    "spruce": [
+        {
+            "src": sprucePlanterBox,
+            "alt": "Spruce Planter Box"
+        }
+    ],
+    "birch": [
+        {
+            "src": birchPlanterBox,
+            "alt": "Birch Planter Box"
+        }
+    ],
+    "jungle": [
+        {
+            "src": junglePlanterBox,
+            "alt": "Jungle Planter Box"
+        }
+    ],
+    "acacia": [
+        {
+            "src": acaciaPlanterBox,
+            "alt": "Acacia Planter Box"
+        }
+    ],
+    "dark_oak": [
+        {
+            "src": darkOakPlanterBox,
+            "alt": "Dark Oak Planter Box"
+        }
+    ],
+    "mangrove": [
+        {
+            "src": mangrovePlanterBox,
+            "alt": "Mangrove Planter Box"
+        }
+    ],
+    "cherry": [
+        {
+            "src": cherryPlanterBox,
+            "alt": "Cherry Planter Box"
+        }
+    ],
+    "pale_oak": [
+        {
+            "src": paleOakPlanterBox,
+            "alt": "Pale Oak Planter Box"
+        }
+    ],
+    "bamboo": [
+        {
+            "src": bambooPlanterBox,
+            "alt": "Bamboo Planter Box"
+        }
+    ]
+}
 
 const headerImages = document.getElementsByClassName('header-image');
 const container = document.getElementById('button-container');
@@ -42,5 +104,5 @@ const craftingId = document.getElementById('crafting');
 if (craftingId) createRecipeCycle(craftingLists, craftingId);
 
 container.addEventListener('click', (event) => {
-    createButtonPanel(event, container, headerImages);
+    createButtonPanel(event, optionList, container, headerImages);
 });

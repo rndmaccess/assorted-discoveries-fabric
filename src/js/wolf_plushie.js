@@ -18,51 +18,51 @@ const optionList = {
     "pale": [
         {
             "src": paleWolfPlushieStanding,
-            "alt": "Pale wolf plushie"
+            "alt": "A white wolf plushie with black eyes, and black ear tuffs."
         },
         {
             "src": paleWolfPlushieSitting,
-            "alt": "Pale wolf plushie"
+            "alt": "A white wolf plushie with black eyes, and black ear tuffs."
         }
     ],
     "ashen": [
         {
             "src": ashenWolfPlushieStanding,
-            "alt": "Ashen wolf plushie"
+            "alt": "A wolf plushie with dark purplish-gray top fur, matching ear tuffs, a white belly, and black eyes."
         },
         {
             "src": ashenWolfPlushieSitting,
-            "alt": "Ashen wolf plushie"
+            "alt": "A wolf plushie with dark purplish-gray top fur, matching ear tuffs, a white belly, and black eyes."
         }
     ],
     "black": [
         {
             "src": blackWolfPlushieStanding,
-            "alt": "Black wolf plushie"
+            "alt": "A black wolf plushie with gray eyes."
         },
         {
             "src": blackWolfPlushieSitting,
-            "alt": "Black wolf plushie"
+            "alt": "A black wolf plushie with gray eyes."
         }
     ],
     "chestnut": [
         {
             "src": chestnutWolfPlushieStanding,
-            "alt": "Chestnut wolf plushie"
+            "alt": "A light brown wolf plushie with dark brown feet, snout, and ear tuffs, along with black eyes."
         },
         {
             "src": chestnutWolfPlushieSitting,
-            "alt": "Chestnut wolf plushie"
+            "alt": "A light brown wolf plushie with dark brown feet, snout, and ear tuffs, along with black eyes."
         }
     ],
     "rusty": [
         {
             "src": rustyWolfPlushieStanding,
-            "alt": "Rusty wolf plushie"
+            "alt": "A brownish-red wolf plushie with white feet, and matching ear tuffs, along with black eyes."
         },
         {
             "src": rustyWolfPlushieSitting,
-            "alt": "Rusty wolf plushie"
+            "alt": "A brownish-red wolf plushie with white feet, and matching ear tuffs, along with black eyes."
         }
     ]
 }

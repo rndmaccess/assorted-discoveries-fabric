@@ -7,6 +7,7 @@ import paleWolfPlushieStanding from '../img/pale_wolf_plushie_standing.webp';
 import zombiePlushie from '../img/zombie_plushie.webp';
 import oakRopeLadder from '../img/oak_rope_ladder.webp';
 import bogBlossom from '../img/bog_blossom.webp';
+import ocelotPlushieStanding from '../img/ocelot_plushie_standing.webp';
 
 let miniSearch = new MiniSearch({
     fields: ['title', 'description', 'link', 'img'],
@@ -52,7 +53,7 @@ const documents = [
     {
         id: 6,
         title: 'wolf plushie',
-        description: 'Plushies inspired by the wolf mob\'s variants',
+        description: 'Plushies inspired by the wolf mob variants, the wolf plushie can both sit and stand.',
         link: './wolf_plushie.html',
         img: paleWolfPlushieStanding,
     },
@@ -76,7 +77,14 @@ const documents = [
         description: 'An illuminated plushie inspired by the vex mob.',
         link: './vex_plushie.html',
         img: vexPlushie,
-    }
+    },
+    {
+        id: 10,
+        title: 'cat plushie',
+        description: 'Plushies inspired by the cat and ocelot mob variants, the cat plushie can both sit and stand.',
+        link: './cat_plushie.html',
+        img: ocelotPlushieStanding,
+    },
 ];
 
 miniSearch.addAll(documents);

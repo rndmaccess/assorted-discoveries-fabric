@@ -18,51 +18,51 @@ const optionList = {
     "pale": [
         {
             "src": paleWolfPlushieStanding,
-            "alt": "Standing pale wolf plushie"
+            "alt": "Pale wolf plushie"
         },
         {
             "src": paleWolfPlushieSitting,
-            "alt": "Sitting pale wolf plushie"
+            "alt": "Pale wolf plushie"
         }
     ],
     "ashen": [
         {
             "src": ashenWolfPlushieStanding,
-            "alt": "Standing ashen wolf plushie"
+            "alt": "Ashen wolf plushie"
         },
         {
             "src": ashenWolfPlushieSitting,
-            "alt": "Sitting ashen wolf plushie"
+            "alt": "Ashen wolf plushie"
         }
     ],
     "black": [
         {
             "src": blackWolfPlushieStanding,
-            "alt": "Standing black wolf plushie"
+            "alt": "Black wolf plushie"
         },
         {
             "src": blackWolfPlushieSitting,
-            "alt": "Sitting black wolf plushie"
+            "alt": "Black wolf plushie"
         }
     ],
     "chestnut": [
         {
             "src": chestnutWolfPlushieStanding,
-            "alt": "Standing chestnut wolf plushie"
+            "alt": "Chestnut wolf plushie"
         },
         {
             "src": chestnutWolfPlushieSitting,
-            "alt": "Sitting chestnut wolf plushie"
+            "alt": "Chestnut wolf plushie"
         }
     ],
     "rusty": [
         {
             "src": rustyWolfPlushieStanding,
-            "alt": "Standing rusty wolf plushie"
+            "alt": "Rusty wolf plushie"
         },
         {
             "src": rustyWolfPlushieSitting,
-            "alt": "Sitting rusty wolf plushie"
+            "alt": "Rusty wolf plushie"
         }
     ]
 }

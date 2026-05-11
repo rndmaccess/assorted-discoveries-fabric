@@ -64,10 +64,15 @@ export function createButtonPanel(event, optionList, containerId, headerImages) 
 
     const variants = optionList[type];
 
+    if (!variants || variants.length === 0) {
+        console.log("No images for button: ", button);
+        return;
+    }
+
     for (let i = 0; i < headerImages.length; i++) {
         const headerImage = headerImages[i];
 
-        if (i >= variants.length) {
+        if (!variants[i] || i >= variants.length) {
             console.log("Missing image for index: ", i);
             continue;
         }

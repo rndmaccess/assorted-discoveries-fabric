@@ -23,8 +23,11 @@ import blackCatPlushieSitting from "../img/black_cat_plushie_sitting.webp";
 import jellieCatPlushieStanding from "../img/jellie_cat_plushie_standing.webp";
 import jellieCatPlushieSitting from "../img/jellie_cat_plushie_sitting.webp";
 
+import cod from "../img/cod.webp";
+import salmon from "../img/salmon.webp";
+
 // No module declaration needed; esbuild-loader handles imports.
-import { createButtonPanel } from "./side_page";
+import {createButtonPanel, createRecipeCycle} from "./side_page";
 
 const headerImages = document.getElementsByClassName('header-image');
 const container = document.getElementById('button-container');
@@ -150,6 +153,14 @@ const optionList = {
         }
     ]
 }
+
+const craftingLists = {
+    "fish": [cod, salmon]
+};
+
+const craftingId = document.getElementById('crafting');
+
+if (craftingId) createRecipeCycle(craftingLists, craftingId);
 
 container.addEventListener('click', (event) => {
     createButtonPanel(event, optionList, container, headerImages);

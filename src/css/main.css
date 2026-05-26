@@ -1,5 +1,4 @@
 html, body {
-    /* Sleek dark gradient with deep blue-black */
     background-color: #202020;
 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -33,12 +32,12 @@ html, body {
 }
 
 .menu-btn:hover {
-    border-bottom-color: #8a8ad9;
+    border-bottom-color: #6151b3;
     transition: border-bottom-color 0.15s ease-out;
 }
 
 .selected {
-    border-bottom-color: #8a8ad9;
+    border-bottom-color: #6151b3;
 }
 
 .main-container {
@@ -61,7 +60,7 @@ html, body {
 /* Styled links */
 a { text-decoration: underline; }
 a:link { color: #73A5C6; }
-a:visited { color: #8a8ad9; }
+a:visited { color: #6151b3; }
 a:active { color: #c673a5; }
 a:hover { cursor: pointer; }
 
@@ -118,7 +117,13 @@ table {
 }
 
 .title {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    background-color: #5c4595;
+    border-radius: 1rem;
+    margin: 0.5rem auto;
+    padding: 0.5rem;
+
 }
 
 .tag-container {
@@ -143,7 +148,7 @@ table {
 }
 
 .c-namespace {
-    border: 2px solid #8a8ad9;
+    border: 2px solid #6151b3;
 }
 
 /* Desktop properties */

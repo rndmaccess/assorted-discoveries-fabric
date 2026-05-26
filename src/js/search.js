@@ -12,7 +12,7 @@ import temperateCowPlushie from '../img/temperate_cow_plushie.webp';
 import redMooshroomPlushie from '../img/red_mooshroom_plushie.webp';
 
 let miniSearch = new MiniSearch({
-    fields: ['title', 'description', 'link', 'img'],
+    fields: ['title', 'description'],
     storeFields: ['title', 'description', 'link', 'img'],
 });
 

@@ -20,7 +20,7 @@ const documents = [
     {
         id: 1,
         title: 'bog blossom',
-        description: 'An illuminated swamp flower with magestic yellow particles.',
+        description: 'An illuminated swamp flower with majestic yellow particles.',
         link: './bog_blossom.html',
         img: bogBlossom,
     },

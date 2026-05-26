@@ -88,14 +88,14 @@ const documents = [
         img: ocelotPlushieStanding,
     },
     {
-        id: 10,
+        id: 11,
         title: 'cow plushie',
         description: 'A plushie inspired by the cow mob.',
         link: './cow_plushie.html',
         img: temperateCowPlushie,
     },
     {
-        id: 10,
+        id: 12,
         title: 'mooshroom plushie',
         description: 'Plushies inspired by the mooshroom mob variants.',
         link: './mooshroom_plushie.html',

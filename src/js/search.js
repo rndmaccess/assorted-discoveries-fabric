@@ -8,6 +8,8 @@ import zombiePlushie from '../img/zombie_plushie.webp';
 import oakRopeLadder from '../img/oak_rope_ladder.webp';
 import bogBlossom from '../img/bog_blossom.webp';
 import ocelotPlushieStanding from '../img/ocelot_plushie_standing.webp';
+import temperateCowPlushie from '../img/temperate_cow_plushie.webp';
+import redMooshroomPlushie from '../img/red_mooshroom_plushie.webp';
 
 let miniSearch = new MiniSearch({
     fields: ['title', 'description', 'link', 'img'],
@@ -84,6 +86,20 @@ const documents = [
         description: 'Plushies inspired by the cat and ocelot mob variants, the cat plushie can both sit and stand.',
         link: './cat_plushie.html',
         img: ocelotPlushieStanding,
+    },
+    {
+        id: 10,
+        title: 'cow plushie',
+        description: 'A plushie inspired by the cow mob.',
+        link: './cow_plushie.html',
+        img: temperateCowPlushie,
+    },
+    {
+        id: 10,
+        title: 'mooshroom plushie',
+        description: 'Plushies inspired by the mooshroom mob variants.',
+        link: './mooshroom_plushie.html',
+        img: redMooshroomPlushie,
     },
 ];
 

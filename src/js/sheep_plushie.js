@@ -19,14 +19,34 @@ import magentaSheepPlushie from "../img/sheep_plushie_magenta.webp";
 import pinkSheepPlushie from "../img/sheep_plushie_pink.webp";
 
 import whiteWool from "../img/white_wool.webp";
+import lightGrayWool from "../img/light_gray_wool.webp";
+import grayWool from "../img/gray_wool.webp";
+import blackWool from "../img/black_wool.webp";
+import brownWool from "../img/brown_wool.webp";
+import redWool from "../img/red_wool.webp";
+import orangeWool from "../img/orange_wool.webp";
+import yellowWool from "../img/yellow_wool.webp";
+import limeWool from "../img/lime_wool.webp";
+import greenWool from "../img/green_wool.webp";
+import cyanWool from "../img/cyan_wool.webp";
+import lightBlueWool from "../img/light_blue_wool.webp";
+import blueWool from "../img/blue_wool.webp";
+import purpleWool from "../img/purple_wool.webp";
+import magentaWool from "../img/magenta_wool.webp";
+import pinkWool from "../img/pink_wool.webp";
 
 const headerImages = document.getElementsByClassName('header-image');
 const container = document.getElementById('button-container');
 const craftingGui = document.getElementById('crafting-gui');
 
 const craftingLists = {
-    "sheep_plushie": [whiteSheepPlushie],
-    "wool": [whiteWool]
+    "sheep_plushie": [whiteSheepPlushie, lightGraySheepPlushie, graySheepPlushie, blackSheepPlushie, brownSheepPlushie,
+        redSheepPlushie, orangeSheepPlushie, yellowSheepPlushie, limeSheepPlushie, greenSheepPlushie, cyanSheepPlushie,
+        lightBlueSheepPlushie, blueSheepPlushie, purpleSheepPlushie, magentaSheepPlushie, pinkSheepPlushie
+    ],
+    "wool": [whiteWool, lightGrayWool, grayWool, blackWool, brownWool, redWool, orangeWool, yellowWool, limeWool,
+        greenWool, cyanWool, lightBlueWool, blueWool, purpleWool, magentaWool, pinkWool
+    ],
 }
 const optionList = {
     "white": [

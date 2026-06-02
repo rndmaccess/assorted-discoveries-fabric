@@ -3,12 +3,11 @@ package rndm_access.assorteddiscoveries.mixin;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.minecraft.world.item.context.UseOnContext;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import rndm_access.assorteddiscoveries.block.SnowySlabBlock;
+import rndm_access.assorteddiscoveries.core.ModBlockTags;
 import rndm_access.assorteddiscoveries.core.ModBlocks;
 
-import java.util.HashSet;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -22,9 +21,6 @@ import net.minecraft.world.level.block.state.BlockState;
 
 @Mixin(ShovelItem.class)
 public abstract class ShovelItemMixin {
-    @Unique
-    private static final HashSet<Block> DIRT_SLAB_LIST;
-
     @ModifyReturnValue(method = "useOn", at = @At("RETURN"))
     private InteractionResult useOn(InteractionResult original, UseOnContext context) {
         Level world = context.getLevel();
@@ -33,7 +29,7 @@ public abstract class ShovelItemMixin {
         BlockState state = world.getBlockState(pos);
         Block block = state.getBlock();
 
-        if(DIRT_SLAB_LIST.contains(block) && block instanceof SlabBlock) {
+        if(state.is(ModBlockTags.SOIL_SLABS) && block instanceof SlabBlock) {
             if(state.hasProperty(SnowySlabBlock.SNOWY) && state.getValue(SnowySlabBlock.SNOWY).equals(true)) {
                 return InteractionResult.FAIL;
             }
@@ -45,15 +41,5 @@ public abstract class ShovelItemMixin {
             return InteractionResult.SUCCESS;
         }
         return original;
-    }
-
-    static {
-        DIRT_SLAB_LIST = new HashSet<>();
-        DIRT_SLAB_LIST.add(ModBlocks.GRASS_SLAB);
-        DIRT_SLAB_LIST.add(ModBlocks.PODZOL_SLAB);
-        DIRT_SLAB_LIST.add(ModBlocks.COARSE_DIRT_SLAB);
-        DIRT_SLAB_LIST.add(ModBlocks.DIRT_SLAB);
-        DIRT_SLAB_LIST.add(ModBlocks.MYCELIUM_SLAB);
-        DIRT_SLAB_LIST.add(ModBlocks.ROOTED_DIRT_SLAB);
     }
 }

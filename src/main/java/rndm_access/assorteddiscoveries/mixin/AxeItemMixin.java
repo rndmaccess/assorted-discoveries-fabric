@@ -33,7 +33,9 @@ public abstract class AxeItemMixin {
             .put(ModBlocks.MANGROVE_WALL, ModBlocks.STRIPPED_MANGROVE_WALL)
             .put(ModBlocks.CRIMSON_WALL, ModBlocks.STRIPPED_CRIMSON_WALL)
             .put(ModBlocks.WARPED_WALL, ModBlocks.STRIPPED_WARPED_WALL)
-            .put(ModBlocks.CHERRY_WALL, ModBlocks.STRIPPED_CHERRY_WALL).build();
+            .put(ModBlocks.CHERRY_WALL, ModBlocks.STRIPPED_CHERRY_WALL)
+            .put(ModBlocks.BAMBOO_WALL, ModBlocks.STRIPPED_BAMBOO_WALL)
+            .put(ModBlocks.PALE_OAK_WALL, ModBlocks.STRIPPED_PALE_OAK_WALL).build();
 
     @ModifyReturnValue(method = "useOn", at = @At("RETURN"))
     private InteractionResult useOn(InteractionResult original, UseOnContext context) {

@@ -142,19 +142,19 @@ public final class ModItems {
                     .setId(FROSTBITE_BERRIES_KEY));
     public static final ResourceKey<Item> CINDERSNAP_BERRY_JUICE_KEY = makeRegistryKey("cindersnap_berry_juice");
     public static final Item CINDERSNAP_BERRY_JUICE = register(new Item(new Item.Properties()
-                .food(ModFoodComponents.JUICE, ModConsumableComponents.NETHER_FOOD).stacksTo(16)
+                .food(ModFoodComponents.JUICE, ModConsumableComponents.NETHER_DRINK).stacksTo(16)
                 .usingConvertsTo(Items.GLASS_BOTTLE).setId(CINDERSNAP_BERRY_JUICE_KEY)), CINDERSNAP_BERRY_JUICE_KEY);
     public static final ResourceKey<Item> FROSTBITE_BERRY_JUICE_KEY = makeRegistryKey("frostbite_berry_juice");
     public static final Item FROSTBITE_BERRY_JUICE = register(new Item(new Item.Properties()
-            .food(ModFoodComponents.JUICE, ModConsumableComponents.NETHER_FOOD).stacksTo(16)
+            .food(ModFoodComponents.JUICE, ModConsumableComponents.NETHER_DRINK).stacksTo(16)
             .usingConvertsTo(Items.GLASS_BOTTLE).setId(FROSTBITE_BERRY_JUICE_KEY)), FROSTBITE_BERRY_JUICE_KEY);
     public static final ResourceKey<Item> WARPED_FORAGE_MIX_KEY = makeRegistryKey("warped_forage_mix");
-    public static final Item WARPED_FORAGE_MIX = register(new Item(new Item.Properties()
+    public static final Item WARPED_FORAGE_MIX = register(new Item(new Item.Properties().stacksTo(32)
             .food(ModFoodComponents.NETHER_FORAGE, ModConsumableComponents.NETHER_FOOD)
             .setId(WARPED_FORAGE_MIX_KEY)), WARPED_FORAGE_MIX_KEY);
     public static final ResourceKey<Item> CRIMSON_FORAGE_MIX_KEY = makeRegistryKey("crimson_forage_mix");
     public static final Item CRIMSON_FORAGE_MIX = register(new Item(new Item.Properties()
-            .food(ModFoodComponents.NETHER_FORAGE, ModConsumableComponents.NETHER_FOOD)
+            .food(ModFoodComponents.NETHER_FORAGE, ModConsumableComponents.NETHER_FOOD).stacksTo(32)
             .setId(CRIMSON_FORAGE_MIX_KEY)), CRIMSON_FORAGE_MIX_KEY);
 
     private static ResourceKey<Item> makeRegistryKey(String name) {

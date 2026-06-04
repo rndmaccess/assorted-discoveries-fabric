@@ -1,6 +1,6 @@
 package rndm_access.assorteddiscoveries.config;
 
-public final class ModServerConfigKeys {
+public final class ModConfigKeys {
     public static final String ENABLE_DYED_CAMPFIRES = "enable_dyed_campfires";
     public static final String ENABLE_DYED_LANTERNS = "enable_dyed_lanterns";
     public static final String ENABLE_DYED_TORCHES = "enable_dyed_torches";

@@ -16,7 +16,7 @@ import org.jspecify.annotations.NonNull;
 import rndm_access.assorteddiscoveries.block.SheepPlushieBlock;
 import rndm_access.assorteddiscoveries.block_entity.DyedCampfireBlockEntityRenderer;
 import rndm_access.assorteddiscoveries.config.BooleanEntriesS2CPayload;
-import rndm_access.assorteddiscoveries.config.ModClientConfig;
+import rndm_access.assorteddiscoveries.config.ModConfig;
 import rndm_access.assorteddiscoveries.core.*;
 import rndm_access.assorteddiscoveries.particle.BogBlossomNectarParticle;
 import rndm_access.assorteddiscoveries.particle.SporeParticle;
@@ -31,7 +31,7 @@ public class AssortedDiscoveriesClient implements ClientModInitializer {
         registerBlockEntityRenderers();
 
         ClientPlayNetworking.registerGlobalReceiver(BooleanEntriesS2CPayload.ID, (payload, context) -> {
-            ModClientConfig.updateBoolEntries(payload.configMap());
+            ModConfig.updateClientConfig(payload.configMap());
             AssortedDiscoveries.LOGGER.info("{} received the server config data!", context.player().getName().getString());
         });
     }

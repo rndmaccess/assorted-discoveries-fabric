@@ -8,7 +8,7 @@ import net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditionType;
 import net.minecraft.resources.RegistryOps;
 import org.jetbrains.annotations.Nullable;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
-import rndm_access.assorteddiscoveries.config.ModServerConfig;
+import rndm_access.assorteddiscoveries.config.ModConfig;
 import rndm_access.assorteddiscoveries.config.json.ServerConfig;
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.AbstractConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.BooleanConfigEntry;
@@ -36,7 +36,7 @@ public record ConfigEntryEnabledResourceCondition(String configKey) implements R
 
     @Override
     public boolean test(@Nullable RegistryOps.@Nullable RegistryInfoLookup registryInfo) {
-        ServerConfig config = ModServerConfig.getInstance();
+        ServerConfig config = ModConfig.getServerConfig();
 
         AbstractConfigEntry<?> entry = config.getEntry(configKey);
         if (entry == null) {

@@ -1,13 +1,17 @@
 package rndm_access.assorteddiscoveries.config.json;
 
 import net.fabricmc.loader.api.FabricLoader;
+import rndm_access.assorteddiscoveries.AssortedDiscoveries;
+import rndm_access.assorteddiscoveries.config.json.deserializer.ConfigDeserializer;
 import rndm_access.assorteddiscoveries.config.json.deserializer.ConfigObject;
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.BooleanConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.CommentConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.exceptions.JsonConfigException;
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.AbstractConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.deserializer.ConfigCategory;
+import rndm_access.assorteddiscoveries.config.json.exceptions.JsonSyntaxException;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
@@ -17,12 +21,38 @@ public class ServerConfig {
     private final HashMap<String, ConfigCategory> categories;
     private final Path path;
     private final String name;
+    private String configError;
 
     public ServerConfig(ServerConfig.Builder builder) {
         this.objects = builder.objects;
         this.categories = builder.categories;
         this.path = FabricLoader.getInstance().getConfigDir().resolve(builder.name + ".json5");
         this.name = builder.name;
+    }
+
+    public ServerConfig loadConfig(ServerConfig defaultConfig) {
+        try {
+            ConfigDeserializer deserializer = new ConfigDeserializer(AssortedDiscoveries.MOD_ID);
+            ServerConfig loadedConfig = deserializer.deserialize();
+            ServerConfig newConfig = defaultConfig.merge(loadedConfig);
+            // Re-save the config with the values in memory so when we load it
+            // we can ensure any new config entries are added to the config file!
+            newConfig.save();
+            return newConfig;
+        } catch (IOException e) {
+            AssortedDiscoveries.LOGGER.error("The config file is unreadable! Using the default config!");
+            return defaultConfig;
+        } catch (JsonSyntaxException e) {
+            String errorMessage = e.getMessage();
+            AssortedDiscoveries.LOGGER.error("Using the default config, because the config file could not be loaded:");
+            AssortedDiscoveries.LOGGER.error(errorMessage);
+            configError = errorMessage;
+            return defaultConfig;
+        }
+    }
+
+    public String getConfigError() {
+        return configError;
     }
 
     public Path getPath() {

@@ -30,24 +30,24 @@ public class ServerConfig {
         this.name = builder.name;
     }
 
-    public ServerConfig loadConfig(ServerConfig defaultConfig) {
+    public ServerConfig loadConfig() {
         try {
             ConfigDeserializer deserializer = new ConfigDeserializer(AssortedDiscoveries.MOD_ID);
             ServerConfig loadedConfig = deserializer.deserialize();
-            ServerConfig newConfig = defaultConfig.merge(loadedConfig);
+            ServerConfig newConfig = this.merge(loadedConfig);
             // Re-save the config with the values in memory so when we load it
             // we can ensure any new config entries are added to the config file!
             newConfig.save();
             return newConfig;
         } catch (IOException e) {
             AssortedDiscoveries.LOGGER.error("The config file is unreadable! Using the default config!");
-            return defaultConfig;
+            return this;
         } catch (JsonSyntaxException e) {
             String errorMessage = e.getMessage();
             AssortedDiscoveries.LOGGER.error("Using the default config, because the config file could not be loaded:");
             AssortedDiscoveries.LOGGER.error(errorMessage);
             configError = errorMessage;
-            return defaultConfig;
+            return this;
         }
     }
 

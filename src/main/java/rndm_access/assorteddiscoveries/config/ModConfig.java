@@ -64,7 +64,7 @@ public class ModConfig {
             defaultConfig.create();
             return defaultConfig;
         }
-        return defaultConfig.loadConfig(defaultConfig);
+        return defaultConfig.loadConfig();
     }
 
     private static ServerConfig getDefaultConfig() {

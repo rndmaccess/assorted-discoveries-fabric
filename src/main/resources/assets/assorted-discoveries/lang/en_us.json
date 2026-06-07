@@ -985,7 +985,46 @@
   "text.cloth-config.assorted-discoveries.option.plants.enable_ender_plants": "Enable Ender Plants",
   "text.cloth-config.assorted-discoveries.option.plants.enable_witchs_cradles": "Enable Witch's Cradles",
 
+  "tag.block.assorted-discoveries.cindersnap_berry_bush_plantable_on": "Cindersnap Berry Bush Plantable On",
+  "tag.block.assorted-discoveries.dyed_campfires": "Dyed Campfires",
+  "tag.block.assorted-discoveries.end_bone_mealable_blocks": "End bone mealable blocks",
+  "tag.block.assorted-discoveries.ender_grass_plantable_on": "Ender grass plantable on",
+  "tag.block.assorted-discoveries.frostbite_berry_bush_plantable_on": "Frostbite berry bush plantable on",
+  "tag.block.assorted-discoveries.nether_planter_boxes": "Nether Planter Boxes",
+  "tag.block.assorted-discoveries.overgrown_blackstone_bricks": "Overgrown Blackstone Bricks",
+  "tag.block.assorted-discoveries.overgrown_blackstones": "Overgrown Blackstones",
+  "tag.block.assorted-discoveries.overgrown_netherracks": "Overgrown Netherracks",
+  "tag.block.assorted-discoveries.overworld_planter_boxes": "Overworld Planter Boxes",
+  "tag.block.assorted-discoveries.plushies": "Plushies",
+  "tag.block.assorted-discoveries.rope_ladders": "Rope Ladders",
+  "tag.block.assorted-discoveries.snapdragon_plantable_on": "Snapdragon Plantable On",
+  "tag.block.assorted-discoveries.snow_slabs": "Snow Slabs",
+  "tag.block.assorted-discoveries.snow_stairs": "Snow Stairs",
+  "tag.block.assorted-discoveries.snow_walls": "Snow Walls",
+  "tag.block.assorted-discoveries.soil_slabs": "Soil Slabs",
+  "tag.block.assorted-discoveries.wooden_walls": "Wooden Walls",
+
+  "tag.entity_type.assorted-discoveries.blueberry_bush_immune_entity_types": "Blueberry Bush Immune Entity Types",
+  "tag.entity_type.assorted-discoveries.cindersnap_berry_bush_immune_entity_types": "Cindersnap Berry Bush Immune Entity Types",
+  "tag.entity_type.assorted-discoveries.frostbite_berry_bush_immune_entity_types": "Frostbite Berry Bush Immune Entity Types",
+  "tag.entity_type.assorted-discoveries.witchs_cradle_immune_entity_types": "Witch's Cradle Immune Entity Types",
+
   "tag.item.assorted-discoveries.juices": "Juices",
+
+  "tag.worldgen.biome.assorted-discoveries.has_feature.blood_kelp": "Has Blood Kelp",
+  "tag.worldgen.biome.assorted-discoveries.has_feature.bog_blossom": "Has Bog Blossom",
+  "tag.worldgen.biome.assorted-discoveries.has_feature.ore_bauxite": "Has Bauxite Ore",
+  "tag.worldgen.biome.assorted-discoveries.has_feature.ore_smoky_quartz": "Has Smoky Quartz Ore",
+  "tag.worldgen.biome.assorted-discoveries.has_feature.patch_blueberry_bush": "Has Blueberry Bush Patch",
+  "tag.worldgen.biome.assorted-discoveries.has_feature.patch_cattail_river": "Has Cattail River Patch",
+  "tag.worldgen.biome.assorted-discoveries.has_feature.patch_cattail_swamp": "Has Cattail Swamp Patch",
+  "tag.worldgen.biome.assorted-discoveries.has_feature.patch_cindersnap_berry_bush": "Has Cindersnap Berry Bush Patch",
+  "tag.worldgen.biome.assorted-discoveries.has_feature.ender_plants": "Has Ender Plants Patch",
+  "tag.worldgen.biome.assorted-discoveries.has_feature.patch_frostbite_berry_bush": "Has Frostbite Berry Bush Patch",
+  "tag.worldgen.biome.assorted-discoveries.has_feature.patch_huge_purple_mushroom": "Has Huge Purple Mushroom Patch",
+  "tag.worldgen.biome.assorted-discoveries.has_feature.patch_wild_green_onions": "Has Wild Green Onions Patch",
+  "tag.worldgen.biome.assorted-discoveries.has_feature.patch_witchs_cradle": "Has Witch's Cradle Patch",
+
   "tag.item.c.crimson_vegetation": "Crimson Vegetation",
   "tag.item.c.natural_acacia_logs": "Natural Acacia Logs",
   "tag.item.c.natural_birch_logs": "Natural Birch Logs",
@@ -1009,7 +1048,5 @@
   "tag.item.c.stripped_pale_oak_logs": "Stripped Pale Oak Logs",
   "tag.item.c.stripped_spruce_logs": "Stripped Spruce Logs",
   "tag.item.c.stripped_warped_stems": "Stripped Warped Stems",
-  "tag.item.c.warped_vegetation": "Warped Vegetation",
-
-  "tag.biome.c.is_dark_oak_forest": "Is Dark Oak Forest"
+  "tag.item.c.warped_vegetation": "Warped Vegetation"
 }

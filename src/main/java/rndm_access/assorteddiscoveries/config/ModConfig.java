@@ -19,7 +19,7 @@ public class ModConfig {
      * Server: Immediately when the game is started!
      * Client: After the player joins.<br>
      *
-     * @return The config with the data from either the servers config or the clients config.
+     * @return The config with the data from either the server's config or the client's config.
      *         Config data is synchronized through packets.
      *         If there is a problem loading then the config will use default values.
      */

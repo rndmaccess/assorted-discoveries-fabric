@@ -35,6 +35,13 @@ public class ConfigCategory extends ConfigObject {
         return entries.get(name);
     }
 
+    public BooleanConfigEntry getBoolEntry(String name) {
+        if(!this.hasEntry(name)) {
+            throw new NoSuchElementException("The category " + this.getKey() + " does not have entry " + name);
+        }
+        return (BooleanConfigEntry) entries.get(name);
+    }
+
     public ConfigCategory getSubcategory(String name) {
         if(!this.hasSubcategory(name)) {
             throw new NoSuchElementException("The category " + this.getKey() + " does not have subcategory "

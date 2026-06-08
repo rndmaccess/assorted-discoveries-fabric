@@ -12,62 +12,51 @@ import java.nio.file.Path;
 import java.util.Map;
 
 public class ModConfig {
-    private static volatile ServerConfig serverConfig = null;
-    private static volatile Map<String, Boolean> clientConfig = null;
+    private static volatile Config config = null;
 
     /**
-     * Config data available:<br>
-     * Client: After the player joins.<br>
-     * Server: After the world is started.
-     *
-     * @return A read-only copy of the server config's data that should be used for client based applications.
-     */
-    public static synchronized Map<String, Boolean> getClientConfig() {
-        if (clientConfig == null) {
-            throw new IllegalStateException("Client config has not been loaded!");
-        }
-        return clientConfig;
-    }
-
-    public static synchronized void updateClientConfig(Map<String, Boolean> entries) {
-        clientConfig = entries;
-    }
-
-    /**
-     * WARNING: If this method is called on the client it will reflect what is in the client's config file instead
-     * of what is in the server's. This breaks server sync.<br>
-     *
      * Config data available:<br>
      * Server: Immediately when the game is started!
+     * Client: After the player joins.<br>
      *
-     * @return The server config (local config) with data from the local config file.
+     * @return The config with the data from either the servers config or the clients config.
+     *         Config data is synchronized through packets.
      *         If there is a problem loading then the config will use default values.
      */
-    public static synchronized ServerConfig getServerConfig() {
-        if (serverConfig == null) {
-            serverConfig = createOrLoad(getDefaultConfig());
+    public static synchronized Config getConfig() {
+        if (config == null) {
+            config = createOrLoad(getDefaultConfig());
         }
-        return serverConfig;
+        return config;
     }
 
     /**
-     * Reparse config from config file!
+     * Useful for places where you need to make a temporary copy of the config data. One use could be for saving!
+     * @return A new config based on the default config with values loaded from the local config file.
      */
-    public static synchronized void updateServerConfig() {
-        serverConfig = createOrLoad(getDefaultConfig());
+    public static synchronized Config makeConfig() {
+        return createOrLoad(getDefaultConfig());
     }
 
-    public static ServerConfig createOrLoad(ServerConfig defaultConfig) {
+    public static synchronized void updateFromMap(Map<String, Boolean> configMap) {
+        config = config.loadConfigFromMap(configMap);
+    }
+
+    public static synchronized void updateFromFile() {
+        config = createOrLoad(getDefaultConfig());
+    }
+
+    private static Config createOrLoad(Config defaultConfig) {
         Path configPath = FabricLoader.getInstance().getConfigDir().resolve(AssortedDiscoveries.MOD_ID + ".json5");
 
         if (!Files.exists(configPath)) {
             defaultConfig.create();
             return defaultConfig;
         }
-        return defaultConfig.loadConfig();
+        return defaultConfig.loadConfigFromFile();
     }
 
-    private static ServerConfig getDefaultConfig() {
+    private static Config getDefaultConfig() {
         CommentConfigEntry blackstoneTileComment = new CommentConfigEntry("This option requires " +
                 "blackstone tiles!");
         CommentConfigEntry smokyQuartzBlocksComment = new CommentConfigEntry("This option requires " +
@@ -216,7 +205,7 @@ public class ModConfig {
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_ENDER_PLANTS))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_WITCHS_CRADLES)).build();
 
-        ServerConfig.Builder config = new ServerConfig.Builder(AssortedDiscoveries.MOD_ID)
+        Config.Builder config = new Config.Builder(AssortedDiscoveries.MOD_ID)
                 .addComment(requiredRestartComment)
                 .addCategory(buildingBlocksCategory)
                 .addCategory(plushiesCategory)

@@ -16,25 +16,39 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 
-public class ServerConfig {
+public class Config {
     private final List<ConfigObject> objects;
     private final HashMap<String, ConfigCategory> categories;
     private final Path path;
     private final String name;
     private String configError;
 
-    public ServerConfig(ServerConfig.Builder builder) {
+    public Config(Config.Builder builder) {
         this.objects = builder.objects;
         this.categories = builder.categories;
         this.path = FabricLoader.getInstance().getConfigDir().resolve(builder.name + ".json5");
         this.name = builder.name;
     }
 
-    public ServerConfig loadConfig() {
+    public Config loadConfigFromMap(Map<String, Boolean> configMap) {
+        configMap.forEach((key, value) -> {
+            List<ConfigCategory> categories = this.getCategories();
+
+            for (ConfigCategory category : categories) {
+                if (category.hasEntry(key)) {
+                    category.getBoolEntry(key).setValue(value);
+                    break;
+                }
+            }
+        });
+        return this;
+    }
+
+    public Config loadConfigFromFile() {
         try {
             ConfigDeserializer deserializer = new ConfigDeserializer(AssortedDiscoveries.MOD_ID);
-            ServerConfig loadedConfig = deserializer.deserialize();
-            ServerConfig newConfig = this.merge(loadedConfig);
+            Config loadedConfig = deserializer.deserialize();
+            Config newConfig = this.merge(loadedConfig);
             // Re-save the config with the values in memory so when we load it
             // we can ensure any new config entries are added to the config file!
             newConfig.save();
@@ -74,6 +88,14 @@ public class ServerConfig {
             }
         }
         return hashMap;
+    }
+
+    public boolean getBooleanValue(String entryName) {
+        return ((BooleanConfigEntry) this.getEntry(entryName)).getValue();
+    }
+
+    public BooleanConfigEntry getBooleanEntry(String entryName) {
+        return (BooleanConfigEntry) this.getEntry(entryName);
     }
 
     /**
@@ -157,8 +179,8 @@ public class ServerConfig {
         }
     }
 
-    public ServerConfig merge(ServerConfig anotherConfig) {
-        ServerConfig.Builder config = new ServerConfig.Builder(this.name);
+    public Config merge(Config anotherConfig) {
+        Config.Builder config = new Config.Builder(this.name);
 
         for (ConfigObject object : this.getObjects()) {
             if (object.isComment()) {
@@ -179,7 +201,7 @@ public class ServerConfig {
         return config.build();
     }
 
-    private void mergeCategories(ServerConfig.Builder configBuilder, ServerConfig anotherConfig, String categoryKey,
+    private void mergeCategories(Config.Builder configBuilder, Config anotherConfig, String categoryKey,
                                  ConfigCategory category) {
         ConfigCategory.Builder categoryBuilder = new ConfigCategory.Builder(categoryKey);
 
@@ -198,7 +220,7 @@ public class ServerConfig {
         configBuilder.addCategory(categoryBuilder.build());
     }
 
-    private void mergeEntries(ServerConfig anotherConfig, ConfigCategory.Builder categoryBuilder,
+    private void mergeEntries(Config anotherConfig, ConfigCategory.Builder categoryBuilder,
                               ConfigObject categoryObject, String categoryKey, ConfigCategory category) {
         String entryKey = categoryObject.getKey();
 
@@ -220,19 +242,19 @@ public class ServerConfig {
             this.name = name;
         }
 
-        public ServerConfig.Builder addComment(CommentConfigEntry comment) {
+        public Config.Builder addComment(CommentConfigEntry comment) {
             objects.add(comment);
             return this;
         }
 
-        public ServerConfig.Builder addCategory(ConfigCategory category) {
+        public Config.Builder addCategory(ConfigCategory category) {
             categories.put(category.getKey(), category);
             objects.add(category);
             return this;
         }
 
-        public ServerConfig build() {
-            return new ServerConfig(this);
+        public Config build() {
+            return new Config(this);
         }
     }
 }

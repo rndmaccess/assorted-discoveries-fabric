@@ -2,7 +2,7 @@ package rndm_access.assorteddiscoveries.config.json.deserializer;
 
 import net.fabricmc.loader.api.FabricLoader;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
-import rndm_access.assorteddiscoveries.config.json.ServerConfig;
+import rndm_access.assorteddiscoveries.config.json.Config;
 import rndm_access.assorteddiscoveries.config.json.exceptions.JsonSyntaxException;
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.*;
 import rndm_access.assorteddiscoveries.config.json.tokenizer.Token;
@@ -27,10 +27,10 @@ public class ConfigDeserializer {
         this.configPath = FabricLoader.getInstance().getConfigDir().resolve(configName + ".json5");
     }
 
-    public ServerConfig deserialize() throws JsonSyntaxException {
+    public Config deserialize() throws JsonSyntaxException {
         // We tokenize here in case this method throws a JsonConfigException
         this.tokenList = new ConfigTokenizer(configPath).tokenize();
-        ServerConfig.Builder config = new ServerConfig.Builder(configName);
+        Config.Builder config = new Config.Builder(configName);
 
         if(tokenList.isEmpty()) {
             AssortedDiscoveries.LOGGER.error("Could not load the config file because it was empty!");
@@ -43,7 +43,7 @@ public class ConfigDeserializer {
         return config.build();
     }
 
-    private void deserialize(ServerConfig.Builder config) throws JsonSyntaxException {
+    private void deserialize(Config.Builder config) throws JsonSyntaxException {
         while (tokenList.hasNextToken() && !tokenList.match(TokenType.RIGHT_CURLY)) {
             Token keyToken = requireToken(TokenType.KEY);
             requireToken(TokenType.COLON);

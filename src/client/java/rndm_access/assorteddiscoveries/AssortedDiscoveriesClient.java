@@ -1,6 +1,7 @@
 package rndm_access.assorteddiscoveries;
 
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockColorRegistry;
@@ -31,8 +32,12 @@ public class AssortedDiscoveriesClient implements ClientModInitializer {
         registerBlockEntityRenderers();
 
         ClientPlayNetworking.registerGlobalReceiver(BooleanEntriesS2CPayload.ID, (payload, context) -> {
-            ModConfig.updateClientConfig(payload.configMap());
+            ModConfig.updateFromMap(payload.configMap());
             AssortedDiscoveries.LOGGER.info("{} received the config data!", context.player().getName().getString());
+        });
+        ClientPlayConnectionEvents.DISCONNECT.register((handler, connection) -> {
+            ModConfig.updateFromFile();
+            AssortedDiscoveries.LOGGER.info("Local config data reloaded!");
         });
     }
 

@@ -36,7 +36,7 @@ public class ModConfigErrorScreen extends Screen {
     @Override
     public void extractBackground(@NonNull GuiGraphicsExtractor gui, int mouseX, int mouseY, float deltaTicks) {
         super.extractBackground(gui, mouseX, mouseY, deltaTicks);
-        String errorStr = ModConfig.getServerConfig().getConfigError();
+        String errorStr = ModConfig.getConfig().getConfigError();
         FormattedText errorText = FormattedText.of(errorStr, Style.EMPTY.withColor(ERROR_TEXT_COLOR));
         int centeredX = this.width / 2;
 

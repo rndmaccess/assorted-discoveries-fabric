@@ -15,9 +15,9 @@ public class ConfigSerializer {
     private int line;
     private int depth;
     private final Path configPath;
-    private final ServerConfig config;
+    private final Config config;
 
-    public ConfigSerializer(ServerConfig config, Path configPath) {
+    public ConfigSerializer(Config config, Path configPath) {
         line = 0;
         depth = 0;
         this.configPath = configPath;

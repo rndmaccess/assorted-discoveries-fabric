@@ -3,7 +3,7 @@ package rndm_access.assorteddiscoveries.config.json.deserializer.entries;
 import rndm_access.assorteddiscoveries.config.json.deserializer.ConfigObject;
 
 public abstract class AbstractConfigEntry<T> extends ConfigObject {
-    private final T value;
+    private T value;
 
     public AbstractConfigEntry(String key, T value) {
         super(key);
@@ -12,5 +12,9 @@ public abstract class AbstractConfigEntry<T> extends ConfigObject {
 
     public T getValue() {
         return value;
+    }
+
+    public void setValue(T value) {
+        this.value = value;
     }
 }

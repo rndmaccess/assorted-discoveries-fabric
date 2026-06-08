@@ -5,8 +5,10 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockColorRegistry;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.block.BlockTintSource;
 import net.minecraft.client.color.block.BlockTintSources;
+import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.client.particle.FlameParticle;
 import net.minecraft.client.particle.LavaParticle;
 import net.minecraft.client.renderer.block.BlockAndTintGetter;
@@ -30,15 +32,18 @@ public class AssortedDiscoveriesClient implements ClientModInitializer {
         registerBlockColors();
         registerParticleProvider();
         registerBlockEntityRenderers();
+        ClientPlayNetworking.registerGlobalReceiver(BooleanEntriesS2CPayload.ID, AssortedDiscoveriesClient::receiveServerConfig);
+        ClientPlayConnectionEvents.DISCONNECT.register(AssortedDiscoveriesClient::updateConfigOnLogout);
+    }
 
-        ClientPlayNetworking.registerGlobalReceiver(BooleanEntriesS2CPayload.ID, (payload, context) -> {
-            ModConfig.updateFromList(payload.configList());
-            AssortedDiscoveries.LOGGER.info("{} received the config data!", context.player().getName().getString());
-        });
-        ClientPlayConnectionEvents.DISCONNECT.register((handler, connection) -> {
-            ModConfig.updateFromFile();
-            AssortedDiscoveries.LOGGER.info("Local config data reloaded!");
-        });
+    private static void receiveServerConfig(BooleanEntriesS2CPayload payload, ClientPlayNetworking.Context context) {
+        ModConfig.updateFromList(payload.configList());
+        AssortedDiscoveries.LOGGER.info("{} received the config data!", context.player().getName().getString());
+    }
+
+    private static void updateConfigOnLogout(ClientPacketListener listener, Minecraft minecraft) {
+        ModConfig.updateFromFile();
+        AssortedDiscoveries.LOGGER.info("Local config data reloaded!");
     }
 
     private static void registerBlockEntityRenderers() {

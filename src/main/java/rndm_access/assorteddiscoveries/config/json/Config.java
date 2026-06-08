@@ -31,9 +31,9 @@ public class Config {
     }
 
     public Config loadConfigFromMap(Map<String, Boolean> configMap) {
-        configMap.forEach((key, value) -> {
-            List<ConfigCategory> categories = this.getCategories();
+        List<ConfigCategory> categories = this.getCategories();
 
+        configMap.forEach((key, value) -> {
             for (ConfigCategory category : categories) {
                 if (category.hasEntry(key)) {
                     category.getBoolEntry(key).setValue(value);

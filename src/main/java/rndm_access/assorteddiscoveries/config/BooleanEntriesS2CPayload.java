@@ -19,10 +19,10 @@ public record BooleanEntriesS2CPayload(List<Config.EntryPair<Boolean>> configLis
     public static final CustomPacketPayload.Type<BooleanEntriesS2CPayload> ID = new CustomPacketPayload.Type<>(CONFIG_PAYLOAD_ID);
     public static final StreamCodec<ByteBuf, List<Config.EntryPair<Boolean>>> PACKET_CODEC = new StreamCodec<>() {
         public @NonNull List<Config.EntryPair<Boolean>> decode(ByteBuf byteBuf) {
-            int intSize = byteBuf.readInt();
-            List<Config.EntryPair<Boolean>> list = new ArrayList<>();
+            int listSize = byteBuf.readInt();
+            List<Config.EntryPair<Boolean>> list = new ArrayList<>(listSize);
 
-            for (int i = 0; i < intSize; i++) {
+            for (int i = 0; i < listSize; i++) {
                 String str = ((FriendlyByteBuf) byteBuf).readUtf();
                 boolean bool = byteBuf.readBoolean();
                 list.add(new Config.EntryPair<>(str, bool));

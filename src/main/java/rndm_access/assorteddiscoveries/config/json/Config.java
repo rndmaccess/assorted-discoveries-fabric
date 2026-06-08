@@ -30,10 +30,13 @@ public class Config {
         this.name = builder.name;
     }
 
-    public Config loadConfigFromMap(Map<String, Boolean> configMap) {
-        List<ConfigCategory> categories = this.getCategories();
+    public Config loadConfigFromList(List<Config.EntryPair<Boolean>> configList) {
+        Collection<ConfigCategory> categories = this.categories.values();
 
-        configMap.forEach((key, value) -> {
+        configList.forEach((configEntry) -> {
+            String key = configEntry.key;
+            boolean value = configEntry.value;
+
             for (ConfigCategory category : categories) {
                 if (category.hasEntry(key)) {
                     category.getBoolEntry(key).setValue(value);
@@ -77,25 +80,23 @@ public class Config {
         return name;
     }
 
-    public Map<String, Boolean> toEntryMap() {
-        Map<String, Boolean> hashMap = new HashMap<>();
+    public List<EntryPair<Boolean>> toEntryList() {
+        List<EntryPair<Boolean>> list = new ArrayList<>();
 
         for (ConfigCategory category : categories.values()) {
             for (AbstractConfigEntry<?> entry : category.getEntries()) {
                 if (entry instanceof BooleanConfigEntry) {
-                    hashMap.put(entry.getKey(), (Boolean) entry.getValue());
+                    list.add(new EntryPair<>(entry.getKey(), (Boolean) entry.getValue()));
                 }
             }
         }
-        return hashMap;
+        return list;
     }
+
+    public record EntryPair<V>(String key, V value) {}
 
     public boolean getBooleanValue(String entryName) {
         return ((BooleanConfigEntry) this.getEntry(entryName)).getValue();
-    }
-
-    public BooleanConfigEntry getBooleanEntry(String entryName) {
-        return (BooleanConfigEntry) this.getEntry(entryName);
     }
 
     /**

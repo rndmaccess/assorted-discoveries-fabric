@@ -32,7 +32,7 @@ public class AssortedDiscoveriesClient implements ClientModInitializer {
         registerBlockEntityRenderers();
 
         ClientPlayNetworking.registerGlobalReceiver(BooleanEntriesS2CPayload.ID, (payload, context) -> {
-            ModConfig.updateFromMap(payload.configMap());
+            ModConfig.updateFromList(payload.configList());
             AssortedDiscoveries.LOGGER.info("{} received the config data!", context.player().getName().getString());
         });
         ClientPlayConnectionEvents.DISCONNECT.register((handler, connection) -> {

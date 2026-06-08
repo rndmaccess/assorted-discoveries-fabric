@@ -9,7 +9,7 @@ import rndm_access.assorteddiscoveries.config.json.deserializer.entries.CommentC
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Map;
+import java.util.List;
 
 public class ModConfig {
     private static volatile Config config = null;
@@ -38,8 +38,8 @@ public class ModConfig {
         return createOrLoad(getDefaultConfig());
     }
 
-    public static synchronized void updateFromMap(Map<String, Boolean> configMap) {
-        config = config.loadConfigFromMap(configMap);
+    public static synchronized void updateFromList(List<Config.EntryPair<Boolean>> configList) {
+        config = config.loadConfigFromList(configList);
     }
 
     public static synchronized void updateFromFile() {

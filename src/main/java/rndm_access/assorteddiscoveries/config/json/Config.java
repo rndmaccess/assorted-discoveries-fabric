@@ -119,13 +119,6 @@ public class Config {
             if (currentCategory.hasEntry(entryName)) {
                 return currentCategory.getEntry(entryName);
             }
-
-            // If the category has subcategories, push those onto the stack and look through those as well!
-            if (currentCategory.hasSubCategories()) {
-                for (ConfigCategory subcategory : currentCategory.getSubcategories()) {
-                    stack.push(subcategory);
-                }
-            }
         }
         return null; // Entry not found!
     }

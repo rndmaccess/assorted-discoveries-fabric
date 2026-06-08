@@ -128,7 +128,7 @@ public class ConfigTokenizer {
         String value = objectBuilder.toString();
         boolean isBool = value.equalsIgnoreCase("true") || value.equalsIgnoreCase("false");
 
-        if (isBool || isInteger(value)) {
+        if (isBool) {
             return new Token(TokenType.VALUE, value.toLowerCase(), tokenLine);
         }
         return new Token(TokenType.ERROR, value, tokenLine);
@@ -170,14 +170,5 @@ public class ConfigTokenizer {
                     + "', got '" + this.curChar
                     + "' at line " + reportedLine);
         }
-    }
-
-    private boolean isInteger(String value) {
-        for (int i = 0; i < value.length(); i++) {
-            if(!Character.isDigit(value.charAt(i)) && value.charAt(0) != '-') {
-                return false;
-            }
-        }
-        return true;
     }
 }

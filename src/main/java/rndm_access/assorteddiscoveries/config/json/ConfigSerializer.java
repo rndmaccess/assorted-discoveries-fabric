@@ -100,9 +100,6 @@ public class ConfigSerializer {
             if (category.hasEntry(key)) {
                 AbstractConfigEntry<?> entry = (AbstractConfigEntry<?>) component;
                 writeEntry(newContent, category, entry, changeList);
-            } else {
-                ConfigCategory subCategory = category.getSubcategory(key);
-                writeCategory(newContent, subCategory, changeList);
             }
 
             if (i + 1 < category.getJsonObjects().size()) {

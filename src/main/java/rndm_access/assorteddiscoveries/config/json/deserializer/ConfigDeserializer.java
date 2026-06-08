@@ -85,11 +85,11 @@ public class ConfigDeserializer {
 
             if (tokenList.match(TokenType.ERROR)) {
                 tokenList.consumeToken();
-                AssortedDiscoveries.LOGGER.error("This type for {} is not supported!", keyToken.getValue());
+                AssortedDiscoveries.LOGGER.error("The type for {} is not supported!", keyToken.getValue());
             } else if (tokenList.match(TokenType.LEFT_CURLY)) {
                 tokenList.consumeToken();
                 ConfigCategory subcategory = parseCategory(keyToken);
-                category.addSubcategory(subcategory);
+                AssortedDiscoveries.LOGGER.warn("Only top level categories are supported! Ignoring subcategory {}", subcategory);
             } else {
                 Token token = requireToken(TokenType.VALUE);
                 String value = token.getValue();
@@ -97,10 +97,6 @@ public class ConfigDeserializer {
                 if (Objects.equals(value, "true") || Objects.equals(value, "false")) {
                     boolean boolVal = Boolean.parseBoolean(value);
                     BooleanConfigEntry entry = new BooleanConfigEntry(key, boolVal);
-                    category.addEntry(entry);
-                } else if (isPosInteger(value)) {
-                    int intVal = Integer.parseInt(value);
-                    IntegerConfigEntry entry = new IntegerConfigEntry(key, intVal);
                     category.addEntry(entry);
                 } else {
                     String stringVal = parseString(value);
@@ -114,15 +110,6 @@ public class ConfigDeserializer {
             }
         }
         tokenList.consumeToken(); // Consume the closing right curly for this entry!
-    }
-
-    private boolean isPosInteger(String value) {
-        for (int i = 0; i < value.length(); i++) {
-            if(!Character.isDigit(value.charAt(i)) && value.charAt(0) != '-') {
-                return false;
-            }
-        }
-        return true;
     }
 
     public Token requireToken(TokenType... types) throws JsonSyntaxException {

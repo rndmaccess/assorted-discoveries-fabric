@@ -31,13 +31,13 @@ public class Config {
     }
 
     public Config loadConfigFromList(List<Config.EntryPair<Boolean>> configList) {
-        Collection<ConfigCategory> categories = this.categories.values();
+        Collection<ConfigCategory> listCategories = this.categories.values();
 
         configList.forEach((configEntry) -> {
             String key = configEntry.key;
             boolean value = configEntry.value;
 
-            for (ConfigCategory category : categories) {
+            for (ConfigCategory category : listCategories) {
                 if (category.hasEntry(key)) {
                     category.getBoolEntry(key).setValue(value);
                     break;

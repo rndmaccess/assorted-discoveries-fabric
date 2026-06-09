@@ -105,19 +105,10 @@ public class Config {
      */
     public AbstractConfigEntry<?> getEntry(String entryName) {
         List<ConfigCategory> categories = this.getCategories();
-        ArrayDeque<ConfigCategory> stack = new ArrayDeque<>(categories.size());
 
-        // Start by adding the root categories to the stack. We then will look in each category for the entry!
         for (ConfigCategory category : categories) {
-            stack.push(category);
-        }
-
-        while (!stack.isEmpty()) {
-            ConfigCategory currentCategory = stack.pop();
-
-            // If the current category has the entry then we have found it!
-            if (currentCategory.hasEntry(entryName)) {
-                return currentCategory.getEntry(entryName);
+            if (category.hasEntry(entryName)) {
+                return category.getEntry(entryName);
             }
         }
         return null; // Entry not found!

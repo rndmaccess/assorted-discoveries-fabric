@@ -24,8 +24,8 @@ public class ConfigSerializer {
         this.config = config;
     }
 
-    /*
-     * This method is used to serialize to a new config file!
+    /**
+     * Create a new config file!
      */
     public void serialize() {
         // The config does not exist so we don't have any changes!
@@ -33,8 +33,8 @@ public class ConfigSerializer {
     }
 
     /**
-     * This method is used to serialize new changes to a config file!
-     * @param changeList The changes to serialize
+     * Save changes to a config file!
+     * @param changeList The changes to save
      */
     public void serialize(Map<String, Object> changeList) {
         List<String> newContent = this.getContent(changeList);

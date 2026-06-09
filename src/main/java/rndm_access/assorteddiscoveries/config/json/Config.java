@@ -95,7 +95,7 @@ public class Config {
 
     public record EntryPair<V>(String key, V value) {}
 
-    public boolean getBooleanValue(String entryName) {
+    public boolean evaluateEntry(String entryName) {
         return ((BooleanConfigEntry) this.getEntry(entryName)).getValue();
     }
 
@@ -135,7 +135,7 @@ public class Config {
     }
 
     public List<ConfigCategory> getCategories() {
-        return categories.values().stream().toList();
+        return new ArrayList<>(categories.values());
     }
 
     public List<ConfigObject> getObjects() {

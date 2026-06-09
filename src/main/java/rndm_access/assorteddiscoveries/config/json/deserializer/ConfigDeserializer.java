@@ -51,6 +51,9 @@ public class ConfigDeserializer {
             if (tokenList.matchAndConsume(TokenType.LEFT_CURLY)) {
                 ConfigCategory category = parseCategory(keyToken);
                 config.addCategory(category);
+            } else {
+                requireToken(TokenType.VALUE);
+                AssortedDiscoveries.LOGGER.warn("Entries are not allowed outside categories! Skipping entry {}", keyToken.getValue());
             }
 
             if (!tokenList.match(TokenType.RIGHT_CURLY) && tokenList.getNext() != null) {

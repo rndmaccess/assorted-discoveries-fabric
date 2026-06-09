@@ -33,7 +33,7 @@ public abstract class BoneMealItemMixin {
         boolean isBoneMealable = level.getBlockState(soilPos).is(ModBlockTags.END_BONE_MEALABLE_BLOCKS);
         BlockPos centerPos = soilPos.above();
         boolean isEmptyAbove = level.getBlockState(centerPos).isAir();
-        boolean isEnabled = ModConfig.getConfig().getBooleanValue(ModConfigKeys.ENABLE_ENDER_PLANTS);
+        boolean isEnabled = ModConfig.getConfig().evaluateEntry(ModConfigKeys.ENABLE_ENDER_PLANTS);
 
         if (!isEnabled) {
             return original;

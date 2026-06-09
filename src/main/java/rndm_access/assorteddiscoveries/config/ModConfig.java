@@ -25,7 +25,7 @@ public class ModConfig {
      */
     public static synchronized Config getConfig() {
         if (config == null) {
-            config = createOrLoad(getDefaultConfig());
+            config = makeConfig();
         }
         return config;
     }

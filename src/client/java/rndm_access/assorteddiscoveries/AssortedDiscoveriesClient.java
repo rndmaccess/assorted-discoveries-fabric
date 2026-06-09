@@ -33,7 +33,7 @@ public class AssortedDiscoveriesClient implements ClientModInitializer {
         registerParticleProvider();
         registerBlockEntityRenderers();
         ClientPlayNetworking.registerGlobalReceiver(BooleanEntriesS2CPayload.ID, AssortedDiscoveriesClient::receiveServerConfig);
-        ClientPlayConnectionEvents.DISCONNECT.register(AssortedDiscoveriesClient::updateConfigOnLogout);
+        ClientPlayConnectionEvents.DISCONNECT.register(AssortedDiscoveriesClient::reloadLocalConfig);
     }
 
     private static void receiveServerConfig(BooleanEntriesS2CPayload payload, ClientPlayNetworking.Context context) {
@@ -41,7 +41,7 @@ public class AssortedDiscoveriesClient implements ClientModInitializer {
         AssortedDiscoveries.LOGGER.info("{} received the config data!", context.player().getName().getString());
     }
 
-    private static void updateConfigOnLogout(ClientPacketListener listener, Minecraft minecraft) {
+    private static void reloadLocalConfig(ClientPacketListener listener, Minecraft minecraft) {
         ModConfig.updateFromFile();
         AssortedDiscoveries.LOGGER.info("Local config data reloaded!");
     }

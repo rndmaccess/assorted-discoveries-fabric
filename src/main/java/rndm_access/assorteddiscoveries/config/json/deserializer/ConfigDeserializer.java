@@ -53,7 +53,7 @@ public class ConfigDeserializer {
                 config.addCategory(category);
             } else {
                 requireToken(TokenType.VALUE);
-                AssortedDiscoveries.LOGGER.warn("Entries are not allowed outside categories! Skipping entry {}", keyToken.getValue());
+                AssortedDiscoveries.LOGGER.warn("Config entries are not allowed outside categories! Skipping entry {}", keyToken.getValue());
             }
 
             if (!tokenList.match(TokenType.RIGHT_CURLY) && tokenList.getNext() != null) {
@@ -92,7 +92,7 @@ public class ConfigDeserializer {
             } else if (tokenList.match(TokenType.LEFT_CURLY)) {
                 tokenList.consumeToken();
                 ConfigCategory subcategory = parseCategory(keyToken);
-                AssortedDiscoveries.LOGGER.warn("Only top level categories are supported! Ignoring subcategory {}", subcategory);
+                AssortedDiscoveries.LOGGER.warn("Only top level config categories are supported! Ignoring subcategory {}", subcategory);
             } else {
                 Token token = requireToken(TokenType.VALUE);
                 String value = token.getValue();

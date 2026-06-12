@@ -4,6 +4,7 @@ import org.jetbrains.annotations.Nullable;
 import rndm_access.assorteddiscoveries.config.json.deserializer.ConfigCategory;
 import rndm_access.assorteddiscoveries.config.json.deserializer.ConfigObject;
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.AbstractConfigEntry;
+import rndm_access.assorteddiscoveries.config.json.deserializer.entries.StringConfigEntry;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -91,15 +92,15 @@ public class ConfigSerializer {
         for (int i = 0; i < objects.size(); i++) {
             ConfigObject component = objects.get(i);
             String key = component.getKey();
+            AbstractConfigEntry<?> entry = category.getEntry(key);
 
             if (component.isComment()) {
                 this.writeComment(newContent, key);
                 continue;
             }
 
-            if (category.hasEntry(key)) {
-                AbstractConfigEntry<?> entry = (AbstractConfigEntry<?>) component;
-                writeEntry(newContent, category, entry, changeList);
+            if (entry != null) {
+                writeEntry(newContent, entry, changeList);
             }
 
             if (i + 1 < category.getJsonObjects().size()) {
@@ -113,22 +114,20 @@ public class ConfigSerializer {
         }
     }
 
-    private void writeEntry(List<String> newContent, ConfigCategory category, AbstractConfigEntry<?> entry,
+    private void writeEntry(List<String> newContent, AbstractConfigEntry<?> entry,
                             Map<String, Object> changeList) {
         StringBuilder entryLine = new StringBuilder();
         String key = entry.getKey();
         Object value = entry.getValue();
-        entryLine.append("\"").append(entry.getKey()).append("\": ");
+        entryLine.append("\"").append(key).append("\": ");
 
-        if (category.hasStringEntry(key)) {
-            if (changeList != null && changeList.containsKey(key)) {
-                value = changeList.get(key);
-            }
+        if (changeList != null && changeList.containsKey(key)) {
+            value = changeList.get(key);
+        }
+
+        if (entry instanceof StringConfigEntry) {
             entryLine.append("\"").append(value).append("\"");
         } else {
-            if (changeList != null && changeList.containsKey(key)) {
-                value = changeList.get(key);
-            }
             entryLine.append(value);
         }
         this.writeText(entryLine.toString(), newContent);

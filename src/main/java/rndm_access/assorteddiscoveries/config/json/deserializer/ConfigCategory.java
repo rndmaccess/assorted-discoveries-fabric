@@ -6,7 +6,7 @@ import java.util.*;
 
 public class ConfigCategory extends ConfigObject {
     private final List<ConfigObject> objects;
-    private final Map<String, AbstractConfigEntry<?>> entries;
+    private final List<AbstractConfigEntry<?>> entries;
 
     protected ConfigCategory(ConfigCategory.Builder builder) {
         super(builder.name);
@@ -15,29 +15,24 @@ public class ConfigCategory extends ConfigObject {
     }
 
     public List<AbstractConfigEntry<?>> getEntries() {
-        return entries.values().stream().toList();
+        return entries;
     }
 
     public AbstractConfigEntry<?> getEntry(String name) {
-        if(!this.hasEntry(name)) {
-            throw new NoSuchElementException("The category " + this.getKey() + " does not have entry " + name);
-        }
-        return entries.get(name);
+        return lookupEntry(name);
     }
 
     public BooleanConfigEntry getBoolEntry(String name) {
-        if(!this.hasEntry(name)) {
-            throw new NoSuchElementException("The category " + this.getKey() + " does not have entry " + name);
+        return (BooleanConfigEntry) lookupEntry(name);
+    }
+
+    private AbstractConfigEntry<?> lookupEntry(String key) {
+        for (AbstractConfigEntry<?> entry : entries) {
+            if (entry.getKey().equals(key)) {
+                return entry;
+            }
         }
-        return (BooleanConfigEntry) entries.get(name);
-    }
-
-    public boolean hasEntry(String name) {
-        return entries.containsKey(name) && entries.get(name) instanceof AbstractConfigEntry<?>;
-    }
-
-    public boolean hasStringEntry(String name) {
-        return entries.containsKey(name) && entries.get(name) instanceof StringConfigEntry;
+        return null;
     }
 
     public List<ConfigObject> getJsonObjects() {
@@ -47,7 +42,7 @@ public class ConfigCategory extends ConfigObject {
     public static class Builder {
         public String name;
         private final List<ConfigObject> objects = new ArrayList<>();
-        private final Map<String, AbstractConfigEntry<?>> entries = new LinkedHashMap<>();
+        private final List<AbstractConfigEntry<?>> entries = new ArrayList<>();
 
         public Builder(String name) {
             this.name = name;
@@ -59,8 +54,7 @@ public class ConfigCategory extends ConfigObject {
         }
 
         public <T extends AbstractConfigEntry<?>> Builder addEntry(T entry) {
-            String name = entry.getKey();
-            entries.put(name, entry);
+            entries.add(entry);
             objects.add(entry);
             return this;
         }

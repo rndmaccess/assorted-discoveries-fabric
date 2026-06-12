@@ -18,7 +18,7 @@ import java.util.*;
 
 public class Config {
     private final List<ConfigObject> objects;
-    private final HashMap<String, ConfigCategory> categories;
+    private final List<ConfigCategory> categories;
     private final Path path;
     private final String name;
     private String configError;
@@ -30,16 +30,16 @@ public class Config {
         this.name = builder.name;
     }
 
-    public Config loadConfigFromList(List<Config.EntryPair<Boolean>> configList) {
-        Collection<ConfigCategory> listCategories = this.categories.values();
-
+    public Config loadConfigFromList(List<EntryPair<Boolean>> configList) {
         configList.forEach((configEntry) -> {
-            String key = configEntry.key;
-            boolean value = configEntry.value;
+            String key = configEntry.key();
+            boolean value = configEntry.value();
 
-            for (ConfigCategory category : listCategories) {
-                if (category.hasEntry(key)) {
-                    category.getBoolEntry(key).setValue(value);
+            for (ConfigCategory category : categories) {
+                BooleanConfigEntry entry = category.getBoolEntry(key);
+
+                if (entry != null) {
+                    entry.setValue(value);
                     break;
                 }
             }
@@ -80,10 +80,10 @@ public class Config {
         return name;
     }
 
-    public List<EntryPair<Boolean>> toEntryList() {
+    public List<EntryPair<Boolean>> toBooleanEntryList() {
         List<EntryPair<Boolean>> list = new ArrayList<>();
 
-        for (ConfigCategory category : categories.values()) {
+        for (ConfigCategory category : categories) {
             for (AbstractConfigEntry<?> entry : category.getEntries()) {
                 if (entry instanceof BooleanConfigEntry) {
                     list.add(new EntryPair<>(entry.getKey(), (Boolean) entry.getValue()));
@@ -93,40 +93,38 @@ public class Config {
         return list;
     }
 
-    public record EntryPair<V>(String key, V value) {}
-
-    public boolean evaluateEntry(String entryName) {
-        return ((BooleanConfigEntry) this.getEntry(entryName)).getValue();
+    public boolean evaluateEntry(String entryKey) {
+        return ((BooleanConfigEntry) this.getEntry(entryKey)).getValue();
     }
 
     /**
-     * @param entryName The config entry key we are looking for
+     * @param entryKey The config entry key we are looking for
      * @return The config entry associated with the key if it's found otherwise null
      */
-    public AbstractConfigEntry<?> getEntry(String entryName) {
+    public AbstractConfigEntry<?> getEntry(String entryKey) {
         List<ConfigCategory> categories = this.getCategories();
 
         for (ConfigCategory category : categories) {
-            if (category.hasEntry(entryName)) {
-                return category.getEntry(entryName);
+            AbstractConfigEntry<?> entry = category.getEntry(entryKey);
+
+            if (entry != null) {
+                return entry;
             }
         }
         return null; // Entry not found!
     }
 
     public ConfigCategory getCategory(String name) {
-        if(!this.hasCategory(name)) {
-            throw new NoSuchElementException("The config does not have category " + name);
+        for (ConfigCategory category : categories) {
+            if (category.getKey().equals(name)) {
+                return category;
+            }
         }
-        return categories.get(name);
-    }
-
-    public boolean hasCategory(String name) {
-        return categories.containsKey(name);
+        return null;
     }
 
     public List<ConfigCategory> getCategories() {
-        return new ArrayList<>(categories.values());
+        return categories;
     }
 
     public List<ConfigObject> getObjects() {
@@ -176,8 +174,9 @@ public class Config {
 
             String categoryKey = object.getKey();
             ConfigCategory category = this.getCategory(categoryKey);
+            ConfigCategory anotherCategory = anotherConfig.getCategory(categoryKey);
 
-            if (anotherConfig.hasCategory(categoryKey)) {
+            if (anotherCategory != null) {
                 this.mergeCategories(config, anotherConfig, categoryKey, category);
             } else {
                 config.addCategory(category);
@@ -192,11 +191,12 @@ public class Config {
 
         for (ConfigObject categoryObject : category.getJsonObjects()) {
             String key = categoryObject.getKey();
+            AbstractConfigEntry<?> entry = category.getEntry(key);
 
             if (categoryObject.isComment()) {
                 CommentConfigEntry comment = (CommentConfigEntry) categoryObject;
                 categoryBuilder.addComment(comment);
-            } else if (category.hasEntry(key)) {
+            } else if (entry != null) {
                 this.mergeEntries(anotherConfig, categoryBuilder, categoryObject, categoryKey, category);
             } else {
                 this.mergeCategories(configBuilder, anotherConfig, key, category); // Also merge subcategories!
@@ -208,10 +208,10 @@ public class Config {
     private void mergeEntries(Config anotherConfig, ConfigCategory.Builder categoryBuilder,
                               ConfigObject categoryObject, String categoryKey, ConfigCategory category) {
         String entryKey = categoryObject.getKey();
+        AbstractConfigEntry<?> entry = anotherConfig.getCategory(categoryKey).getEntry(entryKey);
 
-        if (anotherConfig.getCategory(categoryKey).hasEntry(entryKey)) {
-            AbstractConfigEntry<?> configEntry = anotherConfig.getCategory(categoryKey).getEntry(entryKey);
-            categoryBuilder.addEntry(configEntry);
+        if (entry != null) {
+            categoryBuilder.addEntry(entry);
         } else {
             AbstractConfigEntry<?> configEntry = category.getEntry(entryKey);
             categoryBuilder.addEntry(configEntry);
@@ -221,7 +221,7 @@ public class Config {
     public static class Builder {
         public String name;
         private final List<ConfigObject> objects = new ArrayList<>();
-        private final HashMap<String, ConfigCategory> categories = new LinkedHashMap<>();
+        private final List<ConfigCategory> categories = new ArrayList<>();
 
         public Builder(String name) {
             this.name = name;
@@ -233,7 +233,7 @@ public class Config {
         }
 
         public Config.Builder addCategory(ConfigCategory category) {
-            categories.put(category.getKey(), category);
+            categories.add(category);
             objects.add(category);
             return this;
         }

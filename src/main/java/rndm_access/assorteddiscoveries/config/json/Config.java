@@ -98,14 +98,14 @@ public class Config {
     }
 
     /**
-     * @param entryKey The config entry key we are looking for
+     * @param key The key for the config entry we are looking for
      * @return The config entry associated with the key if it's found otherwise null
      */
-    public AbstractConfigEntry<?> getEntry(String entryKey) {
+    public AbstractConfigEntry<?> getEntry(String key) {
         List<ConfigCategory> categories = this.getCategories();
 
         for (ConfigCategory category : categories) {
-            AbstractConfigEntry<?> entry = category.getEntry(entryKey);
+            AbstractConfigEntry<?> entry = category.getEntry(key);
 
             if (entry != null) {
                 return entry;
@@ -114,9 +114,13 @@ public class Config {
         return null; // Entry not found!
     }
 
-    public ConfigCategory getCategory(String name) {
+    /**
+     * @param key The key for the config defaultCategory we are looking for
+     * @return The config defaultCategory associated with the key if it's found otherwise null
+     */
+    public ConfigCategory getCategory(String key) {
         for (ConfigCategory category : categories) {
-            if (category.getKey().equals(name)) {
+            if (category.getKey().equals(key)) {
                 return category;
             }
         }
@@ -162,59 +166,56 @@ public class Config {
         }
     }
 
-    public Config merge(Config anotherConfig) {
-        Config.Builder config = new Config.Builder(this.name);
+    public Config merge(Config loadedConfig) {
+        Config.Builder configBuilder = new Config.Builder(this.name);
 
         for (ConfigObject object : this.getObjects()) {
             if (object.isComment()) {
                 CommentConfigEntry comment = (CommentConfigEntry) object;
-                config.addComment(comment);
+                configBuilder.addComment(comment);
                 continue;
             }
 
             String categoryKey = object.getKey();
-            ConfigCategory category = this.getCategory(categoryKey);
-            ConfigCategory anotherCategory = anotherConfig.getCategory(categoryKey);
+            ConfigCategory defaultCategory = this.getCategory(categoryKey);
+            ConfigCategory loadedCategory = loadedConfig.getCategory(categoryKey);
 
-            if (anotherCategory != null) {
-                this.mergeCategories(config, anotherConfig, categoryKey, category);
+            if (loadedCategory != null) {
+                this.mergeCategories(configBuilder, loadedCategory, defaultCategory);
             } else {
-                config.addCategory(category);
+                configBuilder.addCategory(defaultCategory);
             }
         }
-        return config.build();
+        return configBuilder.build();
     }
 
-    private void mergeCategories(Config.Builder configBuilder, Config anotherConfig, String categoryKey,
-                                 ConfigCategory category) {
-        ConfigCategory.Builder categoryBuilder = new ConfigCategory.Builder(categoryKey);
+    private void mergeCategories(Config.Builder configBuilder, ConfigCategory loadedCategory, ConfigCategory defaultCategory) {
+        ConfigCategory.Builder categoryBuilder = new ConfigCategory.Builder(defaultCategory.getKey());
 
-        for (ConfigObject categoryObject : category.getJsonObjects()) {
-            String key = categoryObject.getKey();
-            AbstractConfigEntry<?> entry = category.getEntry(key);
-
-            if (categoryObject.isComment()) {
-                CommentConfigEntry comment = (CommentConfigEntry) categoryObject;
+        for (ConfigObject object : defaultCategory.getJsonObjects()) {
+            if (object.isComment()) {
+                CommentConfigEntry comment = (CommentConfigEntry) object;
                 categoryBuilder.addComment(comment);
-            } else if (entry != null) {
-                this.mergeEntries(anotherConfig, categoryBuilder, categoryObject, categoryKey, category);
-            } else {
-                this.mergeCategories(configBuilder, anotherConfig, key, category); // Also merge subcategories!
+                continue;
+            }
+
+            String entryKey = object.getKey();
+            AbstractConfigEntry<?> defaultEntry = defaultCategory.getEntry(entryKey);
+
+            if (defaultEntry != null) {
+                AbstractConfigEntry<?> loadedEntry = loadedCategory.getEntry(entryKey);
+                this.mergeEntries(categoryBuilder, defaultEntry, loadedEntry);
             }
         }
         configBuilder.addCategory(categoryBuilder.build());
     }
 
-    private void mergeEntries(Config anotherConfig, ConfigCategory.Builder categoryBuilder,
-                              ConfigObject categoryObject, String categoryKey, ConfigCategory category) {
-        String entryKey = categoryObject.getKey();
-        AbstractConfigEntry<?> entry = anotherConfig.getCategory(categoryKey).getEntry(entryKey);
-
-        if (entry != null) {
-            categoryBuilder.addEntry(entry);
+    private void mergeEntries(ConfigCategory.Builder categoryBuilder, AbstractConfigEntry<?> defaultEntry,
+                              AbstractConfigEntry<?> loadedEntry) {
+        if (loadedEntry != null) {
+            categoryBuilder.addEntry(loadedEntry);
         } else {
-            AbstractConfigEntry<?> configEntry = category.getEntry(entryKey);
-            categoryBuilder.addEntry(configEntry);
+            categoryBuilder.addEntry(defaultEntry);
         }
     }
 

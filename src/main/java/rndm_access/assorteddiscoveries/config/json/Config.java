@@ -33,6 +33,7 @@ public class Config {
     public Config loadConfigFromList(List<BooleanConfigEntry> configList) {
         if (configList == null || configList.isEmpty()) {
             // If there is no config list to load we can just return the existing config early!
+            AssortedDiscoveries.LOGGER.error("Failed to sync config!");
             return this;
         }
 
@@ -94,9 +95,9 @@ public class Config {
         List<BooleanConfigEntry> list = new ArrayList<>();
 
         for (ConfigCategory category : categories) {
-            for (AbstractConfigEntry<?> entry : category.getEntries()) {
-                if (entry instanceof BooleanConfigEntry) {
-                    list.add((BooleanConfigEntry) entry);
+            for (ConfigObject object : category.getConfigObjects()) {
+                if (object instanceof BooleanConfigEntry) {
+                    list.add((BooleanConfigEntry) object);
                 }
             }
         }
@@ -202,7 +203,7 @@ public class Config {
     private void mergeCategories(Config.Builder configBuilder, ConfigCategory loadedCategory, ConfigCategory defaultCategory) {
         ConfigCategory.Builder categoryBuilder = new ConfigCategory.Builder(defaultCategory.getKey());
 
-        for (ConfigObject object : defaultCategory.getJsonObjects()) {
+        for (ConfigObject object : defaultCategory.getConfigObjects()) {
             if (object.isComment()) {
                 CommentConfigEntry comment = (CommentConfigEntry) object;
                 categoryBuilder.addComment(comment);

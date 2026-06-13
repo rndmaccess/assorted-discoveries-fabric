@@ -84,7 +84,7 @@ public class ConfigSerializer {
     }
 
     private void writeCategory(List<String> newContent, ConfigCategory category, Map<String, Object> changeList) {
-        List<ConfigObject> objects = category.getJsonObjects();
+        List<ConfigObject> objects = category.getConfigObjects();
         int size = objects.size();
         this.writeText("\"" + category.getKey() + "\": {", newContent);
         depth++;

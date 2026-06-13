@@ -85,25 +85,26 @@ public class ConfigSerializer {
 
     private void writeCategory(List<String> newContent, ConfigCategory category, Map<String, Object> changeList) {
         List<ConfigObject> objects = category.getJsonObjects();
+        int size = objects.size();
         this.writeText("\"" + category.getKey() + "\": {", newContent);
         depth++;
         line++;
 
-        for (int i = 0; i < objects.size(); i++) {
+        for (int i = 0; i < size; i++) {
             ConfigObject component = objects.get(i);
             String key = component.getKey();
-            AbstractConfigEntry<?> entry = category.getEntry(key);
 
             if (component.isComment()) {
                 this.writeComment(newContent, key);
                 continue;
             }
 
+            AbstractConfigEntry<?> entry = category.getEntry(key);
             if (entry != null) {
-                writeEntry(newContent, entry, changeList);
+                this.writeEntry(newContent, entry, changeList);
             }
 
-            if (i + 1 < category.getJsonObjects().size()) {
+            if (i + 1 < size) {
                 this.writeText(",", newContent);
                 line++;
             } else {

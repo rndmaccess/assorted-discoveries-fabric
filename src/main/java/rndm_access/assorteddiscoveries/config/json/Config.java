@@ -31,20 +31,30 @@ public class Config {
     }
 
     public Config loadConfigFromList(List<BooleanConfigEntry> configList) {
-        configList.forEach((configEntry) -> {
-            String key = configEntry.getKey();
-            boolean value = configEntry.getValue();
+        if (configList == null || configList.isEmpty()) {
+            // If there is no config list to load we can just return the existing config early!
+            return this;
+        }
 
-            for (ConfigCategory category : categories) {
-                BooleanConfigEntry entry = category.getBoolEntry(key);
-
-                if (entry != null) {
-                    entry.setValue(value);
-                    break;
-                }
-            }
-        });
+        for (BooleanConfigEntry entry : configList) {
+            String key = entry.getKey();
+            boolean value = entry.getValue();
+            syncEntry(key, value);
+        }
         return this;
+    }
+
+    private void syncEntry(String key, boolean value) {
+        if (key == null) return;
+
+        for (ConfigCategory category : categories) {
+            BooleanConfigEntry entry = category.getBoolEntry(key);
+
+            if (entry != null) {
+                entry.setValue(value);
+                return;
+            }
+        }
     }
 
     public Config loadConfigFromFile() {

@@ -63,7 +63,6 @@ public class ModConfig {
                 "smoky quartz blocks!");
         CommentConfigEntry quartzBrickComment = new CommentConfigEntry("Whether quartz brick slabs, " +
                 "quartz brick walls, and quartz brick stairs are enabled!");
-        CommentConfigEntry bauxiteComment = new CommentConfigEntry("This option requires bauxite!");
         CommentConfigEntry requiredRestartComment = new CommentConfigEntry("Each option in the config " +
                 "requires a game restart!");
 
@@ -76,6 +75,7 @@ public class ModConfig {
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_STRIPPED_WOODEN_WALLS))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_ROPE_LADDERS))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_IRON_LADDERS))
+                .addComment(new CommentConfigEntry("Toggle blackstone tiles and variants (stairs, slabs, walls)"))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_BLACKSTONE_TILES))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_TWISTED_BLACKSTONE))
                 .addComment(blackstoneTileComment)
@@ -99,11 +99,12 @@ public class ModConfig {
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_QUARTZ_TILES))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_QUARTZ_WALLS))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_BAUXITE))
-                .addComment(bauxiteComment)
+                .addComment(new CommentConfigEntry("Toggle all bauxite variants (normal, bricks, mossy bricks, etc.) on or off with this option!"))
+                .addComment(new CommentConfigEntry("For finer control use more specific options like 'enable_mossy_bauxite_bricks'"))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_BAUXITE_BRICKS))
-                .addComment(new CommentConfigEntry("This option requires bauxite and bauxite bricks!"))
+                .addComment(new CommentConfigEntry("Toggle cracked bauxite bricks and variants (stairs, slabs, walls)"))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CRACKED_BAUXITE_BRICKS))
-                .addComment(new CommentConfigEntry("This option requires bauxite and bauxite bricks!"))
+                .addComment(new CommentConfigEntry("Toggle mossy bauxite bricks and variants (stairs, slabs, walls)"))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_MOSSY_BAUXITE_BRICKS))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_STONE_TILES))
                 .addComment(new CommentConfigEntry("This option requires stone tiles!"))

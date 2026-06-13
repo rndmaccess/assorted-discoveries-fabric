@@ -52,13 +52,13 @@ public class ConfigSerializer {
     private List<String> getContent(@Nullable Map<String, Object> changeList) {
         List<String> newContent = new ArrayList<>();
         List<ConfigObject> objects = config.getObjects();
-        int size = objects.size();
 
         if (!objects.isEmpty()) {
             this.writeText("{", newContent);
             depth++;
             line++;
 
+            int size = objects.size();
             for (int i = 0; i < size; i++) {
                 ConfigObject object = objects.get(i);
 

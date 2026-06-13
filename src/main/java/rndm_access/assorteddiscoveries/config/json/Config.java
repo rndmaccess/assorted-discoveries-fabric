@@ -200,23 +200,16 @@ public class Config {
             }
 
             String entryKey = object.getKey();
-            AbstractConfigEntry<?> defaultEntry = defaultCategory.getEntry(entryKey);
+            AbstractConfigEntry<?> loadedEntry = loadedCategory.getEntry(entryKey);
 
-            if (defaultEntry != null) {
-                AbstractConfigEntry<?> loadedEntry = loadedCategory.getEntry(entryKey);
-                this.mergeEntries(categoryBuilder, defaultEntry, loadedEntry);
+            if (loadedEntry != null) {
+                categoryBuilder.addEntry(loadedEntry);
+            } else {
+                AbstractConfigEntry<?> defaultEntry = defaultCategory.getEntry(entryKey);
+                categoryBuilder.addEntry(defaultEntry);
             }
         }
         configBuilder.addCategory(categoryBuilder.build());
-    }
-
-    private void mergeEntries(ConfigCategory.Builder categoryBuilder, AbstractConfigEntry<?> defaultEntry,
-                              AbstractConfigEntry<?> loadedEntry) {
-        if (loadedEntry != null) {
-            categoryBuilder.addEntry(loadedEntry);
-        } else {
-            categoryBuilder.addEntry(defaultEntry);
-        }
     }
 
     public static class Builder {

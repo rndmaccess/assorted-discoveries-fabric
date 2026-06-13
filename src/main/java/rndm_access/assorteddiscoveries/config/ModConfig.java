@@ -38,7 +38,7 @@ public class ModConfig {
         return createOrLoad(getDefaultConfig());
     }
 
-    public static synchronized void updateFromList(List<EntryPair<Boolean>> configList) {
+    public static synchronized void updateFromList(List<BooleanConfigEntry> configList) {
         config = config.loadConfigFromList(configList);
     }
 

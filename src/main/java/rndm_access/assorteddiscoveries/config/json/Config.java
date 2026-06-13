@@ -30,10 +30,10 @@ public class Config {
         this.name = builder.name;
     }
 
-    public Config loadConfigFromList(List<EntryPair<Boolean>> configList) {
+    public Config loadConfigFromList(List<BooleanConfigEntry> configList) {
         configList.forEach((configEntry) -> {
-            String key = configEntry.key();
-            boolean value = configEntry.value();
+            String key = configEntry.getKey();
+            boolean value = configEntry.getValue();
 
             for (ConfigCategory category : categories) {
                 BooleanConfigEntry entry = category.getBoolEntry(key);
@@ -80,13 +80,13 @@ public class Config {
         return name;
     }
 
-    public List<EntryPair<Boolean>> toBooleanEntryList() {
-        List<EntryPair<Boolean>> list = new ArrayList<>();
+    public List<BooleanConfigEntry> getBooleanEntries() {
+        List<BooleanConfigEntry> list = new ArrayList<>();
 
         for (ConfigCategory category : categories) {
             for (AbstractConfigEntry<?> entry : category.getEntries()) {
                 if (entry instanceof BooleanConfigEntry) {
-                    list.add(new EntryPair<>(entry.getKey(), (Boolean) entry.getValue()));
+                    list.add((BooleanConfigEntry) entry);
                 }
             }
         }

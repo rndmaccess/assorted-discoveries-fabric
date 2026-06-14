@@ -30,32 +30,28 @@ public class Config {
         this.name = builder.name;
     }
 
-    public Config loadConfigFromList(List<BooleanConfigEntry> configList) {
+    public Config loadConfigFromList(List<ConfigCategory> configList) {
         if (configList == null || configList.isEmpty()) {
             // If there is no config list to load we can just return the existing config early!
             AssortedDiscoveries.LOGGER.error("Failed to sync config!");
             return this;
         }
 
-        for (BooleanConfigEntry entry : configList) {
-            String key = entry.getKey();
-            boolean value = entry.getValue();
-            syncEntry(key, value);
-        }
-        return this;
-    }
+        for (ConfigCategory configCategory : configList) {
+            for (ConfigObject object : configCategory.getConfigObjects()) {
+                String key = object.getKey();
+                boolean value = ((BooleanConfigEntry) object).getValue();
 
-    private void syncEntry(String key, boolean value) {
-        if (key == null) return;
+                for (ConfigCategory category : categories) {
+                    BooleanConfigEntry entry = category.getBoolEntry(key);
 
-        for (ConfigCategory category : categories) {
-            BooleanConfigEntry entry = category.getBoolEntry(key);
-
-            if (entry != null) {
-                entry.setValue(value);
-                return;
+                    if (entry != null) {
+                        entry.setValue(value);
+                    }
+                }
             }
         }
+        return this;
     }
 
     public Config loadConfigFromFile() {
@@ -91,15 +87,19 @@ public class Config {
         return name;
     }
 
-    public List<BooleanConfigEntry> getBooleanEntries() {
-        List<BooleanConfigEntry> list = new ArrayList<>();
+    public List<ConfigCategory> getBooleanEntries() {
+        List<ConfigCategory> list = new ArrayList<>();
 
         for (ConfigCategory category : categories) {
+            String key = category.getKey();
+            ConfigCategory.Builder categoryBuilder = new ConfigCategory.Builder(key);
+
             for (ConfigObject object : category.getConfigObjects()) {
                 if (object instanceof BooleanConfigEntry) {
-                    list.add((BooleanConfigEntry) object);
+                    categoryBuilder.addEntry((BooleanConfigEntry) object);
                 }
             }
+            list.add(categoryBuilder.build());
         }
         return list;
     }

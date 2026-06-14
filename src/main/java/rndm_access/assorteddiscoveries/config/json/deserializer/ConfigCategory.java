@@ -29,6 +29,10 @@ public class ConfigCategory extends ConfigObject {
         return null;
     }
 
+    public int getSize() {
+        return objects.size();
+    }
+
     public List<ConfigObject> getConfigObjects() {
         return objects;
     }

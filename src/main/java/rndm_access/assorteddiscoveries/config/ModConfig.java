@@ -188,6 +188,7 @@ public class ModConfig {
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CREAKING_PLUSHIE)).build();
 
         ConfigCategory foodCategory = new ConfigCategory.Builder("foods")
+                .addComment(new CommentConfigEntry("If disabled, noodle soup does not require green onions."))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_GREEN_ONIONS))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_NOODLE_SOUP))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CHOCOLATE_CAKE))
@@ -195,14 +196,19 @@ public class ModConfig {
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_FRIED_EGG))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_HOGLIN_STEW))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_FORESTS_BOUNTY))
+                .addComment(new CommentConfigEntry("Toggle pudding and berry pudding on or off."))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_PUDDING))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CARAMEL_APPLE))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_SWEET_BERRY_PIE))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_SWEET_BERRY_JUICE))
+                .addComment(new CommentConfigEntry("If disabled, berry pudding does not require blueberries."))
+                .addComment(new CommentConfigEntry("When disabled, blueberry pie and juice are disabled."))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_BLUEBERRIES))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_BLUEBERRY_PIE))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_BLUEBERRY_JUICE))
+                .addComment(new CommentConfigEntry("When disabled cindersnap berry juice and cindersnap forage mix are disabled."))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CINDERSNAP_BERRIES))
+                .addComment(new CommentConfigEntry("When disabled frostbite berry juice and frostbite forage mix are disabled."))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_FROSTBITE_BERRIES))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CINDERSNAP_BERRY_JUICE))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CRIMSON_FORAGE_MIX))
@@ -214,7 +220,7 @@ public class ModConfig {
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_PURPLE_MUSHROOMS))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CATTAILS))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_BOG_BLOSSOMS))
-                .addComment(new CommentConfigEntry("Whether patches of ender grass and snapdragons should spawn!"))
+                .addComment(new CommentConfigEntry("Toggle snapdragons and ender grass."))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_ENDER_PLANTS))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_WITCHS_CRADLES)).build();
 

@@ -2,13 +2,12 @@ package rndm_access.assorteddiscoveries.config.json;
 
 import net.fabricmc.loader.api.FabricLoader;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
-import rndm_access.assorteddiscoveries.config.json.deserializer.ConfigDeserializer;
-import rndm_access.assorteddiscoveries.config.json.deserializer.ConfigObject;
-import rndm_access.assorteddiscoveries.config.json.deserializer.entries.BooleanConfigEntry;
-import rndm_access.assorteddiscoveries.config.json.deserializer.entries.CommentConfigEntry;
+import rndm_access.assorteddiscoveries.config.json.json_objects.ConfigObject;
+import rndm_access.assorteddiscoveries.config.json.json_objects.BooleanConfigEntry;
+import rndm_access.assorteddiscoveries.config.json.json_objects.CommentConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.exceptions.JsonConfigException;
-import rndm_access.assorteddiscoveries.config.json.deserializer.entries.AbstractConfigEntry;
-import rndm_access.assorteddiscoveries.config.json.deserializer.JsonConfigCategory;
+import rndm_access.assorteddiscoveries.config.json.json_objects.AbstractConfigEntry;
+import rndm_access.assorteddiscoveries.config.json.json_objects.JsonConfigCategory;
 import rndm_access.assorteddiscoveries.config.json.exceptions.JsonSyntaxException;
 
 import java.io.IOException;

@@ -1,10 +1,10 @@
 package rndm_access.assorteddiscoveries.config.json;
 
 import org.jetbrains.annotations.Nullable;
-import rndm_access.assorteddiscoveries.config.json.deserializer.JsonConfigCategory;
-import rndm_access.assorteddiscoveries.config.json.deserializer.ConfigObject;
-import rndm_access.assorteddiscoveries.config.json.deserializer.entries.AbstractConfigEntry;
-import rndm_access.assorteddiscoveries.config.json.deserializer.entries.StringConfigEntry;
+import rndm_access.assorteddiscoveries.config.json.json_objects.JsonConfigCategory;
+import rndm_access.assorteddiscoveries.config.json.json_objects.ConfigObject;
+import rndm_access.assorteddiscoveries.config.json.json_objects.AbstractConfigEntry;
+import rndm_access.assorteddiscoveries.config.json.json_objects.StringConfigEntry;
 
 import java.io.IOException;
 import java.nio.file.Files;

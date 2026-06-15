@@ -6,8 +6,8 @@ import me.shedaniel.clothconfig2.impl.builders.BooleanToggleBuilder;
 import net.minecraft.network.chat.Component;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.json.Config;
-import rndm_access.assorteddiscoveries.config.json.deserializer.JsonConfigCategory;
-import rndm_access.assorteddiscoveries.config.json.deserializer.entries.BooleanConfigEntry;
+import rndm_access.assorteddiscoveries.config.json.json_objects.JsonConfigCategory;
+import rndm_access.assorteddiscoveries.config.json.json_objects.BooleanConfigEntry;
 
 import java.util.*;
 import java.util.function.Supplier;

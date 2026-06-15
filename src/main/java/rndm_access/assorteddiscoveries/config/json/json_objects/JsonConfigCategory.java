@@ -1,6 +1,4 @@
-package rndm_access.assorteddiscoveries.config.json.deserializer;
-
-import rndm_access.assorteddiscoveries.config.json.deserializer.entries.*;
+package rndm_access.assorteddiscoveries.config.json.json_objects;
 
 import java.util.*;
 

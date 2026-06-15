@@ -1,10 +1,11 @@
-package rndm_access.assorteddiscoveries.config.json.deserializer;
+package rndm_access.assorteddiscoveries.config.json;
 
 import net.fabricmc.loader.api.FabricLoader;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
-import rndm_access.assorteddiscoveries.config.json.Config;
 import rndm_access.assorteddiscoveries.config.json.exceptions.JsonSyntaxException;
-import rndm_access.assorteddiscoveries.config.json.deserializer.entries.*;
+import rndm_access.assorteddiscoveries.config.json.json_objects.BooleanConfigEntry;
+import rndm_access.assorteddiscoveries.config.json.json_objects.JsonConfigCategory;
+import rndm_access.assorteddiscoveries.config.json.json_objects.StringConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.tokenizer.Token;
 import rndm_access.assorteddiscoveries.config.json.tokenizer.TokenList;
 import rndm_access.assorteddiscoveries.config.json.tokenizer.ConfigTokenizer;

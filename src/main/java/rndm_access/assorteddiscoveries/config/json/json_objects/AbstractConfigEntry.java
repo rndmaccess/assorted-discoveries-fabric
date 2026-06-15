@@ -1,6 +1,4 @@
-package rndm_access.assorteddiscoveries.config.json.deserializer.entries;
-
-import rndm_access.assorteddiscoveries.config.json.deserializer.ConfigObject;
+package rndm_access.assorteddiscoveries.config.json.json_objects;
 
 public abstract class AbstractConfigEntry<T> extends ConfigObject {
     private T value;

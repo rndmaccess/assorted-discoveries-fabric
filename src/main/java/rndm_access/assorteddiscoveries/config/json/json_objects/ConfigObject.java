@@ -1,6 +1,4 @@
-package rndm_access.assorteddiscoveries.config.json.deserializer;
-
-import rndm_access.assorteddiscoveries.config.json.deserializer.entries.CommentConfigEntry;
+package rndm_access.assorteddiscoveries.config.json.json_objects;
 
 public class ConfigObject {
     private final String key;

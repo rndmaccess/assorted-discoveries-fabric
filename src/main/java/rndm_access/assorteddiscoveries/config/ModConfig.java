@@ -3,9 +3,9 @@ package rndm_access.assorteddiscoveries.config;
 import net.fabricmc.loader.api.FabricLoader;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.json.*;
-import rndm_access.assorteddiscoveries.config.json.deserializer.entries.BooleanConfigEntry;
-import rndm_access.assorteddiscoveries.config.json.deserializer.JsonConfigCategory;
-import rndm_access.assorteddiscoveries.config.json.deserializer.entries.CommentConfigEntry;
+import rndm_access.assorteddiscoveries.config.json.json_objects.BooleanConfigEntry;
+import rndm_access.assorteddiscoveries.config.json.json_objects.JsonConfigCategory;
+import rndm_access.assorteddiscoveries.config.json.json_objects.CommentConfigEntry;
 
 import java.nio.file.Files;
 import java.nio.file.Path;

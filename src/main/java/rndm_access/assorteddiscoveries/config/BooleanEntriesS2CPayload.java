@@ -12,9 +12,9 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.Identifier;
-import rndm_access.assorteddiscoveries.config.json.deserializer.JsonConfigCategory;
-import rndm_access.assorteddiscoveries.config.json.deserializer.ConfigObject;
-import rndm_access.assorteddiscoveries.config.json.deserializer.entries.BooleanConfigEntry;
+import rndm_access.assorteddiscoveries.config.json.json_objects.JsonConfigCategory;
+import rndm_access.assorteddiscoveries.config.json.json_objects.ConfigObject;
+import rndm_access.assorteddiscoveries.config.json.json_objects.BooleanConfigEntry;
 
 public record BooleanEntriesS2CPayload(List<JsonConfigCategory> configList) implements CustomPacketPayload {
     public static final Identifier CONFIG_PAYLOAD_ID = AssortedDiscoveries.makeModId("config");

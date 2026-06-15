@@ -10,8 +10,8 @@ import org.jetbrains.annotations.Nullable;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.ModConfig;
 import rndm_access.assorteddiscoveries.config.json.Config;
-import rndm_access.assorteddiscoveries.config.json.deserializer.entries.AbstractConfigEntry;
-import rndm_access.assorteddiscoveries.config.json.deserializer.entries.BooleanConfigEntry;
+import rndm_access.assorteddiscoveries.config.json.json_objects.AbstractConfigEntry;
+import rndm_access.assorteddiscoveries.config.json.json_objects.BooleanConfigEntry;
 import rndm_access.assorteddiscoveries.core.ModResourceConditionTypes;
 
 import java.util.function.Function;

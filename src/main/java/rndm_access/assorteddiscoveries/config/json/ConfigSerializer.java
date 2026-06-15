@@ -1,7 +1,7 @@
 package rndm_access.assorteddiscoveries.config.json;
 
 import org.jetbrains.annotations.Nullable;
-import rndm_access.assorteddiscoveries.config.json.deserializer.ConfigCategory;
+import rndm_access.assorteddiscoveries.config.json.deserializer.JsonConfigCategory;
 import rndm_access.assorteddiscoveries.config.json.deserializer.ConfigObject;
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.AbstractConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.StringConfigEntry;
@@ -68,7 +68,7 @@ public class ConfigSerializer {
                     continue;
                 }
 
-                ConfigCategory category = (ConfigCategory) object;
+                JsonConfigCategory category = (JsonConfigCategory) object;
                 this.writeCategory(newContent, category, changeList);
 
                 if(i + 1 < size) {
@@ -83,7 +83,7 @@ public class ConfigSerializer {
         return newContent;
     }
 
-    private void writeCategory(List<String> newContent, ConfigCategory category, Map<String, Object> changeList) {
+    private void writeCategory(List<String> newContent, JsonConfigCategory category, Map<String, Object> changeList) {
         List<ConfigObject> objects = category.getConfigObjects();
         int size = objects.size();
         this.writeText("\"" + category.getKey() + "\": {", newContent);

@@ -8,7 +8,7 @@ import rndm_access.assorteddiscoveries.config.json.deserializer.entries.BooleanC
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.CommentConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.exceptions.JsonConfigException;
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.AbstractConfigEntry;
-import rndm_access.assorteddiscoveries.config.json.deserializer.ConfigCategory;
+import rndm_access.assorteddiscoveries.config.json.deserializer.JsonConfigCategory;
 import rndm_access.assorteddiscoveries.config.json.exceptions.JsonSyntaxException;
 
 import java.io.IOException;
@@ -18,7 +18,7 @@ import java.util.*;
 
 public class Config {
     private final List<ConfigObject> objects;
-    private final List<ConfigCategory> categories;
+    private final List<JsonConfigCategory> categories;
     private final Path path;
     private final String name;
     private String configError;
@@ -30,14 +30,14 @@ public class Config {
         this.name = builder.name;
     }
 
-    public Config loadConfigFromList(List<ConfigCategory> configList) {
+    public Config loadConfigFromList(List<JsonConfigCategory> configList) {
         if (configList == null || configList.isEmpty()) {
             // If there is no config list to load we can just return the existing config early!
             AssortedDiscoveries.LOGGER.error("Failed to sync config!");
             return this;
         }
 
-        for (ConfigCategory configCategory : configList) {
+        for (JsonConfigCategory configCategory : configList) {
             for (ConfigObject object : configCategory.getConfigObjects()) {
                 if (object instanceof BooleanConfigEntry boolEntry) {
                     this.syncConfigEntry(boolEntry);
@@ -53,7 +53,7 @@ public class Config {
         String key = serverEntry.getKey();
         boolean serverValue = serverEntry.getValue();
 
-        for (ConfigCategory category : categories) {
+        for (JsonConfigCategory category : categories) {
             BooleanConfigEntry clientEntry = category.getBoolEntry(key);
 
             if (clientEntry != null) {
@@ -95,12 +95,12 @@ public class Config {
         return name;
     }
 
-    public List<ConfigCategory> getBooleanEntries() {
-        List<ConfigCategory> list = new ArrayList<>();
+    public List<JsonConfigCategory> getBooleanEntries() {
+        List<JsonConfigCategory> list = new ArrayList<>();
 
-        for (ConfigCategory category : categories) {
+        for (JsonConfigCategory category : categories) {
             String key = category.getKey();
-            ConfigCategory.Builder categoryBuilder = new ConfigCategory.Builder(key);
+            JsonConfigCategory.Builder categoryBuilder = new JsonConfigCategory.Builder(key);
 
             for (ConfigObject object : category.getConfigObjects()) {
                 if (object instanceof BooleanConfigEntry boolEntry) {
@@ -121,9 +121,9 @@ public class Config {
      * @return The config entry associated with the key if it's found otherwise null
      */
     public AbstractConfigEntry<?> getEntry(String key) {
-        List<ConfigCategory> categories = this.getCategories();
+        List<JsonConfigCategory> categories = this.getCategories();
 
-        for (ConfigCategory category : categories) {
+        for (JsonConfigCategory category : categories) {
             AbstractConfigEntry<?> entry = category.getEntry(key);
 
             if (entry != null) {
@@ -137,8 +137,8 @@ public class Config {
      * @param key The key for the config defaultCategory we are looking for
      * @return The config defaultCategory associated with the key if it's found otherwise null
      */
-    public ConfigCategory getCategory(String key) {
-        for (ConfigCategory category : categories) {
+    public JsonConfigCategory getCategory(String key) {
+        for (JsonConfigCategory category : categories) {
             if (category.getKey().equals(key)) {
                 return category;
             }
@@ -146,7 +146,7 @@ public class Config {
         return null;
     }
 
-    public List<ConfigCategory> getCategories() {
+    public List<JsonConfigCategory> getCategories() {
         return categories;
     }
 
@@ -196,8 +196,8 @@ public class Config {
             }
 
             String categoryKey = object.getKey();
-            ConfigCategory defaultCategory = this.getCategory(categoryKey);
-            ConfigCategory loadedCategory = loadedConfig.getCategory(categoryKey);
+            JsonConfigCategory defaultCategory = this.getCategory(categoryKey);
+            JsonConfigCategory loadedCategory = loadedConfig.getCategory(categoryKey);
 
             if (loadedCategory != null) {
                 this.mergeCategories(configBuilder, loadedCategory, defaultCategory);
@@ -208,8 +208,8 @@ public class Config {
         return configBuilder.build();
     }
 
-    private void mergeCategories(Config.Builder configBuilder, ConfigCategory loadedCategory, ConfigCategory defaultCategory) {
-        ConfigCategory.Builder categoryBuilder = new ConfigCategory.Builder(defaultCategory.getKey());
+    private void mergeCategories(Config.Builder configBuilder, JsonConfigCategory loadedCategory, JsonConfigCategory defaultCategory) {
+        JsonConfigCategory.Builder categoryBuilder = new JsonConfigCategory.Builder(defaultCategory.getKey());
 
         for (ConfigObject object : defaultCategory.getConfigObjects()) {
             if (object.isComment()) {
@@ -234,7 +234,7 @@ public class Config {
     public static class Builder {
         public String name;
         private final List<ConfigObject> objects = new ArrayList<>();
-        private final List<ConfigCategory> categories = new ArrayList<>();
+        private final List<JsonConfigCategory> categories = new ArrayList<>();
 
         public Builder(String name) {
             this.name = name;
@@ -245,7 +245,7 @@ public class Config {
             return this;
         }
 
-        public Config.Builder addCategory(ConfigCategory category) {
+        public Config.Builder addCategory(JsonConfigCategory category) {
             categories.add(category);
             objects.add(category);
             return this;

@@ -4,7 +4,7 @@ import net.fabricmc.loader.api.FabricLoader;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.json.*;
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.BooleanConfigEntry;
-import rndm_access.assorteddiscoveries.config.json.deserializer.ConfigCategory;
+import rndm_access.assorteddiscoveries.config.json.deserializer.JsonConfigCategory;
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.CommentConfigEntry;
 
 import java.nio.file.Files;
@@ -38,7 +38,7 @@ public class ModConfig {
         return createOrLoad(getDefaultConfig());
     }
 
-    public static synchronized void updateFromList(List<ConfigCategory> configList) {
+    public static synchronized void updateFromList(List<JsonConfigCategory> configList) {
         config = config.loadConfigFromList(configList);
     }
 
@@ -60,7 +60,7 @@ public class ModConfig {
         CommentConfigEntry requiredRestartComment = new CommentConfigEntry("Each option in the config " +
                 "requires a game restart!");
 
-        ConfigCategory buildingBlocksCategory = new ConfigCategory.Builder("building_blocks")
+        JsonConfigCategory buildingBlocksCategory = new JsonConfigCategory.Builder("building_blocks")
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_PLANTER_BOXES))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_DYED_CAMPFIRES))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_DYED_LANTERNS))
@@ -97,7 +97,7 @@ public class ModConfig {
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_SMOKY_QUARTZ_BRICKS))
                 .addComment(new CommentConfigEntry("Toggle smooth smoky quartz and variants (stairs, slabs, walls)"))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_SMOOTH_SMOKY_QUARTZ))
-                .addComment(new CommentConfigEntry("Toggle quartz brick stairs, slabs, and walls on or off"))
+                .addComment(new CommentConfigEntry("Toggle quartz brick stairs, slabs, and walls"))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_QUARTZ_BRICK_BLOCKS))
                 .addComment(new CommentConfigEntry("Toggle quartz tiles and variants (stairs, slabs, walls)"))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_QUARTZ_TILES))
@@ -120,7 +120,7 @@ public class ModConfig {
                 .addComment(new CommentConfigEntry("Toggle cracked stone brick stairs, slabs, and walls."))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CRACKED_STONE_BRICK_BLOCKS))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_STONE_WALLS))
-                .addComment(new CommentConfigEntry("Toggle calcite stairs, slabs, and walls on or off."))
+                .addComment(new CommentConfigEntry("Toggle calcite stairs, slabs, and walls."))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CALCITE_BLOCKS))
                 .addComment(new CommentConfigEntry("Toggle polished calcite and variants (stairs, slabs, walls)"))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_POLISHED_CALCITE))
@@ -147,7 +147,7 @@ public class ModConfig {
                 .addComment(new CommentConfigEntry("Toggle all dirt slab variants (coarse, grass, podzol, etc.)"))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_DIRT_SLABS)).build();
 
-        ConfigCategory plushiesCategory = new ConfigCategory.Builder("plushies")
+        JsonConfigCategory plushiesCategory = new JsonConfigCategory.Builder("plushies")
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_ALLAY_PLUSHIE))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_BAT_PLUSHIE))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CAMEL_PLUSHIE))
@@ -187,7 +187,7 @@ public class ModConfig {
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_ZOMBIE_PLUSHIE))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CREAKING_PLUSHIE)).build();
 
-        ConfigCategory foodCategory = new ConfigCategory.Builder("foods")
+        JsonConfigCategory foodCategory = new JsonConfigCategory.Builder("foods")
                 .addComment(new CommentConfigEntry("If disabled, noodle soup does not require green onions."))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_GREEN_ONIONS))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_NOODLE_SOUP))
@@ -196,7 +196,7 @@ public class ModConfig {
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_FRIED_EGG))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_HOGLIN_STEW))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_FORESTS_BOUNTY))
-                .addComment(new CommentConfigEntry("Toggle pudding and berry pudding on or off."))
+                .addComment(new CommentConfigEntry("Toggle pudding and berry pudding."))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_PUDDING))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CARAMEL_APPLE))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_SWEET_BERRY_PIE))
@@ -215,7 +215,7 @@ public class ModConfig {
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_FROSTBITE_BERRY_JUICE))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_WARPED_FORAGE_MIX)).build();
 
-        ConfigCategory plantsCategory = new ConfigCategory.Builder("plants")
+        JsonConfigCategory plantsCategory = new JsonConfigCategory.Builder("plants")
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_BLOOD_KELP))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_PURPLE_MUSHROOMS))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CATTAILS))

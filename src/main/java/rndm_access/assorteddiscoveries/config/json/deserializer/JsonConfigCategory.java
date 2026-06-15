@@ -4,11 +4,11 @@ import rndm_access.assorteddiscoveries.config.json.deserializer.entries.*;
 
 import java.util.*;
 
-public class ConfigCategory extends ConfigObject {
+public class JsonConfigCategory extends ConfigObject {
     private final List<ConfigObject> objects;
     private final Map<String, AbstractConfigEntry<?>> entries;
 
-    protected ConfigCategory(ConfigCategory.Builder builder) {
+    protected JsonConfigCategory(JsonConfigCategory.Builder builder) {
         super(builder.name);
         this.objects = builder.objects;
         this.entries = builder.entries;
@@ -57,8 +57,8 @@ public class ConfigCategory extends ConfigObject {
             return this;
         }
 
-        public ConfigCategory build() {
-            return new ConfigCategory(this);
+        public JsonConfigCategory build() {
+            return new JsonConfigCategory(this);
         }
     }
 }

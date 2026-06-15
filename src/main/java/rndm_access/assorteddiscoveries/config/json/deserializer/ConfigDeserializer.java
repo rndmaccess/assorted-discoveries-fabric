@@ -49,7 +49,7 @@ public class ConfigDeserializer {
             requireToken(TokenType.COLON);
 
             if (tokenList.matchAndConsume(TokenType.LEFT_CURLY)) {
-                ConfigCategory category = parseCategory(keyToken);
+                JsonConfigCategory category = parseCategory(keyToken);
                 config.addCategory(category);
             } else {
                 requireToken(TokenType.VALUE);
@@ -73,14 +73,14 @@ public class ConfigDeserializer {
         return input;
     }
 
-    private ConfigCategory parseCategory(Token keyToken) throws JsonSyntaxException {
+    private JsonConfigCategory parseCategory(Token keyToken) throws JsonSyntaxException {
         String categoryName = parseString(keyToken.getValue());
-        ConfigCategory.Builder category = new ConfigCategory.Builder(categoryName);
+        JsonConfigCategory.Builder category = new JsonConfigCategory.Builder(categoryName);
         parseEntry(category);
         return category.build();
     }
 
-    private void parseEntry(ConfigCategory.Builder category) throws JsonSyntaxException {
+    private void parseEntry(JsonConfigCategory.Builder category) throws JsonSyntaxException {
         while (tokenList.hasNextToken() && !tokenList.match(TokenType.RIGHT_CURLY)) {
             Token keyToken = requireToken(TokenType.KEY);
             String key = parseString(keyToken.getValue());
@@ -91,7 +91,7 @@ public class ConfigDeserializer {
                 AssortedDiscoveries.LOGGER.error("The type for {} is not supported!", keyToken.getValue());
             } else if (tokenList.match(TokenType.LEFT_CURLY)) {
                 tokenList.consumeToken();
-                ConfigCategory subcategory = parseCategory(keyToken);
+                JsonConfigCategory subcategory = parseCategory(keyToken);
                 AssortedDiscoveries.LOGGER.warn("Only top level config categories are supported! Ignoring subcategory {}", subcategory);
             } else {
                 Token token = requireToken(TokenType.VALUE);

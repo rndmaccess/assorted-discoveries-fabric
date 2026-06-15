@@ -12,22 +12,22 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.Identifier;
-import rndm_access.assorteddiscoveries.config.json.deserializer.ConfigCategory;
+import rndm_access.assorteddiscoveries.config.json.deserializer.JsonConfigCategory;
 import rndm_access.assorteddiscoveries.config.json.deserializer.ConfigObject;
 import rndm_access.assorteddiscoveries.config.json.deserializer.entries.BooleanConfigEntry;
 
-public record BooleanEntriesS2CPayload(List<ConfigCategory> configList) implements CustomPacketPayload {
+public record BooleanEntriesS2CPayload(List<JsonConfigCategory> configList) implements CustomPacketPayload {
     public static final Identifier CONFIG_PAYLOAD_ID = AssortedDiscoveries.makeModId("config");
     public static final CustomPacketPayload.Type<BooleanEntriesS2CPayload> ID = new CustomPacketPayload.Type<>(CONFIG_PAYLOAD_ID);
-    public static final StreamCodec<ByteBuf, List<ConfigCategory>> PACKET_CODEC = new StreamCodec<>() {
-        public @NonNull List<ConfigCategory> decode(ByteBuf byteBuf) {
+    public static final StreamCodec<ByteBuf, List<JsonConfigCategory>> PACKET_CODEC = new StreamCodec<>() {
+        public @NonNull List<JsonConfigCategory> decode(ByteBuf byteBuf) {
             int listSize = byteBuf.readInt();
-            List<ConfigCategory> list = new ArrayList<>(listSize);
+            List<JsonConfigCategory> list = new ArrayList<>(listSize);
 
             for (int i = 0; i < listSize; i++) {
                 int categorySize = byteBuf.readInt();
                 String categoryKey = ((FriendlyByteBuf) byteBuf).readUtf();
-                ConfigCategory.Builder categoryBuilder = new ConfigCategory.Builder(categoryKey);
+                JsonConfigCategory.Builder categoryBuilder = new JsonConfigCategory.Builder(categoryKey);
 
                 for (int j = 0; j < categorySize; j++) {
                     String key = ((FriendlyByteBuf) byteBuf).readUtf();
@@ -39,10 +39,10 @@ public record BooleanEntriesS2CPayload(List<ConfigCategory> configList) implemen
             return list;
         }
 
-        public void encode(ByteBuf byteBuf, List<ConfigCategory> list) {
+        public void encode(ByteBuf byteBuf, List<JsonConfigCategory> list) {
             byteBuf.writeInt(list.size());
 
-            for (ConfigCategory category : list) {
+            for (JsonConfigCategory category : list) {
                 String key = category.getKey();
                 byteBuf.writeInt(category.getSize());
                 ((FriendlyByteBuf) byteBuf).writeUtf(key);

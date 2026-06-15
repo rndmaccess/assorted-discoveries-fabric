@@ -897,6 +897,10 @@
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_packed_snow": "Enable Packed Snow",
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_dirt_slabs": "Enable Dirt Slabs",
 
+  "tooltip.cloth-config.assorted-discoveries.option.building_blocks.enable_cracked_stone_brick_blocks": "Toggle cracked stone brick stairs, slabs, and walls",
+  "tooltip.cloth-config.assorted-discoveries.option.building_blocks.enable_calcite_blocks": "Toggle calcite stairs, slabs, and walls",
+  "tooltip.cloth-config.assorted-discoveries.option.building_blocks.enable_dripstone_blocks": "Toggle dripstone stairs, slabs, and walls",
+
   "requirement.cloth-config.assorted-discoveries.option.building_blocks.enable_bauxite_bricks": "Disabled By The Bauxite Option",
   "requirement.cloth-config.assorted-discoveries.option.building_blocks.enable_mossy_bauxite_bricks": "Disabled By The Bauxite Or Bauxite Bricks Option",
   "requirement.cloth-config.assorted-discoveries.option.building_blocks.enable_cracked_bauxite_bricks": "Disabled By The Bauxite Or Bauxite Bricks Option",
@@ -987,6 +991,8 @@
   "text.cloth-config.assorted-discoveries.option.plants.enable_blood_kelp": "Enable Blood Kelp",
   "text.cloth-config.assorted-discoveries.option.plants.enable_ender_plants": "Enable Ender Plants",
   "text.cloth-config.assorted-discoveries.option.plants.enable_witchs_cradles": "Enable Witch's Cradles",
+
+  "tooltip.cloth-config.assorted-discoveries.option.plants.enable_ender_plants": "Toggle snapdragons and ender grass!",
 
   "tag.block.assorted-discoveries.cindersnap_berry_bush_plantable_on": "Cindersnap Berry Bush Plantable On",
   "tag.block.assorted-discoveries.dyed_campfires": "Dyed Campfires",

@@ -321,7 +321,7 @@ public class ModConfigScreen {
         configEntry = makeBoolConfigEntry(config, entryBuilder, ModConfigKeys.ENABLE_BOG_BLOSSOMS, categoryName);
         category.addEntry(configEntry);
         configEntry = makeBoolConfigEntry(config, entryBuilder, ModConfigKeys.ENABLE_ENDER_PLANTS, categoryName);
-        category.addEntry(configEntry);
+        category.addEntry(configEntry); // TODO: Add a tooltip that says: "Toggles snapdragons and ender grass"
         configEntry = makeBoolConfigEntry(config, entryBuilder, ModConfigKeys.ENABLE_WITCHS_CRADLES, categoryName);
         category.addEntry(configEntry);
     }

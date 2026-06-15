@@ -977,6 +977,9 @@
   "requirement.cloth-config.assorted-discoveries.option.foods.enable_crimson_forage_mix": "Disabled By The Cindersnap Berries Option",
   "requirement.cloth-config.assorted-discoveries.option.foods.enable_warped_forage_mix": "Disabled By The Frostbite Berries Option",
 
+  "requirement.cloth-config.assorted-discoveries.option.foods.enable_blueberry_pie": "Disabled By The Blueberry Option",
+  "requirement.cloth-config.assorted-discoveries.option.foods.enable_blueberry_juice": "Disabled By The Blueberry Option",
+
   "category.cloth-config.assorted-discoveries.option.plants": "Plants",
   "text.cloth-config.assorted-discoveries.option.plants.enable_purple_mushrooms": "Enable Purple Mushrooms",
   "text.cloth-config.assorted-discoveries.option.plants.enable_cattails": "Enable Cattails",

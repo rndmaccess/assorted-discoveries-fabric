@@ -39,19 +39,27 @@ public class Config {
 
         for (ConfigCategory configCategory : configList) {
             for (ConfigObject object : configCategory.getConfigObjects()) {
-                String key = object.getKey();
-                boolean value = ((BooleanConfigEntry) object).getValue();
-
-                for (ConfigCategory category : categories) {
-                    BooleanConfigEntry entry = category.getBoolEntry(key);
-
-                    if (entry != null) {
-                        entry.setValue(value);
-                    }
+                if (object instanceof BooleanConfigEntry boolEntry) {
+                    this.syncConfigEntry(boolEntry);
+                } else {
+                    AssortedDiscoveries.LOGGER.error("Skipped syncing config entry {}!", object.getKey());
                 }
             }
         }
         return this;
+    }
+
+    private void syncConfigEntry(BooleanConfigEntry serverEntry) {
+        String key = serverEntry.getKey();
+        boolean serverValue = serverEntry.getValue();
+
+        for (ConfigCategory category : categories) {
+            BooleanConfigEntry clientEntry = category.getBoolEntry(key);
+
+            if (clientEntry != null) {
+                clientEntry.setValue(serverValue);
+            }
+        }
     }
 
     public Config loadConfigFromFile() {
@@ -95,8 +103,8 @@ public class Config {
             ConfigCategory.Builder categoryBuilder = new ConfigCategory.Builder(key);
 
             for (ConfigObject object : category.getConfigObjects()) {
-                if (object instanceof BooleanConfigEntry) {
-                    categoryBuilder.addEntry((BooleanConfigEntry) object);
+                if (object instanceof BooleanConfigEntry boolEntry) {
+                    categoryBuilder.addEntry(boolEntry);
                 }
             }
             list.add(categoryBuilder.build());

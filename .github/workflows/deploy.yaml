@@ -3,7 +3,7 @@ name: Deploy static project to GitHub Pages
 on:
   push:
     branches:
-      - gh-pages-wiki-dev # Trigger on pushes to the main branch
+      - wiki # Trigger on pushes to the wiki branch
   workflow_dispatch: # Allows manual triggering
 
 permissions:

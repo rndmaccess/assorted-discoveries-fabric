@@ -226,6 +226,7 @@ public class ModConfig {
 
         Config.Builder config = new Config.Builder(AssortedDiscoveries.MOD_ID)
                 .addComment(requiredRestartComment)
+                .addComment(new CommentConfigEntry("Enable or disable any option by toggling the setting between true and false."))
                 .addCategory(buildingBlocksCategory)
                 .addCategory(plushiesCategory)
                 .addCategory(foodCategory)

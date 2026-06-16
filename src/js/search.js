@@ -11,6 +11,7 @@ import ocelotPlushieStanding from '../img/ocelot_plushie_standing.webp';
 import temperateCowPlushie from '../img/temperate_cow_plushie.webp';
 import redMooshroomPlushie from '../img/red_mooshroom_plushie.webp';
 import whiteSheepPlushie from '../img/sheep_plushie_white.webp';
+import hoglinPlushie from '../img/hoglin_plushie.webp';
 
 let miniSearch = new MiniSearch({
     fields: ['title', 'description'],
@@ -108,6 +109,13 @@ const documents = [
         description: 'Plushies inspired by the sheep mob variants.',
         link: './sheep_plushie.html',
         img: whiteSheepPlushie,
+    },
+    {
+        id: 14,
+        title: 'hoglin plushie',
+        description: 'Plushies inspired by hoglin mob variants.',
+        link: './hoglin_plushie.html',
+        img: hoglinPlushie,
     },
 ];
 

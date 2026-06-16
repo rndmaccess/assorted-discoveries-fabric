@@ -262,7 +262,7 @@ public class ModConfigScreen {
         ConfigCategory screenCategory = makeCategory(configBuilder, categoryName);
         BooleanListEntry configEntry;
 
-        configEntry = makeBoolEntry(category, entryBuilder, ModConfigKeys.ENABLE_GREEN_ONIONS, categoryName);
+        configEntry = makeBoolEntry(category, entryBuilder, ModConfigKeys.ENABLE_GREEN_ONIONS, categoryName, true);
         screenCategory.addEntry(configEntry);
         configEntry = makeBoolEntry(category, entryBuilder, ModConfigKeys.ENABLE_NOODLE_SOUP, categoryName);
         screenCategory.addEntry(configEntry);
@@ -276,7 +276,7 @@ public class ModConfigScreen {
         screenCategory.addEntry(configEntry);
         configEntry = makeBoolEntry(category, entryBuilder, ModConfigKeys.ENABLE_FORESTS_BOUNTY, categoryName);
         screenCategory.addEntry(configEntry);
-        configEntry = makeBoolEntry(category, entryBuilder, ModConfigKeys.ENABLE_PUDDING, categoryName);
+        configEntry = makeBoolEntry(category, entryBuilder, ModConfigKeys.ENABLE_PUDDING, categoryName, true);
         screenCategory.addEntry(configEntry);
         configEntry = makeBoolEntry(category, entryBuilder, ModConfigKeys.ENABLE_CARAMEL_APPLE, categoryName);
         screenCategory.addEntry(configEntry);
@@ -285,7 +285,7 @@ public class ModConfigScreen {
         configEntry = makeBoolEntry(category, entryBuilder, ModConfigKeys.ENABLE_SWEET_BERRY_JUICE, categoryName);
         screenCategory.addEntry(configEntry);
         BooleanListEntry enableBlueberries = makeBoolEntry(category, entryBuilder, ModConfigKeys.ENABLE_BLUEBERRIES,
-                categoryName);
+                categoryName, true);
         screenCategory.addEntry(enableBlueberries);
         configEntry = makeBoolEntry(category, entryBuilder, ModConfigKeys.ENABLE_BLUEBERRY_PIE, categoryName,
                 enableBlueberries);

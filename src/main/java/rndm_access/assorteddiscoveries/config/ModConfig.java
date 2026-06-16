@@ -188,7 +188,7 @@ public class ModConfig {
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CREAKING_PLUSHIE)).build();
 
         JsonConfigCategory foodCategory = new JsonConfigCategory.Builder("foods")
-                .addComment(new CommentConfigEntry("If disabled, noodle soup does not require green onions."))
+                .addComment(new CommentConfigEntry("When disabled, noodle soup no longer requires green onions."))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_GREEN_ONIONS))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_NOODLE_SOUP))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CHOCOLATE_CAKE))
@@ -201,8 +201,8 @@ public class ModConfig {
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_CARAMEL_APPLE))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_SWEET_BERRY_PIE))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_SWEET_BERRY_JUICE))
-                .addComment(new CommentConfigEntry("If disabled, berry pudding does not require blueberries."))
-                .addComment(new CommentConfigEntry("When disabled, blueberry pie and juice are disabled."))
+                .addComment(new CommentConfigEntry("When disabled, berry pudding noodle soup no longer requires blueberries,"))
+                .addComment(new CommentConfigEntry("and blueberry pie and juice are disabled."))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_BLUEBERRIES))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_BLUEBERRY_PIE))
                 .addEntry(new BooleanConfigEntry(ModConfigKeys.ENABLE_BLUEBERRY_JUICE))

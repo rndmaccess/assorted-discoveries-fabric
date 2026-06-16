@@ -1012,6 +1012,10 @@
   "text.cloth-config.assorted-discoveries.option.foods.enable_crimson_forage_mix": "Enable Crimson Forage Mix",
   "text.cloth-config.assorted-discoveries.option.foods.enable_warped_forage_mix": "Enable Warped Forage Mix",
 
+  "tooltip.cloth-config.assorted-discoveries.option.foods.enable_green_onions": "When disabled, noodle soup no longer requires green onions.",
+  "tooltip.cloth-config.assorted-discoveries.option.foods.enable_pudding": "Toggle pudding and berry pudding.",
+  "tooltip.cloth-config.assorted-discoveries.option.foods.enable_blueberries": "When disabled, berry pudding no longer requires blueberries.",
+
   "requirement.cloth-config.assorted-discoveries.option.foods.enable_cindersnap_berry_juice": "Disabled By The Cindersnap Berries Option",
   "requirement.cloth-config.assorted-discoveries.option.foods.enable_frostbite_berry_juice": "Disabled By The Frostbite Berries Option",
   "requirement.cloth-config.assorted-discoveries.option.foods.enable_crimson_forage_mix": "Disabled By The Cindersnap Berries Option",
@@ -1028,7 +1032,7 @@
   "text.cloth-config.assorted-discoveries.option.plants.enable_ender_plants": "Enable Ender Plants",
   "text.cloth-config.assorted-discoveries.option.plants.enable_witchs_cradles": "Enable Witch's Cradles",
 
-  "tooltip.cloth-config.assorted-discoveries.option.plants.enable_ender_plants": "Enable snapdragons and ender grass.",
+  "tooltip.cloth-config.assorted-discoveries.option.plants.enable_ender_plants": "Toggle snapdragons and ender grass.",
 
   "tag.block.assorted-discoveries.cindersnap_berry_bush_plantable_on": "Cindersnap Berry Bush Plantable On",
   "tag.block.assorted-discoveries.dyed_campfires": "Dyed Campfires",

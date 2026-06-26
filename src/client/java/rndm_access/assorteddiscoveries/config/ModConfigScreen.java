@@ -230,7 +230,7 @@ public class ModConfigScreen {
         screenCategory.addEntry(configEntry);
         configEntry = makeBoolEntry(category, entryBuilder, ModConfigKeys.ENABLE_GUARDIAN_PLUSHIE, categoryName);
         screenCategory.addEntry(configEntry);
-        configEntry = makeBoolEntry(category, entryBuilder, ModConfigKeys.ENABLE_HOGLIN_PLUSHIES, categoryName);
+        configEntry = makeBoolEntry(category, entryBuilder, ModConfigKeys.ENABLE_HOGLIN_PLUSHIES, categoryName, true);
         screenCategory.addEntry(configEntry);
         configEntry = makeBoolEntry(category, entryBuilder, ModConfigKeys.ENABLE_ILLAGER_PLUSHIES, categoryName);
         screenCategory.addEntry(configEntry);

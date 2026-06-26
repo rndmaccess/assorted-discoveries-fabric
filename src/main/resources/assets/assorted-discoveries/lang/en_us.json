@@ -990,6 +990,8 @@
   "text.cloth-config.assorted-discoveries.option.plushies.enable_zombie_plushie": "Enable Zombie Plushie",
   "text.cloth-config.assorted-discoveries.option.plushies.enable_creaking_plushie": "Enable Creaking Plushie",
 
+  "tooltip.cloth-config.assorted-discoveries.option.plushies.enable_hoglin_plushies": "Toggle Hoglin and Zoglin Plushies.",
+
   "category.cloth-config.assorted-discoveries.option.foods": "Foods",
   "text.cloth-config.assorted-discoveries.option.foods.enable_green_onions": "Enable Green Onions",
   "text.cloth-config.assorted-discoveries.option.foods.enable_noodle_soup": "Enable Noodle Soup",

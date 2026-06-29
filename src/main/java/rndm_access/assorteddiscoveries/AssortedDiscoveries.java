@@ -29,6 +29,7 @@ import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.ApplyExplosionDecay;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
@@ -235,10 +236,11 @@ public class AssortedDiscoveries implements ModInitializer {
 
             LootPool.Builder poolBuilder = LootPool.lootPool()
                     .setRolls(ConstantValue.exactly(1))
+                    .add(LootItem.lootTableItem(ModItems.SPRUCE_CONE))
                     .when(BonusLevelTableCondition.bonusLevelFlatChance(fortuneEnchant, 0.02F, 0.023F,
                             0.025F, 0.035F, 0.1F))
-                    .add(LootItem.lootTableItem(ModItems.SPRUCE_CONE))
-                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)));
+                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)))
+                    .apply(ApplyExplosionDecay.explosionDecay());
 
             builder.withPool(poolBuilder);
         }

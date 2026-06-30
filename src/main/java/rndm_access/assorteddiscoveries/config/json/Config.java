@@ -13,6 +13,8 @@ import rndm_access.assorteddiscoveries.config.json.exceptions.JsonSyntaxExceptio
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.*;
 
 public class Config {
@@ -29,7 +31,7 @@ public class Config {
         this.name = builder.name;
     }
 
-    public Config loadConfigFromList(List<JsonConfigCategory> configList) {
+    public Config loadFromList(List<JsonConfigCategory> configList) {
         if (configList == null || configList.isEmpty()) {
             // If there is no config list to load we can just return the existing config early!
             AssortedDiscoveries.LOGGER.error("Failed to sync config!");
@@ -61,29 +63,49 @@ public class Config {
         }
     }
 
-    public Config loadConfigFromFile() {
+    public Config loadFromFile(Config defaultConfig) {
         try {
             ConfigDeserializer deserializer = new ConfigDeserializer(AssortedDiscoveries.MOD_ID);
             Config loadedConfig = deserializer.deserialize();
-            Config newConfig = this.merge(loadedConfig);
-            // Re-save the config with the values in memory so when we load it
-            // we can ensure any new config entries are added to the config file!
-            newConfig.save();
-            return newConfig;
+            return this.merge(loadedConfig);
         } catch (IOException e) {
-            AssortedDiscoveries.LOGGER.error("The config file is unreadable! Using the default config!");
+            AssortedDiscoveries.LOGGER.error("Config load error: falling back to default configuration!");
             return this;
         } catch (JsonSyntaxException e) {
             String errorMessage = e.getMessage();
-            AssortedDiscoveries.LOGGER.error("Using the default config, because the config file could not be loaded:");
+            AssortedDiscoveries.LOGGER.error("Config load error: falling back to default configuration!");
             AssortedDiscoveries.LOGGER.error(errorMessage);
             configError = errorMessage;
+            this.backupFailedConfig(defaultConfig);
             return this;
         }
     }
 
-    public String getConfigError() {
-        return configError;
+    private void backupFailedConfig(Config defaultConfig) {
+        Path configPath = Paths.get("./config");
+        Path sourcePath = configPath.resolve(path);
+        //Path targetConfigPath = configPath.resolve(path + ".bak");
+
+        try {
+            int i = 0;
+            Path targetConfigPath = configPath.resolve(path + ".bak" + i);
+
+            while (Files.exists(targetConfigPath)) {
+                i++;
+                targetConfigPath = configPath.resolve(path + ".bak" + i);
+            }
+
+            Files.move(sourcePath, targetConfigPath, StandardCopyOption.REPLACE_EXISTING);
+
+
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+        defaultConfig.save();
+    }
+
+    public boolean hasError() {
+        return configError != null;
     }
 
     public Path getPath() {
@@ -161,6 +183,8 @@ public class Config {
         if (!Files.exists(path)) {
             ConfigSerializer serializer = new ConfigSerializer(this, path);
             serializer.serialize();
+        } else {
+            AssortedDiscoveries.LOGGER.error("The config file already exists!");
         }
     }
 

@@ -842,12 +842,12 @@
 
   "title.assorted-discoveries.config": "Assorted Discoveries Config (Singleplayer)",
   "config_error.assorted-discoveries.screen.go_back_button": "Go Back",
-  "config_error.assorted-discoveries.screen.continue_button": "Continue",
+  "config_error.assorted-discoveries.screen.continue_button": "Continue Editing",
   "config_error.assorted-discoveries.screen.title": "Assorted Discoveries Config Errors",
-  "config_error.assorted-discoveries.screen.description.line_one": "The config could not be loaded because of the following error,",
-  "config_error.assorted-discoveries.screen.description.line_two": "Assorted Discoveries has fallen back to using all default config options.",
-  "config_error.assorted-discoveries.screen.description.line_three": "Would you like to go back and fix the error manually",
-  "config_error.assorted-discoveries.screen.description.line_four": "or continue and overrite the existing config file with a new one?",
+  "config_error.assorted-discoveries.screen.description.line_one": "Oops! An error occurred while loading your preferences.",
+  "config_error.assorted-discoveries.screen.description.line_two": "To keep things running smoothly, all settings have been restored to their defaults.",
+  "config_error.assorted-discoveries.screen.description.line_three": "Your Config has been backed up and a fresh config file has been generated!",
+  "config_error.assorted-discoveries.screen.description.line_four": "Please check your logs for further details.",
 
   "category.cloth-config.assorted-discoveries.option.building_blocks": "Building Blocks",
   "text.cloth-config.assorted-discoveries.option.building_blocks.enable_planter_boxes": "Enable Planter Boxes",

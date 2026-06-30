@@ -16,7 +16,7 @@ public class ModConfig {
 
     /**
      * Config data available:<br>
-     * Server: Immediately when the game is started!
+     * Server: Immediately when the game is started!<br>
      * Client: After the player joins.<br>
      *
      * @return The config with the data from either the server's config or the client's config.
@@ -39,7 +39,7 @@ public class ModConfig {
     }
 
     public static synchronized void updateFromList(List<JsonConfigCategory> configList) {
-        config = config.loadConfigFromList(configList);
+        config = config.loadFromList(configList);
     }
 
     public static synchronized void updateFromFile() {
@@ -53,7 +53,7 @@ public class ModConfig {
             defaultConfig.create();
             return defaultConfig;
         }
-        return defaultConfig.loadConfigFromFile();
+        return defaultConfig.loadFromFile(defaultConfig);
     }
 
     private static Config getDefaultConfig() {

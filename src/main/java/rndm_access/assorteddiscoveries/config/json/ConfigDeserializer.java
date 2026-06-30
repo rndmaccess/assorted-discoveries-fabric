@@ -126,6 +126,8 @@ public class ConfigDeserializer {
     private String getSyntaxErrorMessage(TokenType... types) {
         StringBuilder message = new StringBuilder();
 
+        message.append("Failed to load config at ").append(configPath).append(": ");
+
         for (int i = 0; i < types.length; i++) {
             message.append("'").append(types[i].getSerializedName()).append("'");
 
@@ -145,11 +147,8 @@ public class ConfigDeserializer {
             } else {
                 message.append("'").append(currentToken.getValue()).append("'");
             }
-
             message.append(" at line ").append(currentToken.getLine() + 1);
         }
-        message.append(". Config path: ").append(configPath);
-
         return message.toString();
     }
 }

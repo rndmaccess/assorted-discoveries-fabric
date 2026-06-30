@@ -4,14 +4,11 @@ import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.FormattedText;
-import net.minecraft.network.chat.Style;
 import org.jspecify.annotations.NonNull;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 
 public class ModConfigErrorScreen extends Screen {
     private static final int DEFAULT_TEXT_COLOR = 0xFFFFFFFF;
-    private static final int ERROR_TEXT_COLOR = 0xFF5555;
     private static final Component DESC_LINE_ONE
             = Component.translatable("config_error." + AssortedDiscoveries.MOD_ID
             + ".screen.description.line_one");
@@ -36,16 +33,14 @@ public class ModConfigErrorScreen extends Screen {
     @Override
     public void extractBackground(@NonNull GuiGraphicsExtractor gui, int mouseX, int mouseY, float deltaTicks) {
         super.extractBackground(gui, mouseX, mouseY, deltaTicks);
-        String errorStr = ModConfig.getConfig().getConfigError();
-        FormattedText errorText = FormattedText.of(errorStr, Style.EMPTY.withColor(ERROR_TEXT_COLOR));
         int centeredX = this.width / 2;
+        int baseTextHeight = this.font.lineHeight - 10;
 
-        gui.centeredText(this.font, this.title, centeredX, 40 - this.font.lineHeight - 10, DEFAULT_TEXT_COLOR);
-        gui.centeredText(this.font, DESC_LINE_ONE, centeredX, 60 - this.font.lineHeight - 10, DEFAULT_TEXT_COLOR);
-        gui.centeredText(this.font, DESC_LINE_TWO, centeredX, 70 - this.font.lineHeight - 10, DEFAULT_TEXT_COLOR);
-        gui.centeredText(this.font, DESC_LINE_THREE, centeredX, 80 - this.font.lineHeight - 10, DEFAULT_TEXT_COLOR);
-        gui.centeredText(this.font, DESC_LINE_FOUR, centeredX, 90 - this.font.lineHeight - 10, DEFAULT_TEXT_COLOR);
-        gui.textWithWordWrap(this.font, errorText, centeredX - 80, 110 - this.font.lineHeight - 10, 200, DEFAULT_TEXT_COLOR);
+        gui.centeredText(this.font, this.title, centeredX, 10 - baseTextHeight, DEFAULT_TEXT_COLOR);
+        gui.centeredText(this.font, DESC_LINE_ONE, centeredX, 50 - baseTextHeight, DEFAULT_TEXT_COLOR);
+        gui.centeredText(this.font, DESC_LINE_TWO, centeredX, 60 - baseTextHeight, DEFAULT_TEXT_COLOR);
+        gui.centeredText(this.font, DESC_LINE_THREE, centeredX, 70 - baseTextHeight, DEFAULT_TEXT_COLOR);
+        gui.centeredText(this.font, DESC_LINE_FOUR, centeredX, 80 - baseTextHeight, DEFAULT_TEXT_COLOR);
     }
 
     @Override
@@ -55,7 +50,7 @@ public class ModConfigErrorScreen extends Screen {
         int gap = 10;
         int totalWidth = (buttonWidth * 2) + gap;
         int startX = (this.width - totalWidth) / 2;
-        int yPos = (this.height / 2) + 30;
+        int yPos = (this.height / 2) + 20;
 
         this.goBackButton = Button.builder(Component.translatable("config_error."
                                 + AssortedDiscoveries.MOD_ID + ".screen.go_back_button"),

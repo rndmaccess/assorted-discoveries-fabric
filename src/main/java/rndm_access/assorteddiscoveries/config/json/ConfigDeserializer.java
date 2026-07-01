@@ -4,6 +4,7 @@ import net.fabricmc.loader.api.FabricLoader;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.json.exceptions.JsonSyntaxException;
 import rndm_access.assorteddiscoveries.config.json.json_objects.BooleanConfigEntry;
+import rndm_access.assorteddiscoveries.config.json.json_objects.CommentConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.json_objects.JsonConfigCategory;
 import rndm_access.assorteddiscoveries.config.json.json_objects.StringConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.tokenizer.Token;
@@ -46,20 +47,30 @@ public class ConfigDeserializer {
 
     private void deserialize(Config.Builder config) throws JsonSyntaxException {
         while (tokenList.hasNextToken() && !tokenList.match(TokenType.RIGHT_CURLY)) {
-            Token keyToken = requireToken(TokenType.KEY);
-            requireToken(TokenType.COLON);
-
-            if (tokenList.matchAndConsume(TokenType.LEFT_CURLY)) {
-                JsonConfigCategory category = parseCategory(keyToken);
-                config.addCategory(category);
+            if (tokenList.match(TokenType.COMMENT)) {
+                String value = tokenList.consumeToken().getValue();
+                CommentConfigEntry comment = new CommentConfigEntry(value);
+                config.addComment(comment);
             } else {
-                requireToken(TokenType.VALUE);
-                AssortedDiscoveries.LOGGER.warn("Config entries are not allowed outside categories! Skipping entry {}", keyToken.getValue());
+                this.parseCategoryOrEntry(config);
             }
+        }
+    }
 
-            if (!tokenList.match(TokenType.RIGHT_CURLY) && tokenList.getNext() != null) {
-                requireToken(TokenType.COMMA, TokenType.RIGHT_CURLY);
-            }
+    private void parseCategoryOrEntry(Config.Builder config) {
+        Token keyToken = requireToken(TokenType.KEY);
+        requireToken(TokenType.COLON);
+
+        if (tokenList.matchAndConsume(TokenType.LEFT_CURLY)) {
+            JsonConfigCategory category = parseCategory(keyToken);
+            config.addCategory(category);
+        } else {
+            requireToken(TokenType.VALUE);
+            AssortedDiscoveries.LOGGER.warn("Config entries are not allowed outside categories! Skipping entry {}", keyToken.getValue());
+        }
+
+        if (!tokenList.match(TokenType.RIGHT_CURLY) && tokenList.getNext() != null) {
+            requireToken(TokenType.COMMA, TokenType.RIGHT_CURLY);
         }
     }
 
@@ -83,34 +94,42 @@ public class ConfigDeserializer {
 
     private void parseEntry(JsonConfigCategory.Builder category) throws JsonSyntaxException {
         while (tokenList.hasNextToken() && !tokenList.match(TokenType.RIGHT_CURLY)) {
-            Token keyToken = requireToken(TokenType.KEY);
-            String key = parseString(keyToken.getValue());
-            requireToken(TokenType.COLON);
+            if (tokenList.match(TokenType.COMMENT)) {
+                String value = tokenList.consumeToken().getValue();
+                CommentConfigEntry comment = new CommentConfigEntry(value);
+                category.addComment(comment);
+            } else if (tokenList.match(TokenType.ERROR)) {
+                throw new JsonSyntaxException(getSyntaxErrorMessage(TokenType.KEY));
+            } else if (tokenList.match(TokenType.KEY)) {
+                Token keyToken = requireToken(TokenType.KEY);
+                requireToken(TokenType.COLON);
 
-            if (tokenList.match(TokenType.ERROR)) {
-                tokenList.consumeToken();
-                AssortedDiscoveries.LOGGER.error("The type for {} is not supported!", keyToken.getValue());
-            } else if (tokenList.match(TokenType.LEFT_CURLY)) {
-                tokenList.consumeToken();
-                JsonConfigCategory subcategory = parseCategory(keyToken);
-                AssortedDiscoveries.LOGGER.warn("Only top level config categories are supported! Ignoring subcategory {}", subcategory);
-            } else {
-                Token token = requireToken(TokenType.VALUE);
-                String value = token.getValue();
-
-                if (Objects.equals(value, "true") || Objects.equals(value, "false")) {
-                    boolean boolVal = Boolean.parseBoolean(value);
-                    BooleanConfigEntry entry = new BooleanConfigEntry(key, boolVal);
-                    category.addEntry(entry);
+                if (tokenList.match(TokenType.ERROR)) {
+                    tokenList.consumeToken();
+                    AssortedDiscoveries.LOGGER.error("The type for {} is not supported!", keyToken.getValue());
+                } else if (tokenList.match(TokenType.LEFT_CURLY)) {
+                    tokenList.consumeToken();
+                    JsonConfigCategory subcategory = parseCategory(keyToken);
+                    AssortedDiscoveries.LOGGER.warn("Only top level config categories are supported! Ignoring subcategory {}", subcategory);
                 } else {
-                    String stringVal = parseString(value);
-                    StringConfigEntry entry = new StringConfigEntry(key, stringVal);
-                    category.addEntry(entry);
-                }
-            }
+                    Token token = requireToken(TokenType.VALUE);
+                    String key = parseString(keyToken.getValue());
+                    String value = token.getValue();
 
-            if (!tokenList.match(TokenType.RIGHT_CURLY)) {
-                requireToken(TokenType.COMMA, TokenType.RIGHT_CURLY);
+                    if (Objects.equals(value, "true") || Objects.equals(value, "false")) {
+                        boolean boolVal = Boolean.parseBoolean(value);
+                        BooleanConfigEntry entry = new BooleanConfigEntry(key, boolVal);
+                        category.addEntry(entry);
+                    } else {
+                        String stringVal = parseString(value);
+                        StringConfigEntry entry = new StringConfigEntry(key, stringVal);
+                        category.addEntry(entry);
+                    }
+                }
+
+                if (!tokenList.match(TokenType.RIGHT_CURLY)) {
+                    requireToken(TokenType.COMMA, TokenType.RIGHT_CURLY);
+                }
             }
         }
         tokenList.consumeToken(); // Consume the closing right curly for this entry!

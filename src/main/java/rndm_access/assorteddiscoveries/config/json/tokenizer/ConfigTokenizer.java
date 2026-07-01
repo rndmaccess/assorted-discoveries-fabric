@@ -54,11 +54,10 @@ public class ConfigTokenizer {
         while (pos < line.length()) {
             consumeWhitespace(line);
 
-            if (consumeComment(line)) {
-                break;
-            }
-
-            if (curChar == '"') {
+            if (isComment(line)) {
+                Token comment = scanComment(line);
+                jsonTokens.add(comment);
+            } else if (curChar == '"') {
                 StringBuilder stringBuilder = new StringBuilder();
                 Token token = scanString(line, stringBuilder);
                 jsonTokens.add(token);
@@ -95,15 +94,15 @@ public class ConfigTokenizer {
         lineNum++;
     }
 
-    private boolean consumeComment(String line) {
-        // TODO: Add some logic for optionally including comments that are read in from the config file!
+    private boolean isComment(String line) {
         if (curChar == '/') {
             consumeChar(line);
             consumeWhitespace(line);
 
             if (curChar == '/') {
                 consumeWhitespace(line);
-                return true; // If we return true here we advance to the next line!
+                consumeChar(line);
+                return true;
             }
         }
         return false;
@@ -153,6 +152,17 @@ public class ConfigTokenizer {
             return new Token(TokenType.KEY, builder.toString(), tokenLine);
         }
         return new Token(TokenType.VALUE, builder.toString(), tokenLine);
+    }
+
+    private Token scanComment(String line) throws JsonSyntaxException {
+        StringBuilder comment = new StringBuilder();
+
+        consumeWhitespace(line);
+        while (pos < line.length()) {
+            comment.append(line.charAt(pos));
+            consumeChar(line);
+        }
+        return new Token(TokenType.COMMENT, comment.toString(), lineNum);
     }
 
     private void consumeChar(String line) {

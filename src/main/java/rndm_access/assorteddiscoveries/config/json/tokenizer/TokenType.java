@@ -8,7 +8,7 @@ public enum TokenType implements StringRepresentable {
     LEFT_BRACKET("["), RIGHT_BRACKET("]"),
     COLON(":"), COMMA(","),
 
-    KEY("key"), VALUE("value"), ERROR("error");
+    KEY("key"), VALUE("value"), ERROR("error"), COMMENT("comment");
 
     private final String string;
 

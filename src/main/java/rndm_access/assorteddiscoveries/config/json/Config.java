@@ -76,23 +76,22 @@ public class Config {
             AssortedDiscoveries.LOGGER.error("Config load error: falling back to default configuration!");
             AssortedDiscoveries.LOGGER.error(errorMessage);
             configError = errorMessage;
-            this.backupFailedConfig(defaultConfig);
+            this.backup(defaultConfig);
             return this;
         }
     }
 
-    private void backupFailedConfig(Config defaultConfig) {
+    private void backup(Config defaultConfig) {
         Path configPath = Paths.get("./config");
         Path sourcePath = configPath.resolve(path);
-        //Path targetConfigPath = configPath.resolve(path + ".bak");
 
         try {
             int i = 0;
-            Path targetConfigPath = configPath.resolve(path + ".bak" + i);
+            Path targetConfigPath = configPath.resolve(path + "-" + i + ".bak");
 
             while (Files.exists(targetConfigPath)) {
                 i++;
-                targetConfigPath = configPath.resolve(path + ".bak" + i);
+                targetConfigPath = configPath.resolve(path + "-" + i + ".bak");
             }
 
             Files.move(sourcePath, targetConfigPath, StandardCopyOption.REPLACE_EXISTING);

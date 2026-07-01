@@ -96,6 +96,7 @@ public class ConfigTokenizer {
     }
 
     private boolean consumeComment(String line) {
+        // TODO: Add some logic for optionally including comments that are read in from the config file!
         if (curChar == '/') {
             consumeChar(line);
             consumeWhitespace(line);

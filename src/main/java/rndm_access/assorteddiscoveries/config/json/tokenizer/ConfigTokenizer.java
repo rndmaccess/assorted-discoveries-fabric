@@ -118,6 +118,7 @@ public class ConfigTokenizer {
         StringBuilder objectBuilder = new StringBuilder();
         int tokenLine = lineNum;
 
+        // At this point we don't know if it's a key, value, or error
         while (pos < line.length() && curChar != '"' && curChar != ':' && curChar != ',' && curChar != '{'
                 && curChar != '}' && curChar != '[' && curChar != ']') {
             if(!Character.isWhitespace(curChar)) {
@@ -126,6 +127,12 @@ public class ConfigTokenizer {
             consumeChar(line);
         }
         String value = objectBuilder.toString();
+
+        // If we find a colon after parsing it must be a key!
+        if (curChar == ':') {
+            return new Token(TokenType.KEY, value.toLowerCase(), tokenLine);
+        }
+
         boolean isBool = value.equalsIgnoreCase("true") || value.equalsIgnoreCase("false");
 
         if (isBool) {

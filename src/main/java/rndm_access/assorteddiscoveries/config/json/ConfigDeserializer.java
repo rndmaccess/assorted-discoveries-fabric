@@ -106,7 +106,7 @@ public class ConfigDeserializer {
 
                 if (tokenList.match(TokenType.ERROR)) {
                     tokenList.consumeToken();
-                    AssortedDiscoveries.LOGGER.error("The type for {} is not supported!", keyToken.getValue());
+                    AssortedDiscoveries.LOGGER.warn("The type for {} is not supported using default!", keyToken.getValue());
                 } else if (tokenList.match(TokenType.LEFT_CURLY)) {
                     tokenList.consumeToken();
                     JsonConfigCategory subcategory = parseCategory(keyToken);

@@ -4,7 +4,6 @@ import net.fabricmc.loader.api.FabricLoader;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.json.exceptions.JsonSyntaxException;
 import rndm_access.assorteddiscoveries.config.json.json_objects.BooleanConfigEntry;
-import rndm_access.assorteddiscoveries.config.json.json_objects.CommentConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.json_objects.JsonConfigCategory;
 import rndm_access.assorteddiscoveries.config.json.json_objects.StringConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.tokenizer.Token;
@@ -47,13 +46,7 @@ public class ConfigDeserializer {
 
     private void deserialize(Config.Builder config) throws JsonSyntaxException {
         while (tokenList.hasNextToken() && !tokenList.match(TokenType.RIGHT_CURLY)) {
-            if (tokenList.match(TokenType.COMMENT)) {
-                String value = tokenList.consumeToken().getValue();
-                CommentConfigEntry comment = new CommentConfigEntry(value);
-                config.addComment(comment);
-            } else {
-                this.parseCategoryOrEntry(config);
-            }
+            this.parseCategoryOrEntry(config);
         }
     }
 
@@ -94,11 +87,7 @@ public class ConfigDeserializer {
 
     private void parseEntry(JsonConfigCategory.Builder category) throws JsonSyntaxException {
         while (tokenList.hasNextToken() && !tokenList.match(TokenType.RIGHT_CURLY)) {
-            if (tokenList.match(TokenType.COMMENT)) {
-                String value = tokenList.consumeToken().getValue();
-                CommentConfigEntry comment = new CommentConfigEntry(value);
-                category.addComment(comment);
-            } else if (tokenList.match(TokenType.ERROR)) {
+            if (tokenList.match(TokenType.ERROR)) {
                 throw new JsonSyntaxException(getSyntaxErrorMessage(TokenType.KEY));
             } else if (tokenList.match(TokenType.KEY)) {
                 Token keyToken = requireToken(TokenType.KEY);

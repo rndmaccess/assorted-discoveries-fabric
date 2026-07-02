@@ -20,6 +20,10 @@ public class JsonConfigCategory extends ConfigObject {
         return (BooleanConfigEntry) lookupEntry(name);
     }
 
+    public boolean containsEntry(String key) {
+        return entries.containsKey(key);
+    }
+
     private AbstractConfigEntry<?> lookupEntry(String key) {
         if (entries.containsKey(key)) {
             return entries.get(key);

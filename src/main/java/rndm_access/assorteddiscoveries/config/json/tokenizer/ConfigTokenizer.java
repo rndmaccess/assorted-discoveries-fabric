@@ -51,13 +51,11 @@ public class ConfigTokenizer {
 
         this.curChar = line.charAt(pos);
 
-        while (pos < line.length()) {
-            consumeWhitespace(line);
+        consumeWhitespace(line); // Consume the whitespace before the line!
+        while (pos < line.length() && consumeComment(line)) {
+            consumeWhitespace(line); // Consume any whitespace between characters!
 
-            if (isComment(line)) {
-                Token comment = scanComment(line);
-                jsonTokens.add(comment);
-            } else if (curChar == '"') {
+            if (curChar == '"') {
                 StringBuilder stringBuilder = new StringBuilder();
                 Token token = scanString(line, stringBuilder);
                 jsonTokens.add(token);
@@ -94,16 +92,16 @@ public class ConfigTokenizer {
         lineNum++;
     }
 
-    private boolean isComment(String line) {
+    private boolean consumeComment(String line) {
         if (curChar == '/') {
             consumeChar(line);
             consumeWhitespace(line);
             require('/');
             consumeWhitespace(line);
             consumeChar(line);
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
 
     private void consumeWhitespace(String line) {
@@ -157,17 +155,6 @@ public class ConfigTokenizer {
             return new Token(TokenType.KEY, builder.toString(), tokenLine);
         }
         return new Token(TokenType.VALUE, builder.toString(), tokenLine);
-    }
-
-    private Token scanComment(String line) throws JsonSyntaxException {
-        StringBuilder comment = new StringBuilder();
-
-        consumeWhitespace(line);
-        while (pos < line.length()) {
-            comment.append(line.charAt(pos));
-            consumeChar(line);
-        }
-        return new Token(TokenType.COMMENT, comment.toString(), lineNum);
     }
 
     private void consumeChar(String line) {

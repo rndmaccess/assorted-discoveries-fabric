@@ -67,7 +67,12 @@ public class Config {
         try {
             ConfigDeserializer deserializer = new ConfigDeserializer(AssortedDiscoveries.MOD_ID);
             Config loadedConfig = deserializer.deserialize();
-            return this.merge(loadedConfig);
+            Config mergedConfig = this.merge(loadedConfig);
+
+            if (shouldMigrate(defaultConfig, loadedConfig)) {
+                this.backupAndSave(mergedConfig);
+            }
+            return mergedConfig;
         } catch (IOException e) {
             AssortedDiscoveries.LOGGER.error("Config load error: falling back to default configuration!");
             return this;
@@ -76,12 +81,28 @@ public class Config {
             AssortedDiscoveries.LOGGER.error("Config load error: falling back to default configuration!");
             AssortedDiscoveries.LOGGER.error(errorMessage);
             configError = errorMessage;
-            this.backup(defaultConfig);
+            this.backupAndSave(defaultConfig);
             return this;
         }
     }
 
-    private void backup(Config defaultConfig) {
+    private boolean shouldMigrate(Config defaultConfig, Config loadedConfig) {
+        for (JsonConfigCategory category : defaultConfig.getCategories()) {
+            JsonConfigCategory loadedCategory = loadedConfig.getCategory(category.getKey());
+
+            for (ConfigObject object : category.getConfigObjects()) {
+                if (object instanceof AbstractConfigEntry<?> entry) {
+                    String key = entry.getKey();
+                    if (!loadedCategory.containsEntry(key)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    private void backupAndSave(Config config) {
         Path configPath = Paths.get("./config");
         Path sourcePath = configPath.resolve(path);
 
@@ -95,12 +116,10 @@ public class Config {
             }
 
             Files.move(sourcePath, targetConfigPath, StandardCopyOption.REPLACE_EXISTING);
-
-
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
-        defaultConfig.save();
+        config.save();
     }
 
     public boolean hasError() {

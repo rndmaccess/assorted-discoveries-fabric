@@ -98,12 +98,10 @@ public class ConfigTokenizer {
         if (curChar == '/') {
             consumeChar(line);
             consumeWhitespace(line);
-
-            if (curChar == '/') {
-                consumeWhitespace(line);
-                consumeChar(line);
-                return true;
-            }
+            require('/');
+            consumeWhitespace(line);
+            consumeChar(line);
+            return true;
         }
         return false;
     }
@@ -143,7 +141,7 @@ public class ConfigTokenizer {
 
     private Token scanString(String line, StringBuilder builder) throws JsonSyntaxException {
         int tokenLine = lineNum;
-        requireQuote();
+        require('"');
         consumeChar(line);
         builder.append('"');
         while (pos < line.length() && curChar != '"') {
@@ -151,7 +149,7 @@ public class ConfigTokenizer {
             consumeChar(line);
         }
         builder.append('"');
-        requireQuote();
+        require('"');
         consumeChar(line);
         consumeWhitespace(line);
 
@@ -180,11 +178,11 @@ public class ConfigTokenizer {
         }
     }
 
-    private void requireQuote() throws JsonSyntaxException {
-        if (this.curChar != '"') {
+    private void require(char character) throws JsonSyntaxException {
+        if (this.curChar != character) {
             int reportedLine = this.lineNum + 1;
 
-            throw new JsonSyntaxException("Expected '" + '"'
+            throw new JsonSyntaxException("Expected '" + character
                     + "', got '" + this.curChar
                     + "' at line " + reportedLine);
         }

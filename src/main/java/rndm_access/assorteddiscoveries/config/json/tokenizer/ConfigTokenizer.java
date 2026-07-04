@@ -44,11 +44,10 @@ public class ConfigTokenizer {
             require('{');
             consumeChar(iterator);
 
-            while (iterator.hasNext() && this.curChar != '}') {
+            while (curChar != '\0' && this.curChar != '}') {
                 this.tokenizeLine(config, iterator);
             }
-            require('}');
-            consumeChar(iterator);
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -61,9 +60,11 @@ public class ConfigTokenizer {
         }
 
         if (curChar == '"') {
-            consumeChar(iter);
             JsonConfigCategory category = parseCategory(iter);
             config.addCategory(category);
+        } else {
+            int reportedLine = this.lineNum + 1;
+            throw new JsonSyntaxException("Expected a string but got '" + curChar + "' at line " + reportedLine);
         }
     }
 
@@ -84,47 +85,39 @@ public class ConfigTokenizer {
 
     private JsonConfigCategory parseCategory(LineIterator iter) {
         String key = parseKey(iter);
-        require(':', key);
+        require(key, ':');
         consumeChar(iter);
         require('{');
         consumeChar(iter);
 
         JsonConfigCategory.Builder categoryBuilder = new JsonConfigCategory.Builder(key);
-        parseEntry(categoryBuilder, iter);
+        parseEntries(categoryBuilder, iter);
         require('}');
         consumeChar(iter);
 
-        if (this.curChar != '}') {
-            require(',');
-            consumeChar(iter);
-        }
+        require(',', '}');
+        consumeChar(iter);
 
         return categoryBuilder.build();
     }
 
-    private void parseEntry(JsonConfigCategory.Builder category, LineIterator iter) throws JsonSyntaxException {
-        while (iter.hasNext() && curChar != '}') {
+    private void parseEntries(JsonConfigCategory.Builder category, LineIterator iter) throws JsonSyntaxException {
+        while (curChar != '\0' && curChar != '}') {
             if(consumeComment(iter)) {
                 continue;
             }
 
             String key = parseKey(iter);
-            StringBuilder valueBuilder = new StringBuilder();
 
-            require(':', key);
+            require(key, ':');
             consumeChar(iter);
 
-            while (this.curChar != '}' && this.curChar != ',') {
-                valueBuilder.append(this.curChar);
-                consumeChar(iter);
-            }
+            String value = parseValue(iter);
 
             if (this.curChar != '}') {
                 require(',');
                 consumeChar(iter);
             }
-
-            String value = valueBuilder.toString().toLowerCase();
 
             if (value.equals("true") || value.equals("false")) {
                 category.addEntry(new BooleanConfigEntry(key, Boolean.parseBoolean(value)));
@@ -134,20 +127,29 @@ public class ConfigTokenizer {
         }
     }
 
+    private String parseValue(LineIterator iter) throws JsonSyntaxException {
+        StringBuilder valueBuilder = new StringBuilder();
+
+        while (this.curChar != '}' && this.curChar != ',') {
+            if (this.curChar != '\0') {
+                valueBuilder.append(this.curChar);
+                consumeChar(iter);
+            }
+        }
+        return valueBuilder.toString().toLowerCase();
+    }
+
     private String parseKey(LineIterator iter) throws JsonSyntaxException {
         StringBuilder keyBuilder = new StringBuilder();
 
-        if (curChar == '"') {
-            consumeChar(iter);
-        }
-
+        require('"');
+        consumeChar(iter);
         while (curChar != ':' && this.curChar != '"') {
             keyBuilder.append(curChar);
             consumeChar(iter);
         }
-        if (curChar == '"') {
-            consumeChar(iter);
-        }
+        require('"');
+        consumeChar(iter);
         return keyBuilder.toString();
     }
 
@@ -160,26 +162,47 @@ public class ConfigTokenizer {
     private void nextChar(LineIterator iter) {
         pos++;
 
-        if (iter.hasNext()) {
-            if (line == null || pos > line.length() - 1) {
-                line = iter.next().strip();
-                pos = 0;
-                lineNum++;
+        while (line == null || pos > line.length() - 1) {
+            if (!iter.hasNext()) {
+                curChar = '\0';
+                return;
             }
-            curChar = line.charAt(pos);
+
+            line = iter.next().strip();
+            pos = 0;
+            lineNum++;
+
+            // Skip empty lines!
+            if (line.isEmpty()) {
+                line = null;
+            }
         }
+        curChar = line.charAt(pos);
     }
 
-    private void require(char expectedChar) {
-        require(expectedChar, this.curChar.toString());
+    private void require(Character... expectedChars) {
+        require(this.curChar.toString(), expectedChars);
     }
 
-    private void require(char expectedChar, String prevToken) throws JsonSyntaxException {
-        if (this.curChar != expectedChar) {
+    private void require(String prevToken, Character... expectedChars) throws JsonSyntaxException {
+        Character expectedChar = matchesChar(expectedChars);
+
+        if (expectedChar != null) {
             int reportedLine = this.lineNum + 1;
 
             throw new JsonSyntaxException("Expected '" + expectedChar
                     + "', got '" + prevToken + "' at line " + reportedLine);
         }
+    }
+
+    private Character matchesChar(Character... expectedChars) {
+        Character invalidChar = null;
+        for (char c : expectedChars) {
+            if (this.curChar == c) {
+                return null;
+            }
+            invalidChar = c;
+        }
+        return invalidChar;
     }
 }

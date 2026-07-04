@@ -1,177 +1,185 @@
 package rndm_access.assorteddiscoveries.config.json.tokenizer;
 
+import net.fabricmc.loader.api.FabricLoader;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
+import rndm_access.assorteddiscoveries.AssortedDiscoveries;
+import rndm_access.assorteddiscoveries.config.json.Config;
 import rndm_access.assorteddiscoveries.config.json.exceptions.JsonConfigException;
 import rndm_access.assorteddiscoveries.config.json.exceptions.JsonSyntaxException;
+import rndm_access.assorteddiscoveries.config.json.json_objects.BooleanConfigEntry;
+import rndm_access.assorteddiscoveries.config.json.json_objects.JsonConfigCategory;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 
 public class ConfigTokenizer {
     private int lineNum;
     private int pos;
     private Character curChar;
     private final Path path;
-    private final ArrayList<Token> jsonTokens;
+    private String line;
+    private final String configName;
 
-    public ConfigTokenizer(Path path) {
+    public ConfigTokenizer(String configName) {
         this.lineNum = 0;
         this.pos = 0;
-        this.path = path;
-        this.jsonTokens = new ArrayList<>();
+        this.path = FabricLoader.getInstance().getConfigDir().resolve(configName + ".json5");
+        this.configName = configName;
     }
 
-    public TokenList tokenize() throws JsonSyntaxException {
+    public Config tokenize() throws JsonSyntaxException {
         File file = new File(String.valueOf(path));
 
         if (path == null || !Files.exists(path)) {
             throw new JsonConfigException("Couldn't load config at " + path + " because it does not exist!");
         }
 
+        Config.Builder config = new Config.Builder(configName);
+
         try (LineIterator iterator = FileUtils.lineIterator(file)) {
-            while (iterator.hasNext()) {
-                String line = iterator.next();
-                this.tokenizeLine(line);
+            consumeChar(iterator); // Bump the char pointer to the first character
+            require('{');
+            consumeChar(iterator);
+
+            while (iterator.hasNext() && this.curChar != '}') {
+                this.tokenizeLine(config, iterator);
             }
+            require('}');
+            consumeChar(iterator);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return new TokenList(jsonTokens);
+        return config.build();
     }
 
-    private void tokenizeLine(String line) throws JsonSyntaxException {
-        // If the line is empty we don't have to tokenize it!
-        if (line.isEmpty()) {
+    private void tokenizeLine(Config.Builder config, LineIterator iter) throws JsonSyntaxException {
+        if(consumeComment(iter)) {
             return;
         }
 
-        this.curChar = line.charAt(pos);
-
-        consumeWhitespace(line); // Consume the whitespace before the line!
-        while (pos < line.length() && consumeComment(line)) {
-            consumeWhitespace(line); // Consume any whitespace between characters!
-
-            if (curChar == '"') {
-                StringBuilder stringBuilder = new StringBuilder();
-                Token token = scanString(line, stringBuilder);
-                jsonTokens.add(token);
-            } else if (curChar == ':') {
-                Token token = new Token(TokenType.COLON, String.valueOf(curChar), lineNum);
-                jsonTokens.add(token);
-                consumeChar(line);
-            } else if (curChar == '{') {
-                Token token = new Token(TokenType.LEFT_CURLY, String.valueOf(curChar), lineNum);
-                jsonTokens.add(token);
-                consumeChar(line);
-            } else if (curChar == '}') {
-                Token token = new Token(TokenType.RIGHT_CURLY, String.valueOf(curChar), lineNum);
-                jsonTokens.add(token);
-                consumeChar(line);
-            } else if (curChar == '[') {
-                Token token = new Token(TokenType.LEFT_BRACKET, String.valueOf(curChar), lineNum);
-                jsonTokens.add(token);
-                consumeChar(line);
-            } else if (curChar == ']') {
-                Token token = new Token(TokenType.RIGHT_BRACKET, String.valueOf(curChar), lineNum);
-                jsonTokens.add(token);
-                consumeChar(line);
-            } else if (curChar == ',') {
-                Token token = new Token(TokenType.COMMA, String.valueOf(curChar), lineNum);
-                jsonTokens.add(token);
-                consumeChar(line);
-            } else {
-                Token token = scanObject(line);
-                jsonTokens.add(token);
-            }
+        if (curChar == '"') {
+            consumeChar(iter);
+            JsonConfigCategory category = parseCategory(iter);
+            config.addCategory(category);
         }
-        pos = 0;
-        lineNum++;
     }
 
-    private boolean consumeComment(String line) {
+    private boolean consumeComment(LineIterator iter) {
         if (curChar == '/') {
-            consumeChar(line);
-            consumeWhitespace(line);
+            consumeChar(iter);
             require('/');
-            consumeWhitespace(line);
-            consumeChar(line);
-            return false;
+            consumeChar(iter);
+
+            line = iter.next().strip();
+            pos = 0;
+            lineNum++;
+            this.curChar = line.charAt(pos);
+            return true;
         }
-        return true;
+        return false;
     }
 
-    private void consumeWhitespace(String line) {
-        while (Character.isWhitespace(curChar)) {
-            consumeChar(line);
+    private JsonConfigCategory parseCategory(LineIterator iter) {
+        String key = parseKey(iter);
+        require(':', key);
+        consumeChar(iter);
+        require('{');
+        consumeChar(iter);
+
+        JsonConfigCategory.Builder categoryBuilder = new JsonConfigCategory.Builder(key);
+        parseEntry(categoryBuilder, iter);
+        require('}');
+        consumeChar(iter);
+
+        if (this.curChar != '}') {
+            require(',');
+            consumeChar(iter);
         }
+
+        return categoryBuilder.build();
     }
 
-    private Token scanObject(String line) {
-        StringBuilder objectBuilder = new StringBuilder();
-        int tokenLine = lineNum;
-
-        // At this point we don't know if it's a key, value, or error
-        while (pos < line.length() && curChar != '"' && curChar != ':' && curChar != ',' && curChar != '{'
-                && curChar != '}' && curChar != '[' && curChar != ']') {
-            if(!Character.isWhitespace(curChar)) {
-                objectBuilder.append(curChar);
+    private void parseEntry(JsonConfigCategory.Builder category, LineIterator iter) throws JsonSyntaxException {
+        while (iter.hasNext() && curChar != '}') {
+            if(consumeComment(iter)) {
+                continue;
             }
-            consumeChar(line);
-        }
-        String value = objectBuilder.toString();
 
-        // If we find a colon after parsing it must be a key!
-        if (curChar == ':') {
-            return new Token(TokenType.KEY, value.toLowerCase(), tokenLine);
-        }
+            String key = parseKey(iter);
+            StringBuilder valueBuilder = new StringBuilder();
 
-        boolean isBool = value.equalsIgnoreCase("true") || value.equalsIgnoreCase("false");
+            require(':', key);
+            consumeChar(iter);
 
-        if (isBool) {
-            return new Token(TokenType.VALUE, value.toLowerCase(), tokenLine);
+            while (this.curChar != '}' && this.curChar != ',') {
+                valueBuilder.append(this.curChar);
+                consumeChar(iter);
+            }
+
+            if (this.curChar != '}') {
+                require(',');
+                consumeChar(iter);
+            }
+
+            String value = valueBuilder.toString().toLowerCase();
+
+            if (value.equals("true") || value.equals("false")) {
+                category.addEntry(new BooleanConfigEntry(key, Boolean.parseBoolean(value)));
+            } else {
+                AssortedDiscoveries.LOGGER.warn("The type for {} is not supported using default!", key);
+            }
         }
-        return new Token(TokenType.ERROR, value, tokenLine);
     }
 
-    private Token scanString(String line, StringBuilder builder) throws JsonSyntaxException {
-        int tokenLine = lineNum;
-        require('"');
-        consumeChar(line);
-        builder.append('"');
-        while (pos < line.length() && curChar != '"') {
-            builder.append(curChar);
-            consumeChar(line);
-        }
-        builder.append('"');
-        require('"');
-        consumeChar(line);
-        consumeWhitespace(line);
+    private String parseKey(LineIterator iter) throws JsonSyntaxException {
+        StringBuilder keyBuilder = new StringBuilder();
 
-        if (curChar == ':') {
-            return new Token(TokenType.KEY, builder.toString(), tokenLine);
+        if (curChar == '"') {
+            consumeChar(iter);
         }
-        return new Token(TokenType.VALUE, builder.toString(), tokenLine);
+
+        while (curChar != ':' && this.curChar != '"') {
+            keyBuilder.append(curChar);
+            consumeChar(iter);
+        }
+        if (curChar == '"') {
+            consumeChar(iter);
+        }
+        return keyBuilder.toString();
     }
 
-    private void consumeChar(String line) {
+    private void consumeChar(LineIterator iter) {
+        do {
+            nextChar(iter);
+        } while (Character.isWhitespace(curChar));
+    }
+
+    private void nextChar(LineIterator iter) {
         pos++;
 
-        if (pos < line.length()) {
+        if (iter.hasNext()) {
+            if (line == null || pos > line.length() - 1) {
+                line = iter.next().strip();
+                pos = 0;
+                lineNum++;
+            }
             curChar = line.charAt(pos);
         }
     }
 
-    private void require(char character) throws JsonSyntaxException {
-        if (this.curChar != character) {
+    private void require(char expectedChar) {
+        require(expectedChar, this.curChar.toString());
+    }
+
+    private void require(char expectedChar, String prevToken) throws JsonSyntaxException {
+        if (this.curChar != expectedChar) {
             int reportedLine = this.lineNum + 1;
 
-            throw new JsonSyntaxException("Expected '" + character
-                    + "', got '" + this.curChar
-                    + "' at line " + reportedLine);
+            throw new JsonSyntaxException("Expected '" + expectedChar
+                    + "', got '" + prevToken + "' at line " + reportedLine);
         }
     }
 }

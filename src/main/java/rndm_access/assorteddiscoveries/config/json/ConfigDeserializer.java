@@ -8,7 +8,6 @@ import rndm_access.assorteddiscoveries.config.json.json_objects.JsonConfigCatego
 import rndm_access.assorteddiscoveries.config.json.json_objects.StringConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.tokenizer.Token;
 import rndm_access.assorteddiscoveries.config.json.tokenizer.TokenList;
-import rndm_access.assorteddiscoveries.config.json.tokenizer.ConfigTokenizer;
 import rndm_access.assorteddiscoveries.config.json.tokenizer.TokenType;
 
 import java.io.IOException;
@@ -30,7 +29,7 @@ public class ConfigDeserializer {
 
     public Config deserialize() throws JsonSyntaxException {
         // We tokenize here in case this method throws a JsonConfigException
-        this.tokenList = new ConfigTokenizer(configPath).tokenize();
+        //this.tokenList = new ConfigTokenizer(configPath).tokenize();
         Config.Builder config = new Config.Builder(configName);
 
         if(tokenList.isEmpty()) {

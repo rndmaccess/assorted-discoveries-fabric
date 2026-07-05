@@ -121,25 +121,59 @@ public class ConfigDeserializer {
     }
 
     private String parseValue(LineIterator iter) throws JsonSyntaxException {
-        StringBuilder valueBuilder = new StringBuilder();
+        int startPos = this.pos;
 
-        while (this.curChar != '\0' && this.curChar != '}' && this.curChar != ',') {
-            valueBuilder.append(this.curChar);
-            consumeChar(iter);
+        // Saves some time if the ending character is all on the same line!
+        if (findEndingChar(',', '}')) {
+            String value = line.substring(startPos, this.pos);
+            return value.toLowerCase();
+        } else {
+            StringBuilder valueBuilder = new StringBuilder();
+
+            while (this.curChar != '\0' && this.curChar != '}' && this.curChar != ',') {
+                valueBuilder.append(this.curChar);
+                consumeChar(iter);
+            }
+            return valueBuilder.toString().toLowerCase();
         }
-        return valueBuilder.toString().toLowerCase();
     }
 
     private String parseKey(LineIterator iter) throws JsonSyntaxException {
-        StringBuilder keyBuilder = new StringBuilder();
+        require(iter, '"');
+        int startPos = this.pos;
 
-        require(iter, '"');
-        while (this.curChar != '\0' && curChar != ':' && this.curChar != '"') {
-            keyBuilder.append(curChar);
-            consumeChar(iter);
+        // Saves some time if the ending character is all on the same line!
+        if (findEndingChar('"')) {
+            String key = line.substring(startPos, this.pos);
+            require(iter, '"');
+            return key;
+        } else {
+            StringBuilder keyBuilder = new StringBuilder();
+
+            while (this.curChar != '\0' && curChar != ':' && this.curChar != '"') {
+                keyBuilder.append(curChar);
+                consumeChar(iter);
+            }
+            require(iter, '"');
+            return keyBuilder.toString();
         }
-        require(iter, '"');
-        return keyBuilder.toString();
+    }
+
+    private boolean findEndingChar(Character... endChars) {
+        for (int i = this.pos; i < line.length(); i++) {
+            for (char endChar : endChars) {
+                if (line.charAt(i) == endChar) {
+                    movePointer(i); // Manually move the char pointer to the ending character!
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private void movePointer(int pos) {
+        this.pos = pos;
+        curChar = line.charAt(pos);
     }
 
     private void consumeChar(LineIterator iter) {

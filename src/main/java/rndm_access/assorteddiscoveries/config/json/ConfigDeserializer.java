@@ -123,9 +123,8 @@ public class ConfigDeserializer {
     private String parseValue(LineIterator iter) throws JsonSyntaxException {
         int startPos = this.pos;
 
-        // Saves some time if the ending character is all on the same line!
         if (findEndingChar(',', '}')) {
-            String value = line.substring(startPos, this.pos);
+            String value = line.substring(startPos, this.pos); // Saves some time if the ending character is all on the same line!
             return value.toLowerCase();
         } else {
             StringBuilder valueBuilder = new StringBuilder();
@@ -142,9 +141,8 @@ public class ConfigDeserializer {
         require(iter, '"');
         int startPos = this.pos;
 
-        // Saves some time if the ending character is all on the same line!
         if (findEndingChar('"')) {
-            String key = line.substring(startPos, this.pos);
+            String key = line.substring(startPos, this.pos); // Saves some time if the ending character is all on the same line!
             require(iter, '"');
             return key;
         } else {

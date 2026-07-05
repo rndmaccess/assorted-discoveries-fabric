@@ -9,7 +9,6 @@ import rndm_access.assorteddiscoveries.config.json.exceptions.JsonConfigExceptio
 import rndm_access.assorteddiscoveries.config.json.json_objects.AbstractConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.json_objects.JsonConfigCategory;
 import rndm_access.assorteddiscoveries.config.json.exceptions.JsonSyntaxException;
-import rndm_access.assorteddiscoveries.config.json.tokenizer.ConfigTokenizer;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -66,8 +65,8 @@ public class Config {
 
     public Config loadFromFile(Config defaultConfig) {
         try {
-            ConfigTokenizer deserializer = new ConfigTokenizer(AssortedDiscoveries.MOD_ID);
-            Config loadedConfig = deserializer.tokenize();
+            ConfigDeserializer deserializer = new ConfigDeserializer(AssortedDiscoveries.MOD_ID);
+            Config loadedConfig = deserializer.deserialize();
             Config mergedConfig = this.merge(loadedConfig);
 
             if (shouldMigrate(defaultConfig, loadedConfig)) {

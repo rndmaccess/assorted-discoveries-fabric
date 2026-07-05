@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.StringJoiner;
 
 public class ConfigTokenizer {
     private int lineNum;
@@ -41,13 +42,11 @@ public class ConfigTokenizer {
 
         try (LineIterator iterator = FileUtils.lineIterator(file)) {
             consumeChar(iterator); // Bump the char pointer to the first character
-            require('{');
-            consumeChar(iterator);
 
-            while (curChar != '\0' && this.curChar != '}') {
+            require(iterator, '{');
+            while (curChar != '\0') {
                 this.tokenizeLine(config, iterator);
             }
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -59,20 +58,23 @@ public class ConfigTokenizer {
             return;
         }
 
-        if (curChar == '"') {
-            JsonConfigCategory category = parseCategory(iter);
+        String key = parseKey(iter);
+        require(iter, key, ':');
+
+        if (this.curChar == '{') {
+            JsonConfigCategory category = parseCategory(key, iter);
             config.addCategory(category);
+            require(iter, '}', ',');
         } else {
             int reportedLine = this.lineNum + 1;
-            throw new JsonSyntaxException("Expected a string but got '" + curChar + "' at line " + reportedLine);
+            throw new JsonSyntaxException("Expected a config category but got '" + curChar + "' at line " + reportedLine);
         }
     }
 
     private boolean consumeComment(LineIterator iter) {
         if (curChar == '/') {
             consumeChar(iter);
-            require('/');
-            consumeChar(iter);
+            require(iter, '/');
 
             line = iter.next().strip();
             pos = 0;
@@ -83,21 +85,10 @@ public class ConfigTokenizer {
         return false;
     }
 
-    private JsonConfigCategory parseCategory(LineIterator iter) {
-        String key = parseKey(iter);
-        require(key, ':');
-        consumeChar(iter);
-        require('{');
-        consumeChar(iter);
-
+    private JsonConfigCategory parseCategory(String key, LineIterator iter) {
+        require(iter, '{');
         JsonConfigCategory.Builder categoryBuilder = new JsonConfigCategory.Builder(key);
         parseEntries(categoryBuilder, iter);
-        require('}');
-        consumeChar(iter);
-
-        require(',', '}');
-        consumeChar(iter);
-
         return categoryBuilder.build();
     }
 
@@ -108,33 +99,34 @@ public class ConfigTokenizer {
             }
 
             String key = parseKey(iter);
+            require(iter, key, ':');
 
-            require(key, ':');
-            consumeChar(iter);
+            if (this.curChar == '{') {
+                parseCategory(key, iter);
+                AssortedDiscoveries.LOGGER.warn("Only top level config categories are supported! Ignoring subcategory '{}'", key);
+            } else {
+                String value = parseValue(iter);
 
-            String value = parseValue(iter);
+                if (value.equals("true") || value.equals("false")) {
+                    category.addEntry(new BooleanConfigEntry(key, Boolean.parseBoolean(value)));
+                } else {
+                    AssortedDiscoveries.LOGGER.warn("The type for {} is not supported using default!", key);
+                }
+            }
 
             if (this.curChar != '}') {
-                require(',');
-                consumeChar(iter);
-            }
-
-            if (value.equals("true") || value.equals("false")) {
-                category.addEntry(new BooleanConfigEntry(key, Boolean.parseBoolean(value)));
-            } else {
-                AssortedDiscoveries.LOGGER.warn("The type for {} is not supported using default!", key);
+                require(iter, ','); // Consume and require the comma after each category/entry!
             }
         }
+        require(iter, '}'); // Consume and require the left curly after each category!
     }
 
     private String parseValue(LineIterator iter) throws JsonSyntaxException {
         StringBuilder valueBuilder = new StringBuilder();
 
-        while (this.curChar != '}' && this.curChar != ',') {
-            if (this.curChar != '\0') {
-                valueBuilder.append(this.curChar);
-                consumeChar(iter);
-            }
+        while (this.curChar != '\0' && this.curChar != '}' && this.curChar != ',') {
+            valueBuilder.append(this.curChar);
+            consumeChar(iter);
         }
         return valueBuilder.toString().toLowerCase();
     }
@@ -142,14 +134,12 @@ public class ConfigTokenizer {
     private String parseKey(LineIterator iter) throws JsonSyntaxException {
         StringBuilder keyBuilder = new StringBuilder();
 
-        require('"');
-        consumeChar(iter);
-        while (curChar != ':' && this.curChar != '"') {
+        require(iter, '"');
+        while (this.curChar != '\0' && curChar != ':' && this.curChar != '"') {
             keyBuilder.append(curChar);
             consumeChar(iter);
         }
-        require('"');
-        consumeChar(iter);
+        require(iter, '"');
         return keyBuilder.toString();
     }
 
@@ -180,18 +170,24 @@ public class ConfigTokenizer {
         curChar = line.charAt(pos);
     }
 
-    private void require(Character... expectedChars) {
-        require(this.curChar.toString(), expectedChars);
+    private void require(LineIterator iter, Character... expectedChars) {
+        require(iter, this.curChar.toString(), expectedChars);
     }
 
-    private void require(String prevToken, Character... expectedChars) throws JsonSyntaxException {
+    private void require(LineIterator iter, String prevToken, Character... expectedChars) throws JsonSyntaxException {
         Character expectedChar = matchesChar(expectedChars);
 
         if (expectedChar != null) {
             int reportedLine = this.lineNum + 1;
+            StringJoiner charText = new StringJoiner(" or ");
 
-            throw new JsonSyntaxException("Expected '" + expectedChar
-                    + "', got '" + prevToken + "' at line " + reportedLine);
+            for (char c : expectedChars) {
+                charText.add("'" + c + "'");
+            }
+            throw new JsonSyntaxException("Expected " + charText
+                    + ", got '" + prevToken + "' at line " + reportedLine);
+        } else {
+            consumeChar(iter);
         }
     }
 

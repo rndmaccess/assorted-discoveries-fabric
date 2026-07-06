@@ -196,9 +196,11 @@ public final class ModBlocks {
     public static final Block SMOOTH_SMOKY_QUARTZ_STAIRS
             = registerStairs(ModBlockIds.SMOOTH_SMOKY_QUARTZ_STAIRS_KEY, makeSmokyQuartzSettings(ModBlockIds.SMOOTH_SMOKY_QUARTZ_STAIRS_KEY),
             SMOOTH_SMOKY_QUARTZ);
-    public static final Block SMOOTH_SMOKY_QUARTZ_SLAB = registerSlab(ModBlockIds.SMOOTH_SMOKY_QUARTZ_SLAB_KEY,
+    public static final Block SMOOTH_SMOKY_QUARTZ_SLAB
+            = registerSlab(ModBlockIds.SMOOTH_SMOKY_QUARTZ_SLAB_KEY,
             makeSmokyQuartzSettings(ModBlockIds.SMOOTH_SMOKY_QUARTZ_SLAB_KEY));
-    public static final Block SMOOTH_SMOKY_QUARTZ_WALL = registerWall(ModBlockIds.SMOOTH_SMOKY_QUARTZ_WALL_KEY,
+    public static final Block SMOOTH_SMOKY_QUARTZ_WALL
+            = registerWall(ModBlockIds.SMOOTH_SMOKY_QUARTZ_WALL_KEY,
             makeSmokyQuartzSettings(ModBlockIds.SMOOTH_SMOKY_QUARTZ_WALL_KEY));
     public static final Block CRACKED_STONE_BRICK_STAIRS
             = registerStairs(ModBlockIds.CRACKED_STONE_BRICK_STAIRS_KEY,
@@ -249,45 +251,65 @@ public final class ModBlocks {
             = registerNetherPlanterBox(ModBlockIds.CRIMSON_PLANTER_BOX_KEY, Blocks.CRIMSON_PLANKS.defaultMapColor());
     public static final Block WARPED_PLANTER_BOX
             = registerNetherPlanterBox(ModBlockIds.WARPED_PLANTER_BOX_KEY, Blocks.WARPED_PLANKS.defaultMapColor());
-    public static final Block OAK_WALL = registerWall(ModBlockIds.OAK_WALL_KEY,
+    public static final Block OAK_WALL
+            = registerWall(ModBlockIds.OAK_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).setId(ModBlockIds.OAK_WALL_KEY));
-    public static final Block SPRUCE_WALL = registerWall(ModBlockIds.SPRUCE_WALL_KEY,
+    public static final Block SPRUCE_WALL
+            = registerWall(ModBlockIds.SPRUCE_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_PLANKS).setId(ModBlockIds.SPRUCE_WALL_KEY));
-    public static final Block BIRCH_WALL = registerWall(ModBlockIds.BIRCH_WALL_KEY,
+    public static final Block BIRCH_WALL
+            = registerWall(ModBlockIds.BIRCH_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.BIRCH_PLANKS).setId(ModBlockIds.BIRCH_WALL_KEY));
-    public static final Block JUNGLE_WALL = registerWall(ModBlockIds.JUNGLE_WALL_KEY,
+    public static final Block JUNGLE_WALL
+            = registerWall(ModBlockIds.JUNGLE_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_PLANKS).setId(ModBlockIds.JUNGLE_WALL_KEY));
-    public static final Block ACACIA_WALL = registerWall(ModBlockIds.ACACIA_WALL_KEY,
+    public static final Block ACACIA_WALL
+            = registerWall(ModBlockIds.ACACIA_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.ACACIA_PLANKS).setId(ModBlockIds.ACACIA_WALL_KEY));
-    public static final Block DARK_OAK_WALL = registerWall(ModBlockIds.DARK_OAK_WALL_KEY,
+    public static final Block DARK_OAK_WALL
+            = registerWall(ModBlockIds.DARK_OAK_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.DARK_OAK_PLANKS).setId(ModBlockIds.DARK_OAK_WALL_KEY));
-    public static final Block MANGROVE_WALL = registerWall(ModBlockIds.MANGROVE_WALL_KEY,
+    public static final Block MANGROVE_WALL
+            = registerWall(ModBlockIds.MANGROVE_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.MANGROVE_PLANKS).setId(ModBlockIds.MANGROVE_WALL_KEY));
-    public static final Block CRIMSON_WALL = registerWall(ModBlockIds.CRIMSON_WALL_KEY,
+    public static final Block CRIMSON_WALL
+            = registerWall(ModBlockIds.CRIMSON_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_PLANKS).setId(ModBlockIds.CRIMSON_WALL_KEY));
-    public static final Block WARPED_WALL = registerWall(ModBlockIds.WARPED_WALL_KEY,
+    public static final Block WARPED_WALL
+            = registerWall(ModBlockIds.WARPED_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_PLANKS).setId(ModBlockIds.WARPED_WALL_KEY));
-    public static final Block CHERRY_WALL = registerWall(ModBlockIds.CHERRY_WALL_KEY,
+    public static final Block CHERRY_WALL
+            = registerWall(ModBlockIds.CHERRY_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.CHERRY_PLANKS).setId(ModBlockIds.CHERRY_WALL_KEY));
-    public static final Block STRIPPED_OAK_WALL = registerWall(ModBlockIds.STRIPPED_OAK_WALL_KEY,
+    public static final Block STRIPPED_OAK_WALL
+            = registerWall(ModBlockIds.STRIPPED_OAK_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).setId(ModBlockIds.STRIPPED_OAK_WALL_KEY));
-    public static final Block STRIPPED_SPRUCE_WALL = registerWall(ModBlockIds.STRIPPED_SPRUCE_WALL_KEY,
+    public static final Block STRIPPED_SPRUCE_WALL
+            = registerWall(ModBlockIds.STRIPPED_SPRUCE_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_PLANKS).setId(ModBlockIds.STRIPPED_SPRUCE_WALL_KEY));
-    public static final Block STRIPPED_BIRCH_WALL = registerWall(ModBlockIds.STRIPPED_BIRCH_WALL_KEY,
+    public static final Block STRIPPED_BIRCH_WALL
+            = registerWall(ModBlockIds.STRIPPED_BIRCH_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.BIRCH_PLANKS).setId(ModBlockIds.STRIPPED_BIRCH_WALL_KEY));
-    public static final Block STRIPPED_JUNGLE_WALL = registerWall(ModBlockIds.STRIPPED_JUNGLE_WALL_KEY,
+    public static final Block STRIPPED_JUNGLE_WALL
+            = registerWall(ModBlockIds.STRIPPED_JUNGLE_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_PLANKS).setId(ModBlockIds.STRIPPED_JUNGLE_WALL_KEY));
-    public static final Block STRIPPED_ACACIA_WALL = registerWall(ModBlockIds.STRIPPED_ACACIA_WALL_KEY,
+    public static final Block STRIPPED_ACACIA_WALL
+            = registerWall(ModBlockIds.STRIPPED_ACACIA_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.ACACIA_PLANKS).setId(ModBlockIds.STRIPPED_ACACIA_WALL_KEY));
-    public static final Block STRIPPED_DARK_OAK_WALL = registerWall(ModBlockIds.STRIPPED_DARK_OAK_WALL_KEY,
+    public static final Block STRIPPED_DARK_OAK_WALL
+            = registerWall(ModBlockIds.STRIPPED_DARK_OAK_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.DARK_OAK_PLANKS).setId(ModBlockIds.STRIPPED_DARK_OAK_WALL_KEY));
-    public static final Block STRIPPED_MANGROVE_WALL = registerWall(ModBlockIds.STRIPPED_MANGROVE_WALL_KEY,
+    public static final Block STRIPPED_MANGROVE_WALL
+            = registerWall(ModBlockIds.STRIPPED_MANGROVE_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.MANGROVE_PLANKS).setId(ModBlockIds.STRIPPED_MANGROVE_WALL_KEY));
-    public static final Block STRIPPED_CRIMSON_WALL = registerWall(ModBlockIds.STRIPPED_CRIMSON_WALL_KEY,
+    public static final Block STRIPPED_CRIMSON_WALL
+            = registerWall(ModBlockIds.STRIPPED_CRIMSON_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_PLANKS).setId(ModBlockIds.STRIPPED_CRIMSON_WALL_KEY));
-    public static final Block STRIPPED_WARPED_WALL = registerWall(ModBlockIds.STRIPPED_WARPED_WALL_KEY,
+    public static final Block STRIPPED_WARPED_WALL
+            = registerWall(ModBlockIds.STRIPPED_WARPED_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_PLANKS).setId(ModBlockIds.STRIPPED_WARPED_WALL_KEY));
-    public static final Block STRIPPED_CHERRY_WALL = registerWall(ModBlockIds.STRIPPED_CHERRY_WALL_KEY,
+    public static final Block STRIPPED_CHERRY_WALL
+            = registerWall(ModBlockIds.STRIPPED_CHERRY_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.CHERRY_PLANKS).setId(ModBlockIds.STRIPPED_CHERRY_WALL_KEY));
     public static final Block OAK_ROPE_LADDER = registerRopeLadder(ModBlockIds.OAK_ROPE_LADDER_KEY);
     public static final Block SPRUCE_ROPE_LADDER = registerRopeLadder(ModBlockIds.SPRUCE_ROPE_LADDER_KEY);
@@ -304,7 +326,8 @@ public final class ModBlocks {
             .mapColor(MapColor.METAL).requiresCorrectToolForDrops().strength(5.0F).sound(SoundType.METAL)
                     .noOcclusion().setId(ModBlockIds.IRON_LADDER_KEY)), ModBlockIds.IRON_LADDER_KEY, true);
     public static final Block SNOW_BRICKS
-            = register(new Block(makeSnowBrickSettings(ModBlockIds.SNOW_BRICKS_KEY)), ModBlockIds.SNOW_BRICKS_KEY, true);
+            = register(new Block(makeSnowBrickSettings(ModBlockIds.SNOW_BRICKS_KEY)),
+            ModBlockIds.SNOW_BRICKS_KEY, true);
     public static final Block SNOW_BRICK_STAIRS
             = registerStairs(ModBlockIds.SNOW_BRICK_STAIRS_KEY, makeSnowBrickSettings(ModBlockIds.SNOW_BRICK_STAIRS_KEY), SNOW_BRICKS);
     public static final Block SNOW_BRICK_SLAB
@@ -312,7 +335,8 @@ public final class ModBlocks {
     public static final Block SNOW_BRICK_WALL
             = registerWall(ModBlockIds.SNOW_BRICK_WALL_KEY, makeSnowBrickSettings(ModBlockIds.SNOW_BRICK_WALL_KEY));
     public static final Block PACKED_SNOW
-            = register(new Block(makePackedSnowSettings(ModBlockIds.PACKED_SNOW_KEY)), ModBlockIds.PACKED_SNOW_KEY, true);
+            = register(new Block(makePackedSnowSettings(ModBlockIds.PACKED_SNOW_KEY)),
+            ModBlockIds.PACKED_SNOW_KEY, true);
     public static final Block PACKED_SNOW_STAIRS
             = registerStairs(ModBlockIds.PACKED_SNOW_STAIRS_KEY, makePackedSnowSettings(ModBlockIds.PACKED_SNOW_STAIRS_KEY), PACKED_SNOW);
     public static final Block PACKED_SNOW_SLAB
@@ -351,7 +375,6 @@ public final class ModBlocks {
     public static final Block GREEN_CAMPFIRE = registerDyedCampfire(ModBlockIds.GREEN_CAMPFIRE_KEY, ModParticleTypes.GREEN_EMBER);
     public static final Block RED_CAMPFIRE = registerDyedCampfire(ModBlockIds.RED_CAMPFIRE_KEY, ModParticleTypes.RED_EMBER);
     public static final Block BLACK_CAMPFIRE = registerDyedCampfire(ModBlockIds.BLACK_CAMPFIRE_KEY, ModParticleTypes.BLACK_EMBER);
-
     public static final Block WHITE_LANTERN = registerLantern(ModBlockIds.WHITE_LANTERN_KEY);
     public static final Block ORANGE_LANTERN = registerLantern(ModBlockIds.ORANGE_LANTERN_KEY);
     public static final Block MAGENTA_LANTERN = registerLantern(ModBlockIds.MAGENTA_LANTERN_KEY);
@@ -400,9 +423,10 @@ public final class ModBlocks {
     public static final Block GREEN_WALL_TORCH = registerWallTorch(ModBlockIds.GREEN_WALL_TORCH_KEY, GREEN_TORCH, ModParticleTypes.GREEN_FLAME);
     public static final Block RED_WALL_TORCH = registerWallTorch(ModBlockIds.RED_WALL_TORCH_KEY, RED_TORCH, ModParticleTypes.RED_FLAME);
     public static final Block BLACK_WALL_TORCH = registerWallTorch(ModBlockIds.BLACK_WALL_TORCH_KEY, BLACK_TORCH, ModParticleTypes.BLACK_FLAME);
-    public static final Block WITCHS_CRADLE = register(new WitchsCradleBlock(BlockBehaviour.Properties
-            .ofFullCopy(Blocks.SWEET_BERRY_BUSH).lightLevel((state) -> 8).setId(ModBlockIds.WITCHS_CRADLE_KEY)),
-            ModBlockIds.WITCHS_CRADLE_KEY, false);
+    public static final Block WITCHS_CRADLE
+            = register(new WitchsCradleBlock(BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.SWEET_BERRY_BUSH).lightLevel((state) -> 8)
+                    .setId(ModBlockIds.WITCHS_CRADLE_KEY)), ModBlockIds.WITCHS_CRADLE_KEY, false);
     public static final Block BAUXITE = register(new Block(makeBauxiteSettings(ModBlockIds.BAUXITE_KEY)),
             ModBlockIds.BAUXITE_KEY, true);
     public static final Block BAUXITE_SLAB = registerSlab(ModBlockIds.BAUXITE_SLAB_KEY, makeBauxiteSettings(ModBlockIds.BAUXITE_SLAB_KEY));
@@ -744,8 +768,10 @@ public final class ModBlocks {
             makeDripstoneSettings(ModBlockIds.DRIPSTONE_WALL_KEY));
     public static final Block CALCITE_STAIRS = registerStairs(ModBlockIds.CALCITE_STAIRS_KEY,
             makeCalciteSettings(ModBlockIds.CALCITE_STAIRS_KEY), Blocks.CALCITE);
-    public static final Block CALCITE_SLAB = registerSlab(ModBlockIds.CALCITE_SLAB_KEY, makeCalciteSettings(ModBlockIds.CALCITE_SLAB_KEY));
-    public static final Block CALCITE_WALL = registerWall(ModBlockIds.CALCITE_WALL_KEY, makeCalciteSettings(ModBlockIds.CALCITE_WALL_KEY));
+    public static final Block CALCITE_SLAB
+            = registerSlab(ModBlockIds.CALCITE_SLAB_KEY, makeCalciteSettings(ModBlockIds.CALCITE_SLAB_KEY));
+    public static final Block CALCITE_WALL
+            = registerWall(ModBlockIds.CALCITE_WALL_KEY, makeCalciteSettings(ModBlockIds.CALCITE_WALL_KEY));
     public static final Block BAMBOO_PLANTER_BOX = registerPlanterBox(ModBlockIds.BAMBOO_PLANTER_BOX_KEY,
             Blocks.BAMBOO_PLANKS.defaultMapColor(), SoundType.BAMBOO_WOOD);
     public static final Block POTTED_CATTAIL = register(new FlowerPotBlock(ModBlocks.CATTAIL,

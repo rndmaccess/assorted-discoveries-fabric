@@ -115,11 +115,14 @@ public final class ModBlocks {
     public static final Block JELLIE_CAT_PLUSHIE = registerCatPlushie(JELLIE_CAT_PLUSHIE_KEY);
     public static final ResourceKey<Block> BLACK_CAT_PLUSHIE_KEY = makeRegistryKey("black_cat_plushie");
     public static final Block BLACK_CAT_PLUSHIE = registerCatPlushie(BLACK_CAT_PLUSHIE_KEY);
-    public static final ResourceKey<Block> TEMPERATE_PIG_PLUSHIE_KEY
-            = makeRegistryKey("temperate_pig_plushie");
+    public static final ResourceKey<Block> TEMPERATE_PIG_PLUSHIE_KEY = makeRegistryKey("temperate_pig_plushie");
     public static final Block TEMPERATE_PIG_PLUSHIE
             = register(new PigPlushieBlock(makePlushieSettings(TEMPERATE_PIG_PLUSHIE_KEY)),
             TEMPERATE_PIG_PLUSHIE_KEY, true);
+    public static final ResourceKey<Block> COLD_PIG_PLUSHIE_KEY = makeRegistryKey("cold_pig_plushie");
+    public static final Block COLD_PIG_PLUSHIE
+            = register(new PigPlushieBlock(makePlushieSettings(COLD_PIG_PLUSHIE_KEY)),
+            COLD_PIG_PLUSHIE_KEY, true);
     public static final ResourceKey<Block> BROWN_RABBIT_PLUSHIE_KEY = makeRegistryKey("brown_rabbit_plushie");
     public static final Block BROWN_RABBIT_PLUSHIE = registerRabbitPlushie(BROWN_RABBIT_PLUSHIE_KEY);
     public static final ResourceKey<Block> WHITE_RABBIT_PLUSHIE_KEY = makeRegistryKey("white_rabbit_plushie");

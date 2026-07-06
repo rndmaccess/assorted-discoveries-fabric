@@ -3,17 +3,17 @@
   "category": "misc",
   "group": "pig_plushies",
   "pattern": [
-    "PPP",
-    "BIB",
-    "PPP"
+    "BBB",
+    "LIL",
+    "BBB"
   ],
   "key": {
-    "B": "minecraft:black_wool",
-    "P": "minecraft:pink_wool",
+    "L": "minecraft:black_wool",
+    "B": "minecraft:brown_wool",
     "I": "minecraft:porkchop"
   },
   "result": {
-    "id": "assorted-discoveries:temperate_pig_plushie"
+    "id": "assorted-discoveries:cold_pig_plushie"
   },
   "fabric:load_conditions": [
     {

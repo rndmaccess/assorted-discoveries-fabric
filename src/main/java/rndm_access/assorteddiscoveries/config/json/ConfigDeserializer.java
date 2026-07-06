@@ -22,12 +22,14 @@ public class ConfigDeserializer {
     private final Path path;
     private String line;
     private final String configName;
+    private int invalidTypeNum;
 
     public ConfigDeserializer(String configName) {
         this.lineNum = 0;
         this.pos = 0;
         this.path = FabricLoader.getInstance().getConfigDir().resolve(configName + ".json5");
         this.configName = configName;
+        this.invalidTypeNum = 0;
     }
 
     public Config deserialize() throws JsonSyntaxException {
@@ -45,6 +47,10 @@ public class ConfigDeserializer {
             require(iterator, '{');
             while (curChar != '\0') {
                 this.deserializeLine(config, iterator);
+            }
+
+            if (this.invalidTypeNum > 0) {
+                AssortedDiscoveries.LOGGER.warn("Config: The type for {} entry(s) is not supported using the default values for each!",  invalidTypeNum);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -109,7 +115,7 @@ public class ConfigDeserializer {
                 if (value.equals("true") || value.equals("false")) {
                     category.addEntry(new BooleanConfigEntry(key, Boolean.parseBoolean(value)));
                 } else {
-                    AssortedDiscoveries.LOGGER.warn("The type for {} is not supported using default!", key);
+                    invalidTypeNum += 1;
                 }
             }
 

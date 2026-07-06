@@ -4,7 +4,6 @@ import org.jetbrains.annotations.Nullable;
 import rndm_access.assorteddiscoveries.config.json.json_objects.JsonConfigCategory;
 import rndm_access.assorteddiscoveries.config.json.json_objects.ConfigObject;
 import rndm_access.assorteddiscoveries.config.json.json_objects.AbstractConfigEntry;
-import rndm_access.assorteddiscoveries.config.json.json_objects.StringConfigEntry;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -125,12 +124,7 @@ public class ConfigSerializer {
         if (changeList != null && changeList.containsKey(key)) {
             value = changeList.get(key);
         }
-
-        if (entry instanceof StringConfigEntry) {
-            entryLine.append("\"").append(value).append("\"");
-        } else {
-            entryLine.append(value);
-        }
+        entryLine.append(value);
         this.writeText(entryLine.toString(), newContent);
     }
 

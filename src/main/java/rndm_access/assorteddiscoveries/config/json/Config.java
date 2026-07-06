@@ -104,12 +104,12 @@ public class Config {
         Path sourcePath = configPath.resolve(path);
 
         try {
-            int i = 0;
-            Path targetConfigPath = configPath.resolve(path + "-" + i + ".bak");
+            int i = 1;
+            Path targetConfigPath = configPath.resolve(this.name + "-" + i + ".json5.bak");
 
             while (Files.exists(targetConfigPath)) {
                 i++;
-                targetConfigPath = configPath.resolve(path + "-" + i + ".bak");
+                targetConfigPath = configPath.resolve( this.name + "-" + i + ".json5.bak");
             }
 
             Files.move(sourcePath, targetConfigPath, StandardCopyOption.REPLACE_EXISTING);

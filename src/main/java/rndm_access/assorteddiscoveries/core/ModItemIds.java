@@ -5,7 +5,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 
-public class ModItemIds {
+public final class ModItemIds {
     public static final ResourceKey<Item> WHITE_TORCH_KEY = createKey("white_torch");
     public static final ResourceKey<Item> ORANGE_TORCH_KEY = createKey("orange_torch");
     public static final ResourceKey<Item> MAGENTA_TORCH_KEY = createKey("magenta_torch");

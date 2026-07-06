@@ -6,7 +6,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ColorCollection;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 
-public class ModBlockIds {
+public final class ModBlockIds {
     public static final ResourceKey<Block> BAT_PLUSHIE_KEY = createKey("bat_plushie");
     public static final ResourceKey<Block> BLAZE_PLUSHIE_KEY = createKey("blaze_plushie");
     public static final ResourceKey<Block> CAVE_SPIDER_PLUSHIE_KEY = createKey("cave_spider_plushie");

@@ -5,7 +5,6 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.HugeMushroomBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -30,13 +29,13 @@ public class PurpleMushroomBlock extends HugeMushroomBlock {
             world.playLocalSound(x, y, z, sound, SoundSource.BLOCKS,
                     1.0F, 0.8F + random.nextFloat() / 0.4F, true);
         } else {
+            this.bounceEntity(entity);
             world.playLocalSound(x, y, z, sound, SoundSource.BLOCKS, 1.0F,
                     0.8F + random.nextFloat() * 0.4F, true);
         }
     }
 
-    @Override
-    public void updateEntityMovementAfterFallOn(BlockGetter world, Entity entity) {
+    private void bounceEntity(Entity entity) {
         float jumpHeight = 0.2F;
 
         if(entity.getDeltaMovement().y() < -jumpHeight && !entity.isShiftKeyDown()) {

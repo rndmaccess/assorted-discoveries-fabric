@@ -60,7 +60,7 @@ public class ModConfigErrorScreen extends Screen {
 
         this.continueButton = Button.builder(Component.translatable("config_error."
                                 + AssortedDiscoveries.MOD_ID + ".screen.continue_button"),
-                        button -> this.minecraft.setScreen(ModConfigScreen.getConfigScreenBuilder()
+                        button -> this.minecraft.setScreenAndShow(ModConfigScreen.getConfigScreenBuilder()
                                 .setParentScreen(this.parent).build()))
                 .bounds(startX + buttonWidth + gap, yPos, buttonWidth, buttonHeight).build();
         this.addRenderableWidget(continueButton);
@@ -68,6 +68,6 @@ public class ModConfigErrorScreen extends Screen {
 
     @Override
     public void onClose() {
-        this.minecraft.setScreen(this.parent);
+        this.minecraft.setScreenAndShow(this.parent);
     }
 }

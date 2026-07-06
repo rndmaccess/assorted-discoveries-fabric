@@ -55,7 +55,6 @@ public class ModdedCandleCakeBlock extends AbstractCandleBlock {
         this.registerDefaultState(this.stateDefinition.any().setValue(LIT, false));
         this.cake = cake;
         this.candle = candle;
-
         CANDLES_TO_CANDLE_CAKES.put(new HashPair<>(cake, candle), this);
     }
 

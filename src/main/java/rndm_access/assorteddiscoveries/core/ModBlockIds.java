@@ -457,7 +457,7 @@ public final class ModBlockIds {
     public static final ResourceKey<Block> CHESTNUT_WOLF_PLUSHIE_KEY = createKey("chestnut_wolf_plushie");
     public static final ResourceKey<Block> RUSTY_WOLF_PLUSHIE_KEY = createKey("rusty_wolf_plushie");
     public static final ColorCollection<ResourceKey<Block>> DYED_LANTERN_KEYS = createSimpleColored("lantern");
-    public static final ColorCollection<ResourceKey<Block>> DYED_SHEEP_KEYS = createSimpleColored("sheep");
+    public static final ColorCollection<ResourceKey<Block>> DYED_SHEEP_KEYS = createSimpleColored("sheep_plushie");
 
     private static ResourceKey<Block> createKey(String name) {
         return ResourceKey.create(Registries.BLOCK, AssortedDiscoveries.makeModId(name));

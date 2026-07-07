@@ -365,22 +365,7 @@ public class AssortedDiscoveries implements ModInitializer {
             }
 
             if (config.evaluateEntry(ModConfigKeys.ENABLE_SHEEP_PLUSHIES)) {
-                entries.accept(ModBlocks.WHITE_SHEEP_PLUSHIE.asItem());
-                entries.accept(ModBlocks.ORANGE_SHEEP_PLUSHIE.asItem());
-                entries.accept(ModBlocks.MAGENTA_SHEEP_PLUSHIE.asItem());
-                entries.accept(ModBlocks.LIGHT_BLUE_SHEEP_PLUSHIE.asItem());
-                entries.accept(ModBlocks.YELLOW_SHEEP_PLUSHIE.asItem());
-                entries.accept(ModBlocks.LIME_SHEEP_PLUSHIE.asItem());
-                entries.accept(ModBlocks.PINK_SHEEP_PLUSHIE.asItem());
-                entries.accept(ModBlocks.GRAY_SHEEP_PLUSHIE.asItem());
-                entries.accept(ModBlocks.LIGHT_GRAY_SHEEP_PLUSHIE.asItem());
-                entries.accept(ModBlocks.CYAN_SHEEP_PLUSHIE.asItem());
-                entries.accept(ModBlocks.PURPLE_SHEEP_PLUSHIE.asItem());
-                entries.accept(ModBlocks.BLUE_SHEEP_PLUSHIE.asItem());
-                entries.accept(ModBlocks.BROWN_SHEEP_PLUSHIE.asItem());
-                entries.accept(ModBlocks.RED_SHEEP_PLUSHIE.asItem());
-                entries.accept(ModBlocks.GREEN_SHEEP_PLUSHIE.asItem());
-                entries.accept(ModBlocks.BLACK_SHEEP_PLUSHIE.asItem());
+                ModBlocks.DYED_SHEEP_PLUSHIES.forEach((block) -> entries.accept(block.asItem()));
             }
 
             if (config.evaluateEntry(ModConfigKeys.ENABLE_HORSE_PLUSHIES)) {
@@ -536,22 +521,7 @@ public class AssortedDiscoveries implements ModInitializer {
             }
 
             if (config.evaluateEntry(ModConfigKeys.ENABLE_DYED_LANTERNS)) {
-                entries.accept(ModBlocks.WHITE_LANTERN.asItem());
-                entries.accept(ModBlocks.ORANGE_LANTERN.asItem());
-                entries.accept(ModBlocks.MAGENTA_LANTERN.asItem());
-                entries.accept(ModBlocks.LIGHT_BLUE_LANTERN.asItem());
-                entries.accept(ModBlocks.YELLOW_LANTERN.asItem());
-                entries.accept(ModBlocks.LIME_LANTERN.asItem());
-                entries.accept(ModBlocks.PINK_LANTERN.asItem());
-                entries.accept(ModBlocks.GRAY_LANTERN.asItem());
-                entries.accept(ModBlocks.LIGHT_GRAY_LANTERN.asItem());
-                entries.accept(ModBlocks.CYAN_LANTERN.asItem());
-                entries.accept(ModBlocks.PURPLE_LANTERN.asItem());
-                entries.accept(ModBlocks.BLUE_LANTERN.asItem());
-                entries.accept(ModBlocks.BROWN_LANTERN.asItem());
-                entries.accept(ModBlocks.GREEN_LANTERN.asItem());
-                entries.accept(ModBlocks.RED_LANTERN.asItem());
-                entries.accept(ModBlocks.BLACK_LANTERN.asItem());
+                ModBlocks.DYED_LANTERNS.forEach((block) -> entries.accept(block.asItem()));
             }
 
             if (config.evaluateEntry(ModConfigKeys.ENABLE_DYED_TORCHES)) {

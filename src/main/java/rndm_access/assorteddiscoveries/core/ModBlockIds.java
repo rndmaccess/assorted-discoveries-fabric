@@ -197,22 +197,6 @@ public final class ModBlockIds {
     public static final ResourceKey<Block> GREEN_CAMPFIRE_KEY = createKey("green_campfire");
     public static final ResourceKey<Block> RED_CAMPFIRE_KEY = createKey("red_campfire");
     public static final ResourceKey<Block> BLACK_CAMPFIRE_KEY = createKey("black_campfire");
-    public static final ResourceKey<Block> WHITE_LANTERN_KEY = createKey("white_lantern");
-    public static final ResourceKey<Block> ORANGE_LANTERN_KEY = createKey("orange_lantern");
-    public static final ResourceKey<Block> MAGENTA_LANTERN_KEY = createKey("magenta_lantern");
-    public static final ResourceKey<Block> LIGHT_BLUE_LANTERN_KEY = createKey("light_blue_lantern");
-    public static final ResourceKey<Block> YELLOW_LANTERN_KEY = createKey("yellow_lantern");
-    public static final ResourceKey<Block> LIME_LANTERN_KEY = createKey("lime_lantern");
-    public static final ResourceKey<Block> PINK_LANTERN_KEY = createKey("pink_lantern");
-    public static final ResourceKey<Block> GRAY_LANTERN_KEY = createKey("gray_lantern");
-    public static final ResourceKey<Block> LIGHT_GRAY_LANTERN_KEY = createKey("light_gray_lantern");
-    public static final ResourceKey<Block> CYAN_LANTERN_KEY = createKey("cyan_lantern");
-    public static final ResourceKey<Block> PURPLE_LANTERN_KEY = createKey("purple_lantern");
-    public static final ResourceKey<Block> BLUE_LANTERN_KEY = createKey("blue_lantern");
-    public static final ResourceKey<Block> BROWN_LANTERN_KEY = createKey("brown_lantern");
-    public static final ResourceKey<Block> GREEN_LANTERN_KEY = createKey("green_lantern");
-    public static final ResourceKey<Block> RED_LANTERN_KEY = createKey("red_lantern");
-    public static final ResourceKey<Block> BLACK_LANTERN_KEY = createKey("black_lantern");
     public static final ResourceKey<Block> WHITE_TORCH_KEY = createKey("white_torch");
     public static final ResourceKey<Block> ORANGE_TORCH_KEY = createKey("orange_torch");
     public static final ResourceKey<Block> MAGENTA_TORCH_KEY = createKey("magenta_torch");
@@ -303,10 +287,10 @@ public final class ModBlockIds {
     public static final ResourceKey<Block> CHOCOLATE_CAKE_KEY = createKey("chocolate_cake");
     public static final ResourceKey<Block> RED_VELVET_CAKE_KEY = createKey("red_velvet_cake");
     public static final ResourceKey<Block> CANDLE_CHOCOLATE_CAKE_KEY = createKey("candle_chocolate_cake");
-    public static final ColorCollection<ResourceKey<Block>> DYED_CHOCOLATE_CANDLE_CAKE_KEYS
+    public static final ColorCollection<ResourceKey<Block>> DYED_CANDLE_CHOCOLATE_CAKE_KEYS
             = createSimpleColored("candle_chocolate_cake");
     public static final ResourceKey<Block> CANDLE_RED_VELVET_CAKE_KEY = createKey("candle_red_velvet_cake");
-    public static final ColorCollection<ResourceKey<Block>> DYED_RED_VELVET_CAKE_KEYS
+    public static final ColorCollection<ResourceKey<Block>> DYED_CANDLE_RED_VELVET_CAKE_KEYS
             = createSimpleColored("candle_red_velvet_cake");
     public static final ResourceKey<Block> STONE_TILES_KEY = createKey("stone_tiles");
     public static final ResourceKey<Block> STONE_TILE_SLAB_KEY = createKey("stone_tile_slab");
@@ -472,6 +456,8 @@ public final class ModBlockIds {
     public static final ResourceKey<Block> ASHEN_WOLF_PLUSHIE_KEY = createKey("ashen_wolf_plushie");
     public static final ResourceKey<Block> CHESTNUT_WOLF_PLUSHIE_KEY = createKey("chestnut_wolf_plushie");
     public static final ResourceKey<Block> RUSTY_WOLF_PLUSHIE_KEY = createKey("rusty_wolf_plushie");
+    public static final ColorCollection<ResourceKey<Block>> DYED_LANTERN_KEYS = createSimpleColored("lantern");
+    public static final ColorCollection<ResourceKey<Block>> DYED_SHEEP_KEYS = createSimpleColored("sheep");
 
     private static ResourceKey<Block> createKey(String name) {
         return ResourceKey.create(Registries.BLOCK, AssortedDiscoveries.makeModId(name));

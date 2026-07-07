@@ -6,17 +6,11 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockColorRegistry;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.color.block.BlockTintSource;
 import net.minecraft.client.color.block.BlockTintSources;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.client.particle.FlameParticle;
 import net.minecraft.client.particle.LavaParticle;
-import net.minecraft.client.renderer.block.BlockAndTintGetter;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.block.state.BlockState;
-import org.jspecify.annotations.NonNull;
-import rndm_access.assorteddiscoveries.block.SheepPlushieBlock;
 import rndm_access.assorteddiscoveries.block_entity.DyedCampfireBlockEntityRenderer;
 import rndm_access.assorteddiscoveries.config.BooleanEntriesS2CPayload;
 import rndm_access.assorteddiscoveries.config.ModConfig;
@@ -53,6 +47,7 @@ public class AssortedDiscoveriesClient implements ClientModInitializer {
     private static void registerBlockColors() {
         BlockColorRegistry.register(List.of(BlockTintSources.grassBlock()), ModBlocks.ENDERMAN_PLUSHIE, ModBlocks.GRASS_SLAB);
 
+        /*
         BlockColorRegistry.register(List.of(new BlockTintSource() {
             @Override
             public int color(@NonNull BlockState state) {
@@ -63,12 +58,8 @@ public class AssortedDiscoveriesClient implements ClientModInitializer {
             public int colorInWorld(@NonNull BlockState state, @NonNull BlockAndTintGetter level, @NonNull BlockPos pos) {
                 return ((SheepPlushieBlock) state.getBlock()).getColor().getTextureDiffuseColor();
             }
-        }), ModBlocks.WHITE_SHEEP_PLUSHIE, ModBlocks.ORANGE_SHEEP_PLUSHIE, ModBlocks.MAGENTA_SHEEP_PLUSHIE,
-                ModBlocks.LIGHT_BLUE_SHEEP_PLUSHIE, ModBlocks.YELLOW_SHEEP_PLUSHIE, ModBlocks.LIME_SHEEP_PLUSHIE,
-                ModBlocks.PINK_SHEEP_PLUSHIE, ModBlocks.GRAY_SHEEP_PLUSHIE, ModBlocks.LIGHT_GRAY_SHEEP_PLUSHIE,
-                ModBlocks.CYAN_SHEEP_PLUSHIE, ModBlocks.PURPLE_SHEEP_PLUSHIE, ModBlocks.BLUE_SHEEP_PLUSHIE,
-                ModBlocks.BROWN_SHEEP_PLUSHIE, ModBlocks.GREEN_SHEEP_PLUSHIE, ModBlocks.RED_SHEEP_PLUSHIE,
-                ModBlocks.BLACK_SHEEP_PLUSHIE);
+        }), ModBlocks.DYED_SHEEP_PLUSHIES);
+         */
     }
 
     private static void registerParticleProvider() {

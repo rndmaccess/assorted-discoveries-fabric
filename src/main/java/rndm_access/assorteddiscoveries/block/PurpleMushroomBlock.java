@@ -9,7 +9,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.HugeMushroomBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.Vec3;
 import org.jspecify.annotations.NonNull;
 import rndm_access.assorteddiscoveries.core.ModSoundEvents;
 
@@ -30,25 +29,8 @@ public class PurpleMushroomBlock extends HugeMushroomBlock {
             world.playLocalSound(x, y, z, sound, SoundSource.BLOCKS,
                     1.0F, 0.8F + random.nextFloat() / 0.4F, true);
         } else {
-            this.bounceEntity(entity); // TODO: Find a way to implement bounce! This currently does nothing!
             world.playLocalSound(x, y, z, sound, SoundSource.BLOCKS, 1.0F,
                     0.8F + random.nextFloat() * 0.4F, true);
-        }
-    }
-
-    private void bounceEntity(Entity entity) {
-        float jumpHeight = 0.2F;
-
-        if(entity.getDeltaMovement().y() < -jumpHeight && !entity.isShiftKeyDown()) {
-            Vec3 velocity = entity.getDeltaMovement();
-            double minBounce = 2;
-            double bounceHeight = (entity.getDeltaMovement().y() * jumpHeight) + minBounce;
-            double bounceYVelocity = Math.sqrt(jumpHeight * (bounceHeight + jumpHeight));
-
-            entity.setDeltaMovement(velocity.x(), -velocity.y() + bounceYVelocity,
-                    velocity.z());
-        } else {
-            entity.setDeltaMovement(entity.getDeltaMovement().multiply(1.0, 0.0, 1.0));
         }
     }
 }

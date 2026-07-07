@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "category": "food",
   "ingredients": [
     "assorted-discoveries:pudding",
     "minecraft:sweet_berries"

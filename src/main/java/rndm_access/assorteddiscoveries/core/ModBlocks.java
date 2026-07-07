@@ -131,8 +131,7 @@ public final class ModBlocks {
     public static final Block SMOKY_QUARTZ_BRICKS
             = register(ModBlockIds.SMOKY_QUARTZ_BRICKS_KEY, Block::new, makeSmokyQuartzSettings());
     public static final Block SMOKY_QUARTZ_BRICK_STAIRS
-            = registerStairs(ModBlockIds.SMOKY_QUARTZ_BRICK_STAIRS_KEY, makeSmokyQuartzSettings(),
-            SMOKY_QUARTZ_BRICKS);
+            = registerStairs(ModBlockIds.SMOKY_QUARTZ_BRICK_STAIRS_KEY, makeSmokyQuartzSettings(), SMOKY_QUARTZ_BRICKS);
     public static final Block SMOKY_QUARTZ_BRICK_SLAB
             = registerSlab(ModBlockIds.SMOKY_QUARTZ_BRICK_SLAB_KEY, makeSmokyQuartzSettings());
     public static final Block SMOKY_QUARTZ_BRICK_WALL
@@ -155,14 +154,11 @@ public final class ModBlocks {
             = registerWall(ModBlockIds.SMOOTH_SMOKY_QUARTZ_WALL_KEY, makeSmokyQuartzSettings());
     public static final Block CRACKED_STONE_BRICK_STAIRS
             = registerStairs(ModBlockIds.CRACKED_STONE_BRICK_STAIRS_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.CRACKED_STONE_BRICKS)
-                    .setId(ModBlockIds.CRACKED_STONE_BRICK_STAIRS_KEY), Blocks.CRACKED_STONE_BRICKS);
+            BlockBehaviour.Properties.ofFullCopy(Blocks.CRACKED_STONE_BRICKS), Blocks.CRACKED_STONE_BRICKS);
     public static final Block CRACKED_STONE_BRICK_SLAB = registerSlab(ModBlockIds.CRACKED_STONE_BRICK_SLAB_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.CRACKED_STONE_BRICKS)
-                    .setId(ModBlockIds.CRACKED_STONE_BRICK_SLAB_KEY));
+            BlockBehaviour.Properties.ofFullCopy(Blocks.CRACKED_STONE_BRICKS));
     public static final Block CRACKED_STONE_BRICK_WALL = registerWall(ModBlockIds.CRACKED_STONE_BRICK_WALL_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.CRACKED_STONE_BRICKS)
-                    .setId(ModBlockIds.CRACKED_STONE_BRICK_WALL_KEY));
+            BlockBehaviour.Properties.ofFullCopy(Blocks.CRACKED_STONE_BRICKS));
     public static final Block BLUEBERRY_BUSH = registerBlueberryBush();
     public static final Block GREEN_ONIONS = registerGreenOnions();
     public static final Block OAK_PLANTER_BOX
@@ -195,65 +191,45 @@ public final class ModBlocks {
     public static final Block WARPED_PLANTER_BOX
             = registerNetherPlanterBox(ModBlockIds.WARPED_PLANTER_BOX_KEY, Blocks.WARPED_PLANKS.defaultMapColor());
     public static final Block OAK_WALL
-            = registerWall(ModBlockIds.OAK_WALL_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).setId(ModBlockIds.OAK_WALL_KEY));
+            = registerWall(ModBlockIds.OAK_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS));
     public static final Block SPRUCE_WALL
-            = registerWall(ModBlockIds.SPRUCE_WALL_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_PLANKS).setId(ModBlockIds.SPRUCE_WALL_KEY));
+            = registerWall(ModBlockIds.SPRUCE_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_PLANKS));
     public static final Block BIRCH_WALL
-            = registerWall(ModBlockIds.BIRCH_WALL_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.BIRCH_PLANKS).setId(ModBlockIds.BIRCH_WALL_KEY));
+            = registerWall(ModBlockIds.BIRCH_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.BIRCH_PLANKS));
     public static final Block JUNGLE_WALL
-            = registerWall(ModBlockIds.JUNGLE_WALL_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_PLANKS).setId(ModBlockIds.JUNGLE_WALL_KEY));
+            = registerWall(ModBlockIds.JUNGLE_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_PLANKS));
     public static final Block ACACIA_WALL
-            = registerWall(ModBlockIds.ACACIA_WALL_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.ACACIA_PLANKS).setId(ModBlockIds.ACACIA_WALL_KEY));
+            = registerWall(ModBlockIds.ACACIA_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.ACACIA_PLANKS));
     public static final Block DARK_OAK_WALL
-            = registerWall(ModBlockIds.DARK_OAK_WALL_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.DARK_OAK_PLANKS).setId(ModBlockIds.DARK_OAK_WALL_KEY));
+            = registerWall(ModBlockIds.DARK_OAK_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.DARK_OAK_PLANKS));
     public static final Block MANGROVE_WALL
-            = registerWall(ModBlockIds.MANGROVE_WALL_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.MANGROVE_PLANKS).setId(ModBlockIds.MANGROVE_WALL_KEY));
+            = registerWall(ModBlockIds.MANGROVE_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.MANGROVE_PLANKS));
     public static final Block CRIMSON_WALL
-            = registerWall(ModBlockIds.CRIMSON_WALL_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_PLANKS).setId(ModBlockIds.CRIMSON_WALL_KEY));
+            = registerWall(ModBlockIds.CRIMSON_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_PLANKS));
     public static final Block WARPED_WALL
-            = registerWall(ModBlockIds.WARPED_WALL_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_PLANKS).setId(ModBlockIds.WARPED_WALL_KEY));
+            = registerWall(ModBlockIds.WARPED_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_PLANKS));
     public static final Block CHERRY_WALL
-            = registerWall(ModBlockIds.CHERRY_WALL_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.CHERRY_PLANKS).setId(ModBlockIds.CHERRY_WALL_KEY));
+            = registerWall(ModBlockIds.CHERRY_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.CHERRY_PLANKS));
     public static final Block STRIPPED_OAK_WALL
-            = registerWall(ModBlockIds.STRIPPED_OAK_WALL_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).setId(ModBlockIds.STRIPPED_OAK_WALL_KEY));
+            = registerWall(ModBlockIds.STRIPPED_OAK_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS));
     public static final Block STRIPPED_SPRUCE_WALL
-            = registerWall(ModBlockIds.STRIPPED_SPRUCE_WALL_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_PLANKS).setId(ModBlockIds.STRIPPED_SPRUCE_WALL_KEY));
+            = registerWall(ModBlockIds.STRIPPED_SPRUCE_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_PLANKS));
     public static final Block STRIPPED_BIRCH_WALL
-            = registerWall(ModBlockIds.STRIPPED_BIRCH_WALL_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.BIRCH_PLANKS).setId(ModBlockIds.STRIPPED_BIRCH_WALL_KEY));
+            = registerWall(ModBlockIds.STRIPPED_BIRCH_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.BIRCH_PLANKS));
     public static final Block STRIPPED_JUNGLE_WALL
-            = registerWall(ModBlockIds.STRIPPED_JUNGLE_WALL_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_PLANKS).setId(ModBlockIds.STRIPPED_JUNGLE_WALL_KEY));
+            = registerWall(ModBlockIds.STRIPPED_JUNGLE_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_PLANKS));
     public static final Block STRIPPED_ACACIA_WALL
-            = registerWall(ModBlockIds.STRIPPED_ACACIA_WALL_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.ACACIA_PLANKS).setId(ModBlockIds.STRIPPED_ACACIA_WALL_KEY));
+            = registerWall(ModBlockIds.STRIPPED_ACACIA_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.ACACIA_PLANKS));
     public static final Block STRIPPED_DARK_OAK_WALL
-            = registerWall(ModBlockIds.STRIPPED_DARK_OAK_WALL_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.DARK_OAK_PLANKS).setId(ModBlockIds.STRIPPED_DARK_OAK_WALL_KEY));
+            = registerWall(ModBlockIds.STRIPPED_DARK_OAK_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.DARK_OAK_PLANKS));
     public static final Block STRIPPED_MANGROVE_WALL
-            = registerWall(ModBlockIds.STRIPPED_MANGROVE_WALL_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.MANGROVE_PLANKS).setId(ModBlockIds.STRIPPED_MANGROVE_WALL_KEY));
+            = registerWall(ModBlockIds.STRIPPED_MANGROVE_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.MANGROVE_PLANKS));
     public static final Block STRIPPED_CRIMSON_WALL
-            = registerWall(ModBlockIds.STRIPPED_CRIMSON_WALL_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_PLANKS).setId(ModBlockIds.STRIPPED_CRIMSON_WALL_KEY));
+            = registerWall(ModBlockIds.STRIPPED_CRIMSON_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_PLANKS));
     public static final Block STRIPPED_WARPED_WALL
-            = registerWall(ModBlockIds.STRIPPED_WARPED_WALL_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_PLANKS).setId(ModBlockIds.STRIPPED_WARPED_WALL_KEY));
+            = registerWall(ModBlockIds.STRIPPED_WARPED_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_PLANKS));
     public static final Block STRIPPED_CHERRY_WALL
-            = registerWall(ModBlockIds.STRIPPED_CHERRY_WALL_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.CHERRY_PLANKS).setId(ModBlockIds.STRIPPED_CHERRY_WALL_KEY));
+            = registerWall(ModBlockIds.STRIPPED_CHERRY_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.CHERRY_PLANKS));
     public static final Block OAK_ROPE_LADDER = registerRopeLadder(ModBlockIds.OAK_ROPE_LADDER_KEY);
     public static final Block SPRUCE_ROPE_LADDER = registerRopeLadder(ModBlockIds.SPRUCE_ROPE_LADDER_KEY);
     public static final Block BIRCH_ROPE_LADDER = registerRopeLadder(ModBlockIds.BIRCH_ROPE_LADDER_KEY);
@@ -386,50 +362,52 @@ public final class ModBlocks {
     public static final Block TWISTED_NETHER_BRICKS
             = register(ModBlockIds.TWISTED_NETHER_BRICKS_KEY, Block::new, BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_BRICKS));
     public static final Block TWISTED_NETHER_BRICK_STAIRS
-            = registerStairs(ModBlockIds.TWISTED_NETHER_BRICK_STAIRS_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_BRICKS)
-                    .setId(ModBlockIds.TWISTED_NETHER_BRICK_STAIRS_KEY), TWISTED_NETHER_BRICKS);
+            = registerStairs(ModBlockIds.TWISTED_NETHER_BRICK_STAIRS_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_BRICKS), TWISTED_NETHER_BRICKS);
     public static final Block TWISTED_NETHER_BRICK_SLAB
-            = registerSlab(ModBlockIds.TWISTED_NETHER_BRICK_SLAB_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_BRICKS)
-            .setId(ModBlockIds.TWISTED_NETHER_BRICK_SLAB_KEY));
+            = registerSlab(ModBlockIds.TWISTED_NETHER_BRICK_SLAB_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_BRICKS));
     public static final Block TWISTED_NETHER_BRICK_WALL
-            = registerWall(ModBlockIds.TWISTED_NETHER_BRICK_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_BRICKS)
-            .setId(ModBlockIds.TWISTED_NETHER_BRICK_WALL_KEY));
+            = registerWall(ModBlockIds.TWISTED_NETHER_BRICK_WALL_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_BRICKS));
     public static final Block TWISTED_NETHERRACK = register(ModBlockIds.TWISTED_NETHERRACK_KEY,  Block::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERRACK));
-    public static final Block TWISTED_NETHERRACK_STAIRS = registerStairs(ModBlockIds.TWISTED_NETHERRACK_STAIRS_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERRACK).setId(ModBlockIds.TWISTED_NETHERRACK_STAIRS_KEY),
-            TWISTED_NETHERRACK);
-    public static final Block TWISTED_NETHERRACK_SLAB = registerSlab(ModBlockIds.TWISTED_NETHERRACK_SLAB_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERRACK).setId(ModBlockIds.TWISTED_NETHERRACK_SLAB_KEY));
-    public static final Block TWISTED_NETHERRACK_WALL = registerWall(ModBlockIds.TWISTED_NETHERRACK_WALL_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERRACK).setId(ModBlockIds.TWISTED_NETHERRACK_WALL_KEY));
+    public static final Block TWISTED_NETHERRACK_STAIRS
+            = registerStairs(ModBlockIds.TWISTED_NETHERRACK_STAIRS_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERRACK), TWISTED_NETHERRACK);
+    public static final Block TWISTED_NETHERRACK_SLAB
+            = registerSlab(ModBlockIds.TWISTED_NETHERRACK_SLAB_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERRACK));
+    public static final Block TWISTED_NETHERRACK_WALL
+            = registerWall(ModBlockIds.TWISTED_NETHERRACK_WALL_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERRACK));
     public static final Block WEEPING_NETHER_BRICKS = register(ModBlockIds.WEEPING_NETHER_BRICKS_KEY, Block::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_BRICKS));
-    public static final Block WEEPING_NETHER_BRICK_STAIRS = registerStairs(ModBlockIds.WEEPING_NETHER_BRICK_STAIRS_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_BRICKS)
-                    .setId(ModBlockIds.WEEPING_NETHER_BRICK_STAIRS_KEY), WEEPING_NETHER_BRICKS);
-    public static final Block WEEPING_NETHER_BRICK_SLAB = registerSlab(ModBlockIds.WEEPING_NETHER_BRICK_SLAB_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_BRICKS)
-                .setId(ModBlockIds.WEEPING_NETHER_BRICK_SLAB_KEY));
-    public static final Block WEEPING_NETHER_BRICK_WALL = registerWall(ModBlockIds.WEEPING_NETHER_BRICK_WALL_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_BRICKS)
-                .setId(ModBlockIds.WEEPING_NETHER_BRICK_WALL_KEY));
+    public static final Block WEEPING_NETHER_BRICK_STAIRS
+            = registerStairs(ModBlockIds.WEEPING_NETHER_BRICK_STAIRS_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_BRICKS), WEEPING_NETHER_BRICKS);
+    public static final Block WEEPING_NETHER_BRICK_SLAB
+            = registerSlab(ModBlockIds.WEEPING_NETHER_BRICK_SLAB_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_BRICKS));
+    public static final Block WEEPING_NETHER_BRICK_WALL
+            = registerWall(ModBlockIds.WEEPING_NETHER_BRICK_WALL_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_BRICKS));
     public static final Block WEEPING_NETHERRACK
             = register(ModBlockIds.WEEPING_NETHERRACK_KEY, Block::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERRACK));
-    public static final Block WEEPING_NETHERRACK_STAIRS = registerStairs(ModBlockIds.WEEPING_NETHERRACK_STAIRS_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERRACK)
-                    .setId(ModBlockIds.WEEPING_NETHERRACK_STAIRS_KEY), WEEPING_NETHERRACK);
-    public static final Block WEEPING_NETHERRACK_SLAB = registerSlab(ModBlockIds.WEEPING_NETHERRACK_SLAB_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERRACK)
-                    .setId(ModBlockIds.WEEPING_NETHERRACK_SLAB_KEY));
-    public static final Block WEEPING_NETHERRACK_WALL = registerWall(ModBlockIds.WEEPING_NETHERRACK_WALL_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERRACK).setId(ModBlockIds.WEEPING_NETHERRACK_WALL_KEY));
+    public static final Block WEEPING_NETHERRACK_STAIRS
+            = registerStairs(ModBlockIds.WEEPING_NETHERRACK_STAIRS_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERRACK), WEEPING_NETHERRACK);
+    public static final Block WEEPING_NETHERRACK_SLAB
+            = registerSlab(ModBlockIds.WEEPING_NETHERRACK_SLAB_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERRACK));
+    public static final Block WEEPING_NETHERRACK_WALL
+            = registerWall(ModBlockIds.WEEPING_NETHERRACK_WALL_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERRACK));
     public static final Block SNAPDRAGON = register(ModBlockIds.SNAPDRAGON_KEY,
             (props) -> new SnapdragonBlock(MobEffects.LUCK, 8, props),
             BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY).lightLevel((state) -> 8));
-    public static final Block POTTED_SNAPDRAGON = registerPottedSnapdragon(BlockBehaviour.Properties
-            .ofFullCopy(Blocks.POTTED_POPPY).lightLevel((state) -> 8).setId(ModBlockIds.POTTED_SNAPDRAGON_KEY));
+    public static final Block POTTED_SNAPDRAGON = registerPottedSnapdragon();
     public static final Block POTTED_PURPLE_MUSHROOM = register(ModBlockIds.POTTED_PURPLE_MUSHROOM_KEY,
             (props) -> new FlowerPotBlock(ModBlocks.PURPLE_MUSHROOM, props),
             BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_RED_MUSHROOM));
@@ -507,52 +485,46 @@ public final class ModBlocks {
             BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_BLACKSTONE_BRICKS));
     public static final Block TWISTED_POLISHED_BLACKSTONE_BRICK_STAIRS
             = registerStairs(ModBlockIds.TWISTED_POLISHED_BLACKSTONE_BRICK_STAIRS_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_BLACKSTONE_BRICKS)
-                    .setId(ModBlockIds.TWISTED_POLISHED_BLACKSTONE_BRICK_STAIRS_KEY),
+            BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_BLACKSTONE_BRICKS),
             Blocks.POLISHED_BLACKSTONE_BRICKS);
     public static final Block TWISTED_POLISHED_BLACKSTONE_BRICK_SLAB
             = registerSlab(ModBlockIds.TWISTED_POLISHED_BLACKSTONE_BRICK_SLAB_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_BLACKSTONE_BRICKS)
-                    .setId(ModBlockIds.TWISTED_POLISHED_BLACKSTONE_BRICK_SLAB_KEY));
+            BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_BLACKSTONE_BRICKS));
     public static final Block TWISTED_POLISHED_BLACKSTONE_BRICK_WALL
             = registerWall(ModBlockIds.TWISTED_POLISHED_BLACKSTONE_BRICK_WALL_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_BLACKSTONE_BRICKS)
-                    .setId(ModBlockIds.TWISTED_POLISHED_BLACKSTONE_BRICK_WALL_KEY));
+            BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_BLACKSTONE_BRICKS));
     public static final Block WEEPING_POLISHED_BLACKSTONE_BRICKS
             = register(ModBlockIds.WEEPING_POLISHED_BLACKSTONE_BRICKS_KEY, Block::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_BLACKSTONE_BRICKS));
     public static final Block WEEPING_POLISHED_BLACKSTONE_BRICK_STAIRS
             = registerStairs(ModBlockIds.WEEPING_POLISHED_BLACKSTONE_BRICK_STAIRS_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_BLACKSTONE_BRICKS)
-                    .setId(ModBlockIds.WEEPING_POLISHED_BLACKSTONE_BRICK_STAIRS_KEY),
+            BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_BLACKSTONE_BRICKS),
             WEEPING_POLISHED_BLACKSTONE_BRICKS);
     public static final Block WEEPING_POLISHED_BLACKSTONE_BRICK_SLAB
             = registerSlab(ModBlockIds.WEEPING_POLISHED_BLACKSTONE_BRICK_SLAB_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_BLACKSTONE_BRICKS)
-                    .setId(ModBlockIds.WEEPING_POLISHED_BLACKSTONE_BRICK_SLAB_KEY));
+            BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_BLACKSTONE_BRICKS));
     public static final Block WEEPING_POLISHED_BLACKSTONE_BRICK_WALL
             = registerWall(ModBlockIds.WEEPING_POLISHED_BLACKSTONE_BRICK_WALL_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_BLACKSTONE_BRICKS)
-                    .setId(ModBlockIds.WEEPING_POLISHED_BLACKSTONE_BRICK_WALL_KEY));
+            BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_BLACKSTONE_BRICKS));
     public static final Block TWISTED_BLACKSTONE
             = register(ModBlockIds.TWISTED_BLACKSTONE_KEY, Block::new, BlockBehaviour.Properties.ofFullCopy(Blocks.BLACKSTONE));
     public static final Block TWISTED_BLACKSTONE_STAIRS
-            = registerStairs(ModBlockIds.TWISTED_BLACKSTONE_STAIRS_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.BLACKSTONE)
-            .setId(ModBlockIds.TWISTED_BLACKSTONE_STAIRS_KEY), Blocks.BLACKSTONE);
+            = registerStairs(ModBlockIds.TWISTED_BLACKSTONE_STAIRS_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.BLACKSTONE), Blocks.BLACKSTONE);
     public static final Block TWISTED_BLACKSTONE_SLAB = registerSlab(ModBlockIds.TWISTED_BLACKSTONE_SLAB_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.BLACKSTONE).setId(ModBlockIds.TWISTED_BLACKSTONE_SLAB_KEY));
+            BlockBehaviour.Properties.ofFullCopy(Blocks.BLACKSTONE));
     public static final Block TWISTED_BLACKSTONE_WALL = registerWall(ModBlockIds.TWISTED_BLACKSTONE_WALL_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.BLACKSTONE).setId(ModBlockIds.TWISTED_BLACKSTONE_WALL_KEY));
+            BlockBehaviour.Properties.ofFullCopy(Blocks.BLACKSTONE));
     public static final Block WEEPING_BLACKSTONE
             = register(ModBlockIds.WEEPING_BLACKSTONE_KEY, Block::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.BLACKSTONE));
     public static final Block WEEPING_BLACKSTONE_STAIRS
-            = registerStairs(ModBlockIds.WEEPING_BLACKSTONE_STAIRS_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.BLACKSTONE)
-                        .setId(ModBlockIds.WEEPING_BLACKSTONE_STAIRS_KEY), WEEPING_BLACKSTONE);
+            = registerStairs(ModBlockIds.WEEPING_BLACKSTONE_STAIRS_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.BLACKSTONE), WEEPING_BLACKSTONE);
     public static final Block WEEPING_BLACKSTONE_SLAB = registerSlab(ModBlockIds.WEEPING_BLACKSTONE_SLAB_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.BLACKSTONE).setId(ModBlockIds.WEEPING_BLACKSTONE_SLAB_KEY));
+            BlockBehaviour.Properties.ofFullCopy(Blocks.BLACKSTONE));
     public static final Block WEEPING_BLACKSTONE_WALL = registerWall(ModBlockIds.WEEPING_BLACKSTONE_WALL_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.BLACKSTONE).setId(ModBlockIds.WEEPING_BLACKSTONE_WALL_KEY));
+            BlockBehaviour.Properties.ofFullCopy(Blocks.BLACKSTONE));
     public static final Block QUARTZ_TILES
             = register(ModBlockIds.QUARTZ_TILES_KEY, Block::new, makeQuartzTileSettings());
     public static final Block QUARTZ_TILE_STAIRS
@@ -670,51 +642,51 @@ public final class ModBlocks {
     public static final Block POTTED_CATTAIL
             = register(ModBlockIds.POTTED_CATTAIL_KEY, (props) -> new FlowerPotBlock(ModBlocks.CATTAIL, props),
             BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_RED_MUSHROOM), false);
-    public static final Block STONE_WALL = registerWall(ModBlockIds.STONE_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
-            .setId(ModBlockIds.STONE_WALL_KEY));
+    public static final Block STONE_WALL = registerWall(ModBlockIds.STONE_WALL_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.STONE));
     public static final Block QUARTZ_WALL = registerWall(ModBlockIds.QUARTZ_WALL_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.QUARTZ_BLOCK).setId(ModBlockIds.QUARTZ_WALL_KEY));
+            BlockBehaviour.Properties.ofFullCopy(Blocks.QUARTZ_BLOCK));
     public static final Block SMOOTH_QUARTZ_WALL = registerWall(ModBlockIds.SMOOTH_QUARTZ_WALL_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.SMOOTH_QUARTZ).setId(ModBlockIds.SMOOTH_QUARTZ_WALL_KEY));
+            BlockBehaviour.Properties.ofFullCopy(Blocks.SMOOTH_QUARTZ));
     public static final Block GRASS_SLAB
             = register(ModBlockIds.GRASS_SLAB_KEY, GrassSlabBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.GRASS_BLOCK));
     public static final Block PODZOL_SLAB = registerSnowySlab(ModBlockIds.PODZOL_SLAB_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.PODZOL).setId(ModBlockIds.PODZOL_SLAB_KEY));
+            BlockBehaviour.Properties.ofFullCopy(Blocks.PODZOL));
     public static final Block MYCELIUM_SLAB = registerSnowySlab(ModBlockIds.MYCELIUM_SLAB_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.MYCELIUM).setId(ModBlockIds.MYCELIUM_SLAB_KEY));
+            BlockBehaviour.Properties.ofFullCopy(Blocks.MYCELIUM));
     public static final Block DIRT_PATH_SLAB
             = register(ModBlockIds.DIRT_PATH_SLAB_KEY, DirtPathSlabBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT_PATH));
     public static final Block DIRT_SLAB
             = register(ModBlockIds.DIRT_SLAB_KEY, DirtSlabBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT));
     public static final Block COARSE_DIRT_SLAB = registerSlab(ModBlockIds.COARSE_DIRT_SLAB_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.COARSE_DIRT).setId(ModBlockIds.COARSE_DIRT_SLAB_KEY));
+            BlockBehaviour.Properties.ofFullCopy(Blocks.COARSE_DIRT));
     public static final Block ROOTED_DIRT_SLAB = registerSlab(ModBlockIds.ROOTED_DIRT_SLAB_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.ROOTED_DIRT).setId(ModBlockIds.ROOTED_DIRT_SLAB_KEY));
+            BlockBehaviour.Properties.ofFullCopy(Blocks.ROOTED_DIRT));
     public static final Block WILD_GREEN_ONIONS = register(ModBlockIds.WILD_GREEN_ONIONS_KEY, WildGreenOnionsBlock::new,
             BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollision().randomTicks()
                     .instabreak().sound(SoundType.CROP).pushReaction(PushReaction.DESTROY));
     public static final Block CREAKING_PLUSHIE
             = register(ModBlockIds.CREAKING_PLUSHIE_KEY, CreakingPlushieBlock::new, makePlushieSettings());
     public static final Block QUARTZ_BRICK_STAIRS = registerStairs(ModBlockIds.QUARTZ_BRICK_STAIRS_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.QUARTZ_BRICKS).setId(ModBlockIds.QUARTZ_BRICK_STAIRS_KEY),
-            Blocks.QUARTZ_BRICKS);
-    public static final Block QUARTZ_BRICK_SLAB = registerSlab(ModBlockIds.QUARTZ_BRICK_SLAB_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.QUARTZ_BRICKS).setId(ModBlockIds.QUARTZ_BRICK_SLAB_KEY));
+            BlockBehaviour.Properties.ofFullCopy(Blocks.QUARTZ_BRICKS), Blocks.QUARTZ_BRICKS);
+    public static final Block QUARTZ_BRICK_SLAB
+            = registerSlab(ModBlockIds.QUARTZ_BRICK_SLAB_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.QUARTZ_BRICKS));
     public static final Block QUARTZ_BRICK_WALL = registerWall(ModBlockIds.QUARTZ_BRICK_WALL_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.QUARTZ_BRICKS).setId(ModBlockIds.QUARTZ_BRICK_WALL_KEY));
+            BlockBehaviour.Properties.ofFullCopy(Blocks.QUARTZ_BRICKS));
     public static final Block SNIFFER_PLUSHIE
             = register(ModBlockIds.SNIFFER_PLUSHIE_KEY, SnifferPlushieBlock::new, makePlushieSettings());
     public static final Block STRIPPED_PALE_OAK_WALL = registerWall(ModBlockIds.STRIPPED_PALE_OAK_WALL_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.PALE_OAK_PLANKS).setId(ModBlockIds.STRIPPED_PALE_OAK_WALL_KEY));
+            BlockBehaviour.Properties.ofFullCopy(Blocks.PALE_OAK_PLANKS));
     public static final Block PALE_OAK_WALL = registerWall(ModBlockIds.PALE_OAK_WALL_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.PALE_OAK_PLANKS).setId(ModBlockIds.PALE_OAK_WALL_KEY));
+            BlockBehaviour.Properties.ofFullCopy(Blocks.PALE_OAK_PLANKS));
     public static final Block BAMBOO_ROPE_LADDER = registerRopeLadder(ModBlockIds.BAMBOO_ROPE_LADDER_KEY);
     public static final Block STRIPPED_BAMBOO_WALL = registerWall(ModBlockIds.STRIPPED_BAMBOO_WALL_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.BAMBOO_PLANKS).setId(ModBlockIds.STRIPPED_BAMBOO_WALL_KEY));
+            BlockBehaviour.Properties.ofFullCopy(Blocks.BAMBOO_PLANKS));
     public static final Block BAMBOO_WALL = registerWall(ModBlockIds.BAMBOO_WALL_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.BAMBOO_PLANKS).setId(ModBlockIds.BAMBOO_WALL_KEY));
+            BlockBehaviour.Properties.ofFullCopy(Blocks.BAMBOO_PLANKS));
     public static final Block BLACK_WOLF_PLUSHIE = registerWolfPlushie(ModBlockIds.BLACK_WOLF_PLUSHIE_KEY);
     public static final Block ASHEN_WOLF_PLUSHIE = registerWolfPlushie(ModBlockIds.ASHEN_WOLF_PLUSHIE_KEY);
     public static final Block CHESTNUT_WOLF_PLUSHIE = registerWolfPlushie(ModBlockIds.CHESTNUT_WOLF_PLUSHIE_KEY);
@@ -878,7 +850,9 @@ public final class ModBlocks {
                 BlockBehaviour.Properties.ofFullCopy(Blocks.CAMPFIRE));
     }
 
-    private static Block registerPottedSnapdragon(BlockBehaviour.Properties settings) {
+    private static Block registerPottedSnapdragon() {
+        BlockBehaviour.Properties settings = BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY)
+                .lightLevel((state) -> 8);
         return register(ModBlockIds.POTTED_SNAPDRAGON_KEY,
                 (props) -> new PottedSnapdragonBlock(ModBlocks.SNAPDRAGON, props), settings, false);
     }

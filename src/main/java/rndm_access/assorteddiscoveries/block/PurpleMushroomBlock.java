@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.HugeMushroomBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import org.jspecify.annotations.NonNull;
 import rndm_access.assorteddiscoveries.core.ModSoundEvents;
 
 public class PurpleMushroomBlock extends HugeMushroomBlock {
@@ -18,7 +19,7 @@ public class PurpleMushroomBlock extends HugeMushroomBlock {
     }
 
     @Override
-    public void fallOn(Level world, BlockState state, BlockPos pos, Entity entity, double fallDistance) {
+    public void fallOn(Level world, @NonNull BlockState state, BlockPos pos, Entity entity, double fallDistance) {
         SoundEvent sound = ModSoundEvents.BLOCK_MUSHROOM_BOUNCE;
         RandomSource random = world.getRandom();
         int x = pos.getX();
@@ -29,7 +30,7 @@ public class PurpleMushroomBlock extends HugeMushroomBlock {
             world.playLocalSound(x, y, z, sound, SoundSource.BLOCKS,
                     1.0F, 0.8F + random.nextFloat() / 0.4F, true);
         } else {
-            this.bounceEntity(entity);
+            this.bounceEntity(entity); // TODO: Find a way to implement bounce! This currently does nothing!
             world.playLocalSound(x, y, z, sound, SoundSource.BLOCKS, 1.0F,
                     0.8F + random.nextFloat() * 0.4F, true);
         }

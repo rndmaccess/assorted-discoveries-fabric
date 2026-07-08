@@ -28,13 +28,18 @@ public abstract class EntityMixin {
                                                   Vec3 movement, CallbackInfo ci) {
         // Makes the purple mushroom blocks bouncy!!!
         if (effectState.is(ModBlocks.PURPLE_MUSHROOM_BLOCK) && !isCrouching()) {
-            if(movement.y() < 0) {
-                double jumpSpeed = Math.max(-movement.y() * JUMP_BOOST, JUMP_HEIGHT);
-                setDeltaMovement(movement.x(), jumpSpeed, movement.z());
-            } else {
-                setDeltaMovement(movement.x(), movement.y(), movement.z());
-            }
+            this.bounceEntity(movement);
             ci.cancel();
+        }
+    }
+
+    @Unique
+    private void bounceEntity(Vec3 movement) {
+        if(movement.y() < 0) {
+            double jumpSpeed = Math.max(-movement.y() * JUMP_BOOST, JUMP_HEIGHT);
+            setDeltaMovement(movement.x(), jumpSpeed, movement.z());
+        } else {
+            setDeltaMovement(movement.x(), movement.y(), movement.z());
         }
     }
 }

@@ -68,6 +68,7 @@ public final class ModBlocks {
     public static final Block BLACK_CAT_PLUSHIE = registerCatPlushie(ModBlockIds.BLACK_CAT_PLUSHIE_KEY);
     public static final Block TEMPERATE_PIG_PLUSHIE = registerPigPlushie(ModBlockIds.TEMPERATE_PIG_PLUSHIE_KEY);
     public static final Block COLD_PIG_PLUSHIE = registerPigPlushie(ModBlockIds.COLD_PIG_PLUSHIE_KEY);
+    public static final Block WARM_PIG_PLUSHIE = registerPigPlushie(ModBlockIds.WARM_PIG_PLUSHIE_KEY);
     public static final Block BROWN_RABBIT_PLUSHIE = registerRabbitPlushie(ModBlockIds.BROWN_RABBIT_PLUSHIE_KEY);
     public static final Block WHITE_RABBIT_PLUSHIE = registerRabbitPlushie(ModBlockIds.WHITE_RABBIT_PLUSHIE_KEY);
     public static final Block BLACK_RABBIT_PLUSHIE = registerRabbitPlushie(ModBlockIds.BLACK_RABBIT_PLUSHIE_KEY);

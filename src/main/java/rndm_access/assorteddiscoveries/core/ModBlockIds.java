@@ -40,6 +40,7 @@ public final class ModBlockIds {
     public static final ResourceKey<Block> BLACK_CAT_PLUSHIE_KEY = createKey("black_cat_plushie");
     public static final ResourceKey<Block> TEMPERATE_PIG_PLUSHIE_KEY = createKey("temperate_pig_plushie");
     public static final ResourceKey<Block> COLD_PIG_PLUSHIE_KEY = createKey("cold_pig_plushie");
+    public static final ResourceKey<Block> WARM_PIG_PLUSHIE_KEY = createKey("warm_pig_plushie");
     public static final ResourceKey<Block> BROWN_RABBIT_PLUSHIE_KEY = createKey("brown_rabbit_plushie");
     public static final ResourceKey<Block> WHITE_RABBIT_PLUSHIE_KEY = createKey("white_rabbit_plushie");
     public static final ResourceKey<Block> BLACK_RABBIT_PLUSHIE_KEY = createKey("black_rabbit_plushie");
@@ -48,23 +49,6 @@ public final class ModBlockIds {
     public static final ResourceKey<Block> GOLD_RABBIT_PLUSHIE_KEY = createKey("gold_rabbit_plushie");
     public static final ResourceKey<Block> TOAST_RABBIT_PLUSHIE_KEY = createKey("toast_rabbit_plushie");
     public static final ResourceKey<Block> SALT_RABBIT_PLUSHIE_KEY = createKey("salt_rabbit_plushie");
-    public static final ResourceKey<Block> WHITE_SHEEP_PLUSHIE_KEY = createKey("white_sheep_plushie");
-    public static final ResourceKey<Block> ORANGE_SHEEP_PLUSHIE_KEY = createKey("orange_sheep_plushie");
-    public static final ResourceKey<Block> MAGENTA_SHEEP_PLUSHIE_KEY = createKey("magenta_sheep_plushie");
-    public static final ResourceKey<Block> LIGHT_BLUE_SHEEP_PLUSHIE_KEY
-            = createKey("light_blue_sheep_plushie");
-    public static final ResourceKey<Block> YELLOW_SHEEP_PLUSHIE_KEY = createKey("yellow_sheep_plushie");
-    public static final ResourceKey<Block> LIME_SHEEP_PLUSHIE_KEY = createKey("lime_sheep_plushie");
-    public static final ResourceKey<Block> PINK_SHEEP_PLUSHIE_KEY = createKey("pink_sheep_plushie");
-    public static final ResourceKey<Block> GRAY_SHEEP_PLUSHIE_KEY = createKey("gray_sheep_plushie");
-    public static final ResourceKey<Block> LIGHT_GRAY_SHEEP_PLUSHIE_KEY = createKey("light_gray_sheep_plushie");
-    public static final ResourceKey<Block> CYAN_SHEEP_PLUSHIE_KEY = createKey("cyan_sheep_plushie");
-    public static final ResourceKey<Block> PURPLE_SHEEP_PLUSHIE_KEY = createKey("purple_sheep_plushie");
-    public static final ResourceKey<Block> BLUE_SHEEP_PLUSHIE_KEY = createKey("blue_sheep_plushie");
-    public static final ResourceKey<Block> BROWN_SHEEP_PLUSHIE_KEY = createKey("brown_sheep_plushie");
-    public static final ResourceKey<Block> GREEN_SHEEP_PLUSHIE_KEY = createKey("green_sheep_plushie");
-    public static final ResourceKey<Block> RED_SHEEP_PLUSHIE_KEY = createKey("red_sheep_plushie");
-    public static final ResourceKey<Block> BLACK_SHEEP_PLUSHIE_KEY = createKey("black_sheep_plushie");
     public static final ResourceKey<Block> SKELETON_PLUSHIE_KEY = createKey("skeleton_plushie");
     public static final ResourceKey<Block> SLIME_PLUSHIE_KEY = createKey("slime_plushie");
     public static final ResourceKey<Block> SPIDER_PLUSHIE_KEY = createKey("spider_plushie");

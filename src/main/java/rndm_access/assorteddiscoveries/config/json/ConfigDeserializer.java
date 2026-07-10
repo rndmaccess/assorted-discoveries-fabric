@@ -79,15 +79,33 @@ public class ConfigDeserializer {
     private boolean consumeComment(LineIterator iter) {
         if (curChar == '/') {
             consumeChar(iter);
-            require(iter, '/');
 
-            line = iter.next().strip();
-            pos = 0;
-            lineNum++;
-            this.curChar = line.charAt(pos);
+            if (curChar == '*') {
+                consumeChar(iter);
+                boolean found = findEndingChar('*');
+
+                while (!found) {
+                    advanceLine(iter);
+                    found = findEndingChar('*');
+                }
+                consumeChar(iter);
+                require(iter, '/');
+            } else {
+                require(iter, '/');
+                advanceLine(iter);
+            }
             return true;
         }
         return false;
+    }
+
+    private void advanceLine(LineIterator iter) {
+        do {
+            line = iter.next().strip();
+            pos = 0;
+            lineNum++;
+        } while (line.isEmpty());
+        this.curChar = line.charAt(pos);
     }
 
     private JsonConfigCategory parseCategory(String key, LineIterator iter) {

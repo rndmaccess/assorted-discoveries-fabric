@@ -12,6 +12,7 @@
     "###"
   ],
   "result": {
+    "count": 3,
     "id": "assorted-discoveries:warped_planter_box"
   },
   "fabric:load_conditions": [

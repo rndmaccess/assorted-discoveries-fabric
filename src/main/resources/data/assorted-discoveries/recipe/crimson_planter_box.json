@@ -12,6 +12,7 @@
     "S": "#minecraft:soul_fire_base_blocks"
   },
   "result": {
+    "count": 3,
     "id": "assorted-discoveries:crimson_planter_box"
   },
   "fabric:load_conditions": [

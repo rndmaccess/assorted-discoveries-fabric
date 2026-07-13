@@ -12,6 +12,7 @@
     "D": "minecraft:dirt"
   },
   "result": {
+    "count": 3,
     "id": "assorted-discoveries:oak_planter_box"
   },
   "fabric:load_conditions": [

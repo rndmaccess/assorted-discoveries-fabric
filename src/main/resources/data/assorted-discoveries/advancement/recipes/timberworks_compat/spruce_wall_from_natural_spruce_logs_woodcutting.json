@@ -1,10 +1,34 @@
 {
-  "type": "timberworks:woodcutting",
-  "ingredient": "#c:natural_spruce_logs",
-  "result": {
-    "count": 1,
-    "id": "assorted-discoveries:spruce_wall"
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "assorted-discoveries:timberworks_compat/spruce_wall_from_natural_spruce_logs_woodcutting"
+    ]
   },
+  "criteria": {
+    "has_natural_spruce_logs": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "c:natural_spruce_logs"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "assorted-discoveries:timberworks_compat/spruce_wall_from_natural_spruce_logs_woodcutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_natural_spruce_logs",
+      "has_the_recipe"
+    ]
+  ],
   "fabric:load_conditions": [
     {
       "condition": "fabric:and",

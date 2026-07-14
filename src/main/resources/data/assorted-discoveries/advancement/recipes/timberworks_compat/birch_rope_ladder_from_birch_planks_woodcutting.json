@@ -1,10 +1,36 @@
 {
-  "type": "timberworks:woodcutting",
-  "ingredient": "minecraft:birch_planks",
-  "result": {
-    "count": 1,
-    "id": "assorted-discoveries:birch_rope_ladder"
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "assorted-discoveries:timberworks_compat/birch_rope_ladder_from_birch_planks_woodcutting"
+    ]
   },
+  "criteria": {
+    "has_birch_planks": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:birch_planks"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "assorted-discoveries:timberworks_compat/birch_rope_ladder_from_birch_planks_woodcutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_birch_planks",
+      "has_the_recipe"
+    ]
+  ],
   "fabric:load_conditions": [
     {
       "condition": "fabric:and",

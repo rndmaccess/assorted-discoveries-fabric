@@ -1,10 +1,7 @@
 {
   "type": "timberworks:woodcutting",
   "ingredient": "#c:natural_warped_stems",
-  "result": {
-    "count": 1,
-    "id": "assorted-discoveries:warped_wall"
-  },
+  "result": "assorted-discoveries:warped_wall",
   "fabric:load_conditions": [
     {
       "condition": "fabric:and",

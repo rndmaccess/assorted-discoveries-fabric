@@ -1,10 +1,7 @@
 {
   "type": "timberworks:woodcutting",
   "ingredient": "#c:natural_mangrove_logs",
-  "result": {
-    "count": 1,
-    "id": "assorted-discoveries:mangrove_wall"
-  },
+  "result": "assorted-discoveries:mangrove_wall",
   "fabric:load_conditions": [
     {
       "condition": "fabric:and",

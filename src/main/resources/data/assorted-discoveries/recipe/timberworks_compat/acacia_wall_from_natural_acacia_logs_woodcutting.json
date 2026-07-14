@@ -1,10 +1,7 @@
 {
   "type": "timberworks:woodcutting",
   "ingredient": "#c:natural_acacia_logs",
-  "result": {
-    "count": 1,
-    "id": "assorted-discoveries:acacia_wall"
-  },
+  "result": "assorted-discoveries:acacia_wall",
   "fabric:load_conditions": [
     {
       "condition": "fabric:and",

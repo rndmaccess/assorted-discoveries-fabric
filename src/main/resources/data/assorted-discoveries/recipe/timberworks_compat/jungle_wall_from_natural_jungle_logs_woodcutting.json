@@ -1,10 +1,7 @@
 {
   "type": "timberworks:woodcutting",
   "ingredient": "#c:natural_jungle_logs",
-  "result": {
-    "count": 1,
-    "id": "assorted-discoveries:jungle_wall"
-  },
+  "result": "assorted-discoveries:jungle_wall",
   "fabric:load_conditions": [
     {
       "condition": "fabric:and",

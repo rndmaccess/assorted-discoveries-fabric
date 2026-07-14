@@ -1,10 +1,7 @@
 {
   "type": "timberworks:woodcutting",
   "ingredient": "#c:stripped_mangrove_logs",
-  "result": {
-    "count": 1,
-    "id": "assorted-discoveries:stripped_mangrove_wall"
-  },
+  "result": "assorted-discoveries:stripped_mangrove_wall",
   "fabric:load_conditions": [
     {
       "condition": "fabric:and",

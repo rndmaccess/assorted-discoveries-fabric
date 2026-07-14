@@ -1,10 +1,7 @@
 {
   "type": "timberworks:woodcutting",
   "ingredient": "#c:stripped_crimson_stems",
-  "result": {
-    "count": 1,
-    "id": "assorted-discoveries:stripped_crimson_wall"
-  },
+  "result": "assorted-discoveries:stripped_crimson_wall",
   "fabric:load_conditions": [
     {
       "condition": "fabric:and",

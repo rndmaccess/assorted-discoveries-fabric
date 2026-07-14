@@ -1,10 +1,7 @@
 {
   "type": "timberworks:woodcutting",
   "ingredient": "#c:natural_birch_logs",
-  "result": {
-    "count": 1,
-    "id": "assorted-discoveries:birch_wall"
-  },
+  "result": "assorted-discoveries:birch_wall",
   "fabric:load_conditions": [
     {
       "condition": "fabric:and",

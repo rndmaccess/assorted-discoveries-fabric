@@ -1,10 +1,7 @@
 {
   "type": "timberworks:woodcutting",
   "ingredient": "#c:stripped_oak_logs",
-  "result": {
-    "count": 1,
-    "id": "assorted-discoveries:stripped_oak_wall"
-  },
+  "result": "assorted-discoveries:stripped_oak_wall",
   "fabric:load_conditions": [
     {
       "condition": "fabric:and",

@@ -1,10 +1,7 @@
 {
   "type": "timberworks:woodcutting",
   "ingredient": "#c:natural_spruce_logs",
-  "result": {
-    "count": 1,
-    "id": "assorted-discoveries:spruce_wall"
-  },
+  "result": "assorted-discoveries:spruce_wall",
   "fabric:load_conditions": [
     {
       "condition": "fabric:and",

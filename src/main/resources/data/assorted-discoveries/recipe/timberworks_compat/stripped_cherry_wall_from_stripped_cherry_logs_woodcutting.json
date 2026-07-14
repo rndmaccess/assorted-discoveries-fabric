@@ -1,10 +1,7 @@
 {
   "type": "timberworks:woodcutting",
   "ingredient": "#c:stripped_cherry_logs",
-  "result": {
-    "count": 1,
-    "id": "assorted-discoveries:stripped_cherry_wall"
-  },
+  "result": "assorted-discoveries:stripped_cherry_wall",
   "fabric:load_conditions": [
     {
       "condition": "fabric:and",

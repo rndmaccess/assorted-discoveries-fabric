@@ -1,0 +1,34 @@
+{
+  "parent": "assorted-discoveries:story/root",
+  "display": {
+    "icon": {
+      "count": 1,
+      "id": "assorted-discoveries:enderman_plushie"
+    },
+    "title": {
+      "translate": "advancements.assorted-discoveries.story.obtain_plushie.title"
+    },
+    "description": {
+      "translate": "advancements.assorted-discoveries.story.obtain_plushie.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "obtain_plushie": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "item": {
+          "items": "#assorted-discoveries:plushies"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "obtain_plushie"
+    ]
+  ]
+}

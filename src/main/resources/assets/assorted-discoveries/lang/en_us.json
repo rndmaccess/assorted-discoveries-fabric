@@ -839,6 +839,9 @@
   "advancements.assorted-discoveries.story.root.description": "Start the game with Assorted Discoveries installed",
   "advancements.assorted-discoveries.story.eat_witchs_cradle_soup.title": "Is this even edible!?",
   "advancements.assorted-discoveries.story.eat_witchs_cradle_soup.description": "Eat witch's cradle soup",
+
+  "advancements.assorted-discoveries.story.obtain_plushie.title": "Cuddle Buddy",
+  "advancements.assorted-discoveries.story.obtain_plushie.description": "Craft your first plushie!",
   
   "itemGroup.assorted-discoveries": "Assorted Discoveries Mod",
 

@@ -1,0 +1,88 @@
+{
+  "parent": "assorted-discoveries:story/obtain_plushie",
+  "display": {
+    "icon": {
+      "count": 1,
+      "id": "assorted-discoveries:pale_wolf_plushie"
+    },
+    "title": {
+      "translate": "advancements.assorted-discoveries.story.collect_wolf_plushies.title"
+    },
+    "description": {
+      "translate": "advancements.assorted-discoveries.story.collect_wolf_plushies.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_pale_wolf_plushie": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "assorted-discoveries:pale_wolf_plushie"
+          }
+        ]
+      }
+    },
+    "has_black_wolf_plushie": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "assorted-discoveries:black_wolf_plushie"
+          }
+        ]
+      }
+    },
+    "has_ashen_wolf_plushie": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "assorted-discoveries:ashen_wolf_plushie"
+          }
+        ]
+      }
+    },
+    "has_chestnut_wolf_plushie": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "assorted-discoveries:chestnut_wolf_plushie"
+          }
+        ]
+      }
+    },
+    "has_rusty_wolf_plushie": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "assorted-discoveries:rusty_wolf_plushie"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_pale_wolf_plushie"
+    ],
+    [
+      "has_black_wolf_plushie"
+    ],
+    [
+      "has_ashen_wolf_plushie"
+    ],
+    [
+      "has_chestnut_wolf_plushie"
+    ],
+    [
+      "has_rusty_wolf_plushie"
+    ]
+  ]
+}

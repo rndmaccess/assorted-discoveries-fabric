@@ -17,18 +17,20 @@
     "hidden": false
   },
   "criteria": {
-    "obtain_plushie": {
+    "has_plushie": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
-        "item": {
-          "items": "#assorted-discoveries:plushies"
-        }
+        "items": [
+          {
+            "items": "#assorted-discoveries:plushies"
+          }
+        ]
       }
     }
   },
   "requirements": [
     [
-      "obtain_plushie"
+      "has_plushie"
     ]
   ]
 }

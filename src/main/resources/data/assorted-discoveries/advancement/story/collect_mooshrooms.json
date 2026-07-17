@@ -1,0 +1,49 @@
+{
+  "parent": "assorted-discoveries:story/obtain_plushie",
+  "display": {
+    "icon": {
+      "count": 1,
+      "id": "assorted-discoveries:red_mooshroom_plushie"
+    },
+    "title": {
+      "translate": "advancements.assorted-discoveries.story.collect_mooshrooms.title"
+    },
+    "description": {
+      "translate": "advancements.assorted-discoveries.story.collect_mooshrooms.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_red_mooshroom_plushie": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "assorted-discoveries:red_mooshroom_plushie"
+          }
+        ]
+      }
+    },
+    "has_brown_mooshroom_plushie": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "assorted-discoveries:brown_mooshroom_plushie"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_red_mooshroom_plushie"
+    ],
+    [
+      "has_brown_mooshroom_plushie"
+    ]
+  ]
+}

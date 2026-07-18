@@ -230,7 +230,11 @@ public class ConfigDeserializer {
     }
 
     private void require(LineIterator iter, Character... expectedChars) {
-        require(iter, this.curChar.toString(), expectedChars);
+        if (this.curChar == '\0') {
+            require(iter, "EOF", expectedChars);
+        } else {
+            require(iter, this.curChar.toString(), expectedChars);
+        }
     }
 
     private void require(LineIterator iter, String prevToken, Character... expectedChars) throws JsonSyntaxException {
@@ -243,6 +247,7 @@ public class ConfigDeserializer {
             for (char c : expectedChars) {
                 charText.add("'" + c + "'");
             }
+
             throw new JsonSyntaxException("Expected " + charText
                     + ", got '" + prevToken + "' at line " + reportedLine);
         } else {

@@ -17,50 +17,22 @@
     "hidden": false
   },
   "criteria": {
-    "has_pale_wolf_plushie": {
+    "has_all_wolf_plushies": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": "assorted-discoveries:pale_wolf_plushie"
-          }
-        ]
-      }
-    },
-    "has_black_wolf_plushie": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
+          },
           {
             "items": "assorted-discoveries:black_wolf_plushie"
-          }
-        ]
-      }
-    },
-    "has_ashen_wolf_plushie": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
+          },
           {
             "items": "assorted-discoveries:ashen_wolf_plushie"
-          }
-        ]
-      }
-    },
-    "has_chestnut_wolf_plushie": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
+          },
           {
             "items": "assorted-discoveries:chestnut_wolf_plushie"
-          }
-        ]
-      }
-    },
-    "has_rusty_wolf_plushie": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
+          },
           {
             "items": "assorted-discoveries:rusty_wolf_plushie"
           }
@@ -70,19 +42,10 @@
   },
   "requirements": [
     [
-      "has_pale_wolf_plushie"
-    ],
-    [
-      "has_black_wolf_plushie"
-    ],
-    [
-      "has_ashen_wolf_plushie"
-    ],
-    [
-      "has_chestnut_wolf_plushie"
-    ],
-    [
-      "has_rusty_wolf_plushie"
+      "has_all_wolf_plushies"
     ]
-  ]
+  ],
+  "rewards": {
+    "experience": 100
+  }
 }

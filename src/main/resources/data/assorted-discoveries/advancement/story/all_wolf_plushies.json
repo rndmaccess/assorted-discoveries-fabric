@@ -6,10 +6,10 @@
       "id": "assorted-discoveries:pale_wolf_plushie"
     },
     "title": {
-      "translate": "advancements.assorted-discoveries.story.collect_wolf_plushies.title"
+      "translate": "advancements.assorted-discoveries.story.all_wolf_plushies.title"
     },
     "description": {
-      "translate": "advancements.assorted-discoveries.story.collect_wolf_plushies.description"
+      "translate": "advancements.assorted-discoveries.story.all_wolf_plushies.description"
     },
     "frame": "task",
     "show_toast": true,

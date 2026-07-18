@@ -6,10 +6,10 @@
       "id": "assorted-discoveries:ocelot_plushie"
     },
     "title": {
-      "translate": "advancements.assorted-discoveries.story.collect_cat_plushies.title"
+      "translate": "advancements.assorted-discoveries.story.all_cat_plushies.title"
     },
     "description": {
-      "translate": "advancements.assorted-discoveries.story.collect_cat_plushies.description"
+      "translate": "advancements.assorted-discoveries.story.all_cat_plushies.description"
     },
     "frame": "task",
     "show_toast": true,
@@ -67,7 +67,7 @@
     ]
   ],
   "rewards": {
-    "experience": 200
+    "experience": 300
   },
   "fabric:load_conditions": [
     {

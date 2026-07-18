@@ -1,0 +1,34 @@
+{
+  "parent": "assorted-discoveries:story/root",
+  "display": {
+    "icon": {
+      "count": 1,
+      "id": "assorted-discoveries:cindersnap_berry_juice"
+    },
+    "title": {
+      "translate": "advancements.assorted-discoveries.story.eat_nether_food.title"
+    },
+    "description": {
+      "translate": "advancements.assorted-discoveries.story.eat_nether_food.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "eat_nether_food": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": "#assorted-discoveries:nether_food"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "eat_nether_food"
+    ]
+  ]
+}

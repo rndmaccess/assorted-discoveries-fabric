@@ -435,22 +435,21 @@ public class ModConfigScreen {
     }
 
     private static Component makeEntryText(String categoryName, String entryName) {
-        return Component.translatable("text.cloth-config." + AssortedDiscoveries.MOD_ID
-                + ".option." + categoryName + "." + entryName);
+        return Component.translatable("config.entry." + AssortedDiscoveries.MOD_ID
+                + "." + categoryName + "." + entryName);
     }
 
     private static Component makeEntryRequirementText(String categoryName, String entryName) {
-        return Component.translatable("requirement.cloth-config." + AssortedDiscoveries.MOD_ID
-                + ".option." + categoryName + "." + entryName);
+        return Component.translatable("config.requirement." + AssortedDiscoveries.MOD_ID
+                + "." + categoryName + "." + entryName);
     }
 
     private static Component makeCategoryText(String categoryName) {
-        return Component.translatable("category.cloth-config." + AssortedDiscoveries.MOD_ID
-                + ".option." + categoryName);
+        return Component.translatable("config.category." + AssortedDiscoveries.MOD_ID + "." + categoryName);
     }
 
     private static Component makeTooltipText(String categoryName, String entryName) {
-        return Component.translatable("tooltip.cloth-config." + AssortedDiscoveries.MOD_ID
-                + ".option." + categoryName + "." + entryName);
+        return Component.translatable("config.tooltip." + AssortedDiscoveries.MOD_ID + "."
+                + categoryName + "." + entryName);
     }
 }

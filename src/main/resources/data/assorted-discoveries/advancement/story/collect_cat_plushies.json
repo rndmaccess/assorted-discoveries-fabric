@@ -68,5 +68,11 @@
   ],
   "rewards": {
     "experience": 200
-  }
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "enable_cat_plushies"
+    }
+  ]
 }

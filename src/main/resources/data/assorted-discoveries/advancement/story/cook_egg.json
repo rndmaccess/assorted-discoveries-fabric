@@ -32,5 +32,11 @@
     [
       "cook_egg"
     ]
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "enable_fried_egg"
+    }
   ]
 }

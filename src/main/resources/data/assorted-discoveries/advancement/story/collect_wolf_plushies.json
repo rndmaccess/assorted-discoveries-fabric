@@ -47,5 +47,11 @@
   ],
   "rewards": {
     "experience": 100
-  }
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "enable_wolf_plushies"
+    }
+  ]
 }

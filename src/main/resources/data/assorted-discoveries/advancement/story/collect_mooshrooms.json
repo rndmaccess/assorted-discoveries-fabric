@@ -45,5 +45,11 @@
     [
       "has_brown_mooshroom_plushie"
     ]
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "enable_mooshroom_plushies"
+    }
   ]
 }

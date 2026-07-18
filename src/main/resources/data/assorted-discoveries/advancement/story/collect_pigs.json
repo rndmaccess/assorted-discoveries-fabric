@@ -58,5 +58,11 @@
     [
       "has_warm_pig_plushie"
     ]
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "enable_pig_plushies"
+    }
   ]
 }

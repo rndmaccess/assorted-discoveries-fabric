@@ -1,0 +1,36 @@
+{
+  "parent": "assorted-discoveries:story/root",
+  "display": {
+    "icon": {
+      "count": 1,
+      "id": "assorted-discoveries:fried_egg"
+    },
+    "title": {
+      "translate": "advancements.assorted-discoveries.story.cook_egg.title"
+    },
+    "description": {
+      "translate": "advancements.assorted-discoveries.story.cook_egg.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "cook_egg": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "assorted-discoveries:fried_egg"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "cook_egg"
+    ]
+  ]
+}

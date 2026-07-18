@@ -3,7 +3,7 @@
   "display": {
     "icon": {
       "count": 1,
-      "id": "assorted-discoveries:red_mooshroom_plushie"
+      "id": "assorted-discoveries:temperate_pig_plushie"
     },
     "title": {
       "translate": "advancements.assorted-discoveries.story.collect_pigs.title"
@@ -17,22 +17,32 @@
     "hidden": false
   },
   "criteria": {
-    "has_red_mooshroom_plushie": {
+    "has_temperate_pig_plushie": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "items": "assorted-discoveries:red_mooshroom_plushie"
+            "items": "assorted-discoveries:temperate_pig_plushie"
           }
         ]
       }
     },
-    "has_brown_mooshroom_plushie": {
+    "has_cold_pig_plushie": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "items": "assorted-discoveries:brown_mooshroom_plushie"
+            "items": "assorted-discoveries:cold_pig_plushie"
+          }
+        ]
+      }
+    },
+    "has_warm_pig_plushie": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "assorted-discoveries:warm_pig_plushie"
           }
         ]
       }
@@ -40,10 +50,13 @@
   },
   "requirements": [
     [
-      "has_red_mooshroom_plushie"
+      "has_temperate_pig_plushie"
     ],
     [
-      "has_brown_mooshroom_plushie"
+      "has_cold_pig_plushie"
+    ],
+    [
+      "has_warm_pig_plushie"
     ]
   ]
 }

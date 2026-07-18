@@ -84,11 +84,11 @@ public class ConfigDeserializer {
                 consumeChar(iter);
                 boolean found = findEndingChar('*');
 
-                while (!found) {
+                while (!found && this.curChar != '\0') {
                     advanceLine(iter);
                     found = findEndingChar('*');
                 }
-                consumeChar(iter);
+                require(iter, '*');
                 require(iter, '/');
             } else {
                 require(iter, '/');
@@ -101,6 +101,10 @@ public class ConfigDeserializer {
 
     private void advanceLine(LineIterator iter) {
         do {
+            if (!iter.hasNext()) {
+                this.curChar = '\0';
+                return;
+            }
             line = iter.next().strip();
             pos = 0;
             lineNum++;

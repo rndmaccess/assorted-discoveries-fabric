@@ -43,12 +43,12 @@ dependencies {
     implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
     // Cloth Config
-    api("me.shedaniel.cloth:cloth-config-fabric:26.2.155") {
+    implementation("me.shedaniel.cloth:cloth-config-fabric:26.2.155") {
         exclude(group: "net.fabricmc.fabric-api")
     }
 
     // Mod Menu
-    api "com.terraformersmc:modmenu:20.0.1"
+    implementation "com.terraformersmc:modmenu:20.0.1"
 }
 
 processResources {

@@ -48,7 +48,7 @@ dependencies {
     }
 
     // Mod Menu
-    implementation "com.terraformersmc:modmenu:20.0.1"
+    implementation "com.terraformersmc:modmenu:20.0.0"
 }
 
 processResources {

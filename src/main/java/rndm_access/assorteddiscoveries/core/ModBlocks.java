@@ -123,6 +123,10 @@ public final class ModBlocks {
     public static final Block COLD_PIG_PLUSHIE
             = register(new PigPlushieBlock(makePlushieSettings(COLD_PIG_PLUSHIE_KEY)),
             COLD_PIG_PLUSHIE_KEY, true);
+    public static final ResourceKey<Block> WARM_PIG_PLUSHIE_KEY = makeRegistryKey("warm_pig_plushie");
+    public static final Block WARM_PIG_PLUSHIE
+            = register(new PigPlushieBlock(makePlushieSettings(WARM_PIG_PLUSHIE_KEY)),
+            WARM_PIG_PLUSHIE_KEY, true);
     public static final ResourceKey<Block> BROWN_RABBIT_PLUSHIE_KEY = makeRegistryKey("brown_rabbit_plushie");
     public static final Block BROWN_RABBIT_PLUSHIE = registerRabbitPlushie(BROWN_RABBIT_PLUSHIE_KEY);
     public static final ResourceKey<Block> WHITE_RABBIT_PLUSHIE_KEY = makeRegistryKey("white_rabbit_plushie");

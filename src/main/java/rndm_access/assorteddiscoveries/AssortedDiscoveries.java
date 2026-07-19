@@ -357,6 +357,7 @@ public class AssortedDiscoveries implements ModInitializer {
             if (config.evaluateEntry(ModConfigKeys.ENABLE_PIG_PLUSHIES)) {
                 entries.accept(ModBlocks.TEMPERATE_PIG_PLUSHIE.asItem());
                 entries.accept(ModBlocks.COLD_PIG_PLUSHIE.asItem());
+                entries.accept(ModBlocks.WARM_PIG_PLUSHIE.asItem());
             }
 
             if (config.evaluateEntry(ModConfigKeys.ENABLE_COW_PLUSHIES)) {

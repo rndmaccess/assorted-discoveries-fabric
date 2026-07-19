@@ -964,6 +964,8 @@
   "config.requirement.assorted-discoveries.building_blocks.enable_smoky_quartz_bricks": "Disabled By The Smoky Quartz Blocks Option",
   "config.requirement.assorted-discoveries.building_blocks.enable_weeping_blackstone_tiles": "Disabled By The Blackstone Tiles Option",
   "config.requirement.assorted-discoveries.building_blocks.enable_twisted_blackstone_tiles": "Disabled By The Blackstone Tiles Option",
+  "config.requirement.assorted-discoveries.building_blocks.enable_cracked_dripstone_bricks": "Disabled By The Dripstone Bricks Option",
+  "config.requirement.assorted-discoveries.building_blocks.enable_mossy_dripstone_bricks": "Disabled By The Dripstone Bricks Option",
 
   "config.category.assorted-discoveries.plushies": "Plushies",
   "config.entry.assorted-discoveries.plushies.enable_allay_plushie": "Enable Allay Plushie",

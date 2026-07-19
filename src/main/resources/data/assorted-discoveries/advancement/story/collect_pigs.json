@@ -1,0 +1,68 @@
+{
+  "parent": "assorted-discoveries:story/obtain_plushie",
+  "display": {
+    "icon": {
+      "count": 1,
+      "id": "assorted-discoveries:temperate_pig_plushie"
+    },
+    "title": {
+      "translate": "advancements.assorted-discoveries.story.collect_pigs.title"
+    },
+    "description": {
+      "translate": "advancements.assorted-discoveries.story.collect_pigs.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_temperate_pig_plushie": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "assorted-discoveries:temperate_pig_plushie"
+          }
+        ]
+      }
+    },
+    "has_cold_pig_plushie": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "assorted-discoveries:cold_pig_plushie"
+          }
+        ]
+      }
+    },
+    "has_warm_pig_plushie": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "assorted-discoveries:warm_pig_plushie"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_temperate_pig_plushie"
+    ],
+    [
+      "has_cold_pig_plushie"
+    ],
+    [
+      "has_warm_pig_plushie"
+    ]
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "enable_pig_plushies"
+    }
+  ]
+}

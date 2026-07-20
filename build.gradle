@@ -18,7 +18,11 @@ repositories {
 	// for more information about repositories.
     // Cloth Config
     maven { url = "https://maven.shedaniel.me/" }
-    maven { url = "https://maven.terraformersmc.com/releases/" }
+
+    maven {
+        name = "Terraformers"
+        url = "https://maven.terraformersmc.com/"
+    }
 }
 
 loom {
@@ -48,7 +52,7 @@ dependencies {
     }
 
     // Mod Menu
-    implementation "com.terraformersmc:modmenu:20.0.1"
+    implementation("com.terraformersmc:modmenu:${project.modmenu_version}")
 }
 
 processResources {

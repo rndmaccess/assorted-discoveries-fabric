@@ -9,7 +9,6 @@ import net.minecraft.resources.RegistryOps;
 import org.jetbrains.annotations.Nullable;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.ModConfig;
-import rndm_access.assorteddiscoveries.config.json.Config;
 import rndm_access.assorteddiscoveries.config.json.json_objects.AbstractConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.json_objects.BooleanConfigEntry;
 import rndm_access.assorteddiscoveries.core.ModResourceConditionTypes;
@@ -36,9 +35,7 @@ public record ConfigEntryEnabledResourceCondition(String configKey) implements R
 
     @Override
     public boolean test(@Nullable RegistryOps.@Nullable RegistryInfoLookup registryInfo) {
-        Config config = ModConfig.getConfig();
-
-        AbstractConfigEntry<?> entry = config.getEntry(configKey);
+        AbstractConfigEntry<?> entry = ModConfig.CONFIG.getEntry(configKey);
         if (entry == null) {
             AssortedDiscoveries.LOGGER.error("{} is not a known config entry!", this.configKey);
             return false; // Don't load the resource if we encounter an unknown config key!

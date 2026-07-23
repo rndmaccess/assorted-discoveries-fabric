@@ -10,7 +10,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import rndm_access.assorteddiscoveries.config.ModConfig;
-import rndm_access.assorteddiscoveries.config.ModConfigKeys;
 import rndm_access.assorteddiscoveries.core.ModBlockTags;
 import rndm_access.assorteddiscoveries.core.ModBlocks;
 
@@ -33,9 +32,8 @@ public abstract class BoneMealItemMixin {
         boolean isBoneMealable = level.getBlockState(soilPos).is(ModBlockTags.END_BONE_MEALABLE_BLOCKS);
         BlockPos centerPos = soilPos.above();
         boolean isEmptyAbove = level.getBlockState(centerPos).isAir();
-        boolean isEnabled = ModConfig.getConfig().evaluateEntry(ModConfigKeys.ENABLE_ENDER_PLANTS);
 
-        if (!isEnabled) {
+        if (!ModConfig.ENABLE_ENDER_PLANTS.getValue()) {
             return original;
         }
 

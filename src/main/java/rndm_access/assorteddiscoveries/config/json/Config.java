@@ -31,11 +31,11 @@ public class Config {
         this.name = builder.name;
     }
 
-    public Config loadFromList(List<JsonConfigCategory> configList) {
+    public void loadFromList(List<JsonConfigCategory> configList) {
         if (configList == null || configList.isEmpty()) {
             // If there is no config list to load we can just return the existing config early!
             AssortedDiscoveries.LOGGER.error("Failed to sync config!");
-            return this;
+            return;
         }
 
         for (JsonConfigCategory configCategory : configList) {
@@ -47,7 +47,6 @@ public class Config {
                 }
             }
         }
-        return this;
     }
 
     private void syncConfigEntry(BooleanConfigEntry serverEntry) {
@@ -63,23 +62,21 @@ public class Config {
         }
     }
 
-    public Config loadFromFile(Config defaultConfig) {
+    public void loadFromFile(Config defaultConfig) {
         try {
             ConfigDeserializer deserializer = new ConfigDeserializer(AssortedDiscoveries.MOD_ID);
             Config loadedConfig = deserializer.deserialize();
-            Config mergedConfig = this.merge(loadedConfig);
+            this.merge(loadedConfig);
 
             if (shouldMigrate(defaultConfig, loadedConfig)) {
-                this.backupAndSave(mergedConfig);
+                this.backupAndSave(this);
             }
-            return mergedConfig;
         } catch (JsonSyntaxException e) {
             String errorMessage = e.getMessage();
             AssortedDiscoveries.LOGGER.error("Config load error: falling back to default configuration!");
             AssortedDiscoveries.LOGGER.error(errorMessage);
             configError = errorMessage;
             this.backupAndSave(defaultConfig);
-            return this;
         }
     }
 
@@ -146,10 +143,6 @@ public class Config {
             list.add(categoryBuilder.build());
         }
         return list;
-    }
-
-    public boolean evaluateEntry(String entryKey) {
-        return ((BooleanConfigEntry) this.getEntry(entryKey)).getValue();
     }
 
     /**
@@ -223,50 +216,19 @@ public class Config {
         }
     }
 
-    public Config merge(Config loadedConfig) {
-        Config.Builder configBuilder = new Config.Builder(this.name);
+    public void merge(Config loadedConfig) {
+        for (JsonConfigCategory category : this.getCategories()) {
+            for (ConfigObject object : category.getConfigObjects()) {
+                if (object instanceof BooleanConfigEntry configEntry) {
+                    BooleanConfigEntry entry = (BooleanConfigEntry) loadedConfig.getCategory(category.getKey())
+                            .getEntry(configEntry.getKey());
 
-        for (ConfigObject object : this.getObjects()) {
-            if (object.isComment()) {
-                CommentConfigEntry comment = (CommentConfigEntry) object;
-                configBuilder.addComment(comment);
-                continue;
-            }
-
-            String categoryKey = object.getKey();
-            JsonConfigCategory defaultCategory = this.getCategory(categoryKey);
-            JsonConfigCategory loadedCategory = loadedConfig.getCategory(categoryKey);
-
-            if (loadedCategory != null) {
-                this.mergeCategories(configBuilder, loadedCategory, defaultCategory);
-            } else {
-                configBuilder.addCategory(defaultCategory);
+                    if (entry != null) {
+                        configEntry.setValue(entry.getValue());
+                    }
+                }
             }
         }
-        return configBuilder.build();
-    }
-
-    private void mergeCategories(Config.Builder configBuilder, JsonConfigCategory loadedCategory, JsonConfigCategory defaultCategory) {
-        JsonConfigCategory.Builder categoryBuilder = new JsonConfigCategory.Builder(defaultCategory.getKey());
-
-        for (ConfigObject object : defaultCategory.getConfigObjects()) {
-            if (object.isComment()) {
-                CommentConfigEntry comment = (CommentConfigEntry) object;
-                categoryBuilder.addComment(comment);
-                continue;
-            }
-
-            String entryKey = object.getKey();
-            AbstractConfigEntry<?> loadedEntry = loadedCategory.getEntry(entryKey);
-
-            if (loadedEntry != null) {
-                categoryBuilder.addEntry(loadedEntry);
-            } else {
-                AbstractConfigEntry<?> defaultEntry = defaultCategory.getEntry(entryKey);
-                categoryBuilder.addEntry(defaultEntry);
-            }
-        }
-        configBuilder.addCategory(categoryBuilder.build());
     }
 
     public static class Builder {

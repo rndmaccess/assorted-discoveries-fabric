@@ -48,15 +48,14 @@ public class JsonConfigCategory extends ConfigObject {
             this.name = name;
         }
 
-        public Builder addComment(CommentConfigEntry comment) {
+        public void addComment(CommentConfigEntry comment) {
             objects.add(comment);
-            return this;
         }
 
-        public <T extends AbstractConfigEntry<?>> Builder addEntry(T entry) {
+        public <T extends AbstractConfigEntry<?>> T addEntry(T entry) {
             entries.put(entry.getKey(), entry);
             objects.add(entry);
-            return this;
+            return entry;
         }
 
         public JsonConfigCategory build() {

@@ -83,6 +83,9 @@ public class Config {
     private boolean shouldMigrate(Config defaultConfig, Config loadedConfig) {
         for (JsonConfigCategory category : defaultConfig.getCategories()) {
             JsonConfigCategory loadedCategory = loadedConfig.getCategory(category.getKey());
+            if (loadedCategory == null) {
+                return true;
+            }
 
             for (ConfigObject object : category.getConfigObjects()) {
                 if (object instanceof AbstractConfigEntry<?> entry) {
@@ -98,7 +101,6 @@ public class Config {
 
     private void backupAndSave(Config config) {
         Path configPath = Paths.get("./config");
-        Path sourcePath = configPath.resolve(path);
 
         try {
             int i = 1;
@@ -109,7 +111,7 @@ public class Config {
                 targetConfigPath = configPath.resolve( this.name + "-" + i + ".json5.bak");
             }
 
-            Files.move(sourcePath, targetConfigPath, StandardCopyOption.REPLACE_EXISTING);
+            Files.move(path, targetConfigPath, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
@@ -218,10 +220,14 @@ public class Config {
 
     public void merge(Config loadedConfig) {
         for (JsonConfigCategory category : this.getCategories()) {
+            JsonConfigCategory loadedCategory = loadedConfig.getCategory(category.getKey());
+            if (loadedCategory == null) {
+                continue;
+            }
+
             for (ConfigObject object : category.getConfigObjects()) {
                 if (object instanceof BooleanConfigEntry configEntry) {
-                    BooleanConfigEntry entry = (BooleanConfigEntry) loadedConfig.getCategory(category.getKey())
-                            .getEntry(configEntry.getKey());
+                    BooleanConfigEntry entry = (BooleanConfigEntry) loadedCategory.getEntry(configEntry.getKey());
 
                     if (entry != null) {
                         configEntry.setValue(entry.getValue());

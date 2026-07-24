@@ -16,8 +16,6 @@ public class ModConfigScreen {
     public static final HashMap<String, Object> ENTRY_VALUE_CHANGES = new HashMap<>();
 
     public static ConfigBuilder getConfigScreenBuilder() {
-        // Reload the config every time we open the screen.
-        // This can be safely edited without affecting the current config loaded.
         Config config = loadLocalConfig();
         Component title = Component.translatable("title." + AssortedDiscoveries.MOD_ID + ".config");
         ConfigBuilder configBuilder = ConfigBuilder.create().setTitle(title);
@@ -37,6 +35,7 @@ public class ModConfigScreen {
 
     /**
      * @return A copy of the configuration object loaded from the local file.
+     * This way the config can be safely edited without affecting the current loaded config.
      */
     private static Config loadLocalConfig() {
         Config localConfig = ModConfig.DEFAULT_CONFIG.copy();

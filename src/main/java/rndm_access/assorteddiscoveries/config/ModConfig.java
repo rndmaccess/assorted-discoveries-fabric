@@ -18,7 +18,7 @@ import java.util.List;
  * If there is a problem loading then the config will use default values.
  */
 public class ModConfig {
-    private static final Config DEFAULT_CONFIG;
+    public static final Config DEFAULT_CONFIG;
     public static final Config CONFIG;
     public static final BooleanConfigEntry ENABLE_PLANTER_BOXES;
     public static final BooleanConfigEntry ENABLE_DYED_CAMPFIRES;
@@ -131,16 +131,6 @@ public class ModConfig {
     public static final BooleanConfigEntry ENABLE_BOG_BLOSSOMS;
     public static final BooleanConfigEntry ENABLE_BLOOD_KELP;
     public static final BooleanConfigEntry ENABLE_ENDER_PLANTS;
-
-    /**
-     * Useful for places where you need to make a temporary copy of the config data. One use could be for saving!
-     * @return A new config based on the default config with values loaded from the local config file.
-     */
-    public static Config getLocalConfig() {
-        Config localConfig = DEFAULT_CONFIG.copy();
-        localConfig.loadFromFile(DEFAULT_CONFIG); // Make a temporary copy of the config object based on the local config file!
-        return localConfig;
-    }
 
     public static void updateFromList(List<JsonConfigCategory> configList) {
         CONFIG.loadFromList(configList);

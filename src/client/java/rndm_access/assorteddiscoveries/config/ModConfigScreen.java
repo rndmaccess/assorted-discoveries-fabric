@@ -16,8 +16,9 @@ public class ModConfigScreen {
     public static final HashMap<String, Object> ENTRY_VALUE_CHANGES = new HashMap<>();
 
     public static ConfigBuilder getConfigScreenBuilder() {
-        Config config = ModConfig.getLocalConfig(); // Reload the config every time we open the screen.
-                                                // This can be safely edited without affecting the current config loaded.
+        // Reload the config every time we open the screen.
+        // This can be safely edited without affecting the current config loaded.
+        Config config = loadLocalConfig();
         Component title = Component.translatable("title." + AssortedDiscoveries.MOD_ID + ".config");
         ConfigBuilder configBuilder = ConfigBuilder.create().setTitle(title);
         configBuilder.setDefaultBackgroundTexture(AssortedDiscoveries.makeModId("textures/block/calcite_bricks.png"));
@@ -34,61 +35,70 @@ public class ModConfigScreen {
         return configBuilder;
     }
 
+    /**
+     * @return A copy of the config object based on the local config file!
+     */
+    private static Config loadLocalConfig() {
+        Config localConfig = ModConfig.DEFAULT_CONFIG.copy();
+        localConfig.loadFromFile(ModConfig.DEFAULT_CONFIG);
+        return localConfig;
+    }
+
     private static void addBuildingBlocksCategory(Config config, ConfigBuilder configBuilder, ConfigEntryBuilder entryBuilder) {
         String categoryName = "building_blocks";
         JsonConfigCategory category = config.getCategory(categoryName);
         ConfigCategory screenCategory = makeCategory(configBuilder, categoryName);
         BooleanListEntry configEntry;
 
-        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_PLANTER_BOXES.getKey(), categoryName);
+        configEntry = makeBoolEntry(category, entryBuilder, "enable_planter_boxes", categoryName);
         screenCategory.addEntry(configEntry);
 
         // Dyed Blocks
-        configEntry = makeBoolEntry(category, entryBuilder, ModConfigKeys.ENABLE_DYED_CAMPFIRES, categoryName);
+        configEntry = makeBoolEntry(category, entryBuilder, "enable_dyed_campfires", categoryName);
         screenCategory.addEntry(configEntry);
-        configEntry = makeBoolEntry(category, entryBuilder, ModConfigKeys.ENABLE_DYED_LANTERNS, categoryName);
+        configEntry = makeBoolEntry(category, entryBuilder, "enable_dyed_lanterns", categoryName);
         screenCategory.addEntry(configEntry);
-        configEntry = makeBoolEntry(category, entryBuilder, ModConfigKeys.ENABLE_DYED_TORCHES, categoryName);
+        configEntry = makeBoolEntry(category, entryBuilder, "enable_dyed_torches", categoryName);
         screenCategory.addEntry(configEntry);
 
         // Netherrack and Nether Bricks
-        configEntry = makeBoolEntry(category, entryBuilder, ModConfigKeys.ENABLE_TWISTED_NETHERRACK, categoryName, true);
+        configEntry = makeBoolEntry(category, entryBuilder, "enable_twisted_netherrack", categoryName, true);
         screenCategory.addEntry(configEntry);
-        configEntry = makeBoolEntry(category, entryBuilder, ModConfigKeys.ENABLE_WEEPING_NETHERRACK, categoryName, true);
+        configEntry = makeBoolEntry(category, entryBuilder, "enable_weeping_netherrack", categoryName, true);
         screenCategory.addEntry(configEntry);
-        configEntry = makeBoolEntry(category, entryBuilder, ModConfigKeys.ENABLE_TWISTED_NETHER_BRICKS, categoryName, true);
+        configEntry = makeBoolEntry(category, entryBuilder, "enable_twisted_nether_bricks", categoryName, true);
         screenCategory.addEntry(configEntry);
         configEntry = makeBoolEntry(category, entryBuilder, "enable_weeping_nether_bricks", categoryName, true);
         screenCategory.addEntry(configEntry);
 
         // Blackstone Entries
-        configEntry = makeBoolEntry(category, entryBuilder, ModConfigKeys.ENABLE_TWISTED_BLACKSTONE, categoryName, true);
+        configEntry = makeBoolEntry(category, entryBuilder, "enable_twisted_blackstone", categoryName, true);
         screenCategory.addEntry(configEntry);
         configEntry = makeBoolEntry(category, entryBuilder, "enable_weeping_blackstone", categoryName, true);
         screenCategory.addEntry(configEntry);
-        configEntry = makeBoolEntry(category, entryBuilder, ModConfigKeys.ENABLE_TWISTED_POLISHED_BLACKSTONE_BRICKS,
+        configEntry = makeBoolEntry(category, entryBuilder, "enable_twisted_polished_blackstone_bricks",
                 categoryName, true);
         screenCategory.addEntry(configEntry);
         configEntry = makeBoolEntry(category, entryBuilder, "enable_weeping_polished_blackstone_bricks",
                 categoryName, true);
         screenCategory.addEntry(configEntry);
         BooleanListEntry enableBlackstoneTiles = makeBoolEntry(category, entryBuilder,
-                ModConfigKeys.ENABLE_BLACKSTONE_TILES, categoryName, true);
+                "enable_blackstone_tiles", categoryName, true);
         screenCategory.addEntry(enableBlackstoneTiles);
-        configEntry = makeBoolEntry(true, category, entryBuilder, ModConfigKeys.ENABLE_TWISTED_BLACKSTONE_TILES,
+        configEntry = makeBoolEntry(true, category, entryBuilder, "enable_twisted_blackstone_tiles",
                 categoryName, enableBlackstoneTiles);
         screenCategory.addEntry(configEntry);
         configEntry = makeBoolEntry(true, category, entryBuilder, "enable_weeping_blackstone_tiles",
                 categoryName, enableBlackstoneTiles);
         screenCategory.addEntry(configEntry);
 
-        configEntry = makeBoolEntry(category, entryBuilder, ModConfigKeys.ENABLE_WOODEN_WALLS, categoryName);
+        configEntry = makeBoolEntry(category, entryBuilder, "enable_wooden_walls", categoryName);
         screenCategory.addEntry(configEntry);
-        configEntry = makeBoolEntry(category, entryBuilder, ModConfigKeys.ENABLE_STRIPPED_WOODEN_WALLS, categoryName);
+        configEntry = makeBoolEntry(category, entryBuilder, "enable_stripped_wooden_walls", categoryName);
         screenCategory.addEntry(configEntry);
-        configEntry = makeBoolEntry(category, entryBuilder, ModConfigKeys.ENABLE_ROPE_LADDERS, categoryName);
+        configEntry = makeBoolEntry(category, entryBuilder, "enable_rope_ladders", categoryName);
         screenCategory.addEntry(configEntry);
-        configEntry = makeBoolEntry(category, entryBuilder, ModConfigKeys.ENABLE_IRON_LADDERS, categoryName);
+        configEntry = makeBoolEntry(category, entryBuilder, "enable_iron_ladders", categoryName);
         screenCategory.addEntry(configEntry);
         BooleanListEntry enableSmokyQuartzBlocks = makeBoolEntry(category, entryBuilder,
                 "enable_smoky_quartz_blocks", categoryName, true);

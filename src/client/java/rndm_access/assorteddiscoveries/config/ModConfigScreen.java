@@ -38,8 +38,8 @@ public class ModConfigScreen {
      * This way the config can be safely edited without affecting the current loaded config.
      */
     private static Config loadLocalConfig() {
-        Config localConfig = ModConfig.DEFAULT_CONFIG.copy(false);
-        localConfig.loadFromFile(ModConfig.DEFAULT_CONFIG);
+        Config localConfig = ModConfig.CONFIG.copy(false);
+        localConfig.loadFromFile();
         return localConfig;
     }
 

@@ -97,13 +97,13 @@ public class Config {
         return categoryCopy.build();
     }
 
-    public void loadFromFile(Config defaultConfig) {
+    public void loadFromFile() {
         try {
             ConfigDeserializer deserializer = new ConfigDeserializer(AssortedDiscoveries.MOD_ID);
             Config loadedConfig = deserializer.deserialize();
             this.merge(loadedConfig);
 
-            if (shouldMigrate(defaultConfig, loadedConfig)) {
+            if (shouldMigrate(this, loadedConfig)) {
                 this.backupAndSave(this);
             }
         } catch (JsonSyntaxException e) {
@@ -111,7 +111,8 @@ public class Config {
             AssortedDiscoveries.LOGGER.error("Config load error: falling back to default configuration!");
             AssortedDiscoveries.LOGGER.error(errorMessage);
             configError = errorMessage;
-            this.backupAndSave(defaultConfig);
+            // If there is an error loading the file we fall back to the config in memory. Which at this point the default config is this!
+            this.backupAndSave(this);
         }
     }
 

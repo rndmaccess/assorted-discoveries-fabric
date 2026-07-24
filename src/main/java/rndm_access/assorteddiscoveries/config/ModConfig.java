@@ -18,7 +18,6 @@ import java.util.List;
  * If there is a problem loading then the config will use default values.
  */
 public class ModConfig {
-    public static final Config DEFAULT_CONFIG;
     public static final Config CONFIG;
     public static final BooleanConfigEntry ENABLE_PLANTER_BOXES;
     public static final BooleanConfigEntry ENABLE_DYED_CAMPFIRES;
@@ -140,10 +139,10 @@ public class ModConfig {
         Path configPath = FabricLoader.getInstance().getConfigDir().resolve(AssortedDiscoveries.MOD_ID + ".json5");
 
         if (!Files.exists(configPath)) {
-            DEFAULT_CONFIG.create();
+            CONFIG.create();
             return;
         }
-        CONFIG.loadFromFile(DEFAULT_CONFIG);
+        CONFIG.loadFromFile();
     }
 
     static {
@@ -323,8 +322,6 @@ public class ModConfig {
                 .addCategory(foodCategory.build())
                 .addCategory(plantsCategory.build());
         CONFIG = configBuilder.build();
-        // Make an immutable copy so we always have a copy to fall back on if something goes wrong!
-        DEFAULT_CONFIG = CONFIG.copy(true);
         updateFromFile();
     }
 }

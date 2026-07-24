@@ -132,24 +132,21 @@ public class ModConfig {
     public static final BooleanConfigEntry ENABLE_BLOOD_KELP;
     public static final BooleanConfigEntry ENABLE_ENDER_PLANTS;
 
-
-    public static synchronized Config getConfig() {
-        return CONFIG;
-    }
-
     /**
      * Useful for places where you need to make a temporary copy of the config data. One use could be for saving!
      * @return A new config based on the default config with values loaded from the local config file.
      */
-    public static synchronized Config getLocalConfig() {
-        return CONFIG; // TODO: Make this load the temporary config and not modify the existing loaded config!
+    public static Config getLocalConfig() {
+        Config localConfig = DEFAULT_CONFIG.copy();
+        localConfig.loadFromFile(DEFAULT_CONFIG); // Make a temporary copy of the config object based on the local config file!
+        return localConfig;
     }
 
-    public static synchronized void updateFromList(List<JsonConfigCategory> configList) {
+    public static void updateFromList(List<JsonConfigCategory> configList) {
         CONFIG.loadFromList(configList);
     }
 
-    public static synchronized void updateFromFile() {
+    public static void updateFromFile() {
         Path configPath = FabricLoader.getInstance().getConfigDir().resolve(AssortedDiscoveries.MOD_ID + ".json5");
 
         if (!Files.exists(configPath)) {

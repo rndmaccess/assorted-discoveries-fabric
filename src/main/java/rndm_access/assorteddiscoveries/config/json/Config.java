@@ -62,6 +62,38 @@ public class Config {
         }
     }
 
+    public Config copy() {
+        Builder configCopybuilder = new Builder(this.name);
+
+        for (ConfigObject configObject : this.getObjects()) {
+            if (configObject.isComment()) {
+                configCopybuilder.addComment(new CommentConfigEntry(configObject.getKey()));
+                continue;
+            }
+
+            if (configObject instanceof JsonConfigCategory category) {
+                JsonConfigCategory categoryCopy = makeCategoryCopy(category);
+                configCopybuilder.addCategory(categoryCopy);
+            }
+        }
+        return configCopybuilder.build();
+    }
+
+    private JsonConfigCategory makeCategoryCopy(JsonConfigCategory origCategory) {
+        JsonConfigCategory.Builder categoryCopy = new JsonConfigCategory.Builder(origCategory.getKey());
+
+        for (ConfigObject entryObject : origCategory.getConfigObjects()) {
+            if (entryObject.isComment()) {
+                categoryCopy.addComment(new CommentConfigEntry(entryObject.getKey()));
+                continue;
+            }
+            if (entryObject instanceof BooleanConfigEntry entry) {
+                categoryCopy.addEntry(new BooleanConfigEntry(entry.getKey(), entry.getValue()));
+            }
+        }
+        return categoryCopy.build();
+    }
+
     public void loadFromFile(Config defaultConfig) {
         try {
             ConfigDeserializer deserializer = new ConfigDeserializer(AssortedDiscoveries.MOD_ID);

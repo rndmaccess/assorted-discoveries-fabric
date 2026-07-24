@@ -323,7 +323,8 @@ public class ModConfig {
                 .addCategory(foodCategory.build())
                 .addCategory(plantsCategory.build());
         CONFIG = configBuilder.build();
-        DEFAULT_CONFIG = configBuilder.build();
-        updateFromFile(); // After making the default config load what's in the config file!
+        // Make an immutable copy so we always have a copy to fall back on if something goes wrong!
+        DEFAULT_CONFIG = CONFIG.copy(true);
+        updateFromFile();
     }
 }

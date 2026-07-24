@@ -65,7 +65,7 @@ public class Config {
     /**
      * @return A deep copy of the config this method is called on.
      */
-    public Config copy() {
+    public Config copy(boolean isImmutable) {
         Builder configCopybuilder = new Builder(this.name);
 
         for (ConfigObject configObject : this.getObjects()) {
@@ -75,14 +75,14 @@ public class Config {
             }
 
             if (configObject instanceof JsonConfigCategory category) {
-                JsonConfigCategory categoryCopy = makeCategoryCopy(category);
+                JsonConfigCategory categoryCopy = makeCategoryCopy(category, isImmutable);
                 configCopybuilder.addCategory(categoryCopy);
             }
         }
         return configCopybuilder.build();
     }
 
-    private JsonConfigCategory makeCategoryCopy(JsonConfigCategory origCategory) {
+    private JsonConfigCategory makeCategoryCopy(JsonConfigCategory origCategory, boolean isImmutable) {
         JsonConfigCategory.Builder categoryCopy = new JsonConfigCategory.Builder(origCategory.getKey());
 
         for (ConfigObject entryObject : origCategory.getConfigObjects()) {
@@ -91,7 +91,7 @@ public class Config {
                 continue;
             }
             if (entryObject instanceof BooleanConfigEntry entry) {
-                categoryCopy.addEntry(new BooleanConfigEntry(entry.getKey(), entry.getValue()));
+                categoryCopy.addEntry(new BooleanConfigEntry(entry.getKey(), entry.getValue(), isImmutable));
             }
         }
         return categoryCopy.build();

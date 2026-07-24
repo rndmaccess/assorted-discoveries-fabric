@@ -32,7 +32,7 @@ public record BooleanEntriesS2CPayload(List<JsonConfigCategory> configList) impl
                 for (int j = 0; j < categorySize; j++) {
                     String key = ((FriendlyByteBuf) byteBuf).readUtf();
                     boolean bool = byteBuf.readBoolean();
-                    categoryBuilder.addEntry(new BooleanConfigEntry(key, bool));
+                    categoryBuilder.addEntry(new BooleanConfigEntry(key, bool, false));
                 }
                 list.add(categoryBuilder.build());
             }

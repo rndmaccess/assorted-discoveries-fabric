@@ -62,6 +62,9 @@ public class Config {
         }
     }
 
+    /**
+     * @return A deep copy of the config this method is called on.
+     */
     public Config copy() {
         Builder configCopybuilder = new Builder(this.name);
 

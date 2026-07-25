@@ -88,9 +88,7 @@ public class Config {
         for (ConfigObject entryObject : origCategory.getConfigObjects()) {
             if (entryObject.isComment()) {
                 categoryCopy.addComment(new CommentConfigEntry(entryObject.getKey()));
-                continue;
-            }
-            if (entryObject instanceof BooleanConfigEntry entry) {
+            } else if (entryObject instanceof BooleanConfigEntry entry) {
                 categoryCopy.addEntry(new BooleanConfigEntry(entry.getKey(), entry.getValue(), entry.getDefaultValue()));
             }
         }

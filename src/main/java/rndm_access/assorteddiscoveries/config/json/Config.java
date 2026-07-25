@@ -119,24 +119,22 @@ public class Config {
     public void loadIntoMemory(Config loadedConfig) {
         for (JsonConfigCategory category : this.getCategories()) {
             JsonConfigCategory loadedCategory = loadedConfig.getCategory(category.getKey());
-            if (loadedCategory == null) {
-                for (ConfigObject object : category.getConfigObjects()) {
-                    if (object instanceof BooleanConfigEntry configEntry) {
-                        configEntry.setValue(configEntry.getDefaultValue());
-                    }
-                }
-                continue;
-            }
+            this.loadEntriesIntoMemory(loadedCategory, category);
+        }
+    }
 
-            for (ConfigObject object : category.getConfigObjects()) {
-                if (object instanceof BooleanConfigEntry configEntry) {
-                    BooleanConfigEntry entry = (BooleanConfigEntry) loadedCategory.getEntry(configEntry.getKey());
+    private void loadEntriesIntoMemory(JsonConfigCategory loadedCategory, JsonConfigCategory category) {
+        for (ConfigObject object : category.getConfigObjects()) {
+            if (object instanceof BooleanConfigEntry configEntry) {
+                BooleanConfigEntry entry = (loadedCategory != null)
+                        ? (BooleanConfigEntry) loadedCategory.getEntry(configEntry.getKey())
+                        : null;
 
-                    if (entry != null) {
-                        configEntry.setValue(entry.getValue());
-                    } else {
-                        configEntry.setValue(configEntry.getDefaultValue());
-                    }
+                if (entry != null) {
+                    configEntry.setValue(entry.getValue());
+                } else {
+                    // If there is an entry or category missing from the config file. We reset it to its default.
+                    configEntry.setValue(configEntry.getDefaultValue());
                 }
             }
         }

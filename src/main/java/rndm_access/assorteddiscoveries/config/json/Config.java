@@ -65,7 +65,7 @@ public class Config {
     /**
      * @return A deep copy of the config this method is called on.
      */
-    public Config copy(boolean isImmutable) {
+    public Config copy() {
         Builder configCopybuilder = new Builder(this.name);
 
         for (ConfigObject configObject : this.getObjects()) {
@@ -75,14 +75,14 @@ public class Config {
             }
 
             if (configObject instanceof JsonConfigCategory category) {
-                JsonConfigCategory categoryCopy = makeCategoryCopy(category, isImmutable);
+                JsonConfigCategory categoryCopy = makeCategoryCopy(category);
                 configCopybuilder.addCategory(categoryCopy);
             }
         }
         return configCopybuilder.build();
     }
 
-    private JsonConfigCategory makeCategoryCopy(JsonConfigCategory origCategory, boolean isImmutable) {
+    private JsonConfigCategory makeCategoryCopy(JsonConfigCategory origCategory) {
         JsonConfigCategory.Builder categoryCopy = new JsonConfigCategory.Builder(origCategory.getKey());
 
         for (ConfigObject entryObject : origCategory.getConfigObjects()) {
@@ -91,7 +91,7 @@ public class Config {
                 continue;
             }
             if (entryObject instanceof BooleanConfigEntry entry) {
-                categoryCopy.addEntry(new BooleanConfigEntry(entry.getKey(), entry.getValue(), isImmutable));
+                categoryCopy.addEntry(new BooleanConfigEntry(entry.getKey(), entry.getValue(), entry.getDefaultValue()));
             }
         }
         return categoryCopy.build();
@@ -101,7 +101,7 @@ public class Config {
         try {
             ConfigDeserializer deserializer = new ConfigDeserializer(AssortedDiscoveries.MOD_ID);
             Config loadedConfig = deserializer.deserialize();
-            this.merge(loadedConfig);
+            this.loadIntoMemory(loadedConfig);
 
             if (shouldMigrate(this, loadedConfig)) {
                 this.backupAndSave(this);
@@ -113,6 +113,32 @@ public class Config {
             configError = errorMessage;
             // If there is an error loading the file we fall back to the config in memory. Which at this point the default config is this!
             this.backupAndSave(this);
+        }
+    }
+
+    public void loadIntoMemory(Config loadedConfig) {
+        for (JsonConfigCategory category : this.getCategories()) {
+            JsonConfigCategory loadedCategory = loadedConfig.getCategory(category.getKey());
+            if (loadedCategory == null) {
+                for (ConfigObject object : category.getConfigObjects()) {
+                    if (object instanceof BooleanConfigEntry configEntry) {
+                        configEntry.setValue(configEntry.getDefaultValue());
+                    }
+                }
+                continue;
+            }
+
+            for (ConfigObject object : category.getConfigObjects()) {
+                if (object instanceof BooleanConfigEntry configEntry) {
+                    BooleanConfigEntry entry = (BooleanConfigEntry) loadedCategory.getEntry(configEntry.getKey());
+
+                    if (entry != null) {
+                        configEntry.setValue(entry.getValue());
+                    } else {
+                        configEntry.setValue(configEntry.getDefaultValue());
+                    }
+                }
+            }
         }
     }
 
@@ -251,25 +277,6 @@ public class Config {
         if (Files.exists(path)) {
             ConfigSerializer serializer = new ConfigSerializer(this, path);
             serializer.serialize(entryChangeList);
-        }
-    }
-
-    public void merge(Config loadedConfig) {
-        for (JsonConfigCategory category : this.getCategories()) {
-            JsonConfigCategory loadedCategory = loadedConfig.getCategory(category.getKey());
-            if (loadedCategory == null) {
-                continue;
-            }
-
-            for (ConfigObject object : category.getConfigObjects()) {
-                if (object instanceof BooleanConfigEntry configEntry) {
-                    BooleanConfigEntry entry = (BooleanConfigEntry) loadedCategory.getEntry(configEntry.getKey());
-
-                    if (entry != null) {
-                        configEntry.setValue(entry.getValue());
-                    }
-                }
-            }
         }
     }
 

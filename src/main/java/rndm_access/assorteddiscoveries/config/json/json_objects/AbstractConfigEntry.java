@@ -1,25 +1,30 @@
 package rndm_access.assorteddiscoveries.config.json.json_objects;
 
-import rndm_access.assorteddiscoveries.config.json.exceptions.JsonConfigException;
-
 public abstract class AbstractConfigEntry<T> extends ConfigObject {
-    private final boolean isImmutable;
     private T value;
+    private final T defaultValue;
 
-    public AbstractConfigEntry(String key, T value, boolean isImmutable) {
+    public AbstractConfigEntry(String key, T defaultValue) {
+        super(key);
+        this.value = defaultValue;
+        this.defaultValue = defaultValue;
+    }
+
+    public AbstractConfigEntry(String key, T value, T defaultValue) {
         super(key);
         this.value = value;
-        this.isImmutable = isImmutable;
+        this.defaultValue = defaultValue;
     }
 
     public T getValue() {
         return value;
     }
 
+    public T getDefaultValue() {
+        return defaultValue;
+    }
+
     public void setValue(T value) {
-        if (isImmutable) {
-            throw new JsonConfigException("Cannot edit the default config!");
-        }
         this.value = value;
     }
 }

@@ -135,7 +135,7 @@ public class ConfigDeserializer {
                 String value = parseValue(iter);
 
                 if (value.equals("true") || value.equals("false")) {
-                    category.addEntry(new BooleanConfigEntry(key, Boolean.parseBoolean(value), false));
+                    category.addEntry(new BooleanConfigEntry(key, Boolean.parseBoolean(value)));
                 } else {
                     invalidTypeNum += 1;
                 }

@@ -71,10 +71,7 @@ public class Config {
         for (ConfigObject configObject : this.getObjects()) {
             if (configObject.isComment()) {
                 configCopybuilder.addComment(new CommentConfigEntry(configObject.getKey()));
-                continue;
-            }
-
-            if (configObject instanceof JsonConfigCategory category) {
+            } else if (configObject instanceof JsonConfigCategory category) {
                 JsonConfigCategory categoryCopy = makeCategoryCopy(category);
                 configCopybuilder.addCategory(categoryCopy);
             }

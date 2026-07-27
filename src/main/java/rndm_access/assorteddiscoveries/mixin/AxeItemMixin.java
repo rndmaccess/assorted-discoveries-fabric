@@ -2,6 +2,7 @@ package rndm_access.assorteddiscoveries.mixin;
 
 import com.google.common.collect.ImmutableMap;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -44,9 +45,15 @@ public abstract class AxeItemMixin {
         Player player = context.getPlayer();
         BlockState state = world.getBlockState(pos);
         Block block = state.getBlock();
+        ItemStack stack = context.getItemInHand();
 
         if (STRIPPABLE_WALLS.containsKey(block) && block instanceof WallBlock) {
             world.playSound(player, pos, SoundEvents.AXE_STRIP, SoundSource.BLOCKS, 1.0F, 1.0F);
+
+            if (player != null) {
+                stack.hurtAndBreak(1, player, context.getHand());
+            }
+
             world.setBlockAndUpdate(pos, STRIPPABLE_WALLS.get(block).defaultBlockState()
                     .setValue(WallBlock.NORTH, state.getValue(WallBlock.NORTH))
                     .setValue(WallBlock.SOUTH, state.getValue(WallBlock.SOUTH))

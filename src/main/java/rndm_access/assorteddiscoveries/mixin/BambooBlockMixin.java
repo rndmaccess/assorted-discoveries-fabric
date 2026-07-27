@@ -8,19 +8,22 @@ import net.minecraft.world.level.block.BambooStalkBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.SlabType;
-import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import rndm_access.assorteddiscoveries.block.DirtSlabBlock;
+import rndm_access.assorteddiscoveries.block.GrassSlabBlock;
+import rndm_access.assorteddiscoveries.block.SnowySlabBlock;
 
 @Mixin(BambooStalkBlock.class)
 public abstract class BambooBlockMixin {
-    @ModifyReturnValue(method = "getStateForPlacement", at = @At("RETURN"))
-    private BlockState getStateForPlacement(BlockState original, @NotNull BlockPlaceContext context) {
-        if(isSlabBottom(context.getLevel(), context.getClickedPos())) {
-            return null;
+    @Inject(method = "getStateForPlacement", at = @At("HEAD"), cancellable = true)
+    private void cancelPlacementOnSlabs(BlockPlaceContext context, CallbackInfoReturnable<BlockState> cir) {
+        if (isSlabBottom(context.getLevel(), context.getClickedPos())) {
+            cir.setReturnValue(null);
         }
-        return original;
     }
 
     @ModifyReturnValue(method = "canSurvive", at = @At("RETURN"))
@@ -34,6 +37,10 @@ public abstract class BambooBlockMixin {
     @Unique
     private static boolean isSlabBottom(LevelReader world, BlockPos pos) {
         BlockState soil = world.getBlockState(pos.below());
-        return soil.getBlock() instanceof SlabBlock && soil.getValue(SlabBlock.TYPE).equals(SlabType.BOTTOM);
+        return (soil.getBlock() instanceof DirtSlabBlock
+                || soil.getBlock() instanceof GrassSlabBlock
+                || soil.getBlock() instanceof SnowySlabBlock)
+                && soil.hasProperty(SlabBlock.TYPE)
+                && soil.getValue(SlabBlock.TYPE) == SlabType.BOTTOM;
     }
 }

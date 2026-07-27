@@ -14,13 +14,9 @@ public abstract class LivingEntityMixin {
                                    DamageSource damageSource) {
         boolean isRabbit = ((EntityAccessor) this).getType().equals(EntityTypes.RABBIT);
 
-        // This lets rabbits fall 5 blocks before they take damage.
-        if(isRabbit) {
-            boolean isInRange = (Math.max(fallDistance - 4.0F, 0.0F)) == 0.0F;
-
-            if(isInRange) {
-                return false;
-            }
+        // This lets rabbits fall 6 blocks before they take damage.
+        if(isRabbit && fallDistance <= 6.0) {
+            return false;
         }
         return original;
     }

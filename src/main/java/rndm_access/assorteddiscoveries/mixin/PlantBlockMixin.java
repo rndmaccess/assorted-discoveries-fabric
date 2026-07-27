@@ -8,15 +8,28 @@ import net.minecraft.world.level.block.VegetationBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.SlabType;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
+import rndm_access.assorteddiscoveries.block.DirtSlabBlock;
+import rndm_access.assorteddiscoveries.block.GrassSlabBlock;
+import rndm_access.assorteddiscoveries.block.SnowySlabBlock;
 
 @Mixin(VegetationBlock.class)
 public abstract class PlantBlockMixin {
     @ModifyReturnValue(method = "mayPlaceOn", at = @At("RETURN"))
     private boolean mayPlaceOn(boolean original, BlockState state, BlockGetter level, BlockPos pos) {
-        if(state.getBlock() instanceof SlabBlock && state.getValue(SlabBlock.TYPE).equals(SlabType.BOTTOM)) {
+        if(isSlabBottom(state)) {
             return false;
         }
         return original;
+    }
+
+    @Unique
+    private static boolean isSlabBottom(BlockState soil) {
+        return (soil.getBlock() instanceof DirtSlabBlock
+                || soil.getBlock() instanceof GrassSlabBlock
+                || soil.getBlock() instanceof SnowySlabBlock)
+                && soil.hasProperty(SlabBlock.TYPE)
+                && soil.getValue(SlabBlock.TYPE) == SlabType.BOTTOM;
     }
 }

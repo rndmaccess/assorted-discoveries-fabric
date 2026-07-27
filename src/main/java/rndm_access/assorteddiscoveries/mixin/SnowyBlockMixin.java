@@ -8,7 +8,6 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SnowyBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
@@ -33,10 +32,9 @@ public abstract class SnowyBlockMixin {
         Level world = context.getLevel();
         BlockPos neighborPos = context.getClickedPos().above();
         BlockState neighborState = context.getLevel().getBlockState(neighborPos);
-        BlockState placedState = Block.byItem(context.getItemInHand().getItem()).defaultBlockState();
 
         if(this.isSnowSlabOrStairs(world, neighborPos, neighborState)) {
-            return placedState.setValue(SnowyBlock.SNOWY, true);
+            return original.setValue(SnowyBlock.SNOWY, true);
         }
         return original;
     }

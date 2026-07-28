@@ -10,9 +10,7 @@ import net.minecraft.world.level.block.state.properties.SlabType;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
-import rndm_access.assorteddiscoveries.block.DirtSlabBlock;
-import rndm_access.assorteddiscoveries.block.GrassSlabBlock;
-import rndm_access.assorteddiscoveries.block.SnowySlabBlock;
+import rndm_access.assorteddiscoveries.core.ModBlockTags;
 
 @Mixin(VegetationBlock.class)
 public abstract class PlantBlockMixin {
@@ -26,9 +24,7 @@ public abstract class PlantBlockMixin {
 
     @Unique
     private static boolean isSlabBottom(BlockState soil) {
-        return (soil.getBlock() instanceof DirtSlabBlock
-                || soil.getBlock() instanceof GrassSlabBlock
-                || soil.getBlock() instanceof SnowySlabBlock)
+        return soil.is(ModBlockTags.SOIL_SLABS)
                 && soil.hasProperty(SlabBlock.TYPE)
                 && soil.getValue(SlabBlock.TYPE) == SlabType.BOTTOM;
     }

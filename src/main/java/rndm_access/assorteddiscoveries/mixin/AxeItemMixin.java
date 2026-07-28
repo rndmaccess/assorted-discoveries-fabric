@@ -40,6 +40,11 @@ public abstract class AxeItemMixin {
 
     @ModifyReturnValue(method = "useOn", at = @At("RETURN"))
     private InteractionResult useOn(InteractionResult original, UseOnContext context) {
+        // If another mod already handled the behavior then this fixes the edge case.
+        if (original.consumesAction()) {
+            return original;
+        }
+
         Level world = context.getLevel();
         BlockPos pos = context.getClickedPos();
         Player player = context.getPlayer();

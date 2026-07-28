@@ -22,7 +22,7 @@ public abstract class SnowyBlockMixin {
                                                  ScheduledTickAccess ticks, BlockPos pos, Direction directionToNeighbour,
                                                  BlockPos neighbourPos, BlockState neighbourState, RandomSource random) {
         if(directionToNeighbour == Direction.UP && this.isSnowSlabOrStairs(level, neighbourPos, neighbourState)) {
-            return state.setValue(SnowyBlock.SNOWY, true);
+            return original.setValue(SnowyBlock.SNOWY, true);
         }
         return original;
     }

@@ -24,7 +24,7 @@ public abstract class BoneMealItemMixin {
 
     @ModifyReturnValue(method = "useOn", at = @At("RETURN"))
     private InteractionResult useOn(InteractionResult original, UseOnContext context) {
-        if (original.consumesAction()) {
+        if (!ModConfig.ENABLE_ENDER_PLANTS.getValue() || original.consumesAction()) {
             return original;
         }
 
@@ -33,10 +33,6 @@ public abstract class BoneMealItemMixin {
         boolean isBoneMealable = level.getBlockState(soilPos).is(ModBlockTags.END_BONE_MEALABLE_BLOCKS);
         BlockPos centerPos = soilPos.above();
         boolean isEmptyAbove = level.getBlockState(centerPos).isAir();
-
-        if (!ModConfig.ENABLE_ENDER_PLANTS.getValue()) {
-            return original;
-        }
 
         // Grow snapdragons and ender grass on blocks in the END_BONE_MEALABLE_BLOCKS when using bone meal.
         if (isBoneMealable && !level.isOutsideBuildHeight(centerPos) && isEmptyAbove) {
@@ -55,7 +51,7 @@ public abstract class BoneMealItemMixin {
                 boneMealStack.causeUseVibration(player, GameEvent.ITEM_INTERACT_FINISH);
             }
 
-            if (player == null || !player.isCreative()) {
+            if (player == null || !player.getAbilities().instabuild) {
                 boneMealStack.shrink(1);
             }
             EndBoneMealHelper.growEnderPlants(level, centerPos);

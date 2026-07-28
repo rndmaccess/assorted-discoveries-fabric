@@ -13,9 +13,7 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import rndm_access.assorteddiscoveries.block.DirtSlabBlock;
-import rndm_access.assorteddiscoveries.block.GrassSlabBlock;
-import rndm_access.assorteddiscoveries.block.SnowySlabBlock;
+import rndm_access.assorteddiscoveries.core.ModBlockTags;
 
 @Mixin(BambooStalkBlock.class)
 public abstract class BambooBlockMixin {
@@ -37,9 +35,7 @@ public abstract class BambooBlockMixin {
     @Unique
     private static boolean isSlabBottom(LevelReader world, BlockPos pos) {
         BlockState soil = world.getBlockState(pos.below());
-        return (soil.getBlock() instanceof DirtSlabBlock
-                || soil.getBlock() instanceof GrassSlabBlock
-                || soil.getBlock() instanceof SnowySlabBlock)
+        return soil.is(ModBlockTags.SOIL_SLABS)
                 && soil.hasProperty(SlabBlock.TYPE)
                 && soil.getValue(SlabBlock.TYPE) == SlabType.BOTTOM;
     }

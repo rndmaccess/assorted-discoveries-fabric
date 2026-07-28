@@ -44,7 +44,7 @@ public class DirtSlabBlock extends SlabBlock implements BonemealableBlock {
 
         world.setBlock(pos, result.defaultBlockState().setValue(TYPE, state.getValue(TYPE))
                 .setValue(WATERLOGGED, state.getValue(WATERLOGGED))
-                .setValue(SnowySlabBlock.SNOWY, SnowySlabBlock.isSnow(world, state, neighborPos, neighborState)), 3);
+                .setValue(SnowySlabBlock.SNOWY, SnowySlabBlock.isSnowCovered(world, neighborPos, state, neighborState)), 3);
     }
 
     private Block getSlabResult(ServerLevel world, BlockPos originPos) {

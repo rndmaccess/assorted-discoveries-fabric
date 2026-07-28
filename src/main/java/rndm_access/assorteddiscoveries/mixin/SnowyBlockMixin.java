@@ -10,9 +10,11 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.SnowyBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.SlabType;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
+import rndm_access.assorteddiscoveries.block.SnowySlabBlock;
 import rndm_access.assorteddiscoveries.core.ModBlockTags;
 
 @Mixin(SnowyBlock.class)
@@ -21,7 +23,7 @@ public abstract class SnowyBlockMixin {
     private BlockState getStateForNeighborUpdate(BlockState original, BlockState state, LevelReader level,
                                                  ScheduledTickAccess ticks, BlockPos pos, Direction directionToNeighbour,
                                                  BlockPos neighbourPos, BlockState neighbourState, RandomSource random) {
-        if(directionToNeighbour == Direction.UP && this.isSnowSlabOrStairs(level, neighbourPos, neighbourState)) {
+        if(directionToNeighbour == Direction.UP && isSnowCovered(level, neighbourPos, neighbourState)) {
             return original.setValue(SnowyBlock.SNOWY, true);
         }
         return original;
@@ -33,16 +35,26 @@ public abstract class SnowyBlockMixin {
         BlockPos neighborPos = context.getClickedPos().above();
         BlockState neighborState = context.getLevel().getBlockState(neighborPos);
 
-        if(this.isSnowSlabOrStairs(world, neighborPos, neighborState)) {
+        if(isSnowCovered(world, neighborPos, neighborState)) {
             return original.setValue(SnowyBlock.SNOWY, true);
         }
         return original;
     }
 
     @Unique
-    private boolean isSnowSlabOrStairs(LevelReader world, BlockPos pos, BlockState state) {
-        boolean isCovered = state.isFaceSturdy(world, pos, Direction.DOWN);
-        return (state.is(ModBlockTags.SNOW_STAIRS) && isCovered)
-                || (state.is(ModBlockTags.SNOW_SLABS) && isCovered);
+    private static boolean isSnowCovered(LevelReader world, BlockPos neighborPos, BlockState neighborState) {
+        boolean isSnowyStairs = neighborState.is(ModBlockTags.SNOW_STAIRS)
+                && isCovered(world, neighborPos, neighborState);
+        boolean isSnowySlab = neighborState.is(ModBlockTags.SNOW_SLABS)
+                && neighborState.hasProperty(SnowySlabBlock.TYPE)
+                && neighborState.getValue(SnowySlabBlock.TYPE) != SlabType.TOP
+                && isCovered(world, neighborPos, neighborState);
+
+        return isSnowyStairs || isSnowySlab;
+    }
+
+    @Unique
+    private static boolean isCovered(LevelReader world, BlockPos neighborPos, BlockState neighborState) {
+        return neighborState.isFaceSturdy(world, neighborPos, Direction.DOWN);
     }
 }

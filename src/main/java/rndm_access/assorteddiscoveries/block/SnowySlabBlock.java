@@ -1,6 +1,7 @@
 package rndm_access.assorteddiscoveries.block;
 
 import com.mojang.serialization.MapCodec;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -41,7 +42,12 @@ public class SnowySlabBlock extends SlabBlock {
                                               @NonNull ScheduledTickAccess tickView, @NonNull BlockPos pos,
                                               @NonNull Direction direction, @NonNull BlockPos neighborPos,
                                               @NonNull BlockState neighborState, @NonNull RandomSource random) {
-        return direction == Direction.UP ? state.setValue(SNOWY, isSnow(world, state, neighborPos, neighborState)) : state;
+        if (direction == Direction.UP) {
+            boolean isSnowy = isSnowCovered(world, neighborPos, state, neighborState);
+            return state.setValue(SNOWY, isSnowy);
+        } else {
+            return state;
+        }
     }
 
     @Override
@@ -51,37 +57,38 @@ public class SnowySlabBlock extends SlabBlock {
         BlockState neighborState = world.getBlockState(neighborPos);
         BlockState state = super.getStateForPlacement(ctx);
 
-        return state != null ? state.setValue(SNOWY, isSnow(world, state, neighborPos, neighborState)) : null;
+        return state != null ? state.setValue(SNOWY, isSnowCovered(world, neighborPos, state, neighborState)) : null;
     }
 
     public static boolean canGrowGrass(BlockState state, LevelReader world, BlockPos pos) {
         BlockPos neighborPos = pos.above();
         BlockState neighborState = world.getBlockState(neighborPos);
 
-        if (isSnow(world, state, neighborPos, neighborState)) {
+        if (isSnowCovered(world, neighborPos, state, neighborState)) {
             return true;
         } else if (neighborState.getFluidState().getAmount() == 8 || state.getValue(WATERLOGGED)) {
             return false;
         } else {
-            return !isCovered(world, neighborPos, neighborState) || isBottom(state) || !neighborState.canOcclude();
+            return !isCovered(world, neighborPos, neighborState) || !neighborState.canOcclude();// || isBottom(state);
         }
     }
 
-    public static boolean isSnow(LevelReader world, BlockState state, BlockPos neighborPos,
-                                  BlockState neighborState) {
-        return (neighborState.is(BlockTags.SNOW) && !isBottom(state)) ||
-                (neighborState.is(ModBlockTags.SNOW_STAIRS) && !isBottom(state) &&
-                        isCovered(world, neighborPos, neighborState)) ||
-                (neighborState.is(ModBlockTags.SNOW_SLABS) && !isBottom(state) &&
-                        isCovered(world, neighborPos, neighborState));
+    public static boolean isSnowCovered(LevelReader world, BlockPos neighborPos, BlockState state, BlockState neighborState) {
+        boolean isSnowBlock = neighborState.is(BlockTags.SNOW);
+        boolean isSnowyStairs = neighborState.is(ModBlockTags.SNOW_STAIRS)
+                && isCovered(world, neighborPos, neighborState);
+        boolean isSnowySlab = neighborState.is(ModBlockTags.SNOW_SLABS)
+                && state.hasProperty(TYPE)
+                && !state.getValue(TYPE).equals(SlabType.BOTTOM)
+                && neighborState.hasProperty(TYPE)
+                && !neighborState.getValue(TYPE).equals(SlabType.TOP)
+                && isCovered(world, neighborPos, neighborState);
+
+        return isSnowBlock || isSnowyStairs || isSnowySlab;
     }
 
     private static boolean isCovered(LevelReader world, BlockPos neighborPos, BlockState neighborState) {
         return neighborState.isFaceSturdy(world, neighborPos, Direction.DOWN);
-    }
-
-    protected static boolean isBottom(BlockState state) {
-        return state.getValue(TYPE).equals(SlabType.BOTTOM);
     }
 
     @Override
@@ -91,6 +98,13 @@ public class SnowySlabBlock extends SlabBlock {
             world.setBlockAndUpdate(pos, ModBlocks.DIRT_SLAB.defaultBlockState().setValue(TYPE, state.getValue(TYPE))
                     .setValue(WATERLOGGED, state.getValue(WATERLOGGED)));
         }
+    }
+
+    public static boolean canSupportGrass(BlockState state) {
+        if (FabricLoader.getInstance().isModLoaded("slabbed")) {
+            return true;
+        }
+        return state.hasProperty(TYPE) && state.getValue(TYPE) != SlabType.BOTTOM;
     }
 
     @Override

@@ -8,7 +8,7 @@ import net.minecraft.world.level.Level;
 import rndm_access.assorteddiscoveries.core.ModBlockTags;
 import rndm_access.assorteddiscoveries.core.ModBlocks;
 
-public class EndBoneMealHelper {
+public final class EndBoneMealHelper {
     public static void spawnEndGrowthParticles(final Level level, final BlockPos pos) {
         int count = level.getRandom().nextInt(10);
         ParticleUtils.spawnParticles(level, pos, count * 3, 3.0D, 1.0D,

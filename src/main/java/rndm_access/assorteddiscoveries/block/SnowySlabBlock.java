@@ -78,13 +78,19 @@ public class SnowySlabBlock extends SlabBlock {
         boolean isSnowyStairs = neighborState.is(ModBlockTags.SNOW_STAIRS)
                 && isCovered(world, neighborPos, neighborState);
         boolean isSnowySlab = neighborState.is(ModBlockTags.SNOW_SLABS)
-                && state.hasProperty(TYPE)
-                && !state.getValue(TYPE).equals(SlabType.BOTTOM)
+                && isNotBottom(state)
                 && neighborState.hasProperty(TYPE)
                 && !neighborState.getValue(TYPE).equals(SlabType.TOP)
                 && isCovered(world, neighborPos, neighborState);
 
-        return isSnowBlock || isSnowyStairs || isSnowySlab;
+        if (FabricLoader.getInstance().isModLoaded("slabbed")) {
+            return isSnowBlock || isSnowyStairs || isSnowySlab;
+        }
+        return (isSnowBlock && isNotBottom(state)) || (isSnowyStairs && isNotBottom(state)) || isSnowySlab;
+    }
+
+    private static boolean isNotBottom(BlockState state) {
+        return state.hasProperty(TYPE) && state.getValue(TYPE) != SlabType.BOTTOM;
     }
 
     private static boolean isCovered(LevelReader world, BlockPos neighborPos, BlockState neighborState) {

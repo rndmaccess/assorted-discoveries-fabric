@@ -20,21 +20,21 @@ import rndm_access.assorteddiscoveries.core.ModBlockTags;
 public abstract class BambooBlockMixin {
     @Inject(method = "getStateForPlacement", at = @At("HEAD"), cancellable = true)
     private void cancelPlacementOnSlabs(BlockPlaceContext context, CallbackInfoReturnable<BlockState> cir) {
-        if (canSupportPlant(context.getLevel(), context.getClickedPos())) {
+        if (cannotSupportPlant(context.getLevel(), context.getClickedPos())) {
             cir.setReturnValue(null);
         }
     }
 
     @ModifyReturnValue(method = "canSurvive", at = @At("RETURN"))
     private boolean onCanSurvive(boolean original, BlockState state, LevelReader level, BlockPos pos) {
-        if (canSupportPlant(level, pos)) {
+        if (cannotSupportPlant(level, pos)) {
             return false;
         }
         return original;
     }
 
     @Unique
-    private static boolean canSupportPlant(LevelReader world, BlockPos pos) {
+    private static boolean cannotSupportPlant(LevelReader world, BlockPos pos) {
         BlockState soil = world.getBlockState(pos.below());
         // If slabbed is installed we should allow placing plants on dirt slabs!
         return !FabricLoader.getInstance().isModLoaded("slabbed")

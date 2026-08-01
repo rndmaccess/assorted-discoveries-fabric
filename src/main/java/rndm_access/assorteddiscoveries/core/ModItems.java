@@ -166,23 +166,23 @@ public final class ModItems {
     }
 
     private static Item registerBlockItem(ResourceKey<Item> key, Block standingBlock, Block wallBlock) {
-        final Item blockItem = new StandingAndWallBlockItem(standingBlock, wallBlock,
-                Direction.DOWN, new Item.Properties().setId(key));
+        final Item blockItem = register(new StandingAndWallBlockItem(standingBlock, wallBlock, Direction.DOWN,
+                new Item.Properties().setId(key)), key);
         Item.BY_BLOCK.put(standingBlock, blockItem);
         Item.BY_BLOCK.put(wallBlock, blockItem);
-        return register(blockItem, key);
+        return blockItem;
     }
 
     private static Item registerBlockItem(ResourceKey<Item> key, Block block) {
-        final Item blockItem = new BlockItem(block, new Item.Properties().setId(key));
+        final Item blockItem = register(new BlockItem(block, new Item.Properties().setId(key)), key) ;
         Item.BY_BLOCK.put(block, blockItem);
-        return register(blockItem, key);
+        return blockItem;
     }
 
     private static Item registerBlockItem(ResourceKey<Item> key, Block block, Item.Properties settings) {
-        final Item blockItem = new BlockItem(block, settings);
+        final Item blockItem = register(new BlockItem(block, settings), key);
         Item.BY_BLOCK.put(block, blockItem);
-        return register(blockItem, key);
+        return blockItem;
     }
 
     /**

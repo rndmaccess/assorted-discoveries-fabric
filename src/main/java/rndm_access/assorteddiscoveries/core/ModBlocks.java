@@ -1412,14 +1412,15 @@ public final class ModBlocks {
         return (state) -> state.getValue(BlockStateProperties.LIT) ? 10 : 0;
     }
 
-    private static Block register(Block block, ResourceKey<Block> blockKey, boolean shouldRegisterItem) {
-        if (shouldRegisterItem) {
+    private static Block register(Block block, ResourceKey<Block> blockKey, boolean includeItem) {
+        Block registeredBlock = Registry.register(BuiltInRegistries.BLOCK, blockKey, block);
+        if (includeItem) {
             ResourceKey<Item> itemKey = ResourceKey.create(Registries.ITEM, blockKey.identifier());
-            BlockItem blockItem = new BlockItem(block, new Item.Properties().setId(itemKey));
-            Registry.register(BuiltInRegistries.ITEM, itemKey, blockItem);
-            Item.BY_BLOCK.put(block, blockItem);
+            BlockItem blockItem = Registry.register(BuiltInRegistries.ITEM, itemKey,
+                    new BlockItem(block, new Item.Properties().setId(itemKey)));
+            Item.BY_BLOCK.put(registeredBlock, blockItem);
         }
-        return Registry.register(BuiltInRegistries.BLOCK, blockKey, block);
+        return registeredBlock;
     }
 
     private static Block registerHorsePlushie(ResourceKey<Block> blockKey) {
@@ -1505,12 +1506,13 @@ public final class ModBlocks {
     }
 
     public static Block registerRopeLadder(ResourceKey<Block> blockKey) {
+        Block block = Registry.register(BuiltInRegistries.BLOCK, blockKey,
+                new RopeLadderBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LADDER).setId(blockKey)));
         ResourceKey<Item> itemKey = ResourceKey.create(Registries.ITEM, blockKey.identifier());
-        Block block = new RopeLadderBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LADDER).setId(blockKey));
-        BlockItem blockItem = new RopeLadderBlockItem(block, new Item.Properties().setId(itemKey));
-        Registry.register(BuiltInRegistries.ITEM, itemKey, blockItem);
+        BlockItem blockItem = Registry.register(BuiltInRegistries.ITEM, itemKey,
+                new RopeLadderBlockItem(block, new Item.Properties().setId(itemKey)));
         Item.BY_BLOCK.put(block, blockItem);
-        return Registry.register(BuiltInRegistries.BLOCK, blockKey, block);
+        return block;
     }
 
     private static Block registerTorch(ResourceKey<Block> blockKey, SimpleParticleType particle) {

@@ -11,7 +11,6 @@ import rndm_access.assorteddiscoveries.core.ModBlockTags;
 import java.util.function.BiConsumer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.LevelSimulatedReader;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer;
@@ -27,7 +26,7 @@ public abstract class TrunkPlacerMixin {
     }
 
     @Unique
-    private static boolean isPlanterBox(LevelSimulatedReader world, BlockPos pos) {
+    private static boolean isPlanterBox(WorldGenLevel world, BlockPos pos) {
         return world.isStateAtPosition(pos,
                 (state) -> state.is(ModBlockTags.OVERWORLD_PLANTER_BOXES)
                         || state.is(ModBlockTags.NETHER_PLANTER_BOXES));

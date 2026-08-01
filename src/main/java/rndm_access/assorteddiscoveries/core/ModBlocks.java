@@ -5,7 +5,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
+import net.minecraft.references.BlockItemId;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.effect.MobEffects;
@@ -327,8 +327,8 @@ public final class ModBlocks {
     public static final Block RED_WALL_TORCH = registerWallTorch(ModBlockIds.RED_WALL_TORCH_KEY, RED_TORCH, ModParticleTypes.RED_FLAME);
     public static final Block BLACK_WALL_TORCH = registerWallTorch(ModBlockIds.BLACK_WALL_TORCH_KEY, BLACK_TORCH, ModParticleTypes.BLACK_FLAME);
     public static final Block WITCHS_CRADLE
-            = register(ModBlockIds.WITCHS_CRADLE_KEY, WitchsCradleBlock::new, BlockBehaviour.Properties
-            .ofFullCopy(Blocks.SWEET_BERRY_BUSH).lightLevel((state) -> 8), false);
+            = registerWithoutItemBlock(ModBlockIds.WITCHS_CRADLE_KEY, WitchsCradleBlock::new, BlockBehaviour.Properties
+            .ofFullCopy(Blocks.SWEET_BERRY_BUSH).lightLevel((state) -> 8));
     public static final Block BAUXITE = register(ModBlockIds.BAUXITE_KEY, Block::new, makeBauxiteSettings());
     public static final Block BAUXITE_SLAB = registerSlab(ModBlockIds.BAUXITE_SLAB_KEY, makeBauxiteSettings());
     public static final Block BAUXITE_STAIRS
@@ -587,11 +587,11 @@ public final class ModBlocks {
     public static final Block CHISELED_DRIPSTONE_BRICKS
             = register(ModBlockIds.CHISELED_DRIPSTONE_BRICKS_KEY, Block::new, makeDripstoneSettings());
     public static final Block BLOOD_KELP
-            = register(ModBlockIds.BLOOD_KELP_KEY, BloodKelpBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.KELP)
-            .lightLevel(getLuminanceFromState()), false);
+            = registerWithoutItemBlock(ModBlockIds.BLOOD_KELP_KEY, BloodKelpBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.KELP)
+            .lightLevel(getLuminanceFromState()));
     public static final Block BLOOD_KELP_PLANT
-            = register(ModBlockIds.BLOOD_KELP_PLANT_KEY, BloodKelpPlantBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.KELP_PLANT)
-            .lightLevel(getLuminanceFromState()), false);
+            = registerWithoutItemBlock(ModBlockIds.BLOOD_KELP_PLANT_KEY, BloodKelpPlantBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.KELP_PLANT)
+            .lightLevel(getLuminanceFromState()));
     public static final Block DRIED_BLOOD_KELP_BLOCK
             = register(ModBlockIds.DRIED_BLOOD_KELP_BLOCK_KEY, Block::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.DRIED_KELP_BLOCK));
@@ -603,13 +603,13 @@ public final class ModBlocks {
             .mapColor(MapColor.PLANT).instabreak().noCollision().sound(SoundType.SPORE_BLOSSOM)
             .pushReaction(PushReaction.DESTROY).lightLevel((state) -> 5));
     public static final Block CINDERSNAP_BERRY_BUSH
-            = register(ModBlockIds.CINDERSNAP_BERRY_BUSH_KEY, CindersnapBerryBushBlock::new, BlockBehaviour.Properties.of().mapColor(MapColor.CRIMSON_HYPHAE)
+            = registerWithoutItemBlock(ModBlockIds.CINDERSNAP_BERRY_BUSH_KEY, CindersnapBerryBushBlock::new, BlockBehaviour.Properties.of().mapColor(MapColor.CRIMSON_HYPHAE)
             .randomTicks().noCollision().sound(SoundType.NETHER_SPROUTS).pushReaction(PushReaction.DESTROY)
-            .lightLevel((state) -> 8), false);
+            .lightLevel((state) -> 8));
     public static final Block FROSTBITE_BERRY_BUSH
-            = register(ModBlockIds.FROSTBITE_BERRY_BUSH_KEY, FrostbiteBerryBushBlock::new, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_CYAN)
+            = registerWithoutItemBlock(ModBlockIds.FROSTBITE_BERRY_BUSH_KEY, FrostbiteBerryBushBlock::new, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_CYAN)
             .randomTicks().noCollision().sound(SoundType.NETHER_SPROUTS).pushReaction(PushReaction.DESTROY)
-            .lightLevel((state) -> 5), false);
+            .lightLevel((state) -> 5));
     public static final Block POLISHED_DRIPSTONE
             = register(ModBlockIds.POLISHED_DRIPSTONE_KEY, Block::new, makeDripstoneSettings());
     public static final Block POLISHED_DRIPSTONE_STAIRS = registerStairs(ModBlockIds.POLISHED_DRIPSTONE_STAIRS_KEY,
@@ -641,8 +641,8 @@ public final class ModBlocks {
     public static final Block BAMBOO_PLANTER_BOX = registerPlanterBox(ModBlockIds.BAMBOO_PLANTER_BOX_KEY,
             Blocks.BAMBOO_PLANKS.defaultMapColor(), SoundType.BAMBOO_WOOD);
     public static final Block POTTED_CATTAIL
-            = register(ModBlockIds.POTTED_CATTAIL_KEY, (props) -> new FlowerPotBlock(ModBlocks.CATTAIL, props),
-            BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_RED_MUSHROOM), false);
+            = registerWithoutItemBlock(ModBlockIds.POTTED_CATTAIL_KEY, (props) -> new FlowerPotBlock(ModBlocks.CATTAIL, props),
+            BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_RED_MUSHROOM));
     public static final Block STONE_WALL = registerWall(ModBlockIds.STONE_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.STONE));
     public static final Block QUARTZ_WALL = registerWall(ModBlockIds.QUARTZ_WALL_KEY,
@@ -701,111 +701,110 @@ public final class ModBlocks {
         return (state) -> state.getValue(BlockStateProperties.LIT) ? 10 : 0;
     }
 
-    public static Block registerCandleCake(final ResourceKey<Block> id, final Function<BlockBehaviour.Properties, Block> factory, final BlockBehaviour.Properties properties) {
-        Block block = factory.apply(properties.setId(id));
-        return Registry.register(BuiltInRegistries.BLOCK, id, block);
+    public static Block registerCandleCake(final BlockItemId id, final Function<BlockBehaviour.Properties, Block> factory, final BlockBehaviour.Properties properties) {
+        Block block = factory.apply(properties.setId(id.block()));
+        return Registry.register(BuiltInRegistries.BLOCK, id.block(), block);
     }
 
-    public static Block register(final ResourceKey<Block> id, final Function<BlockBehaviour.Properties, Block> factory, final BlockBehaviour.Properties properties) {
-        return register(id, factory, properties, true);
+    public static Block registerRopeLadder(BlockItemId id) {
+        Block block = Registry.register(BuiltInRegistries.BLOCK, id.block(),
+                new RopeLadderBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LADDER).setId(id.block())));
+        Item blockItem = Registry.register(BuiltInRegistries.ITEM, id.item(),
+                new RopeLadderBlockItem(block, new Item.Properties().useBlockDescriptionPrefix().setId(id.item())));
+        // Add our block item and block to this map so we can retrieve our block item from its block!
+        Item.BY_BLOCK.put(block, blockItem);
+        return block;
     }
 
-    public static Block register(final ResourceKey<Block> id, final Function<BlockBehaviour.Properties, Block> factory, final BlockBehaviour.Properties properties, boolean includeItem) {
-        Block block = factory.apply(properties.setId(id));
-
-        if (includeItem) {
-            ResourceKey<Item> itemKey = ResourceKey.create(Registries.ITEM, id.identifier());
-            BlockItem blockItem = new BlockItem(block, new Item.Properties().setId(itemKey));
-            Registry.register(BuiltInRegistries.ITEM, itemKey, blockItem);
-            Item.BY_BLOCK.put(block, blockItem);
-        }
-        return Registry.register(BuiltInRegistries.BLOCK, id, block);
+    public static Block register(final BlockItemId id, final Function<BlockBehaviour.Properties, Block> factory, final BlockBehaviour.Properties properties) {
+        Block block = Registry.register(BuiltInRegistries.BLOCK, id.block(),
+                factory.apply(properties.setId(id.block())));
+        BlockItem blockItem = Registry.register(BuiltInRegistries.ITEM, id.item(),
+                new BlockItem(block, new Item.Properties().useBlockDescriptionPrefix().setId(id.item())));
+        // Add our block item and block to this map so we can retrieve our block item from its block!
+        Item.BY_BLOCK.put(block, blockItem);
+        return block;
     }
 
-    private static Block registerHorsePlushie(ResourceKey<Block> id) {
+    public static Block registerWithoutItemBlock(final ResourceKey<Block> id, final Function<BlockBehaviour.Properties, Block> factory, final BlockBehaviour.Properties properties) {
+        return Registry.register(BuiltInRegistries.BLOCK, id, factory.apply(properties.setId(id)));
+    }
+
+    private static Block registerHorsePlushie(BlockItemId id) {
         return register(id, HorsePlushieBlock::new, makePlushieSettings());
     }
 
-    private static Block registerCubePlushie(ResourceKey<Block> id) {
+    private static Block registerCubePlushie(BlockItemId id) {
         BlockBehaviour.Properties settings = BlockBehaviour.Properties.of().ignitedByLava().mapColor(MapColor.NONE)
                 .strength(0.2F).sound(SoundType.WOOL).pushReaction(PushReaction.DESTROY);
         return register(id, CubePlushieBlock::new, settings);
     }
 
-    private static Block registerMooshroomPlushie(ResourceKey<Block> id) {
+    private static Block registerMooshroomPlushie(BlockItemId id) {
         return register(id, MooshroomPlushieBlock::new, makePlushieSettings());
     }
 
-    private static Block registerWolfPlushie(ResourceKey<Block> id) {
+    private static Block registerWolfPlushie(BlockItemId id) {
         return register(id, WolfPlushieBlock::new, makePlushieSettings());
     }
 
-    private static Block registerCatPlushie(ResourceKey<Block> id) {
+    private static Block registerCatPlushie(BlockItemId id) {
         return register(id, CatPlushieBlock::new, makePlushieSettings());
     }
 
-    private static Block registerRabbitPlushie(ResourceKey<Block> id) {
+    private static Block registerRabbitPlushie(BlockItemId id) {
         return register(id, RabbitPlushieBlock::new, makePlushieSettings());
     }
 
-    private static Block registerVillagerPlushie(ResourceKey<Block> id) {
+    private static Block registerVillagerPlushie(BlockItemId id) {
         return register(id, VillagerPlushieBlock::new, makePlushieSettings());
     }
 
-    private static Block registerPigPlushie(ResourceKey<Block> id) {
+    private static Block registerPigPlushie(BlockItemId id) {
         return register(id, PigPlushieBlock::new, makePlushieSettings());
     }
 
-    private static Block registerShortHatVillagerPlushie(ResourceKey<Block> id) {
+    private static Block registerShortHatVillagerPlushie(BlockItemId id) {
         return register(id, ShortHatVillagerPlushieBlock::new, makePlushieSettings());
     }
 
-    private static Block registerZombiePlushie(ResourceKey<Block> id) {
+    private static Block registerZombiePlushie(BlockItemId id) {
         return register(id, ZombiePlushieBlock::new, makePlushieSettings());
     }
 
-    private static Block registerStriderPlushie(ResourceKey<Block> id) {
+    private static Block registerStriderPlushie(BlockItemId id) {
         return register(id, StriderPlushieBlock::new, makePlushieSettings());
     }
 
-    private static Block registerHoglinPlushie(ResourceKey<Block> id) {
+    private static Block registerHoglinPlushie(BlockItemId id) {
         return register(id, HoglinPlushieBlock::new, makePlushieSettings());
     }
 
-    private static Block registerAllayPlushie(ResourceKey<Block> id) {
+    private static Block registerAllayPlushie(BlockItemId id) {
         return register(id, AllayPlushieBlock::new, makeGlowingPlushieSettings());
     }
 
-    private static Block registerPlanterBox(ResourceKey<Block> id, MapColor color, SoundType soundGroup) {
+    private static Block registerPlanterBox(BlockItemId id, MapColor color, SoundType soundGroup) {
         BlockBehaviour.Properties planterBoxSettings = BlockBehaviour.Properties.of().mapColor(color)
                 .strength(2.5F).sound(soundGroup).ignitedByLava();
         return register(id, PlanterBoxBlock::new, planterBoxSettings);
     }
 
-    private static Block registerNetherPlanterBox(ResourceKey<Block> id, MapColor color) {
+    private static Block registerNetherPlanterBox(BlockItemId id, MapColor color) {
         BlockBehaviour.Properties blockSettings = BlockBehaviour.Properties.of().mapColor(color)
                 .strength(2.5F).sound(SoundType.NETHER_WOOD);
         return register(id, PlanterBoxBlock::new, blockSettings);
     }
 
-    public static Block registerRopeLadder(ResourceKey<Block> blockKey) {
-        ResourceKey<Item> itemKey = ResourceKey.create(Registries.ITEM, blockKey.identifier());
-        Block block = new RopeLadderBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LADDER).setId(blockKey));
-        BlockItem blockItem = new RopeLadderBlockItem(block, new Item.Properties().setId(itemKey));
-        Registry.register(BuiltInRegistries.ITEM, itemKey, blockItem);
-        Item.BY_BLOCK.put(block, blockItem);
-        return Registry.register(BuiltInRegistries.BLOCK, blockKey, block);
-    }
-
-    private static Block registerTorch(ResourceKey<Block> id, SimpleParticleType particle) {
+    private static Block registerTorch(final ResourceKey<Block> id, SimpleParticleType particle) {
         BlockBehaviour.Properties torchSettings = BlockBehaviour.Properties.ofFullCopy(Blocks.TORCH);
-        return register(id, (props) -> new TorchBlock(particle, props), torchSettings, false);
+        return registerWithoutItemBlock(id, (props) -> new TorchBlock(particle, props), torchSettings);
     }
 
-    private static Block registerWallTorch(ResourceKey<Block> id, Block standingTorch, SimpleParticleType particle) {
+    private static Block registerWallTorch(final ResourceKey<Block> id, Block standingTorch, SimpleParticleType particle) {
         BlockBehaviour.Properties wallTorchSettings = wallVariant(standingTorch).noCollision().instabreak()
                 .lightLevel((blockState) -> 14).sound(SoundType.WOOD).pushReaction(PushReaction.DESTROY);
-        return register(id, (props) -> new WallTorchBlock(particle, props), wallTorchSettings, false);
+        return registerWithoutItemBlock(id, (props) -> new WallTorchBlock(particle, props), wallTorchSettings);
     }
 
     private static BlockBehaviour.Properties wallVariant(Block block) {
@@ -817,14 +816,14 @@ public final class ModBlocks {
         BlockBehaviour.Properties settings = BlockBehaviour.Properties.of().mapColor(MapColor.GRASS)
                 .randomTicks().noCollision().sound(SoundType.SWEET_BERRY_BUSH)
                 .pushReaction(PushReaction.DESTROY);
-        return register(ModBlockIds.BLUEBERRY_BUSH_KEY, BlueberryBushBlock::new, settings, false);
+        return registerWithoutItemBlock(ModBlockIds.BLUEBERRY_BUSH_KEY, BlueberryBushBlock::new, settings);
     }
 
     private static Block registerGreenOnions() {
         BlockBehaviour.Properties settings = BlockBehaviour.Properties.of().mapColor(MapColor.PLANT)
                 .noCollision().randomTicks().instabreak().sound(SoundType.CROP)
                 .pushReaction(PushReaction.DESTROY);
-        return register(ModBlockIds.GREEN_ONIONS_KEY, GreenOnionsBlock::new, settings, false);
+        return registerWithoutItemBlock(ModBlockIds.GREEN_ONIONS_KEY, GreenOnionsBlock::new, settings);
     }
 
     private static Block registerIronLadder() {
@@ -834,19 +833,19 @@ public final class ModBlocks {
         return register(ModBlockIds.IRON_LADDER_KEY, LadderBlock::new, settings);
     }
 
-    private static Block registerStairs(ResourceKey<Block> id, BlockBehaviour.Properties settings, Block baseBlock) {
+    private static Block registerStairs(BlockItemId id, BlockBehaviour.Properties settings, Block baseBlock) {
         return register(id, (props) -> new StairBlock(baseBlock.defaultBlockState(), props), settings);
     }
 
-    private static Block registerSlab(ResourceKey<Block> id, BlockBehaviour.Properties settings) {
+    private static Block registerSlab(BlockItemId id, BlockBehaviour.Properties settings) {
         return register(id, SlabBlock::new, settings);
     }
 
-    private static Block registerWall(ResourceKey<Block> id, BlockBehaviour.Properties settings) {
+    private static Block registerWall(BlockItemId id, BlockBehaviour.Properties settings) {
         return register(id, WallBlock::new, settings);
     }
 
-    private static Block registerDyedCampfire(ResourceKey<Block> id, ParticleOptions emberParticle) {
+    private static Block registerDyedCampfire(BlockItemId id, ParticleOptions emberParticle) {
         return register(id, (props) -> new DyedCampfireBlock(props, emberParticle),
                 BlockBehaviour.Properties.ofFullCopy(Blocks.CAMPFIRE));
     }
@@ -854,11 +853,11 @@ public final class ModBlocks {
     private static Block registerPottedSnapdragon() {
         BlockBehaviour.Properties settings = BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY)
                 .lightLevel((state) -> 8);
-        return register(ModBlockIds.POTTED_SNAPDRAGON_KEY,
-                (props) -> new PottedSnapdragonBlock(ModBlocks.SNAPDRAGON, props), settings, false);
+        return registerWithoutItemBlock(ModBlockIds.POTTED_SNAPDRAGON_KEY,
+                (props) -> new PottedSnapdragonBlock(ModBlocks.SNAPDRAGON, props), settings);
     }
 
-    private static Block registerCake(ResourceKey<Block> id) {
+    private static Block registerCake(BlockItemId id) {
         return register(id, ModdedCakeBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.CAKE));
     }
 
@@ -876,17 +875,17 @@ public final class ModBlocks {
                 (props) -> new DropExperienceBlock(UniformInt.of(2, 5), props), properties);
     }
 
-    private static Block registerCandleCake(ResourceKey<Block> id, Block cake) {
-        return register(id, (props) -> new ModdedCandleCakeBlock(cake, Blocks.CANDLE, props),
-                BlockBehaviour.Properties.ofFullCopy(Blocks.CANDLE_CAKE), false);
+    private static Block registerCandleCake(final ResourceKey<Block> id, Block cake) {
+        return registerWithoutItemBlock(id, (props) -> new ModdedCandleCakeBlock(cake, Blocks.CANDLE, props),
+                BlockBehaviour.Properties.ofFullCopy(Blocks.CANDLE_CAKE));
     }
 
-    private static Block registerPie(ResourceKey<Block> id) {
+    private static Block registerPie(BlockItemId id) {
         BlockBehaviour.Properties pieSettings = BlockBehaviour.Properties.ofFullCopy(Blocks.CAKE);
         return register(id, (props) -> new PieBlock(props, 3, 0.6F), pieSettings);
     }
 
-    private static Block registerSnowySlab(ResourceKey<Block> id, BlockBehaviour.Properties settings) {
+    private static Block registerSnowySlab(BlockItemId id, BlockBehaviour.Properties settings) {
         return register(id, SnowySlabBlock::new, settings);
     }
 

@@ -27,7 +27,7 @@ public class GrassSlabBlock extends SnowySlabBlock implements BonemealableBlock 
 
     @Override
     public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
-        return !isBottom(state);
+        return canSupportGrass(state);
     }
 
     @Override

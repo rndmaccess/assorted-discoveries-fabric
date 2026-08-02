@@ -51,7 +51,7 @@ public final class ModItems {
             = register(new Item(new Item.Properties().food(ModFoodComponents.GREEN_ONION)
             .setId(ModItemIds.GREEN_ONION_KEY)), ModItemIds.GREEN_ONION_KEY);
     public static final Item BLUEBERRIES = registerBlockItem(ModItemIds.BLUEBERRIES_KEY, ModBlocks.BLUEBERRY_BUSH,
-            new Item.Properties().food(ModFoodComponents.BLUEBERRIES).setId(ModItemIds.BLUEBERRIES_KEY));
+            new Item.Properties().food(ModFoodComponents.BLUEBERRIES));
     public static final Item SWEET_BERRY_JUICE = register(new Item(new Item.Properties()
                 .food(ModFoodComponents.JUICE, Consumables.DEFAULT_DRINK).stacksTo(16)
                 .usingConvertsTo(Items.GLASS_BOTTLE).setId(ModItemIds.SWEET_BERRY_JUICE_KEY)), ModItemIds.SWEET_BERRY_JUICE_KEY);
@@ -80,7 +80,7 @@ public final class ModItems {
             .food(ModFoodComponents.FORESTS_BOUNTY).stacksTo(1).usingConvertsTo(Items.BOWL)
             .setId(ModItemIds.FORESTS_BOUNTY_KEY)), ModItemIds.FORESTS_BOUNTY_KEY);
     public static final Item WITCHS_CRADLE_BRANCH = registerBlockItem(ModItemIds.WITCHS_CRADLE_BRANCH_KEY, ModBlocks.WITCHS_CRADLE,
-            new Item.Properties().food(ModFoodComponents.WITCHS_CRADLE_BRANCH).setId(ModItemIds.WITCHS_CRADLE_BRANCH_KEY));
+            new Item.Properties().food(ModFoodComponents.WITCHS_CRADLE_BRANCH));
     public static final Item WITCHS_CRADLE_SOUP = register(new Item(new Item.Properties()
             .food(ModFoodComponents.WITCHS_CRADLE_SOUP, ModConsumableComponents.WITCHS_CRADLE_SOUP)
             .stacksTo(1).usingConvertsTo(Items.BOWL).setId(ModItemIds.WITCHS_CRADLE_SOUP_KEY)), ModItemIds.WITCHS_CRADLE_SOUP_KEY);
@@ -95,11 +95,9 @@ public final class ModItems {
             .food(ModFoodComponents.HOGLIN_STEW).stacksTo(1).usingConvertsTo(Items.BOWL)
             .setId(ModItemIds.HOGLIN_STEW_KEY)), ModItemIds.HOGLIN_STEW_KEY);
     public static final Item CINDERSNAP_BERRIES = registerBlockItem(ModItemIds.CINDERSNAP_BERRIES_KEY,
-            ModBlocks.CINDERSNAP_BERRY_BUSH, new Item.Properties().food(ModFoodComponents.NETHER_BERRIES)
-                    .setId(ModItemIds.CINDERSNAP_BERRIES_KEY));
+            ModBlocks.CINDERSNAP_BERRY_BUSH, new Item.Properties().food(ModFoodComponents.NETHER_BERRIES));
     public static final Item FROSTBITE_BERRIES = registerBlockItem(ModItemIds.FROSTBITE_BERRIES_KEY,
-            ModBlocks.FROSTBITE_BERRY_BUSH, new Item.Properties().food(ModFoodComponents.NETHER_BERRIES)
-                    .setId(ModItemIds.FROSTBITE_BERRIES_KEY));
+            ModBlocks.FROSTBITE_BERRY_BUSH, new Item.Properties().food(ModFoodComponents.NETHER_BERRIES));
     public static final Item CINDERSNAP_BERRY_JUICE = register(new Item(new Item.Properties()
                 .food(ModFoodComponents.JUICE, ModConsumableComponents.NETHER_DRINK).stacksTo(16)
                 .usingConvertsTo(Items.GLASS_BOTTLE).setId(ModItemIds.CINDERSNAP_BERRY_JUICE_KEY)), ModItemIds.CINDERSNAP_BERRY_JUICE_KEY);
@@ -132,7 +130,7 @@ public final class ModItems {
     }
 
     private static Item registerBlockItem(ResourceKey<Item> key, Block block, Item.Properties settings) {
-        final Item blockItem = register(new BlockItem(block, settings), key);
+        final Item blockItem = register(new BlockItem(block, settings.setId(key)), key);
         Item.BY_BLOCK.put(block, blockItem);
         return blockItem;
     }

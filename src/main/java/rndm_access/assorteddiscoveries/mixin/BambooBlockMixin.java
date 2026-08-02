@@ -1,6 +1,7 @@
 package rndm_access.assorteddiscoveries.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.LevelReader;
@@ -8,33 +9,37 @@ import net.minecraft.world.level.block.BambooStalkBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.SlabType;
-import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import rndm_access.assorteddiscoveries.core.ModBlockTags;
 
 @Mixin(BambooStalkBlock.class)
 public abstract class BambooBlockMixin {
-    @ModifyReturnValue(method = "getStateForPlacement", at = @At("RETURN"))
-    private BlockState getStateForPlacement(BlockState original, @NotNull BlockPlaceContext ctx) {
-        if(isLowerSlab(ctx.getLevel(), ctx.getClickedPos())) {
-            return null;
+    @Inject(method = "getStateForPlacement", at = @At("HEAD"), cancellable = true)
+    private void cancelPlacementOnSlabs(BlockPlaceContext context, CallbackInfoReturnable<BlockState> cir) {
+        if (cannotSupportPlant(context.getLevel(), context.getClickedPos())) {
+            cir.setReturnValue(null);
         }
-        return original;
     }
 
     @ModifyReturnValue(method = "canSurvive", at = @At("RETURN"))
     private boolean canSurvive(boolean original, BlockState state, LevelReader world, BlockPos pos) {
-        if(isLowerSlab(world, pos)) {
+        if(cannotSupportPlant(world, pos)) {
             return false;
         }
         return original;
     }
 
     @Unique
-    private static boolean isLowerSlab(LevelReader world, BlockPos pos) {
+    private static boolean cannotSupportPlant(LevelReader world, BlockPos pos) {
         BlockState soil = world.getBlockState(pos.below());
-
-        return soil.getBlock() instanceof SlabBlock && soil.getValue(SlabBlock.TYPE).equals(SlabType.BOTTOM);
+        // If slabbed is installed we should allow placing plants on dirt slabs!
+        return !FabricLoader.getInstance().isModLoaded("slabbed")
+                && soil.is(ModBlockTags.SOIL_SLABS)
+                && soil.hasProperty(SlabBlock.TYPE)
+                && soil.getValue(SlabBlock.TYPE) == SlabType.BOTTOM;
     }
 }

@@ -2,6 +2,7 @@ package rndm_access.assorteddiscoveries.mixin;
 
 import com.google.common.collect.ImmutableMap;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -33,18 +34,31 @@ public abstract class AxeItemMixin {
             .put(ModBlocks.MANGROVE_WALL, ModBlocks.STRIPPED_MANGROVE_WALL)
             .put(ModBlocks.CRIMSON_WALL, ModBlocks.STRIPPED_CRIMSON_WALL)
             .put(ModBlocks.WARPED_WALL, ModBlocks.STRIPPED_WARPED_WALL)
-            .put(ModBlocks.CHERRY_WALL, ModBlocks.STRIPPED_CHERRY_WALL).build();
+            .put(ModBlocks.CHERRY_WALL, ModBlocks.STRIPPED_CHERRY_WALL)
+            .put(ModBlocks.BAMBOO_WALL, ModBlocks.STRIPPED_BAMBOO_WALL)
+            .put(ModBlocks.PALE_OAK_WALL, ModBlocks.STRIPPED_PALE_OAK_WALL).build();
 
     @ModifyReturnValue(method = "useOn", at = @At("RETURN"))
     private InteractionResult useOn(InteractionResult original, UseOnContext context) {
+        // If another mod already handled the behavior then this fixes the edge case.
+        if (original.consumesAction()) {
+            return original;
+        }
+
         Level world = context.getLevel();
         BlockPos pos = context.getClickedPos();
         Player player = context.getPlayer();
         BlockState state = world.getBlockState(pos);
         Block block = state.getBlock();
+        ItemStack stack = context.getItemInHand();
 
         if (STRIPPABLE_WALLS.containsKey(block) && block instanceof WallBlock) {
             world.playSound(player, pos, SoundEvents.AXE_STRIP, SoundSource.BLOCKS, 1.0F, 1.0F);
+
+            if (player != null) {
+                stack.hurtAndBreak(1, player, context.getHand());
+            }
+
             world.setBlockAndUpdate(pos, STRIPPABLE_WALLS.get(block).defaultBlockState()
                     .setValue(WallBlock.NORTH, state.getValue(WallBlock.NORTH))
                     .setValue(WallBlock.SOUTH, state.getValue(WallBlock.SOUTH))

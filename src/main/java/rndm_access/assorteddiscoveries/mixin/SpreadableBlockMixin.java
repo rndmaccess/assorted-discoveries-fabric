@@ -16,7 +16,8 @@ public abstract class SpreadableBlockMixin {
     private static boolean canBeGrass(boolean original, BlockState state, LevelReader world, BlockPos pos) {
         BlockState blockState = world.getBlockState(pos.above());
 
-        if(blockState.is(BlockTags.SNOW) || blockState.is(ModBlockTags.SNOW_SLABS)
+        if(blockState.is(BlockTags.SNOW)
+                || blockState.is(ModBlockTags.SNOW_SLABS)
                 || blockState.is(ModBlockTags.SNOW_STAIRS)) {
             return true;
         }

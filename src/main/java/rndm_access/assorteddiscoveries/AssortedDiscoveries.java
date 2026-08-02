@@ -15,6 +15,7 @@ import net.fabricmc.fabric.api.registry.VillagerInteractionRegistries;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.Registry;
+import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -23,10 +24,12 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -42,6 +45,7 @@ import org.slf4j.LoggerFactory;
 import rndm_access.assorteddiscoveries.config.BooleanEntriesS2CPayload;
 import rndm_access.assorteddiscoveries.config.ModConfig;
 import rndm_access.assorteddiscoveries.core.*;
+import rndm_access.assorteddiscoveries.dispenser_behaviors.EndBoneMealDispenserBehavior;
 
 import java.util.Optional;
 
@@ -72,6 +76,7 @@ public class AssortedDiscoveries implements ModInitializer {
         AssortedDiscoveries.registerCompostables();
         AssortedDiscoveries.modifyLootTables();
         AssortedDiscoveries.registerVillagerInteractions();
+        AssortedDiscoveries.registerCustomDispenserBehaviors();
 
         // World Generation Registries
         ModFeatures.register();
@@ -80,6 +85,11 @@ public class AssortedDiscoveries implements ModInitializer {
 
     public static Identifier makeModId(String path) {
         return Identifier.fromNamespaceAndPath(MOD_ID, path);
+    }
+
+    private static void registerCustomDispenserBehaviors() {
+        DispenseItemBehavior vanillaBoneMeal = DispenserBlock.DISPENSER_REGISTRY.get(Items.BONE_MEAL);
+        DispenserBlock.registerBehavior(Items.BONE_MEAL, new EndBoneMealDispenserBehavior(vanillaBoneMeal));
     }
 
     private static void registerConfigEvents() {

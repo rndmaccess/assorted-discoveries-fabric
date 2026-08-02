@@ -1,10 +1,13 @@
 package rndm_access.assorteddiscoveries;
 
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.client.particle.FlameParticle;
 import net.minecraft.client.particle.LavaParticle;
 import net.minecraft.client.renderer.BiomeColors;
@@ -13,7 +16,7 @@ import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import rndm_access.assorteddiscoveries.block.SheepPlushieBlock;
 import rndm_access.assorteddiscoveries.block_entity.DyedCampfireBlockEntityRenderer;
 import rndm_access.assorteddiscoveries.config.BooleanEntriesS2CPayload;
-import rndm_access.assorteddiscoveries.config.ModClientConfig;
+import rndm_access.assorteddiscoveries.config.ModConfig;
 import rndm_access.assorteddiscoveries.core.*;
 import rndm_access.assorteddiscoveries.particle.BogBlossomNectarParticle;
 import rndm_access.assorteddiscoveries.particle.SporeParticle;
@@ -25,11 +28,19 @@ public class AssortedDiscoveriesClient implements ClientModInitializer {
         registerParticleFactories();
         registerRenderLayers();
         registerBlockEntityRenderers();
+        ClientPlayNetworking.registerGlobalReceiver(BooleanEntriesS2CPayload.ID, AssortedDiscoveriesClient::receiveServerConfig);
+        ClientPlayConnectionEvents.DISCONNECT.register(AssortedDiscoveriesClient::reloadLocalConfig);
+    }
 
-        ClientPlayNetworking.registerGlobalReceiver(BooleanEntriesS2CPayload.ID, (payload, context) -> {
-            ModClientConfig.updateBoolEntries(payload.configMap());
-            AssortedDiscoveries.LOGGER.info("{} received the server config data!", context.player().getName().getString());
-        });
+    private static void receiveServerConfig(BooleanEntriesS2CPayload payload, ClientPlayNetworking.Context context) {
+        ModConfig.updateFromList(payload.configList());
+        AssortedDiscoveries.LOGGER.info("{} received the config data!", context.player().getName().getString());
+    }
+
+
+    private static void reloadLocalConfig(ClientPacketListener listener, Minecraft minecraft) {
+        ModConfig.updateFromFile();
+        AssortedDiscoveries.LOGGER.info("Local config data reloaded!");
     }
 
     private static void registerBlockEntityRenderers() {

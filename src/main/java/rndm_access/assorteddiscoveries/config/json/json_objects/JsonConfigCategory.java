@@ -1,0 +1,65 @@
+package rndm_access.assorteddiscoveries.config.json.json_objects;
+
+import java.util.*;
+
+public class JsonConfigCategory extends ConfigObject {
+    private final List<ConfigObject> objects;
+    private final Map<String, AbstractConfigEntry<?>> entries;
+
+    protected JsonConfigCategory(JsonConfigCategory.Builder builder) {
+        super(builder.name);
+        this.objects = builder.objects;
+        this.entries = builder.entries;
+    }
+
+    public AbstractConfigEntry<?> getEntry(String name) {
+        return lookupEntry(name);
+    }
+
+    public BooleanConfigEntry getBoolEntry(String name) {
+        return (BooleanConfigEntry) lookupEntry(name);
+    }
+
+    public boolean containsEntry(String key) {
+        return entries.containsKey(key);
+    }
+
+    private AbstractConfigEntry<?> lookupEntry(String key) {
+        if (entries.containsKey(key)) {
+            return entries.get(key);
+        }
+        return null;
+    }
+
+    public int getSize() {
+        return objects.size();
+    }
+
+    public List<ConfigObject> getConfigObjects() {
+        return objects;
+    }
+
+    public static class Builder {
+        public String name;
+        private final List<ConfigObject> objects = new ArrayList<>();
+        private final Map<String, AbstractConfigEntry<?>> entries = new HashMap<>();
+
+        public Builder(String name) {
+            this.name = name;
+        }
+
+        public void addComment(CommentConfigEntry comment) {
+            objects.add(comment);
+        }
+
+        public <T extends AbstractConfigEntry<?>> T addEntry(T entry) {
+            entries.put(entry.getKey(), entry);
+            objects.add(entry);
+            return entry;
+        }
+
+        public JsonConfigCategory build() {
+            return new JsonConfigCategory(this);
+        }
+    }
+}

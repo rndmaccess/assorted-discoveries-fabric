@@ -4,7 +4,6 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
@@ -21,7 +20,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
@@ -33,6 +31,7 @@ import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.ApplyExplosionDecay;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
@@ -41,11 +40,7 @@ import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import rndm_access.assorteddiscoveries.config.BooleanEntriesS2CPayload;
-import rndm_access.assorteddiscoveries.config.ModServerConfig;
-import rndm_access.assorteddiscoveries.config.ModServerConfigKeys;
-import rndm_access.assorteddiscoveries.config.ModClientConfig;
-import rndm_access.assorteddiscoveries.config.json.ServerConfig;
-import rndm_access.assorteddiscoveries.config.json.deserializer.entries.BooleanConfigEntry;
+import rndm_access.assorteddiscoveries.config.ModConfig;
 import rndm_access.assorteddiscoveries.core.*;
 
 import java.util.Optional;
@@ -90,32 +85,24 @@ public class AssortedDiscoveries implements ModInitializer {
     private static void registerConfigEvents() {
         PayloadTypeRegistry.playS2C().register(BooleanEntriesS2CPayload.ID, BooleanEntriesS2CPayload.CODEC);
 
-        ServerLifecycleEvents.SERVER_STARTED.register(AssortedDiscoveries::initConfigOnServer);
-        ServerPlayerEvents.JOIN.register(AssortedDiscoveries::onJoin);
-    }
-
-    private static void initConfigOnServer(MinecraftServer server) {
-        if (!server.overworld().isClientSide()) {
-            ModClientConfig.updateBoolEntries(ModServerConfig.getInstance().toEntryMap());
-            LOGGER.info("Loaded server config");
-        }
+        ServerPlayerEvents.JOIN.register(AssortedDiscoveries::sendConfigData);
     }
 
     @SuppressWarnings("resource")
-    private static void onJoin(ServerPlayer player) {
+    private static void sendConfigData(ServerPlayer player) {
         // If I use the auto-closable on level it closes the world too early and breaks loading!
         if (!player.level().isClientSide()) {
-            sendConfigEntriesToPlayers(player);
+            sendConfigToPlayer(player);
         }
     }
 
-    private static void sendConfigEntriesToPlayers(ServerPlayer player) {
-        BooleanEntriesS2CPayload payload = new BooleanEntriesS2CPayload(ModClientConfig.getBoolEntries());
+    private static void sendConfigToPlayer(ServerPlayer player) {
+        BooleanEntriesS2CPayload payload = new BooleanEntriesS2CPayload(ModConfig.CONFIG.getBooleanEntries());
         String playerName = player.getName().getString();
 
         if (ServerPlayNetworking.canSend(player, payload.type())) {
             ServerPlayNetworking.send(player, payload);
-            LOGGER.info("Sent server config data to {}!", playerName);
+            LOGGER.info("Sent config data to {}!", playerName);
         }
     }
 
@@ -125,32 +112,25 @@ public class AssortedDiscoveries implements ModInitializer {
     }
 
     private static void addFeaturesToBiomes() {
-        ServerConfig config = ModServerConfig.getInstance();
-        BooleanConfigEntry configEntry;
-
-        configEntry = (BooleanConfigEntry) config.getEntry(ModServerConfigKeys.ENABLE_CATTAILS);
-        if (configEntry.getValue()) {
+        if (ModConfig.ENABLE_CATTAILS.getValue()) {
             BiomeModifications.addFeature(BiomeSelectors.tag(ModBiomeTags.PATCH_CATTAIL_SWAMP),
                     GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatureKeys.PATCH_CATTAIL_SWAMP);
             BiomeModifications.addFeature(BiomeSelectors.tag(ModBiomeTags.PATCH_CATTAIL_RIVER),
                     GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatureKeys.PATCH_CATTAIL_RIVER);
         }
 
-        configEntry = (BooleanConfigEntry) config.getEntry(ModServerConfigKeys.ENABLE_SMOKY_QUARTZ_BLOCKS);
-        if (configEntry.getValue()) {
+        if (ModConfig.ENABLE_SMOKY_QUARTZ_BLOCKS.getValue()) {
             BiomeModifications.addFeature(BiomeSelectors.tag(ModBiomeTags.ORE_SMOKY_QUARTZ),
                     GenerationStep.Decoration.UNDERGROUND_ORES, ModPlacedFeatureKeys.ORE_SMOKY_QUARTZ);
         }
 
-        configEntry = (BooleanConfigEntry) config.getEntry(ModServerConfigKeys.ENABLE_PURPLE_MUSHROOMS);
-        if (configEntry.getValue()) {
+        if (ModConfig.ENABLE_PURPLE_MUSHROOMS.getValue()) {
             BiomeModifications.addFeature(BiomeSelectors.tag(ModBiomeTags.PATCH_HUGE_PURPLE_MUSHROOM)
                             .and(BiomeSelectors.excludeByKey(Biomes.PALE_GARDEN)),
                     GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatureKeys.PATCH_HUGE_PURPLE_MUSHROOM);
         }
 
-        configEntry = (BooleanConfigEntry) config.getEntry(ModServerConfigKeys.ENABLE_BLUEBERRIES);
-        if (configEntry.getValue()) {
+        if (ModConfig.ENABLE_BLUEBERRIES.getValue()) {
             BiomeModifications.addFeature(BiomeSelectors.tag(ModBiomeTags.PATCH_BLUEBERRY_BUSH)
                             .and(BiomeSelectors.excludeByKey(Biomes.PALE_GARDEN)),
                     GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatureKeys.PATCH_BLUEBERRY_COMMON);
@@ -159,58 +139,50 @@ public class AssortedDiscoveries implements ModInitializer {
                     GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatureKeys.PATCH_BLUEBERRY_RARE);
         }
 
-        configEntry = (BooleanConfigEntry) config.getEntry(ModServerConfigKeys.ENABLE_WITCHS_CRADLES);
-        if (configEntry.getValue()) {
+        if (ModConfig.ENABLE_WITCHS_CRADLES.getValue()) {
             BiomeModifications.addFeature(BiomeSelectors.tag(ModBiomeTags.PATCH_WITCHS_CRADLE),
                     GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatureKeys.PATCH_WITCHS_CRADLE_COMMON);
             BiomeModifications.addFeature(BiomeSelectors.tag(ModBiomeTags.PATCH_WITCHS_CRADLE),
                     GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatureKeys.PATCH_WITCHS_CRADLE_RARE);
         }
 
-        configEntry = (BooleanConfigEntry) config.getEntry(ModServerConfigKeys.ENABLE_ENDER_PLANTS);
-        if (configEntry.getValue()) {
+        if (ModConfig.ENABLE_ENDER_PLANTS.getValue()) {
             BiomeModifications.addFeature(BiomeSelectors.tag(ModBiomeTags.PATCH_ENDER_PLANTS),
                     GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatureKeys.PATCH_ENDER_PLANTS);
         }
 
-        configEntry = (BooleanConfigEntry) config.getEntry(ModServerConfigKeys.ENABLE_BLOOD_KELP);
-        if (configEntry.getValue()) {
+        if (ModConfig.ENABLE_BLOOD_KELP.getValue()) {
             BiomeModifications.addFeature(BiomeSelectors.tag(ModBiomeTags.BLOOD_KELP),
                     GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatureKeys.BLOOD_KELP);
         }
 
-        configEntry = (BooleanConfigEntry) config.getEntry(ModServerConfigKeys.ENABLE_BOG_BLOSSOMS);
-        if (configEntry.getValue()) {
+        if (ModConfig.ENABLE_BOG_BLOSSOMS.getValue()) {
             BiomeModifications.addFeature(BiomeSelectors.tag(ModBiomeTags.BOG_BLOSSOM),
                     GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatureKeys.BOG_BLOSSOM);
         }
 
-        configEntry = (BooleanConfigEntry) config.getEntry(ModServerConfigKeys.ENABLE_BAUXITE);
-        if (configEntry.getValue()) {
+        if (ModConfig.ENABLE_BAUXITE.getValue()) {
             BiomeModifications.addFeature(BiomeSelectors.tag(ModBiomeTags.ORE_BAUXITE),
                     GenerationStep.Decoration.UNDERGROUND_ORES, ModPlacedFeatureKeys.ORE_BAUXITE_LOWER);
             BiomeModifications.addFeature(BiomeSelectors.tag(ModBiomeTags.ORE_BAUXITE),
                     GenerationStep.Decoration.UNDERGROUND_ORES, ModPlacedFeatureKeys.ORE_BAUXITE_UPPER);
         }
 
-        configEntry = (BooleanConfigEntry) config.getEntry(ModServerConfigKeys.ENABLE_CINDERSNAP_BERRIES);
-        if (configEntry.getValue()) {
+        if (ModConfig.ENABLE_CINDERSNAP_BERRIES.getValue()) {
             BiomeModifications.addFeature(BiomeSelectors.tag(ModBiomeTags.PATCH_CINDERSNAP_BERRY_BUSH),
                     GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatureKeys.PATCH_CINDERSNAP_BERRY_BUSH_COMMON);
             BiomeModifications.addFeature(BiomeSelectors.tag(ModBiomeTags.PATCH_CINDERSNAP_BERRY_BUSH),
                     GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatureKeys.PATCH_CINDERSNAP_BERRY_BUSH_RARE);
         }
 
-        configEntry = (BooleanConfigEntry) config.getEntry(ModServerConfigKeys.ENABLE_FROSTBITE_BERRIES);
-        if (configEntry.getValue()) {
+        if (ModConfig.ENABLE_FROSTBITE_BERRIES.getValue()) {
             BiomeModifications.addFeature(BiomeSelectors.tag(ModBiomeTags.PATCH_FROSTBITE_BERRY_BUSH),
                     GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatureKeys.PATCH_FROSTBITE_BERRY_BUSH_COMMON);
             BiomeModifications.addFeature(BiomeSelectors.tag(ModBiomeTags.PATCH_FROSTBITE_BERRY_BUSH),
                     GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatureKeys.PATCH_FROSTBITE_BERRY_BUSH_RARE);
         }
 
-        configEntry = (BooleanConfigEntry) config.getEntry(ModServerConfigKeys.ENABLE_GREEN_ONIONS);
-        if (configEntry.getValue()) {
+        if (ModConfig.ENABLE_GREEN_ONIONS.getValue()) {
             BiomeModifications.addFeature(BiomeSelectors.tag(ModBiomeTags.PATCH_WILD_GREEN_ONIONS),
                     GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatureKeys.PATCH_WILD_GREEN_ONIONS_COMMON);
             BiomeModifications.addFeature(BiomeSelectors.tag(ModBiomeTags.PATCH_WILD_GREEN_ONIONS),
@@ -253,20 +225,18 @@ public class AssortedDiscoveries implements ModInitializer {
     }
 
     private static void modifySpruceLeavesLootTable(HolderLookup.Provider registries, LootTable.Builder builder) {
-        ServerConfig config = ModServerConfig.getInstance();
-        BooleanConfigEntry configEntry = (BooleanConfigEntry) config.getEntry(ModServerConfigKeys.ENABLE_FORESTS_BOUNTY);
-
-        if (configEntry.getValue()) {
+        if (ModConfig.ENABLE_FORESTS_BOUNTY.getValue()) {
             Optional<Holder.Reference<Enchantment>> fortune = registries.get(Enchantments.FORTUNE);
             assert fortune.isPresent();
             Holder<Enchantment> fortuneEnchant = Holder.direct(fortune.get().value());
 
             LootPool.Builder poolBuilder = LootPool.lootPool()
                     .setRolls(ConstantValue.exactly(1))
+                    .add(LootItem.lootTableItem(ModItems.SPRUCE_CONE))
                     .when(BonusLevelTableCondition.bonusLevelFlatChance(fortuneEnchant, 0.02F, 0.023F,
                             0.025F, 0.035F, 0.1F))
-                    .add(LootItem.lootTableItem(ModItems.SPRUCE_CONE))
-                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)));
+                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)))
+                    .apply(ApplyExplosionDecay.explosionDecay());
 
             builder.withPool(poolBuilder);
         }
@@ -275,15 +245,15 @@ public class AssortedDiscoveries implements ModInitializer {
     private static void addItemGroups() {
         Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, MOD_ITEM_GROUP_KEY, MOD_ITEM_GROUP);
         ItemGroupEvents.modifyEntriesEvent(MOD_ITEM_GROUP_KEY).register((entries) -> {
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_SLIME_PLUSHIE)) {
+            if (ModConfig.ENABLE_SLIME_PLUSHIE.getValue()) {
                 entries.accept(ModBlocks.SLIME_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_MAGMA_CUBE_PLUSHIE)) {
+            if (ModConfig.ENABLE_MAGMA_CUBE_PLUSHIE.getValue()) {
                 entries.accept(ModBlocks.MAGMA_CUBE_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_CAT_PLUSHIES)) {
+            if (ModConfig.ENABLE_CAT_PLUSHIES.getValue()) {
                 entries.accept(ModBlocks.OCELOT_PLUSHIE.asItem());
                 entries.accept(ModBlocks.WHITE_CAT_PLUSHIE.asItem());
                 entries.accept(ModBlocks.TABBY_CAT_PLUSHIE.asItem());
@@ -298,7 +268,7 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModBlocks.JELLIE_CAT_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_WOLF_PLUSHIES)) {
+            if (ModConfig.ENABLE_WOLF_PLUSHIES.getValue()) {
                 entries.accept(ModBlocks.PALE_WOLF_PLUSHIE.asItem());
                 entries.accept(ModBlocks.BLACK_WOLF_PLUSHIE.asItem());
                 entries.accept(ModBlocks.ASHEN_WOLF_PLUSHIE.asItem());
@@ -306,92 +276,96 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModBlocks.RUSTY_WOLF_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_ZOMBIE_PLUSHIE)) {
+            if (ModConfig.ENABLE_ZOMBIE_PLUSHIE.getValue()) {
                 entries.accept(ModBlocks.ZOMBIE_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_SKELETON_PLUSHIE)) {
+            if (ModConfig.ENABLE_SKELETON_PLUSHIE.getValue()) {
                 entries.accept(ModBlocks.SKELETON_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_ENDERMAN_PLUSHIE)) {
+            if (ModConfig.ENABLE_ENDERMAN_PLUSHIE.getValue()) {
                 entries.accept(ModBlocks.ENDERMAN_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_CREEPER_PLUSHIE)) {
+            if (ModConfig.ENABLE_CREEPER_PLUSHIE.getValue()) {
                 entries.accept(ModBlocks.CREEPER_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_SPIDER_PLUSHIE)) {
+            if (ModConfig.ENABLE_SPIDER_PLUSHIE.getValue()) {
                 entries.accept(ModBlocks.SPIDER_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_CAVE_SPIDER_PLUSHIE)) {
+            if (ModConfig.ENABLE_CAVE_SPIDER_PLUSHIE.getValue()) {
                 entries.accept(ModBlocks.CAVE_SPIDER_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_GUARDIAN_PLUSHIE)) {
+            if (ModConfig.ENABLE_GUARDIAN_PLUSHIE.getValue()) {
                 entries.accept(ModBlocks.GUARDIAN_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_PHANTOM_PLUSHIE)) {
+            if (ModConfig.ENABLE_PHANTOM_PLUSHIE.getValue()) {
                 entries.accept(ModBlocks.PHANTOM_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_BAT_PLUSHIE)) {
+            if (ModConfig.ENABLE_BAT_PLUSHIE.getValue()) {
                 entries.accept(ModBlocks.BAT_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_SQUID_PLUSHIES)) {
+            if (ModConfig.ENABLE_SQUID_PLUSHIES.getValue()) {
                 entries.accept(ModBlocks.SQUID_PLUSHIE.asItem());
                 entries.accept(ModBlocks.GLOW_SQUID_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_BEE_PLUSHIE)) {
+            if (ModConfig.ENABLE_BEE_PLUSHIE.getValue()) {
                 entries.accept(ModBlocks.BEE_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_PIGLIN_PLUSHIES)) {
+            if (ModConfig.ENABLE_PIGLIN_PLUSHIES.getValue()) {
                 entries.accept(ModBlocks.PIGLIN_PLUSHIE.asItem());
                 entries.accept(ModBlocks.ZOMBIFIED_PIGLIN_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_HOGLIN_PLUSHIES)) {
+            if (ModConfig.ENABLE_HOGLIN_PLUSHIES.getValue()) {
                 entries.accept(ModBlocks.HOGLIN_PLUSHIE.asItem());
                 entries.accept(ModBlocks.ZOGLIN_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_GHAST_PLUSHIE)) {
+            if (ModConfig.ENABLE_GHAST_PLUSHIE.getValue()) {
                 entries.accept(ModBlocks.GHAST_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_BLAZE_PLUSHIE)) {
+            if (ModConfig.ENABLE_BLAZE_PLUSHIE.getValue()) {
                 entries.accept(ModBlocks.BLAZE_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_STRIDER_PLUSHIES)) {
+            if (ModConfig.ENABLE_STRIDER_PLUSHIES.getValue()) {
                 entries.accept(ModBlocks.STRIDER_PLUSHIE.asItem());
                 entries.accept(ModBlocks.SHIVERING_STRIDER_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_CHICKEN_PLUSHIES)) {
+            if (ModConfig.ENABLE_CHICKEN_PLUSHIES.getValue()) {
                 entries.accept(ModBlocks.TEMPERATE_CHICKEN_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_PIG_PLUSHIES)) {
+            if (ModConfig.ENABLE_PIG_PLUSHIES.getValue()) {
                 entries.accept(ModBlocks.TEMPERATE_PIG_PLUSHIE.asItem());
+
+                // TODO: Add the cold and warm pig plushies!
+                // entries.accept(ModBlocks.COLD_PIG_PLUSHIE.asItem());
+                // entries.accept(ModBlocks.WARM_PIG_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_COW_PLUSHIES)) {
+            if (ModConfig.ENABLE_COW_PLUSHIES.getValue()) {
                 entries.accept(ModBlocks.TEMPERATE_COW_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_MOOSHROOM_PLUSHIES)) {
+            if (ModConfig.ENABLE_MOOSHROOM_PLUSHIES.getValue()) {
                 entries.accept(ModBlocks.RED_MOOSHROOM_PLUSHIE.asItem());
                 entries.accept(ModBlocks.BROWN_MOOSHROOM_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_SHEEP_PLUSHIES)) {
+            if (ModConfig.ENABLE_SHEEP_PLUSHIES.getValue()) {
                 entries.accept(ModBlocks.WHITE_SHEEP_PLUSHIE.asItem());
                 entries.accept(ModBlocks.ORANGE_SHEEP_PLUSHIE.asItem());
                 entries.accept(ModBlocks.MAGENTA_SHEEP_PLUSHIE.asItem());
@@ -410,14 +384,14 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModBlocks.BLACK_SHEEP_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_HORSE_PLUSHIES)) {
+            if (ModConfig.ENABLE_HORSE_PLUSHIES.getValue()) {
                 entries.accept(ModBlocks.WHITE_HORSE_PLUSHIE.asItem());
                 entries.accept(ModBlocks.GRAY_HORSE_PLUSHIE.asItem());
                 entries.accept(ModBlocks.BROWN_HORSE_PLUSHIE.asItem());
                 entries.accept(ModBlocks.BLACK_HORSE_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_RABBIT_PLUSHIES)) {
+            if (ModConfig.ENABLE_RABBIT_PLUSHIES.getValue()) {
                 entries.accept(ModBlocks.BROWN_RABBIT_PLUSHIE.asItem());
                 entries.accept(ModBlocks.WHITE_RABBIT_PLUSHIE.asItem());
                 entries.accept(ModBlocks.BLACK_RABBIT_PLUSHIE.asItem());
@@ -427,13 +401,13 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModBlocks.SALT_RABBIT_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_ILLAGER_PLUSHIES)) {
+            if (ModConfig.ENABLE_ILLAGER_PLUSHIES.getValue()) {
                 entries.accept(ModBlocks.PILLAGER_PLUSHIE.asItem());
                 entries.accept(ModBlocks.VINDICATOR_PLUSHIE.asItem());
                 entries.accept(ModBlocks.EVOKER_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_VILLAGER_PLUSHIES)) {
+            if (ModConfig.ENABLE_VILLAGER_PLUSHIES.getValue()) {
                 entries.accept(ModBlocks.PLAINS_VILLAGER_PLUSHIE.asItem());
                 entries.accept(ModBlocks.DESERT_VILLAGER_PLUSHIE.asItem());
                 entries.accept(ModBlocks.JUNGLE_VILLAGER_PLUSHIE.asItem());
@@ -443,43 +417,43 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModBlocks.TAIGA_VILLAGER_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_WITCH_PLUSHIE)) {
+            if (ModConfig.ENABLE_WITCH_PLUSHIE.getValue()) {
                 entries.accept(ModBlocks.WITCH_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_PUFFERFISH_PLUSHIE)) {
+            if (ModConfig.ENABLE_PUFFERFISH_PLUSHIE.getValue()) {
                 entries.accept(ModBlocks.PUFFERFISH_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_WITHER_PLUSHIE)) {
+            if (ModConfig.ENABLE_WITHER_PLUSHIE.getValue()) {
                 entries.accept(ModBlocks.WITHER_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_ALLAY_PLUSHIE)) {
+            if (ModConfig.ENABLE_ALLAY_PLUSHIE.getValue()) {
                 entries.accept(ModBlocks.ALLAY_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_VEX_PLUSHIE)) {
+            if (ModConfig.ENABLE_VEX_PLUSHIE.getValue()) {
                 entries.accept(ModBlocks.VEX_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_SHULKER_PLUSHIE)) {
+            if (ModConfig.ENABLE_SHULKER_PLUSHIE.getValue()) {
                 entries.accept(ModBlocks.SHULKER_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_CAMEL_PLUSHIE)) {
+            if (ModConfig.ENABLE_CAMEL_PLUSHIE.getValue()) {
                 entries.accept(ModBlocks.CAMEL_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_CREAKING_PLUSHIE)) {
+            if (ModConfig.ENABLE_CREAKING_PLUSHIE.getValue()) {
                 entries.accept(ModBlocks.CREAKING_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_SNIFFER_PLUSHIE)) {
+            if (ModConfig.ENABLE_SNIFFER_PLUSHIE.getValue()) {
                 entries.accept(ModBlocks.SNIFFER_PLUSHIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_PLANTER_BOXES)) {
+            if (ModConfig.ENABLE_PLANTER_BOXES.getValue()) {
                 entries.accept(ModBlocks.OAK_PLANTER_BOX.asItem());
                 entries.accept(ModBlocks.SPRUCE_PLANTER_BOX.asItem());
                 entries.accept(ModBlocks.BIRCH_PLANTER_BOX.asItem());
@@ -494,7 +468,7 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModBlocks.WARPED_PLANTER_BOX.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_WOODEN_WALLS)) {
+            if (ModConfig.ENABLE_WOODEN_WALLS.getValue()) {
                 entries.accept(ModBlocks.OAK_WALL.asItem());
                 entries.accept(ModBlocks.SPRUCE_WALL.asItem());
                 entries.accept(ModBlocks.BIRCH_WALL.asItem());
@@ -509,7 +483,7 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModBlocks.WARPED_WALL.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_STRIPPED_WOODEN_WALLS)) {
+            if (ModConfig.ENABLE_STRIPPED_WOODEN_WALLS.getValue()) {
                 entries.accept(ModBlocks.STRIPPED_OAK_WALL.asItem());
                 entries.accept(ModBlocks.STRIPPED_SPRUCE_WALL.asItem());
                 entries.accept(ModBlocks.STRIPPED_BIRCH_WALL.asItem());
@@ -524,7 +498,7 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModBlocks.STRIPPED_WARPED_WALL.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_ROPE_LADDERS)) {
+            if (ModConfig.ENABLE_ROPE_LADDERS.getValue()) {
                 entries.accept(ModBlocks.OAK_ROPE_LADDER.asItem());
                 entries.accept(ModBlocks.SPRUCE_ROPE_LADDER.asItem());
                 entries.accept(ModBlocks.BIRCH_ROPE_LADDER.asItem());
@@ -539,11 +513,11 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModBlocks.WARPED_ROPE_LADDER.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_IRON_LADDERS)) {
+            if (ModConfig.ENABLE_IRON_LADDERS.getValue()) {
                 entries.accept(ModBlocks.IRON_LADDER.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_DYED_CAMPFIRES)) {
+            if (ModConfig.ENABLE_DYED_CAMPFIRES.getValue()) {
                 entries.accept(ModBlocks.WHITE_CAMPFIRE.asItem());
                 entries.accept(ModBlocks.ORANGE_CAMPFIRE.asItem());
                 entries.accept(ModBlocks.MAGENTA_CAMPFIRE.asItem());
@@ -562,7 +536,7 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModBlocks.BLACK_CAMPFIRE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_DYED_LANTERNS)) {
+            if (ModConfig.ENABLE_DYED_LANTERNS.getValue()) {
                 entries.accept(ModBlocks.WHITE_LANTERN.asItem());
                 entries.accept(ModBlocks.ORANGE_LANTERN.asItem());
                 entries.accept(ModBlocks.MAGENTA_LANTERN.asItem());
@@ -581,7 +555,7 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModBlocks.BLACK_LANTERN.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_DYED_TORCHES)) {
+            if (ModConfig.ENABLE_DYED_TORCHES.getValue()) {
                 entries.accept(ModItems.WHITE_TORCH);
                 entries.accept(ModItems.ORANGE_TORCH);
                 entries.accept(ModItems.MAGENTA_TORCH);
@@ -600,86 +574,84 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModItems.BLACK_TORCH);
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_TWISTED_NETHERRACK)) {
+            if (ModConfig.ENABLE_TWISTED_NETHERRACK.getValue()) {
                 entries.accept(ModBlocks.TWISTED_NETHERRACK.asItem());
                 entries.accept(ModBlocks.TWISTED_NETHERRACK_STAIRS.asItem());
                 entries.accept(ModBlocks.TWISTED_NETHERRACK_SLAB.asItem());
                 entries.accept(ModBlocks.TWISTED_NETHERRACK_WALL.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_WEEPING_NETHERRACK)) {
+            if (ModConfig.ENABLE_WEEPING_NETHERRACK.getValue()) {
                 entries.accept(ModBlocks.WEEPING_NETHERRACK.asItem());
                 entries.accept(ModBlocks.WEEPING_NETHERRACK_STAIRS.asItem());
                 entries.accept(ModBlocks.WEEPING_NETHERRACK_SLAB.asItem());
                 entries.accept(ModBlocks.WEEPING_NETHERRACK_WALL.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_TWISTED_NETHER_BRICKS)) {
+            if (ModConfig.ENABLE_TWISTED_NETHER_BRICKS.getValue()) {
                 entries.accept(ModBlocks.TWISTED_NETHER_BRICKS.asItem());
                 entries.accept(ModBlocks.TWISTED_NETHER_BRICK_STAIRS.asItem());
                 entries.accept(ModBlocks.TWISTED_NETHER_BRICK_SLAB.asItem());
                 entries.accept(ModBlocks.TWISTED_NETHER_BRICK_WALL.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_WEEPING_NETHER_BRICKS)) {
+            if (ModConfig.ENABLE_WEEPING_NETHER_BRICKS.getValue()) {
                 entries.accept(ModBlocks.WEEPING_NETHER_BRICKS.asItem());
                 entries.accept(ModBlocks.WEEPING_NETHER_BRICK_STAIRS.asItem());
                 entries.accept(ModBlocks.WEEPING_NETHER_BRICK_SLAB.asItem());
                 entries.accept(ModBlocks.WEEPING_NETHER_BRICK_WALL.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_TWISTED_BLACKSTONE)) {
+            if (ModConfig.ENABLE_TWISTED_BLACKSTONE.getValue()) {
                 entries.accept(ModBlocks.TWISTED_BLACKSTONE.asItem());
                 entries.accept(ModBlocks.TWISTED_BLACKSTONE_STAIRS.asItem());
                 entries.accept(ModBlocks.TWISTED_BLACKSTONE_SLAB.asItem());
                 entries.accept(ModBlocks.TWISTED_BLACKSTONE_WALL.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_WEEPING_BLACKSTONE)) {
+            if (ModConfig.ENABLE_WEEPING_BLACKSTONE.getValue()) {
                 entries.accept(ModBlocks.WEEPING_BLACKSTONE.asItem());
                 entries.accept(ModBlocks.WEEPING_BLACKSTONE_STAIRS.asItem());
                 entries.accept(ModBlocks.WEEPING_BLACKSTONE_SLAB.asItem());
                 entries.accept(ModBlocks.WEEPING_BLACKSTONE_WALL.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_TWISTED_POLISHED_BLACKSTONE_BRICKS)) {
+            if (ModConfig.ENABLE_TWISTED_POLISHED_BLACKSTONE_BRICKS.getValue()) {
                 entries.accept(ModBlocks.TWISTED_POLISHED_BLACKSTONE_BRICKS.asItem());
                 entries.accept(ModBlocks.TWISTED_POLISHED_BLACKSTONE_BRICK_STAIRS.asItem());
                 entries.accept(ModBlocks.TWISTED_POLISHED_BLACKSTONE_BRICK_SLAB.asItem());
                 entries.accept(ModBlocks.TWISTED_POLISHED_BLACKSTONE_BRICK_WALL.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_WEEPING_POLISHED_BLACKSTONE_BRICKS)) {
+            if (ModConfig.ENABLE_WEEPING_POLISHED_BLACKSTONE_BRICKS.getValue()) {
                 entries.accept(ModBlocks.WEEPING_POLISHED_BLACKSTONE_BRICKS.asItem());
                 entries.accept(ModBlocks.WEEPING_POLISHED_BLACKSTONE_BRICK_STAIRS.asItem());
                 entries.accept(ModBlocks.WEEPING_POLISHED_BLACKSTONE_BRICK_SLAB.asItem());
                 entries.accept(ModBlocks.WEEPING_POLISHED_BLACKSTONE_BRICK_WALL.asItem());
             }
 
-            boolean blackstoneTilesEnabled = ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_BLACKSTONE_TILES);
-            if (blackstoneTilesEnabled) {
+            if (ModConfig.ENABLE_BLACKSTONE_TILES.getValue()) {
                 entries.accept(ModBlocks.BLACKSTONE_TILES.asItem());
                 entries.accept(ModBlocks.BLACKSTONE_TILE_STAIRS.asItem());
                 entries.accept(ModBlocks.BLACKSTONE_TILE_SLAB.asItem());
                 entries.accept(ModBlocks.BLACKSTONE_TILE_WALL.asItem());
             }
 
-            if (blackstoneTilesEnabled && ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_TWISTED_BLACKSTONE_TILES)) {
+            if (ModConfig.ENABLE_BLACKSTONE_TILES.getValue() && ModConfig.ENABLE_TWISTED_BLACKSTONE_TILES.getValue()) {
                 entries.accept(ModBlocks.TWISTED_BLACKSTONE_TILES.asItem());
                 entries.accept(ModBlocks.TWISTED_BLACKSTONE_TILE_STAIRS.asItem());
                 entries.accept(ModBlocks.TWISTED_BLACKSTONE_TILE_SLAB.asItem());
                 entries.accept(ModBlocks.TWISTED_BLACKSTONE_TILE_WALL.asItem());
             }
 
-            if (blackstoneTilesEnabled && ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_WEEPING_BLACKSTONE_TILES)) {
+            if (ModConfig.ENABLE_BLACKSTONE_TILES.getValue() && ModConfig.ENABLE_WEEPING_BLACKSTONE_TILES.getValue()) {
                 entries.accept(ModBlocks.WEEPING_BLACKSTONE_TILES.asItem());
                 entries.accept(ModBlocks.WEEPING_BLACKSTONE_TILE_STAIRS.asItem());
                 entries.accept(ModBlocks.WEEPING_BLACKSTONE_TILE_SLAB.asItem());
                 entries.accept(ModBlocks.WEEPING_BLACKSTONE_TILE_WALL.asItem());
             }
 
-            boolean smokyQuartzBlocksEnabled = ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_SMOKY_QUARTZ_BLOCKS);
-            if (smokyQuartzBlocksEnabled) {
+            if (ModConfig.ENABLE_SMOKY_QUARTZ_BLOCKS.getValue()) {
                 entries.accept(ModBlocks.NETHER_SMOKY_QUARTZ_ORE.asItem());
                 entries.accept(ModItems.SMOKY_QUARTZ);
                 entries.accept(ModBlocks.SMOKY_QUARTZ_BLOCK.asItem());
@@ -690,115 +662,113 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModBlocks.SMOKY_QUARTZ_PILLAR.asItem());
             }
 
-            if (smokyQuartzBlocksEnabled && ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_SMOKY_QUARTZ_BRICKS)) {
+            if (ModConfig.ENABLE_SMOKY_QUARTZ_BLOCKS.getValue() && ModConfig.ENABLE_SMOKY_QUARTZ_BRICKS.getValue()) {
                 entries.accept(ModBlocks.SMOKY_QUARTZ_BRICKS.asItem());
                 entries.accept(ModBlocks.SMOKY_QUARTZ_BRICK_STAIRS.asItem());
                 entries.accept(ModBlocks.SMOKY_QUARTZ_BRICK_SLAB.asItem());
                 entries.accept(ModBlocks.SMOKY_QUARTZ_BRICK_WALL.asItem());
             }
 
-            if (smokyQuartzBlocksEnabled && ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_SMOOTH_SMOKY_QUARTZ)) {
+            if (ModConfig.ENABLE_SMOKY_QUARTZ_BLOCKS.getValue() && ModConfig.ENABLE_SMOOTH_SMOKY_QUARTZ.getValue()) {
                 entries.accept(ModBlocks.SMOOTH_SMOKY_QUARTZ.asItem());
                 entries.accept(ModBlocks.SMOOTH_SMOKY_QUARTZ_STAIRS.asItem());
                 entries.accept(ModBlocks.SMOOTH_SMOKY_QUARTZ_SLAB.asItem());
                 entries.accept(ModBlocks.SMOOTH_SMOKY_QUARTZ_WALL.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_QUARTZ_BRICK_BLOCKS)) {
+            if (ModConfig.ENABLE_QUARTZ_BRICK_BLOCKS.getValue()) {
                 entries.accept(ModBlocks.QUARTZ_BRICK_STAIRS.asItem());
                 entries.accept(ModBlocks.QUARTZ_BRICK_SLAB.asItem());
                 entries.accept(ModBlocks.QUARTZ_BRICK_WALL.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_QUARTZ_TILES)) {
+            if (ModConfig.ENABLE_QUARTZ_TILES.getValue()) {
                 entries.accept(ModBlocks.QUARTZ_TILES.asItem());
                 entries.accept(ModBlocks.QUARTZ_TILE_STAIRS.asItem());
                 entries.accept(ModBlocks.QUARTZ_TILE_SLAB.asItem());
                 entries.accept(ModBlocks.QUARTZ_TILE_WALL.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_QUARTZ_WALLS)) {
+            if (ModConfig.ENABLE_QUARTZ_WALLS.getValue()) {
                 entries.accept(ModBlocks.QUARTZ_WALL.asItem());
                 entries.accept(ModBlocks.SMOOTH_QUARTZ_WALL.asItem());
             }
 
-            boolean bauxiteEnabled = ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_BAUXITE);
-            if (bauxiteEnabled) {
+            if (ModConfig.ENABLE_BAUXITE.getValue()) {
                 entries.accept(ModBlocks.BAUXITE.asItem());
                 entries.accept(ModBlocks.BAUXITE_SLAB.asItem());
                 entries.accept(ModBlocks.BAUXITE_STAIRS.asItem());
                 entries.accept(ModBlocks.BAUXITE_WALL.asItem());
             }
 
-            boolean bauxiteBricksEnabled = ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_BAUXITE_BRICKS);
-            if (bauxiteEnabled && bauxiteBricksEnabled) {
+            if (ModConfig.ENABLE_BAUXITE.getValue() && ModConfig.ENABLE_BAUXITE_BRICKS.getValue()) {
                 entries.accept(ModBlocks.BAUXITE_BRICKS.asItem());
                 entries.accept(ModBlocks.BAUXITE_BRICK_STAIRS.asItem());
                 entries.accept(ModBlocks.BAUXITE_BRICK_SLAB.asItem());
                 entries.accept(ModBlocks.BAUXITE_BRICK_WALL.asItem());
             }
 
-            if (bauxiteEnabled && bauxiteBricksEnabled && ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_CRACKED_BAUXITE_BRICKS)) {
+            if (ModConfig.ENABLE_BAUXITE.getValue() && ModConfig.ENABLE_BAUXITE_BRICKS.getValue()
+                    && ModConfig.ENABLE_CRACKED_BAUXITE_BRICKS.getValue()) {
                 entries.accept(ModBlocks.CRACKED_BAUXITE_BRICKS.asItem());
                 entries.accept(ModBlocks.CRACKED_BAUXITE_BRICK_STAIRS.asItem());
                 entries.accept(ModBlocks.CRACKED_BAUXITE_BRICK_SLAB.asItem());
                 entries.accept(ModBlocks.CRACKED_BAUXITE_BRICK_WALL.asItem());
             }
 
-            if (bauxiteEnabled && bauxiteBricksEnabled && ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_MOSSY_BAUXITE_BRICKS)) {
+            if (ModConfig.ENABLE_BAUXITE.getValue() && ModConfig.ENABLE_BAUXITE_BRICKS.getValue()
+                    && ModConfig.ENABLE_MOSSY_BAUXITE_BRICKS.getValue()) {
                 entries.accept(ModBlocks.MOSSY_BAUXITE_BRICKS.asItem());
                 entries.accept(ModBlocks.MOSSY_BAUXITE_BRICK_STAIRS.asItem());
                 entries.accept(ModBlocks.MOSSY_BAUXITE_BRICK_SLAB.asItem());
                 entries.accept(ModBlocks.MOSSY_BAUXITE_BRICK_WALL.asItem());
             }
 
-            boolean stoneTilesEnabled = ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_STONE_TILES);
-            if (stoneTilesEnabled) {
+            if (ModConfig.ENABLE_STONE_TILES.getValue()) {
                 entries.accept(ModBlocks.STONE_TILES.asItem());
                 entries.accept(ModBlocks.STONE_TILE_SLAB.asItem());
                 entries.accept(ModBlocks.STONE_TILE_STAIRS.asItem());
                 entries.accept(ModBlocks.STONE_TILE_WALL.asItem());
             }
 
-            if (stoneTilesEnabled && ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_CRACKED_STONE_TILES)) {
+            if (ModConfig.ENABLE_STONE_TILES.getValue() && ModConfig.ENABLE_CRACKED_STONE_TILES.getValue()) {
                 entries.accept(ModBlocks.CRACKED_STONE_TILES.asItem());
                 entries.accept(ModBlocks.CRACKED_STONE_TILE_SLAB.asItem());
                 entries.accept(ModBlocks.CRACKED_STONE_TILE_STAIRS.asItem());
                 entries.accept(ModBlocks.CRACKED_STONE_TILE_WALL.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_MOSSY_STONE_TILES)) {
+            if (ModConfig.ENABLE_MOSSY_STONE_TILES.getValue()) {
                 entries.accept(ModBlocks.MOSSY_STONE_TILES.asItem());
                 entries.accept(ModBlocks.MOSSY_STONE_TILE_SLAB.asItem());
                 entries.accept(ModBlocks.MOSSY_STONE_TILE_STAIRS.asItem());
                 entries.accept(ModBlocks.MOSSY_STONE_TILE_WALL.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_CRACKED_STONE_BRICK_BLOCKS)) {
+            if (ModConfig.ENABLE_CRACKED_STONE_BRICK_BLOCKS.getValue()) {
                 entries.accept(ModBlocks.CRACKED_STONE_BRICK_STAIRS.asItem());
                 entries.accept(ModBlocks.CRACKED_STONE_BRICK_SLAB.asItem());
                 entries.accept(ModBlocks.CRACKED_STONE_BRICK_WALL.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_STONE_WALLS)) {
+            if (ModConfig.ENABLE_STONE_WALLS.getValue()) {
                 entries.accept(ModBlocks.STONE_WALL.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_CALCITE_BLOCKS)) {
+            if (ModConfig.ENABLE_CALCITE_BLOCKS.getValue()) {
                 entries.accept(ModBlocks.CALCITE_STAIRS.asItem());
                 entries.accept(ModBlocks.CALCITE_SLAB.asItem());
                 entries.accept(ModBlocks.CALCITE_WALL.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_POLISHED_CALCITE)) {
+            if (ModConfig.ENABLE_POLISHED_CALCITE.getValue()) {
                 entries.accept(ModBlocks.POLISHED_CALCITE.asItem());
                 entries.accept(ModBlocks.POLISHED_CALCITE_STAIRS.asItem());
                 entries.accept(ModBlocks.POLISHED_CALCITE_SLAB.asItem());
                 entries.accept(ModBlocks.POLISHED_CALCITE_WALL.asItem());
             }
 
-            boolean calciteBricksEnabled = ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_CALCITE_BRICKS);
-            if (calciteBricksEnabled) {
+            if (ModConfig.ENABLE_CALCITE_BRICKS.getValue()) {
                 entries.accept(ModBlocks.CALCITE_BRICKS.asItem());
                 entries.accept(ModBlocks.CALCITE_BRICK_STAIRS.asItem());
                 entries.accept(ModBlocks.CALCITE_BRICK_SLAB.asItem());
@@ -806,35 +776,34 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModBlocks.CHISELED_CALCITE_BRICKS.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_CRACKED_CALCITE_BRICKS) && calciteBricksEnabled) {
+            if (ModConfig.ENABLE_CRACKED_CALCITE_BRICKS.getValue() && ModConfig.ENABLE_CALCITE_BRICKS.getValue()) {
                 entries.accept(ModBlocks.CRACKED_CALCITE_BRICKS.asItem());
                 entries.accept(ModBlocks.CRACKED_CALCITE_BRICK_STAIRS.asItem());
                 entries.accept(ModBlocks.CRACKED_CALCITE_BRICK_SLAB.asItem());
                 entries.accept(ModBlocks.CRACKED_CALCITE_BRICK_WALL.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_MOSSY_CALCITE_BRICKS) && calciteBricksEnabled) {
+            if (ModConfig.ENABLE_MOSSY_CALCITE_BRICKS.getValue() && ModConfig.ENABLE_CALCITE_BRICKS.getValue()) {
                 entries.accept(ModBlocks.MOSSY_CALCITE_BRICKS.asItem());
                 entries.accept(ModBlocks.MOSSY_CALCITE_BRICK_STAIRS.asItem());
                 entries.accept(ModBlocks.MOSSY_CALCITE_BRICK_SLAB.asItem());
                 entries.accept(ModBlocks.MOSSY_CALCITE_BRICK_WALL.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_DRIPSTONE_BLOCKS)) {
+            if (ModConfig.ENABLE_DRIPSTONE_BLOCKS.getValue()) {
                 entries.accept(ModBlocks.DRIPSTONE_STAIRS.asItem());
                 entries.accept(ModBlocks.DRIPSTONE_SLAB.asItem());
                 entries.accept(ModBlocks.DRIPSTONE_WALL.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_POLISHED_DRIPSTONE)) {
+            if (ModConfig.ENABLE_POLISHED_DRIPSTONE.getValue()) {
                 entries.accept(ModBlocks.POLISHED_DRIPSTONE.asItem());
                 entries.accept(ModBlocks.POLISHED_DRIPSTONE_STAIRS.asItem());
                 entries.accept(ModBlocks.POLISHED_DRIPSTONE_SLAB.asItem());
                 entries.accept(ModBlocks.POLISHED_DRIPSTONE_WALL.asItem());
             }
 
-            boolean dripstoneBricksEnabled = ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_DRIPSTONE_BRICKS);
-            if (dripstoneBricksEnabled) {
+            if (ModConfig.ENABLE_DRIPSTONE_BRICKS.getValue()) {
                 entries.accept(ModBlocks.DRIPSTONE_BRICKS.asItem());
                 entries.accept(ModBlocks.DRIPSTONE_BRICK_STAIRS.asItem());
                 entries.accept(ModBlocks.DRIPSTONE_BRICK_SLAB.asItem());
@@ -842,35 +811,35 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModBlocks.CHISELED_DRIPSTONE_BRICKS.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_CRACKED_DRIPSTONE_BRICKS) && dripstoneBricksEnabled) {
+            if (ModConfig.ENABLE_CRACKED_DRIPSTONE_BRICKS.getValue() && ModConfig.ENABLE_DRIPSTONE_BRICKS.getValue()) {
                 entries.accept(ModBlocks.CRACKED_DRIPSTONE_BRICKS.asItem());
                 entries.accept(ModBlocks.CRACKED_DRIPSTONE_BRICK_STAIRS.asItem());
                 entries.accept(ModBlocks.CRACKED_DRIPSTONE_BRICK_SLAB.asItem());
                 entries.accept(ModBlocks.CRACKED_DRIPSTONE_BRICK_WALL.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_MOSSY_DRIPSTONE_BRICKS) && dripstoneBricksEnabled) {
+            if (ModConfig.ENABLE_MOSSY_DRIPSTONE_BRICKS.getValue() && ModConfig.ENABLE_DRIPSTONE_BRICKS.getValue()) {
                 entries.accept(ModBlocks.MOSSY_DRIPSTONE_BRICKS.asItem());
                 entries.accept(ModBlocks.MOSSY_DRIPSTONE_BRICK_STAIRS.asItem());
                 entries.accept(ModBlocks.MOSSY_DRIPSTONE_BRICK_SLAB.asItem());
                 entries.accept(ModBlocks.MOSSY_DRIPSTONE_BRICK_WALL.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_SNOW_BRICKS)) {
+            if (ModConfig.ENABLE_SNOW_BRICKS.getValue()) {
                 entries.accept(ModBlocks.SNOW_BRICKS.asItem());
                 entries.accept(ModBlocks.SNOW_BRICK_STAIRS.asItem());
                 entries.accept(ModBlocks.SNOW_BRICK_SLAB.asItem());
                 entries.accept(ModBlocks.SNOW_BRICK_WALL.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_PACKED_SNOW)) {
+            if (ModConfig.ENABLE_PACKED_SNOW.getValue()) {
                 entries.accept(ModBlocks.PACKED_SNOW.asItem());
                 entries.accept(ModBlocks.PACKED_SNOW_STAIRS.asItem());
                 entries.accept(ModBlocks.PACKED_SNOW_SLAB.asItem());
                 entries.accept(ModBlocks.PACKED_SNOW_WALL.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_DIRT_SLABS)) {
+            if (ModConfig.ENABLE_DIRT_SLABS.getValue()) {
                 entries.accept(ModBlocks.GRASS_SLAB.asItem());
                 entries.accept(ModBlocks.PODZOL_SLAB.asItem());
                 entries.accept(ModBlocks.MYCELIUM_SLAB.asItem());
@@ -880,28 +849,28 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModBlocks.COARSE_DIRT_SLAB.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_PURPLE_MUSHROOMS)) {
+            if (ModConfig.ENABLE_PURPLE_MUSHROOMS.getValue()) {
                 entries.accept(ModBlocks.PURPLE_MUSHROOM_BLOCK.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_CATTAILS)) {
+            if (ModConfig.ENABLE_CATTAILS.getValue()) {
                 entries.accept(ModBlocks.CATTAIL.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_BOG_BLOSSOMS)) {
+            if (ModConfig.ENABLE_BOG_BLOSSOMS.getValue()) {
                 entries.accept(ModBlocks.BOG_BLOSSOM.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_ENDER_PLANTS)) {
+            if (ModConfig.ENABLE_ENDER_PLANTS.getValue()) {
                 entries.accept(ModBlocks.SNAPDRAGON.asItem());
                 entries.accept(ModBlocks.SHORT_ENDER_GRASS.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_PURPLE_MUSHROOMS)) {
+            if (ModConfig.ENABLE_PURPLE_MUSHROOMS.getValue()) {
                 entries.accept(ModBlocks.PURPLE_MUSHROOM.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_BLOOD_KELP)) {
+            if (ModConfig.ENABLE_BLOOD_KELP.getValue()) {
                 entries.accept(ModBlocks.DRIED_BLOOD_KELP_BLOCK);
                 entries.accept(ModBlocks.BLOOD_KELP_LANTERN);
                 entries.accept(ModItems.BLOOD_KELP_SEED_CLUSTER);
@@ -909,115 +878,106 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModItems.DRIED_BLOOD_KELP);
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_GREEN_ONIONS)) {
+            if (ModConfig.ENABLE_GREEN_ONIONS.getValue()) {
                 entries.accept(ModBlocks.WILD_GREEN_ONIONS.asItem());
                 entries.accept(ModItems.GREEN_ONION_SEEDS);
                 entries.accept(ModItems.GREEN_ONION);
             }
 
-            boolean caramelAppleEnabled = ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_CARAMEL_APPLE);
-            if (caramelAppleEnabled) {
+            if (ModConfig.ENABLE_CARAMEL_APPLE.getValue()) {
                 entries.accept(ModItems.CARAMEL);
             }
 
-            boolean forestsBountyEnabled = ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_FORESTS_BOUNTY);
-            if (forestsBountyEnabled) {
+            if (ModConfig.ENABLE_FORESTS_BOUNTY.getValue()) {
                 entries.accept(ModItems.SPRUCE_CONE);
             }
 
-            boolean noodleSoupEnabled = ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_NOODLE_SOUP);
-            if (noodleSoupEnabled) {
+            if (ModConfig.ENABLE_NOODLE_SOUP.getValue()) {
                 entries.accept(ModItems.NOODLES);
             }
 
-            boolean witchsCradleEnabled = ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_WITCHS_CRADLES);
-            if (witchsCradleEnabled) {
+            if (ModConfig.ENABLE_WITCHS_CRADLES.getValue()) {
                 entries.accept(ModItems.WITCHS_CRADLE_BRANCH);
             }
 
-            boolean blueberriesEnabled = ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_BLUEBERRIES);
-            if (blueberriesEnabled) {
+            if (ModConfig.ENABLE_BLUEBERRIES.getValue()) {
                 entries.accept(ModItems.BLUEBERRIES);
             }
 
-            boolean cindersnapBerriesEnabled = ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_CINDERSNAP_BERRIES);
-            if (cindersnapBerriesEnabled) {
+            if (ModConfig.ENABLE_CINDERSNAP_BERRIES.getValue()) {
                 entries.accept(ModItems.CINDERSNAP_BERRIES);
             }
 
-            boolean frostbiteBerriesEnabled = ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_FROSTBITE_BERRIES);
-            if (frostbiteBerriesEnabled) {
+            if (ModConfig.ENABLE_FROSTBITE_BERRIES.getValue()) {
                 entries.accept(ModItems.FROSTBITE_BERRIES);
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_FRIED_EGG)) {
+            if (ModConfig.ENABLE_FRIED_EGG.getValue()) {
                 entries.accept(ModItems.FRIED_EGG);
             }
 
-            if (caramelAppleEnabled) {
+            if (ModConfig.ENABLE_CARAMEL_APPLE.getValue()) {
                 entries.accept(ModItems.CARAMEL_APPLE);
             }
 
-            if (forestsBountyEnabled) {
+            if (ModConfig.ENABLE_FORESTS_BOUNTY.getValue()) {
                 entries.accept(ModItems.FORESTS_BOUNTY);
             }
 
-            if (noodleSoupEnabled) {
+            if (ModConfig.ENABLE_NOODLE_SOUP.getValue()) {
                 entries.accept(ModItems.NOODLE_SOUP);
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_HOGLIN_STEW)) {
+            if (ModConfig.ENABLE_HOGLIN_STEW.getValue()) {
                 entries.accept(ModItems.HOGLIN_STEW);
             }
 
-            if (witchsCradleEnabled) {
+            if (ModConfig.ENABLE_WITCHS_CRADLES.getValue()) {
                 entries.accept(ModItems.WITCHS_CRADLE_SOUP);
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_PUDDING)) {
+            if (ModConfig.ENABLE_PUDDING.getValue()) {
                 entries.accept(ModItems.BERRY_PUDDING);
                 entries.accept(ModItems.PUDDING);
             }
 
-            if (frostbiteBerriesEnabled && ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_WARPED_FORAGE_MIX)) {
+            if (ModConfig.ENABLE_FROSTBITE_BERRIES.getValue() && ModConfig.ENABLE_WARPED_FORAGE_MIX.getValue()) {
                 entries.accept(ModItems.WARPED_FORAGE_MIX);
             }
 
-            if (cindersnapBerriesEnabled && ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_CRIMSON_FORAGE_MIX)) {
+            if (ModConfig.ENABLE_CINDERSNAP_BERRIES.getValue() && ModConfig.ENABLE_CRIMSON_FORAGE_MIX.getValue()) {
                 entries.accept(ModItems.CRIMSON_FORAGE_MIX);
             }
 
-            if (blueberriesEnabled && ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_BLUEBERRY_JUICE)) {
+            if (ModConfig.ENABLE_BLUEBERRIES.getValue() && ModConfig.ENABLE_BLUEBERRY_JUICE.getValue()) {
                 entries.accept(ModItems.BLUEBERRY_JUICE);
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_SWEET_BERRY_JUICE)) {
+            if (ModConfig.ENABLE_SWEET_BERRY_JUICE.getValue()) {
                 entries.accept(ModItems.SWEET_BERRY_JUICE);
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_CINDERSNAP_BERRY_JUICE)
-                    && cindersnapBerriesEnabled) {
+            if (ModConfig.ENABLE_CINDERSNAP_BERRY_JUICE.getValue() && ModConfig.ENABLE_CINDERSNAP_BERRIES.getValue()) {
                 entries.accept(ModItems.CINDERSNAP_BERRY_JUICE);
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_FROSTBITE_BERRY_JUICE)
-                    && frostbiteBerriesEnabled) {
+            if (ModConfig.ENABLE_FROSTBITE_BERRY_JUICE.getValue() && ModConfig.ENABLE_FROSTBITE_BERRIES.getValue()) {
                 entries.accept(ModItems.FROSTBITE_BERRY_JUICE);
             }
 
-            if (blueberriesEnabled && ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_BLUEBERRY_PIE)) {
+            if (ModConfig.ENABLE_BLUEBERRIES.getValue() && ModConfig.ENABLE_BLUEBERRY_PIE.getValue()) {
                 entries.accept(ModBlocks.BLUEBERRY_PIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_SWEET_BERRY_PIE)) {
+            if (ModConfig.ENABLE_SWEET_BERRY_PIE.getValue()) {
                 entries.accept(ModBlocks.SWEET_BERRY_PIE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_CHOCOLATE_CAKE)) {
+            if (ModConfig.ENABLE_CHOCOLATE_CAKE.getValue()) {
                 entries.accept(ModBlocks.CHOCOLATE_CAKE.asItem());
             }
 
-            if (ModClientConfig.getBoolEntries().get(ModServerConfigKeys.ENABLE_RED_VELVET_CAKE)) {
+            if (ModConfig.ENABLE_RED_VELVET_CAKE.getValue()) {
                 entries.accept(ModBlocks.RED_VELVET_CAKE.asItem());
             }
         });

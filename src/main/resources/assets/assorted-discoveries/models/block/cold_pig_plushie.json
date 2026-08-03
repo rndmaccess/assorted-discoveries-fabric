@@ -1,0 +1,7 @@
+{
+  "parent": "assorted-discoveries:block/template_pig_plushie",
+  "textures": {
+    "particle": "minecraft:block/brown_wool",
+    "atlas": "assorted-discoveries:block/cold_pig_plushie"
+  }
+}

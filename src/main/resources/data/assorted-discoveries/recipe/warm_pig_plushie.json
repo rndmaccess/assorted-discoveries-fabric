@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "pig_plushies",
+  "pattern": [
+    "OOO",
+    "LIL",
+    "OOO"
+  ],
+  "key": {
+    "L": "minecraft:black_wool",
+    "O": "minecraft:orange_wool",
+    "I": "minecraft:porkchop"
+  },
+  "result": {
+    "id": "assorted-discoveries:warm_pig_plushie"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "enable_pig_plushies"
+    }
+  ]
+}

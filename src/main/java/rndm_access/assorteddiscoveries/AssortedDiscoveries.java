@@ -360,10 +360,8 @@ public class AssortedDiscoveries implements ModInitializer {
 
             if (ModConfig.ENABLE_PIG_PLUSHIES.getValue()) {
                 entries.accept(ModBlocks.TEMPERATE_PIG_PLUSHIE.asItem());
-
-                // TODO: Add the cold and warm pig plushies!
-                // entries.accept(ModBlocks.COLD_PIG_PLUSHIE.asItem());
-                // entries.accept(ModBlocks.WARM_PIG_PLUSHIE.asItem());
+                entries.accept(ModBlocks.COLD_PIG_PLUSHIE.asItem());
+                entries.accept(ModBlocks.WARM_PIG_PLUSHIE.asItem());
             }
 
             if (ModConfig.ENABLE_COW_PLUSHIES.getValue()) {

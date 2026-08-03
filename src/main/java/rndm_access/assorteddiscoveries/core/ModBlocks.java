@@ -1358,10 +1358,6 @@ public final class ModBlocks {
         return block;
     }
 
-    private static BlockPos postProcessSelf(final BlockState state, final BlockGetter blockGetter, final BlockPos blockPos) {
-        return blockPos;
-    }
-
     private static Block registerHorsePlushie(final ResourceKey<Block> id) {
         return register(id, HorsePlushieBlock::new, makePlushieSettings());
     }

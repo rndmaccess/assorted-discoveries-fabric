@@ -37,45 +37,39 @@ import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.block.*;
 import rndm_access.assorteddiscoveries.item.RopeLadderBlockItem;
 
+import java.util.function.Function;
 import java.util.function.ToIntFunction;
 
 @SuppressWarnings("unused")
 public final class ModBlocks {
     public static final ResourceKey<Block> BAT_PLUSHIE_KEY = makeRegistryKey("bat_plushie");
-    public static final Block BAT_PLUSHIE = register(new BatPlushieBlock(makePlushieSettings(BAT_PLUSHIE_KEY)),
-            BAT_PLUSHIE_KEY, true);
+    public static final Block BAT_PLUSHIE = register(BAT_PLUSHIE_KEY, BatPlushieBlock::new, makePlushieSettings());
     public static final ResourceKey<Block> BLAZE_PLUSHIE_KEY = makeRegistryKey("blaze_plushie");
-    public static final Block BLAZE_PLUSHIE = register(new BlazePlushieBlock(makeGlowingPlushieSettings(BLAZE_PLUSHIE_KEY)),
-            BLAZE_PLUSHIE_KEY, true);
+    public static final Block BLAZE_PLUSHIE
+            = register(BLAZE_PLUSHIE_KEY, BlazePlushieBlock::new, makeGlowingPlushieSettings());
     public static final ResourceKey<Block> CAVE_SPIDER_PLUSHIE_KEY = makeRegistryKey("cave_spider_plushie");
     public static final Block CAVE_SPIDER_PLUSHIE
-            = register(new CaveSpiderPlushieBlock(makePlushieSettings(CAVE_SPIDER_PLUSHIE_KEY)),
-            CAVE_SPIDER_PLUSHIE_KEY, true);
+            = register(CAVE_SPIDER_PLUSHIE_KEY, CaveSpiderPlushieBlock::new, makePlushieSettings());
     public static final ResourceKey<Block> TEMPERATE_CHICKEN_PLUSHIE_KEY
             = makeRegistryKey("temperate_chicken_plushie");
     public static final Block TEMPERATE_CHICKEN_PLUSHIE
-            = register(new ChickenPlushieBlock(makePlushieSettings(TEMPERATE_CHICKEN_PLUSHIE_KEY)),
-            TEMPERATE_CHICKEN_PLUSHIE_KEY, true);
+            = register(TEMPERATE_CHICKEN_PLUSHIE_KEY, ChickenPlushieBlock::new, makePlushieSettings());
     public static final ResourceKey<Block> TEMPERATE_COW_PLUSHIE_KEY
             = makeRegistryKey("temperate_cow_plushie");
     public static final Block TEMPERATE_COW_PLUSHIE
-            = register(new CowPlushieBlock(makePlushieSettings(TEMPERATE_COW_PLUSHIE_KEY)),
-            TEMPERATE_COW_PLUSHIE_KEY, true);
+            = register(TEMPERATE_COW_PLUSHIE_KEY, CowPlushieBlock::new, makePlushieSettings());
     public static final ResourceKey<Block> CREEPER_PLUSHIE_KEY = makeRegistryKey("creeper_plushie");
     public static final Block CREEPER_PLUSHIE
-            = register(new CreeperPlushieBlock(makePlushieSettings(CREEPER_PLUSHIE_KEY)),
-            CREEPER_PLUSHIE_KEY, true);
+            = register(CREEPER_PLUSHIE_KEY, CreeperPlushieBlock::new, makePlushieSettings());
     public static final ResourceKey<Block> ENDERMAN_PLUSHIE_KEY = makeRegistryKey("enderman_plushie");
     public static final Block ENDERMAN_PLUSHIE
-            = register(new EndermanPlushieBlock(makePlushieSettings(ENDERMAN_PLUSHIE_KEY)),
-            ENDERMAN_PLUSHIE_KEY, true);
+            = register(ENDERMAN_PLUSHIE_KEY, EndermanPlushieBlock::new, makePlushieSettings());
     public static final ResourceKey<Block> GHAST_PLUSHIE_KEY = makeRegistryKey("ghast_plushie");
-    public static final Block GHAST_PLUSHIE = register(new GhastPlushieBlock(makePlushieSettings(GHAST_PLUSHIE_KEY)),
-            GHAST_PLUSHIE_KEY, true);
+    public static final Block GHAST_PLUSHIE
+            = register(GHAST_PLUSHIE_KEY, GhastPlushieBlock::new, makePlushieSettings());
     public static final ResourceKey<Block> GUARDIAN_PLUSHIE_KEY = makeRegistryKey("guardian_plushie");
     public static final Block GUARDIAN_PLUSHIE
-            = register(new GuardianPlushieBlock(makePlushieSettings(GUARDIAN_PLUSHIE_KEY)),
-            GUARDIAN_PLUSHIE_KEY, true);
+            = register(GUARDIAN_PLUSHIE_KEY, GuardianPlushieBlock::new, makePlushieSettings());
     public static final ResourceKey<Block> WHITE_HORSE_PLUSHIE_KEY = makeRegistryKey("white_horse_plushie");
     public static final Block WHITE_HORSE_PLUSHIE = registerHorsePlushie(WHITE_HORSE_PLUSHIE_KEY);
     public static final ResourceKey<Block> GRAY_HORSE_PLUSHIE_KEY = makeRegistryKey("gray_horse_plushie");
@@ -117,19 +111,13 @@ public final class ModBlocks {
     public static final Block BLACK_CAT_PLUSHIE = registerCatPlushie(BLACK_CAT_PLUSHIE_KEY);
     public static final ResourceKey<Block> TEMPERATE_PIG_PLUSHIE_KEY
             = makeRegistryKey("temperate_pig_plushie");
-    public static final Block TEMPERATE_PIG_PLUSHIE
-            = register(new PigPlushieBlock(makePlushieSettings(TEMPERATE_PIG_PLUSHIE_KEY)),
-            TEMPERATE_PIG_PLUSHIE_KEY, true);
+    public static final Block TEMPERATE_PIG_PLUSHIE = registerPigPlushie(TEMPERATE_PIG_PLUSHIE_KEY);
     public static final ResourceKey<Block> COLD_PIG_PLUSHIE_KEY
             = makeRegistryKey("cold_pig_plushie");
-    public static final Block COLD_PIG_PLUSHIE
-            = register(new PigPlushieBlock(makePlushieSettings(COLD_PIG_PLUSHIE_KEY)),
-            COLD_PIG_PLUSHIE_KEY, true);
+    public static final Block COLD_PIG_PLUSHIE = registerPigPlushie(COLD_PIG_PLUSHIE_KEY);
     public static final ResourceKey<Block> WARM_PIG_PLUSHIE_KEY
             = makeRegistryKey("warm_pig_plushie");
-    public static final Block WARM_PIG_PLUSHIE
-            = register(new PigPlushieBlock(makePlushieSettings(WARM_PIG_PLUSHIE_KEY)),
-            WARM_PIG_PLUSHIE_KEY, true);
+    public static final Block WARM_PIG_PLUSHIE = registerPigPlushie(WARM_PIG_PLUSHIE_KEY);
     public static final ResourceKey<Block> BROWN_RABBIT_PLUSHIE_KEY = makeRegistryKey("brown_rabbit_plushie");
     public static final Block BROWN_RABBIT_PLUSHIE = registerRabbitPlushie(BROWN_RABBIT_PLUSHIE_KEY);
     public static final ResourceKey<Block> WHITE_RABBIT_PLUSHIE_KEY = makeRegistryKey("white_rabbit_plushie");
@@ -180,32 +168,26 @@ public final class ModBlocks {
     public static final Block BLACK_SHEEP_PLUSHIE = registerSheepPlushie(DyeColor.BLACK, BLACK_SHEEP_PLUSHIE_KEY);
     public static final ResourceKey<Block> SKELETON_PLUSHIE_KEY = makeRegistryKey("skeleton_plushie");
     public static final Block SKELETON_PLUSHIE
-            = register(new SkeletonPlushieBlock(makePlushieSettings(SKELETON_PLUSHIE_KEY)),
-            SKELETON_PLUSHIE_KEY, true);
+            = register(SKELETON_PLUSHIE_KEY, SkeletonPlushieBlock::new, makePlushieSettings());
     public static final ResourceKey<Block> SLIME_PLUSHIE_KEY = makeRegistryKey("slime_plushie");
     public static final Block SLIME_PLUSHIE = registerCubePlushie(SLIME_PLUSHIE_KEY);
     public static final ResourceKey<Block> SPIDER_PLUSHIE_KEY = makeRegistryKey("spider_plushie");
     public static final Block SPIDER_PLUSHIE
-            = register(new SpiderPlushieBlock(makePlushieSettings(SPIDER_PLUSHIE_KEY)),
-            SPIDER_PLUSHIE_KEY, true);
+            = register(SPIDER_PLUSHIE_KEY, SpiderPlushieBlock::new, makePlushieSettings());
     public static final ResourceKey<Block> SQUID_PLUSHIE_KEY = makeRegistryKey("squid_plushie");
     public static final Block SQUID_PLUSHIE
-            = register(new SquidPlushieBlock(makePlushieSettings(SQUID_PLUSHIE_KEY)),
-            SQUID_PLUSHIE_KEY, true);
+            = register(SQUID_PLUSHIE_KEY, SquidPlushieBlock::new, makePlushieSettings());
     public static final ResourceKey<Block> GLOW_SQUID_PLUSHIE_KEY = makeRegistryKey("glow_squid_plushie");
     public static final Block GLOW_SQUID_PLUSHIE
-            = register(new SquidPlushieBlock(makeGlowingPlushieSettings(GLOW_SQUID_PLUSHIE_KEY)),
-            GLOW_SQUID_PLUSHIE_KEY, true);
+            = register(GLOW_SQUID_PLUSHIE_KEY, SquidPlushieBlock::new, makeGlowingPlushieSettings());
     public static final ResourceKey<Block> BEE_PLUSHIE_KEY = makeRegistryKey("bee_plushie");
     public static final Block BEE_PLUSHIE
-            = register(new BeePlushieBlock(makePlushieSettings(BEE_PLUSHIE_KEY)),
-            BEE_PLUSHIE_KEY, true);
+            = register(BEE_PLUSHIE_KEY, BeePlushieBlock::new, makePlushieSettings());
     public static final ResourceKey<Block> PLAINS_VILLAGER_PLUSHIE_KEY = makeRegistryKey("plains_villager_plushie");
     public static final Block PLAINS_VILLAGER_PLUSHIE = registerVillagerPlushie(PLAINS_VILLAGER_PLUSHIE_KEY);
     public static final ResourceKey<Block> DESERT_VILLAGER_PLUSHIE_KEY = makeRegistryKey("desert_villager_plushie");
     public static final Block DESERT_VILLAGER_PLUSHIE
-            = register(new DesertVillagerPlushieBlock(makePlushieSettings(DESERT_VILLAGER_PLUSHIE_KEY)),
-            DESERT_VILLAGER_PLUSHIE_KEY, true);
+            = register(DESERT_VILLAGER_PLUSHIE_KEY, DesertVillagerPlushieBlock::new, makePlushieSettings());
     public static final ResourceKey<Block> JUNGLE_VILLAGER_PLUSHIE_KEY = makeRegistryKey("jungle_villager_plushie");
     public static final Block JUNGLE_VILLAGER_PLUSHIE = registerVillagerPlushie(JUNGLE_VILLAGER_PLUSHIE_KEY);
     public static final ResourceKey<Block> SAVANNA_VILLAGER_PLUSHIE_KEY
@@ -218,26 +200,23 @@ public final class ModBlocks {
     public static final ResourceKey<Block> TAIGA_VILLAGER_PLUSHIE_KEY = makeRegistryKey("taiga_villager_plushie");
     public static final Block TAIGA_VILLAGER_PLUSHIE = registerVillagerPlushie(TAIGA_VILLAGER_PLUSHIE_KEY);
     public static final ResourceKey<Block> WITCH_PLUSHIE_KEY = makeRegistryKey("witch_plushie");
-    public static final Block WITCH_PLUSHIE = register(new WitchPlushieBlock(makePlushieSettings(WITCH_PLUSHIE_KEY)),
-            WITCH_PLUSHIE_KEY, true);
+    public static final Block WITCH_PLUSHIE
+            = register(WITCH_PLUSHIE_KEY, WitchPlushieBlock::new, makePlushieSettings());
     public static final ResourceKey<Block> PALE_WOLF_PLUSHIE_KEY = makeRegistryKey("pale_wolf_plushie");
     public static final Block PALE_WOLF_PLUSHIE = registerWolfPlushie(PALE_WOLF_PLUSHIE_KEY);
     public static final ResourceKey<Block> ZOMBIE_PLUSHIE_KEY = makeRegistryKey("zombie_plushie");
     public static final Block ZOMBIE_PLUSHIE = registerZombiePlushie(ZOMBIE_PLUSHIE_KEY);
     public static final ResourceKey<Block> PIGLIN_PLUSHIE_KEY = makeRegistryKey("piglin_plushie");
     public static final Block PIGLIN_PLUSHIE
-            = register(new PiglinPlushieBlock(makePlushieSettings(PIGLIN_PLUSHIE_KEY)),
-            PIGLIN_PLUSHIE_KEY, true);
+            = register(PIGLIN_PLUSHIE_KEY, PiglinPlushieBlock::new, makePlushieSettings());
     public static final ResourceKey<Block> ZOMBIFIED_PIGLIN_PLUSHIE_KEY = makeRegistryKey("zombified_piglin_plushie");
     public static final Block ZOMBIFIED_PIGLIN_PLUSHIE = registerZombiePlushie(ZOMBIFIED_PIGLIN_PLUSHIE_KEY);
     public static final ResourceKey<Block> PUFFERFISH_PLUSHIE_KEY = makeRegistryKey("pufferfish_plushie");
     public static final Block PUFFERFISH_PLUSHIE
-            = register(new PufferfishPlushieBlock(makePlushieSettings(PUFFERFISH_PLUSHIE_KEY)),
-            PUFFERFISH_PLUSHIE_KEY, true);
+            = register(PUFFERFISH_PLUSHIE_KEY, PufferfishPlushieBlock::new, makePlushieSettings());
     public static final ResourceKey<Block> WITHER_PLUSHIE_KEY = makeRegistryKey("wither_plushie");
     public static final Block WITHER_PLUSHIE
-            = register(new WitherPlushieBlock(makePlushieSettings(WITHER_PLUSHIE_KEY)),
-            WITHER_PLUSHIE_KEY, true);
+            = register(WITHER_PLUSHIE_KEY, WitherPlushieBlock::new, makePlushieSettings());
     public static final ResourceKey<Block> STRIDER_PLUSHIE_KEY = makeRegistryKey("strider_plushie");
     public static final Block STRIDER_PLUSHIE = registerStriderPlushie(STRIDER_PLUSHIE_KEY);
     public static final ResourceKey<Block> SHIVERING_STRIDER_PLUSHIE_KEY
@@ -245,8 +224,7 @@ public final class ModBlocks {
     public static final Block SHIVERING_STRIDER_PLUSHIE = registerStriderPlushie(SHIVERING_STRIDER_PLUSHIE_KEY);
     public static final ResourceKey<Block> PHANTOM_PLUSHIE_KEY = makeRegistryKey("phantom_plushie");
     public static final Block PHANTOM_PLUSHIE
-            = register(new PhantomPlushieBlock(makePlushieSettings(PHANTOM_PLUSHIE_KEY)),
-            PHANTOM_PLUSHIE_KEY, true);
+            = register(PHANTOM_PLUSHIE_KEY, PhantomPlushieBlock::new, makePlushieSettings());
     public static final ResourceKey<Block> HOGLIN_PLUSHIE_KEY = makeRegistryKey("hoglin_plushie");
     public static final Block HOGLIN_PLUSHIE = registerHoglinPlushie(HOGLIN_PLUSHIE_KEY);
     public static final ResourceKey<Block> ZOGLIN_PLUSHIE_KEY = makeRegistryKey("zoglin_plushie");
@@ -261,75 +239,64 @@ public final class ModBlocks {
     public static final Block EVOKER_PLUSHIE = registerVillagerPlushie(EVOKER_PLUSHIE_KEY);
     public static final ResourceKey<Block> SHULKER_PLUSHIE_KEY = makeRegistryKey("shulker_plushie");
     public static final Block SHULKER_PLUSHIE
-            = register(new ShulkerPlushieBlock(makePlushieSettings(SHULKER_PLUSHIE_KEY)),
-            SHULKER_PLUSHIE_KEY, true);
+            = register(SHULKER_PLUSHIE_KEY, ShulkerPlushieBlock::new, makePlushieSettings());
     public static final ResourceKey<Block> VEX_PLUSHIE_KEY = makeRegistryKey("vex_plushie");
     public static final Block VEX_PLUSHIE = registerAllayPlushie(VEX_PLUSHIE_KEY);
     public static final ResourceKey<Block> CAMEL_PLUSHIE_KEY = makeRegistryKey("camel_plushie");
     public static final Block CAMEL_PLUSHIE
-            = register(new CamelPlushieBlock(makePlushieSettings(CAMEL_PLUSHIE_KEY)),
-            CAMEL_PLUSHIE_KEY, true);
+            = register(CAMEL_PLUSHIE_KEY, CamelPlushieBlock::new, makePlushieSettings());
     public static final ResourceKey<Block> NETHER_SMOKY_QUARTZ_ORE_KEY = makeRegistryKey("nether_smoky_quartz_ore");
-    public static final Block NETHER_SMOKY_QUARTZ_ORE
-            = register(new DropExperienceBlock(UniformInt.of(2, 5),
-            BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_QUARTZ_ORE).setId(NETHER_SMOKY_QUARTZ_ORE_KEY)),
-            NETHER_SMOKY_QUARTZ_ORE_KEY, true);
+    public static final Block NETHER_SMOKY_QUARTZ_ORE = register(NETHER_SMOKY_QUARTZ_ORE_KEY,
+            (props) -> new DropExperienceBlock(UniformInt.of(2, 5), props),
+            BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_QUARTZ_ORE));
     public static final ResourceKey<Block> SMOKY_QUARTZ_BLOCK_KEY = makeRegistryKey("smoky_quartz_block");
-    public static final Block SMOKY_QUARTZ_BLOCK
-            = register(new Block(makeSmokyQuartzSettings(SMOKY_QUARTZ_BLOCK_KEY)),
-            SMOKY_QUARTZ_BLOCK_KEY, true);
+    public static final Block SMOKY_QUARTZ_BLOCK = registerSimple(SMOKY_QUARTZ_BLOCK_KEY, makeSmokyQuartzSettings());
     public static final ResourceKey<Block> CHISELED_SMOKY_QUARTZ_BLOCK_KEY
             = makeRegistryKey("chiseled_smoky_quartz_block");
     public static final Block CHISELED_SMOKY_QUARTZ_BLOCK
-            = register(new Block(makeSmokyQuartzSettings(CHISELED_SMOKY_QUARTZ_BLOCK_KEY)),
-            CHISELED_SMOKY_QUARTZ_BLOCK_KEY, true);
+            = registerSimple(CHISELED_SMOKY_QUARTZ_BLOCK_KEY, makeSmokyQuartzSettings());
     public static final ResourceKey<Block> SMOKY_QUARTZ_BRICKS_KEY = makeRegistryKey("smoky_quartz_bricks");
     public static final Block SMOKY_QUARTZ_BRICKS
-            = register(new Block(makeSmokyQuartzSettings(SMOKY_QUARTZ_BRICKS_KEY)),
-            SMOKY_QUARTZ_BRICKS_KEY, true);
+            = registerSimple(SMOKY_QUARTZ_BRICKS_KEY, makeSmokyQuartzSettings());
     public static final ResourceKey<Block> SMOKY_QUARTZ_BRICK_STAIRS_KEY
             = makeRegistryKey("smoky_quartz_brick_stairs");
     public static final Block SMOKY_QUARTZ_BRICK_STAIRS
-            = registerStairs(SMOKY_QUARTZ_BRICK_STAIRS_KEY, makeSmokyQuartzSettings(SMOKY_QUARTZ_BRICK_STAIRS_KEY),
-            SMOKY_QUARTZ_BRICKS);
+            = registerStairs(SMOKY_QUARTZ_BRICK_STAIRS_KEY, makeSmokyQuartzSettings(), SMOKY_QUARTZ_BRICKS);
     public static final ResourceKey<Block> SMOKY_QUARTZ_BRICK_SLAB_KEY
             = makeRegistryKey("smoky_quartz_brick_slab");
     public static final Block SMOKY_QUARTZ_BRICK_SLAB
-            = registerSlab(SMOKY_QUARTZ_BRICK_SLAB_KEY, makeSmokyQuartzSettings(SMOKY_QUARTZ_BRICK_SLAB_KEY));
+            = registerSlab(SMOKY_QUARTZ_BRICK_SLAB_KEY, makeSmokyQuartzSettings());
     public static final ResourceKey<Block> SMOKY_QUARTZ_BRICK_WALL_KEY = makeRegistryKey("smoky_quartz_brick_wall");
     public static final Block SMOKY_QUARTZ_BRICK_WALL
-            = registerWall(SMOKY_QUARTZ_BRICK_WALL_KEY, makeSmokyQuartzSettings(SMOKY_QUARTZ_BRICK_WALL_KEY));
+            = registerWall(SMOKY_QUARTZ_BRICK_WALL_KEY, makeSmokyQuartzSettings());
     public static final ResourceKey<Block> SMOKY_QUARTZ_PILLAR_KEY = makeRegistryKey("smoky_quartz_pillar");
     public static final Block SMOKY_QUARTZ_PILLAR
-            = register(new RotatedPillarBlock(makeSmokyQuartzSettings(SMOKY_QUARTZ_PILLAR_KEY)),
-            SMOKY_QUARTZ_PILLAR_KEY, true);
+            = register(SMOKY_QUARTZ_PILLAR_KEY, RotatedPillarBlock::new, makeSmokyQuartzSettings());
     public static final ResourceKey<Block> SMOKY_QUARTZ_STAIRS_KEY = makeRegistryKey("smoky_quartz_stairs");
     public static final Block SMOKY_QUARTZ_STAIRS
-            = registerStairs(SMOKY_QUARTZ_STAIRS_KEY, makeSmokyQuartzSettings(SMOKY_QUARTZ_STAIRS_KEY),
+            = registerStairs(SMOKY_QUARTZ_STAIRS_KEY, makeSmokyQuartzSettings(),
             SMOKY_QUARTZ_BLOCK);
     public static final ResourceKey<Block> SMOKY_QUARTZ_SLAB_KEY = makeRegistryKey("smoky_quartz_slab");
     public static final Block SMOKY_QUARTZ_SLAB = registerSlab(SMOKY_QUARTZ_SLAB_KEY,
-            makeSmokyQuartzSettings(SMOKY_QUARTZ_SLAB_KEY));
+            makeSmokyQuartzSettings());
     public static final ResourceKey<Block> SMOKY_QUARTZ_WALL_KEY = makeRegistryKey("smoky_quartz_wall");
     public static final Block SMOKY_QUARTZ_WALL = registerWall(SMOKY_QUARTZ_WALL_KEY,
-            makeSmokyQuartzSettings(SMOKY_QUARTZ_WALL_KEY));
+            makeSmokyQuartzSettings());
     public static final ResourceKey<Block> SMOOTH_SMOKY_QUARTZ_KEY = makeRegistryKey("smooth_smoky_quartz");
     public static final Block SMOOTH_SMOKY_QUARTZ
-            = register(new Block(makeSmokyQuartzSettings(SMOOTH_SMOKY_QUARTZ_KEY)),
-            SMOOTH_SMOKY_QUARTZ_KEY, true);
+            = registerSimple(SMOOTH_SMOKY_QUARTZ_KEY, makeSmokyQuartzSettings());
     public static final ResourceKey<Block> SMOOTH_SMOKY_QUARTZ_STAIRS_KEY
             = makeRegistryKey("smooth_smoky_quartz_stairs");
     public static final Block SMOOTH_SMOKY_QUARTZ_STAIRS
-            = registerStairs(SMOOTH_SMOKY_QUARTZ_STAIRS_KEY, makeSmokyQuartzSettings(SMOOTH_SMOKY_QUARTZ_STAIRS_KEY),
-            SMOOTH_SMOKY_QUARTZ);
+            = registerStairs(SMOOTH_SMOKY_QUARTZ_STAIRS_KEY, makeSmokyQuartzSettings(), SMOOTH_SMOKY_QUARTZ);
     public static final ResourceKey<Block> SMOOTH_SMOKY_QUARTZ_SLAB_KEY
             = makeRegistryKey("smooth_smoky_quartz_slab");
-    public static final Block SMOOTH_SMOKY_QUARTZ_SLAB = registerSlab(SMOOTH_SMOKY_QUARTZ_SLAB_KEY,
-            makeSmokyQuartzSettings(SMOOTH_SMOKY_QUARTZ_SLAB_KEY));
+    public static final Block SMOOTH_SMOKY_QUARTZ_SLAB
+            = registerSlab(SMOOTH_SMOKY_QUARTZ_SLAB_KEY, makeSmokyQuartzSettings());
     public static final ResourceKey<Block> SMOOTH_SMOKY_QUARTZ_WALL_KEY
             = makeRegistryKey("smooth_smoky_quartz_wall");
-    public static final Block SMOOTH_SMOKY_QUARTZ_WALL = registerWall(SMOOTH_SMOKY_QUARTZ_WALL_KEY,
-            makeSmokyQuartzSettings(SMOOTH_SMOKY_QUARTZ_WALL_KEY));
+    public static final Block SMOOTH_SMOKY_QUARTZ_WALL
+            = registerWall(SMOOTH_SMOKY_QUARTZ_WALL_KEY, makeSmokyQuartzSettings());
     public static final ResourceKey<Block> CRACKED_STONE_BRICK_STAIRS_KEY
             = makeRegistryKey("cracked_stone_brick_stairs");
     public static final Block CRACKED_STONE_BRICK_STAIRS
@@ -348,16 +315,16 @@ public final class ModBlocks {
                     .setId(CRACKED_STONE_BRICK_WALL_KEY));
     public static final ResourceKey<Block> BLUEBERRY_BUSH_KEY = makeRegistryKey("blueberry_bush");
     public static final Block BLUEBERRY_BUSH
-            = register(new BlueberryBushBlock(BlockBehaviour.Properties.of().mapColor(MapColor.GRASS)
-            .randomTicks().noCollision().sound(SoundType.SWEET_BERRY_BUSH)
-            .pushReaction(PushReaction.DESTROY).setId(BLUEBERRY_BUSH_KEY)),
-            BLUEBERRY_BUSH_KEY, false);
+            = register(BLUEBERRY_BUSH_KEY, BlueberryBushBlock::new,
+            BlockBehaviour.Properties.of().mapColor(MapColor.GRASS)
+                    .randomTicks().noCollision().sound(SoundType.SWEET_BERRY_BUSH)
+                    .pushReaction(PushReaction.DESTROY), false);
     public static final ResourceKey<Block> GREEN_ONIONS_KEY = makeRegistryKey("green_onions");
     public static final Block GREEN_ONIONS
-            = register(new GreenOnionsBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT)
-            .noCollision().randomTicks().instabreak().sound(SoundType.CROP)
-                    .pushReaction(PushReaction.DESTROY).setId(GREEN_ONIONS_KEY)),
-            GREEN_ONIONS_KEY, false);
+            = register(GREEN_ONIONS_KEY, GreenOnionsBlock::new,
+            BlockBehaviour.Properties.of().mapColor(MapColor.PLANT)
+                    .noCollision().randomTicks().instabreak().sound(SoundType.CROP)
+                    .pushReaction(PushReaction.DESTROY), false);
     public static final ResourceKey<Block> OAK_PLANTER_BOX_KEY = makeRegistryKey("oak_planter_box");
     public static final Block OAK_PLANTER_BOX
             = registerPlanterBox(OAK_PLANTER_BOX_KEY, Blocks.OAK_PLANKS.defaultMapColor(), SoundType.WOOD);
@@ -481,45 +448,43 @@ public final class ModBlocks {
     public static final ResourceKey<Block> PALE_OAK_ROPE_LADDER_KEY = makeRegistryKey("pale_oak_rope_ladder");
     public static final Block PALE_OAK_ROPE_LADDER = registerRopeLadder(PALE_OAK_ROPE_LADDER_KEY);
     public static final ResourceKey<Block> IRON_LADDER_KEY = makeRegistryKey("iron_ladder");
-    public static final Block IRON_LADDER = register(new LadderBlock(BlockBehaviour.Properties.of()
-            .mapColor(MapColor.METAL).requiresCorrectToolForDrops().strength(5.0F).sound(SoundType.METAL)
-                    .noOcclusion().setId(IRON_LADDER_KEY)), IRON_LADDER_KEY, true);
+    public static final Block IRON_LADDER = register(IRON_LADDER_KEY, LadderBlock::new,
+            BlockBehaviour.Properties.of().mapColor(MapColor.METAL).requiresCorrectToolForDrops()
+                    .strength(5.0F).sound(SoundType.METAL).noOcclusion());
     public static final ResourceKey<Block> SNOW_BRICKS_KEY = makeRegistryKey("snow_bricks");
-    public static final Block SNOW_BRICKS
-            = register(new Block(makeSnowBrickSettings(SNOW_BRICKS_KEY)), SNOW_BRICKS_KEY, true);
+    public static final Block SNOW_BRICKS = registerSimple(SNOW_BRICKS_KEY, makeSnowBrickSettings());
     public static final ResourceKey<Block> SNOW_BRICK_STAIRS_KEY = makeRegistryKey("snow_brick_stairs");
     public static final Block SNOW_BRICK_STAIRS
-            = registerStairs(SNOW_BRICK_STAIRS_KEY, makeSnowBrickSettings(SNOW_BRICK_STAIRS_KEY), SNOW_BRICKS);
+            = registerStairs(SNOW_BRICK_STAIRS_KEY, makeSnowBrickSettings(), SNOW_BRICKS);
     public static final ResourceKey<Block> SNOW_BRICK_SLAB_KEY = makeRegistryKey("snow_brick_slab");
     public static final Block SNOW_BRICK_SLAB
-            = registerSlab(SNOW_BRICK_SLAB_KEY, makeSnowBrickSettings(SNOW_BRICK_SLAB_KEY));
+            = registerSlab(SNOW_BRICK_SLAB_KEY, makeSnowBrickSettings());
     public static final ResourceKey<Block> SNOW_BRICK_WALL_KEY = makeRegistryKey("snow_brick_wall");
     public static final Block SNOW_BRICK_WALL
-            = registerWall(SNOW_BRICK_WALL_KEY, makeSnowBrickSettings(SNOW_BRICK_WALL_KEY));
+            = registerWall(SNOW_BRICK_WALL_KEY, makeSnowBrickSettings());
     public static final ResourceKey<Block> PACKED_SNOW_KEY = makeRegistryKey("packed_snow");
     public static final Block PACKED_SNOW
-            = register(new Block(makePackedSnowSettings(PACKED_SNOW_KEY)), PACKED_SNOW_KEY, true);
+            = registerSimple(PACKED_SNOW_KEY, makePackedSnowSettings());
     public static final ResourceKey<Block> PACKED_SNOW_STAIRS_KEY = makeRegistryKey("packed_snow_stairs");
     public static final Block PACKED_SNOW_STAIRS
-            = registerStairs(PACKED_SNOW_STAIRS_KEY, makePackedSnowSettings(PACKED_SNOW_STAIRS_KEY), PACKED_SNOW);
+            = registerStairs(PACKED_SNOW_STAIRS_KEY, makePackedSnowSettings(), PACKED_SNOW);
     public static final ResourceKey<Block> PACKED_SNOW_SLAB_KEY = makeRegistryKey("packed_snow_slab");
     public static final Block PACKED_SNOW_SLAB
-            = registerSlab(PACKED_SNOW_SLAB_KEY, makePackedSnowSettings(PACKED_SNOW_SLAB_KEY));
+            = registerSlab(PACKED_SNOW_SLAB_KEY, makePackedSnowSettings());
     public static final ResourceKey<Block> PACKED_SNOW_WALL_KEY = makeRegistryKey("packed_snow_wall");
     public static final Block PACKED_SNOW_WALL
-            = registerWall(PACKED_SNOW_WALL_KEY, makePackedSnowSettings(PACKED_SNOW_WALL_KEY));
+            = registerWall(PACKED_SNOW_WALL_KEY, makePackedSnowSettings());
     public static final ResourceKey<Block> PURPLE_MUSHROOM_KEY = makeRegistryKey("purple_mushroom");
-    public static final Block PURPLE_MUSHROOM
-            = register(new MushroomBlock(ModTreeConfiguredFeatures.HUGE_PURPLE_MUSHROOM,
+    public static final Block PURPLE_MUSHROOM = register(PURPLE_MUSHROOM_KEY,
+            (props) -> new MushroomBlock(ModTreeConfiguredFeatures.HUGE_PURPLE_MUSHROOM, props),
             BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PURPLE)
                     .pushReaction(PushReaction.DESTROY).noCollision().randomTicks().instabreak()
-                    .sound(SoundType.GRASS).hasPostProcess(ModBlocks::always).setId(PURPLE_MUSHROOM_KEY)),
-            PURPLE_MUSHROOM_KEY, true);
+                    .sound(SoundType.GRASS).hasPostProcess(ModBlocks::always));
     public static final ResourceKey<Block> PURPLE_MUSHROOM_BLOCK_KEY = makeRegistryKey("purple_mushroom_block");
-    public static final Block PURPLE_MUSHROOM_BLOCK
-            = register(new PurpleMushroomBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PURPLE)
-            .instrument(NoteBlockInstrument.BASS).strength(0.2F).sound(SoundType.WOOD).ignitedByLava()
-            .setId(PURPLE_MUSHROOM_BLOCK_KEY)), PURPLE_MUSHROOM_BLOCK_KEY, true);
+    public static final Block PURPLE_MUSHROOM_BLOCK = register(PURPLE_MUSHROOM_BLOCK_KEY, PurpleMushroomBlock::new,
+            BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PURPLE)
+                    .instrument(NoteBlockInstrument.BASS).strength(0.2F)
+                    .sound(SoundType.WOOD).ignitedByLava());
     public static final ResourceKey<Block> WHITE_CAMPFIRE_KEY = makeRegistryKey("white_campfire");
     public static final Block WHITE_CAMPFIRE
             = registerDyedCampfire(WHITE_CAMPFIRE_KEY, ModParticleTypes.WHITE_EMBER);
@@ -655,71 +620,62 @@ public final class ModBlocks {
     public static final ResourceKey<Block> BLACK_WALL_TORCH_KEY = makeRegistryKey("black_wall_torch");
     public static final Block BLACK_WALL_TORCH = registerWallTorch(BLACK_WALL_TORCH_KEY, BLACK_TORCH, ModParticleTypes.BLACK_FLAME);
     public static final ResourceKey<Block> WITCHS_CRADLE_KEY = makeRegistryKey("witchs_cradle");
-    public static final Block WITCHS_CRADLE = register(new WitchsCradleBlock(BlockBehaviour.Properties
-            .ofFullCopy(Blocks.SWEET_BERRY_BUSH).lightLevel((state) -> 8).setId(WITCHS_CRADLE_KEY)),
-            WITCHS_CRADLE_KEY, false);
+    public static final Block WITCHS_CRADLE = register(WITCHS_CRADLE_KEY, WitchsCradleBlock::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH)
+                    .lightLevel((state) -> 8), false);
     public static final ResourceKey<Block> BAUXITE_KEY = makeRegistryKey("bauxite");
-    public static final Block BAUXITE = register(new Block(makeBauxiteSettings(BAUXITE_KEY)),
-            BAUXITE_KEY, true);
+    public static final Block BAUXITE = registerSimple(BAUXITE_KEY, makeBauxiteSettings());
     public static final ResourceKey<Block> BAUXITE_SLAB_KEY = makeRegistryKey("bauxite_slab");
-    public static final Block BAUXITE_SLAB = registerSlab(BAUXITE_SLAB_KEY, makeBauxiteSettings(BAUXITE_SLAB_KEY));
+    public static final Block BAUXITE_SLAB = registerSlab(BAUXITE_SLAB_KEY, makeBauxiteSettings());
     public static final ResourceKey<Block> BAUXITE_STAIRS_KEY = makeRegistryKey("bauxite_stairs");
     public static final Block BAUXITE_STAIRS
-            = registerStairs(BAUXITE_STAIRS_KEY, makeBauxiteSettings(BAUXITE_STAIRS_KEY), BAUXITE);
+            = registerStairs(BAUXITE_STAIRS_KEY, makeBauxiteSettings(), BAUXITE);
     public static final ResourceKey<Block> BAUXITE_WALL_KEY = makeRegistryKey("bauxite_wall");
-    public static final Block BAUXITE_WALL = registerWall(BAUXITE_WALL_KEY, makeBauxiteSettings(BAUXITE_WALL_KEY));
+    public static final Block BAUXITE_WALL = registerWall(BAUXITE_WALL_KEY, makeBauxiteSettings());
     public static final ResourceKey<Block> BAUXITE_BRICKS_KEY = makeRegistryKey("bauxite_bricks");
-    public static final Block BAUXITE_BRICKS = register(new Block(makeBauxiteBricksSettings(BAUXITE_BRICKS_KEY)),
-            BAUXITE_BRICKS_KEY, true);
+    public static final Block BAUXITE_BRICKS = registerSimple(BAUXITE_BRICKS_KEY, makeBauxiteBricksSettings());
     public static final ResourceKey<Block> BAUXITE_BRICK_STAIRS_KEY = makeRegistryKey("bauxite_brick_stairs");
     public static final Block BAUXITE_BRICK_STAIRS
-            = registerStairs(BAUXITE_BRICK_STAIRS_KEY,
-            makeBauxiteBricksSettings(BAUXITE_BRICK_STAIRS_KEY), BAUXITE_BRICKS);
+            = registerStairs(BAUXITE_BRICK_STAIRS_KEY, makeBauxiteBricksSettings(), BAUXITE_BRICKS);
     public static final ResourceKey<Block> BAUXITE_BRICK_SLAB_KEY = makeRegistryKey("bauxite_brick_slab");
     public static final Block BAUXITE_BRICK_SLAB
-            = registerSlab(BAUXITE_BRICK_SLAB_KEY, makeBauxiteBricksSettings(BAUXITE_BRICK_SLAB_KEY));
+            = registerSlab(BAUXITE_BRICK_SLAB_KEY, makeBauxiteBricksSettings());
     public static final ResourceKey<Block> BAUXITE_BRICK_WALL_KEY = makeRegistryKey("bauxite_brick_wall");
     public static final Block BAUXITE_BRICK_WALL
-            = registerWall(BAUXITE_BRICK_WALL_KEY, makeBauxiteBricksSettings(BAUXITE_BRICK_WALL_KEY));
+            = registerWall(BAUXITE_BRICK_WALL_KEY, makeBauxiteBricksSettings());
     public static final ResourceKey<Block> MOSSY_BAUXITE_BRICKS_KEY = makeRegistryKey("mossy_bauxite_bricks");
     public static final Block MOSSY_BAUXITE_BRICKS
-            = register(new Block(makeBauxiteBricksSettings(MOSSY_BAUXITE_BRICKS_KEY)),
-            MOSSY_BAUXITE_BRICKS_KEY, true);
+            = registerSimple(MOSSY_BAUXITE_BRICKS_KEY, makeBauxiteBricksSettings());
     public static final ResourceKey<Block> MOSSY_BAUXITE_BRICK_STAIRS_KEY
             = makeRegistryKey("mossy_bauxite_brick_stairs");
     public static final Block MOSSY_BAUXITE_BRICK_STAIRS
-            = registerStairs(MOSSY_BAUXITE_BRICK_STAIRS_KEY, makeBauxiteBricksSettings(MOSSY_BAUXITE_BRICK_STAIRS_KEY),
-            MOSSY_BAUXITE_BRICKS);
+            = registerStairs(MOSSY_BAUXITE_BRICK_STAIRS_KEY, makeBauxiteBricksSettings(), MOSSY_BAUXITE_BRICKS);
     public static final ResourceKey<Block> MOSSY_BAUXITE_BRICK_SLAB_KEY
             = makeRegistryKey("mossy_bauxite_brick_slab");
     public static final Block MOSSY_BAUXITE_BRICK_SLAB
-            = registerSlab(MOSSY_BAUXITE_BRICK_SLAB_KEY, makeBauxiteBricksSettings(MOSSY_BAUXITE_BRICK_SLAB_KEY));
+            = registerSlab(MOSSY_BAUXITE_BRICK_SLAB_KEY, makeBauxiteBricksSettings());
     public static final ResourceKey<Block> MOSSY_BAUXITE_BRICK_WALL_KEY
             = makeRegistryKey("mossy_bauxite_brick_wall");
     public static final Block MOSSY_BAUXITE_BRICK_WALL
-            = registerWall(MOSSY_BAUXITE_BRICK_WALL_KEY, makeBauxiteBricksSettings(MOSSY_BAUXITE_BRICK_WALL_KEY));
+            = registerWall(MOSSY_BAUXITE_BRICK_WALL_KEY, makeBauxiteBricksSettings());
     public static final ResourceKey<Block> CRACKED_BAUXITE_BRICKS_KEY = makeRegistryKey("cracked_bauxite_bricks");
     public static final Block CRACKED_BAUXITE_BRICKS
-            = register(new Block(makeBauxiteBricksSettings(CRACKED_BAUXITE_BRICKS_KEY)),
-            CRACKED_BAUXITE_BRICKS_KEY, true);
+            = registerSimple(CRACKED_BAUXITE_BRICKS_KEY, makeBauxiteBricksSettings());
     public static final ResourceKey<Block> CRACKED_BAUXITE_BRICK_STAIRS_KEY
             = makeRegistryKey("cracked_bauxite_brick_stairs");
     public static final Block CRACKED_BAUXITE_BRICK_STAIRS
-            = registerStairs(CRACKED_BAUXITE_BRICK_STAIRS_KEY,
-            makeBauxiteBricksSettings(CRACKED_BAUXITE_BRICK_STAIRS_KEY), CRACKED_BAUXITE_BRICKS);
+            = registerStairs(CRACKED_BAUXITE_BRICK_STAIRS_KEY, makeBauxiteBricksSettings(), CRACKED_BAUXITE_BRICKS);
     public static final ResourceKey<Block> CRACKED_BAUXITE_BRICK_SLAB_KEY
             = makeRegistryKey("cracked_bauxite_brick_slab");
     public static final Block CRACKED_BAUXITE_BRICK_SLAB
-            = registerSlab(CRACKED_BAUXITE_BRICK_SLAB_KEY, makeBauxiteBricksSettings(CRACKED_BAUXITE_BRICK_SLAB_KEY));
+            = registerSlab(CRACKED_BAUXITE_BRICK_SLAB_KEY, makeBauxiteBricksSettings());
     public static final ResourceKey<Block> CRACKED_BAUXITE_BRICK_WALL_KEY
             = makeRegistryKey("cracked_bauxite_brick_wall");
     public static final Block CRACKED_BAUXITE_BRICK_WALL
-            = registerWall(CRACKED_BAUXITE_BRICK_WALL_KEY, makeBauxiteBricksSettings(CRACKED_BAUXITE_BRICK_WALL_KEY));
+            = registerWall(CRACKED_BAUXITE_BRICK_WALL_KEY, makeBauxiteBricksSettings());
     public static final ResourceKey<Block> TWISTED_NETHER_BRICKS_KEY = makeRegistryKey("twisted_nether_bricks");
     public static final Block TWISTED_NETHER_BRICKS
-            = register(new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_BRICKS)
-                    .setId(TWISTED_NETHER_BRICKS_KEY)),
-            TWISTED_NETHER_BRICKS_KEY, true);
+            = registerSimple(TWISTED_NETHER_BRICKS_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_BRICKS));
     public static final ResourceKey<Block> TWISTED_NETHER_BRICK_STAIRS_KEY
             = makeRegistryKey("twisted_nether_brick_stairs");
     public static final Block TWISTED_NETHER_BRICK_STAIRS
@@ -736,8 +692,8 @@ public final class ModBlocks {
             = registerWall(TWISTED_NETHER_BRICK_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_BRICKS)
             .setId(TWISTED_NETHER_BRICK_WALL_KEY));
     public static final ResourceKey<Block> TWISTED_NETHERRACK_KEY = makeRegistryKey("twisted_netherrack");
-    public static final Block TWISTED_NETHERRACK = register(new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERRACK)
-            .setId(TWISTED_NETHERRACK_KEY)), TWISTED_NETHERRACK_KEY, true);
+    public static final Block TWISTED_NETHERRACK
+            = registerSimple(TWISTED_NETHERRACK_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERRACK));
     public static final ResourceKey<Block> TWISTED_NETHERRACK_STAIRS_KEY
             = makeRegistryKey("twisted_netherrack_stairs");
     public static final Block TWISTED_NETHERRACK_STAIRS = registerStairs(TWISTED_NETHERRACK_STAIRS_KEY,
@@ -753,8 +709,7 @@ public final class ModBlocks {
             BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERRACK).setId(TWISTED_NETHERRACK_WALL_KEY));
     public static final ResourceKey<Block> WEEPING_NETHER_BRICKS_KEY = makeRegistryKey("weeping_nether_bricks");
     public static final Block WEEPING_NETHER_BRICKS
-            = register(new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_BRICKS)
-            .setId(WEEPING_NETHER_BRICKS_KEY)), WEEPING_NETHER_BRICKS_KEY, true);
+            = registerSimple(WEEPING_NETHER_BRICKS_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_BRICKS));
     public static final ResourceKey<Block> WEEPING_NETHER_BRICK_STAIRS_KEY
             = makeRegistryKey("weeping_nether_brick_stairs");
     public static final Block WEEPING_NETHER_BRICK_STAIRS = registerStairs(WEEPING_NETHER_BRICK_STAIRS_KEY,
@@ -772,8 +727,7 @@ public final class ModBlocks {
                 .setId(WEEPING_NETHER_BRICK_WALL_KEY));
     public static final ResourceKey<Block> WEEPING_NETHERRACK_KEY = makeRegistryKey("weeping_netherrack");
     public static final Block WEEPING_NETHERRACK
-            = register(new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERRACK)
-            .setId(WEEPING_NETHERRACK_KEY)), WEEPING_NETHERRACK_KEY, true);
+            = registerSimple(WEEPING_NETHERRACK_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERRACK));
     public static final ResourceKey<Block> WEEPING_NETHERRACK_STAIRS_KEY
             = makeRegistryKey("weeping_netherrack_stairs");
     public static final Block WEEPING_NETHERRACK_STAIRS = registerStairs(WEEPING_NETHERRACK_STAIRS_KEY,
@@ -788,25 +742,26 @@ public final class ModBlocks {
     public static final Block WEEPING_NETHERRACK_WALL = registerWall(WEEPING_NETHERRACK_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERRACK).setId(WEEPING_NETHERRACK_WALL_KEY));
     public static final ResourceKey<Block> SNAPDRAGON_KEY = makeRegistryKey("snapdragon");
-    public static final Block SNAPDRAGON = register(new SnapdragonBlock(MobEffects.LUCK, 8,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY).lightLevel((state) -> 8)
-                    .setId(SNAPDRAGON_KEY)), SNAPDRAGON_KEY, true);
+    public static final Block SNAPDRAGON
+            = register(SNAPDRAGON_KEY,
+            (props) -> new SnapdragonBlock(MobEffects.LUCK, 8, props),
+            BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY)
+                    .lightLevel((state) -> 8));
     public static final ResourceKey<Block> POTTED_SNAPDRAGON_KEY = makeRegistryKey("potted_snapdragon");
-    public static final Block POTTED_SNAPDRAGON = registerPottedSnapdragon(BlockBehaviour.Properties
-            .ofFullCopy(Blocks.POTTED_POPPY).lightLevel((state) -> 8).setId(POTTED_SNAPDRAGON_KEY));
+    public static final Block POTTED_SNAPDRAGON = registerPottedSnapdragon();
     public static final ResourceKey<Block> POTTED_PURPLE_MUSHROOM_KEY = makeRegistryKey("potted_purple_mushroom");
-    public static final Block POTTED_PURPLE_MUSHROOM = register(new FlowerPotBlock(ModBlocks.PURPLE_MUSHROOM,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_RED_MUSHROOM).setId(POTTED_PURPLE_MUSHROOM_KEY)),
-            POTTED_PURPLE_MUSHROOM_KEY, false);
+    public static final Block POTTED_PURPLE_MUSHROOM = register(POTTED_PURPLE_MUSHROOM_KEY,
+            (props) -> new FlowerPotBlock(ModBlocks.PURPLE_MUSHROOM, props),
+            BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_RED_MUSHROOM), false);
     public static final ResourceKey<Block> SHORT_ENDER_GRASS_KEY = makeRegistryKey("short_ender_grass");
     public static final Block SHORT_ENDER_GRASS
-        = register(new ShortEnderGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS)
-            .lightLevel((state) -> 8).setId(SHORT_ENDER_GRASS_KEY)),
-            SHORT_ENDER_GRASS_KEY, true);
+        = register(SHORT_ENDER_GRASS_KEY, ShortEnderGrassBlock::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS)
+                    .lightLevel((state) -> 8));
     public static final ResourceKey<Block> CATTAIL_KEY = makeRegistryKey("cattail");
-    public static final Block CATTAIL = register(new CattailBlock(BlockBehaviour.Properties.of()
-            .mapColor(MapColor.COLOR_BROWN).noCollision().noOcclusion().sound(SoundType.WET_GRASS)
-            .setId(CATTAIL_KEY)), CATTAIL_KEY, true);
+    public static final Block CATTAIL = register(CATTAIL_KEY, CattailBlock::new,
+            BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN)
+                    .noCollision().noOcclusion().sound(SoundType.WET_GRASS));
     public static final ResourceKey<Block> CHOCOLATE_CAKE_KEY = makeRegistryKey("chocolate_cake");
     public static final Block CHOCOLATE_CAKE = registerCake(CHOCOLATE_CAKE_KEY);
     public static final ResourceKey<Block> RED_VELVET_CAKE_KEY = makeRegistryKey("red_velvet_cake");
@@ -948,108 +903,94 @@ public final class ModBlocks {
     public static final Block BLACK_CANDLE_RED_VELVET_CAKE
             = registerRedVelvetCandleCake(BLACK_CANDLE_RED_VELVET_CAKE_KEY, Blocks.BLACK_CANDLE);
     public static final ResourceKey<Block> STONE_TILES_KEY = makeRegistryKey("stone_tiles");
-    public static final Block STONE_TILES
-            = register(new Block(makeStoneTileSettings(STONE_TILES_KEY)), STONE_TILES_KEY, true);
+    public static final Block STONE_TILES = registerSimple(STONE_TILES_KEY, makeStoneTileSettings());
     public static final ResourceKey<Block> STONE_TILE_SLAB_KEY = makeRegistryKey("stone_tile_slab");
     public static final Block STONE_TILE_SLAB
-            = registerSlab(STONE_TILE_SLAB_KEY, makeStoneTileSettings(STONE_TILE_SLAB_KEY));
+            = registerSlab(STONE_TILE_SLAB_KEY, makeStoneTileSettings());
     public static final ResourceKey<Block> STONE_TILE_STAIRS_KEY = makeRegistryKey("stone_tile_stairs");
     public static final Block STONE_TILE_STAIRS
-            = registerStairs(STONE_TILE_STAIRS_KEY, makeStoneTileSettings(STONE_TILE_STAIRS_KEY), STONE_TILES);
+            = registerStairs(STONE_TILE_STAIRS_KEY, makeStoneTileSettings(), STONE_TILES);
     public static final ResourceKey<Block> STONE_TILE_WALL_KEY = makeRegistryKey("stone_tile_wall");
     public static final Block STONE_TILE_WALL
-            = registerWall(STONE_TILE_WALL_KEY, makeStoneTileSettings(STONE_TILE_WALL_KEY));
+            = registerWall(STONE_TILE_WALL_KEY, makeStoneTileSettings());
     public static final ResourceKey<Block> MOSSY_STONE_TILES_KEY = makeRegistryKey("mossy_stone_tiles");
-    public static final Block MOSSY_STONE_TILES = register(new Block(makeStoneTileSettings(MOSSY_STONE_TILES_KEY)),
-            MOSSY_STONE_TILES_KEY, true);
+    public static final Block MOSSY_STONE_TILES = registerSimple(MOSSY_STONE_TILES_KEY, makeStoneTileSettings());
     public static final ResourceKey<Block> MOSSY_STONE_TILE_SLAB_KEY = makeRegistryKey("mossy_stone_tile_slab");
     public static final Block MOSSY_STONE_TILE_SLAB
-            = registerSlab(MOSSY_STONE_TILE_SLAB_KEY, makeStoneTileSettings(MOSSY_STONE_TILE_SLAB_KEY));
+            = registerSlab(MOSSY_STONE_TILE_SLAB_KEY, makeStoneTileSettings());
     public static final ResourceKey<Block> MOSSY_STONE_TILE_STAIRS_KEY = makeRegistryKey("mossy_stone_tile_stairs");
     public static final Block MOSSY_STONE_TILE_STAIRS
-            = registerStairs(MOSSY_STONE_TILE_STAIRS_KEY,
-            makeStoneTileSettings(MOSSY_STONE_TILE_STAIRS_KEY), MOSSY_STONE_TILES);
+            = registerStairs(MOSSY_STONE_TILE_STAIRS_KEY, makeStoneTileSettings(), MOSSY_STONE_TILES);
     public static final ResourceKey<Block> MOSSY_STONE_TILE_WALL_KEY = makeRegistryKey("mossy_stone_tile_wall");
     public static final Block MOSSY_STONE_TILE_WALL
-            = registerWall(MOSSY_STONE_TILE_WALL_KEY, makeStoneTileSettings(MOSSY_STONE_TILE_WALL_KEY));
+            = registerWall(MOSSY_STONE_TILE_WALL_KEY, makeStoneTileSettings());
     public static final ResourceKey<Block> CRACKED_STONE_TILES_KEY = makeRegistryKey("cracked_stone_tiles");
-    public static final Block CRACKED_STONE_TILES = register(new Block(makeStoneTileSettings(CRACKED_STONE_TILES_KEY)),
-            CRACKED_STONE_TILES_KEY, true);
+    public static final Block CRACKED_STONE_TILES = registerSimple(CRACKED_STONE_TILES_KEY, makeStoneTileSettings());
     public static final ResourceKey<Block> CRACKED_STONE_TILE_SLAB_KEY
             = makeRegistryKey("cracked_stone_tile_slab");
     public static final Block CRACKED_STONE_TILE_SLAB
-            = registerSlab(CRACKED_STONE_TILE_SLAB_KEY, makeStoneTileSettings(CRACKED_STONE_TILE_SLAB_KEY));
+            = registerSlab(CRACKED_STONE_TILE_SLAB_KEY, makeStoneTileSettings());
     public static final ResourceKey<Block> CRACKED_STONE_TILE_STAIRS_KEY
             = makeRegistryKey("cracked_stone_tile_stairs");
     public static final Block CRACKED_STONE_TILE_STAIRS
-            = registerStairs(CRACKED_STONE_TILE_STAIRS_KEY,
-            makeStoneTileSettings(CRACKED_STONE_TILE_STAIRS_KEY), CRACKED_STONE_TILES);
+            = registerStairs(CRACKED_STONE_TILE_STAIRS_KEY, makeStoneTileSettings(), CRACKED_STONE_TILES);
     public static final ResourceKey<Block> CRACKED_STONE_TILE_WALL_KEY
             = makeRegistryKey("cracked_stone_tile_wall");
     public static final Block CRACKED_STONE_TILE_WALL
-            = registerWall(CRACKED_STONE_TILE_WALL_KEY, makeStoneTileSettings(CRACKED_STONE_TILE_WALL_KEY));
+            = registerWall(CRACKED_STONE_TILE_WALL_KEY, makeStoneTileSettings());
     public static final ResourceKey<Block> SWEET_BERRY_PIE_KEY = makeRegistryKey("sweet_berry_pie");
     public static final Block SWEET_BERRY_PIE = registerPie(SWEET_BERRY_PIE_KEY);
     public static final ResourceKey<Block> BLUEBERRY_PIE_KEY = makeRegistryKey("blueberry_pie");
     public static final Block BLUEBERRY_PIE = registerPie(BLUEBERRY_PIE_KEY);
     public static final ResourceKey<Block> BLACKSTONE_TILES_KEY = makeRegistryKey("blackstone_tiles");
     public static final Block BLACKSTONE_TILES
-            = register(new Block(makeBlackstoneTileSettings(BLACKSTONE_TILES_KEY)),
-            BLACKSTONE_TILES_KEY, true);
+            = registerSimple(BLACKSTONE_TILES_KEY, makeBlackstoneTileSettings());
     public static final ResourceKey<Block> BLACKSTONE_TILE_STAIRS_KEY = makeRegistryKey("blackstone_tile_stairs");
     public static final Block BLACKSTONE_TILE_STAIRS
-            = registerStairs(BLACKSTONE_TILE_STAIRS_KEY,
-            makeBlackstoneTileSettings(BLACKSTONE_TILE_STAIRS_KEY), BLACKSTONE_TILES);
+            = registerStairs(BLACKSTONE_TILE_STAIRS_KEY, makeBlackstoneTileSettings(), BLACKSTONE_TILES);
     public static final ResourceKey<Block> BLACKSTONE_TILE_SLAB_KEY = makeRegistryKey("blackstone_tile_slab");
     public static final Block BLACKSTONE_TILE_SLAB
-            = registerSlab(BLACKSTONE_TILE_SLAB_KEY, makeBlackstoneTileSettings(BLACKSTONE_TILE_SLAB_KEY));
+            = registerSlab(BLACKSTONE_TILE_SLAB_KEY, makeBlackstoneTileSettings());
     public static final ResourceKey<Block> BLACKSTONE_TILE_WALL_KEY = makeRegistryKey("blackstone_tile_wall");
     public static final Block BLACKSTONE_TILE_WALL
-            = registerWall(BLACKSTONE_TILE_WALL_KEY, makeBlackstoneTileSettings(BLACKSTONE_TILE_WALL_KEY));
+            = registerWall(BLACKSTONE_TILE_WALL_KEY, makeBlackstoneTileSettings());
     public static final ResourceKey<Block> TWISTED_BLACKSTONE_TILES_KEY = makeRegistryKey("twisted_blackstone_tiles");
     public static final Block TWISTED_BLACKSTONE_TILES
-            = register(new Block(makeBlackstoneTileSettings(TWISTED_BLACKSTONE_TILES_KEY)),
-            TWISTED_BLACKSTONE_TILES_KEY, true);
+            = registerSimple(TWISTED_BLACKSTONE_TILES_KEY, makeBlackstoneTileSettings());
     public static final ResourceKey<Block> TWISTED_BLACKSTONE_TILE_STAIRS_KEY
             = makeRegistryKey("twisted_blackstone_tile_stairs");
     public static final Block TWISTED_BLACKSTONE_TILE_STAIRS
             = registerStairs(TWISTED_BLACKSTONE_TILE_STAIRS_KEY,
-            makeBlackstoneTileSettings(TWISTED_BLACKSTONE_TILE_STAIRS_KEY), TWISTED_BLACKSTONE_TILES);
+            makeBlackstoneTileSettings(), TWISTED_BLACKSTONE_TILES);
     public static final ResourceKey<Block> TWISTED_BLACKSTONE_TILE_SLAB_KEY
             = makeRegistryKey("twisted_blackstone_tile_slab");
     public static final Block TWISTED_BLACKSTONE_TILE_SLAB
-            = registerSlab(TWISTED_BLACKSTONE_TILE_SLAB_KEY,
-            makeBlackstoneTileSettings(TWISTED_BLACKSTONE_TILE_SLAB_KEY));
+            = registerSlab(TWISTED_BLACKSTONE_TILE_SLAB_KEY, makeBlackstoneTileSettings());
     public static final ResourceKey<Block> TWISTED_BLACKSTONE_TILE_WALL_KEY
             = makeRegistryKey("twisted_blackstone_tile_wall");
     public static final Block TWISTED_BLACKSTONE_TILE_WALL
-            = registerWall(TWISTED_BLACKSTONE_TILE_WALL_KEY,
-            makeBlackstoneTileSettings(TWISTED_BLACKSTONE_TILE_WALL_KEY));
+            = registerWall(TWISTED_BLACKSTONE_TILE_WALL_KEY, makeBlackstoneTileSettings());
     public static final ResourceKey<Block> WEEPING_BLACKSTONE_TILES_KEY
             = makeRegistryKey("weeping_blackstone_tiles");
     public static final Block WEEPING_BLACKSTONE_TILES
-            = register(new Block(makeBlackstoneTileSettings(WEEPING_BLACKSTONE_TILES_KEY)),
-            WEEPING_BLACKSTONE_TILES_KEY, true);
+            = registerSimple(WEEPING_BLACKSTONE_TILES_KEY, makeBlackstoneTileSettings());
     public static final ResourceKey<Block> WEEPING_BLACKSTONE_TILE_STAIRS_KEY
             = makeRegistryKey("weeping_blackstone_tile_stairs");
     public static final Block WEEPING_BLACKSTONE_TILE_STAIRS = registerStairs(WEEPING_BLACKSTONE_TILE_STAIRS_KEY,
-            makeBlackstoneTileSettings(WEEPING_BLACKSTONE_TILE_STAIRS_KEY), WEEPING_BLACKSTONE_TILES);
+            makeBlackstoneTileSettings(), WEEPING_BLACKSTONE_TILES);
     public static final ResourceKey<Block> WEEPING_BLACKSTONE_TILE_SLAB_KEY
             = makeRegistryKey("weeping_blackstone_tile_slab");
     public static final Block WEEPING_BLACKSTONE_TILE_SLAB
-            = registerSlab(WEEPING_BLACKSTONE_TILE_SLAB_KEY,
-            makeBlackstoneTileSettings(WEEPING_BLACKSTONE_TILE_SLAB_KEY));
+            = registerSlab(WEEPING_BLACKSTONE_TILE_SLAB_KEY, makeBlackstoneTileSettings());
     public static final ResourceKey<Block> WEEPING_BLACKSTONE_TILE_WALL_KEY
             = makeRegistryKey("weeping_blackstone_tile_wall");
     public static final Block WEEPING_BLACKSTONE_TILE_WALL
-            = registerWall(WEEPING_BLACKSTONE_TILE_WALL_KEY,
-            makeBlackstoneTileSettings(WEEPING_BLACKSTONE_TILE_WALL_KEY));
+            = registerWall(WEEPING_BLACKSTONE_TILE_WALL_KEY, makeBlackstoneTileSettings());
     public static final ResourceKey<Block> TWISTED_POLISHED_BLACKSTONE_BRICKS_KEY
             = makeRegistryKey("twisted_polished_blackstone_bricks");
     public static final Block TWISTED_POLISHED_BLACKSTONE_BRICKS
-            = register(new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_BLACKSTONE_BRICKS)
-                    .setId(TWISTED_POLISHED_BLACKSTONE_BRICKS_KEY)),
-            TWISTED_POLISHED_BLACKSTONE_BRICKS_KEY, true);
+            = registerSimple(TWISTED_POLISHED_BLACKSTONE_BRICKS_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_BLACKSTONE_BRICKS));
     public static final ResourceKey<Block> TWISTED_POLISHED_BLACKSTONE_BRICK_STAIRS_KEY
             = makeRegistryKey("twisted_polished_blackstone_brick_stairs");
     public static final Block TWISTED_POLISHED_BLACKSTONE_BRICK_STAIRS
@@ -1072,9 +1013,8 @@ public final class ModBlocks {
     public static final ResourceKey<Block> WEEPING_POLISHED_BLACKSTONE_BRICKS_KEY
             = makeRegistryKey("weeping_polished_blackstone_bricks");
     public static final Block WEEPING_POLISHED_BLACKSTONE_BRICKS
-            = register(new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_BLACKSTONE_BRICKS)
-                    .setId(WEEPING_POLISHED_BLACKSTONE_BRICKS_KEY)),
-            WEEPING_POLISHED_BLACKSTONE_BRICKS_KEY, true);
+            = registerSimple(WEEPING_POLISHED_BLACKSTONE_BRICKS_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_BLACKSTONE_BRICKS));
     public static final ResourceKey<Block> WEEPING_POLISHED_BLACKSTONE_BRICK_STAIRS_KEY
             = makeRegistryKey("weeping_polished_blackstone_brick_stairs");
     public static final Block WEEPING_POLISHED_BLACKSTONE_BRICK_STAIRS
@@ -1096,8 +1036,7 @@ public final class ModBlocks {
                     .setId(WEEPING_POLISHED_BLACKSTONE_BRICK_WALL_KEY));
     public static final ResourceKey<Block> TWISTED_BLACKSTONE_KEY = makeRegistryKey("twisted_blackstone");
     public static final Block TWISTED_BLACKSTONE
-            = register(new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.BLACKSTONE).setId(TWISTED_BLACKSTONE_KEY)),
-            TWISTED_BLACKSTONE_KEY, true);
+            = registerSimple(TWISTED_BLACKSTONE_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.BLACKSTONE));
     public static final ResourceKey<Block> TWISTED_BLACKSTONE_STAIRS_KEY
             = makeRegistryKey("twisted_blackstone_stairs");
     public static final Block TWISTED_BLACKSTONE_STAIRS
@@ -1112,8 +1051,8 @@ public final class ModBlocks {
     public static final Block TWISTED_BLACKSTONE_WALL = registerWall(TWISTED_BLACKSTONE_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.BLACKSTONE).setId(TWISTED_BLACKSTONE_WALL_KEY));
     public static final ResourceKey<Block> WEEPING_BLACKSTONE_KEY = makeRegistryKey("weeping_blackstone");
-    public static final Block WEEPING_BLACKSTONE = register(new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.BLACKSTONE)
-            .setId(WEEPING_BLACKSTONE_KEY)), WEEPING_BLACKSTONE_KEY, true);
+    public static final Block WEEPING_BLACKSTONE
+            = registerSimple(WEEPING_BLACKSTONE_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.BLACKSTONE));
     public static final ResourceKey<Block> WEEPING_BLACKSTONE_STAIRS_KEY
             = makeRegistryKey("weeping_blackstone_stairs");
     public static final Block WEEPING_BLACKSTONE_STAIRS
@@ -1128,206 +1067,186 @@ public final class ModBlocks {
     public static final Block WEEPING_BLACKSTONE_WALL = registerWall(WEEPING_BLACKSTONE_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.BLACKSTONE).setId(WEEPING_BLACKSTONE_WALL_KEY));
     public static final ResourceKey<Block> QUARTZ_TILES_KEY = makeRegistryKey("quartz_tiles");
-    public static final Block QUARTZ_TILES = register(new Block(makeQuartzTileSettings(QUARTZ_TILES_KEY)),
-            QUARTZ_TILES_KEY, true);
+    public static final Block QUARTZ_TILES = registerSimple(QUARTZ_TILES_KEY, makeQuartzTileSettings());
     public static final ResourceKey<Block> QUARTZ_TILE_STAIRS_KEY = makeRegistryKey("quartz_tile_stairs");
     public static final Block QUARTZ_TILE_STAIRS = registerStairs(QUARTZ_TILE_STAIRS_KEY,
-            makeQuartzTileSettings(QUARTZ_TILE_STAIRS_KEY), QUARTZ_TILES);
+            makeQuartzTileSettings(), QUARTZ_TILES);
     public static final ResourceKey<Block> QUARTZ_TILE_SLAB_KEY = makeRegistryKey("quartz_tile_slab");
     public static final Block QUARTZ_TILE_SLAB
-            = registerSlab(QUARTZ_TILE_SLAB_KEY, makeQuartzTileSettings(QUARTZ_TILE_SLAB_KEY));
+            = registerSlab(QUARTZ_TILE_SLAB_KEY, makeQuartzTileSettings());
     public static final ResourceKey<Block> QUARTZ_TILE_WALL_KEY = makeRegistryKey("quartz_tile_wall");
     public static final Block QUARTZ_TILE_WALL
-            = registerWall(QUARTZ_TILE_WALL_KEY, makeQuartzTileSettings(QUARTZ_TILE_WALL_KEY));
+            = registerWall(QUARTZ_TILE_WALL_KEY, makeQuartzTileSettings());
     public static final ResourceKey<Block> CALCITE_BRICKS_KEY = makeRegistryKey("calcite_bricks");
-    public static final Block CALCITE_BRICKS = register(new Block(makeCalciteSettings(CALCITE_BRICKS_KEY)),
-            CALCITE_BRICKS_KEY, true);
+    public static final Block CALCITE_BRICKS = registerSimple(CALCITE_BRICKS_KEY, makeCalciteSettings());
     public static final ResourceKey<Block> CALCITE_BRICK_STAIRS_KEY = makeRegistryKey("calcite_brick_stairs");
     public static final Block CALCITE_BRICK_STAIRS = registerStairs(CALCITE_BRICK_STAIRS_KEY,
-            makeCalciteSettings(CALCITE_BRICK_STAIRS_KEY), CALCITE_BRICKS);
+            makeCalciteSettings(), CALCITE_BRICKS);
     public static final ResourceKey<Block> CALCITE_BRICK_SLAB_KEY = makeRegistryKey("calcite_brick_slab");
     public static final Block CALCITE_BRICK_SLAB = registerSlab(CALCITE_BRICK_SLAB_KEY,
-            makeCalciteSettings(CALCITE_BRICK_SLAB_KEY));
+            makeCalciteSettings());
     public static final ResourceKey<Block> CALCITE_BRICK_WALL_KEY = makeRegistryKey("calcite_brick_wall");
     public static final Block CALCITE_BRICK_WALL = registerWall(CALCITE_BRICK_WALL_KEY,
-            makeCalciteSettings(CALCITE_BRICK_WALL_KEY));
+            makeCalciteSettings());
     public static final ResourceKey<Block> MOSSY_CALCITE_BRICKS_KEY = makeRegistryKey("mossy_calcite_bricks");
-    public static final Block MOSSY_CALCITE_BRICKS
-            = register(new Block(makeCalciteSettings(MOSSY_CALCITE_BRICKS_KEY)),
-            MOSSY_CALCITE_BRICKS_KEY, true);
+    public static final Block MOSSY_CALCITE_BRICKS = registerSimple(MOSSY_CALCITE_BRICKS_KEY, makeCalciteSettings());
     public static final ResourceKey<Block> MOSSY_CALCITE_BRICK_STAIRS_KEY
             = makeRegistryKey("mossy_calcite_brick_stairs");
     public static final Block MOSSY_CALCITE_BRICK_STAIRS = registerStairs(MOSSY_CALCITE_BRICK_STAIRS_KEY,
-            makeCalciteSettings(MOSSY_CALCITE_BRICK_STAIRS_KEY), MOSSY_CALCITE_BRICKS);
+            makeCalciteSettings(), MOSSY_CALCITE_BRICKS);
     public static final ResourceKey<Block> MOSSY_CALCITE_BRICK_SLAB_KEY
             = makeRegistryKey("mossy_calcite_brick_slab");
     public static final Block MOSSY_CALCITE_BRICK_SLAB
-            = registerSlab(MOSSY_CALCITE_BRICK_SLAB_KEY, makeCalciteSettings(MOSSY_CALCITE_BRICK_SLAB_KEY));
+            = registerSlab(MOSSY_CALCITE_BRICK_SLAB_KEY, makeCalciteSettings());
     public static final ResourceKey<Block> MOSSY_CALCITE_BRICK_WALL_KEY
             = makeRegistryKey("mossy_calcite_brick_wall");
-    public static final Block MOSSY_CALCITE_BRICK_WALL = registerWall(MOSSY_CALCITE_BRICK_WALL_KEY,
-            makeCalciteSettings(MOSSY_CALCITE_BRICK_WALL_KEY));
+    public static final Block MOSSY_CALCITE_BRICK_WALL
+            = registerWall(MOSSY_CALCITE_BRICK_WALL_KEY, makeCalciteSettings());
     public static final ResourceKey<Block> CRACKED_CALCITE_BRICKS_KEY
             = makeRegistryKey("cracked_calcite_bricks");
     public static final Block CRACKED_CALCITE_BRICKS
-            = register(new Block(makeCalciteSettings(CRACKED_CALCITE_BRICKS_KEY)),
-            CRACKED_CALCITE_BRICKS_KEY, true);
+            = register(CRACKED_CALCITE_BRICKS_KEY, Block::new, makeCalciteSettings(), true);
     public static final ResourceKey<Block> CRACKED_CALCITE_BRICK_STAIRS_KEY
             = makeRegistryKey("cracked_calcite_brick_stairs");
     public static final Block CRACKED_CALCITE_BRICK_STAIRS = registerStairs(CRACKED_CALCITE_BRICK_STAIRS_KEY,
-            makeCalciteSettings(CRACKED_CALCITE_BRICK_STAIRS_KEY), CRACKED_CALCITE_BRICKS);
+            makeCalciteSettings(), CRACKED_CALCITE_BRICKS);
     public static final ResourceKey<Block> CRACKED_CALCITE_BRICK_SLAB_KEY
             = makeRegistryKey("cracked_calcite_brick_slab");
     public static final Block CRACKED_CALCITE_BRICK_SLAB = registerSlab(CRACKED_CALCITE_BRICK_SLAB_KEY,
-            makeCalciteSettings(CRACKED_CALCITE_BRICK_SLAB_KEY));
+            makeCalciteSettings());
     public static final ResourceKey<Block> CRACKED_CALCITE_BRICK_WALL_KEY
             = makeRegistryKey("cracked_calcite_brick_wall");
     public static final Block CRACKED_CALCITE_BRICK_WALL = registerWall(CRACKED_CALCITE_BRICK_WALL_KEY,
-            makeCalciteSettings(CRACKED_CALCITE_BRICK_WALL_KEY));
+            makeCalciteSettings());
     public static final ResourceKey<Block> CHISELED_CALCITE_BRICKS_KEY
             = makeRegistryKey("chiseled_calcite_bricks");
     public static final Block CHISELED_CALCITE_BRICKS
-            = register(new RotatedPillarBlock(makeCalciteSettings(CHISELED_CALCITE_BRICKS_KEY)),
-            CHISELED_CALCITE_BRICKS_KEY, true);
+            = register(CHISELED_CALCITE_BRICKS_KEY, RotatedPillarBlock::new, makeCalciteSettings());
     public static final ResourceKey<Block> DRIPSTONE_BRICKS_KEY = makeRegistryKey("dripstone_bricks");
-    public static final Block DRIPSTONE_BRICKS = register(new Block(makeDripstoneSettings(DRIPSTONE_BRICKS_KEY)),
-            DRIPSTONE_BRICKS_KEY, true);
+    public static final Block DRIPSTONE_BRICKS = registerSimple(DRIPSTONE_BRICKS_KEY, makeDripstoneSettings());
     public static final ResourceKey<Block> DRIPSTONE_BRICK_STAIRS_KEY = makeRegistryKey("dripstone_brick_stairs");
     public static final Block DRIPSTONE_BRICK_STAIRS = registerStairs(DRIPSTONE_BRICK_STAIRS_KEY,
-            makeDripstoneSettings(DRIPSTONE_BRICK_STAIRS_KEY), DRIPSTONE_BRICKS);
+            makeDripstoneSettings(), DRIPSTONE_BRICKS);
     public static final ResourceKey<Block> DRIPSTONE_BRICK_SLAB_KEY = makeRegistryKey("dripstone_brick_slab");
-    public static final Block DRIPSTONE_BRICK_SLAB = registerSlab(DRIPSTONE_BRICK_SLAB_KEY,
-            makeDripstoneSettings(DRIPSTONE_BRICK_SLAB_KEY));
+    public static final Block DRIPSTONE_BRICK_SLAB = registerSlab(DRIPSTONE_BRICK_SLAB_KEY, makeDripstoneSettings());
     public static final ResourceKey<Block> DRIPSTONE_BRICK_WALL_KEY = makeRegistryKey("dripstone_brick_wall");
-    public static final Block DRIPSTONE_BRICK_WALL = registerWall(DRIPSTONE_BRICK_WALL_KEY,
-            makeDripstoneSettings(DRIPSTONE_BRICK_WALL_KEY));
+    public static final Block DRIPSTONE_BRICK_WALL = registerWall(DRIPSTONE_BRICK_WALL_KEY, makeDripstoneSettings());
     public static final ResourceKey<Block> MOSSY_DRIPSTONE_BRICKS_KEY = makeRegistryKey("mossy_dripstone_bricks");
     public static final Block MOSSY_DRIPSTONE_BRICKS
-            = register(new Block(makeDripstoneSettings(MOSSY_DRIPSTONE_BRICKS_KEY)),
-            MOSSY_DRIPSTONE_BRICKS_KEY, true);
+            = registerSimple(MOSSY_DRIPSTONE_BRICKS_KEY, makeDripstoneSettings());
     public static final ResourceKey<Block> MOSSY_DRIPSTONE_BRICK_STAIRS_KEY
             = makeRegistryKey("mossy_dripstone_brick_stairs");
     public static final Block MOSSY_DRIPSTONE_BRICK_STAIRS = registerStairs(MOSSY_DRIPSTONE_BRICK_STAIRS_KEY,
-            makeDripstoneSettings(MOSSY_DRIPSTONE_BRICK_STAIRS_KEY), MOSSY_DRIPSTONE_BRICKS);
+            makeDripstoneSettings(), MOSSY_DRIPSTONE_BRICKS);
     public static final ResourceKey<Block> MOSSY_DRIPSTONE_BRICK_SLAB_KEY
             = makeRegistryKey("mossy_dripstone_brick_slab");
     public static final Block MOSSY_DRIPSTONE_BRICK_SLAB = registerSlab(MOSSY_DRIPSTONE_BRICK_SLAB_KEY,
-            makeDripstoneSettings(MOSSY_DRIPSTONE_BRICK_SLAB_KEY));
+            makeDripstoneSettings());
     public static final ResourceKey<Block> MOSSY_DRIPSTONE_BRICK_WALL_KEY
             = makeRegistryKey("mossy_dripstone_brick_wall");
     public static final Block MOSSY_DRIPSTONE_BRICK_WALL = registerWall(MOSSY_DRIPSTONE_BRICK_WALL_KEY,
-            makeDripstoneSettings(MOSSY_DRIPSTONE_BRICK_WALL_KEY));
+            makeDripstoneSettings());
     public static final ResourceKey<Block> CRACKED_DRIPSTONE_BRICKS_KEY
             = makeRegistryKey("cracked_dripstone_bricks");
     public static final Block CRACKED_DRIPSTONE_BRICKS
-            = register(new Block(makeDripstoneSettings(CRACKED_DRIPSTONE_BRICKS_KEY)),
-            CRACKED_DRIPSTONE_BRICKS_KEY, true);
+            = registerSimple(CRACKED_DRIPSTONE_BRICKS_KEY, makeDripstoneSettings());
     public static final ResourceKey<Block> CRACKED_DRIPSTONE_BRICK_STAIRS_KEY
             = makeRegistryKey("cracked_dripstone_brick_stairs");
     public static final Block CRACKED_DRIPSTONE_BRICK_STAIRS = registerStairs(CRACKED_DRIPSTONE_BRICK_STAIRS_KEY,
-            makeDripstoneSettings(CRACKED_DRIPSTONE_BRICK_STAIRS_KEY), CRACKED_DRIPSTONE_BRICKS);
+            makeDripstoneSettings(), CRACKED_DRIPSTONE_BRICKS);
     public static final ResourceKey<Block> CRACKED_DRIPSTONE_BRICK_SLAB_KEY
             = makeRegistryKey("cracked_dripstone_brick_slab");
     public static final Block CRACKED_DRIPSTONE_BRICK_SLAB = registerSlab(CRACKED_DRIPSTONE_BRICK_SLAB_KEY,
-            makeDripstoneSettings(CRACKED_DRIPSTONE_BRICK_SLAB_KEY));
+            makeDripstoneSettings());
     public static final ResourceKey<Block> CRACKED_DRIPSTONE_BRICK_WALL_KEY
             = makeRegistryKey("cracked_dripstone_brick_wall");
     public static final Block CRACKED_DRIPSTONE_BRICK_WALL = registerWall(CRACKED_DRIPSTONE_BRICK_WALL_KEY,
-            makeDripstoneSettings(CRACKED_DRIPSTONE_BRICK_WALL_KEY));
+            makeDripstoneSettings());
     public static final ResourceKey<Block> CHISELED_DRIPSTONE_BRICKS_KEY
             = makeRegistryKey("chiseled_dripstone_bricks");
     public static final Block CHISELED_DRIPSTONE_BRICKS
-            = register(new Block(makeDripstoneSettings(CHISELED_DRIPSTONE_BRICKS_KEY)),
-            CHISELED_DRIPSTONE_BRICKS_KEY, true);
+            = registerSimple(CHISELED_DRIPSTONE_BRICKS_KEY, makeDripstoneSettings());
     public static final ResourceKey<Block> BLOOD_KELP_KEY = makeRegistryKey("blood_kelp");
-    public static final Block BLOOD_KELP
-            = register(new BloodKelpBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.KELP)
-                    .lightLevel(getLuminanceFromState()).setId(BLOOD_KELP_KEY)),
-            BLOOD_KELP_KEY, false);
+    public static final Block BLOOD_KELP = register(BLOOD_KELP_KEY, BloodKelpBlock::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.KELP)
+                    .lightLevel(getLuminanceFromState()), false);
     public static final ResourceKey<Block> BLOOD_KELP_PLANT_KEY = makeRegistryKey("blood_kelp_plant");
-    public static final Block BLOOD_KELP_PLANT
-            = register(new BloodKelpPlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.KELP_PLANT)
-                    .lightLevel(getLuminanceFromState()).setId(BLOOD_KELP_PLANT_KEY)),
-            BLOOD_KELP_PLANT_KEY, false);
+    public static final Block BLOOD_KELP_PLANT = register(BLOOD_KELP_PLANT_KEY, BloodKelpPlantBlock::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.KELP_PLANT)
+                    .lightLevel(getLuminanceFromState()), false);
     public static final ResourceKey<Block> DRIED_BLOOD_KELP_BLOCK_KEY = makeRegistryKey("dried_blood_kelp_block");
     public static final Block DRIED_BLOOD_KELP_BLOCK
-            = register(new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DRIED_KELP_BLOCK)
-                    .setId(DRIED_BLOOD_KELP_BLOCK_KEY)), DRIED_BLOOD_KELP_BLOCK_KEY, true);
+            = registerSimple(DRIED_BLOOD_KELP_BLOCK_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.DRIED_KELP_BLOCK));
     public static final ResourceKey<Block> BLOOD_KELP_LANTERN_KEY = makeRegistryKey("blood_kelp_lantern");
     public static final Block BLOOD_KELP_LANTERN
-            = register(new RotatedPillarBlock(BlockBehaviour.Properties.of().mapColor(MapColor.SAND).strength(0.3F)
-                    .sound(SoundType.GLASS).lightLevel((state) -> 15)
-                    .setId(BLOOD_KELP_LANTERN_KEY)),
-            BLOOD_KELP_LANTERN_KEY, true);
+            = register(BLOOD_KELP_LANTERN_KEY, RotatedPillarBlock::new,
+            BlockBehaviour.Properties.of().mapColor(MapColor.SAND).strength(0.3F)
+                    .sound(SoundType.GLASS).lightLevel((state) -> 15));
     public static final ResourceKey<Block> BOG_BLOSSOM_KEY = makeRegistryKey("bog_blossom");
-    public static final Block BOG_BLOSSOM = register(new BogBlossomBlock(BlockBehaviour.Properties.of()
-            .mapColor(MapColor.PLANT).instabreak().noCollision().sound(SoundType.SPORE_BLOSSOM)
-            .pushReaction(PushReaction.DESTROY).lightLevel((state) -> 5).setId(BOG_BLOSSOM_KEY)),
-            BOG_BLOSSOM_KEY, true);
+    public static final Block BOG_BLOSSOM = register(BOG_BLOSSOM_KEY, BogBlossomBlock::new,
+            BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.PLANT).instabreak().noCollision().sound(SoundType.SPORE_BLOSSOM)
+                    .pushReaction(PushReaction.DESTROY).lightLevel((state) -> 5).setId(BOG_BLOSSOM_KEY));
     public static final ResourceKey<Block> CINDERSNAP_BERRY_BUSH_KEY = makeRegistryKey("cindersnap_berry_bush");
-    public static final Block CINDERSNAP_BERRY_BUSH
-            = register(new CindersnapBerryBushBlock(BlockBehaviour.Properties.of().mapColor(MapColor.CRIMSON_HYPHAE)
-            .randomTicks().noCollision().sound(SoundType.NETHER_SPROUTS).pushReaction(PushReaction.DESTROY)
-            .lightLevel((state) -> 8).setId(CINDERSNAP_BERRY_BUSH_KEY)),
-            CINDERSNAP_BERRY_BUSH_KEY, false);
+    public static final Block CINDERSNAP_BERRY_BUSH = register(CINDERSNAP_BERRY_BUSH_KEY, CindersnapBerryBushBlock::new,
+            BlockBehaviour.Properties.of().mapColor(MapColor.CRIMSON_HYPHAE)
+                    .randomTicks().noCollision().sound(SoundType.NETHER_SPROUTS).pushReaction(PushReaction.DESTROY)
+                    .lightLevel((state) -> 8), false);
     public static final ResourceKey<Block> FROSTBITE_BERRY_BUSH_KEY = makeRegistryKey("frostbite_berry_bush");
     public static final Block FROSTBITE_BERRY_BUSH
-            = register(new FrostbiteBerryBushBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_CYAN)
-            .randomTicks().noCollision().sound(SoundType.NETHER_SPROUTS).pushReaction(PushReaction.DESTROY)
-            .lightLevel((state) -> 5).setId(FROSTBITE_BERRY_BUSH_KEY)),
-            FROSTBITE_BERRY_BUSH_KEY, false);
+            = register(FROSTBITE_BERRY_BUSH_KEY, FrostbiteBerryBushBlock::new,
+            BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_CYAN)
+                    .randomTicks().noCollision().sound(SoundType.NETHER_SPROUTS)
+                    .pushReaction(PushReaction.DESTROY).lightLevel((state) -> 5), false);
     public static final ResourceKey<Block> POLISHED_DRIPSTONE_KEY = makeRegistryKey("polished_dripstone");
-    public static final Block POLISHED_DRIPSTONE
-            = register(new Block(makeDripstoneSettings(POLISHED_DRIPSTONE_KEY)),
-            POLISHED_DRIPSTONE_KEY, true);
+    public static final Block POLISHED_DRIPSTONE = registerSimple(POLISHED_DRIPSTONE_KEY, makeDripstoneSettings());
     public static final ResourceKey<Block> POLISHED_DRIPSTONE_STAIRS_KEY
             = makeRegistryKey("polished_dripstone_stairs");
-    public static final Block POLISHED_DRIPSTONE_STAIRS = registerStairs(POLISHED_DRIPSTONE_STAIRS_KEY,
-            makeDripstoneSettings(POLISHED_DRIPSTONE_STAIRS_KEY), POLISHED_DRIPSTONE);
+    public static final Block POLISHED_DRIPSTONE_STAIRS
+            = registerStairs(POLISHED_DRIPSTONE_STAIRS_KEY, makeDripstoneSettings(), POLISHED_DRIPSTONE);
     public static final ResourceKey<Block> POLISHED_DRIPSTONE_SLAB_KEY
             = makeRegistryKey("polished_dripstone_slab");
     public static final Block POLISHED_DRIPSTONE_SLAB
-            = registerSlab(POLISHED_DRIPSTONE_SLAB_KEY, makeDripstoneSettings(POLISHED_DRIPSTONE_SLAB_KEY));
+            = registerSlab(POLISHED_DRIPSTONE_SLAB_KEY, makeDripstoneSettings());
     public static final ResourceKey<Block> POLISHED_DRIPSTONE_WALL_KEY
             = makeRegistryKey("polished_dripstone_wall");
-    public static final Block POLISHED_DRIPSTONE_WALL = registerWall(POLISHED_DRIPSTONE_WALL_KEY,
-            makeDripstoneSettings(POLISHED_DRIPSTONE_WALL_KEY));
+    public static final Block POLISHED_DRIPSTONE_WALL
+            = registerWall(POLISHED_DRIPSTONE_WALL_KEY, makeDripstoneSettings());
     public static final ResourceKey<Block> POLISHED_CALCITE_KEY = makeRegistryKey("polished_calcite");
-    public static final Block POLISHED_CALCITE = register(new Block(makeCalciteSettings(POLISHED_CALCITE_KEY)),
-            POLISHED_CALCITE_KEY, true);
+    public static final Block POLISHED_CALCITE = registerSimple(POLISHED_CALCITE_KEY, makeCalciteSettings());
     public static final ResourceKey<Block> POLISHED_CALCITE_STAIRS_KEY
             = makeRegistryKey("polished_calcite_stairs");
-    public static final Block POLISHED_CALCITE_STAIRS = registerStairs(POLISHED_CALCITE_STAIRS_KEY, 
-            makeCalciteSettings(POLISHED_CALCITE_STAIRS_KEY), POLISHED_CALCITE);
+    public static final Block POLISHED_CALCITE_STAIRS
+            = registerStairs(POLISHED_CALCITE_STAIRS_KEY, makeCalciteSettings(), POLISHED_CALCITE);
     public static final ResourceKey<Block> POLISHED_CALCITE_SLAB_KEY = makeRegistryKey("polished_calcite_slab");
-    public static final Block POLISHED_CALCITE_SLAB = registerSlab(POLISHED_CALCITE_SLAB_KEY,
-            makeCalciteSettings(POLISHED_CALCITE_SLAB_KEY));
+    public static final Block POLISHED_CALCITE_SLAB
+            = registerSlab(POLISHED_CALCITE_SLAB_KEY, makeCalciteSettings());
     public static final ResourceKey<Block> POLISHED_CALCITE_WALL_KEY = makeRegistryKey("polished_calcite_wall");
-    public static final Block POLISHED_CALCITE_WALL = registerWall(POLISHED_CALCITE_WALL_KEY,
-            makeCalciteSettings(POLISHED_CALCITE_WALL_KEY));
+    public static final Block POLISHED_CALCITE_WALL
+            = registerWall(POLISHED_CALCITE_WALL_KEY, makeCalciteSettings());
     public static final ResourceKey<Block> DRIPSTONE_STAIRS_KEY = makeRegistryKey("dripstone_stairs");
     public static final Block DRIPSTONE_STAIRS = registerStairs(DRIPSTONE_STAIRS_KEY,
-            makeDripstoneSettings(DRIPSTONE_STAIRS_KEY), Blocks.DRIPSTONE_BLOCK);
+            makeDripstoneSettings(), Blocks.DRIPSTONE_BLOCK);
     public static final ResourceKey<Block> DRIPSTONE_SLAB_KEY = makeRegistryKey("dripstone_slab");
     public static final Block DRIPSTONE_SLAB = registerSlab(DRIPSTONE_SLAB_KEY,
-            makeDripstoneSettings(DRIPSTONE_SLAB_KEY));
+            makeDripstoneSettings());
     public static final ResourceKey<Block> DRIPSTONE_WALL_KEY = makeRegistryKey("dripstone_wall");
     public static final Block DRIPSTONE_WALL = registerWall(DRIPSTONE_WALL_KEY,
-            makeDripstoneSettings(DRIPSTONE_WALL_KEY));
+            makeDripstoneSettings());
     public static final ResourceKey<Block> CALCITE_STAIRS_KEY = makeRegistryKey("calcite_stairs");
     public static final Block CALCITE_STAIRS = registerStairs(CALCITE_STAIRS_KEY,
-            makeCalciteSettings(CALCITE_STAIRS_KEY), Blocks.CALCITE);
+            makeCalciteSettings(), Blocks.CALCITE);
     public static final ResourceKey<Block> CALCITE_SLAB_KEY = makeRegistryKey("calcite_slab");
-    public static final Block CALCITE_SLAB = registerSlab(CALCITE_SLAB_KEY, makeCalciteSettings(CALCITE_SLAB_KEY));
+    public static final Block CALCITE_SLAB = registerSlab(CALCITE_SLAB_KEY, makeCalciteSettings());
     public static final ResourceKey<Block> CALCITE_WALL_KEY = makeRegistryKey("calcite_wall");
-    public static final Block CALCITE_WALL = registerWall(CALCITE_WALL_KEY, makeCalciteSettings(CALCITE_WALL_KEY));
+    public static final Block CALCITE_WALL = registerWall(CALCITE_WALL_KEY, makeCalciteSettings());
     public static final ResourceKey<Block> BAMBOO_PLANTER_BOX_KEY = makeRegistryKey("bamboo_planter_box");
     public static final Block BAMBOO_PLANTER_BOX = registerPlanterBox(BAMBOO_PLANTER_BOX_KEY,
             Blocks.BAMBOO_PLANKS.defaultMapColor(), SoundType.BAMBOO_WOOD);
     public static final ResourceKey<Block> POTTED_CATTAIL_KEY = makeRegistryKey("potted_cattail");
-    public static final Block POTTED_CATTAIL = register(new FlowerPotBlock(ModBlocks.CATTAIL,
-                    BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_RED_MUSHROOM).setId(POTTED_CATTAIL_KEY)),
-            POTTED_CATTAIL_KEY, false);
+    public static final Block POTTED_CATTAIL = register(POTTED_CATTAIL_KEY,
+            (props) -> new FlowerPotBlock(ModBlocks.CATTAIL, props),
+            BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_RED_MUSHROOM), false);
     public static final ResourceKey<Block> STONE_WALL_KEY = makeRegistryKey("stone_wall");
     public static final Block STONE_WALL = registerWall(STONE_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
             .setId(STONE_WALL_KEY));
@@ -1338,9 +1257,8 @@ public final class ModBlocks {
     public static final Block SMOOTH_QUARTZ_WALL = registerWall(SMOOTH_QUARTZ_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.SMOOTH_QUARTZ).setId(SMOOTH_QUARTZ_WALL_KEY));
     public static final ResourceKey<Block> GRASS_SLAB_KEY = makeRegistryKey("grass_slab");
-    public static final Block GRASS_SLAB
-            = register(new GrassSlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GRASS_BLOCK)
-                    .setId(GRASS_SLAB_KEY)), GRASS_SLAB_KEY, true);
+    public static final Block GRASS_SLAB = register(GRASS_SLAB_KEY, GrassSlabBlock::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.GRASS_BLOCK), true);
     public static final ResourceKey<Block> PODZOL_SLAB_KEY = makeRegistryKey("podzol_slab");
     public static final Block PODZOL_SLAB = registerSnowySlab(PODZOL_SLAB_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.PODZOL).setId(PODZOL_SLAB_KEY));
@@ -1348,15 +1266,11 @@ public final class ModBlocks {
     public static final Block MYCELIUM_SLAB = registerSnowySlab(MYCELIUM_SLAB_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.MYCELIUM).setId(MYCELIUM_SLAB_KEY));
     public static final ResourceKey<Block> DIRT_PATH_SLAB_KEY = makeRegistryKey("dirt_path_slab");
-    public static final Block DIRT_PATH_SLAB
-            = register(new DirtPathSlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT_PATH)
-                    .setId(DIRT_PATH_SLAB_KEY)),
-            DIRT_PATH_SLAB_KEY, true);
+    public static final Block DIRT_PATH_SLAB = register(DIRT_PATH_SLAB_KEY, DirtPathSlabBlock::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT_PATH), true);
     public static final ResourceKey<Block> DIRT_SLAB_KEY = makeRegistryKey("dirt_slab");
-    public static final Block DIRT_SLAB
-            = register(new DirtSlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT)
-                    .setId(DIRT_SLAB_KEY)),
-            DIRT_SLAB_KEY, true);
+    public static final Block DIRT_SLAB = register(DIRT_SLAB_KEY, DirtSlabBlock::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT), true);
     public static final ResourceKey<Block> COARSE_DIRT_SLAB_KEY = makeRegistryKey("coarse_dirt_slab");
     public static final Block COARSE_DIRT_SLAB = registerSlab(COARSE_DIRT_SLAB_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.COARSE_DIRT).setId(COARSE_DIRT_SLAB_KEY));
@@ -1365,14 +1279,12 @@ public final class ModBlocks {
             BlockBehaviour.Properties.ofFullCopy(Blocks.ROOTED_DIRT).setId(ROOTED_DIRT_SLAB_KEY));
     public static final ResourceKey<Block> WILD_GREEN_ONIONS_KEY = makeRegistryKey("wild_green_onions");
     public static final Block WILD_GREEN_ONIONS
-            = register(new WildGreenOnionsBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT)
+            = register(WILD_GREEN_ONIONS_KEY, WildGreenOnionsBlock::new, BlockBehaviour.Properties.of().mapColor(MapColor.PLANT)
             .noCollision().randomTicks().instabreak().sound(SoundType.CROP)
-            .pushReaction(PushReaction.DESTROY).setId(WILD_GREEN_ONIONS_KEY)),
-            WILD_GREEN_ONIONS_KEY, true);
+            .pushReaction(PushReaction.DESTROY), true);
     public static final ResourceKey<Block> CREAKING_PLUSHIE_KEY = makeRegistryKey("creaking_plushie");
     public static final Block CREAKING_PLUSHIE
-            = register(new CreakingPlushieBlock(makePlushieSettings(CREAKING_PLUSHIE_KEY)),
-            CREAKING_PLUSHIE_KEY, true);
+            = register(CREAKING_PLUSHIE_KEY, CreakingPlushieBlock::new, makePlushieSettings(), true);
     public static final ResourceKey<Block> QUARTZ_BRICK_STAIRS_KEY = makeRegistryKey("quartz_brick_stairs");
     public static final Block QUARTZ_BRICK_STAIRS = registerStairs(QUARTZ_BRICK_STAIRS_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.QUARTZ_BRICKS).setId(QUARTZ_BRICK_STAIRS_KEY),
@@ -1385,8 +1297,7 @@ public final class ModBlocks {
             BlockBehaviour.Properties.ofFullCopy(Blocks.QUARTZ_BRICKS).setId(QUARTZ_BRICK_WALL_KEY));
     public static final ResourceKey<Block> SNIFFER_PLUSHIE_KEY = makeRegistryKey("sniffer_plushie");
     public static final Block SNIFFER_PLUSHIE
-            = register(new SnifferPlushieBlock(makePlushieSettings(SNIFFER_PLUSHIE_KEY)),
-            SNIFFER_PLUSHIE_KEY, true);
+            = register(SNIFFER_PLUSHIE_KEY, SnifferPlushieBlock::new, makePlushieSettings(), true);
     public static final ResourceKey<Block> STRIPPED_PALE_OAK_WALL_KEY = makeRegistryKey("stripped_pale_oak_wall");
     public static final Block STRIPPED_PALE_OAK_WALL = registerWall(STRIPPED_PALE_OAK_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.PALE_OAK_PLANKS).setId(STRIPPED_PALE_OAK_WALL_KEY));
@@ -1422,97 +1333,19 @@ public final class ModBlocks {
         return (state) -> state.getValue(BlockStateProperties.LIT) ? 10 : 0;
     }
 
-    private static Block register(Block block, ResourceKey<Block> blockKey, boolean includeItem) {
-        Block registeredBlock = Registry.register(BuiltInRegistries.BLOCK, blockKey, block);
+    private static Block register(ResourceKey<Block> blockKey, Function<BlockBehaviour.Properties, Block> function, BlockBehaviour.Properties properties, boolean includeItem) {
+        Block block = Registry.register(BuiltInRegistries.BLOCK, blockKey, function.apply(properties.setId(blockKey)));
         if (includeItem) {
             ResourceKey<Item> itemKey = ResourceKey.create(Registries.ITEM, blockKey.identifier());
             BlockItem blockItem = Registry.register(BuiltInRegistries.ITEM, itemKey,
                     new BlockItem(block, new Item.Properties().setId(itemKey)));
-            Item.BY_BLOCK.put(registeredBlock, blockItem);
+            Item.BY_BLOCK.put(block, blockItem);
         }
-        return registeredBlock;
+        return block;
     }
 
-    private static Block registerHorsePlushie(ResourceKey<Block> blockKey) {
-        Block horsePlushieBlock = new HorsePlushieBlock(makePlushieSettings(blockKey));
-        return register(horsePlushieBlock, blockKey, true);
-    }
-
-    private static Block registerCubePlushie(ResourceKey<Block> blockKey) {
-        BlockBehaviour.Properties settings = BlockBehaviour.Properties.of().ignitedByLava().mapColor(MapColor.NONE)
-                .strength(0.2F).sound(SoundType.WOOL)
-                .pushReaction(PushReaction.DESTROY).setId(blockKey);
-        Block cubePlushieBlock = new CubePlushieBlock(settings);
-        return register(cubePlushieBlock, blockKey, true);
-    }
-
-    private static Block registerMooshroomPlushie(ResourceKey<Block> blockKey) {
-        Block mooshroomPlushieBlock = new MooshroomPlushieBlock(makePlushieSettings(blockKey));
-        return register(mooshroomPlushieBlock, blockKey, true);
-    }
-
-    private static Block registerWolfPlushie(ResourceKey<Block> blockKey) {
-        Block wolfPlushieBlock = new WolfPlushieBlock(makePlushieSettings(blockKey));
-        return register(wolfPlushieBlock, blockKey, true);
-    }
-
-    private static Block registerCatPlushie(ResourceKey<Block> blockKey) {
-        Block catPlushieBlock = new CatPlushieBlock(makePlushieSettings(blockKey));
-        return register(catPlushieBlock, blockKey, true);
-    }
-
-    private static Block registerRabbitPlushie(ResourceKey<Block> blockKey) {
-        Block rabbitPlushieBlock = new RabbitPlushieBlock(makePlushieSettings(blockKey));
-        return register(rabbitPlushieBlock, blockKey, true);
-    }
-
-    private static Block registerSheepPlushie(DyeColor color, ResourceKey<Block> blockKey) {
-        Block sheepPlushieBlock = new SheepPlushieBlock(color, makePlushieSettings(blockKey));
-        return register(sheepPlushieBlock, blockKey, true);
-    }
-
-    private static Block registerVillagerPlushie(ResourceKey<Block> blockKey) {
-        Block villagerPlushieBlock = new VillagerPlushieBlock(makePlushieSettings(blockKey));
-        return register(villagerPlushieBlock, blockKey, true);
-    }
-
-    private static Block registerShortHatVillagerPlushie(ResourceKey<Block> blockKey) {
-        Block shortHatVillagerPlushieBlock = new ShortHatVillagerPlushieBlock(makePlushieSettings(blockKey));
-        return register(shortHatVillagerPlushieBlock, blockKey, true);
-    }
-
-    private static Block registerZombiePlushie(ResourceKey<Block> blockKey) {
-        Block zombiePlushieBlock = new ZombiePlushieBlock(makePlushieSettings(blockKey));
-        return register(zombiePlushieBlock, blockKey, true);
-    }
-
-    private static Block registerStriderPlushie(ResourceKey<Block> blockKey) {
-        Block striderPlushieBlock = new StriderPlushieBlock(makePlushieSettings(blockKey));
-        return register(striderPlushieBlock, blockKey, true);
-    }
-
-    private static Block registerHoglinPlushie(ResourceKey<Block> blockKey) {
-        Block hoglinPlushieBlock = new HoglinPlushieBlock(makePlushieSettings(blockKey));
-        return register(hoglinPlushieBlock, blockKey, true);
-    }
-
-    private static Block registerAllayPlushie(ResourceKey<Block> blockKey) {
-        Block allayPlushieBlock = new AllayPlushieBlock(makeGlowingPlushieSettings(blockKey));
-        return register(allayPlushieBlock, blockKey, true);
-    }
-
-    private static Block registerPlanterBox(ResourceKey<Block> blockKey, MapColor color, SoundType soundGroup) {
-        BlockBehaviour.Properties planterBoxSettings = BlockBehaviour.Properties.of().mapColor(color)
-                .strength(2.5F).sound(soundGroup).ignitedByLava().setId(blockKey);
-        Block planterBoxBlock = new PlanterBoxBlock(planterBoxSettings);
-        return register(planterBoxBlock, blockKey, true);
-    }
-
-    private static Block registerNetherPlanterBox(ResourceKey<Block> blockKey, MapColor color) {
-        BlockBehaviour.Properties blockSettings = BlockBehaviour.Properties.of().mapColor(color).strength(2.5F)
-                .sound(SoundType.NETHER_WOOD).setId(blockKey);
-        Block netherPlanterBoxBlock = new PlanterBoxBlock(blockSettings);
-        return register(netherPlanterBoxBlock, blockKey, true);
+    private static Block register(ResourceKey<Block> blockKey, Function<BlockBehaviour.Properties, Block> function, BlockBehaviour.Properties properties) {
+        return register(blockKey, function, properties, true);
     }
 
     public static Block registerRopeLadder(ResourceKey<Block> blockKey) {
@@ -1525,19 +1358,93 @@ public final class ModBlocks {
         return block;
     }
 
-    private static Block registerTorch(ResourceKey<Block> blockKey, SimpleParticleType particle) {
-        BlockBehaviour.Properties torchSettings = BlockBehaviour.Properties
-                .ofFullCopy(Blocks.TORCH).setId(blockKey);
-        Block torchBlock = new TorchBlock(particle, torchSettings);
-        return register(torchBlock, blockKey, false);
+    private static BlockPos postProcessSelf(final BlockState state, final BlockGetter blockGetter, final BlockPos blockPos) {
+        return blockPos;
     }
 
-    private static Block registerWallTorch(ResourceKey<Block> blockKey, Block standingTorch, SimpleParticleType particle) {
+    private static Block registerHorsePlushie(final ResourceKey<Block> id) {
+        return register(id, HorsePlushieBlock::new, makePlushieSettings());
+    }
+
+    private static Block registerCubePlushie(final ResourceKey<Block> id) {
+        BlockBehaviour.Properties settings = BlockBehaviour.Properties.of().ignitedByLava().mapColor(MapColor.NONE)
+                .strength(0.2F).sound(SoundType.WOOL).pushReaction(PushReaction.DESTROY);
+        return register(id, CubePlushieBlock::new, settings);
+    }
+
+    private static Block registerMooshroomPlushie(final ResourceKey<Block> id) {
+        return register(id, MooshroomPlushieBlock::new, makePlushieSettings());
+    }
+
+    private static Block registerWolfPlushie(final ResourceKey<Block> id) {
+        return register(id, WolfPlushieBlock::new, makePlushieSettings());
+    }
+
+    private static Block registerCatPlushie(final ResourceKey<Block> id) {
+        return register(id, CatPlushieBlock::new, makePlushieSettings());
+    }
+
+    private static Block registerRabbitPlushie(final ResourceKey<Block> id) {
+        return register(id, RabbitPlushieBlock::new, makePlushieSettings());
+    }
+
+    private static Block registerVillagerPlushie(final ResourceKey<Block> id) {
+        return register(id, VillagerPlushieBlock::new, makePlushieSettings());
+    }
+
+    private static Block registerPigPlushie(final ResourceKey<Block> id) {
+        return register(id, PigPlushieBlock::new, makePlushieSettings());
+    }
+
+    private static Block registerLantern(final ResourceKey<Block> id) {
+        return register(id, LanternBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN));
+    }
+
+    private static Block registerSheepPlushie(final DyeColor color, final ResourceKey<Block> id) {
+        return register(id, (props) -> new SheepPlushieBlock(color, props), makePlushieSettings());
+    }
+
+    private static Block registerShortHatVillagerPlushie(final ResourceKey<Block> id) {
+        return register(id, ShortHatVillagerPlushieBlock::new, makePlushieSettings());
+    }
+
+    private static Block registerZombiePlushie(final ResourceKey<Block> id) {
+        return register(id, ZombiePlushieBlock::new, makePlushieSettings());
+    }
+
+    private static Block registerStriderPlushie(final ResourceKey<Block> id) {
+        return register(id, StriderPlushieBlock::new, makePlushieSettings());
+    }
+
+    private static Block registerHoglinPlushie(final ResourceKey<Block> id) {
+        return register(id, HoglinPlushieBlock::new, makePlushieSettings());
+    }
+
+    private static Block registerAllayPlushie(final ResourceKey<Block> id) {
+        return register(id, AllayPlushieBlock::new, makeGlowingPlushieSettings());
+    }
+
+    private static Block registerPlanterBox(final ResourceKey<Block> id, MapColor color, SoundType soundGroup) {
+        BlockBehaviour.Properties planterBoxSettings = BlockBehaviour.Properties.of().mapColor(color)
+                .strength(2.5F).sound(soundGroup).ignitedByLava();
+        return register(id, PlanterBoxBlock::new, planterBoxSettings);
+    }
+
+    private static Block registerNetherPlanterBox(final ResourceKey<Block> id, MapColor color) {
+        BlockBehaviour.Properties blockSettings = BlockBehaviour.Properties.of().mapColor(color)
+                .strength(2.5F).sound(SoundType.NETHER_WOOD);
+        return register(id, PlanterBoxBlock::new, blockSettings);
+    }
+
+    private static Block registerTorch(final ResourceKey<Block> id, SimpleParticleType particle) {
+        BlockBehaviour.Properties torchSettings = BlockBehaviour.Properties.ofFullCopy(Blocks.TORCH);
+        return register(id, (props) -> new TorchBlock(particle, props), torchSettings, false);
+    }
+
+    private static Block registerWallTorch(final ResourceKey<Block> id, Block standingTorch, SimpleParticleType particle) {
         BlockBehaviour.Properties wallTorchSettings = wallVariant(standingTorch).noCollision().instabreak()
-                .lightLevel((blockState) -> 14).sound(SoundType.WOOD).pushReaction(PushReaction.DESTROY)
-                .setId(blockKey);
-        Block wallTorchBlock = new WallTorchBlock(particle, wallTorchSettings);
-        return register(wallTorchBlock, blockKey, false);
+                .lightLevel((blockState) -> 14).sound(SoundType.WOOD).pushReaction(PushReaction.DESTROY);
+        return register(id, (props) -> new WallTorchBlock(particle, props), wallTorchSettings, false);
     }
 
     private static BlockBehaviour.Properties wallVariant(Block block) {
@@ -1545,124 +1452,144 @@ public final class ModBlocks {
                 .overrideDescription(block.getDescriptionId());
     }
 
-    private static Block registerStairs(ResourceKey<Block> blockKey, BlockBehaviour.Properties settings, Block baseBlock) {
-        Block stairsBlock = new StairBlock(baseBlock.defaultBlockState(), settings);
-        return register(stairsBlock, blockKey, true);
+    private static Block registerBlueberryBush() {
+        BlockBehaviour.Properties settings = BlockBehaviour.Properties.of().mapColor(MapColor.GRASS)
+                .randomTicks().noCollision().sound(SoundType.SWEET_BERRY_BUSH)
+                .pushReaction(PushReaction.DESTROY);
+        return register(BLUEBERRY_BUSH_KEY, BlueberryBushBlock::new, settings, false);
     }
 
-    private static Block registerSlab(ResourceKey<Block> blockKey, BlockBehaviour.Properties settings) {
-        Block slabBlock = new SlabBlock(settings);
-        return register(slabBlock, blockKey, true);
+    private static Block registerGreenOnions() {
+        BlockBehaviour.Properties settings = BlockBehaviour.Properties.of().mapColor(MapColor.PLANT)
+                .noCollision().randomTicks().instabreak().sound(SoundType.CROP)
+                .pushReaction(PushReaction.DESTROY);
+        return register(GREEN_ONIONS_KEY, GreenOnionsBlock::new, settings, false);
     }
 
-    private static Block registerWall(ResourceKey<Block> blockKey, BlockBehaviour.Properties settings) {
-        Block wallBlock = new WallBlock(settings);
-        return register(wallBlock, blockKey, true);
+    private static Block registerIronLadder() {
+        BlockBehaviour.Properties settings = BlockBehaviour.Properties.of()
+                .mapColor(MapColor.METAL).requiresCorrectToolForDrops().strength(5.0F)
+                .sound(SoundType.METAL).noOcclusion();
+        return register(IRON_LADDER_KEY, LadderBlock::new, settings);
     }
 
-    private static Block registerDyedCampfire(ResourceKey<Block> blockKey, ParticleOptions emberParticle) {
-        Block dyedCampfireBlock = new DyedCampfireBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CAMPFIRE)
-                .setId(blockKey), emberParticle);
-        return register(dyedCampfireBlock, blockKey, true);
+    private static Block registerStairs(final ResourceKey<Block> id, BlockBehaviour.Properties settings, Block baseBlock) {
+        return register(id, (props) -> new StairBlock(baseBlock.defaultBlockState(), props), settings);
     }
 
-    private static Block registerLantern(ResourceKey<Block> blockKey) {
-        Block lanternBlock = new LanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN).setId(blockKey));
-        return register(lanternBlock, blockKey, true);
+    private static Block registerSlab(final ResourceKey<Block> id, BlockBehaviour.Properties settings) {
+        return register(id, SlabBlock::new, settings);
     }
 
-    private static Block registerPottedSnapdragon(BlockBehaviour.Properties settings) {
-        Block pottedSnapdragonBlock = new PottedSnapdragonBlock(ModBlocks.SNAPDRAGON, settings);
-        return register(pottedSnapdragonBlock, ModBlocks.POTTED_SNAPDRAGON_KEY, false);
+    private static Block registerWall(final ResourceKey<Block> id, BlockBehaviour.Properties settings) {
+        return register(id, WallBlock::new, settings);
     }
 
-    private static Block registerCake(ResourceKey<Block> blockKey) {
-        Block moddedCakeBlock = new ModdedCakeBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CAKE).setId(blockKey));
-        return register(moddedCakeBlock, blockKey, true);
+    private static Block registerSimple(final ResourceKey<Block> id, BlockBehaviour.Properties settings) {
+        return register(id, Block::new, settings);
     }
 
-    private static Block registerChocolateCandleCake(ResourceKey<Block> blockKey, Block candle) {
-        return registerCandleCake(blockKey, ModBlocks.CHOCOLATE_CAKE, candle);
+    private static Block registerDyedCampfire(final ResourceKey<Block> id, ParticleOptions emberParticle) {
+        return register(id, (props) -> new DyedCampfireBlock(props, emberParticle),
+                BlockBehaviour.Properties.ofFullCopy(Blocks.CAMPFIRE));
     }
 
-    private static Block registerRedVelvetCandleCake(ResourceKey<Block> blockKey, Block candle) {
-        return registerCandleCake(blockKey, ModBlocks.RED_VELVET_CAKE, candle);
+    private static Block registerPottedSnapdragon() {
+        BlockBehaviour.Properties settings = BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY)
+                .lightLevel((state) -> 8);
+        return register(POTTED_SNAPDRAGON_KEY,
+                (props) -> new PottedSnapdragonBlock(ModBlocks.SNAPDRAGON, props), settings, false);
     }
 
-    private static Block registerCandleCake(ResourceKey<Block> blockKey, Block cake, Block candle) {
-        Block candleCakeBlock = new ModdedCandleCakeBlock(cake, candle,
-                BlockBehaviour.Properties.ofFullCopy(Blocks.CANDLE_CAKE).setId(blockKey));
-        return register(candleCakeBlock, blockKey, false);
+    private static Block registerCake(final ResourceKey<Block> id) {
+        return register(id, ModdedCakeBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.CAKE));
     }
 
-    private static Block registerPie(ResourceKey<Block> blockKey) {
-        BlockBehaviour.Properties pieSettings = BlockBehaviour.Properties.ofFullCopy(Blocks.CAKE).setId(blockKey);
-        Block pieBlock = new PieBlock(pieSettings, 3, 0.6F);
-        return register(pieBlock, blockKey, true);
+    private static Block registerChocolateCandleCake(ResourceKey<Block> id, Block candle) {
+        return registerCandleCake(id, candle, ModBlocks.CHOCOLATE_CAKE);
     }
 
-    private static Block registerSnowySlab(ResourceKey<Block> blockKey, BlockBehaviour.Properties settings) {
-        Block snowySlabBlock = new SnowySlabBlock(settings);
-        return register(snowySlabBlock, blockKey, true);
+    private static Block registerRedVelvetCandleCake(ResourceKey<Block> id, Block candle) {
+        return registerCandleCake(id, candle, ModBlocks.RED_VELVET_CAKE);
     }
 
-    private static BlockBehaviour.Properties makeBauxiteSettings(ResourceKey<Block> blockKey) {
+    private static Block registerNetherSmokyQuartzOre() {
+        BlockBehaviour.Properties properties = BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_QUARTZ_ORE);
+        return register(NETHER_SMOKY_QUARTZ_ORE_KEY,
+                (props) -> new DropExperienceBlock(UniformInt.of(2, 5), props), properties);
+    }
+
+    private static Block registerCandleCake(final ResourceKey<Block> id, Block candle, Block cake) {
+        return register(id, (props) -> new ModdedCandleCakeBlock(cake, candle, props),
+                BlockBehaviour.Properties.ofFullCopy(Blocks.CANDLE_CAKE), false);
+    }
+
+    private static Block registerPie(final ResourceKey<Block> id) {
+        BlockBehaviour.Properties pieSettings = BlockBehaviour.Properties.ofFullCopy(Blocks.CAKE);
+        return register(id, (props) -> new PieBlock(props, 3, 0.6F), pieSettings);
+    }
+
+    private static Block registerSnowySlab(final ResourceKey<Block> id, BlockBehaviour.Properties settings) {
+        return register(id, SnowySlabBlock::new, settings);
+    }
+
+    private static BlockBehaviour.Properties makeBauxiteSettings() {
         return BlockBehaviour.Properties.of().mapColor(MapColor.PODZOL).requiresCorrectToolForDrops()
-                .strength(0.3F).setId(blockKey);
+                .strength(0.3F);
     }
 
-    private static BlockBehaviour.Properties makeBauxiteBricksSettings(ResourceKey<Block> blockKey) {
+    private static BlockBehaviour.Properties makeBauxiteBricksSettings() {
         return BlockBehaviour.Properties.of().mapColor(MapColor.PODZOL).requiresCorrectToolForDrops()
-                .strength(0.4F).setId(blockKey);
+                .strength(0.4F);
     }
 
-    private static BlockBehaviour.Properties makeSmokyQuartzSettings(ResourceKey<Block> blockKey) {
+    private static BlockBehaviour.Properties makeSmokyQuartzSettings() {
         return BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK)
-                .requiresCorrectToolForDrops().strength(0.8F).setId(blockKey);
+                .requiresCorrectToolForDrops().strength(0.8F);
     }
 
-    private static BlockBehaviour.Properties makeStoneTileSettings(ResourceKey<Block> blockKey) {
+    private static BlockBehaviour.Properties makeStoneTileSettings() {
         return BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
-                .sound(SoundType.DEEPSLATE_TILES).setId(blockKey);
+                .sound(SoundType.DEEPSLATE_TILES);
     }
 
-    private static BlockBehaviour.Properties makeBlackstoneTileSettings(ResourceKey<Block> blockKey) {
+    private static BlockBehaviour.Properties makeBlackstoneTileSettings() {
         return BlockBehaviour.Properties.ofFullCopy(Blocks.BLACKSTONE)
-                .sound(SoundType.DEEPSLATE_TILES).setId(blockKey);
+                .sound(SoundType.DEEPSLATE_TILES);
     }
 
-    private static BlockBehaviour.Properties makeQuartzTileSettings(ResourceKey<Block> blockKey) {
+    private static BlockBehaviour.Properties makeQuartzTileSettings() {
         return BlockBehaviour.Properties.ofFullCopy(Blocks.QUARTZ_BLOCK)
-                .sound(SoundType.DEEPSLATE_TILES).setId(blockKey);
+                .sound(SoundType.DEEPSLATE_TILES);
     }
 
-    private static BlockBehaviour.Properties makePlushieSettings(ResourceKey<Block> blockKey) {
+    private static BlockBehaviour.Properties makePlushieSettings() {
         return BlockBehaviour.Properties.of().ignitedByLava().mapColor(MapColor.NONE)
-                .strength(0.2F).sound(SoundType.WOOL).setId(blockKey);
+                .strength(0.2F).sound(SoundType.WOOL);
     }
 
-    private static BlockBehaviour.Properties makeGlowingPlushieSettings(ResourceKey<Block> blockKey) {
+    private static BlockBehaviour.Properties makeGlowingPlushieSettings() {
         return BlockBehaviour.Properties.of().ignitedByLava()
                 .mapColor(MapColor.NONE).strength(0.2F).sound(SoundType.WOOL)
-                .lightLevel((state) -> 10).setId(blockKey);
+                .lightLevel((state) -> 10);
     }
 
-    private static BlockBehaviour.Properties makeSnowBrickSettings(ResourceKey<Block> blockKey) {
+    private static BlockBehaviour.Properties makeSnowBrickSettings() {
         return BlockBehaviour.Properties.of().mapColor(MapColor.SNOW)
-                .strength(0.4F).requiresCorrectToolForDrops().sound(SoundType.SNOW).setId(blockKey);
+                .strength(0.4F).requiresCorrectToolForDrops().sound(SoundType.SNOW);
     }
 
-    private static BlockBehaviour.Properties makePackedSnowSettings(ResourceKey<Block> blockKey) {
+    private static BlockBehaviour.Properties makePackedSnowSettings() {
         return BlockBehaviour.Properties.of().mapColor(MapColor.SNOW)
-                .strength(0.6F).requiresCorrectToolForDrops().sound(SoundType.SNOW).setId(blockKey);
+                .strength(0.6F).requiresCorrectToolForDrops().sound(SoundType.SNOW);
     }
 
-    private static BlockBehaviour.Properties makeCalciteSettings(ResourceKey<Block> blockKey) {
-        return BlockBehaviour.Properties.ofFullCopy(Blocks.CALCITE).setId(blockKey);
+    private static BlockBehaviour.Properties makeCalciteSettings() {
+        return BlockBehaviour.Properties.ofFullCopy(Blocks.CALCITE);
     }
 
-    private static BlockBehaviour.Properties makeDripstoneSettings(ResourceKey<Block> blockKey) {
-        return BlockBehaviour.Properties.ofFullCopy(Blocks.DRIPSTONE_BLOCK).setId(blockKey);
+    private static BlockBehaviour.Properties makeDripstoneSettings() {
+        return BlockBehaviour.Properties.ofFullCopy(Blocks.DRIPSTONE_BLOCK);
     }
 
     /**

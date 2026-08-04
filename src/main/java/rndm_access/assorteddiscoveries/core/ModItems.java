@@ -14,37 +14,37 @@ import net.minecraft.world.level.block.Block;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 
 public final class ModItems {
-    public static final Item WHITE_TORCH = registerBlockItem(ModItemIds.WHITE_TORCH_KEY,
+    public static final Item WHITE_TORCH = registerTorch(ModItemIds.WHITE_TORCH_KEY,
             ModBlocks.WHITE_TORCH, ModBlocks.WHITE_WALL_TORCH);
-    public static final Item ORANGE_TORCH = registerBlockItem(ModItemIds.ORANGE_TORCH_KEY,
+    public static final Item ORANGE_TORCH = registerTorch(ModItemIds.ORANGE_TORCH_KEY,
             ModBlocks.ORANGE_TORCH, ModBlocks.ORANGE_WALL_TORCH);
-    public static final Item MAGENTA_TORCH = registerBlockItem(ModItemIds.MAGENTA_TORCH_KEY,
+    public static final Item MAGENTA_TORCH = registerTorch(ModItemIds.MAGENTA_TORCH_KEY,
             ModBlocks.MAGENTA_TORCH, ModBlocks.MAGENTA_WALL_TORCH);
-    public static final Item LIGHT_BLUE_TORCH = registerBlockItem(ModItemIds.LIGHT_BLUE_TORCH_KEY,
+    public static final Item LIGHT_BLUE_TORCH = registerTorch(ModItemIds.LIGHT_BLUE_TORCH_KEY,
             ModBlocks.LIGHT_BLUE_TORCH, ModBlocks.LIGHT_BLUE_WALL_TORCH);
-    public static final Item YELLOW_TORCH = registerBlockItem(ModItemIds.YELLOW_TORCH_KEY,
+    public static final Item YELLOW_TORCH = registerTorch(ModItemIds.YELLOW_TORCH_KEY,
             ModBlocks.YELLOW_TORCH, ModBlocks.YELLOW_WALL_TORCH);
-    public static final Item LIME_TORCH = registerBlockItem(ModItemIds.LIME_TORCH_KEY,
+    public static final Item LIME_TORCH = registerTorch(ModItemIds.LIME_TORCH_KEY,
             ModBlocks.LIME_TORCH, ModBlocks.LIME_WALL_TORCH);
-    public static final Item PINK_TORCH = registerBlockItem(ModItemIds.PINK_TORCH_KEY,
+    public static final Item PINK_TORCH = registerTorch(ModItemIds.PINK_TORCH_KEY,
             ModBlocks.PINK_TORCH, ModBlocks.PINK_WALL_TORCH);
-    public static final Item GRAY_TORCH = registerBlockItem(ModItemIds.GRAY_TORCH_KEY,
+    public static final Item GRAY_TORCH = registerTorch(ModItemIds.GRAY_TORCH_KEY,
             ModBlocks.GRAY_TORCH, ModBlocks.GRAY_WALL_TORCH);
-    public static final Item LIGHT_GRAY_TORCH = registerBlockItem(ModItemIds.LIGHT_GRAY_TORCH_KEY,
+    public static final Item LIGHT_GRAY_TORCH = registerTorch(ModItemIds.LIGHT_GRAY_TORCH_KEY,
             ModBlocks.LIGHT_GRAY_TORCH, ModBlocks.LIGHT_GRAY_WALL_TORCH);
-    public static final Item CYAN_TORCH = registerBlockItem(ModItemIds.CYAN_TORCH_KEY,
+    public static final Item CYAN_TORCH = registerTorch(ModItemIds.CYAN_TORCH_KEY,
             ModBlocks.CYAN_TORCH, ModBlocks.CYAN_WALL_TORCH);
-    public static final Item PURPLE_TORCH = registerBlockItem(ModItemIds.PURPLE_TORCH_KEY,
+    public static final Item PURPLE_TORCH = registerTorch(ModItemIds.PURPLE_TORCH_KEY,
             ModBlocks.PURPLE_TORCH, ModBlocks.PURPLE_WALL_TORCH);
-    public static final Item BLUE_TORCH = registerBlockItem(ModItemIds.BLUE_TORCH_KEY,
+    public static final Item BLUE_TORCH = registerTorch(ModItemIds.BLUE_TORCH_KEY,
             ModBlocks.BLUE_TORCH, ModBlocks.BLUE_WALL_TORCH);
-    public static final Item BROWN_TORCH = registerBlockItem(ModItemIds.BROWN_TORCH_KEY,
+    public static final Item BROWN_TORCH = registerTorch(ModItemIds.BROWN_TORCH_KEY,
             ModBlocks.BROWN_TORCH, ModBlocks.BROWN_WALL_TORCH);
-    public static final Item GREEN_TORCH = registerBlockItem(ModItemIds.GREEN_TORCH_KEY,
+    public static final Item GREEN_TORCH = registerTorch(ModItemIds.GREEN_TORCH_KEY,
             ModBlocks.GREEN_TORCH, ModBlocks.GREEN_WALL_TORCH);
-    public static final Item RED_TORCH = registerBlockItem(ModItemIds.RED_TORCH_KEY,
+    public static final Item RED_TORCH = registerTorch(ModItemIds.RED_TORCH_KEY,
             ModBlocks.RED_TORCH, ModBlocks.RED_WALL_TORCH);
-    public static final Item BLACK_TORCH = registerBlockItem(ModItemIds.BLACK_TORCH_KEY,
+    public static final Item BLACK_TORCH = registerTorch(ModItemIds.BLACK_TORCH_KEY,
             ModBlocks.BLACK_TORCH, ModBlocks.BLACK_WALL_TORCH);
     public static final Item GREEN_ONION_SEEDS = registerBlockItem(ModItemIds.GREEN_ONION_SEEDS_KEY, ModBlocks.GREEN_ONIONS);
     public static final Item GREEN_ONION
@@ -115,9 +115,9 @@ public final class ModItems {
         return Registry.register(BuiltInRegistries.ITEM, key, item);
     }
 
-    private static Item registerBlockItem(ResourceKey<Item> key, Block standingBlock, Block wallBlock) {
+    private static Item registerTorch(ResourceKey<Item> key, Block standingBlock, Block wallBlock) {
         final Item blockItem = register(new StandingAndWallBlockItem(standingBlock, wallBlock,
-                Direction.DOWN, new Item.Properties().setId(key)), key);
+                Direction.DOWN, new Item.Properties().useBlockDescriptionPrefix().setId(key)), key);
         Item.BY_BLOCK.put(standingBlock, blockItem);
         Item.BY_BLOCK.put(wallBlock, blockItem);
         return blockItem;

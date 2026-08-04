@@ -126,11 +126,11 @@ public final class ModBlocks {
             = register(ModBlockIds.CAMEL_PLUSHIE_KEY, CamelPlushieBlock::new, makePlushieSettings());
     public static final Block NETHER_SMOKY_QUARTZ_ORE = registerNetherSmokyQuartzOre();
     public static final Block SMOKY_QUARTZ_BLOCK
-            = register(ModBlockIds.SMOKY_QUARTZ_BLOCK_KEY, Block::new, makeSmokyQuartzSettings());
+            = registerSimple(ModBlockIds.SMOKY_QUARTZ_BLOCK_KEY, makeSmokyQuartzSettings());
     public static final Block CHISELED_SMOKY_QUARTZ_BLOCK
-            = register(ModBlockIds.CHISELED_SMOKY_QUARTZ_BLOCK_KEY, Block::new, makeSmokyQuartzSettings());
+            = registerSimple(ModBlockIds.CHISELED_SMOKY_QUARTZ_BLOCK_KEY, makeSmokyQuartzSettings());
     public static final Block SMOKY_QUARTZ_BRICKS
-            = register(ModBlockIds.SMOKY_QUARTZ_BRICKS_KEY, Block::new, makeSmokyQuartzSettings());
+            = registerSimple(ModBlockIds.SMOKY_QUARTZ_BRICKS_KEY, makeSmokyQuartzSettings());
     public static final Block SMOKY_QUARTZ_BRICK_STAIRS
             = registerStairs(ModBlockIds.SMOKY_QUARTZ_BRICK_STAIRS_KEY, makeSmokyQuartzSettings(), SMOKY_QUARTZ_BRICKS);
     public static final Block SMOKY_QUARTZ_BRICK_SLAB
@@ -146,7 +146,7 @@ public final class ModBlocks {
     public static final Block SMOKY_QUARTZ_WALL
             = registerWall(ModBlockIds.SMOKY_QUARTZ_WALL_KEY, makeSmokyQuartzSettings());
     public static final Block SMOOTH_SMOKY_QUARTZ
-            = register(ModBlockIds.SMOOTH_SMOKY_QUARTZ_KEY, Block::new, makeSmokyQuartzSettings());
+            = registerSimple(ModBlockIds.SMOOTH_SMOKY_QUARTZ_KEY, makeSmokyQuartzSettings());
     public static final Block SMOOTH_SMOKY_QUARTZ_STAIRS
             = registerStairs(ModBlockIds.SMOOTH_SMOKY_QUARTZ_STAIRS_KEY, makeSmokyQuartzSettings(), SMOOTH_SMOKY_QUARTZ);
     public static final Block SMOOTH_SMOKY_QUARTZ_SLAB
@@ -243,7 +243,7 @@ public final class ModBlocks {
     public static final Block CHERRY_ROPE_LADDER = registerRopeLadder(ModBlockIds.CHERRY_ROPE_LADDER_KEY);
     public static final Block PALE_OAK_ROPE_LADDER = registerRopeLadder(ModBlockIds.PALE_OAK_ROPE_LADDER_KEY);
     public static final Block IRON_LADDER = registerIronLadder();
-    public static final Block SNOW_BRICKS = register(ModBlockIds.SNOW_BRICKS_KEY, Block::new, makeSnowBrickSettings());
+    public static final Block SNOW_BRICKS = registerSimple(ModBlockIds.SNOW_BRICKS_KEY, makeSnowBrickSettings());
     public static final Block SNOW_BRICK_STAIRS
             = registerStairs(ModBlockIds.SNOW_BRICK_STAIRS_KEY, makeSnowBrickSettings(), SNOW_BRICKS);
     public static final Block SNOW_BRICK_SLAB
@@ -251,7 +251,7 @@ public final class ModBlocks {
     public static final Block SNOW_BRICK_WALL
             = registerWall(ModBlockIds.SNOW_BRICK_WALL_KEY, makeSnowBrickSettings());
     public static final Block PACKED_SNOW
-            = register(ModBlockIds.PACKED_SNOW_KEY, Block::new, makePackedSnowSettings());
+            = registerSimple(ModBlockIds.PACKED_SNOW_KEY, makePackedSnowSettings());
     public static final Block PACKED_SNOW_STAIRS
             = registerStairs(ModBlockIds.PACKED_SNOW_STAIRS_KEY, makePackedSnowSettings(), PACKED_SNOW);
     public static final Block PACKED_SNOW_SLAB
@@ -329,13 +329,13 @@ public final class ModBlocks {
     public static final Block WITCHS_CRADLE
             = registerWithoutItemBlock(ModBlockIds.WITCHS_CRADLE_KEY, WitchsCradleBlock::new, BlockBehaviour.Properties
             .ofFullCopy(Blocks.SWEET_BERRY_BUSH).lightLevel((state) -> 8));
-    public static final Block BAUXITE = register(ModBlockIds.BAUXITE_KEY, Block::new, makeBauxiteSettings());
+    public static final Block BAUXITE = registerSimple(ModBlockIds.BAUXITE_KEY, makeBauxiteSettings());
     public static final Block BAUXITE_SLAB = registerSlab(ModBlockIds.BAUXITE_SLAB_KEY, makeBauxiteSettings());
     public static final Block BAUXITE_STAIRS
             = registerStairs(ModBlockIds.BAUXITE_STAIRS_KEY, makeBauxiteSettings(), BAUXITE);
     public static final Block BAUXITE_WALL = registerWall(ModBlockIds.BAUXITE_WALL_KEY, makeBauxiteSettings());
     public static final Block BAUXITE_BRICKS
-            = register(ModBlockIds.BAUXITE_BRICKS_KEY, Block::new, makeBauxiteBricksSettings());
+            = registerSimple(ModBlockIds.BAUXITE_BRICKS_KEY, makeBauxiteBricksSettings());
     public static final Block BAUXITE_BRICK_STAIRS
             = registerStairs(ModBlockIds.BAUXITE_BRICK_STAIRS_KEY, makeBauxiteBricksSettings(), BAUXITE_BRICKS);
     public static final Block BAUXITE_BRICK_SLAB
@@ -343,7 +343,7 @@ public final class ModBlocks {
     public static final Block BAUXITE_BRICK_WALL
             = registerWall(ModBlockIds.BAUXITE_BRICK_WALL_KEY, makeBauxiteBricksSettings());
     public static final Block MOSSY_BAUXITE_BRICKS
-            = register(ModBlockIds.MOSSY_BAUXITE_BRICKS_KEY, Block::new, makeBauxiteBricksSettings());
+            = registerSimple(ModBlockIds.MOSSY_BAUXITE_BRICKS_KEY, makeBauxiteBricksSettings());
     public static final Block MOSSY_BAUXITE_BRICK_STAIRS
             = registerStairs(ModBlockIds.MOSSY_BAUXITE_BRICK_STAIRS_KEY, makeBauxiteBricksSettings(),
             MOSSY_BAUXITE_BRICKS);
@@ -352,7 +352,7 @@ public final class ModBlocks {
     public static final Block MOSSY_BAUXITE_BRICK_WALL
             = registerWall(ModBlockIds.MOSSY_BAUXITE_BRICK_WALL_KEY, makeBauxiteBricksSettings());
     public static final Block CRACKED_BAUXITE_BRICKS
-            = register(ModBlockIds.CRACKED_BAUXITE_BRICKS_KEY, Block::new, makeBauxiteBricksSettings());
+            = registerSimple(ModBlockIds.CRACKED_BAUXITE_BRICKS_KEY, makeBauxiteBricksSettings());
     public static final Block CRACKED_BAUXITE_BRICK_STAIRS
             = registerStairs(ModBlockIds.CRACKED_BAUXITE_BRICK_STAIRS_KEY,
             makeBauxiteBricksSettings(), CRACKED_BAUXITE_BRICKS);
@@ -361,7 +361,8 @@ public final class ModBlocks {
     public static final Block CRACKED_BAUXITE_BRICK_WALL
             = registerWall(ModBlockIds.CRACKED_BAUXITE_BRICK_WALL_KEY, makeBauxiteBricksSettings());
     public static final Block TWISTED_NETHER_BRICKS
-            = register(ModBlockIds.TWISTED_NETHER_BRICKS_KEY, Block::new, BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_BRICKS));
+            = registerSimple(ModBlockIds.TWISTED_NETHER_BRICKS_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_BRICKS));
     public static final Block TWISTED_NETHER_BRICK_STAIRS
             = registerStairs(ModBlockIds.TWISTED_NETHER_BRICK_STAIRS_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_BRICKS), TWISTED_NETHER_BRICKS);
@@ -371,7 +372,7 @@ public final class ModBlocks {
     public static final Block TWISTED_NETHER_BRICK_WALL
             = registerWall(ModBlockIds.TWISTED_NETHER_BRICK_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_BRICKS));
-    public static final Block TWISTED_NETHERRACK = register(ModBlockIds.TWISTED_NETHERRACK_KEY,  Block::new,
+    public static final Block TWISTED_NETHERRACK = registerSimple(ModBlockIds.TWISTED_NETHERRACK_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERRACK));
     public static final Block TWISTED_NETHERRACK_STAIRS
             = registerStairs(ModBlockIds.TWISTED_NETHERRACK_STAIRS_KEY,
@@ -382,7 +383,8 @@ public final class ModBlocks {
     public static final Block TWISTED_NETHERRACK_WALL
             = registerWall(ModBlockIds.TWISTED_NETHERRACK_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERRACK));
-    public static final Block WEEPING_NETHER_BRICKS = register(ModBlockIds.WEEPING_NETHER_BRICKS_KEY, Block::new,
+    public static final Block WEEPING_NETHER_BRICKS
+            = registerSimple(ModBlockIds.WEEPING_NETHER_BRICKS_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_BRICKS));
     public static final Block WEEPING_NETHER_BRICK_STAIRS
             = registerStairs(ModBlockIds.WEEPING_NETHER_BRICK_STAIRS_KEY,
@@ -394,7 +396,7 @@ public final class ModBlocks {
             = registerWall(ModBlockIds.WEEPING_NETHER_BRICK_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_BRICKS));
     public static final Block WEEPING_NETHERRACK
-            = register(ModBlockIds.WEEPING_NETHERRACK_KEY, Block::new,
+            = registerSimple(ModBlockIds.WEEPING_NETHERRACK_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERRACK));
     public static final Block WEEPING_NETHERRACK_STAIRS
             = registerStairs(ModBlockIds.WEEPING_NETHERRACK_STAIRS_KEY,
@@ -429,7 +431,7 @@ public final class ModBlocks {
             ModBlocks::registerCandleCake, (s, p) -> new ModdedCandleCakeBlock(ModBlocks.RED_VELVET_CAKE, Blocks.DYED_CANDLE.pick(s), p),
             (var0) -> BlockBehaviour.Properties.ofFullCopy(Blocks.CANDLE_CAKE));
     public static final Block STONE_TILES
-            = register(ModBlockIds.STONE_TILES_KEY, Block::new, makeStoneTileSettings());
+            = registerSimple(ModBlockIds.STONE_TILES_KEY, makeStoneTileSettings());
     public static final Block STONE_TILE_SLAB
             = registerSlab(ModBlockIds.STONE_TILE_SLAB_KEY, makeStoneTileSettings());
     public static final Block STONE_TILE_STAIRS
@@ -437,7 +439,7 @@ public final class ModBlocks {
     public static final Block STONE_TILE_WALL
             = registerWall(ModBlockIds.STONE_TILE_WALL_KEY, makeStoneTileSettings());
     public static final Block MOSSY_STONE_TILES
-            = register(ModBlockIds.MOSSY_STONE_TILES_KEY, Block::new, makeStoneTileSettings());
+            = registerSimple(ModBlockIds.MOSSY_STONE_TILES_KEY, makeStoneTileSettings());
     public static final Block MOSSY_STONE_TILE_SLAB
             = registerSlab(ModBlockIds.MOSSY_STONE_TILE_SLAB_KEY, makeStoneTileSettings());
     public static final Block MOSSY_STONE_TILE_STAIRS
@@ -445,7 +447,7 @@ public final class ModBlocks {
     public static final Block MOSSY_STONE_TILE_WALL
             = registerWall(ModBlockIds.MOSSY_STONE_TILE_WALL_KEY, makeStoneTileSettings());
     public static final Block CRACKED_STONE_TILES
-            = register(ModBlockIds.CRACKED_STONE_TILES_KEY, Block::new, makeStoneTileSettings());
+            = registerSimple(ModBlockIds.CRACKED_STONE_TILES_KEY, makeStoneTileSettings());
     public static final Block CRACKED_STONE_TILE_SLAB
             = registerSlab(ModBlockIds.CRACKED_STONE_TILE_SLAB_KEY, makeStoneTileSettings());
     public static final Block CRACKED_STONE_TILE_STAIRS
@@ -455,7 +457,7 @@ public final class ModBlocks {
     public static final Block SWEET_BERRY_PIE = registerPie(ModBlockIds.SWEET_BERRY_PIE_KEY);
     public static final Block BLUEBERRY_PIE = registerPie(ModBlockIds.BLUEBERRY_PIE_KEY);
     public static final Block BLACKSTONE_TILES
-            = register(ModBlockIds.BLACKSTONE_TILES_KEY, Block::new, makeBlackstoneTileSettings());
+            = registerSimple(ModBlockIds.BLACKSTONE_TILES_KEY, makeBlackstoneTileSettings());
     public static final Block BLACKSTONE_TILE_STAIRS
             = registerStairs(ModBlockIds.BLACKSTONE_TILE_STAIRS_KEY, makeBlackstoneTileSettings(), BLACKSTONE_TILES);
     public static final Block BLACKSTONE_TILE_SLAB
@@ -463,7 +465,7 @@ public final class ModBlocks {
     public static final Block BLACKSTONE_TILE_WALL
             = registerWall(ModBlockIds.BLACKSTONE_TILE_WALL_KEY, makeBlackstoneTileSettings());
     public static final Block TWISTED_BLACKSTONE_TILES
-            = register(ModBlockIds.TWISTED_BLACKSTONE_TILES_KEY, Block::new, makeBlackstoneTileSettings());
+            = registerSimple(ModBlockIds.TWISTED_BLACKSTONE_TILES_KEY, makeBlackstoneTileSettings());
     public static final Block TWISTED_BLACKSTONE_TILE_STAIRS
             = registerStairs(ModBlockIds.TWISTED_BLACKSTONE_TILE_STAIRS_KEY,
             makeBlackstoneTileSettings(), TWISTED_BLACKSTONE_TILES);
@@ -474,7 +476,7 @@ public final class ModBlocks {
             = registerWall(ModBlockIds.TWISTED_BLACKSTONE_TILE_WALL_KEY,
             makeBlackstoneTileSettings());
     public static final Block WEEPING_BLACKSTONE_TILES
-            = register(ModBlockIds.WEEPING_BLACKSTONE_TILES_KEY, Block::new, makeBlackstoneTileSettings());
+            = registerSimple(ModBlockIds.WEEPING_BLACKSTONE_TILES_KEY, makeBlackstoneTileSettings());
     public static final Block WEEPING_BLACKSTONE_TILE_STAIRS = registerStairs(ModBlockIds.WEEPING_BLACKSTONE_TILE_STAIRS_KEY,
             makeBlackstoneTileSettings(), WEEPING_BLACKSTONE_TILES);
     public static final Block WEEPING_BLACKSTONE_TILE_SLAB
@@ -482,7 +484,7 @@ public final class ModBlocks {
     public static final Block WEEPING_BLACKSTONE_TILE_WALL
             = registerWall(ModBlockIds.WEEPING_BLACKSTONE_TILE_WALL_KEY, makeBlackstoneTileSettings());
     public static final Block TWISTED_POLISHED_BLACKSTONE_BRICKS
-            = register(ModBlockIds.TWISTED_POLISHED_BLACKSTONE_BRICKS_KEY, Block::new,
+            = registerSimple(ModBlockIds.TWISTED_POLISHED_BLACKSTONE_BRICKS_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_BLACKSTONE_BRICKS));
     public static final Block TWISTED_POLISHED_BLACKSTONE_BRICK_STAIRS
             = registerStairs(ModBlockIds.TWISTED_POLISHED_BLACKSTONE_BRICK_STAIRS_KEY,
@@ -495,7 +497,7 @@ public final class ModBlocks {
             = registerWall(ModBlockIds.TWISTED_POLISHED_BLACKSTONE_BRICK_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_BLACKSTONE_BRICKS));
     public static final Block WEEPING_POLISHED_BLACKSTONE_BRICKS
-            = register(ModBlockIds.WEEPING_POLISHED_BLACKSTONE_BRICKS_KEY, Block::new,
+            = registerSimple(ModBlockIds.WEEPING_POLISHED_BLACKSTONE_BRICKS_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_BLACKSTONE_BRICKS));
     public static final Block WEEPING_POLISHED_BLACKSTONE_BRICK_STAIRS
             = registerStairs(ModBlockIds.WEEPING_POLISHED_BLACKSTONE_BRICK_STAIRS_KEY,
@@ -508,7 +510,8 @@ public final class ModBlocks {
             = registerWall(ModBlockIds.WEEPING_POLISHED_BLACKSTONE_BRICK_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_BLACKSTONE_BRICKS));
     public static final Block TWISTED_BLACKSTONE
-            = register(ModBlockIds.TWISTED_BLACKSTONE_KEY, Block::new, BlockBehaviour.Properties.ofFullCopy(Blocks.BLACKSTONE));
+            = registerSimple(ModBlockIds.TWISTED_BLACKSTONE_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.BLACKSTONE));
     public static final Block TWISTED_BLACKSTONE_STAIRS
             = registerStairs(ModBlockIds.TWISTED_BLACKSTONE_STAIRS_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.BLACKSTONE), Blocks.BLACKSTONE);
@@ -517,7 +520,7 @@ public final class ModBlocks {
     public static final Block TWISTED_BLACKSTONE_WALL = registerWall(ModBlockIds.TWISTED_BLACKSTONE_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.BLACKSTONE));
     public static final Block WEEPING_BLACKSTONE
-            = register(ModBlockIds.WEEPING_BLACKSTONE_KEY, Block::new,
+            = registerSimple(ModBlockIds.WEEPING_BLACKSTONE_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.BLACKSTONE));
     public static final Block WEEPING_BLACKSTONE_STAIRS
             = registerStairs(ModBlockIds.WEEPING_BLACKSTONE_STAIRS_KEY,
@@ -527,14 +530,15 @@ public final class ModBlocks {
     public static final Block WEEPING_BLACKSTONE_WALL = registerWall(ModBlockIds.WEEPING_BLACKSTONE_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.BLACKSTONE));
     public static final Block QUARTZ_TILES
-            = register(ModBlockIds.QUARTZ_TILES_KEY, Block::new, makeQuartzTileSettings());
+            = registerSimple(ModBlockIds.QUARTZ_TILES_KEY, makeQuartzTileSettings());
     public static final Block QUARTZ_TILE_STAIRS
             = registerStairs(ModBlockIds.QUARTZ_TILE_STAIRS_KEY, makeQuartzTileSettings(), QUARTZ_TILES);
     public static final Block QUARTZ_TILE_SLAB
             = registerSlab(ModBlockIds.QUARTZ_TILE_SLAB_KEY, makeQuartzTileSettings());
     public static final Block QUARTZ_TILE_WALL
             = registerWall(ModBlockIds.QUARTZ_TILE_WALL_KEY, makeQuartzTileSettings());
-    public static final Block CALCITE_BRICKS = register(ModBlockIds.CALCITE_BRICKS_KEY, Block::new, makeCalciteSettings());
+    public static final Block CALCITE_BRICKS
+            = registerSimple(ModBlockIds.CALCITE_BRICKS_KEY, makeCalciteSettings());
     public static final Block CALCITE_BRICK_STAIRS
             = registerStairs(ModBlockIds.CALCITE_BRICK_STAIRS_KEY, makeCalciteSettings(), CALCITE_BRICKS);
     public static final Block CALCITE_BRICK_SLAB
@@ -542,7 +546,7 @@ public final class ModBlocks {
     public static final Block CALCITE_BRICK_WALL
             = registerWall(ModBlockIds.CALCITE_BRICK_WALL_KEY, makeCalciteSettings());
     public static final Block MOSSY_CALCITE_BRICKS
-            = register(ModBlockIds.MOSSY_CALCITE_BRICKS_KEY, Block::new, makeCalciteSettings());
+            = registerSimple(ModBlockIds.MOSSY_CALCITE_BRICKS_KEY, makeCalciteSettings());
     public static final Block MOSSY_CALCITE_BRICK_STAIRS
             = registerStairs(ModBlockIds.MOSSY_CALCITE_BRICK_STAIRS_KEY, makeCalciteSettings(), MOSSY_CALCITE_BRICKS);
     public static final Block MOSSY_CALCITE_BRICK_SLAB
@@ -550,7 +554,7 @@ public final class ModBlocks {
     public static final Block MOSSY_CALCITE_BRICK_WALL = registerWall(ModBlockIds.MOSSY_CALCITE_BRICK_WALL_KEY,
             makeCalciteSettings());
     public static final Block CRACKED_CALCITE_BRICKS
-            = register(ModBlockIds.CRACKED_CALCITE_BRICKS_KEY, Block::new, makeCalciteSettings());
+            = registerSimple(ModBlockIds.CRACKED_CALCITE_BRICKS_KEY, makeCalciteSettings());
     public static final Block CRACKED_CALCITE_BRICK_STAIRS
             = registerStairs(ModBlockIds.CRACKED_CALCITE_BRICK_STAIRS_KEY,
             makeCalciteSettings(), CRACKED_CALCITE_BRICKS);
@@ -561,7 +565,7 @@ public final class ModBlocks {
     public static final Block CHISELED_CALCITE_BRICKS
             = register(ModBlockIds.CHISELED_CALCITE_BRICKS_KEY, RotatedPillarBlock::new, makeCalciteSettings());
     public static final Block DRIPSTONE_BRICKS
-            = register(ModBlockIds.DRIPSTONE_BRICKS_KEY, Block::new, makeDripstoneSettings());
+            = registerSimple(ModBlockIds.DRIPSTONE_BRICKS_KEY, makeDripstoneSettings());
     public static final Block DRIPSTONE_BRICK_STAIRS = registerStairs(ModBlockIds.DRIPSTONE_BRICK_STAIRS_KEY,
             makeDripstoneSettings(), DRIPSTONE_BRICKS);
     public static final Block DRIPSTONE_BRICK_SLAB = registerSlab(ModBlockIds.DRIPSTONE_BRICK_SLAB_KEY,
@@ -569,7 +573,7 @@ public final class ModBlocks {
     public static final Block DRIPSTONE_BRICK_WALL = registerWall(ModBlockIds.DRIPSTONE_BRICK_WALL_KEY,
             makeDripstoneSettings());
     public static final Block MOSSY_DRIPSTONE_BRICKS
-            = register(ModBlockIds.MOSSY_DRIPSTONE_BRICKS_KEY, Block::new, makeDripstoneSettings());
+            = registerSimple(ModBlockIds.MOSSY_DRIPSTONE_BRICKS_KEY, makeDripstoneSettings());
     public static final Block MOSSY_DRIPSTONE_BRICK_STAIRS = registerStairs(ModBlockIds.MOSSY_DRIPSTONE_BRICK_STAIRS_KEY,
             makeDripstoneSettings(), MOSSY_DRIPSTONE_BRICKS);
     public static final Block MOSSY_DRIPSTONE_BRICK_SLAB = registerSlab(ModBlockIds.MOSSY_DRIPSTONE_BRICK_SLAB_KEY,
@@ -577,7 +581,7 @@ public final class ModBlocks {
     public static final Block MOSSY_DRIPSTONE_BRICK_WALL = registerWall(ModBlockIds.MOSSY_DRIPSTONE_BRICK_WALL_KEY,
             makeDripstoneSettings());
     public static final Block CRACKED_DRIPSTONE_BRICKS
-            = register(ModBlockIds.CRACKED_DRIPSTONE_BRICKS_KEY, Block::new, makeDripstoneSettings());
+            = registerSimple(ModBlockIds.CRACKED_DRIPSTONE_BRICKS_KEY, makeDripstoneSettings());
     public static final Block CRACKED_DRIPSTONE_BRICK_STAIRS = registerStairs(ModBlockIds.CRACKED_DRIPSTONE_BRICK_STAIRS_KEY,
             makeDripstoneSettings(), CRACKED_DRIPSTONE_BRICKS);
     public static final Block CRACKED_DRIPSTONE_BRICK_SLAB = registerSlab(ModBlockIds.CRACKED_DRIPSTONE_BRICK_SLAB_KEY,
@@ -585,15 +589,14 @@ public final class ModBlocks {
     public static final Block CRACKED_DRIPSTONE_BRICK_WALL = registerWall(ModBlockIds.CRACKED_DRIPSTONE_BRICK_WALL_KEY,
             makeDripstoneSettings());
     public static final Block CHISELED_DRIPSTONE_BRICKS
-            = register(ModBlockIds.CHISELED_DRIPSTONE_BRICKS_KEY, Block::new, makeDripstoneSettings());
+            = registerSimple(ModBlockIds.CHISELED_DRIPSTONE_BRICKS_KEY, makeDripstoneSettings());
     public static final Block BLOOD_KELP
             = registerWithoutItemBlock(ModBlockIds.BLOOD_KELP_KEY, BloodKelpBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.KELP)
             .lightLevel(getLuminanceFromState()));
     public static final Block BLOOD_KELP_PLANT
             = registerWithoutItemBlock(ModBlockIds.BLOOD_KELP_PLANT_KEY, BloodKelpPlantBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.KELP_PLANT)
             .lightLevel(getLuminanceFromState()));
-    public static final Block DRIED_BLOOD_KELP_BLOCK
-            = register(ModBlockIds.DRIED_BLOOD_KELP_BLOCK_KEY, Block::new,
+    public static final Block DRIED_BLOOD_KELP_BLOCK = registerSimple(ModBlockIds.DRIED_BLOOD_KELP_BLOCK_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.DRIED_KELP_BLOCK));
     public static final Block BLOOD_KELP_LANTERN
             = register(ModBlockIds.BLOOD_KELP_LANTERN_KEY, RotatedPillarBlock::new,
@@ -611,7 +614,7 @@ public final class ModBlocks {
             .randomTicks().noCollision().sound(SoundType.NETHER_SPROUTS).pushReaction(PushReaction.DESTROY)
             .lightLevel((state) -> 5));
     public static final Block POLISHED_DRIPSTONE
-            = register(ModBlockIds.POLISHED_DRIPSTONE_KEY, Block::new, makeDripstoneSettings());
+            = registerSimple(ModBlockIds.POLISHED_DRIPSTONE_KEY, makeDripstoneSettings());
     public static final Block POLISHED_DRIPSTONE_STAIRS = registerStairs(ModBlockIds.POLISHED_DRIPSTONE_STAIRS_KEY,
             makeDripstoneSettings(), POLISHED_DRIPSTONE);
     public static final Block POLISHED_DRIPSTONE_SLAB
@@ -619,7 +622,7 @@ public final class ModBlocks {
     public static final Block POLISHED_DRIPSTONE_WALL = registerWall(ModBlockIds.POLISHED_DRIPSTONE_WALL_KEY,
             makeDripstoneSettings());
     public static final Block POLISHED_CALCITE
-            = register(ModBlockIds.POLISHED_CALCITE_KEY, Block::new, makeCalciteSettings());
+            = registerSimple(ModBlockIds.POLISHED_CALCITE_KEY, makeCalciteSettings());
     public static final Block POLISHED_CALCITE_STAIRS = registerStairs(ModBlockIds.POLISHED_CALCITE_STAIRS_KEY,
             makeCalciteSettings(), POLISHED_CALCITE);
     public static final Block POLISHED_CALCITE_SLAB = registerSlab(ModBlockIds.POLISHED_CALCITE_SLAB_KEY,
@@ -726,8 +729,12 @@ public final class ModBlocks {
         return block;
     }
 
-    public static Block registerWithoutItemBlock(final ResourceKey<Block> id, final Function<BlockBehaviour.Properties, Block> factory, final BlockBehaviour.Properties properties) {
+    private static Block registerWithoutItemBlock(final ResourceKey<Block> id, final Function<BlockBehaviour.Properties, Block> factory, final BlockBehaviour.Properties properties) {
         return Registry.register(BuiltInRegistries.BLOCK, id, factory.apply(properties.setId(id)));
+    }
+
+    private static Block registerSimple(BlockItemId id, final BlockBehaviour.Properties properties) {
+        return register(id, Block::new, properties);
     }
 
     private static Block registerHorsePlushie(BlockItemId id) {

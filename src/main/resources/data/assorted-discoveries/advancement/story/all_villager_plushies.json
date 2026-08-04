@@ -1,0 +1,63 @@
+{
+  "parent": "assorted-discoveries:story/obtain_plushie",
+  "display": {
+    "icon": {
+      "count": 1,
+      "id": "assorted-discoveries:plains_villager_plushie"
+    },
+    "title": {
+      "translate": "advancements.assorted-discoveries.story.all_villager_plushies.title"
+    },
+    "description": {
+      "translate": "advancements.assorted-discoveries.story.all_villager_plushies.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_all_villager_plushies": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "assorted-discoveries:plains_villager_plushie"
+          },
+          {
+            "items": "assorted-discoveries:desert_villager_plushie"
+          },
+          {
+            "items": "assorted-discoveries:jungle_villager_plushie"
+          },
+          {
+            "items": "assorted-discoveries:savanna_villager_plushie"
+          },
+          {
+            "items": "assorted-discoveries:snowy_villager_plushie"
+          },
+          {
+            "items": "assorted-discoveries:swamp_villager_plushie"
+          },
+          {
+            "items": "assorted-discoveries:taiga_villager_plushie"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_all_villager_plushies"
+    ]
+  ],
+  "rewards": {
+    "experience": 200
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "enable_villager_plushies"
+    }
+  ]
+}

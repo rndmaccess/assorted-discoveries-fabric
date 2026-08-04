@@ -138,7 +138,7 @@ public final class ModBlocks {
     public static final Block SMOKY_QUARTZ_BRICK_WALL
             = registerWall(ModBlockIds.SMOKY_QUARTZ_BRICK_WALL_KEY, makeSmokyQuartzSettings());
     public static final Block SMOKY_QUARTZ_PILLAR
-            = register(ModBlockIds.SMOKY_QUARTZ_PILLAR_KEY, RotatedPillarBlock::new, makeSmokyQuartzSettings());
+            = registerPillar(ModBlockIds.SMOKY_QUARTZ_PILLAR_KEY, makeSmokyQuartzSettings());
     public static final Block SMOKY_QUARTZ_STAIRS
             = registerStairs(ModBlockIds.SMOKY_QUARTZ_STAIRS_KEY, makeSmokyQuartzSettings(), SMOKY_QUARTZ_BLOCK);
     public static final Block SMOKY_QUARTZ_SLAB
@@ -563,7 +563,7 @@ public final class ModBlocks {
     public static final Block CRACKED_CALCITE_BRICK_WALL = registerWall(ModBlockIds.CRACKED_CALCITE_BRICK_WALL_KEY,
             makeCalciteSettings());
     public static final Block CHISELED_CALCITE_BRICKS
-            = register(ModBlockIds.CHISELED_CALCITE_BRICKS_KEY, RotatedPillarBlock::new, makeCalciteSettings());
+            = registerPillar(ModBlockIds.CHISELED_CALCITE_BRICKS_KEY, makeCalciteSettings());
     public static final Block DRIPSTONE_BRICKS
             = registerSimple(ModBlockIds.DRIPSTONE_BRICKS_KEY, makeDripstoneSettings());
     public static final Block DRIPSTONE_BRICK_STAIRS = registerStairs(ModBlockIds.DRIPSTONE_BRICK_STAIRS_KEY,
@@ -599,7 +599,7 @@ public final class ModBlocks {
     public static final Block DRIED_BLOOD_KELP_BLOCK = registerSimple(ModBlockIds.DRIED_BLOOD_KELP_BLOCK_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.DRIED_KELP_BLOCK));
     public static final Block BLOOD_KELP_LANTERN
-            = register(ModBlockIds.BLOOD_KELP_LANTERN_KEY, RotatedPillarBlock::new,
+            = registerPillar(ModBlockIds.BLOOD_KELP_LANTERN_KEY,
             BlockBehaviour.Properties.of().mapColor(MapColor.SAND).strength(0.3F)
                     .sound(SoundType.GLASS).lightLevel((state) -> 15));
     public static final Block BOG_BLOSSOM = register(ModBlockIds.BOG_BLOSSOM_KEY, BogBlossomBlock::new, BlockBehaviour.Properties.of()
@@ -735,6 +735,10 @@ public final class ModBlocks {
 
     private static Block registerSimple(BlockItemId id, final BlockBehaviour.Properties properties) {
         return register(id, Block::new, properties);
+    }
+
+    private static Block registerPillar(BlockItemId id, final BlockBehaviour.Properties properties) {
+        return register(id, RotatedPillarBlock::new, properties);
     }
 
     private static Block registerHorsePlushie(BlockItemId id) {

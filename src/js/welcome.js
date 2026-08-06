@@ -31,6 +31,34 @@ const documents = [
     {
         id: 7,
         title: 'strider plushie'
+    },
+    {
+        id: 8,
+        title: 'allay plushie'
+    },
+    {
+        id: 9,
+        title: 'vex plushie'
+    },
+    {
+        id: 10,
+        title: 'cat plushie'
+    },
+    {
+        id: 11,
+        title: 'cow plushie'
+    },
+    {
+        id: 12,
+        title: 'mooshroom plushie'
+    },
+    {
+        id: 13,
+        title: "sheep plushie"
+    },
+    {
+        id: 14,
+        title: "hoglin plushie"
     }
 ]
 

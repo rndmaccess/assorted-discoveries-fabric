@@ -12,6 +12,7 @@ import temperateCowPlushie from '../img/temperate_cow_plushie.webp';
 import redMooshroomPlushie from '../img/red_mooshroom_plushie.webp';
 import whiteSheepPlushie from '../img/sheep_plushie_white.webp';
 import hoglinPlushie from '../img/hoglin_plushie.webp';
+import wildGreenOnions from '../img/wild_green_onions.webp';
 
 let miniSearch = new MiniSearch({
     fields: ['title', 'description'],
@@ -116,6 +117,13 @@ const documents = [
         description: 'Plushies inspired by hoglin mob variants.',
         link: './hoglin_plushie.html',
         img: hoglinPlushie,
+    },
+    {
+        id: 15,
+        title: 'wild green onions',
+        description: 'A plant that drops green onion seeds when broken.',
+        link: './wild_green_onions.html',
+        img: wildGreenOnions,
     },
 ];
 

@@ -10,10 +10,9 @@
     align-items: center;
     flex: 1;
 
-    border: 1px solid #202020;
+    outline: 1px solid #3c2a68;
 
-    background-color: #303030;
-    border-radius: 1rem;
+    background-color: #202020;
     padding: 1rem;
     font-size: 1.5rem;
 }

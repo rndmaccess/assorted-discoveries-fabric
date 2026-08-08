@@ -18,9 +18,9 @@
 
     flex: 1;
 
-    border: 1px solid #202020;
+    outline: 1px solid #3c2a68;
 
-    background-color: #303030;
+    background-color: #202020;
     border-radius: 1rem;
     padding: 1rem;
     max-width: 50%;

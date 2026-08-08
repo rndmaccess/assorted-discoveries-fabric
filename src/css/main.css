@@ -98,11 +98,10 @@ a:hover { cursor: pointer; }
     width: 60%;
     height: auto;
 
-    border: 1px solid #202020;
+    outline: 1px solid #3c2a68;
 
-    background-color: #303030;
+    background-color: #202020;
 
-    border-radius: 1rem;
     padding: 1.5rem;
     font-size: 1.5rem;
 }
@@ -133,10 +132,10 @@ table {
     display: flex;
     justify-content: center;
     background-color: #5c4595;
-    border-radius: 1rem;
     margin: 0.5rem auto;
     padding: 0.5rem;
     text-align: center;
+    outline: 4px solid #3c2a68;
 }
 
 .title {

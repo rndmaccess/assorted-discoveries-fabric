@@ -70,3 +70,12 @@
     height: auto;
     transform: translate(-50%, -50%);
 }
+
+.result-count {
+    position: absolute;
+    left: 96%;
+    top: 56%;
+    width: 11%;
+    height: auto;
+    transform: translate(-50%, -50%);
+}

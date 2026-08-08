@@ -17,7 +17,8 @@
 
     /* A rounded border around the crafting gui */
     background-color: #C6C6C6;
-    border-radius: 0.5rem;
+
+    outline: 4px solid #F9FAFB;
 }
 
 .front {

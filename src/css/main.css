@@ -40,8 +40,7 @@ html, body {
     border-bottom-color: #6151b3;
 }
 
-.main-container {
-    border-radius: 1rem;
+.container {
     max-width: 90%;
     margin: 2.5rem auto;
     padding: 2.5rem;
@@ -55,6 +54,14 @@ html, body {
     gap: 2.5rem;
 
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.main-container {
+    border-radius: 0.5rem;
+}
+
+.secondary-container {
+    border: 2px solid black;
 }
 
 /* Styled links */
@@ -167,7 +174,7 @@ table {
 
 /* Desktop properties */
 @media (min-width: 1024px) {
-    .main-container {
+    .container {
         max-width: 62.5%;
     }
 

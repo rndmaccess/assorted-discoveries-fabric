@@ -119,7 +119,7 @@ const documents = [
     {
         id: 13,
         title: 'sheep plushie',
-        key_words: '',
+        key_words: 'white light gray black brown red orange yellow lime green cyan blue purple magenta pink',
         description: 'Plushies inspired by the sheep mob variants.',
         link: './sheep_plushie.html',
         img: whiteSheepPlushie,

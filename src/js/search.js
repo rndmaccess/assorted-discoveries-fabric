@@ -15,14 +15,15 @@ import hoglinPlushie from '../img/hoglin_plushie.webp';
 import wildGreenOnions from '../img/wild_green_onions.webp';
 
 let miniSearch = new MiniSearch({
-    fields: ['title', 'description'],
-    storeFields: ['title', 'description', 'link', 'img'],
+    fields: ['title', 'key_words'],
+    storeFields: ['title', 'key_words', 'description', 'link', 'img'],
 });
 
 const documents = [
     {
         id: 1,
         title: 'bog blossom',
+        key_words: 'flower swamp plant',
         description: 'An illuminated swamp flower with majestic yellow particles.',
         link: './bog_blossom.html',
         img: bogBlossom,
@@ -30,6 +31,7 @@ const documents = [
     {
         id: 2,
         title: 'planter box',
+        key_words: 'growing overworld nether crops',
         description: 'A planter box that can dynamically expand and is great for growing any overworld or nether crops!',
         link: './planter_box.html',
         img: oakPlanterBox,
@@ -37,6 +39,7 @@ const documents = [
     {
         id: 3,
         title: 'rope ladder',
+        key_words: '',
         description: 'These ladders can be hung from any solid block!',
         link: './rope_ladder.html',
         img: oakRopeLadder,
@@ -44,6 +47,7 @@ const documents = [
     {
         id: 4,
         title: 'enderman plushie',
+        key_words: '',
         description: 'A plushie inspired by the enderman mob that features a grass block that changes color by biome.',
         link: './enderman_plushie.html',
         img: endermanPlushie,
@@ -51,6 +55,7 @@ const documents = [
     {
         id: 5,
         title: 'zombie plushie',
+        key_words: '',
         description: 'A plushie inspired by the zombie mob.',
         link: './zombie_plushie.html',
         img: zombiePlushie,
@@ -58,6 +63,7 @@ const documents = [
     {
         id: 6,
         title: 'wolf plushie',
+        key_words: 'dog',
         description: 'Plushies inspired by the wolf mob variants, the wolf plushie can both sit and stand.',
         link: './wolf_plushie.html',
         img: paleWolfPlushieStanding,
@@ -65,6 +71,7 @@ const documents = [
     {
         id: 7,
         title: 'strider plushie',
+        key_words: '',
         description: 'Plushies inspired by the strider mob\'s different forms',
         link: './strider_plushie.html',
         img: striderPlushie,
@@ -72,6 +79,7 @@ const documents = [
     {
         id: 8,
         title: 'allay plushie',
+        key_words: '',
         description: 'An illuminated plushie inspired by the allay mob.',
         link: './allay_plushie.html',
         img: allayPlushie,
@@ -79,6 +87,7 @@ const documents = [
     {
         id: 9,
         title: 'vex plushie',
+        key_words: '',
         description: 'An illuminated plushie inspired by the vex mob.',
         link: './vex_plushie.html',
         img: vexPlushie,
@@ -86,6 +95,7 @@ const documents = [
     {
         id: 10,
         title: 'cat plushie',
+        key_words: '',
         description: 'Plushies inspired by the cat and ocelot mob variants, the cat plushie can both sit and stand.',
         link: './cat_plushie.html',
         img: ocelotPlushieStanding,
@@ -93,6 +103,7 @@ const documents = [
     {
         id: 11,
         title: 'cow plushie',
+        key_words: '',
         description: 'A plushie inspired by the cow mob.',
         link: './cow_plushie.html',
         img: temperateCowPlushie,
@@ -100,6 +111,7 @@ const documents = [
     {
         id: 12,
         title: 'mooshroom plushie',
+        key_words: '',
         description: 'Plushies inspired by the mooshroom mob variants.',
         link: './mooshroom_plushie.html',
         img: redMooshroomPlushie,
@@ -107,6 +119,7 @@ const documents = [
     {
         id: 13,
         title: 'sheep plushie',
+        key_words: '',
         description: 'Plushies inspired by the sheep mob variants.',
         link: './sheep_plushie.html',
         img: whiteSheepPlushie,
@@ -114,6 +127,7 @@ const documents = [
     {
         id: 14,
         title: 'hoglin plushie',
+        key_words: '',
         description: 'Plushies inspired by hoglin mob variants.',
         link: './hoglin_plushie.html',
         img: hoglinPlushie,
@@ -121,6 +135,7 @@ const documents = [
     {
         id: 15,
         title: 'wild green onions',
+        key_words: 'plant seeds',
         description: 'A plant that drops green onion seeds when broken.',
         link: './wild_green_onions.html',
         img: wildGreenOnions,

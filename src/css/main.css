@@ -171,6 +171,10 @@ table {
     border: 2px solid #6151b3;
 }
 
+.extra-gap {
+    padding-top:1em;
+}
+
 /* Desktop properties */
 @media (min-width: 1024px) {
     .container {

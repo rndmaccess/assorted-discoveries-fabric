@@ -2,7 +2,7 @@ package rndm_access.assorteddiscoveries.core;
 
 import net.minecraft.world.food.FoodProperties;
 
-public final class ModFoodComponents {
+public final class ModFoods {
     public static final FoodProperties FRIED_EGG = (new FoodProperties.Builder()).nutrition(5)
             .saturationModifier(0.6F).build();
     public static final FoodProperties GREEN_ONION = new FoodProperties.Builder().nutrition(1)

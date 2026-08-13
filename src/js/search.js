@@ -17,6 +17,8 @@ import greenOnionSeeds from '../img/green_onion_seeds.webp';
 import greenOnion from '../img/green_onion.webp';
 import grassSlab from '../img/grass_slab.webp';
 import dirtSlab from '../img/dirt_slab.webp';
+import dirtPathSlab from '../img/dirt_path_slab.webp';
+import cindersnapBerries from '../img/cindersnap_berries.webp';
 
 let miniSearch = new MiniSearch({
     fields: ['title', 'key_words'],
@@ -164,7 +166,7 @@ const documents = [
         id: 18,
         title: 'grass slab',
         key_words: 'podzol mycelium',
-        description: 'The page for grass, podzol, and mycelium slabs.',
+        description: 'Everything you need to know about grass, podzol, and mycelium slabs.',
         link: './grass_slab.html',
         img: grassSlab,
     },
@@ -172,9 +174,25 @@ const documents = [
         id: 19,
         title: 'dirt slab',
         key_words: 'coarse rooted',
-        description: 'The page for dirt, coarse dirt, and rooted dirt slabs.',
+        description: 'Everything you need to know about dirt, coarse dirt, and rooted dirt slabs.',
         link: './dirt_slab.html',
         img: dirtSlab,
+    },
+    {
+        id: 20,
+        title: 'dirt path slab',
+        key_words: 'grass mycelium coarse rooted podzol',
+        description: 'The path variant for all grass and dirt slabs!',
+        link: './dirt_path_slab.html',
+        img: dirtPathSlab,
+    },
+    {
+        id: 21,
+        title: 'nether berries',
+        key_words: 'cindersnap frostbite berry',
+        description: 'Learn where to find, harvest, and use the frostbite and cindersnap berry bushes.',
+        link: './nether_berries.html',
+        img: cindersnapBerries,
     },
 ];
 

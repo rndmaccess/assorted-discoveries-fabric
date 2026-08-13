@@ -15,6 +15,8 @@ import hoglinPlushie from '../img/hoglin_plushie.webp';
 import wildGreenOnions from '../img/wild_green_onions.webp';
 import greenOnionSeeds from '../img/green_onion_seeds.webp';
 import greenOnion from '../img/green_onion.webp';
+import grassSlab from '../img/grass_slab.webp';
+import dirtSlab from '../img/dirt_slab.webp';
 
 let miniSearch = new MiniSearch({
     fields: ['title', 'key_words'],
@@ -157,6 +159,22 @@ const documents = [
         description: 'A food item that can be eaten as is or used in crafting recipes.',
         link: './green_onion.html',
         img: greenOnion,
+    },
+    {
+        id: 18,
+        title: 'grass slab',
+        key_words: 'plant seeds food',
+        description: 'The page for grass, podzol, and mycelium slabs.',
+        link: './grass_slab.html',
+        img: grassSlab,
+    },
+    {
+        id: 19,
+        title: 'dirt slab',
+        key_words: 'plant seeds food',
+        description: 'The page for dirt, coarse dirt, and rooted dirt slabs.',
+        link: './dirt_slab.html',
+        img: dirtSlab,
     },
 ];
 

@@ -163,7 +163,7 @@ const documents = [
     {
         id: 18,
         title: 'grass slab',
-        key_words: 'plant seeds food',
+        key_words: 'podzol mycelium',
         description: 'The page for grass, podzol, and mycelium slabs.',
         link: './grass_slab.html',
         img: grassSlab,
@@ -171,7 +171,7 @@ const documents = [
     {
         id: 19,
         title: 'dirt slab',
-        key_words: 'plant seeds food',
+        key_words: 'coarse rooted',
         description: 'The page for dirt, coarse dirt, and rooted dirt slabs.',
         link: './dirt_slab.html',
         img: dirtSlab,

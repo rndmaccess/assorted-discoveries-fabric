@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/crafting.css">
+    <meta charset="UTF-8">
+    <title>Grass Slab - Assorted Discoveries Wiki</title>
+    <link rel="icon" href="../favicon.png" type="image/png">
+</head>
+<body>
+<div class="main-container container">
+    <div class="top-content-wrapper">
+        <div class="content-left">
+            <h1>
+                About
+            </h1>
+            <p>
+                The grass slab is a decorative block that can be combined into a single block.
+                These slabs come in three different variants grass, podzol, and mycelium.
+            </p>
+            <h1>
+                Config
+            </h1>
+            <p>
+                Grass slabs are enabled and disabled with the same config option as dirt slabs.
+                Visit the <a href="./dirt_slab.html">dirt slabs page</a> to read more about it.
+            </p>
+            <h1>
+                Slabbed Support
+            </h1>
+            <p>
+                If the <b>slabbed mod</b> is installed it will allow you to <b>place tall grass and many other plants</b> on these slabs.
+                If however, it's not present the <b>bottom slab variant</b> will not support plants.
+            </p>
+            <h1>
+                Double Slabs
+            </h1>
+            <p>
+                Only two grass slabs of the same type can form a double slab unless a different mod changes this behavior.
+            </p>
+            <h1>
+                Breaking
+            </h1>
+            <p>
+                Breaking a single upper or lower grass slab drops one slab.
+                If however, two grass slabs are put together they act as a whole block and when broken
+                they will drop two slabs instead of one. Unlike grass blocks,
+                grass slabs always drop themselves instead of dirt slabs.
+            </p>
+            <h1>
+                Crafting Recipe
+            </h1>
+            <div class="crafting-area" id="crafting-gui">
+                <img class="back" src="../gui_images/crafting_table_display.webp" alt="Craft 6 slabs using three of any grass type in the top, bottom, or middle row.">
+                <div class="front">
+                    <div class="slot"><div class="crafting-item"></div></div>
+                    <div class="slot"><div class="crafting-item"></div></div>
+                    <div class="slot"><div class="crafting-item"></div></div>
+
+                    <div class="slot"><div class="crafting-item"></div></div>
+                    <div class="slot"><div class="crafting-item"></div></div>
+                    <div class="slot"><div class="crafting-item"></div></div>
+
+                    <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-type="grass" src="../img/grass_block.webp" alt=""></div>
+                    <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-type="grass" src="../img/grass_block.webp" alt=""></div>
+                    <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-type="grass" src="../img/grass_block.webp" alt=""></div>
+                </div>
+                <div class="front-result">
+                    <div><img class="result-item cycle-item" loading="lazy" data-type="grass_slab" src="../img/grass_slab.webp" alt=""></div>
+                    <div class="result-count">6</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="img-container">
+            <h1 class="main-title">
+                Grass Slab
+            </h1>
+
+            <div id="button-container">
+                <button class="menu-btn" data-type="normal">Normal</button>
+                <button class="menu-btn" data-type="podzol">Podzol</button>
+                <button class="menu-btn" data-type="mycelium">Mycelium</button>
+            </div>
+
+            <img class="main-img" src="../img/grass_slab.webp" alt="Dirt Slab">
+            <div class="title">Bottom</div>
+            <img class="main-img" src="../img/grass_slab_top.webp" alt="Dirt Slab">
+            <div class="title">Top</div>
+            <img class="main-img" src="../img/grass_block.webp" alt="Dirt Slab">
+            <div class="title">Double</div>
+
+            <table>
+                <tr>
+                    <td class="img-desc">Renewable</td>
+                    <td class="img-desc">Yes (Crafting)</td>
+                </tr>
+                <tr>
+                    <td class="img-desc">Stackable</td>
+                    <td class="img-desc">Yes (64)</td>
+                </tr>
+                <tr>
+                    <td class="img-desc">Waterloggable</td>
+                    <td class="img-desc">Yes</td>
+                </tr>
+                <tr>
+                    <td class="img-desc">Tool</td>
+                    <td class="img-desc">Any tool, but the shovel is the quickest!</td>
+                </tr>
+                <tr>
+                    <td class="img-desc">Blast Resistance</td>
+                    <td class="img-desc">0.6</td>
+                </tr>
+                <tr>
+                    <td class="img-desc">Hardness</td>
+                    <td class="img-desc">0.6</td>
+                </tr>
+                <tr>
+                    <td class="img-desc">Luminous</td>
+                    <td class="img-desc">No</td>
+                </tr>
+                <tr>
+                    <td class="img-desc">Transparent</td>
+                    <td class="img-desc">Double: No, Single: Partial</td>
+                </tr>
+                <tr>
+                    <td class="img-desc">Catches fire from lava</td>
+                    <td class="img-desc">No</td>
+                </tr>
+            </table>
+            </div>
+        </div>
+    </div>
+</body>
+<footer>
+    <div class="secondary-container container">
+        <div>Disclaimer: NOT AN OFFICIAL MINECRAFT SERVICE. NOT APPROVED OR ASSOCIATED WITH MOJANG OR MICROSOFT.</div>
+    </div>
+</footer>
+</html>
+<script src="../js/grass_slab.js"></script>

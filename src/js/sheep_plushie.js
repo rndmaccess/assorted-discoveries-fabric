@@ -35,10 +35,6 @@ import purpleWool from "../img/purple_wool.webp";
 import magentaWool from "../img/magenta_wool.webp";
 import pinkWool from "../img/pink_wool.webp";
 
-const headerImages = document.getElementsByClassName('header-image');
-const container = document.getElementById('button-container');
-const craftingGui = document.getElementById('crafting-gui');
-
 const craftingLists = {
     "sheep_plushie": [whiteSheepPlushie, lightGraySheepPlushie, graySheepPlushie, blackSheepPlushie, brownSheepPlushie,
         redSheepPlushie, orangeSheepPlushie, yellowSheepPlushie, limeSheepPlushie, greenSheepPlushie, cyanSheepPlushie,
@@ -147,7 +143,10 @@ const optionList = {
     ]
 }
 
-if (craftingGui) createRecipeCycle(craftingLists, craftingGui);
+const headerImages = document.getElementsByClassName('header-image');
+const container = document.getElementById('button-container');
+
+createRecipeCycle(craftingLists);
 
 if (container) {
     container.addEventListener('click', (event) => {

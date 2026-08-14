@@ -4,8 +4,6 @@ import brownMooshroomPlushie from "../img/brown_mooshroom_plushie.webp";
 // No module declaration needed; esbuild-loader handles imports.
 import { createButtonPanel } from "./side_page";
 
-const headerImages = document.getElementsByClassName('header-image');
-const container = document.getElementById('button-container');
 const optionList = {
     "red": [
         {
@@ -20,6 +18,9 @@ const optionList = {
         }
     ]
 }
+
+const headerImages = document.getElementsByClassName('header-image');
+const container = document.getElementById('button-container');
 
 container.addEventListener('click', (event) => {
     createButtonPanel(event, optionList, container, headerImages);

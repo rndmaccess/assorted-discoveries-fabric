@@ -21,18 +21,22 @@ async function cycle_recipe(items, cycleItems, state) {
  * .crafting-item / .result-item: Sizing for specific icons.
  *
  * @param items {map[element[]]} List of item names to cycle through.
- * @param guiId {HTMLElement} The parent container of the recipe.
  */
-export function createRecipeCycle(items, guiId) {
+export function createRecipeCycle(items) {
+    const craftingId = document.getElementById('crafting-anim');
     let state = { step: 0 };
-    const cycleItems = guiId.getElementsByClassName('cycle-item');
+    const cycleItems = craftingId.getElementsByClassName('cycle-item');
     const timeout = 2000;
 
-    setInterval(function() {
-        cycle_recipe(items, cycleItems, state).catch(error => {
-            console.log("An error occurred when cycling the recipe: ", error);
-        });
-    }, timeout);
+    if (craftingId) {
+        setInterval(function() {
+            cycle_recipe(items, cycleItems, state).catch(error => {
+                console.log("An error occurred when cycling the recipe: ", error);
+            });
+        }, timeout);
+    } else {
+        console.error("Could not find the crafting-anim id on any element!");
+    }
 }
 
 /**

@@ -113,9 +113,8 @@ const optionList = {
 
 const headerImages = document.getElementsByClassName('header-image');
 const container = document.getElementById('button-container');
-const craftingId = document.getElementById('crafting');
 
-if (craftingId) createRecipeCycle(craftingLists, craftingId);
+createRecipeCycle(craftingLists);
 
 container.addEventListener('click', (event) => {
     createButtonPanel(event, optionList, container, headerImages);

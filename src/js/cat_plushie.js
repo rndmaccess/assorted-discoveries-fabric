@@ -158,9 +158,7 @@ const craftingLists = {
     "fish": [cod, salmon]
 };
 
-const craftingId = document.getElementById('crafting');
-
-if (craftingId) createRecipeCycle(craftingLists, craftingId);
+createRecipeCycle(craftingLists);
 
 container.addEventListener('click', (event) => {
     createButtonPanel(event, optionList, container, headerImages);

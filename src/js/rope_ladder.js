@@ -27,10 +27,6 @@ import bambooPlanks from "../img/bamboo_planks.webp";
 import warpedPlanks from "../img/warped_planks.webp";
 import crimsonPlanks from "../img/crimson_planks.webp";
 
-const headerImages = document.getElementsByClassName('header-image');
-const container = document.getElementById('button-container');
-const craftingGui = document.getElementById('crafting-gui');
-
 const craftingLists = {
     "rope_ladder": [oakRopeLadder, spruceRopeLadder, birchRopeLadder, jungleRopeLadder, acaciaRopeLadder,
         darkOakRopeLadder, mangroveRopeLadder, cherryRopeLadder, paleOakRopeLadder, bambooRopeLadder,
@@ -113,7 +109,10 @@ const optionList = {
     ]
 }
 
-if (craftingGui) createRecipeCycle(craftingLists, craftingGui);
+const headerImages = document.getElementsByClassName('header-image');
+const container = document.getElementById('button-container');
+
+createRecipeCycle(craftingLists);
 
 if (container) {
     container.addEventListener('click', (event) => {

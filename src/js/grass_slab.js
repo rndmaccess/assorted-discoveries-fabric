@@ -13,10 +13,6 @@ import grassBlock from "../img/grass_block.webp";
 import podzolBlock from "../img/podzol.webp";
 import myceliumBlock from "../img/mycelium.webp";
 
-const headerImages = document.getElementsByClassName('header-image');
-const container = document.getElementById('button-container');
-const craftingGui = document.getElementById('crafting-gui');
-
 const craftingLists = {
     "grass_slab": [grassSlab, podzolSlab, myceliumSlab],
     "grass": [grassBlock, podzolBlock, myceliumBlock]
@@ -66,7 +62,10 @@ const optionList = {
     ]
 }
 
-if (craftingGui) createRecipeCycle(craftingLists, craftingGui);
+const headerImages = document.getElementsByClassName('header-image');
+const container = document.getElementById('button-container');
+
+createRecipeCycle(craftingLists);
 
 if (container) {
     container.addEventListener('click', (event) => {

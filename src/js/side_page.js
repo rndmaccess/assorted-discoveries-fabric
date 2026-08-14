@@ -24,11 +24,12 @@ async function cycle_recipe(items, cycleItems, state) {
  */
 export function createRecipeCycle(items) {
     const craftingId = document.getElementById('crafting-anim');
-    let state = { step: 0 };
-    const cycleItems = craftingId.getElementsByClassName('cycle-item');
-    const timeout = 2000;
 
     if (craftingId) {
+        let state = { step: 0 };
+        const cycleItems = craftingId.getElementsByClassName('cycle-item');
+        const timeout = 2000;
+
         setInterval(function() {
             cycle_recipe(items, cycleItems, state).catch(error => {
                 console.log("An error occurred when cycling the recipe: ", error);

@@ -66,7 +66,7 @@ const optionList = {
     ]
 }
 
-if (craftingGui) createRecipeCycle(craftingLists, craftingGui);
+if (craftingGui) createRecipeCycle(craftingLists);
 
 if (container) {
     container.addEventListener('click', (event) => {

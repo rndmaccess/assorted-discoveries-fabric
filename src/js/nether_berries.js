@@ -1,11 +1,19 @@
 import cindersnapBerries from "../img/cindersnap_berries.webp";
 import frostbiteBerries from "../img/frostbite_berries.webp";
 
-// No module declaration needed; esbuild-loader handles imports.
-import { createButtonPanel } from "./side_page";
+import twistingVines from "../img/twisting_vines_plant.webp";
+import warpedRoots from "../img/warped_roots.webp";
 
-const headerImages = document.getElementsByClassName('header-image');
-const container = document.getElementById('button-container');
+import weepingVines from "../img/weeping_vines_plant.webp";
+import crimsonRoots from "../img/crimson_roots.webp";
+
+// No module declaration needed; esbuild-loader handles imports.
+import { createButtonPanel, createRecipeCycle } from "./side_page";
+
+const craftingLists = {
+    "warped_vegetation": [twistingVines, warpedRoots],
+    "crimson_vegetation": [weepingVines, crimsonRoots]
+}
 const optionList = {
     "cindersnap": [
         {
@@ -20,6 +28,12 @@ const optionList = {
         }
     ]
 }
+
+const headerImages = document.getElementsByClassName('header-image');
+const container = document.getElementById('button-container');
+const craftingId = document.getElementById('crafting');
+
+if (craftingId) createRecipeCycle(craftingLists, craftingId);
 
 container.addEventListener('click', (event) => {
     createButtonPanel(event, optionList, container, headerImages);

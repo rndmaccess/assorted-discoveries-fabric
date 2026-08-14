@@ -13,10 +13,6 @@ import dirtBlock from "../img/dirt.webp";
 import coarseDirtBlock from "../img/coarse_dirt.webp";
 import rootedDirtBlock from "../img/rooted_dirt.webp";
 
-const headerImages = document.getElementsByClassName('header-image');
-const container = document.getElementById('button-container');
-const craftingGui = document.getElementById('crafting-gui');
-
 const craftingLists = {
     "dirt_slab": [dirtSlab, coarseDirtSlab, rootedDirtSlab],
     "dirt": [dirtBlock, coarseDirtBlock, rootedDirtBlock]
@@ -66,7 +62,10 @@ const optionList = {
     ]
 }
 
-if (craftingGui) createRecipeCycle(craftingLists);
+const headerImages = document.getElementsByClassName('header-image');
+const container = document.getElementById('button-container');
+
+createRecipeCycle(craftingLists);
 
 if (container) {
     container.addEventListener('click', (event) => {

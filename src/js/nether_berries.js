@@ -31,7 +31,7 @@ const optionList = {
 
 const headerImages = document.getElementsByClassName('header-image');
 const container = document.getElementById('button-container');
-const craftingId = document.getElementById('crafting');
+const craftingId = document.getElementById('crafting-animation');
 
 if (craftingId) createRecipeCycle(craftingLists, craftingId);
 

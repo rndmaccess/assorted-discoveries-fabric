@@ -242,6 +242,11 @@ const renderResults = (results) => {
         return;
     }
 
+    if (Array.isArray(results) && results.length === 0) {
+        searchList.innerHTML = "No results found.";
+        return;
+    }
+
     searchList.innerHTML = "";
     searchList.insertAdjacentHTML('beforeend', results.map(({ title, description, link, img }) => {
         if (title === undefined) {

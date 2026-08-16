@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="../js/sheep_plushie.js" defer></script>
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/crafting.css">
     <meta charset="UTF-8">
@@ -8,133 +9,133 @@
     <link rel="icon" href="../favicon.png" type="image/png">
 </head>
 <body>
-<div class="main-container container">
-    <div class="top-content-wrapper">
-        <div class="content-left">
-            <h1>
-                About
-            </h1>
-            <p>
-                The sheep plushie is a decorative block inspired by the various sheep mob variants!
-            </p>
-            <h1>
-                Config
-            </h1>
-            <p>
-                Set <b>Enable Sheep Plushies</b> to <b>Yes/true (default)</b> to use them,
-                or <b>No/false</b> to hide them. All sheep plushies use this option.
-            </p>
-            <h1>
-                Placement
-            </h1>
-            <p>
-                When placing any sheep plushie, it will face the player.
-            </p>
-            <h1>
-                Breaking
-            </h1>
-            <p>
-                Sheep Plushies can be broken with any item or by hand!
-            </p>
-            <h1>
-                Crafting Recipe
-            </h1>
-            <div class="crafting-area" id="crafting-anim" aria-hidden="true">
-                <img class="back" src="../gui_images/crafting_table_display.webp" alt="">
-                <div class="front">
-                    <div class="slot"><img class="crafting-item cycle-item" data-type="wool" loading="lazy" src="../img/white_wool.webp" alt=""></div>
-                    <div class="slot"><img class="crafting-item cycle-item" data-type="wool" loading="lazy" src="../img/white_wool.webp" alt=""></div>
-                    <div class="slot"><img class="crafting-item cycle-item" data-type="wool" loading="lazy" src="../img/white_wool.webp" alt=""></div>
+    <main class="main-container container">
+        <div class="top-content-wrapper">
+            <div class="content-left">
+                <h1>
+                    About
+                </h1>
+                <p>
+                    The sheep plushie is a decorative block inspired by the various sheep mob variants!
+                </p>
+                <h1>
+                    Config
+                </h1>
+                <p>
+                    Set <b>Enable Sheep Plushies</b> to <b>Yes/true (default)</b> to use them,
+                    or <b>No/false</b> to hide them. All sheep plushies use this option.
+                </p>
+                <h1>
+                    Placement
+                </h1>
+                <p>
+                    When placing any sheep plushie, it will face the player.
+                </p>
+                <h1>
+                    Breaking
+                </h1>
+                <p>
+                    Sheep Plushies can be broken with any item or by hand!
+                </p>
+                <h1>
+                    Crafting Recipe
+                </h1>
+                <div class="crafting-area" id="crafting-anim" aria-hidden="true">
+                    <img class="back" src="../gui_images/crafting_table_display.webp" alt="">
+                    <div class="front">
+                        <div class="slot"><img class="crafting-item cycle-item" data-type="wool" loading="lazy" src="../img/white_wool.webp" alt=""></div>
+                        <div class="slot"><img class="crafting-item cycle-item" data-type="wool" loading="lazy" src="../img/white_wool.webp" alt=""></div>
+                        <div class="slot"><img class="crafting-item cycle-item" data-type="wool" loading="lazy" src="../img/white_wool.webp" alt=""></div>
 
-                    <div class="slot"><img class="crafting-item" loading="lazy" src="../img/black_wool.webp" alt=""></div>
-                    <div class="slot"><img class="crafting-item" loading="lazy" src="../img/mutton.webp" alt=""></div>
-                    <div class="slot"><img class="crafting-item" loading="lazy" src="../img/black_wool.webp" alt=""></div>
+                        <div class="slot"><img class="crafting-item" loading="lazy" src="../img/black_wool.webp" alt=""></div>
+                        <div class="slot"><img class="crafting-item" loading="lazy" src="../img/mutton.webp" alt=""></div>
+                        <div class="slot"><img class="crafting-item" loading="lazy" src="../img/black_wool.webp" alt=""></div>
 
-                    <div class="slot"><img class="crafting-item cycle-item" data-type="wool" loading="lazy" src="../img/white_wool.webp" alt=""></div>
-                    <div class="slot"><img class="crafting-item cycle-item" data-type="wool" loading="lazy" src="../img/white_wool.webp" alt=""></div>
-                    <div class="slot"><img class="crafting-item cycle-item" data-type="wool" loading="lazy" src="../img/white_wool.webp" alt=""></div>
+                        <div class="slot"><img class="crafting-item cycle-item" data-type="wool" loading="lazy" src="../img/white_wool.webp" alt=""></div>
+                        <div class="slot"><img class="crafting-item cycle-item" data-type="wool" loading="lazy" src="../img/white_wool.webp" alt=""></div>
+                        <div class="slot"><img class="crafting-item cycle-item" data-type="wool" loading="lazy" src="../img/white_wool.webp" alt=""></div>
+                    </div>
+                    <div class="front-result">
+                        <div><img class="result-item cycle-item" loading="lazy" data-type="sheep_plushie" src="../img/sheep_plushie_white.webp" alt=""></div>
+                    </div>
                 </div>
-                <div class="front-result">
-                    <div><img class="result-item cycle-item" loading="lazy" data-type="sheep_plushie" src="../img/sheep_plushie_white.webp" alt=""></div>
+                <p>
+                    Craft any sheep plushie by placing a mutton between 2 black wool
+                    in the middle row and 3 of any wool in the top and bottom rows.
+                </p>
+            </div>
+
+            <div class="img-container">
+                <h1 class="main-title">
+                    Sheep Plushie
+                </h1>
+
+                <div id="button-container">
+                    <button class="menu-btn selected" data-type="white">White</button>
+                    <button class="menu-btn" data-type="light_gray">Light Gray</button>
+                    <button class="menu-btn" data-type="gray">Gray</button>
+                    <button class="menu-btn" data-type="black">Black</button>
+                    <button class="menu-btn" data-type="brown">Brown</button>
+                    <button class="menu-btn" data-type="red">Red</button>
+                    <button class="menu-btn" data-type="orange">Orange</button>
+                    <button class="menu-btn" data-type="yellow">Yellow</button>
+                    <button class="menu-btn" data-type="lime">Lime</button>
+                    <button class="menu-btn" data-type="green">Green</button>
+                    <button class="menu-btn" data-type="cyan">Cyan</button>
+                    <button class="menu-btn" data-type="light_blue">Light Blue</button>
+                    <button class="menu-btn" data-type="blue">Blue</button>
+                    <button class="menu-btn" data-type="purple">Purple</button>
+                    <button class="menu-btn" data-type="magenta">Magenta</button>
+                    <button class="menu-btn" data-type="pink">Pink</button>
                 </div>
-            </div>
-            <p>
-                Craft any sheep plushie by placing a mutton between 2 black wool
-                in the middle row and 3 of any wool in the top and bottom rows.
-            </p>
-        </div>
 
-        <div class="img-container">
-            <h1 class="main-title">
-                Sheep Plushie
-            </h1>
-
-            <div id="button-container">
-                <button class="menu-btn selected" data-type="white">White</button>
-                <button class="menu-btn" data-type="light_gray">Light Gray</button>
-                <button class="menu-btn" data-type="gray">Gray</button>
-                <button class="menu-btn" data-type="black">Black</button>
-                <button class="menu-btn" data-type="brown">Brown</button>
-                <button class="menu-btn" data-type="red">Red</button>
-                <button class="menu-btn" data-type="orange">Orange</button>
-                <button class="menu-btn" data-type="yellow">Yellow</button>
-                <button class="menu-btn" data-type="lime">Lime</button>
-                <button class="menu-btn" data-type="green">Green</button>
-                <button class="menu-btn" data-type="cyan">Cyan</button>
-                <button class="menu-btn" data-type="light_blue">Light Blue</button>
-                <button class="menu-btn" data-type="blue">Blue</button>
-                <button class="menu-btn" data-type="purple">Purple</button>
-                <button class="menu-btn" data-type="magenta">Magenta</button>
-                <button class="menu-btn" data-type="pink">Pink</button>
-            </div>
-
-            <img class="main-img header-image" src="../img/sheep_plushie_white.webp" alt="White sheep plushie sitting">
-            <table>
-                <tr>
-                    <td class="img-desc">Renewable</td>
-                    <td class="img-desc">Yes (Crafting)</td>
-                </tr>
-                <tr>
-                    <td class="img-desc">Stackable</td>
-                    <td class="img-desc">Yes (64), same color only</td>
-                </tr>
-                <tr>
-                    <td class="img-desc">Tool</td>
-                    <td class="img-desc">Any tool</td>
-                </tr>
-                <tr>
-                    <td class="img-desc">Blast Resistance</td>
-                    <td class="img-desc">0.2</td>
-                </tr>
-                <tr>
-                    <td class="img-desc">Hardness</td>
-                    <td class="img-desc">0.2</td>
-                </tr>
-                <tr>
-                    <td class="img-desc">Luminous</td>
-                    <td class="img-desc">Yes (10)</td>
-                </tr>
-                <tr>
-                    <td class="img-desc">Transparent</td>
-                    <td class="img-desc">No</td>
-                </tr>
-                <tr>
-                    <td class="img-desc">Catches fire from lava</td>
-                    <td class="img-desc">Yes</td>
-                </tr>
-            </table>
+                <img class="main-img header-image" src="../img/sheep_plushie_white.webp" alt="White sheep plushie sitting">
+                <table>
+                    <tr>
+                        <td class="img-desc">Renewable</td>
+                        <td class="img-desc">Yes (Crafting)</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Stackable</td>
+                        <td class="img-desc">Yes (64), same color only</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Tool</td>
+                        <td class="img-desc">Any tool</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Blast Resistance</td>
+                        <td class="img-desc">0.2</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Hardness</td>
+                        <td class="img-desc">0.2</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Luminous</td>
+                        <td class="img-desc">Yes (10)</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Transparent</td>
+                        <td class="img-desc">No</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Catches fire from lava</td>
+                        <td class="img-desc">Yes</td>
+                    </tr>
+                </table>
             </div>
         </div>
-    </div>
+    </main>
+
+    <footer>
+        <div class="secondary-container container">
+            <div>
+                Disclaimer: NOT AN OFFICIAL MINECRAFT SERVICE. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.
+                Minecraft and official game assets are trademarks and property of Mojang Studios / Microsoft Corporation.
+                All custom mod assets, code, and content are the intellectual property of rndm_access.
+            </div>
+        </div>
+    </footer>
 </body>
-<footer>
-    <div class="secondary-container container">
-        <div>
-            Disclaimer: NOT AN OFFICIAL MINECRAFT SERVICE. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.
-            Minecraft and official game assets are trademarks and property of Mojang Studios / Microsoft Corporation.
-            All custom mod assets, code, and content are the intellectual property of rndm_access.
-        </div>
-    </div>
-</footer>
 </html>
-<script src="../js/sheep_plushie.js"></script>

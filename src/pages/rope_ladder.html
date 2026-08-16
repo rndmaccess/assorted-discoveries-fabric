@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="../js/rope_ladder.js" defer></script>
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/crafting.css">
     <meta charset="UTF-8">
@@ -8,120 +9,120 @@
     <link rel="icon" href="../favicon.png" type="image/png">
 </head>
 <body>
-<div class="main-container container">
-    <div class="top-content-wrapper">
-        <div class="content-left">
-            <h1>
-                About
-            </h1>
-            <p>
-                The rope ladder is a decorative block that can be hung from blocks!
-            </p>
-            <h1>
-                Config
-            </h1>
-            <p>
-                Set <b>Enable Rope Ladders</b> to <b>Yes/true (default)</b> to use them,
-                or <b>No/false</b> to hide them. All rope ladders use this option.
-            </p>
-            <h1>
-                Extension
-            </h1>
-            <p>
-                To extend any rope ladder simply place the rope ladder while targeting another rope ladder of the same type.
-                There is a video demo showing this at the bottom of this page!
-            </p>
-            <h1>
-                Breaking
-            </h1>
-            <p>
-                Rope ladders can be broken with any item or by hand, but the axe is the fastest!
-                Any rope ladders that are unsupported will break when the supporting block is removed.
-            </p>
-            <h1>
-                Crafting Recipe
-            </h1>
-            <div class="crafting-area" id="crafting-anim" aria-hidden="true">
-                <img class="back" src="../gui_images/crafting_table_display.webp" alt="">
-                <div class="front">
-                    <div class="slot"><img class="crafting-item" loading="lazy" src="../img/string.webp" alt=""></div>
-                    <div class="slot"></div>
-                    <div class="slot"><img class="crafting-item" loading="lazy" src="../img/string.webp" alt=""></div>
+    <main class="main-container container">
+        <div class="top-content-wrapper">
+            <div class="content-left">
+                <h1>
+                    About
+                </h1>
+                <p>
+                    The rope ladder is a decorative block that can be hung from blocks!
+                </p>
+                <h1>
+                    Config
+                </h1>
+                <p>
+                    Set <b>Enable Rope Ladders</b> to <b>Yes/true (default)</b> to use them,
+                    or <b>No/false</b> to hide them. All rope ladders use this option.
+                </p>
+                <h1>
+                    Extension
+                </h1>
+                <p>
+                    To extend any rope ladder simply place the rope ladder while targeting another rope ladder of the same type.
+                    There is a video demo showing this at the bottom of this page!
+                </p>
+                <h1>
+                    Breaking
+                </h1>
+                <p>
+                    Rope ladders can be broken with any item or by hand, but the axe is the fastest!
+                    Any rope ladders that are unsupported will break when the supporting block is removed.
+                </p>
+                <h1>
+                    Crafting Recipe
+                </h1>
+                <div class="crafting-area" id="crafting-anim" aria-hidden="true">
+                    <img class="back" src="../gui_images/crafting_table_display.webp" alt="">
+                    <div class="front">
+                        <div class="slot"><img class="crafting-item" loading="lazy" src="../img/string.webp" alt=""></div>
+                        <div class="slot"></div>
+                        <div class="slot"><img class="crafting-item" loading="lazy" src="../img/string.webp" alt=""></div>
 
-                    <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-type="planks" src="../img/oak_planks.webp" alt=""></div>
-                    <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-type="planks" src="../img/oak_planks.webp" alt=""></div>
-                    <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-type="planks" src="../img/oak_planks.webp" alt=""></div>
+                        <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-type="planks" src="../img/oak_planks.webp" alt=""></div>
+                        <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-type="planks" src="../img/oak_planks.webp" alt=""></div>
+                        <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-type="planks" src="../img/oak_planks.webp" alt=""></div>
 
-                    <div class="slot"><img class="crafting-item" loading="lazy" src="../img/string.webp" alt=""></div>
-                    <div class="slot"><div class="crafting-item"></div></div>
-                    <div class="slot"><img class="crafting-item" loading="lazy" src="../img/string.webp" alt=""></div>
+                        <div class="slot"><img class="crafting-item" loading="lazy" src="../img/string.webp" alt=""></div>
+                        <div class="slot"><div class="crafting-item"></div></div>
+                        <div class="slot"><img class="crafting-item" loading="lazy" src="../img/string.webp" alt=""></div>
+                    </div>
+                    <div class="front-result">
+                        <div><img class="result-item cycle-item" loading="lazy" data-type="rope_ladder" src="../img/oak_rope_ladder.webp" alt=""></div>
+                        <div class="result-count">3</div>
+                    </div>
                 </div>
-                <div class="front-result">
-                    <div><img class="result-item cycle-item" loading="lazy" data-type="rope_ladder" src="../img/oak_rope_ladder.webp" alt=""></div>
-                    <div class="result-count">3</div>
-                </div>
-            </div>
-            <p>
-                Craft a rope ladder by placing string in the 4 corners and 3 wood planks in the middle row.
-            </p>
-        </div>
-
-        <div class="img-container">
-            <h1 class="main-title">
-                Rope Ladder
-            </h1>
-
-            <div id="button-container">
-                <button class="menu-btn selected" data-type="oak">Oak</button>
-                <button class="menu-btn" data-type="spruce">Spruce</button>
-                <button class="menu-btn" data-type="birch">Birch</button>
-                <button class="menu-btn" data-type="jungle">Jungle</button>
-                <button class="menu-btn" data-type="acacia">Acacia</button>
-                <button class="menu-btn" data-type="dark_oak">Dark Oak</button>
-                <button class="menu-btn" data-type="mangrove">Mangrove</button>
-                <button class="menu-btn" data-type="cherry">Cherry</button>
-                <button class="menu-btn" data-type="pale_oak">Pale Oak</button>
-                <button class="menu-btn" data-type="bamboo">Bamboo</button>
-                <button class="menu-btn" data-type="crimson">Crimson</button>
-                <button class="menu-btn" data-type="warped">Warped</button>
+                <p>
+                    Craft a rope ladder by placing string in the 4 corners and 3 wood planks in the middle row.
+                </p>
             </div>
 
-            <img class="main-img header-image" src="../img/oak_rope_ladder.webp" alt="oak rope ladder"
-                 data-src-pattern="../static/img/{type}_rope_ladder.webp" data-alt-pattern="{type} rope ladder">
-            <table>
-                <tr>
-                    <td class="img-desc">Renewable</td>
-                    <td class="img-desc">Yes (Crafting)</td>
-                </tr>
-                <tr>
-                    <td class="img-desc">Stackable</td>
-                    <td class="img-desc">Yes (64)</td>
-                </tr>
-                <tr>
-                    <td class="img-desc">Tool</td>
-                    <td class="img-desc">Any tool, but the axe is the quickest!</td>
-                </tr>
-                <tr>
-                    <td class="img-desc">Blast Resistance</td>
-                    <td class="img-desc">0.4</td>
-                </tr>
-                <tr>
-                    <td class="img-desc">Hardness</td>
-                    <td class="img-desc">0.4</td>
-                </tr>
-                <tr>
-                    <td class="img-desc">Luminous</td>
-                    <td class="img-desc">No</td>
-                </tr>
-                <tr>
-                    <td class="img-desc">Transparent</td>
-                    <td class="img-desc">No</td>
-                </tr>
-                <tr>
-                    <td class="img-desc">Catches fire from lava</td>
-                    <td class="img-desc">No</td>
-                </tr>
-            </table>
+            <div class="img-container">
+                <h1 class="main-title">
+                    Rope Ladder
+                </h1>
+
+                <div id="button-container">
+                    <button class="menu-btn selected" data-type="oak">Oak</button>
+                    <button class="menu-btn" data-type="spruce">Spruce</button>
+                    <button class="menu-btn" data-type="birch">Birch</button>
+                    <button class="menu-btn" data-type="jungle">Jungle</button>
+                    <button class="menu-btn" data-type="acacia">Acacia</button>
+                    <button class="menu-btn" data-type="dark_oak">Dark Oak</button>
+                    <button class="menu-btn" data-type="mangrove">Mangrove</button>
+                    <button class="menu-btn" data-type="cherry">Cherry</button>
+                    <button class="menu-btn" data-type="pale_oak">Pale Oak</button>
+                    <button class="menu-btn" data-type="bamboo">Bamboo</button>
+                    <button class="menu-btn" data-type="crimson">Crimson</button>
+                    <button class="menu-btn" data-type="warped">Warped</button>
+                </div>
+
+                <img class="main-img header-image" src="../img/oak_rope_ladder.webp" alt="oak rope ladder"
+                     data-src-pattern="../static/img/{type}_rope_ladder.webp" data-alt-pattern="{type} rope ladder">
+                <table>
+                    <tr>
+                        <td class="img-desc">Renewable</td>
+                        <td class="img-desc">Yes (Crafting)</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Stackable</td>
+                        <td class="img-desc">Yes (64)</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Tool</td>
+                        <td class="img-desc">Any tool, but the axe is the quickest!</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Blast Resistance</td>
+                        <td class="img-desc">0.4</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Hardness</td>
+                        <td class="img-desc">0.4</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Luminous</td>
+                        <td class="img-desc">No</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Transparent</td>
+                        <td class="img-desc">No</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Catches fire from lava</td>
+                        <td class="img-desc">No</td>
+                    </tr>
+                </table>
             </div>
         </div>
 
@@ -137,16 +138,16 @@
                 </iframe>
             </div>
         </div>
-    </div>
-</body>
-<footer>
-    <div class="secondary-container container">
-        <div>
-            Disclaimer: NOT AN OFFICIAL MINECRAFT SERVICE. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.
-            Minecraft and official game assets are trademarks and property of Mojang Studios / Microsoft Corporation.
-            All custom mod assets, code, and content are the intellectual property of rndm_access.
+    </main>
+
+    <footer>
+        <div class="secondary-container container">
+            <div>
+                Disclaimer: NOT AN OFFICIAL MINECRAFT SERVICE. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.
+                Minecraft and official game assets are trademarks and property of Mojang Studios / Microsoft Corporation.
+                All custom mod assets, code, and content are the intellectual property of rndm_access.
+            </div>
         </div>
-    </div>
-</footer>
+    </footer>
+</body>
 </html>
-<script src="../js/rope_ladder.js"></script>

@@ -67,7 +67,7 @@ html, body {
 /* Styled links */
 a { text-decoration: underline; }
 a:link { color: #73A5C6; }
-a:visited { color: #6151b3; }
+a:visited { color: #8f82cb; }
 a:active { color: #c673a5; }
 a:hover { cursor: pointer; }
 
@@ -104,6 +104,27 @@ a:hover { cursor: pointer; }
 
     padding: 1.5rem;
     font-size: 1.5rem;
+}
+
+.info-table {
+    outline: 1px solid #3c2a68;
+    border-collapse: collapse;
+    table-layout: fixed;
+    background-color: #202020;
+    width: 50%;
+}
+
+.info-table tr:nth-child(even) {
+    background-color: #303030;
+}
+
+.info-header {
+    background-color: #5c4595;
+    text-align: center;
+}
+
+.info-item {
+    padding: 0.25rem;
 }
 
 .hero {

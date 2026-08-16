@@ -19,6 +19,8 @@ import grassSlab from '../img/grass_slab.webp';
 import dirtSlab from '../img/dirt_slab.webp';
 import dirtPathSlab from '../img/dirt_path_slab.webp';
 import cindersnapBerries from '../img/cindersnap_berries.webp';
+import forestsBounty from '../img/forests_bounty.webp';
+import spruceCone from '../img/spruce_cone.webp';
 
 let miniSearch = new MiniSearch({
     fields: ['title', 'key_words'],
@@ -193,6 +195,23 @@ const documents = [
         description: 'Learn where to find, harvest, and use the frostbite and cindersnap berry bushes.',
         link: './nether_berries.html',
         img: cindersnapBerries,
+    },
+
+    {
+        id: 22,
+        title: 'spruce cone',
+        key_words: 'cones forest\'s bounty forest',
+        description: 'Learn more about spruce cones and what you need for forest\'s bounty!',
+        link: './spruce_cone.html',
+        img: spruceCone,
+    },
+    {
+        id: 23,
+        title: 'forest\'s bounty',
+        key_words: 'spruce cone cones forest',
+        description: 'Learn more about forest\'s bounty!',
+        link: './forests_bounty.html',
+        img: forestsBounty,
     },
 ];
 

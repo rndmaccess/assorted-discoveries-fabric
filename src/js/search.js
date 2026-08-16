@@ -21,6 +21,7 @@ import dirtPathSlab from '../img/dirt_path_slab.webp';
 import cindersnapBerries from '../img/cindersnap_berries.webp';
 import forestsBounty from '../img/forests_bounty.webp';
 import spruceCone from '../img/spruce_cone.webp';
+import crimsonForageMix from '../img/crimson_forage_mix.webp';
 
 let miniSearch = new MiniSearch({
     fields: ['title', 'key_words'],
@@ -212,6 +213,14 @@ const documents = [
         description: 'Learn more about forest\'s bounty!',
         link: './forests_bounty.html',
         img: forestsBounty,
+    },
+    {
+        id: 24,
+        title: 'nether forage mix',
+        key_words: 'crimson warped berry cindersnap berries frostbite',
+        description: 'Discover how to craft the crimson and warped forage food items using cindersnap and frostbite berries.',
+        link: './nether_forage_mix.html',
+        img: crimsonForageMix,
     },
 ];
 

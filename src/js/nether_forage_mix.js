@@ -1,20 +1,20 @@
-import cindersnapBerries from "../img/cindersnap_berries.webp";
-import frostbiteBerries from "../img/frostbite_berries.webp";
+import crimsonForageMix from "../img/crimson_forage_mix.webp";
+import warpedForageMix from "../img/warped_forage_mix.webp";
 
 // No module declaration needed; esbuild-loader handles imports.
 import { createButtonPanel } from "./side_page";
 
 const optionList = {
-    "cindersnap": [
+    "warped": [
         {
-            "src": cindersnapBerries,
-            "alt": "Cindersnap Berries"
+            "src": warpedForageMix,
+            "alt": "Warped Forage Mix"
         }
     ],
-    "frostbite": [
+    "crimson": [
         {
-            "src": frostbiteBerries,
-            "alt": "Frostbite Berries"
+            "src": crimsonForageMix,
+            "alt": "Crimson Forage Mix"
         }
     ]
 }

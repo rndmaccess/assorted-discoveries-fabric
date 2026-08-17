@@ -12,12 +12,12 @@
     {
       "condition": "fabric:not",
       "value": {
-        "condition": "assorted-discoveries:config_entry_enabled",
+        "condition": "assorted-discoveries:all_entries_enabled",
         "value": "enable_green_onions"
       }
     },
     {
-      "condition": "assorted-discoveries:config_entry_enabled",
+      "condition": "assorted-discoveries:all_entries_enabled",
       "value": "enable_noodle_soup"
     }
   ]

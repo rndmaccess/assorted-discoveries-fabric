@@ -14,13 +14,13 @@
   },
   "fabric:load_conditions": [
     {
-      "condition": "assorted-discoveries:config_entry_enabled",
+      "condition": "assorted-discoveries:all_entries_enabled",
       "value": "enable_calcite_bricks"
     },
     {
       "condition": "fabric:not",
       "value": {
-        "condition": "assorted-discoveries:config_entry_enabled",
+        "condition": "assorted-discoveries:all_entries_enabled",
         "value": "enable_polished_calcite"
       }
     }

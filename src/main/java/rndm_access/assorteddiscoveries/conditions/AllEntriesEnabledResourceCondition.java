@@ -16,17 +16,17 @@ import rndm_access.assorteddiscoveries.core.ModResourceConditionTypes;
 
 import java.util.List;
 
-public record ConfigEntryEnabledResourceCondition(List<String> configKeys) implements ResourceCondition {
-    public static final MapCodec<ConfigEntryEnabledResourceCondition> CODEC
+public record AllEntriesEnabledResourceCondition(List<String> configKeys) implements ResourceCondition {
+    public static final MapCodec<AllEntriesEnabledResourceCondition> CODEC
             = RecordCodecBuilder.mapCodec((instance) -> instance.group(
                     Codec.withAlternative(Codec.STRING.listOf(), Codec.STRING.xmap(List::of, List::getFirst))
                             .fieldOf("value")
-                            .forGetter(ConfigEntryEnabledResourceCondition::configKeys)
-            ).apply(instance, ConfigEntryEnabledResourceCondition::new));
+                            .forGetter(AllEntriesEnabledResourceCondition::configKeys)
+            ).apply(instance, AllEntriesEnabledResourceCondition::new));
 
     @Override
     public @NonNull ResourceConditionType<?> getType() {
-        return ModResourceConditionTypes.CONFIG_ENTRY_ENABLED;
+        return ModResourceConditionTypes.ALL_ENTRIES_ENABLED;
     }
 
     @Override

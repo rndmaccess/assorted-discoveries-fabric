@@ -36,28 +36,28 @@
       "condition": "fabric:or",
       "values": [
         {
-          "condition": "assorted-discoveries:config_entry_enabled",
+          "condition": "assorted-discoveries:all_entries_enabled",
           "value": [
             "enable_cindersnap_berry_juice",
             "enable_cindersnap_berries"
           ]
         },
         {
-          "condition": "assorted-discoveries:config_entry_enabled",
+          "condition": "assorted-discoveries:all_entries_enabled",
           "value": [
             "enable_crimson_forage_mix",
             "enable_cindersnap_berries"
           ]
         },
         {
-          "condition": "assorted-discoveries:config_entry_enabled",
+          "condition": "assorted-discoveries:all_entries_enabled",
           "value": [
             "enable_frostbite_berry_juice",
             "enable_frostbite_berries"
           ]
         },
         {
-          "condition": "assorted-discoveries:config_entry_enabled",
+          "condition": "assorted-discoveries:all_entries_enabled",
           "value": [
             "enable_warped_forage_mix",
             "enable_frostbite_berries"

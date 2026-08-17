@@ -6,11 +6,11 @@ import net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditionType;
 import net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditions;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.conditions.AnyInCategoryEnabledResourceCondition;
-import rndm_access.assorteddiscoveries.conditions.ConfigEntryEnabledResourceCondition;
+import rndm_access.assorteddiscoveries.conditions.AllEntriesEnabledResourceCondition;
 
 public final class ModResourceConditionTypes {
-    public static final ResourceConditionType<ConfigEntryEnabledResourceCondition> CONFIG_ENTRY_ENABLED
-            = create("config_entry_enabled", ConfigEntryEnabledResourceCondition.CODEC);
+    public static final ResourceConditionType<AllEntriesEnabledResourceCondition> ALL_ENTRIES_ENABLED
+            = create("all_entries_enabled", AllEntriesEnabledResourceCondition.CODEC);
     public static final ResourceConditionType<AnyInCategoryEnabledResourceCondition> ANY_IN_CATEGORY_ENABLED
             = create("any_in_category_enabled", AnyInCategoryEnabledResourceCondition.CODEC);
 
@@ -19,7 +19,7 @@ public final class ModResourceConditionTypes {
     }
 
     public static void register() {
-        ResourceConditions.register(CONFIG_ENTRY_ENABLED);
+        ResourceConditions.register(ALL_ENTRIES_ENABLED);
         ResourceConditions.register(ANY_IN_CATEGORY_ENABLED);
         AssortedDiscoveries.LOGGER.info("Registered resource conditions");
     }

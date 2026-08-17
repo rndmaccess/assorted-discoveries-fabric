@@ -7,6 +7,7 @@ import net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition;
 import net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditionType;
 import net.minecraft.resources.RegistryOps;
 import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.ModConfig;
 import rndm_access.assorteddiscoveries.config.json.json_objects.BooleanConfigEntry;
@@ -31,8 +32,8 @@ public record AnyInCategoryEnabledResourceCondition(String configKey) implements
     }
 
     @Override
-    public ResourceConditionType<?> getType() {
-        return ModResourceConditionTypes.CONFIG_ENTRY_ENABLED;
+    public @NonNull ResourceConditionType<?> getType() {
+        return ModResourceConditionTypes.ANY_IN_CATEGORY_ENABLED;
     }
 
     @Override

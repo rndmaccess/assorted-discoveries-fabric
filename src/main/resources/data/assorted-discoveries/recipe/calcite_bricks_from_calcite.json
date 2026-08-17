@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "blocks",
+  "category": "building",
   "pattern": [
     "##",
     "##"
@@ -14,20 +14,15 @@
   },
   "fabric:load_conditions": [
     {
-      "condition": "fabric:and",
-      "values": [
-        {
-          "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "enable_calcite_bricks"
-        },
-        {
-          "condition": "fabric:not",
-          "value": {
-            "condition": "assorted-discoveries:config_entry_enabled",
-            "value": "enable_polished_calcite"
-          }
-        }
-      ]
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "enable_calcite_bricks"
+    },
+    {
+      "condition": "fabric:not",
+      "value": {
+        "condition": "assorted-discoveries:config_entry_enabled",
+        "value": "enable_polished_calcite"
+      }
     }
   ]
 }

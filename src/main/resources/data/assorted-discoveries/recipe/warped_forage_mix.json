@@ -14,16 +14,10 @@
   },
   "fabric:load_conditions": [
     {
-      "condition": "fabric:and",
-      "values": [
-        {
-          "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "enable_frostbite_berries"
-        },
-        {
-          "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "enable_warped_forage_mix"
-        }
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": [
+        "enable_frostbite_berries",
+        "enable_warped_forage_mix"
       ]
     }
   ]

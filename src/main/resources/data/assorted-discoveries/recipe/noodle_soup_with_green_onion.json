@@ -11,16 +11,10 @@
   },
   "fabric:load_conditions": [
     {
-      "condition": "fabric:and",
-      "values": [
-        {
-          "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "enable_green_onions"
-        },
-        {
-          "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "enable_noodle_soup"
-        }
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": [
+        "enable_green_onions",
+        "enable_noodle_soup"
       ]
     }
   ]

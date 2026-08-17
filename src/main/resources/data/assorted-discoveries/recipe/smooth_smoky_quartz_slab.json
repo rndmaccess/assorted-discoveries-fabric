@@ -13,16 +13,10 @@
   },
   "fabric:load_conditions": [
     {
-      "condition": "fabric:and",
-      "values": [
-        {
-          "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "enable_smoky_quartz_blocks"
-        },
-        {
-          "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "enable_smooth_smoky_quartz"
-        }
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": [
+        "enable_smoky_quartz_blocks",
+        "enable_smooth_smoky_quartz"
       ]
     }
   ]

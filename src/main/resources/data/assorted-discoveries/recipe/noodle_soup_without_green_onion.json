@@ -10,20 +10,15 @@
   },
   "fabric:load_conditions": [
     {
-      "condition": "fabric:and",
-      "values": [
-        {
-          "condition": "fabric:not",
-          "value": {
-            "condition": "assorted-discoveries:config_entry_enabled",
-            "value": "enable_green_onions"
-          }
-        },
-        {
-          "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "enable_noodle_soup"
-        }
-      ]
+      "condition": "fabric:not",
+      "value": {
+        "condition": "assorted-discoveries:config_entry_enabled",
+        "value": "enable_green_onions"
+      }
+    },
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "enable_noodle_soup"
     }
   ]
 }

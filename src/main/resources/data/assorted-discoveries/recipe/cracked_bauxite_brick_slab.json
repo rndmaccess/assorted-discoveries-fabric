@@ -13,20 +13,11 @@
   },
   "fabric:load_conditions": [
     {
-      "condition": "fabric:and",
-      "values": [
-        {
-          "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "enable_bauxite_bricks"
-        },
-        {
-          "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "enable_cracked_bauxite_bricks"
-        },
-        {
-          "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "enable_bauxite"
-        }
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": [
+        "enable_bauxite_bricks",
+        "enable_cracked_bauxite_bricks",
+        "enable_bauxite"
       ]
     }
   ]

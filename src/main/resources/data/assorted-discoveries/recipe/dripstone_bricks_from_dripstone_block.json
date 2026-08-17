@@ -14,20 +14,15 @@
   },
   "fabric:load_conditions": [
     {
-      "condition": "fabric:and",
-      "values": [
-        {
-          "condition": "assorted-discoveries:config_entry_enabled",
-          "value": "enable_dripstone_bricks"
-        },
-        {
-          "condition": "fabric:not",
-          "value": {
-            "condition": "assorted-discoveries:config_entry_enabled",
-            "value": "enable_polished_dripstone"
-          }
-        }
-      ]
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "enable_dripstone_bricks"
+    },
+    {
+      "condition": "fabric:not",
+      "value": {
+        "condition": "assorted-discoveries:config_entry_enabled",
+        "value": "enable_polished_dripstone"
+      }
     }
   ]
 }

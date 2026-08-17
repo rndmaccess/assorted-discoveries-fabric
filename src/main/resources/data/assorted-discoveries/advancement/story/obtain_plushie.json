@@ -32,5 +32,11 @@
     [
       "has_plushie"
     ]
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:any_in_category_enabled",
+      "value": "plushies"
+    }
   ]
 }

@@ -31,21 +31,19 @@ public record ConfigEntryEnabledResourceCondition(List<String> configKeys) imple
 
     @Override
     public boolean test(@Nullable RegistryOps.@Nullable RegistryInfoLookup registryInfo) {
+        // Just load the resource like normal if there are no config keys listed!
         if (this.configKeys.isEmpty()) {
             return true;
         }
 
         for (String configKey : this.configKeys) {
             AbstractConfigEntry<?> entry = ModConfig.CONFIG.getEntry(configKey);
-            if (!(entry instanceof BooleanConfigEntry)) {
+            if (entry instanceof BooleanConfigEntry boolEntry) {
+                if (!boolEntry.getValue()) {
+                    return false;
+                }
+            } else {
                 AssortedDiscoveries.LOGGER.error("{} is not a known config entry or is not a boolean!", configKey);
-                continue; // Don't load the resource if we encounter an unknown config key!
-            }
-
-            boolean value = ((BooleanConfigEntry) entry).getValue();
-
-            if (!value) {
-                return false;
             }
         }
         return true;

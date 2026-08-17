@@ -36,55 +36,31 @@
       "condition": "fabric:or",
       "values": [
         {
-          "condition": "fabric:and",
-          "values": [
-            {
-              "condition": "assorted-discoveries:config_entry_enabled",
-              "value": "enable_cindersnap_berry_juice"
-            },
-            {
-              "condition": "assorted-discoveries:config_entry_enabled",
-              "value": "enable_cindersnap_berries"
-            }
+          "condition": "assorted-discoveries:config_entry_enabled",
+          "value": [
+            "enable_cindersnap_berry_juice",
+            "enable_cindersnap_berries"
           ]
         },
         {
-          "condition": "fabric:and",
-          "values": [
-            {
-              "condition": "assorted-discoveries:config_entry_enabled",
-              "value": "enable_crimson_forage_mix"
-            },
-            {
-              "condition": "assorted-discoveries:config_entry_enabled",
-              "value": "enable_cindersnap_berries"
-            }
+          "condition": "assorted-discoveries:config_entry_enabled",
+          "value": [
+            "enable_crimson_forage_mix",
+            "enable_cindersnap_berries"
           ]
         },
         {
-          "condition": "fabric:and",
-          "values": [
-            {
-              "condition": "assorted-discoveries:config_entry_enabled",
-              "value": "enable_frostbite_berry_juice"
-            },
-            {
-              "condition": "assorted-discoveries:config_entry_enabled",
-              "value": "enable_frostbite_berries"
-            }
+          "condition": "assorted-discoveries:config_entry_enabled",
+          "value": [
+            "enable_frostbite_berry_juice",
+            "enable_frostbite_berries"
           ]
         },
         {
-          "condition": "fabric:and",
-          "values": [
-            {
-              "condition": "assorted-discoveries:config_entry_enabled",
-              "value": "enable_warped_forage_mix"
-            },
-            {
-              "condition": "assorted-discoveries:config_entry_enabled",
-              "value": "enable_frostbite_berries"
-            }
+          "condition": "assorted-discoveries:config_entry_enabled",
+          "value": [
+            "enable_warped_forage_mix",
+            "enable_frostbite_berries"
           ]
         }
       ]

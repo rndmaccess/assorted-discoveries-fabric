@@ -22,6 +22,7 @@ import cindersnapBerries from '../img/cindersnap_berries.webp';
 import forestsBounty from '../img/forests_bounty.webp';
 import spruceCone from '../img/spruce_cone.webp';
 import crimsonForageMix from '../img/crimson_forage_mix.webp';
+import cindersnapBerryJuice from '../img/cindersnap_berry_juice.webp';
 
 let miniSearch = new MiniSearch({
     fields: ['title', 'key_words'],
@@ -197,7 +198,6 @@ const documents = [
         link: './nether_berries.html',
         img: cindersnapBerries,
     },
-
     {
         id: 22,
         title: 'spruce cone',
@@ -218,7 +218,7 @@ const documents = [
         id: 24,
         title: 'nether forage mix',
         key_words: 'crimson warped berry cindersnap berries frostbite',
-        description: 'Discover more about the crimson and warped forage mix foods.',
+        description: 'Discover more about the crimson and warped forage mixes.',
         link: './nether_forage_mix.html',
         img: crimsonForageMix,
     },
@@ -226,9 +226,9 @@ const documents = [
         id: 25,
         title: 'nether berry juice',
         key_words: 'crimson warped cindersnap frostbite berries',
-        description: 'Discover more about the cindersnap and frostbite berry juice foods.',
-        link: './nether_forage_mix.html',
-        img: crimsonForageMix,
+        description: 'Discover more about the cindersnap and frostbite berry juices.',
+        link: './nether_berry_juice.html',
+        img: cindersnapBerryJuice,
     },
 ];
 

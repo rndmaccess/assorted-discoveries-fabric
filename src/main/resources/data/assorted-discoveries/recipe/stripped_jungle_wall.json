@@ -16,7 +16,10 @@
   "fabric:load_conditions": [
     {
       "condition": "assorted-discoveries:all_entries_enabled",
-      "value": "enable_stripped_wooden_walls"
+      "value": [
+        "enable_wooden_walls",
+        "enable_stripped_wooden_walls"
+      ]
     }
   ]
 }

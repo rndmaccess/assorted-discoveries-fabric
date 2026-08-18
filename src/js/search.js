@@ -23,6 +23,7 @@ import forestsBounty from '../img/forests_bounty.webp';
 import spruceCone from '../img/spruce_cone.webp';
 import crimsonForageMix from '../img/crimson_forage_mix.webp';
 import cindersnapBerryJuice from '../img/cindersnap_berry_juice.webp';
+import oakWall from '../img/oak_wall.webp';
 
 let miniSearch = new MiniSearch({
     fields: ['title', 'key_words'],
@@ -229,6 +230,14 @@ const documents = [
         description: 'Discover more about the cindersnap and frostbite berry juices.',
         link: './nether_berry_juice.html',
         img: cindersnapBerryJuice,
+    },
+    {
+        id: 26,
+        title: 'wooden wall',
+        key_words: 'oak spruce birch jungle acacia dark mangrove cherry pale bamboo crimson warped',
+        description: 'Read all about the various wooden walls! These include oak, spruce, birch, etc.',
+        link: './wooden_wall.html',
+        img: oakWall,
     },
 ];
 

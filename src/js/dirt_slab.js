@@ -1,17 +1,17 @@
 // No module declaration needed; esbuild-loader handles imports.
 import { createRecipeCycle, createButtonPanel } from "./side_page";
 
-import dirtSlab from "../img/dirt_slab.webp";
-import coarseDirtSlab from "../img/coarse_dirt_slab.webp";
-import rootedDirtSlab from "../img/rooted_dirt_slab.webp";
+import dirtSlab from "../block_img/dirt_slab.webp";
+import coarseDirtSlab from "../block_img/coarse_dirt_slab.webp";
+import rootedDirtSlab from "../block_img/rooted_dirt_slab.webp";
 
-import topDirtSlab from "../img/dirt_slab_top.webp";
-import topCoarseDirtSlab from "../img/coarse_dirt_slab_top.webp";
-import topRootedDirtSlab from "../img/rooted_dirt_slab_top.webp";
+import topDirtSlab from "../block_img/dirt_slab_top.webp";
+import topCoarseDirtSlab from "../block_img/coarse_dirt_slab_top.webp";
+import topRootedDirtSlab from "../block_img/rooted_dirt_slab_top.webp";
 
-import dirtBlock from "../img/dirt.webp";
-import coarseDirtBlock from "../img/coarse_dirt.webp";
-import rootedDirtBlock from "../img/rooted_dirt.webp";
+import dirtBlock from "../block_img/dirt.webp";
+import coarseDirtBlock from "../block_img/coarse_dirt.webp";
+import rootedDirtBlock from "../block_img/rooted_dirt.webp";
 
 const craftingLists = {
     "dirt_slab": [dirtSlab, coarseDirtSlab, rootedDirtSlab],

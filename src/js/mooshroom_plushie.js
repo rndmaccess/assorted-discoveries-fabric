@@ -1,5 +1,5 @@
-import redMooshroomPlushie from "../img/red_mooshroom_plushie.webp";
-import brownMooshroomPlushie from "../img/brown_mooshroom_plushie.webp";
+import redMooshroomPlushie from "../block_img/red_mooshroom_plushie.webp";
+import brownMooshroomPlushie from "../block_img/brown_mooshroom_plushie.webp";
 
 // No module declaration needed; esbuild-loader handles imports.
 import { createButtonPanel } from "./side_page";

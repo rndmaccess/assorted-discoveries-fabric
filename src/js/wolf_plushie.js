@@ -1,13 +1,13 @@
-import paleWolfPlushieStanding from "../img/pale_wolf_plushie_standing.webp";
-import paleWolfPlushieSitting from "../img/pale_wolf_plushie_sitting.webp";
-import ashenWolfPlushieStanding from "../img/ashen_wolf_plushie_standing.webp";
-import ashenWolfPlushieSitting from "../img/ashen_wolf_plushie_sitting.webp";
-import blackWolfPlushieStanding from "../img/black_wolf_plushie_standing.webp";
-import blackWolfPlushieSitting from "../img/black_wolf_plushie_sitting.webp";
-import chestnutWolfPlushieStanding from "../img/chestnut_wolf_plushie_standing.webp";
-import chestnutWolfPlushieSitting from "../img/chestnut_wolf_plushie_sitting.webp";
-import rustyWolfPlushieStanding from "../img/rusty_wolf_plushie_standing.webp";
-import rustyWolfPlushieSitting from "../img/rusty_wolf_plushie_sitting.webp";
+import paleWolfPlushieStanding from "../block_img/pale_wolf_plushie_standing.webp";
+import paleWolfPlushieSitting from "../block_img/pale_wolf_plushie_sitting.webp";
+import ashenWolfPlushieStanding from "../block_img/ashen_wolf_plushie_standing.webp";
+import ashenWolfPlushieSitting from "../block_img/ashen_wolf_plushie_sitting.webp";
+import blackWolfPlushieStanding from "../block_img/black_wolf_plushie_standing.webp";
+import blackWolfPlushieSitting from "../block_img/black_wolf_plushie_sitting.webp";
+import chestnutWolfPlushieStanding from "../block_img/chestnut_wolf_plushie_standing.webp";
+import chestnutWolfPlushieSitting from "../block_img/chestnut_wolf_plushie_sitting.webp";
+import rustyWolfPlushieStanding from "../block_img/rusty_wolf_plushie_standing.webp";
+import rustyWolfPlushieSitting from "../block_img/rusty_wolf_plushie_sitting.webp";
 
 // No module declaration needed; esbuild-loader handles imports.
 import { createButtonPanel } from "./side_page";

@@ -1,30 +1,30 @@
 // Image imports so that webpack knows about them
-import oakPlanterBox from '../img/oak_planter_box.webp';
-import sprucePlanterBox from '../img/spruce_planter_box.webp';
-import birchPlanterBox from '../img/birch_planter_box.webp';
-import junglePlanterBox from '../img/jungle_planter_box.webp';
-import acaciaPlanterBox from '../img/acacia_planter_box.webp';
-import darkOakPlanterBox from '../img/dark_oak_planter_box.webp';
-import mangrovePlanterBox from '../img/mangrove_planter_box.webp';
-import cherryPlanterBox from '../img/cherry_planter_box.webp';
-import paleOakPlanterBox from '../img/pale_oak_planter_box.webp';
-import bambooPlanterBox from '../img/bamboo_planter_box.webp';
-import warpedPlanterBox from '../img/warped_planter_box.webp';
-import crimsonPlanterBox from '../img/crimson_planter_box.webp';
+import oakPlanterBox from '../block_img/oak_planter_box.webp';
+import sprucePlanterBox from '../block_img/spruce_planter_box.webp';
+import birchPlanterBox from '../block_img/birch_planter_box.webp';
+import junglePlanterBox from '../block_img/jungle_planter_box.webp';
+import acaciaPlanterBox from '../block_img/acacia_planter_box.webp';
+import darkOakPlanterBox from '../block_img/dark_oak_planter_box.webp';
+import mangrovePlanterBox from '../block_img/mangrove_planter_box.webp';
+import cherryPlanterBox from '../block_img/cherry_planter_box.webp';
+import paleOakPlanterBox from '../block_img/pale_oak_planter_box.webp';
+import bambooPlanterBox from '../block_img/bamboo_planter_box.webp';
+import warpedPlanterBox from '../block_img/warped_planter_box.webp';
+import crimsonPlanterBox from '../block_img/crimson_planter_box.webp';
 
-import oakSlab from '../img/oak_slab.webp';
-import spruceSlab from '../img/spruce_slab.webp';
-import birchSlab from '../img/birch_slab.webp';
-import jungleSlab from '../img/jungle_slab.webp';
-import acaciaSlab from '../img/acacia_slab.webp';
-import darkOakSlab from '../img/dark_oak_slab.webp';
-import mangroveSlab from '../img/mangrove_slab.webp';
-import cherrySlab from '../img/cherry_slab.webp';
-import paleOakSlab from '../img/pale_oak_slab.webp';
-import bambooSlab from '../img/bamboo_slab.webp';
+import oakSlab from '../block_img/oak_slab.webp';
+import spruceSlab from '../block_img/spruce_slab.webp';
+import birchSlab from '../block_img/birch_slab.webp';
+import jungleSlab from '../block_img/jungle_slab.webp';
+import acaciaSlab from '../block_img/acacia_slab.webp';
+import darkOakSlab from '../block_img/dark_oak_slab.webp';
+import mangroveSlab from '../block_img/mangrove_slab.webp';
+import cherrySlab from '../block_img/cherry_slab.webp';
+import paleOakSlab from '../block_img/pale_oak_slab.webp';
+import bambooSlab from '../block_img/bamboo_slab.webp';
 
-import soulSoil from '../img/soul_soil.webp';
-import soulSand from '../img/soul_sand.webp';
+import soulSoil from '../block_img/soul_soil.webp';
+import soulSand from '../block_img/soul_sand.webp';
 
 // No module declaration needed; esbuild-loader handles imports.
 import { createRecipeCycle, createButtonPanel } from "./side_page";

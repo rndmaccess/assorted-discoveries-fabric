@@ -1,17 +1,17 @@
 // No module declaration needed; esbuild-loader handles imports.
 import { createRecipeCycle, createButtonPanel } from "./side_page";
 
-import grassSlab from "../img/grass_slab.webp";
-import podzolSlab from "../img/podzol_slab.webp";
-import myceliumSlab from "../img/mycelium_slab.webp";
+import grassSlab from "../block_img/grass_slab.webp";
+import podzolSlab from "../block_img/podzol_slab.webp";
+import myceliumSlab from "../block_img/mycelium_slab.webp";
 
-import topGrassSlab from "../img/grass_slab_top.webp";
-import topPodzolSlab from "../img/podzol_slab_top.webp";
-import topMyceliumSlab from "../img/mycelium_slab_top.webp";
+import topGrassSlab from "../block_img/grass_slab_top.webp";
+import topPodzolSlab from "../block_img/podzol_slab_top.webp";
+import topMyceliumSlab from "../block_img/mycelium_slab_top.webp";
 
-import grassBlock from "../img/grass_block.webp";
-import podzolBlock from "../img/podzol.webp";
-import myceliumBlock from "../img/mycelium.webp";
+import grassBlock from "../block_img/grass_block.webp";
+import podzolBlock from "../block_img/podzol.webp";
+import myceliumBlock from "../block_img/mycelium.webp";
 
 const craftingLists = {
     "grass_slab": [grassSlab, podzolSlab, myceliumSlab],

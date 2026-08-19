@@ -12,7 +12,7 @@ import temperateCowPlushie from '../block_img/temperate_cow_plushie.webp';
 import redMooshroomPlushie from '../block_img/red_mooshroom_plushie.webp';
 import whiteSheepPlushie from '../block_img/sheep_plushie_white.webp';
 import hoglinPlushie from '../block_img/hoglin_plushie.webp';
-import wildGreenOnions from '../item_img/wild_green_onions.webp';
+import wildGreenOnions from '../block_img/wild_green_onions.webp';
 import greenOnionSeeds from '../item_img/green_onion_seeds.webp';
 import greenOnion from '../item_img/green_onion.webp';
 import grassSlab from '../block_img/grass_slab.webp';

@@ -111,11 +111,12 @@ const optionList = {
     ]
 }
 
-const headerImages = document.getElementsByClassName('header-image');
-const container = document.getElementById('button-container');
-
 createRecipeCycle(craftingLists);
 
-container.addEventListener('click', (event) => {
-    createButtonPanel(event, optionList, container, headerImages);
-});
+const imagePanel = document.getElementById('image-changer-panel');
+
+if (imagePanel) {
+    imagePanel.addEventListener('click', (event) => {
+        createButtonPanel(event, optionList);
+    });
+}

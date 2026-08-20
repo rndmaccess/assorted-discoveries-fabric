@@ -29,8 +29,6 @@ import salmon from "../item_img/salmon.webp";
 // No module declaration needed; esbuild-loader handles imports.
 import {createButtonPanel, createRecipeCycle} from "./side_page";
 
-const headerImages = document.getElementsByClassName('header-image');
-const container = document.getElementById('button-container');
 const optionList = {
     "ocelot": [
         {
@@ -160,6 +158,10 @@ const craftingLists = {
 
 createRecipeCycle(craftingLists);
 
-container.addEventListener('click', (event) => {
-    createButtonPanel(event, optionList, container, headerImages);
-});
+const imagePanel = document.getElementById('image-changer-panel');
+
+if (imagePanel) {
+    imagePanel.addEventListener('click', (event) => {
+        createButtonPanel(event, optionList);
+    });
+}

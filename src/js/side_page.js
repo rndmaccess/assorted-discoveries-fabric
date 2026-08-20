@@ -46,6 +46,7 @@ export function createRecipeCycle(items) {
  * HTML Requirements:
  * .menu-btn: Required class for all selectable buttons.
  * #selected: Must be present on exactly one button initially; moves on click.
+ * .swappableImg: The images to change. This is where each data-src-pattern and data-alt-pattern should be defined.
  *
  * Placeholders:
  * {type}: Injected from data-type into data-src-pattern or data-alt-pattern in @param mainImg.
@@ -53,12 +54,14 @@ export function createRecipeCycle(items) {
  *
  * @param event {PointerEvent} The click event from the button container.
  * @param optionList
- * @param containerId The container's id surrounding the button panel.
- * @param headerImages The images to change. This is where each data-src-pattern and data-alt-pattern should be defined.
  */
-export function createButtonPanel(event, optionList, containerId, headerImages) {
-    const selectedElement = containerId.querySelector('.selected');
+export function createButtonPanel(event, optionList) {
     const button = event.target.closest('.menu-btn');
+    if (!button) return;
+
+    const imagePanel = event.currentTarget;
+    const selectedElement = imagePanel.querySelector('.selected');
+
     if (!button) return;
 
     const type = button.dataset.type;
@@ -68,14 +71,15 @@ export function createButtonPanel(event, optionList, containerId, headerImages) 
     }
 
     const variants = optionList[type];
-
     if (!variants || variants.length === 0) {
         console.log("No images for button: ", button);
         return;
     }
 
-    for (let i = 0; i < headerImages.length; i++) {
-        const headerImage = headerImages[i];
+    const swappableImages = imagePanel.getElementsByClassName('swappable-img');
+
+    for (let i = 0; i < swappableImages.length; i++) {
+        const headerImage = swappableImages[i];
 
         if (!variants[i] || i >= variants.length) {
             console.log("Missing image for index: ", i);

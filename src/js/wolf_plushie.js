@@ -12,8 +12,6 @@ import rustyWolfPlushieSitting from "../block_img/rusty_wolf_plushie_sitting.web
 // No module declaration needed; esbuild-loader handles imports.
 import { createButtonPanel } from "./side_page";
 
-const headerImages = document.getElementsByClassName('header-image');
-const container = document.getElementById('button-container');
 const optionList = {
     "pale": [
         {
@@ -67,6 +65,10 @@ const optionList = {
     ]
 }
 
-container.addEventListener('click', (event) => {
-    createButtonPanel(event, optionList, container, headerImages);
-});
+const imagePanel = document.getElementById('image-changer-panel');
+
+if (imagePanel) {
+    imagePanel.addEventListener('click', (event) => {
+        createButtonPanel(event, optionList);
+    });
+}

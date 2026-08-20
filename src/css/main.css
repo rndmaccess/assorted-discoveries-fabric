@@ -23,11 +23,15 @@ html, body {
     font-weight: bold;
 }
 
-#button-container {
+.button-container {
     display: flex;
     flex-wrap: wrap;
     padding-bottom: 0.5rem;
     justify-content: center;
+}
+
+#image-changer-panel {
+    display: contents; /* Prevent the button container from affecting the layout of its children */
 }
 
 .menu-btn {

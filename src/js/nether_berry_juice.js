@@ -19,9 +19,10 @@ const optionList = {
     ]
 }
 
-const headerImages = document.getElementsByClassName('header-image');
-const container = document.getElementById('button-container');
+const imagePanel = document.getElementById('image-changer-panel');
 
-container.addEventListener('click', (event) => {
-    createButtonPanel(event, optionList, container, headerImages);
-});
+if (imagePanel) {
+    imagePanel.addEventListener('click', (event) => {
+        createButtonPanel(event, optionList);
+    });
+}

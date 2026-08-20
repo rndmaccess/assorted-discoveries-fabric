@@ -24,6 +24,8 @@ import spruceCone from '../item_img/spruce_cone.webp';
 import crimsonForageMix from '../item_img/crimson_forage_mix.webp';
 import cindersnapBerryJuice from '../item_img/cindersnap_berry_juice.webp';
 import oakWall from '../block_img/oak_wall.webp';
+import witchsCradleSoup from '../item_img/witchs_cradle_soup.webp';
+import witchsCradleBranch from '../item_img/witchs_cradle_branch.webp';
 
 let miniSearch = new MiniSearch({
     fields: ['title', 'key_words'],
@@ -238,6 +240,22 @@ const documents = [
         description: 'Read all about the various wooden walls! These include oak, spruce, birch, etc.',
         link: './wooden_wall.html',
         img: oakWall,
+    },
+    {
+        id: 27,
+        title: 'witch\'s cradle branch',
+        key_words: '',
+        description: 'Read all about the witch\'s cradle and their branches.',
+        link: './wooden_wall.html',
+        img: witchsCradleBranch,
+    },
+    {
+        id: 28,
+        title: 'witch\'s cradle soup',
+        key_words: 'branch',
+        description: 'Read all about the witch\'s cradle soup. A food that gives night vision!',
+        link: './wooden_wall.html',
+        img: witchsCradleSoup,
     },
 ];
 

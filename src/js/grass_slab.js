@@ -13,10 +13,6 @@ import grassBlock from "../block_img/grass_block.webp";
 import podzolBlock from "../block_img/podzol.webp";
 import myceliumBlock from "../block_img/mycelium.webp";
 
-const craftingLists = {
-    "grass_slab": [grassSlab, podzolSlab, myceliumSlab],
-    "grass": [grassBlock, podzolBlock, myceliumBlock]
-}
 const optionList = {
     "normal": [
         {
@@ -60,6 +56,11 @@ const optionList = {
             "alt": "Mycelium Slab"
         }
     ]
+}
+
+const craftingLists = {
+    "grass_slab": [grassSlab, podzolSlab, myceliumSlab],
+    "grass": [grassBlock, podzolBlock, myceliumBlock]
 }
 
 createRecipeCycle(craftingLists);

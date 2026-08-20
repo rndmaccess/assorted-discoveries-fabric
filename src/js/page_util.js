@@ -1,13 +1,17 @@
-async function cycle_recipe(items, cycleItems, state) {
+function cycle_recipe(items, cycleItems, state) {
     state.step++; // Moves to the next index. When we hit the last index it will return to 0.
 
     for (let item of cycleItems) {
         const type = item.dataset.type;
         const variants = items[type];
-        const localIndex = state.step % variants.length;
 
-        const newSrc = variants[localIndex];
-        item.setAttribute("src", newSrc);
+        // Guard against missing types or empty variant arrays
+        if (!variants || !variants.length) continue;
+
+        const newSrc = variants[state.step % variants.length];
+        if (item.src !== newSrc) {
+            item.src = newSrc;
+        }
     }
 }
 
@@ -25,19 +29,22 @@ async function cycle_recipe(items, cycleItems, state) {
 export function createRecipeCycle(items) {
     const craftingId = document.getElementById('crafting-anim');
 
-    if (craftingId) {
-        let state = { step: 0 };
-        const cycleItems = craftingId.getElementsByClassName('cycle-item');
-        const timeout = 2000;
-
-        setInterval(function() {
-            cycle_recipe(items, cycleItems, state).catch(error => {
-                console.log("An error occurred when cycling the recipe: ", error);
-            });
-        }, timeout);
-    } else {
+    if (!craftingId) {
         console.error("Could not find the crafting-anim id on any element!");
+        return;
     }
+
+    let state = { step: 0 };
+    const cycleItems = Array.from(craftingId.getElementsByClassName('cycle-item'));
+    const timeout = 2000;
+
+    setInterval(() => {
+        try {
+            cycle_recipe(items, cycleItems, state);
+        } catch (error) {
+            console.log("An error occurred when cycling the recipe: ", error);
+        }
+    }, timeout);
 }
 
 /**

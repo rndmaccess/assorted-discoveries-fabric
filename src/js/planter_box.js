@@ -29,13 +29,6 @@ import soulSand from '../block_img/soul_sand.webp';
 // No module declaration needed; esbuild-loader handles imports.
 import { createRecipeCycle, createButtonPanel } from "./page_util";
 
-const craftingLists = {
-    "planter_box": [oakPlanterBox, sprucePlanterBox, birchPlanterBox, junglePlanterBox, acaciaPlanterBox,
-        darkOakPlanterBox, mangrovePlanterBox, cherryPlanterBox, paleOakPlanterBox, bambooPlanterBox],
-    "slab": [oakSlab, spruceSlab, birchSlab, jungleSlab, acaciaSlab, darkOakSlab, mangroveSlab,
-        cherrySlab, paleOakSlab, bambooSlab],
-    "soul_soil": [soulSoil, soulSand]
-}
 const optionList = {
     "oak": [
         {
@@ -109,6 +102,14 @@ const optionList = {
             "alt": "Crimson Planter Box"
         }
     ]
+}
+
+const craftingLists = {
+    "planter_box": [oakPlanterBox, sprucePlanterBox, birchPlanterBox, junglePlanterBox, acaciaPlanterBox,
+        darkOakPlanterBox, mangrovePlanterBox, cherryPlanterBox, paleOakPlanterBox, bambooPlanterBox],
+    "slab": [oakSlab, spruceSlab, birchSlab, jungleSlab, acaciaSlab, darkOakSlab, mangroveSlab,
+        cherrySlab, paleOakSlab, bambooSlab],
+    "soul_soil": [soulSoil, soulSand]
 }
 
 createRecipeCycle(craftingLists);

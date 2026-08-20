@@ -322,6 +322,8 @@ searchInput.addEventListener('keydown', function (event) {
         const urlParams = new URLSearchParams(window.location.search);
         urlParams.set('q', query); // Update the url param if the user searches something new.
 
+        window.history.pushState({}, '', `${window.location.pathname}?${urlParams.toString()}`);
+
         const results = getSearchResults(query);
         renderResults(results);
     }

@@ -44,7 +44,7 @@ const documents = [
     {
         id: 2,
         title: 'planter box',
-        key_words: 'growing overworld nether crops',
+        key_words: 'growing overworld nether crops oak spruce birch jungle acacia dark mangrove cherry pale bamboo crimson warped',
         description: 'A planter box that can dynamically expand and is great for growing any overworld or nether crops!',
         link: './planter_box.html',
         img: oakPlanterBox,
@@ -246,7 +246,7 @@ const documents = [
         title: 'witch\'s cradle branch',
         key_words: '',
         description: 'Read all about the witch\'s cradle and their branches.',
-        link: './wooden_wall.html',
+        link: './witchs_cradle_branch.html',
         img: witchsCradleBranch,
     },
     {
@@ -254,7 +254,7 @@ const documents = [
         title: 'witch\'s cradle soup',
         key_words: 'branch',
         description: 'Read all about the witch\'s cradle soup. A food that gives night vision!',
-        link: './wooden_wall.html',
+        link: './witchs_cradle_soup.html',
         img: witchsCradleSoup,
     },
 ];

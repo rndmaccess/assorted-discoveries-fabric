@@ -45,15 +45,13 @@ export function createRecipeCycle(items) {
  *
  * HTML Requirements:
  * .menu-btn: Required class for all selectable buttons.
+ * .swappable-img: Required class for all swappable images.
  * #selected: Must be present on exactly one button initially; moves on click.
- * .swappableImg: The images to change. This is where each data-src-pattern and data-alt-pattern should be defined.
- *
- * Placeholders:
- * {type}: Injected from data-type into data-src-pattern or data-alt-pattern in @param mainImg.
- *         (Note: Underscores in {type} are converted to spaces for alt text).
+ * data-type: Use this to specify what type the images are that should be swapped in. This is
  *
  * @param event {PointerEvent} The click event from the button container.
- * @param optionList
+ * @param optionList A JSON-like object that maps the data-types to a
+ * list of src and alt attributes that are then later looked up.
  */
 export function createButtonPanel(event, optionList) {
     const button = event.target.closest('.menu-btn');

@@ -27,7 +27,7 @@ import cod from "../item_img/cod.webp";
 import salmon from "../item_img/salmon.webp";
 
 // No module declaration needed; esbuild-loader handles imports.
-import {createButtonPanel, createRecipeCycle} from "./side_page";
+import {createButtonPanel, createRecipeCycle} from "./page_util";
 
 const optionList = {
     "ocelot": [

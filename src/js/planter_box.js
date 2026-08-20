@@ -27,7 +27,7 @@ import soulSoil from '../block_img/soul_soil.webp';
 import soulSand from '../block_img/soul_sand.webp';
 
 // No module declaration needed; esbuild-loader handles imports.
-import { createRecipeCycle, createButtonPanel } from "./side_page";
+import { createRecipeCycle, createButtonPanel } from "./page_util";
 
 const craftingLists = {
     "planter_box": [oakPlanterBox, sprucePlanterBox, birchPlanterBox, junglePlanterBox, acaciaPlanterBox,

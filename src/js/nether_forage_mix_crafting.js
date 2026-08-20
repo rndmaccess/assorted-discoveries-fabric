@@ -5,7 +5,7 @@ import weepingVines from "../item_img/weeping_vines_plant.webp";
 import crimsonRoots from "../item_img/crimson_roots.webp";
 
 // No module declaration needed; esbuild-loader handles imports.
-import { createRecipeCycle } from "./side_page";
+import { createRecipeCycle } from "./page_util";
 
 const craftingLists = {
     "warped_vegetation": [twistingVines, warpedRoots],

@@ -2,7 +2,7 @@ import cindersnapBerryJuice from "../item_img/cindersnap_berry_juice.webp";
 import frostbiteBerryJuice from "../item_img/frostbite_berry_juice.webp";
 
 // No module declaration needed; esbuild-loader handles imports.
-import { createButtonPanel } from "./side_page";
+import { createButtonPanel } from "./page_util";
 
 const optionList = {
     "cindersnap": [

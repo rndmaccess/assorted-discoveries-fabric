@@ -1,5 +1,5 @@
 // No module declaration needed; esbuild-loader handles imports.
-import { createRecipeCycle, createButtonPanel } from "./side_page";
+import { createRecipeCycle, createButtonPanel } from "./page_util";
 
 import oakRopeLadder from "../item_img/oak_rope_ladder.webp";
 import spruceRopeLadder from "../item_img/spruce_rope_ladder.webp";

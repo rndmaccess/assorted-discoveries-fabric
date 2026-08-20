@@ -36,7 +36,7 @@ import crimsonHyphae from "../block_img/crimson_hyphae.webp";
 import warpedHyphae from "../block_img/warped_hyphae.webp";
 
 // No module declaration needed; esbuild-loader handles imports.
-import { createButtonPanel, createRecipeCycle} from "./side_page";
+import { createButtonPanel, createRecipeCycle} from "./page_util";
 
 const optionList = {
     "oak": [

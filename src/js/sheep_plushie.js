@@ -1,5 +1,5 @@
 // No module declaration needed; esbuild-loader handles imports.
-import { createRecipeCycle, createButtonPanel } from "./side_page";
+import { createRecipeCycle, createButtonPanel } from "./page_util";
 
 import whiteSheepPlushie from "../block_img/sheep_plushie_white.webp";
 import lightGraySheepPlushie from "../block_img/sheep_plushie_light_gray.webp";

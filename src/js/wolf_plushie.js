@@ -10,7 +10,7 @@ import rustyWolfPlushieStanding from "../block_img/rusty_wolf_plushie_standing.w
 import rustyWolfPlushieSitting from "../block_img/rusty_wolf_plushie_sitting.webp";
 
 // No module declaration needed; esbuild-loader handles imports.
-import { createButtonPanel } from "./side_page";
+import { createButtonPanel } from "./page_util";
 
 const optionList = {
     "pale": [

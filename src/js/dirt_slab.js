@@ -1,5 +1,5 @@
 // No module declaration needed; esbuild-loader handles imports.
-import { createRecipeCycle, createButtonPanel } from "./side_page";
+import { createRecipeCycle, createButtonPanel } from "./page_util";
 
 import dirtSlab from "../block_img/dirt_slab.webp";
 import coarseDirtSlab from "../block_img/coarse_dirt_slab.webp";

@@ -2,7 +2,7 @@ import crimsonForageMix from "../item_img/crimson_forage_mix.webp";
 import warpedForageMix from "../item_img/warped_forage_mix.webp";
 
 // No module declaration needed; esbuild-loader handles imports.
-import { createButtonPanel } from "./side_page";
+import { createButtonPanel } from "./page_util";
 
 const optionList = {
     "warped": [

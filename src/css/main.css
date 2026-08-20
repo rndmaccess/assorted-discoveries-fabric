@@ -18,6 +18,14 @@ html, body {
     font-size: 1.25rem;
 }
 
+.sub-title {
+    display: flex;
+    justify-content: center;
+    border-radius: 1rem;
+    margin: 0.5rem auto;
+    padding: 0.5rem;
+}
+
 .is-collapsable {
     font-size: 1.8rem;
     font-weight: bold;
@@ -172,14 +180,6 @@ table {
     padding: 0.5rem;
     text-align: center;
     outline: 4px solid #3c2a68;
-}
-
-.title {
-    display: flex;
-    justify-content: center;
-    border-radius: 1rem;
-    margin: 0.5rem auto;
-    padding: 0.5rem;
 }
 
 .tag-container {

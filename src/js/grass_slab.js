@@ -1,5 +1,5 @@
 // No module declaration needed; esbuild-loader handles imports.
-import { createRecipeCycle, createButtonPanel } from "./side_page";
+import { createRecipeCycle, createButtonPanel } from "./page_util";
 
 import grassSlab from "../block_img/grass_slab.webp";
 import podzolSlab from "../block_img/podzol_slab.webp";

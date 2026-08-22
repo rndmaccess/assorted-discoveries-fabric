@@ -112,7 +112,7 @@ a:hover { cursor: pointer; }
     display: block;
     margin: auto;
     max-width: 80%;
-    width: 80%;
+    width: 50%;
 }
 
 .img-container {

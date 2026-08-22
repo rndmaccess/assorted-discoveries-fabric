@@ -46,7 +46,7 @@ import yellowDye from "../item_img/yellow_dye.webp";
 import limeDye from "../item_img/lime_dye.webp";
 import greenDye from "../item_img/green_dye.webp";
 import cyanDye from "../item_img/cyan_dye.webp";
-import lightBlueDye from "../item_img/light_gray_dye.webp";
+import lightBlueDye from "../item_img/light_blue_dye.webp";
 import blueDye from "../item_img/blue_dye.webp";
 import purpleDye from "../item_img/purple_dye.webp";
 import magentaDye from "../item_img/magenta_dye.webp";

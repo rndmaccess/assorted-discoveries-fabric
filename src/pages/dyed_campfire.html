@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="../js/dirt_slab.js" defer></script>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/crafting.css">
+    <meta charset="UTF-8">
+    <title>Dirt Slab - Assorted Discoveries Wiki</title>
+    <link rel="icon" href="../favicon.png" type="image/png">
+</head>
+<body>
+    <main class="main-container container">
+        <div class="top-content-wrapper">
+            <div class="content-left">
+                <h2>
+                    About
+                </h2>
+                <p>
+                    The <b>dirt slab</b> is a decorative block that can be combined into a <b>single block</b>.
+                    Dirt slabs come in three different variants normal, coarse, and rooted.
+                </p>
+                <h2>
+                    Config
+                </h2>
+                <p>
+                    Set <b>Enable Dirt Slabs</b> to <b>Yes/true (default)</b> to activate these blocks,
+                    or <b>No/false</b> to disable them. All dirt and grass slabs are controlled by this setting.
+                </p>
+                <h2>
+                    Making Path Slabs
+                </h2>
+                <p>
+                    Any variant of dirt slab can be made into a <a href="./dirt_path_slab.html">dirt path slab</a> by using a <b>shovel</b> on it.
+                </p>
+                <h2>
+                    Placing Plants
+                </h2>
+                <p>
+                    Only the <b>top and double</b> variants support plants normally.
+                    However, if the <b>Slabbed mod</b> is installed the <b>bottom</b> variant will support plants as well.
+                </p>
+                <h2>
+                    Breaking
+                </h2>
+                <p>
+                    <b>Breaking</b> a single upper or lower <b>dirt slab</b> drops <b>one slab</b>.
+                    If however, <b>two dirt slabs</b> are put together they act as a <b>whole block</b> and when broken
+                    they will <b>drop two slabs</b> instead of <b>one</b>.
+                </p>
+                <h2>
+                    Double Slabs
+                </h2>
+                <p>
+                    Only <b>two dirt slabs</b> of the same <b>type</b> can form a <b>double slab</b> unless a different mod changes this behavior.
+                </p>
+                <h2>
+                    Crafting Recipe
+                </h2>
+                <div class="crafting-area" id="crafting-anim" aria-hidden="true">
+                    <img class="back" src="../gui_img/crafting_table_display.webp" alt="">
+                    <div class="front">
+                        <div class="slot"><div class="crafting-item"></div></div>
+                        <div class="slot"><div class="crafting-item"></div></div>
+                        <div class="slot"><div class="crafting-item"></div></div>
+
+                        <div class="slot"><div class="crafting-item"></div></div>
+                        <div class="slot"><div class="crafting-item"></div></div>
+                        <div class="slot"><div class="crafting-item"></div></div>
+
+                        <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-type="dirt" src="../block_img/dirt.webp" alt=""></div>
+                        <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-type="dirt" src="../block_img/dirt.webp" alt=""></div>
+                        <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-type="dirt" src="../block_img/dirt.webp" alt=""></div>
+                    </div>
+                    <div class="front-result">
+                        <div><img class="result-item cycle-item" loading="lazy" data-type="dirt_slab" src="../block_img/dirt_slab.webp" alt=""></div>
+                        <div class="result-count">6</div>
+                    </div>
+                </div>
+                <p>
+                    Craft six dirt slabs by placing three of any dirt type in a single row.
+                </p>
+            </div>
+
+            <div class="img-container">
+                <h1 class="main-title">
+                    Dirt Slab
+                </h1>
+
+                <div id="image-changer-panel">
+                    <div class="button-container">
+                        <button class="menu-btn selected" data-type="normal">Normal</button>
+                        <button class="menu-btn" data-type="coarse">Coarse</button>
+                        <button class="menu-btn" data-type="rooted">Rooted</button>
+                    </div>
+
+                    <img class="main-img swappable-img" src="../anim_block_img/cyan_campfire.webp" alt="Dirt Slab">
+                    <div class="sub-title">Bottom</div>
+                </div>
+
+                <table>
+                    <tr>
+                        <td class="img-desc">Renewable</td>
+                        <td class="img-desc">Yes (Crafting)</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Stackable</td>
+                        <td class="img-desc">Yes (64)</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Waterloggable</td>
+                        <td class="img-desc">Yes</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Tool</td>
+                        <td class="img-desc">Any tool, but the shovel is the quickest!</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Blast Resistance</td>
+                        <td class="img-desc">0.5</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Hardness</td>
+                        <td class="img-desc">0.5</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Luminous</td>
+                        <td class="img-desc">No</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Transparent</td>
+                        <td class="img-desc">Double: <br>No <br>Single: <br>Partial</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Catches fire from lava</td>
+                        <td class="img-desc">No</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="secondary-container container">
+            <div>
+                Disclaimer: NOT AN OFFICIAL MINECRAFT SERVICE. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.
+                Minecraft and official game assets are trademarks and property of Mojang Studios / Microsoft Corporation.
+                All custom mod assets, code, and content are the intellectual property of rndm_access.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

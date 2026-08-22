@@ -111,7 +111,8 @@ a:hover { cursor: pointer; }
 .main-img {
     display: block;
     margin: auto;
-    max-width: 100%;
+    max-width: 80%;
+    width: 80%;
 }
 
 .img-container {
@@ -228,6 +229,7 @@ table {
 
     .main-img {
         max-width: 50%; /* Make the image smaller on desktops! */
+        width: auto;
     }
 
     .img-container {

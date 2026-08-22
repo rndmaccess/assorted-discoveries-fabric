@@ -26,6 +26,7 @@ import cindersnapBerryJuice from '../item_img/cindersnap_berry_juice.webp';
 import oakWall from '../block_img/oak_wall.webp';
 import witchsCradleSoup from '../item_img/witchs_cradle_soup.webp';
 import witchsCradleBranch from '../item_img/witchs_cradle_branch.webp';
+import whiteCampfire from '../anim_block_img/white_campfire.webp';
 
 let miniSearch = new MiniSearch({
     fields: ['title', 'key_words'],
@@ -256,6 +257,15 @@ const documents = [
         description: 'Read all about the witch\'s cradle soup. A food that gives night vision!',
         link: './witchs_cradle_soup.html',
         img: witchsCradleSoup,
+    },
+
+    {
+        id: 29,
+        title: 'dyed campfire',
+        key_words: 'white light gray black brown red orange yellow lime green cyan blue purple magenta pink',
+        description: 'Read all about dyed campfires. These come in all vanilla dye colors!',
+        link: './dyed_campfire.html',
+        img: whiteCampfire,
     },
 ];
 

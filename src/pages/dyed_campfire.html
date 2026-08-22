@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="../js/dirt_slab.js" defer></script>
+    <script src="../js/dyed_campfire.js" defer></script>
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/crafting.css">
     <meta charset="UTF-8">
-    <title>Dirt Slab - Assorted Discoveries Wiki</title>
+    <title>Dyed Campfire - Assorted Discoveries Wiki</title>
     <link rel="icon" href="../favicon.png" type="image/png">
 </head>
 <body>
@@ -16,42 +16,72 @@
                     About
                 </h2>
                 <p>
-                    The <b>dirt slab</b> is a decorative block that can be combined into a <b>single block</b>.
-                    Dirt slabs come in three different variants normal, coarse, and rooted.
+                    The <b>dyed campfire</b> that comes in each dye color.
                 </p>
                 <h2>
                     Config
                 </h2>
                 <p>
-                    Set <b>Enable Dirt Slabs</b> to <b>Yes/true (default)</b> to activate these blocks,
-                    or <b>No/false</b> to disable them. All dirt and grass slabs are controlled by this setting.
+                    Set <b>Enable Dyed Campfires</b> to <b>Yes/true (default)</b> to activate these blocks,
+                    or <b>No/false</b> to disable them. All dyed campfires are controlled by this setting.
                 </p>
                 <h2>
-                    Making Path Slabs
+                    Placing
                 </h2>
                 <p>
-                    Any variant of dirt slab can be made into a <a href="./dirt_path_slab.html">dirt path slab</a> by using a <b>shovel</b> on it.
-                </p>
-                <h2>
-                    Placing Plants
-                </h2>
-                <p>
-                    Only the <b>top and double</b> variants support plants normally.
-                    However, if the <b>Slabbed mod</b> is installed the <b>bottom</b> variant will support plants as well.
+                    Dyed campfires are lit by default when placed.
                 </p>
                 <h2>
                     Breaking
                 </h2>
                 <p>
-                    <b>Breaking</b> a single upper or lower <b>dirt slab</b> drops <b>one slab</b>.
-                    If however, <b>two dirt slabs</b> are put together they act as a <b>whole block</b> and when broken
-                    they will <b>drop two slabs</b> instead of <b>one</b>.
+                    When broken, a dyed campfire drops
                 </p>
+                <ul>
+                    <li>Nothing if mined by hand.</li>
+                    <li>2 Charcoal if mined with any tool.</li>
+                    <li>Itself if mined with a tool enchanted with <b>Silk Touch</b>.</li>
+                </ul>
                 <h2>
-                    Double Slabs
+                    Waterlogged
                 </h2>
                 <p>
-                    Only <b>two dirt slabs</b> of the same <b>type</b> can form a <b>double slab</b> unless a different mod changes this behavior.
+                    When waterlogged dyed campfires go out, similar to normal campfires, and food cannot be cooked on them.
+                    If re-lit with a flint and steel, the dyed campfire will retain its color.
+                </p>
+                <h2>
+                    Damage
+                </h2>
+                <p>
+                    Dyed campfires will damage players and other mobs, similar to normal campfires.
+                    They do not destroy items.
+                </p>
+                <h2>
+                    Cooking
+                </h2>
+                <p>
+                    Up to <b>4 food items</b> can be placed on a dyed campfire at once and will cook simultaneously.
+                    Any food on a dyed campfire will take <b>30 seconds (600 ticks)</b> to cook.
+                    Once the food is finished cooking it will pop off the campfire.
+                </p>
+                <h2>
+                    Particles
+                </h2>
+                <p>
+                    Dyed campfires produce <b>smoke particles</b> that float up around <b>10 blocks</b> before disappearing.
+                    If a <b>hay bale</b> is placed below, the dyed campfire becomes a signal fire and the smoke floats up <b>24 blocks</b> instead.
+                    These smoke particles behave just like vanilla campfire smoke.
+                </p>
+                <p>
+                    Dyed Campfires also occasionally emit <b>ember particles</b>, similar to lava.
+                    The <b>particle's color</b> matches the <b>dyed campfire's color</b>.
+                </p>
+                <h2>
+                    Bees
+                </h2>
+                <p>
+                    Placing a campfire within five blocks of a beehive or bee nest allows honey bottles and honeycomb
+                    to be harvested without provoking the bees, similar to normal campfires.
                 </p>
                 <h2>
                     Crafting Recipe
@@ -59,25 +89,24 @@
                 <div class="crafting-area" id="crafting-anim" aria-hidden="true">
                     <img class="back" src="../gui_img/crafting_table_display.webp" alt="">
                     <div class="front">
+                        <div class="slot"><img class="crafting-item cycle-item" loading="lazy" src="../item_img/campfire.webp" alt=""></div>
+                        <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-type="dye" src="../item_img/white_dye.webp" alt=""></div>
+                        <div class="slot"><div class="crafting-item"></div></div>
+
                         <div class="slot"><div class="crafting-item"></div></div>
                         <div class="slot"><div class="crafting-item"></div></div>
                         <div class="slot"><div class="crafting-item"></div></div>
 
-                        <div class="slot"><div class="crafting-item"></div></div>
-                        <div class="slot"><div class="crafting-item"></div></div>
-                        <div class="slot"><div class="crafting-item"></div></div>
-
-                        <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-type="dirt" src="../block_img/dirt.webp" alt=""></div>
-                        <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-type="dirt" src="../block_img/dirt.webp" alt=""></div>
-                        <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-type="dirt" src="../block_img/dirt.webp" alt=""></div>
+                        <div class="slot"></div>
+                        <div class="slot"></div>
+                        <div class="slot"></div>
                     </div>
                     <div class="front-result">
-                        <div><img class="result-item cycle-item" loading="lazy" data-type="dirt_slab" src="../block_img/dirt_slab.webp" alt=""></div>
-                        <div class="result-count">6</div>
+                        <div><img class="result-item cycle-item" loading="lazy" data-type="dyed_campfire" src="../item_img/white_campfire.webp" alt=""></div>
                     </div>
                 </div>
                 <p>
-                    Craft six dirt slabs by placing three of any dirt type in a single row.
+                    Craft a dyed campfire by placing a campfire and any color of dye in any arrangement.
                 </p>
             </div>
 
@@ -88,12 +117,26 @@
 
                 <div id="image-changer-panel">
                     <div class="button-container">
-                        <button class="menu-btn selected" data-type="normal">Normal</button>
-                        <button class="menu-btn" data-type="coarse">Coarse</button>
-                        <button class="menu-btn" data-type="rooted">Rooted</button>
+                        <button class="menu-btn selected" data-type="white">White</button>
+                        <button class="menu-btn" data-type="light_gray">Light Gray</button>
+                        <button class="menu-btn" data-type="gray">Gray</button>
+                        <button class="menu-btn" data-type="black">Black</button>
+                        <button class="menu-btn" data-type="brown">Brown</button>
+                        <button class="menu-btn" data-type="red">Red</button>
+                        <button class="menu-btn" data-type="orange">Orange</button>
+                        <button class="menu-btn" data-type="yellow">Yellow</button>
+                        <button class="menu-btn" data-type="lime">Lime</button>
+                        <button class="menu-btn" data-type="green">Green</button>
+                        <button class="menu-btn" data-type="cyan">Cyan</button>
+                        <button class="menu-btn" data-type="light_blue">Light Blue</button>
+                        <button class="menu-btn" data-type="blue">Blue</button>
+                        <button class="menu-btn" data-type="purple">Purple</button>
+                        <button class="menu-btn" data-type="gray">Gray</button>
+                        <button class="menu-btn" data-type="magenta">Magenta</button>
+                        <button class="menu-btn" data-type="pink">Pink</button>
                     </div>
 
-                    <img class="main-img swappable-img" src="../anim_block_img/cyan_campfire.webp" alt="Dirt Slab">
+                    <img class="main-img swappable-img" src="../anim_block_img/white_campfire.webp" alt="White Campfire">
                     <div class="sub-title">Bottom</div>
                 </div>
 
@@ -112,27 +155,31 @@
                     </tr>
                     <tr>
                         <td class="img-desc">Tool</td>
-                        <td class="img-desc">Any tool, but the shovel is the quickest!</td>
+                        <td class="img-desc">Any tool, but the axe is the quickest!</td>
                     </tr>
                     <tr>
                         <td class="img-desc">Blast Resistance</td>
-                        <td class="img-desc">0.5</td>
+                        <td class="img-desc">2</td>
                     </tr>
                     <tr>
                         <td class="img-desc">Hardness</td>
-                        <td class="img-desc">0.5</td>
+                        <td class="img-desc">2</td>
                     </tr>
                     <tr>
                         <td class="img-desc">Luminous</td>
-                        <td class="img-desc">No</td>
+                        <td class="img-desc">Yes (15) when lit</td>
                     </tr>
                     <tr>
                         <td class="img-desc">Transparent</td>
-                        <td class="img-desc">Double: <br>No <br>Single: <br>Partial</td>
+                        <td class="img-desc">Yes</td>
                     </tr>
                     <tr>
                         <td class="img-desc">Catches fire from lava</td>
-                        <td class="img-desc">No</td>
+                        <td class="img-desc">Yes</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Note block instrument</td>
+                        <td class="img-desc">Bass</td>
                     </tr>
                 </table>
             </div>

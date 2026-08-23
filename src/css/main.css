@@ -108,6 +108,11 @@ a:hover { cursor: pointer; }
 .main-img {
     display: block;
     margin: auto;
+    width: 300px;
+
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
 }
 
 .sidebar {
@@ -188,6 +193,10 @@ table {
 @media (min-width: 1024px) {
     .container {
         max-width: 62.5%;
+    }
+
+    .main-img {
+        width: auto;
     }
 
     body {

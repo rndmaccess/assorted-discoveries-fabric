@@ -51,7 +51,7 @@ html, body {
     cursor: pointer;
     text-decoration: none;
     margin: 5px;
-    font-size: 1.125rem;
+    font-size: 0.84rem;
 }
 
 .menu-btn:hover {
@@ -112,7 +112,6 @@ a:hover { cursor: pointer; }
     display: block;
     margin: auto;
     max-width: 80%;
-    width: 50%;
 }
 
 .img-container {
@@ -127,7 +126,6 @@ a:hover { cursor: pointer; }
     background-color: #202020;
 
     padding: 1.5rem;
-    font-size: 1.5rem;
 }
 
 .info-table {
@@ -225,11 +223,6 @@ table {
     .top-content-wrapper {
         flex-direction: row;
         align-items: flex-start;
-    }
-
-    .main-img {
-        max-width: 50%; /* Make the image smaller on desktops! */
-        width: auto;
     }
 
     .img-container {

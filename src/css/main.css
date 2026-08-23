@@ -26,16 +26,12 @@ html, body {
     padding: 0.5rem;
 }
 
-.is-collapsable {
-    font-size: 1.8rem;
-    font-weight: bold;
-}
-
 .button-container {
     display: flex;
     flex-wrap: wrap;
     padding-bottom: 0.5rem;
     justify-content: center;
+    margin: 0 auto;
 }
 
 #image-changer-panel {
@@ -51,7 +47,6 @@ html, body {
     cursor: pointer;
     text-decoration: none;
     margin: 5px;
-    font-size: 0.84rem;
 }
 
 .menu-btn:hover {
@@ -72,7 +67,7 @@ html, body {
     color: #F5F5F5;
 
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-direction: column;
     gap: 2.5rem;
 
@@ -83,7 +78,7 @@ html, body {
     border-radius: 0.5rem;
 }
 
-.secondary-container {
+.credits-container {
     border: 2px solid black;
 }
 
@@ -102,30 +97,27 @@ a:hover { cursor: pointer; }
     align-items: center; /* Center image on mobile */
 
     gap: 2.5rem;
+    flex-shrink: 0;
 }
 
 .content-left {
     flex: 1; /* Space the items equally */
+    min-width: 50%;
 }
 
 .main-img {
     display: block;
     margin: auto;
-    max-width: 80%;
 }
 
-.img-container {
+.sidebar {
     display: block;
-
-    max-width: 100%;
-    width: 60%;
     height: auto;
-
     outline: 1px solid #3c2a68;
-
     background-color: #202020;
-
     padding: 1.5rem;
+
+    width: 90%;
 }
 
 .info-table {
@@ -188,24 +180,6 @@ table {
     font-family: 'Courier New', monospace; /* Professional dev look */
 }
 
-.mc-tag {
-    background: #2d2d2d;
-    color: #f1f1f1;
-    padding: 4px 10px;
-    border-radius: 15px;
-    border: 2px solid #444;
-    font-size: 1.0125rem;
-}
-
-.mc-tag small {
-    color: #888; /* Fades the namespace prefix */
-    margin-right: 2px;
-}
-
-.c-namespace {
-    border: 2px solid #6151b3;
-}
-
 .extra-gap {
     padding-top:1em;
 }
@@ -223,18 +197,10 @@ table {
     .top-content-wrapper {
         flex-direction: row;
         align-items: flex-start;
+        flex-shrink: 0;
     }
 
-    .img-container {
-        max-width: 30%;
-        font-size: 1rem;
-    }
-
-    .menu-btn {
-        font-size: 0.75rem;
-    }
-
-    .mc-tag {
-        font-size: 0.9rem;
+    .sidebar {
+        width: 35%;
     }
 }

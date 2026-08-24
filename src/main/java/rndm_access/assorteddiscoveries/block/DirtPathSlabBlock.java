@@ -1,6 +1,7 @@
 package rndm_access.assorteddiscoveries.block;
 
 import com.mojang.serialization.MapCodec;
+import net.fabricmc.loader.api.FabricLoader;
 import rndm_access.assorteddiscoveries.core.ModBlocks;
 
 import java.util.HashMap;
@@ -39,7 +40,10 @@ public class DirtPathSlabBlock extends SlabBlock {
             tickView.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
         }
 
-        if(direction.equals(Direction.UP) && !state.getValue(TYPE).equals(SlabType.BOTTOM)) {
+        if(direction.equals(Direction.UP)) {
+            if (state.getValue(TYPE).equals(SlabType.BOTTOM) && !FabricLoader.getInstance().isModLoaded("slabbed")) {
+                return state;
+            }
             return ModBlocks.DIRT_SLAB.defaultBlockState().setValue(TYPE, state.getValue(TYPE))
                     .setValue(WATERLOGGED, state.getValue(WATERLOGGED));
         } else {

@@ -14,7 +14,7 @@ import podzolBlock from "../block_img/podzol.webp";
 import myceliumBlock from "../block_img/mycelium.webp";
 
 const optionList = {
-    "normal": [
+    "grass": [
         {
             "src": grassSlab,
             "alt": "Grass Slab"

@@ -79,7 +79,7 @@ const documents = [
         title: 'wolf plushie',
         key_words: 'dog',
         description: 'Plushies inspired by the wolf mob variants, the wolf plushie can both sit and stand.',
-        link: './wolf_plushie.html',
+        link: './wolf_plushies.html',
         img: paleWolfPlushieStanding,
     },
     {
@@ -87,7 +87,7 @@ const documents = [
         title: 'strider plushie',
         key_words: '',
         description: 'Plushies inspired by the strider mob\'s different forms',
-        link: './strider_plushie.html',
+        link: './strider_plushies.html',
         img: striderPlushie,
     },
     {
@@ -119,7 +119,7 @@ const documents = [
         title: 'cow plushie',
         key_words: '',
         description: 'A plushie inspired by the cow mob.',
-        link: './cow_plushie.html',
+        link: './cow_plushies.html',
         img: temperateCowPlushie,
     },
     {
@@ -127,7 +127,7 @@ const documents = [
         title: 'mooshroom plushie',
         key_words: '',
         description: 'Plushies inspired by the mooshroom mob variants.',
-        link: './mooshroom_plushie.html',
+        link: './mooshroom_plushies.html',
         img: redMooshroomPlushie,
     },
     {
@@ -135,7 +135,7 @@ const documents = [
         title: 'sheep plushie',
         key_words: 'white light gray black brown red orange yellow lime green cyan blue purple magenta pink',
         description: 'Plushies inspired by the sheep mob variants.',
-        link: './sheep_plushie.html',
+        link: './sheep_plushies.html',
         img: whiteSheepPlushie,
     },
     {
@@ -143,7 +143,7 @@ const documents = [
         title: 'hoglin plushie',
         key_words: '',
         description: 'Plushies inspired by hoglin mob variants.',
-        link: './hoglin_plushie.html',
+        link: './hoglin_plushies.html',
         img: hoglinPlushie,
     },
     {
@@ -172,10 +172,10 @@ const documents = [
     },
     {
         id: 18,
-        title: 'grass slab',
+        title: 'grass slabs',
         key_words: 'podzol mycelium',
-        description: 'Everything you need to know about grass, podzol, and mycelium slabs.',
-        link: './grass_slab.html',
+        description: 'Read all about the grass, podzol, and mycelium slabs.',
+        link: './grass_slabs.html',
         img: grassSlab,
     },
     {
@@ -183,7 +183,7 @@ const documents = [
         title: 'dirt slab',
         key_words: 'coarse rooted',
         description: 'Everything you need to know about dirt, coarse dirt, and rooted dirt slabs.',
-        link: './dirt_slab.html',
+        link: './dirt_slabs.html',
         img: dirtSlab,
     },
     {
@@ -258,13 +258,20 @@ const documents = [
         link: './witchs_cradle_soup.html',
         img: witchsCradleSoup,
     },
-
     {
         id: 29,
         title: 'dyed campfire',
         key_words: 'white light gray black brown red orange yellow lime green cyan blue purple magenta pink',
         description: 'Read all about dyed campfires. These come in all vanilla dye colors!',
         link: './dyed_campfire.html',
+        img: whiteCampfire,
+    },
+    {
+        id: 30,
+        title: 'plushies',
+        key_words: '',
+        description: 'Find out what all plushies have in common!',
+        link: './plushies.html',
         img: whiteCampfire,
     },
 ];

@@ -18,7 +18,7 @@ const craftingLists = {
     "dirt": [dirtBlock, coarseDirtBlock, rootedDirtBlock]
 }
 const optionList = {
-    "normal": [
+    "dirt": [
         {
             "src": dirtSlab,
             "alt": "Dirt Slab"

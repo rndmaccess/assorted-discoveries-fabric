@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="../js/dirt_slab.js" defer></script>
+    <script src="../js/grass_slab.js" defer></script>
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/crafting.css">
     <meta charset="UTF-8">
-    <title>Dirt Slab - Assorted Discoveries Wiki</title>
+    <title>Grass Slabs - Assorted Discoveries Wiki</title>
     <link rel="icon" href="../favicon.png" type="image/png">
 </head>
 <body>
@@ -16,42 +16,53 @@
                     About
                 </h2>
                 <p>
-                    The <b>dirt slab</b> is a decorative block that can be combined into a <b>single block</b>.
-                    Dirt slabs come in three different variants normal, coarse, and rooted.
+                    The <b>grass slab</b>, <b>podzol slab</b>, and <b>mycelium slab</b> are decorative slab variants of the various blocks.
+                    These slabs can be combined into a single block, similarly to vanilla <a href="https://minecraft.wiki/w/Slab">slabs</a>.
                 </p>
                 <h2>
                     Config
                 </h2>
                 <p>
-                    Set <b>Enable Dirt Slabs</b> to <b>Yes/true (default)</b> to activate these blocks,
-                    or <b>No/false</b> to disable them. All dirt and grass slabs are controlled by this setting.
+                    <b>Grass slabs</b> are enabled and disabled with the same config setting as <b>dirt slabs</b>.
+                    Visit the <b><a href="dirt_slabs.html">dirt slabs page</a></b> to read more about it.
                 </p>
                 <h2>
                     Making Path Slabs
                 </h2>
                 <p>
-                    Any variant of dirt slab can be made into a <a href="./dirt_path_slab.html">dirt path slab</a> by using a <b>shovel</b> on it.
+                    Using a <b>shovel</b> on a grass, podzol, or mycelium slab transforms it into a <b><a href="./dirt_path_slab.html">dirt path slab</a></b>.
+                </p>
+                <h2>
+                    Bonemeal (Normal Grass Slabs Only)
+                </h2>
+                <p>
+                    Unlike grass blocks, <b>grass slabs</b> do not spread instead bonemeal
+                    turns <b><a href="dirt_slabs.html">dirt slabs</a></b> into <b>grass slabs</b>.
+                    If bonemeal is used on an <b>upper</b> or <b>double</b> normal grass slab, it will grow flowers and tall grass.
+                    Additionally, if the <b>Slabbed mod</b> is installed <b>lower grass slabs</b> can grow flowers and tall grass as well.
                 </p>
                 <h2>
                     Placing Plants
                 </h2>
                 <p>
-                    Only the <b>top and double</b> variants support plants normally.
-                    However, if the <b>Slabbed mod</b> is installed the <b>bottom</b> variant will support plants as well.
+                    By default, the top and double variants are the only variants that support plants.
+                    However, if the <b>Slabbed mod</b> is installed, the <b>bottom</b> variant <b>supports</b> plants as well.
                 </p>
                 <h2>
                     Breaking
                 </h2>
                 <p>
-                    <b>Breaking</b> a single upper or lower <b>dirt slab</b> drops <b>one slab</b>.
-                    If however, <b>two dirt slabs</b> are put together they act as a <b>whole block</b> and when broken
-                    they will <b>drop two slabs</b> instead of <b>one</b>.
+                    Breaking a single slab drops one slab, while a double slab drops two.
+                    Unlike their full-block counterparts, <b>grass, podzol, and mycelium slabs</b> always drop their
+                    respective slab type instead of reverting to <b>dirt</b> slabs.
                 </p>
                 <h2>
                     Double Slabs
                 </h2>
                 <p>
-                    Only <b>two dirt slabs</b> of the same <b>type</b> can form a <b>double slab</b> unless a different mod changes this behavior.
+                    Only <b>two grass slabs</b> of the same <b>type</b> can form a <b>double slab</b>
+                    unless a different mod changes this behavior, similarly to normal
+                    <a href="https://minecraft.wiki/w/Slab">slabs</a>.
                 </p>
                 <h2>
                     Crafting Recipe
@@ -67,44 +78,44 @@
                         <div class="slot"><div class="crafting-item"></div></div>
                         <div class="slot"><div class="crafting-item"></div></div>
 
-                        <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-type="dirt" src="../block_img/dirt.webp" alt=""></div>
-                        <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-type="dirt" src="../block_img/dirt.webp" alt=""></div>
-                        <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-type="dirt" src="../block_img/dirt.webp" alt=""></div>
+                        <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-type="grass" src="../block_img/grass_block.webp" alt=""></div>
+                        <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-type="grass" src="../block_img/grass_block.webp" alt=""></div>
+                        <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-type="grass" src="../block_img/grass_block.webp" alt=""></div>
                     </div>
                     <div class="front-result">
-                        <div><img class="result-item cycle-item" loading="lazy" data-type="dirt_slab" src="../block_img/dirt_slab.webp" alt=""></div>
+                        <div><img class="result-item cycle-item" loading="lazy" data-type="grass_slab" src="../block_img/grass_slab.webp" alt=""></div>
                         <div class="result-count">6</div>
                     </div>
                 </div>
                 <p>
-                    Craft six dirt slabs by placing three of any dirt type in a single row.
+                    Craft six grass slabs by placing three of any grass block in a single row.
                 </p>
             </div>
 
             <div class="sidebar">
                 <h1 class="main-title">
-                    Dirt Slab
+                    Grass Slabs
                 </h1>
 
                 <div id="image-changer-panel">
                     <div class="button-container">
-                        <button class="menu-btn selected" data-type="normal">Normal</button>
-                        <button class="menu-btn" data-type="coarse">Coarse</button>
-                        <button class="menu-btn" data-type="rooted">Rooted</button>
+                        <button class="menu-btn selected" data-type="grass">Grass</button>
+                        <button class="menu-btn" data-type="podzol">Podzol</button>
+                        <button class="menu-btn" data-type="mycelium">Mycelium</button>
                     </div>
 
-                    <img class="main-img swappable-img" src="../block_img/dirt_slab.webp" alt="Dirt Slab">
+                    <img class="main-img swappable-img" src="../block_img/grass_slab.webp" alt="Grass Slab">
                     <div class="sub-title">Bottom</div>
-                    <img class="main-img swappable-img" src="../block_img/dirt_slab_top.webp" alt="Dirt Slab">
+                    <img class="main-img swappable-img" src="../block_img/grass_slab_top.webp" alt="Grass Slab">
                     <div class="sub-title">Top</div>
-                    <img class="main-img swappable-img" src="../block_img/dirt.webp" alt="Dirt Slab">
+                    <img class="main-img swappable-img" src="../block_img/grass_block.webp" alt="Grass Slab">
                     <div class="sub-title">Double</div>
                 </div>
 
                 <table>
                     <tr>
                         <td class="img-desc">Renewable</td>
-                        <td class="img-desc">Yes (Crafting)</td>
+                        <td class="img-desc">Normal: <br>Yes (Crafting, Bonemeal) <br>Other: <br>Yes (Only Crafting)</td>
                     </tr>
                     <tr>
                         <td class="img-desc">Stackable</td>
@@ -120,11 +131,11 @@
                     </tr>
                     <tr>
                         <td class="img-desc">Blast Resistance</td>
-                        <td class="img-desc">0.5</td>
+                        <td class="img-desc">0.6</td>
                     </tr>
                     <tr>
                         <td class="img-desc">Hardness</td>
-                        <td class="img-desc">0.5</td>
+                        <td class="img-desc">0.6</td>
                     </tr>
                     <tr>
                         <td class="img-desc">Luminous</td>

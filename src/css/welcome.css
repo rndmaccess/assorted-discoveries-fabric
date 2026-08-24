@@ -1,20 +1,23 @@
 .recommendation-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     gap: 20px;
+    flex-wrap: wrap;
 }
 
 .recommendation-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex: 1;
 
     outline: 1px solid #3c2a68;
+
+    flex: 0 0 calc(33.333% - 14px);
 
     background-color: #202020;
     padding: 1rem;
     font-size: 1.5rem;
+    box-sizing: border-box;
 }
 
 .recommendation-img {

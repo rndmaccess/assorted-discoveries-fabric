@@ -35,10 +35,12 @@ html, body {
 }
 
 #image-changer-panel {
-    display: contents; /* Prevent the button container from affecting the layout of its children */
+    display: flex;
+    flex-direction: column;
 }
 
 .menu-btn {
+    font-size: 1.125rem; /* This property is not being inherited so it needs to be here! */
     background-color: transparent;
     border: none;
     border-bottom: 2px solid #F5F5F5;
@@ -191,6 +193,14 @@ table {
 
 /* Desktop properties */
 @media (min-width: 1024px) {
+    html, body {
+        font-size: 1rem;
+    }
+
+    .menu-btn {
+        font-size: 1rem; /* Return the buttons to their normal size */
+    }
+
     .container {
         max-width: 62.5%;
     }

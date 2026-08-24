@@ -16,20 +16,13 @@ import rndm_access.assorteddiscoveries.config.json.json_objects.JsonConfigCatego
 import rndm_access.assorteddiscoveries.core.ModResourceConditionTypes;
 
 import java.util.List;
-import java.util.function.Function;
 
 public record AnyInCategoryEnabledResourceCondition(String configKey) implements ResourceCondition {
-    public static final MapCodec<AnyInCategoryEnabledResourceCondition> CODEC
-            = RecordCodecBuilder.mapCodec((instance) -> {
-        Function<AnyInCategoryEnabledResourceCondition, String> key = AnyInCategoryEnabledResourceCondition::getConfigKey;
-
-        return instance.group(Codec.STRING.fieldOf("value").forGetter(key))
-                .apply(instance, AnyInCategoryEnabledResourceCondition::new);
-    });
-
-    public String getConfigKey() {
-        return this.configKey;
-    }
+    public static final MapCodec<AnyInCategoryEnabledResourceCondition> CODEC = RecordCodecBuilder.mapCodec(
+            instance -> instance.group(
+                    Codec.STRING.fieldOf("value").forGetter(AnyInCategoryEnabledResourceCondition::configKey)
+            ).apply(instance, AnyInCategoryEnabledResourceCondition::new)
+    );
 
     @Override
     public @NonNull ResourceConditionType<?> getType() {
@@ -46,12 +39,8 @@ public record AnyInCategoryEnabledResourceCondition(String configKey) implements
         List<ConfigObject> objects = category.getConfigObjects();
 
         for (ConfigObject object : objects) {
-            if (object instanceof BooleanConfigEntry entry) {
-                boolean value = entry.getValue();
-
-                if (value) {
-                    return true;
-                }
+            if (object instanceof BooleanConfigEntry entry && entry.getValue()) {
+                return true;
             }
         }
         return false;

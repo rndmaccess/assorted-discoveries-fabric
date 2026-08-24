@@ -44,6 +44,7 @@ public record AllEntriesEnabledResourceCondition(List<String> configKeys) implem
                 }
             } else {
                 AssortedDiscoveries.LOGGER.error("{} is not a known config entry or is not a boolean!", configKey);
+                return false;
             }
         }
         return true;

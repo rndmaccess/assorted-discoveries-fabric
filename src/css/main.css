@@ -40,7 +40,7 @@ html, body {
 }
 
 .menu-btn {
-    font-size: 1.125rem; /* This property is not being inherited so it needs to be here! */
+    font: inherit; /* Inherit the font size from the parents. */
     background-color: transparent;
     border: none;
     border-bottom: 2px solid #F5F5F5;
@@ -58,6 +58,7 @@ html, body {
 
 .selected {
     border-bottom-color: #6151b3;
+    font-weight: bold;
 }
 
 .container {
@@ -198,7 +199,7 @@ table {
     }
 
     .menu-btn {
-        font-size: 1rem; /* Return the buttons to their normal size */
+        font-size: 0.95rem;
     }
 
     .container {

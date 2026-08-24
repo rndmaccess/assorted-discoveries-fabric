@@ -17,6 +17,7 @@ import blueCampfire from "../anim_block_img/blue_campfire.webp";
 import purpleCampfire from "../anim_block_img/purple_campfire.webp";
 import magentaCampfire from "../anim_block_img/magenta_campfire.webp";
 import pinkCampfire from "../anim_block_img/pink_campfire.webp";
+import unlitCampfire from "../block_img/unlit_campfire.webp";
 
 import whiteCampfireItem from "../item_img/white_campfire.webp";
 import lightGrayCampfireItem from "../item_img/light_gray_campfire.webp";
@@ -155,6 +156,12 @@ const optionList = {
         {
             "src": pinkCampfire,
             "alt": "Pink Campfire",
+        }
+    ],
+    "unlit": [
+        {
+            "src": unlitCampfire,
+            "alt": "Unlit Dyed Campfire",
         }
     ],
 }

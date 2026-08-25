@@ -657,7 +657,7 @@ public final class ModBlocks {
             BlockBehaviour.Properties.ofFullCopy(Blocks.GRASS_BLOCK));
     public static final Block PODZOL_SLAB = registerSnowySlab(ModBlockIds.PODZOL_SLAB_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.PODZOL));
-    public static final Block MYCELIUM_SLAB = registerSnowySlab(ModBlockIds.MYCELIUM_SLAB_KEY,
+    public static final Block MYCELIUM_SLAB = register(ModBlockIds.MYCELIUM_SLAB_KEY, MyceliumSlabBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.MYCELIUM));
     public static final Block DIRT_PATH_SLAB
             = register(ModBlockIds.DIRT_PATH_SLAB_KEY, DirtPathSlabBlock::new,

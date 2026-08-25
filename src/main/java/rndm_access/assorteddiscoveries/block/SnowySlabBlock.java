@@ -33,7 +33,7 @@ public class SnowySlabBlock extends SlabBlock {
     }
 
     @Override
-    public @NonNull MapCodec<SnowySlabBlock> codec() {
+    public MapCodec<? extends SnowySlabBlock> codec() {
         return CODEC;
     }
 

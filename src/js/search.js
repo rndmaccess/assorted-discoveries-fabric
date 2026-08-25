@@ -27,6 +27,7 @@ import oakWall from '../block_img/oak_wall.webp';
 import witchsCradleSoup from '../item_img/witchs_cradle_soup.webp';
 import witchsCradleBranch from '../item_img/witchs_cradle_branch.webp';
 import whiteCampfire from '../anim_block_img/white_campfire.webp';
+import whiteTorch from '../anim_block_img/white_torch.webp';
 
 let miniSearch = new MiniSearch({
     fields: ['title', 'key_words'],
@@ -273,6 +274,14 @@ const documents = [
         description: 'Find out what all plushies have in common!',
         link: './plushies.html',
         img: endermanPlushie,
+    },
+    {
+        id: 31,
+        title: 'dyed torch',
+        key_words: 'white light gray black brown red orange yellow lime green cyan blue purple magenta pink',
+        description: 'Read all about dyed torches. These come in all vanilla dye colors!',
+        link: './dyed_torch.html',
+        img: whiteTorch,
     },
 ];
 

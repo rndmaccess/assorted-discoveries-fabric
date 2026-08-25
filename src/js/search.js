@@ -289,7 +289,7 @@ const documents = [
         title: 'stripped wooden walls',
         key_words: 'oak spruce birch jungle acacia dark mangrove cherry pale bamboo crimson warped',
         description: 'Read all about the various stripped wooden walls! These include oak, spruce, birch, etc.',
-        link: './stripped_wooden_wall.html',
+        link: './stripped_wooden_walls.html',
         img: strippedOakWall,
     },
 ];

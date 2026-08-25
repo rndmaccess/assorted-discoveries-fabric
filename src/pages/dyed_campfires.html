@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="../js/dyed_torch.js" defer></script>
+    <script src="../js/dyed_campfire.js" defer></script>
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/crafting.css">
     <meta charset="UTF-8">
-    <title>Dyed Campfire - Assorted Discoveries Wiki</title>
+    <title>Dyed Campfires - Assorted Discoveries Wiki</title>
     <link rel="icon" href="../favicon.png" type="image/png">
 </head>
 <body>
@@ -16,35 +16,95 @@
                     About
                 </h2>
                 <p>
-                    The <b>dyed torch</b> is a variant of the torch that comes in all 16 <a href="https://minecraft.wiki/w/Dye">dye</a> colors.
+                    A <b>dyed campfire</b> is a variant of the campfire that comes in all 16 <a href="https://minecraft.wiki/w/Dye">dye</a> colors.
                 </p>
                 <h2>
                     Config
                 </h2>
                 <ul>
-                    <li>In-Game Screen Name: Enable Dyed Torches</li>
-                    <li>Config File Key: <code>enable_dyed_torches</code></li>
+                    <li>In-Game Screen Name: Enable Dyed Campfires</li>
+                    <li>Config File Key: <code>enable_dyed_campfires</code></li>
                     <li>Default: <code>true</code> / <code>Yes</code></li>
                 </ul>
                 <p>
-                    Determines whether dyed torches can be obtained.
+                    Determines whether dyed campfires can be obtained.
                 </p>
                 <ul>
-                    <li><code>true</code> / <code>Yes</code>: Dyed torches are enabled.</li>
-                    <li><code>false</code> / <code>No</code>: Dyed torches are disabled and hidden.</li>
+                    <li><code>true</code> / <code>Yes</code>: Dyed campfires are enabled.</li>
+                    <li><code>false</code> / <code>No</code>: Dyed campfires are disabled and hidden.</li>
                 </ul>
-                <h2>
-                    Breaking
-                </h2>
-                <p>
-                    Dyed torches can be broken instantly using anything, and drop themselves as an item.
-                    These torches break in the same exact conditions as normal <a href="https://minecraft.wiki/w/Torch">torches</a>.
-                </p>
                 <h2>
                     Placing
                 </h2>
                 <p>
-                    Dyed torches act exactly like a normal <a href="https://minecraft.wiki/w/Torch">torch</a> when placed.
+                    Dyed campfires are lit by default when placed.
+                </p>
+                <h2>
+                    Breaking
+                </h2>
+                <p>
+                    When broken, a dyed campfire drops
+                </p>
+                <ul>
+                    <li>Nothing if mined by hand.</li>
+                    <li>2 Charcoal if mined with any tool.</li>
+                    <li>Itself if mined with a tool enchanted with <a href="https://minecraft.wiki/w/Silk_Touch">Silk Touch</a>.</li>
+                </ul>
+                <h2>
+                    Waterlogged
+                </h2>
+                <p>
+                    Like normal <a href="https://minecraft.wiki/w/Campfire">campfires</a>,
+                    a dyed campfire becomes extinguished when waterlogged,
+                    preventing food from being cooked on it. If re-lit using
+                    <a href="https://minecraft.wiki/w/Flint_and_Steel">flint and steel</a> or a
+                    <a href="https://minecraft.wiki/w/Fire_Charge">fire charge</a>,
+                    the campfire retains its initial dyed color.
+                </p>
+                <h2>
+                    Hoppers
+                </h2>
+                <p>
+                    Like a normal <a href="https://minecraft.wiki/w/Campfire">campfire</a>,
+                    a <a href="https://minecraft.wiki/w/Hopper">hopper</a> placed directly
+                    underneath a dyed campfire pulls through any items dropped into it.
+                </p>
+                <h2>
+                    Damage
+                </h2>
+                <p>
+                    Dyed campfires will damage players and other mobs, similar to normal campfires.
+                    They do not destroy items.
+                </p>
+                <h2>
+                    Cooking
+                </h2>
+                <p>
+                    Cooking food on a dyed campfire works exactly like cooking on a normal
+                    <a href="https://minecraft.wiki/w/Campfire">campfire</a>.
+                </p>
+                <h2>
+                    Particles
+                </h2>
+                <p>
+                    Like normal <a href="https://minecraft.wiki/w/Campfire">campfires</a>,
+                    a lit dyed campfire produces smoke particles that float upward approximately
+                    10 blocks before disappearing.
+                    Placing a <a href="https://minecraft.wiki/w/Hay_Bale">hay bale</a> underneath increases
+                    the smoke height to 24 blocks, transforming it into a signal fire.
+                </p>
+                <p>
+                    Dyed Campfires also occasionally emit ember particles, similar to lava.
+                    The particle's color matches the dyed campfire's color.
+                </p>
+                <h2>
+                    Bees
+                </h2>
+                <p>
+                    Like a normal <a href="https://minecraft.wiki/w/Campfire">campfire</a>,
+                    a dyed campfire prevents <a href="https://minecraft.wiki/w/Bee">bees</a> from becoming aggravated
+                    when harvesting <a href="https://minecraft.wiki/w/Beehive">beehives</a>
+                    or <a href="https://minecraft.wiki/w/Bee_Nest">bee nests</a>.
                 </p>
                 <h2>
                     Crafting Recipe
@@ -52,7 +112,7 @@
                 <div class="crafting-area" id="crafting-anim" aria-hidden="true">
                     <img class="back" src="../gui_img/crafting_table_display.webp" alt="">
                     <div class="front">
-                        <div class="slot"><img class="crafting-item cycle-item" loading="lazy" src="../item_img/torch.webp" alt=""></div>
+                        <div class="slot"><img class="crafting-item cycle-item" loading="lazy" src="../item_img/campfire.webp" alt=""></div>
                         <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-type="dye" src="../item_img/white_dye.webp" alt=""></div>
                         <div class="slot"><div class="crafting-item"></div></div>
 
@@ -65,17 +125,17 @@
                         <div class="slot"></div>
                     </div>
                     <div class="front-result">
-                        <div><img class="result-item cycle-item" loading="lazy" data-type="dyed_torch" src="../item_img/white_torch.webp" alt=""></div>
+                        <div><img class="result-item cycle-item" loading="lazy" data-type="dyed_campfire" src="../item_img/white_campfire.webp" alt=""></div>
                     </div>
                 </div>
                 <p>
-                    Craft a dyed torch by placing a torch and any color of dye in any arrangement.
+                    Craft a dyed campfire by placing a campfire and any color of dye in any arrangement.
                 </p>
             </div>
 
             <div class="sidebar">
                 <h1 class="main-title">
-                    Dyed Torches
+                    Dyed Campfires
                 </h1>
 
                 <div id="image-changer-panel">
@@ -97,9 +157,10 @@
                         <button class="menu-btn" data-type="gray">Gray</button>
                         <button class="menu-btn" data-type="magenta">Magenta</button>
                         <button class="menu-btn" data-type="pink">Pink</button>
+                        <button class="menu-btn" data-type="unlit">Unlit</button>
                     </div>
 
-                    <img class="main-img swappable-img" src="../anim_block_img/white_torch.webp" alt="White Torch">
+                    <img class="main-img swappable-img" src="../anim_block_img/white_campfire.webp" alt="White Campfire">
                 </div>
 
                 <table>
@@ -137,11 +198,11 @@
                     </tr>
                     <tr>
                         <td class="img-desc">Catches fire from lava</td>
-                        <td class="img-desc">No</td>
+                        <td class="img-desc">Yes</td>
                     </tr>
                     <tr>
                         <td class="img-desc">Note block instrument</td>
-                        <td class="img-desc">Default (Harp)</td>
+                        <td class="img-desc">Bass</td>
                     </tr>
                 </table>
             </div>

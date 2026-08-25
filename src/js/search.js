@@ -28,6 +28,7 @@ import witchsCradleSoup from '../item_img/witchs_cradle_soup.webp';
 import witchsCradleBranch from '../item_img/witchs_cradle_branch.webp';
 import whiteCampfire from '../anim_block_img/white_campfire.webp';
 import whiteTorch from '../anim_block_img/white_torch.webp';
+import strippedOakWall from '../block_img/stripped_oak_wall.webp';
 
 let miniSearch = new MiniSearch({
     fields: ['title', 'key_words'],
@@ -45,18 +46,18 @@ const documents = [
     },
     {
         id: 2,
-        title: 'planter box',
+        title: 'planter boxes',
         key_words: 'growing overworld nether crops oak spruce birch jungle acacia dark mangrove cherry pale bamboo crimson warped',
         description: 'A planter box that can dynamically expand and is great for growing any overworld or nether crops!',
-        link: './planter_box.html',
+        link: './planter_boxes.html',
         img: oakPlanterBox,
     },
     {
         id: 3,
-        title: 'rope ladder',
+        title: 'rope ladders',
         key_words: '',
         description: 'These ladders can be hung from any solid block!',
-        link: './rope_ladder.html',
+        link: './rope_ladders.html',
         img: oakRopeLadder,
     },
     {
@@ -77,7 +78,7 @@ const documents = [
     },
     {
         id: 6,
-        title: 'wolf plushie',
+        title: 'wolf plushies',
         key_words: 'dog',
         description: 'Plushies inspired by the wolf mob variants, the wolf plushie can both sit and stand.',
         link: './wolf_plushies.html',
@@ -85,7 +86,7 @@ const documents = [
     },
     {
         id: 7,
-        title: 'strider plushie',
+        title: 'strider plushies',
         key_words: '',
         description: 'Plushies inspired by the strider mob\'s different forms',
         link: './strider_plushies.html',
@@ -109,15 +110,15 @@ const documents = [
     },
     {
         id: 10,
-        title: 'cat plushie',
+        title: 'cat plushies',
         key_words: '',
         description: 'Plushies inspired by the cat and ocelot mob variants, the cat plushie can both sit and stand.',
-        link: './cat_plushie.html',
+        link: './cat_plushies.html',
         img: ocelotPlushieStanding,
     },
     {
         id: 11,
-        title: 'cow plushie',
+        title: 'cow plushies',
         key_words: '',
         description: 'A plushie inspired by the cow mob.',
         link: './cow_plushies.html',
@@ -125,7 +126,7 @@ const documents = [
     },
     {
         id: 12,
-        title: 'mooshroom plushie',
+        title: 'mooshroom plushies',
         key_words: '',
         description: 'Plushies inspired by the mooshroom mob variants.',
         link: './mooshroom_plushies.html',
@@ -133,7 +134,7 @@ const documents = [
     },
     {
         id: 13,
-        title: 'sheep plushie',
+        title: 'sheep plushies',
         key_words: 'white light gray black brown red orange yellow lime green cyan blue purple magenta pink',
         description: 'Plushies inspired by the sheep mob variants.',
         link: './sheep_plushies.html',
@@ -141,7 +142,7 @@ const documents = [
     },
     {
         id: 14,
-        title: 'hoglin plushie',
+        title: 'hoglin plushies',
         key_words: '',
         description: 'Plushies inspired by hoglin mob variants.',
         link: './hoglin_plushies.html',
@@ -181,7 +182,7 @@ const documents = [
     },
     {
         id: 19,
-        title: 'dirt slab',
+        title: 'dirt slabs',
         key_words: 'coarse rooted',
         description: 'Everything you need to know about dirt, coarse dirt, and rooted dirt slabs.',
         link: './dirt_slabs.html',
@@ -221,26 +222,26 @@ const documents = [
     },
     {
         id: 24,
-        title: 'nether forage mix',
+        title: 'nether forage mixes',
         key_words: 'crimson warped berry cindersnap berries frostbite',
         description: 'Discover more about the crimson and warped forage mixes.',
-        link: './nether_forage_mix.html',
+        link: './nether_forage_mixes.html',
         img: crimsonForageMix,
     },
     {
         id: 25,
-        title: 'nether berry juice',
+        title: 'nether berry juices',
         key_words: 'crimson warped cindersnap frostbite berries',
         description: 'Discover more about the cindersnap and frostbite berry juices.',
-        link: './nether_berry_juice.html',
+        link: './nether_berry_juices.html',
         img: cindersnapBerryJuice,
     },
     {
         id: 26,
-        title: 'wooden wall',
+        title: 'wooden walls',
         key_words: 'oak spruce birch jungle acacia dark mangrove cherry pale bamboo crimson warped',
         description: 'Read all about the various wooden walls! These include oak, spruce, birch, etc.',
-        link: './wooden_wall.html',
+        link: './wooden_walls.html',
         img: oakWall,
     },
     {
@@ -261,10 +262,10 @@ const documents = [
     },
     {
         id: 29,
-        title: 'dyed campfire',
+        title: 'dyed campfires',
         key_words: 'white light gray black brown red orange yellow lime green cyan blue purple magenta pink',
         description: 'Read all about dyed campfires. These come in all vanilla dye colors!',
-        link: './dyed_campfire.html',
+        link: './dyed_campfires.html',
         img: whiteCampfire,
     },
     {
@@ -277,11 +278,19 @@ const documents = [
     },
     {
         id: 31,
-        title: 'dyed torch',
+        title: 'dyed torches',
         key_words: 'white light gray black brown red orange yellow lime green cyan blue purple magenta pink',
         description: 'Read all about dyed torches. These come in all vanilla dye colors!',
-        link: './dyed_torch.html',
+        link: './dyed_torches.html',
         img: whiteTorch,
+    },
+    {
+        id: 32,
+        title: 'stripped wooden walls',
+        key_words: 'oak spruce birch jungle acacia dark mangrove cherry pale bamboo crimson warped',
+        description: 'Read all about the various stripped wooden walls! These include oak, spruce, birch, etc.',
+        link: './stripped_wooden_wall.html',
+        img: strippedOakWall,
     },
 ];
 

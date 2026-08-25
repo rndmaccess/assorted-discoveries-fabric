@@ -272,7 +272,7 @@ const documents = [
         key_words: '',
         description: 'Find out what all plushies have in common!',
         link: './plushies.html',
-        img: whiteCampfire,
+        img: endermanPlushie,
     },
 ];
 

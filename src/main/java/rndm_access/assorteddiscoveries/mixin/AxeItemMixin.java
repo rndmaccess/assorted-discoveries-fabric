@@ -47,7 +47,8 @@ public abstract class AxeItemMixin {
                         ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND;
                 stack.hurtAndBreak(1, player, handSlot);
             }
-            assorteddiscoveries$setStrippedState(level, pos, unstrippedState, strippedBlock);
+            BlockState strippedState = assorteddiscoveries$getStrippedState(unstrippedState, strippedBlock);
+            level.setBlockAndUpdate(pos, strippedState);
             return InteractionResult.SUCCESS;
         }
         return original;
@@ -71,7 +72,7 @@ public abstract class AxeItemMixin {
     }
 
     @Unique
-    private static void assorteddiscoveries$setStrippedState(Level level, BlockPos pos, BlockState unstripped, Block stripped) {
+    private static BlockState assorteddiscoveries$getStrippedState(BlockState unstripped, Block stripped) {
         BlockState strippedState = stripped.defaultBlockState();
 
         for (Property<?> prop : unstripped.getProperties()) {
@@ -79,7 +80,7 @@ public abstract class AxeItemMixin {
                 strippedState = assorteddiscoveries$copyProperty(unstripped, strippedState, prop);
             }
         }
-        level.setBlockAndUpdate(pos, strippedState);
+        return strippedState;
     }
 
     @Unique

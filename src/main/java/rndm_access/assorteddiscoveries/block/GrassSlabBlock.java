@@ -13,7 +13,6 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import org.jspecify.annotations.NonNull;
 
 import java.util.List;
 import java.util.Optional;
@@ -85,7 +84,7 @@ public class GrassSlabBlock extends SnowySlabBlock implements BonemealableBlock 
     }
 
     @Override
-    public @NonNull Type getType() {
+    public Type getType() {
         return Type.NEIGHBOR_SPREADER;
     }
 }

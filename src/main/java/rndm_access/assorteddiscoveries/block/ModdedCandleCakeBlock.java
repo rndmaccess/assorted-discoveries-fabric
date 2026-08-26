@@ -64,30 +64,30 @@ public class ModdedCandleCakeBlock extends AbstractCandleBlock {
     }
 
     @Override
-    public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
-        InteractionHand hand = player.getUsedItemHand();
-        ItemStack handStack = player.getItemInHand(hand);
-
-        if (handStack.is(Items.FLINT_AND_STEEL) && handStack.is(Items.FIRE_CHARGE)) {
+    protected InteractionResult useItemOn(final ItemStack itemStack, final BlockState state, final Level level, final BlockPos pos, final Player player, final InteractionHand hand, final BlockHitResult hitResult) {
+        if (itemStack.is(Items.FLINT_AND_STEEL) || itemStack.is(Items.FIRE_CHARGE)) {
             return InteractionResult.PASS;
         }
 
-        if (isHittingCandle(hit) && player.getItemInHand(hand).isEmpty() && state.getValue(LIT)) {
-            extinguish(player, state, world, pos);
+        if (itemStack.isEmpty() && candleHit(hitResult) && state.getValue(LIT)) {
+            extinguish(player, state, level, pos);
             return InteractionResult.SUCCESS;
         } else {
-            InteractionResult actionResult = ModdedCakeBlock.tryEatCake(world, pos,
-                    this.cake.defaultBlockState(), player);
-
-            if (actionResult.consumesAction()) {
-                dropResources(state, world, pos);
-            }
-            return actionResult;
+            return super.useItemOn(itemStack, state, level, pos, player, hand, hitResult);
         }
     }
 
-    private static boolean isHittingCandle(BlockHitResult hitResult) {
-        return hitResult.getLocation().y - (double)hitResult.getBlockPos().getY() > 0.5D;
+    private static boolean candleHit(final BlockHitResult hitResult) {
+        return hitResult.getLocation().y - (double)hitResult.getBlockPos().getY() > (double)0.5F;
+    }
+
+    @Override
+    public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
+        InteractionResult eatResult = ModdedCakeBlock.tryEatCake(level, pos, this.cake.defaultBlockState(), player);
+        if (eatResult.consumesAction()) {
+            dropResources(state, level, pos);
+        }
+        return eatResult;
     }
 
     public static BlockState getCandleCake(Block cake, Block candle) {

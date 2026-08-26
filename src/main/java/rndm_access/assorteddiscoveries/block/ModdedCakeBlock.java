@@ -17,7 +17,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
-import org.jetbrains.annotations.NotNull;
 
 public class ModdedCakeBlock extends CakeBlock {
     public ModdedCakeBlock(Properties settings) {
@@ -64,9 +63,8 @@ public class ModdedCakeBlock extends CakeBlock {
         }
     }
 
-    @NotNull
     public static InteractionResult eat(LevelAccessor world, BlockPos pos, BlockState state, Player player,
-                                   int bitesTaken, IntegerProperty property) {
+                                        int bitesTaken, IntegerProperty property) {
         world.gameEvent(player, GameEvent.EAT, pos);
 
         if (bitesTaken < 6) {

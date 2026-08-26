@@ -35,7 +35,6 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.jspecify.annotations.NonNull;
 
 import java.util.Objects;
 
@@ -51,10 +50,10 @@ public abstract class AbstractBerryBushBlock extends VegetationBlock implements 
     }
 
     @Override
-    protected abstract @NonNull MapCodec<? extends AbstractBerryBushBlock> codec();
+    protected abstract MapCodec<? extends AbstractBerryBushBlock> codec();
 
     @Override
-    protected abstract void createBlockStateDefinition(StateDefinition.@NonNull Builder<Block, BlockState> builder);
+    protected abstract void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder);
 
     protected abstract Item berryItem();
 
@@ -65,14 +64,13 @@ public abstract class AbstractBerryBushBlock extends VegetationBlock implements 
     protected abstract boolean needsLightToGrow();
 
     @Override
-    public @NonNull ItemStack getCloneItemStack(@NonNull LevelReader world, @NonNull BlockPos pos,
-                                                @NonNull BlockState state, boolean includeData) {
+    public ItemStack getCloneItemStack(LevelReader world, BlockPos pos,
+                                                BlockState state, boolean includeData) {
         return new ItemStack(this.berryItem());
     }
 
     @Override
-    public @NonNull VoxelShape getShape(BlockState state, @NonNull BlockGetter world,
-                                        @NonNull BlockPos pos, @NonNull CollisionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         if (state.getValue(AGE) == 0) {
             return SMALL_SHAPE;
         } else {
@@ -97,8 +95,8 @@ public abstract class AbstractBerryBushBlock extends VegetationBlock implements 
     }
 
     @Override
-    public void entityInside(@NonNull BlockState state, @NonNull Level world, @NonNull BlockPos pos, Entity entity,
-                             @NonNull InsideBlockEffectApplier handler, boolean bl) {
+    public void entityInside(BlockState state, Level world, BlockPos pos, Entity entity,
+                             InsideBlockEffectApplier handler, boolean bl) {
         if (entity.is(this.mobsImmune())) {
             return;
         }
@@ -141,18 +139,17 @@ public abstract class AbstractBerryBushBlock extends VegetationBlock implements 
     }
 
     @Override
-    public boolean isValidBonemealTarget(@NonNull LevelReader world, @NonNull BlockPos pos, @NonNull BlockState state) {
+    public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state) {
         return this.isBushYoung(state);
     }
 
     @Override
-    public boolean isBonemealSuccess(@NonNull Level world, @NonNull RandomSource random,
-                                     @NonNull BlockPos pos, @NonNull BlockState state) {
+    public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
         return true;
     }
 
-    public void performBonemeal(ServerLevel world, @NonNull RandomSource random,
-                                @NonNull BlockPos pos, BlockState state) {
+    @Override
+    public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
         int i = Math.min(this.getMaxAge(), state.getValue(AGE) + 1);
         world.setBlock(pos, state.setValue(AGE, i), 2);
     }
@@ -183,7 +180,7 @@ public abstract class AbstractBerryBushBlock extends VegetationBlock implements 
     }
 
     @Override
-    protected boolean isPathfindable(@NonNull BlockState state, @NonNull PathComputationType type) {
+    protected boolean isPathfindable(BlockState state, PathComputationType type) {
         return !this.bushDamages();
     }
 }

@@ -655,7 +655,7 @@ public final class ModBlocks {
     public static final Block GRASS_SLAB
             = register(ModBlockIds.GRASS_SLAB_KEY, GrassSlabBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.GRASS_BLOCK));
-    public static final Block PODZOL_SLAB = registerSnowySlab(ModBlockIds.PODZOL_SLAB_KEY,
+    public static final Block PODZOL_SLAB = register(ModBlockIds.PODZOL_SLAB_KEY, SnowySlabBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.PODZOL));
     public static final Block MYCELIUM_SLAB = register(ModBlockIds.MYCELIUM_SLAB_KEY, MyceliumSlabBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.MYCELIUM));
@@ -894,10 +894,6 @@ public final class ModBlocks {
     private static Block registerPie(BlockItemId id) {
         BlockBehaviour.Properties pieSettings = BlockBehaviour.Properties.ofFullCopy(Blocks.CAKE);
         return register(id, (props) -> new PieBlock(props, 3, 0.6F), pieSettings);
-    }
-
-    private static Block registerSnowySlab(BlockItemId id, BlockBehaviour.Properties settings) {
-        return register(id, SnowySlabBlock::new, settings);
     }
 
     private static BlockBehaviour.Properties makeBauxiteSettings() {

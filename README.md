@@ -6,7 +6,11 @@ Assets for this project are licensed under All Rights Reserved. The code for thi
 is licensed under the MIT license.
 This license can be found here: [LICENSE](./LICENSE.md).
 
-## Download Links
+## Official Wiki
+
+https://rndmaccess.github.io/assorted-discoveries-fabric/
+
+## Official Download Links
 
 - [Curseforge](https://www.curseforge.com/minecraft/mc-mods/assorted-discoveries)
 - [Modrinth](https://modrinth.com/mod/assorted-discoveries)

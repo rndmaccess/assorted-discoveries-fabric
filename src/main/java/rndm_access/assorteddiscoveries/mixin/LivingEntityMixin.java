@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.At;
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
     @ModifyReturnValue(method = "causeFallDamage", at = @At("RETURN"))
-    public boolean causeFallDamage(boolean original, double fallDistance, float damageModifier,
+    public boolean assorteddiscoveries$extendSafeRabbitFall(boolean original, double fallDistance, float damageModifier,
                                    DamageSource damageSource) {
         boolean isRabbit = ((EntityAccessor) this).getType().equals(EntityTypes.RABBIT);
 

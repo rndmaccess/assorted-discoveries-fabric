@@ -23,26 +23,26 @@ import rndm_access.assorteddiscoveries.util.EndBoneMealHelper;
 public abstract class BoneMealItemMixin {
 
     @ModifyReturnValue(method = "useOn", at = @At("RETURN"))
-    private InteractionResult useOn(InteractionResult original, UseOnContext context) {
+    private InteractionResult assorteddiscoveries$useOnEndstone(InteractionResult original, UseOnContext context) {
         if (!ModConfig.ENABLE_ENDER_PLANTS.getValue() || original.consumesAction()) {
             return original;
         }
 
         BlockPos soilPos = context.getClickedPos();
         Level level = context.getLevel();
-        boolean isBoneMealable = level.getBlockState(soilPos).is(ModBlockTags.END_BONE_MEALABLE_BLOCKS);
+        boolean isEndStone = level.getBlockState(soilPos).is(ModBlockTags.END_BONE_MEALABLE_BLOCKS);
         BlockPos centerPos = soilPos.above();
         boolean isEmptyAbove = level.getBlockState(centerPos).isAir();
 
         // Grow snapdragons and ender grass on blocks in the END_BONE_MEALABLE_BLOCKS when using bone meal.
-        if (isBoneMealable && !level.isOutsideBuildHeight(centerPos) && isEmptyAbove) {
-            return applyBoneMeal(context, level, centerPos);
+        if (isEndStone && !level.isOutsideBuildHeight(centerPos) && isEmptyAbove) {
+            return assorteddiscoveries$applyBoneMeal(context, level, centerPos);
         }
         return original;
     }
 
     @Unique
-    private static InteractionResult applyBoneMeal(UseOnContext context, Level level, BlockPos centerPos) {
+    private static InteractionResult assorteddiscoveries$applyBoneMeal(UseOnContext context, Level level, BlockPos centerPos) {
         Player player = context.getPlayer();
         ItemStack boneMealStack = context.getItemInHand();
 

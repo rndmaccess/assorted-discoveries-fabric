@@ -24,7 +24,7 @@ import net.minecraft.world.level.block.state.BlockState;
 @Mixin(ShovelItem.class)
 public abstract class ShovelItemMixin {
     @ModifyReturnValue(method = "useOn", at = @At("RETURN"))
-    private InteractionResult useOn(InteractionResult original, UseOnContext context) {
+    private InteractionResult assorteddiscoveries$useOnSoilSlab(InteractionResult original, UseOnContext context) {
         // If a previous mixin already succeeded or canceled, respect it
         if (original.consumesAction()) {
             return original;
@@ -35,27 +35,32 @@ public abstract class ShovelItemMixin {
         BlockState state = level.getBlockState(pos);
 
         if(state.is(ModBlockTags.SOIL_SLABS)) {
-            if (!state.hasProperty(SlabBlock.TYPE) || !state.hasProperty(SlabBlock.WATERLOGGED)) {
-                return InteractionResult.FAIL;
-            }
-
-            if (state.getValue(SlabBlock.TYPE) == SlabType.BOTTOM) {
-                this.convertSlabToPath(context);
-                return InteractionResult.SUCCESS;
-            }
-
-            BlockState coveringState = level.getBlockState(pos.above());
-            if(!coveringState.isFaceSturdy(level, pos.above(), Direction.DOWN)) {
-                this.convertSlabToPath(context);
-                return InteractionResult.SUCCESS;
-            }
-            return InteractionResult.FAIL;
+            return assorteddiscoveries$tryConvertSlabToPath(context, level, state, pos);
         }
         return original;
     }
 
     @Unique
-    private void convertSlabToPath(UseOnContext context) {
+    private InteractionResult assorteddiscoveries$tryConvertSlabToPath(UseOnContext context, Level level, BlockState state, BlockPos pos) {
+        if (!state.hasProperty(SlabBlock.TYPE) || !state.hasProperty(SlabBlock.WATERLOGGED)) {
+            return InteractionResult.FAIL;
+        }
+
+        if (state.getValue(SlabBlock.TYPE) == SlabType.BOTTOM) {
+            this.assorteddiscoveries$convertSlabToPath(context);
+            return InteractionResult.SUCCESS;
+        }
+
+        BlockState coveringState = level.getBlockState(pos.above());
+        if(!coveringState.isFaceSturdy(level, pos.above(), Direction.DOWN)) {
+            this.assorteddiscoveries$convertSlabToPath(context);
+            return InteractionResult.SUCCESS;
+        }
+        return InteractionResult.FAIL;
+    }
+
+    @Unique
+    private void assorteddiscoveries$convertSlabToPath(UseOnContext context) {
         Level level = context.getLevel();
         BlockPos slabPos = context.getClickedPos();
         Player player = context.getPlayer();

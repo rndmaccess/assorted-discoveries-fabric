@@ -24,17 +24,17 @@ public abstract class EntityMixin {
     public abstract boolean isCrouching();
 
     @Inject(method = "restituteMovementAfterCollisions", at = @At("HEAD"), cancellable = true)
-    private void restituteMovementAfterCollisions(BlockState effectState, boolean xCollision, boolean zCollision,
-                                                  Vec3 movement, CallbackInfo ci) {
+    private void assorteddiscoveries$bounceOnPurpleMushroomBlock(BlockState effectState, boolean xCollision, boolean zCollision,
+                                                                 Vec3 movement, CallbackInfo ci) {
         // Makes the purple mushroom blocks bouncy!!!
         if (effectState.is(ModBlocks.PURPLE_MUSHROOM_BLOCK) && !isCrouching()) {
-            this.bounceEntity(movement);
+            this.assorteddiscoveries$bounceEntity(movement);
             ci.cancel();
         }
     }
 
     @Unique
-    private void bounceEntity(Vec3 movement) {
+    private void assorteddiscoveries$bounceEntity(Vec3 movement) {
         if(movement.y() < 0) {
             double jumpSpeed = Math.max(-movement.y() * JUMP_BOOST, JUMP_HEIGHT);
             setDeltaMovement(movement.x(), jumpSpeed, movement.z());

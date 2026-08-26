@@ -10,7 +10,7 @@ import rndm_access.assorteddiscoveries.core.ModBlockTags;
 @Mixin(FenceGateBlock.class)
 public abstract class FenceGateBlockMixin {
     @ModifyReturnValue(method = "isWall", at = @At("RETURN"))
-    private boolean isWall(boolean original, BlockState state) {
+    private boolean assorteddiscoveries$isSnowyOrWoodenWall(boolean original, BlockState state) {
         if(state.is(ModBlockTags.SNOW_WALLS) || state.is(ModBlockTags.WOODEN_WALLS)) {
             return true;
         }

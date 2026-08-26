@@ -13,7 +13,7 @@ import rndm_access.assorteddiscoveries.core.ModBlockTags;
 @Mixin(SpreadingSnowyBlock.class)
 public abstract class SpreadingSnowyBlockMixin {
     @ModifyReturnValue(method = "canStayAlive", at = @At("RETURN"))
-    private static boolean canStayAlive(boolean original, BlockState state, LevelReader level, BlockPos pos) {
+    private static boolean assorteddiscoveries$canGrassSurviveSnow(boolean original, BlockState state, LevelReader level, BlockPos pos) {
         BlockState blockState = level.getBlockState(pos.above());
 
         if(blockState.is(BlockTags.SNOW)

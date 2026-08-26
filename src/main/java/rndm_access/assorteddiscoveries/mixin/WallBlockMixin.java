@@ -11,7 +11,8 @@ import rndm_access.assorteddiscoveries.core.ModBlockTags;
 @Mixin(WallBlock.class)
 public abstract class WallBlockMixin {
     @ModifyReturnValue(method = "connectsTo", at = @At("RETURN"))
-    private boolean connectTo(boolean original, BlockState state, boolean faceSolid, Direction direction) {
+    private boolean assorteddiscoveries$connectToSnowAndWoodenWalls(boolean original, BlockState state,
+                                                                    boolean faceSolid, Direction direction) {
         if(state.is(ModBlockTags.SNOW_WALLS) || state.is(ModBlockTags.WOODEN_WALLS)) {
             return true;
         }

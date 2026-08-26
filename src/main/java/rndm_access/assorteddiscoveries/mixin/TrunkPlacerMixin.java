@@ -18,15 +18,16 @@ import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer;
 @Mixin(TrunkPlacer.class)
 public abstract class TrunkPlacerMixin {
     @Inject(method = "placeBelowTrunkBlock", at = @At("HEAD"), cancellable = true)
-    private static void placeBelowTrunkBlock(WorldGenLevel level, BiConsumer<BlockPos, BlockState> trunkSetter,
-                                             RandomSource random, BlockPos pos, TreeConfiguration config, CallbackInfo ci) {
-        if(isPlanterBox(level, pos)) {
+    private static void assorteddiscoveries$preventDirtReplacement(WorldGenLevel level, BiConsumer<BlockPos, BlockState> trunkSetter,
+                                                                   RandomSource random, BlockPos pos,
+                                                                   TreeConfiguration config, CallbackInfo ci) {
+        if(assorteddiscoveries$isPlanterBox(level, pos)) {
             ci.cancel();
         }
     }
 
     @Unique
-    private static boolean isPlanterBox(WorldGenLevel world, BlockPos pos) {
+    private static boolean assorteddiscoveries$isPlanterBox(WorldGenLevel world, BlockPos pos) {
         return world.isStateAtPosition(pos,
                 (state) -> state.is(ModBlockTags.OVERWORLD_PLANTER_BOXES)
                         || state.is(ModBlockTags.NETHER_PLANTER_BOXES));

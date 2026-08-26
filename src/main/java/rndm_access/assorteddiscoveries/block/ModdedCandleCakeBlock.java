@@ -83,7 +83,7 @@ public class ModdedCandleCakeBlock extends AbstractCandleBlock {
 
     @Override
     public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
-        InteractionResult eatResult = ModdedCakeBlock.tryEatCake(level, pos, this.cake.defaultBlockState(), player);
+        InteractionResult eatResult = ModdedCakeBlock.eatCake(level, pos, this.cake.defaultBlockState(), player);
         if (eatResult.consumesAction()) {
             dropResources(state, level, pos);
         }

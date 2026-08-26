@@ -30,7 +30,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import rndm_access.assorteddiscoveries.util.HashPair;
+import rndm_access.assorteddiscoveries.util.BlockPair;
 
 import java.util.Map;
 
@@ -46,7 +46,7 @@ public class ModdedCandleCakeBlock extends AbstractCandleBlock {
     private static final VoxelShape CANDLE_SHAPE = Block.box(7.0D, 8.0D, 7.0D,
             9.0D, 14.0D, 9.0D);
     private static final VoxelShape SHAPE = Shapes.or(CAKE_SHAPE, CANDLE_SHAPE);
-    private static final Map<HashPair<Block, Block>, ModdedCandleCakeBlock> CANDLES_TO_CANDLE_CAKES = Maps.newHashMap();
+    private static final Map<BlockPair, ModdedCandleCakeBlock> CANDLES_TO_CANDLE_CAKES = Maps.newHashMap();
     private final Block cake;
     private final Block candle;
 
@@ -56,7 +56,7 @@ public class ModdedCandleCakeBlock extends AbstractCandleBlock {
         this.cake = cake;
         this.candle = candle;
 
-        CANDLES_TO_CANDLE_CAKES.put(new HashPair<>(cake, candle), this);
+        CANDLES_TO_CANDLE_CAKES.put(new BlockPair(cake, candle), this);
     }
 
     @Override
@@ -92,11 +92,11 @@ public class ModdedCandleCakeBlock extends AbstractCandleBlock {
     }
 
     public static BlockState getCandleCake(Block cake, Block candle) {
-        return CANDLES_TO_CANDLE_CAKES.get(new HashPair<>(cake, candle)).defaultBlockState();
+        return CANDLES_TO_CANDLE_CAKES.get(new BlockPair(cake, candle)).defaultBlockState();
     }
 
     public static boolean containsCandleCake(Block cake, Block candle) {
-        return CANDLES_TO_CANDLE_CAKES.containsKey(new HashPair<>(cake, candle));
+        return CANDLES_TO_CANDLE_CAKES.containsKey(new BlockPair(cake, candle));
     }
 
     @Override

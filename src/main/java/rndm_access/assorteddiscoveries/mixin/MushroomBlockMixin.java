@@ -12,7 +12,7 @@ import rndm_access.assorteddiscoveries.util.SoilSlabUtil;
 @Mixin(MushroomBlock.class)
 public abstract class MushroomBlockMixin {
     @ModifyReturnValue(method = "canSurvive", at = @At("RETURN"))
-    private boolean assorteddiscoveries$preventOnBottomSlabs(boolean original, final BlockState state, final LevelReader level, final BlockPos pos) {
+    private boolean assorteddiscoveries$canSurviveOnSlabs(boolean original, final BlockState state, final LevelReader level, final BlockPos pos) {
         // Only run our logic if Minecraft already thinks the mushroom CAN survive here
         if (original) {
             BlockPos belowPos = pos.below();

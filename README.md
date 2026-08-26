@@ -8,12 +8,12 @@ This license can be found here: [LICENSE](./LICENSE.md).
 
 ## Official Wiki
 
-https://rndmaccess.github.io/assorted-discoveries-fabric/
+- Wiki link: [https://rndmaccess.github.io/assorted-discoveries-fabric/](https://rndmaccess.github.io/assorted-discoveries-fabric/)
 
 ## Official Download Links
 
-- [Curseforge](https://www.curseforge.com/minecraft/mc-mods/assorted-discoveries)
-- [Modrinth](https://modrinth.com/mod/assorted-discoveries)
+- Curseforge Link: [https://www.curseforge.com/minecraft/mc-mods/assorted-discoveries](https://www.curseforge.com/minecraft/mc-mods/assorted-discoveries)
+- Modrinth Link: [https://modrinth.com/mod/assorted-discoveries](https://modrinth.com/mod/assorted-discoveries)
 
 ## About
 

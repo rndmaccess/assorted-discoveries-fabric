@@ -13,7 +13,7 @@ import rndm_access.assorteddiscoveries.util.SoilSlabUtil;
 public abstract class PlantBlockMixin {
     @ModifyReturnValue(method = "mayPlaceOn", at = @At("RETURN"))
     private boolean assorteddiscoveries$mayPlaceOnSlabs(boolean original, BlockState state, BlockGetter level, BlockPos pos) {
-        if(SoilSlabUtil.isForbiddenBottomSlab(state)) {
+        if (original && SoilSlabUtil.isForbiddenBottomSlab(state)) {
             return false;
         }
         return original;

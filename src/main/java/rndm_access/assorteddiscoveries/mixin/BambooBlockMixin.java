@@ -28,10 +28,12 @@ public abstract class BambooBlockMixin {
 
     @ModifyReturnValue(method = "canSurvive", at = @At("RETURN"))
     private boolean assorteddiscoveries$canSurviveOnSlabs(boolean original, BlockState state, LevelReader level, BlockPos pos) {
-        BlockState soil = level.getBlockState(pos.below());
+        if (original) {
+            BlockState soil = level.getBlockState(pos.below());
 
-        if (SoilSlabUtil.isForbiddenBottomSlab(soil)) {
-            return false;
+            if (SoilSlabUtil.isForbiddenBottomSlab(soil)) {
+                return false;
+            }
         }
         return original;
     }

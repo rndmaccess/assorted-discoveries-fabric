@@ -1260,11 +1260,11 @@ public final class ModBlocks {
     public static final Block GRASS_SLAB = register(GRASS_SLAB_KEY, GrassSlabBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.GRASS_BLOCK), true);
     public static final ResourceKey<Block> PODZOL_SLAB_KEY = makeRegistryKey("podzol_slab");
-    public static final Block PODZOL_SLAB = registerSnowySlab(PODZOL_SLAB_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.PODZOL).setId(PODZOL_SLAB_KEY));
+    public static final Block PODZOL_SLAB = register(PODZOL_SLAB_KEY, SnowySlabBlock::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.PODZOL));
     public static final ResourceKey<Block> MYCELIUM_SLAB_KEY = makeRegistryKey("mycelium_slab");
-    public static final Block MYCELIUM_SLAB = registerSnowySlab(MYCELIUM_SLAB_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.MYCELIUM).setId(MYCELIUM_SLAB_KEY));
+    public static final Block MYCELIUM_SLAB = register(MYCELIUM_SLAB_KEY, MyceliumSlabBlock::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.MYCELIUM));
     public static final ResourceKey<Block> DIRT_PATH_SLAB_KEY = makeRegistryKey("dirt_path_slab");
     public static final Block DIRT_PATH_SLAB = register(DIRT_PATH_SLAB_KEY, DirtPathSlabBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT_PATH), true);
@@ -1523,10 +1523,6 @@ public final class ModBlocks {
     private static Block registerPie(final ResourceKey<Block> id) {
         BlockBehaviour.Properties pieSettings = BlockBehaviour.Properties.ofFullCopy(Blocks.CAKE);
         return register(id, (props) -> new PieBlock(props, 3, 0.6F), pieSettings);
-    }
-
-    private static Block registerSnowySlab(final ResourceKey<Block> id, BlockBehaviour.Properties settings) {
-        return register(id, SnowySlabBlock::new, settings);
     }
 
     private static BlockBehaviour.Properties makeBauxiteSettings() {

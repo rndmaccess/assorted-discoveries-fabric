@@ -85,11 +85,14 @@ html, body {
 }
 
 /* Styled links */
-a { text-decoration: underline; }
+a { text-decoration: none; }
 a:link { color: #73A5C6; }
 a:visited { color: #8f82cb; }
 a:active { color: #c673a5; }
-a:hover { cursor: pointer; }
+a:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
 
 .top-content-wrapper {
     display: flex;

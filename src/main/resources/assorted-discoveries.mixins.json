@@ -6,6 +6,7 @@
     "AxeItemMixin",
     "BambooBlockMixin",
     "BoneMealItemMixin",
+    "DispenserBlockMixin",
     "EntityAccessor",
     "EntityMixin",
     "FenceGateBlockMixin",

@@ -2,7 +2,7 @@ package rndm_access.assorteddiscoveries.util;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.util.ParticleUtils;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import rndm_access.assorteddiscoveries.core.ModBlockTags;
@@ -10,9 +10,17 @@ import rndm_access.assorteddiscoveries.core.ModBlocks;
 
 public final class EndBoneMealHelper {
     public static void spawnEndGrowthParticles(final Level level, final BlockPos pos) {
-        int count = level.getRandom().nextInt(10);
-        ParticleUtils.spawnParticles(level, pos, count * 3, 3.0D, 1.0D,
-                false, ParticleTypes.END_ROD);
+        if (level instanceof ServerLevel serverLevel) {
+            int randomInt = level.getRandom().nextInt(10) + 1; // Kept the +1 fix so they don't break
+            int particleCount = randomInt * 3;
+
+            double x = pos.getX() + 0.5;
+            double y = pos.getY() + 0.5;
+            double z = pos.getZ() + 0.5;
+
+            serverLevel.sendParticles(ParticleTypes.END_ROD, false, true, x, y, z, particleCount,
+                    2.0D, 0.0D, 2.0D, 0.02D);
+        }
     }
 
     public static void growEnderPlants(Level level, BlockPos centerPos) {

@@ -20,7 +20,7 @@ public class EndBoneMealDispenserBehavior implements DispenseItemBehavior {
         if (!level.isClientSide()) {
             EndBoneMealHelper.growEnderPlants(level, targetPos);
         }
-        EndBoneMealHelper.spawnEndGrowthParticles(level, targetPos);
+        EndBoneMealHelper.spawnEndGrowthParticles(level, targetPos.above());
         level.levelEvent(2005, targetPos, 0);
 
         itemStack.shrink(1);

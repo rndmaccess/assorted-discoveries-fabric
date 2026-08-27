@@ -132,11 +132,20 @@ a:hover { cursor: pointer; }
     border-collapse: collapse;
     table-layout: fixed;
     background-color: #202020;
-    width: 50%;
 }
 
 .info-table tr:nth-child(even) {
     background-color: #303030;
+}
+
+.table-list {
+    margin: 0;
+    padding: 0;
+    list-style: none; /* Removes bullet points */
+}
+
+.table-list li + li {
+    margin-top: 4px; /* Adds spacing between items */
 }
 
 .info-header {
@@ -144,8 +153,24 @@ a:hover { cursor: pointer; }
     text-align: center;
 }
 
-.info-item {
-    padding: 0.25rem;
+.table-item {
+    padding: 0.5rem;
+}
+
+.table-note {
+    font-family: sans-serif;
+    font-size: 14px;
+    color: #a0a0a0;
+    margin-top: 8px;
+}
+
+.note-title {
+    color: #ffffff;
+}
+
+.note-text {
+    font-weight: bold;
+    color: #ff79c6;
 }
 
 .hero {

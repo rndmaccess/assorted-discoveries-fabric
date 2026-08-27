@@ -29,6 +29,13 @@
   "mixins": [
     "assorted-discoveries.mixins.json"
   ],
+  "custom": {
+    "modmenu": {
+      "links": {
+        "assorted-discoveries.wiki": "https://rndmaccess.github.io/assorted-discoveries-fabric/"
+      }
+    }
+  },
   "depends": {
     "fabricloader": ">=0.19.3",
     "minecraft": "~26.2",

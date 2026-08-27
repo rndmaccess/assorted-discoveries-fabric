@@ -20,41 +20,42 @@ import rndm_access.assorteddiscoveries.core.ModBlockTags;
 @Mixin(SnowyDirtBlock.class)
 public abstract class SnowyBlockMixin {
     @ModifyReturnValue(method = "updateShape", at = @At("RETURN"))
-    private BlockState getStateForNeighborUpdate(BlockState original, BlockState state, LevelReader level,
-                                                 ScheduledTickAccess ticks, BlockPos pos, Direction directionToNeighbour,
-                                                 BlockPos neighbourPos, BlockState neighbourState, RandomSource random) {
-        if(directionToNeighbour == Direction.UP && isSnowCovered(level, neighbourPos, neighbourState)) {
+    private BlockState assorteddiscoveries$getSnowyStateUpdate(BlockState original, BlockState state, LevelReader level,
+                                                               ScheduledTickAccess ticks, BlockPos pos,
+                                                               Direction directionToNeighbour, BlockPos neighbourPos,
+                                                               BlockState neighbourState, RandomSource random) {
+        if(directionToNeighbour == Direction.UP && assorteddiscoveries$isSnowCovered(level, neighbourPos, neighbourState)) {
             return original.setValue(SnowyDirtBlock.SNOWY, true);
         }
         return original;
     }
 
     @ModifyReturnValue(method = "getStateForPlacement", at = @At("RETURN"))
-    private BlockState getPlacementState(BlockState original, BlockPlaceContext context) {
+    private BlockState assorteddiscoveries$getSnowyPlacementState(BlockState original, BlockPlaceContext context) {
         Level world = context.getLevel();
         BlockPos neighborPos = context.getClickedPos().above();
         BlockState neighborState = context.getLevel().getBlockState(neighborPos);
 
-        if(isSnowCovered(world, neighborPos, neighborState)) {
+        if(assorteddiscoveries$isSnowCovered(world, neighborPos, neighborState)) {
             return original.setValue(SnowyDirtBlock.SNOWY, true);
         }
         return original;
     }
 
     @Unique
-    private static boolean isSnowCovered(LevelReader world, BlockPos neighborPos, BlockState neighborState) {
+    private static boolean assorteddiscoveries$isSnowCovered(LevelReader world, BlockPos neighborPos, BlockState neighborState) {
         boolean isSnowyStairs = neighborState.is(ModBlockTags.SNOW_STAIRS)
-                && isCovered(world, neighborPos, neighborState);
+                && assorteddiscoveries$isCovered(world, neighborPos, neighborState);
         boolean isSnowySlab = neighborState.is(ModBlockTags.SNOW_SLABS)
                 && neighborState.hasProperty(SnowySlabBlock.TYPE)
                 && neighborState.getValue(SnowySlabBlock.TYPE) != SlabType.TOP
-                && isCovered(world, neighborPos, neighborState);
+                && assorteddiscoveries$isCovered(world, neighborPos, neighborState);
 
         return isSnowyStairs || isSnowySlab;
     }
 
     @Unique
-    private static boolean isCovered(LevelReader world, BlockPos neighborPos, BlockState neighborState) {
+    private static boolean assorteddiscoveries$isCovered(LevelReader world, BlockPos neighborPos, BlockState neighborState) {
         return neighborState.isFaceSturdy(world, neighborPos, Direction.DOWN);
     }
 }

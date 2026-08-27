@@ -12,7 +12,7 @@ import rndm_access.assorteddiscoveries.core.ModBlockTags;
 @Mixin(CropBlock.class)
 public abstract class CropBlockMixin {
     @ModifyReturnValue(method = "mayPlaceOn", at = @At("RETURN"))
-    private boolean mayPlaceOn(boolean original, BlockState floor, BlockGetter world, BlockPos pos) {
+    private boolean assorteddiscoveries$mayPlaceOnPlanterBox(boolean original, BlockState floor, BlockGetter world, BlockPos pos) {
         if(floor.is(ModBlockTags.OVERWORLD_PLANTER_BOXES)) {
             return true;
         }

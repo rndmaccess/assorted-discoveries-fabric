@@ -11,6 +11,7 @@
     "FenceGateBlockMixin",
     "FungusBlockMixin",
     "LivingEntityMixin",
+    "MushroomBlockMixin",
     "NetherWartBlockMixin",
     "PlantBlockMixin",
     "RootsBlockMixin",

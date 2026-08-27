@@ -12,7 +12,7 @@ import rndm_access.assorteddiscoveries.core.ModBlockTags;
 @Mixin(NetherSproutsBlock.class)
 public abstract class SproutsBlockMixin {
     @ModifyReturnValue(method = "mayPlaceOn", at = @At("RETURN"))
-    private boolean mayPlaceOn(boolean original, BlockState floor, BlockGetter world, BlockPos pos) {
+    private boolean assorteddiscoveries$mayPlaceOnPlanterBoxes(boolean original, BlockState floor, BlockGetter world, BlockPos pos) {
         if(floor.is(ModBlockTags.NETHER_PLANTER_BOXES)) {
             return true;
         }

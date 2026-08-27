@@ -11,7 +11,7 @@ import rndm_access.assorteddiscoveries.core.ModBlockTags;
 @Mixin(FungusBlock.class)
 public abstract class FungusBlockMixin {
     @ModifyReturnValue(method = "mayPlaceOn", at = @At("RETURN"))
-    private boolean mayPlaceOn(boolean original, BlockState floor, BlockGetter world) {
+    private boolean assorteddiscoveries$mayPlaceOnPlanterBox(boolean original, BlockState floor, BlockGetter world) {
         if(floor.is(ModBlockTags.NETHER_PLANTER_BOXES)) {
             return true;
         }

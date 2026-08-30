@@ -39,8 +39,9 @@ const documents = [
     {
         id: 1,
         title: 'bog blossom',
-        key_words: 'flower swamp plant',
-        description: 'An illuminated swamp flower with majestic yellow particles.',
+        key_words: 'flower swamp plant configure',
+        description: 'An illuminated swamp flower with majestic yellow particles. ' +
+            'Learn how to find, grow, use, and multiply the Bog Blossom.',
         link: './bog_blossom.html',
         img: bogBlossom,
     },
@@ -48,7 +49,8 @@ const documents = [
         id: 2,
         title: 'planter boxes',
         key_words: 'growing overworld nether crops oak spruce birch jungle acacia dark mangrove cherry pale bamboo crimson warped',
-        description: 'A planter box that can dynamically expand and is great for growing any overworld or nether crops!',
+        description: 'A planter box that dynamically expands to fit your farm. Grow any Overworld or Nether crop with ease. ' +
+            'Learn how to craft and use it.',
         link: './planter_boxes.html',
         img: oakPlanterBox,
     },
@@ -56,7 +58,8 @@ const documents = [
         id: 3,
         title: 'rope ladders',
         key_words: '',
-        description: 'These ladders can be hung from any solid block!',
+        description: 'Attach these hanging ladders to any solid block, then extend them ' +
+            'up to 16 blocks downward for complete control over your builds.',
         link: './rope_ladders.html',
         img: oakRopeLadder,
     },
@@ -64,7 +67,8 @@ const documents = [
         id: 4,
         title: 'enderman plushie',
         key_words: '',
-        description: 'A plushie inspired by the enderman mob that features a grass block that changes color by biome.',
+        description: 'Bring your world to life with an Enderman plushie holding a biome-dynamic grass block! ' +
+            'Learn how to craft and display your new companion.',
         link: './enderman_plushie.html',
         img: endermanPlushie,
     },
@@ -72,7 +76,8 @@ const documents = [
         id: 5,
         title: 'zombie plushie',
         key_words: '',
-        description: 'A plushie inspired by the zombie mob.',
+        description: 'An adorable plushie inspired by the Zombie mob. ' +
+            'Learn how to craft and display this decoration.',
         link: './zombie_plushie.html',
         img: zombiePlushie,
     },
@@ -80,7 +85,8 @@ const documents = [
         id: 6,
         title: 'wolf plushies',
         key_words: 'dog',
-        description: 'Plushies inspired by the wolf mob variants, the wolf plushie can both sit and stand.',
+        description: 'Wolf plushies featuring designs inspired by each of Minecraft\'s wolf variants. ' +
+            'Each wolf plushie can sit and stand! Learn how to craft and display these decorations.',
         link: './wolf_plushies.html',
         img: paleWolfPlushieStanding,
     },

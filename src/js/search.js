@@ -375,12 +375,21 @@ const renderResults = (results) => {
 
 const searchInput = document.getElementById('search');
 
+function isValidQuery(query) {
+    return query && query.trim().length >= 3;
+}
+
 window.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const query = urlParams.get('q');
 
     if (query) {
         if (searchInput) searchInput.value = query;
+
+        if (!isValidQuery(query)) {
+            alert('Please type at least 3 characters.');
+            return;
+        }
 
         const results = getSearchResults(query);
         renderResults(results);
@@ -391,7 +400,7 @@ searchInput.addEventListener('keydown', function (event) {
     if (event.key === 'Enter') {
         const query = event.target.value.toLowerCase().trim();
 
-        if (query.length < 3) {
+        if (!isValidQuery(query)) {
             event.preventDefault(); // Stops the page from submitting/navigating
             alert('Please type at least 3 characters.');
             return;

@@ -1,5 +1,3 @@
-import { isValidQuery } from './search_util.js';
-
 import allayPlushie from '../block_img/allay_plushie.webp';
 import vexPlushie from '../block_img/vex_plushie.webp';
 import striderPlushie from '../block_img/strider_plushie.webp';
@@ -375,6 +373,16 @@ const renderResults = (results) => {
     }).join('\n'));
 }
 
+function isValidQuery(query) {
+    const searchList = document.getElementById('search-results');
+    const test = query && query.trim().length >= 3;
+
+    if (!test) {
+        searchList.innerHTML = "Please type at least 3 characters.";
+    }
+    return test;
+}
+
 const searchInput = document.getElementById('search');
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -385,7 +393,6 @@ window.addEventListener('DOMContentLoaded', () => {
         if (searchInput) searchInput.value = query;
 
         if (!isValidQuery(query)) {
-            alert('Please type at least 3 characters.');
             return;
         }
 
@@ -400,7 +407,6 @@ searchInput.addEventListener('keydown', function (event) {
 
         if (!isValidQuery(query)) {
             event.preventDefault(); // Stops the page from submitting/navigating
-            alert('Please type at least 3 characters.');
             return;
         }
 

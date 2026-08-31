@@ -1,3 +1,5 @@
+import { isValidQuery } from './search_util.js';
+
 import allayPlushie from '../block_img/allay_plushie.webp';
 import vexPlushie from '../block_img/vex_plushie.webp';
 import striderPlushie from '../block_img/strider_plushie.webp';
@@ -374,10 +376,6 @@ const renderResults = (results) => {
 }
 
 const searchInput = document.getElementById('search');
-
-export function isValidQuery(query) {
-    return query && query.trim().length >= 3;
-}
 
 window.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);

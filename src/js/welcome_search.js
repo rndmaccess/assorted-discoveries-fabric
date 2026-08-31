@@ -1,4 +1,4 @@
-import { isValidQuery } from './search.js';
+import { isValidQuery } from './search_util.js';
 
 const searchInput = document.getElementById('search');
 

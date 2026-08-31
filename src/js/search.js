@@ -389,8 +389,14 @@ window.addEventListener('DOMContentLoaded', () => {
 
 searchInput.addEventListener('keydown', function (event) {
     if (event.key === 'Enter') {
-        const query = event.target.value.toLowerCase();
-        if (query.trim() === '') return;
+        const query = event.target.value.toLowerCase().trim();
+
+        if (query.length < 3) {
+            event.preventDefault(); // Stops the page from submitting/navigating
+            alert('Please type at least 3 characters.');
+            return;
+        }
+
         const urlParams = new URLSearchParams(window.location.search);
         urlParams.set('q', query); // Update the url param if the user searches something new.
 

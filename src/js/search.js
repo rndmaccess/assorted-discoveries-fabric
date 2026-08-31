@@ -31,15 +31,15 @@ import whiteTorch from '../anim_block_img/white_torch.webp';
 import strippedOakWall from '../block_img/stripped_oak_wall.webp';
 
 let miniSearch = new MiniSearch({
-    fields: ['title', 'key_words'],
-    storeFields: ['title', 'key_words', 'description', 'link', 'img'],
+    fields: ['title', 'keywords'],
+    storeFields: ['title', 'keywords', 'description', 'link', 'img'],
 });
 
 const documents = [
     {
         id: 1,
         title: 'bog blossom',
-        key_words: 'flower swamp plant configure',
+        keywords: 'flower swamp plant configure',
         description: 'An illuminated swamp flower with majestic yellow particles. ' +
             'Learn how to find, grow, use, and multiply the Bog Blossom.',
         link: './bog_blossom.html',
@@ -48,7 +48,7 @@ const documents = [
     {
         id: 2,
         title: 'planter boxes',
-        key_words: 'growing overworld nether crops oak spruce birch jungle acacia dark mangrove cherry pale bamboo crimson warped',
+        keywords: 'growing overworld nether crops oak spruce birch jungle acacia dark mangrove cherry pale bamboo crimson warped',
         description: 'A planter box that dynamically expands to fit your farm. Grow any Overworld or Nether crop with ease. ' +
             'Learn how to craft and use it.',
         link: './planter_boxes.html',
@@ -57,7 +57,7 @@ const documents = [
     {
         id: 3,
         title: 'rope ladders',
-        key_words: '',
+        keywords: '',
         description: 'Attach these hanging ladders to any solid block, then extend them downward up to 16 blocks!',
         link: './rope_ladders.html',
         img: oakRopeLadder,
@@ -65,7 +65,7 @@ const documents = [
     {
         id: 4,
         title: 'enderman plushie',
-        key_words: '',
+        keywords: '',
         description: 'Bring your world to life with an Enderman plushie holding a biome-changing grass block! ' +
             'Learn how to craft yours.',
         link: './enderman_plushie.html',
@@ -74,7 +74,7 @@ const documents = [
     {
         id: 5,
         title: 'zombie plushie',
-        key_words: '',
+        keywords: '',
         description: 'An adorable plushie inspired by the Zombie mob. ' +
             'Learn how to craft and display this decoration.',
         link: './zombie_plushie.html',
@@ -83,7 +83,7 @@ const documents = [
     {
         id: 6,
         title: 'wolf plushies',
-        key_words: 'dog',
+        keywords: 'dog',
         description: 'Bring Minecraft\'s wolf variants to life with these poseable DIY plushies ' +
             'that sit and stand! Learn how to craft and display your soft decorations.',
         link: './wolf_plushies.html',
@@ -92,7 +92,7 @@ const documents = [
     {
         id: 7,
         title: 'strider plushies',
-        key_words: '',
+        keywords: '',
         description: 'Bring the Nether to life with Strider plushies! Collect and craft adorable ' +
             'variants inspired by every Strider form.',
         link: './strider_plushies.html',
@@ -101,7 +101,7 @@ const documents = [
     {
         id: 8,
         title: 'allay plushie',
-        key_words: '',
+        keywords: '',
         description: 'Light up your world with the Allay plushie! Discover how to craft this adorable, ' +
             'illuminated plush inspired by Minecraft\'s glowing, music-loving mob.',
         link: './allay_plushie.html',
@@ -110,7 +110,7 @@ const documents = [
     {
         id: 9,
         title: 'vex plushie',
-        key_words: '',
+        keywords: '',
         description: 'Haunt your base with the Vex plushie! Discover how to craft this glowing, ' +
             'illuminated plush inspired by the illager\'s flying, red-eyed phantom mob.',
         link: './vex_plushie.html',
@@ -119,7 +119,7 @@ const documents = [
     {
         id: 10,
         title: 'cat plushies',
-        key_words: '',
+        keywords: '',
         description: 'Bring home your favorite feline! Discover how to craft cat and ocelot plushies ' +
             'that sit or stand. Check out all 11+ cat variants.',
         link: './cat_plushies.html',
@@ -128,7 +128,7 @@ const documents = [
     {
         id: 11,
         title: 'cow plushies',
-        key_words: '',
+        keywords: '',
         description: 'Start your pasture with the temperate cow plushie! Discover how to craft this adorable ' +
             'bovine plush, with more unique cow variants coming soon.',
         link: './cow_plushies.html',
@@ -137,7 +137,7 @@ const documents = [
     {
         id: 12,
         title: 'mooshroom plushies',
-        key_words: '',
+        keywords: '',
         description: 'Sprout some fun in your base with Mooshroom plushies! ' +
             'Craft these adorable fungal bovine plushies. ' +
             'View recipes for both the red and brown variants.',
@@ -147,7 +147,7 @@ const documents = [
     {
         id: 13,
         title: 'sheep plushies',
-        key_words: 'white light gray black brown red orange yellow lime green cyan blue purple magenta pink',
+        keywords: 'white light gray black brown red orange yellow lime green cyan blue purple magenta pink',
         description: 'Create your perfect flock! Discover how to craft and collect cute sheep plushies in your world. ' +
             'Check out all 16 vibrant color variants.',
         link: './sheep_plushies.html',
@@ -156,7 +156,7 @@ const documents = [
     {
         id: 14,
         title: 'hoglin plushies',
-        key_words: 'zoglin',
+        keywords: 'zoglin',
         description: 'Bring the Crimson Forest to life! Discover how to craft fierce Hoglin and Zoglin plushies. ' +
             'Check out all the unique Nether mob variants and recipes.',
         link: './hoglin_plushies.html',
@@ -165,7 +165,7 @@ const documents = [
     {
         id: 15,
         title: 'wild green onions',
-        key_words: 'plant seeds',
+        keywords: 'plant seeds',
         description: 'Forage the wilderness for wild green onions! Discover where to find this useful plant, ' +
             'how to harvest its seeds, and start your own farm.',
         link: './wild_green_onions.html',
@@ -174,7 +174,7 @@ const documents = [
     {
         id: 16,
         title: 'green onion seeds',
-        key_words: 'plant',
+        keywords: 'plant',
         description: 'Grow your own custom crops! Discover how to plant green onion seeds, accelerate growth, ' +
             'and harvest fresh green onions for cooking.',
         link: './green_onion_seeds.html',
@@ -183,7 +183,7 @@ const documents = [
     {
         id: 17,
         title: 'green onion',
-        key_words: 'plant seeds food',
+        keywords: 'plant seeds food',
         description: 'Cook up something delicious with green onions! Discover hunger values, saturation levels, ' +
             'and all crafting recipes for this versatile food item.',
         link: './green_onion.html',
@@ -192,7 +192,7 @@ const documents = [
     {
         id: 18,
         title: 'grass slabs',
-        key_words: 'podzol mycelium',
+        keywords: 'podzol mycelium',
         description: 'Upgrade your landscapes with grass, podzol, and mycelium slabs! Discover how to craft ' +
             'these custom building blocks and view all unique block behaviors.',
         link: './grass_slabs.html',
@@ -201,7 +201,7 @@ const documents = [
     {
         id: 19,
         title: 'dirt slabs',
-        key_words: 'coarse rooted',
+        keywords: 'coarse rooted',
         description: 'Perfect your natural builds with dirt, coarse dirt, and rooted dirt slabs! ' +
             'Discover how to craft these building blocks and view all block properties.',
         link: './dirt_slabs.html',
@@ -210,7 +210,7 @@ const documents = [
     {
         id: 20,
         title: 'dirt path slab',
-        key_words: 'grass mycelium coarse rooted podzol',
+        keywords: 'grass mycelium coarse rooted podzol',
         description: 'Carve out beautiful trails! Right-click grass and dirt slabs with any shovel to transform them ' +
             'into path slabs. View full block properties here.',
         link: './dirt_path_slab.html',
@@ -219,7 +219,7 @@ const documents = [
     {
         id: 21,
         title: 'nether berries',
-        key_words: 'cindersnap frostbite berry',
+        keywords: 'cindersnap frostbite berry',
         description: 'Forage the Nether for frostbite and cindersnap berries! ' +
             'Learn where to find these custom bushes in warped and crimson forests, harvest them, and use them.',
         link: './nether_berries.html',
@@ -228,7 +228,7 @@ const documents = [
     {
         id: 22,
         title: 'spruce cone',
-        key_words: 'cones forest\'s bounty forest',
+        keywords: 'cones forest\'s bounty forest',
         description: 'Forage for spruce cones and create the forest\'s bounty! ' +
             'Learn how to collect this custom food item from spruce trees and check out all recipe data.',
         link: './spruce_cone.html',
@@ -237,7 +237,7 @@ const documents = [
     {
         id: 23,
         title: 'forest\'s bounty',
-        key_words: 'spruce cone cones forest',
+        keywords: 'spruce cone cones forest',
         description: 'Feast on forest\'s bounty! Learn how to combine spruce cones and other raw ' +
             'ingredients to craft this custom food item. View all food properties.',
         link: './forests_bounty.html',
@@ -246,7 +246,7 @@ const documents = [
     {
         id: 24,
         title: 'nether forage mixes',
-        key_words: 'crimson warped berry cindersnap berries frostbite',
+        keywords: 'crimson warped berry cindersnap berries frostbite',
         description: 'Master Nether cooking! Discover how to craft crimson and warped forage mixes using ' +
             'frostbite and cindersnap berries to unlock Fire Resistance. View all late-game food properties.',
         link: './nether_forage_mixes.html',
@@ -255,7 +255,7 @@ const documents = [
     {
         id: 25,
         title: 'nether berry juices',
-        key_words: 'crimson warped cindersnap frostbite berries',
+        keywords: 'crimson warped cindersnap frostbite berries',
         description: 'Quench your thirst and gain Fire Resistance! Learn how to craft frostbite and cindersnap ' +
             'berry juices. View full food properties and crafting guides.',
         link: './nether_berry_juices.html',
@@ -264,7 +264,7 @@ const documents = [
     {
         id: 26,
         title: 'wooden walls',
-        key_words: 'oak spruce birch jungle acacia dark mangrove cherry pale bamboo crimson warped',
+        keywords: 'oak spruce birch jungle acacia dark mangrove cherry pale bamboo crimson warped',
         description: 'Transform your world and add depth to your structures! Learn how to craft ' +
             'wooden walls in every wood type, and view full block properties.',
         link: './wooden_walls.html',
@@ -273,7 +273,7 @@ const documents = [
     {
         id: 27,
         title: 'witch\'s cradle branch',
-        key_words: '',
+        keywords: '',
         description: 'Conquer the dark and master the swamp! Learn how to harvest the witch\'s cradle bush ' +
             'and craft its soup. View full recipes and mechanics.',
         link: './witchs_cradle_branch.html',
@@ -282,7 +282,7 @@ const documents = [
     {
         id: 28,
         title: 'witch\'s cradle soup',
-        key_words: 'branch',
+        keywords: 'branch',
         description: 'Conquer the dark and master the swamp! Learn how to craft witch\'s cradle soup and gain ' +
             'night vision. View full food properties and saturation stats.',
         link: './witchs_cradle_soup.html',
@@ -291,7 +291,7 @@ const documents = [
     {
         id: 29,
         title: 'dyed campfires',
-        key_words: 'white light gray black brown red orange yellow lime green cyan blue purple magenta pink',
+        keywords: 'white light gray black brown red orange yellow lime green cyan blue purple magenta pink',
         description: 'Illuminate your camps and color your world! Learn how to craft dyed campfires in all ' +
             'sixteen colors. View full block variations and smoke signal guides.',
         link: './dyed_campfires.html',
@@ -300,7 +300,7 @@ const documents = [
     {
         id: 30,
         title: 'plushies',
-        key_words: '',
+        keywords: '',
         description: 'Decorate your world and collect them all! Learn how to find and craft over ninety ' +
             'unique plushies. View full block properties and common mechanics.',
         link: './plushies.html',
@@ -309,7 +309,7 @@ const documents = [
     {
         id: 31,
         title: 'dyed torches',
-        key_words: 'white light gray black brown red orange yellow lime green cyan blue purple magenta pink',
+        keywords: 'white light gray black brown red orange yellow lime green cyan blue purple magenta pink',
         description: 'Illuminate your builds and color your world! Learn how to craft dyed torches in all ' +
             'sixteen colors. View full block properties and light level stats.',
         link: './dyed_torches.html',
@@ -318,7 +318,7 @@ const documents = [
     {
         id: 32,
         title: 'stripped wooden walls',
-        key_words: 'oak spruce birch jungle acacia dark mangrove cherry pale bamboo crimson warped',
+        keywords: 'oak spruce birch jungle acacia dark mangrove cherry pale bamboo crimson warped',
         description: 'Transform your world and add depth to your structures! Learn how to obtain stripped wooden walls ' +
             'in every wood type. View full block properties.',
         link: './stripped_wooden_walls.html',
@@ -331,7 +331,11 @@ miniSearch.addAll(documents);
 const getSearchResults = (query) => {
     const searchOptions = {
         prefix: true, // partial word matching
-        boost: { title: 2 }, // Give the title higher priority than keywords
+        combineWith: 'AND',
+        boost: {
+            title: 3, // Give the title priority
+            keywords: 1
+        },
         fuzzy: 0.2    // allow minor misspellings
     };
     return miniSearch.search(query, searchOptions);

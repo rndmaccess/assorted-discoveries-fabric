@@ -354,6 +354,10 @@ const renderResults = (results) => {
         return;
     }
 
+    if (results.length === 1) {
+        window.location.href = results[0].link;
+    }
+
     searchList.innerHTML = "";
     searchList.insertAdjacentHTML('beforeend', results.map(({ title, description, link, img }) => {
         if (title === undefined) {

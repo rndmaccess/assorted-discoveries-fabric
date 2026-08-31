@@ -119,9 +119,9 @@ const documents = [
     {
         id: 10,
         title: 'cat plushies',
-        key_words: 'Bring home your favorite feline! Discover how to craft cat and ocelot plushies ' +
+        key_words: '',
+        description: 'Bring home your favorite feline! Discover how to craft cat and ocelot plushies ' +
             'that sit or stand. Check out all 11+ cat variants.',
-        description: 'Plushies inspired by the cat and ocelot mob variants, the cat plushie can both sit and stand.',
         link: './cat_plushies.html',
         img: ocelotPlushieStanding,
     },

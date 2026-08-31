@@ -331,6 +331,7 @@ miniSearch.addAll(documents);
 const getSearchResults = (query) => {
     const searchOptions = {
         prefix: true, // partial word matching
+        boost: { title: 2 }, // Give the title higher priority than keywords
         fuzzy: 0.2    // allow minor misspellings
     };
     return miniSearch.search(query, searchOptions);

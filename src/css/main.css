@@ -19,15 +19,22 @@ html, body {
 }
 
 .active-dev {
-    border: 1px solid #d39e00;
-    background-color: #1e1e1e;
-    color: #ffe082;
-    border-radius: 5px;
+    border-left: 4px solid #6151b3;
+    border-top: 1px solid #2d2654;
+    border-right: 1px solid #2d2654;
+    border-bottom: 1px solid #2d2654;
+    background-color: #1a162b;
+    color: #d1cbec;
+    border-radius: 4px;
     padding: 12px 15px;
     margin: 15px 0;
-    font-family: sans-serif;
     font-size: 14px;
     line-height: 1.5;
+}
+
+.active-dev-title {
+    color: #fff;
+    letter-spacing: 0.5px;
 }
 
 .sub-title {

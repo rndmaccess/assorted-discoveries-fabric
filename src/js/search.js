@@ -58,8 +58,7 @@ const documents = [
         id: 3,
         title: 'rope ladders',
         key_words: '',
-        description: 'Attach these hanging ladders to any solid block, then extend them ' +
-            'up to 16 blocks downward for complete control over your builds.',
+        description: 'Attach these hanging ladders to any solid block, then extend them downward up to 16 blocks!',
         link: './rope_ladders.html',
         img: oakRopeLadder,
     },
@@ -67,8 +66,8 @@ const documents = [
         id: 4,
         title: 'enderman plushie',
         key_words: '',
-        description: 'Bring your world to life with an Enderman plushie holding a biome-dynamic grass block! ' +
-            'Learn how to craft and display your new companion.',
+        description: 'Bring your world to life with an Enderman plushie holding a biome-changing grass block! ' +
+            'Learn how to craft yours.',
         link: './enderman_plushie.html',
         img: endermanPlushie,
     },
@@ -85,8 +84,8 @@ const documents = [
         id: 6,
         title: 'wolf plushies',
         key_words: 'dog',
-        description: 'Wolf plushies featuring designs inspired by each of Minecraft\'s wolf variants. ' +
-            'Each wolf plushie can sit and stand! Learn how to craft and display these decorations.',
+        description: 'Bring Minecraft\'s wolf variants to life with these poseable DIY plushies ' +
+            'that sit and stand! Learn how to craft and display your soft decorations.',
         link: './wolf_plushies.html',
         img: paleWolfPlushieStanding,
     },
@@ -94,7 +93,8 @@ const documents = [
         id: 7,
         title: 'strider plushies',
         key_words: '',
-        description: 'Plushies inspired by the strider mob\'s different forms',
+        description: 'Bring the Nether to life with Strider plushies! Collect and craft adorable ' +
+            'variants inspired by every Strider form.',
         link: './strider_plushies.html',
         img: striderPlushie,
     },
@@ -102,7 +102,8 @@ const documents = [
         id: 8,
         title: 'allay plushie',
         key_words: '',
-        description: 'An illuminated plushie inspired by the allay mob.',
+        description: 'Light up your world with the Allay plushie! Discover how to craft this adorable, ' +
+            'illuminated plush inspired by Minecraft\'s glowing, music-loving mob.',
         link: './allay_plushie.html',
         img: allayPlushie,
     },
@@ -110,14 +111,16 @@ const documents = [
         id: 9,
         title: 'vex plushie',
         key_words: '',
-        description: 'An illuminated plushie inspired by the vex mob.',
+        description: 'Haunt your base with the Vex plushie! Discover how to craft this glowing, ' +
+            'illuminated plush inspired by the illager\'s flying, red-eyed phantom mob.',
         link: './vex_plushie.html',
         img: vexPlushie,
     },
     {
         id: 10,
         title: 'cat plushies',
-        key_words: '',
+        key_words: 'Bring home your favorite feline! Discover how to craft cat and ocelot plushies ' +
+            'that sit or stand. Check out all 11+ cat variants.',
         description: 'Plushies inspired by the cat and ocelot mob variants, the cat plushie can both sit and stand.',
         link: './cat_plushies.html',
         img: ocelotPlushieStanding,
@@ -126,7 +129,8 @@ const documents = [
         id: 11,
         title: 'cow plushies',
         key_words: '',
-        description: 'A plushie inspired by the cow mob.',
+        description: 'Start your pasture with the temperate cow plushie! Discover how to craft this adorable ' +
+            'bovine plush, with more unique cow variants coming soon.',
         link: './cow_plushies.html',
         img: temperateCowPlushie,
     },
@@ -134,7 +138,9 @@ const documents = [
         id: 12,
         title: 'mooshroom plushies',
         key_words: '',
-        description: 'Plushies inspired by the mooshroom mob variants.',
+        description: 'Sprout some fun in your base with Mooshroom plushies! ' +
+            'Craft these adorable fungal bovine plushies. ' +
+            'View recipes for both the red and brown variants.',
         link: './mooshroom_plushies.html',
         img: redMooshroomPlushie,
     },
@@ -142,15 +148,17 @@ const documents = [
         id: 13,
         title: 'sheep plushies',
         key_words: 'white light gray black brown red orange yellow lime green cyan blue purple magenta pink',
-        description: 'Plushies inspired by the sheep mob variants.',
+        description: 'Create your perfect flock! Discover how to craft and collect cute sheep plushies in your world. ' +
+            'Check out all 16 vibrant color variants.',
         link: './sheep_plushies.html',
         img: whiteSheepPlushie,
     },
     {
         id: 14,
         title: 'hoglin plushies',
-        key_words: '',
-        description: 'Plushies inspired by hoglin mob variants.',
+        key_words: 'zoglin',
+        description: 'Bring the Crimson Forest to life! Discover how to craft fierce Hoglin and Zoglin plushies. ' +
+            'Check out all the unique Nether mob variants and recipes.',
         link: './hoglin_plushies.html',
         img: hoglinPlushie,
     },
@@ -158,7 +166,8 @@ const documents = [
         id: 15,
         title: 'wild green onions',
         key_words: 'plant seeds',
-        description: 'A plant that drops green onion seeds when broken.',
+        description: 'Forage the wilderness for wild green onions! Discover where to find this useful plant, ' +
+            'how to harvest its seeds, and start your own farm.',
         link: './wild_green_onions.html',
         img: wildGreenOnions,
     },
@@ -166,7 +175,8 @@ const documents = [
         id: 16,
         title: 'green onion seeds',
         key_words: 'plant',
-        description: 'The seeds used to plant green onion crops.',
+        description: 'Grow your own custom crops! Discover how to plant green onion seeds, accelerate growth, ' +
+            'and harvest fresh green onions for cooking.',
         link: './green_onion_seeds.html',
         img: greenOnionSeeds,
     },
@@ -174,7 +184,8 @@ const documents = [
         id: 17,
         title: 'green onion',
         key_words: 'plant seeds food',
-        description: 'A food item that can be eaten as is or used in crafting recipes.',
+        description: 'Cook up something delicious with green onions! Discover hunger values, saturation levels, ' +
+            'and all crafting recipes for this versatile food item.',
         link: './green_onion.html',
         img: greenOnion,
     },
@@ -182,7 +193,8 @@ const documents = [
         id: 18,
         title: 'grass slabs',
         key_words: 'podzol mycelium',
-        description: 'Read all about the grass, podzol, and mycelium slabs.',
+        description: 'Upgrade your landscapes with grass, podzol, and mycelium slabs! Discover how to craft ' +
+            'these custom building blocks and view all unique block behaviors.',
         link: './grass_slabs.html',
         img: grassSlab,
     },
@@ -190,7 +202,8 @@ const documents = [
         id: 19,
         title: 'dirt slabs',
         key_words: 'coarse rooted',
-        description: 'Everything you need to know about dirt, coarse dirt, and rooted dirt slabs.',
+        description: 'Perfect your natural builds with dirt, coarse dirt, and rooted dirt slabs! ' +
+            'Discover how to craft these building blocks and view all block properties.',
         link: './dirt_slabs.html',
         img: dirtSlab,
     },
@@ -198,7 +211,8 @@ const documents = [
         id: 20,
         title: 'dirt path slab',
         key_words: 'grass mycelium coarse rooted podzol',
-        description: 'The path variant for all grass and dirt slabs!',
+        description: 'Carve out beautiful trails! Right-click grass and dirt slabs with any shovel to transform them ' +
+            'into path slabs. View full block properties here.',
         link: './dirt_path_slab.html',
         img: dirtPathSlab,
     },
@@ -206,7 +220,8 @@ const documents = [
         id: 21,
         title: 'nether berries',
         key_words: 'cindersnap frostbite berry',
-        description: 'Learn where to find, harvest, and use the frostbite and cindersnap berry bushes.',
+        description: 'Forage the Nether for frostbite and cindersnap berries! ' +
+            'Learn where to find these custom bushes in warped and crimson forests, harvest them, and use them.',
         link: './nether_berries.html',
         img: cindersnapBerries,
     },
@@ -214,7 +229,8 @@ const documents = [
         id: 22,
         title: 'spruce cone',
         key_words: 'cones forest\'s bounty forest',
-        description: 'Learn more about spruce cones and what you need for forest\'s bounty!',
+        description: 'Forage for spruce cones and create the forest\'s bounty! ' +
+            'Learn how to collect this custom food item from spruce trees and check out all recipe data.',
         link: './spruce_cone.html',
         img: spruceCone,
     },
@@ -222,7 +238,8 @@ const documents = [
         id: 23,
         title: 'forest\'s bounty',
         key_words: 'spruce cone cones forest',
-        description: 'Learn more about forest\'s bounty!',
+        description: 'Feast on forest\'s bounty! Learn how to combine spruce cones and other raw ' +
+            'ingredients to craft this custom food item. View all food properties.',
         link: './forests_bounty.html',
         img: forestsBounty,
     },
@@ -230,7 +247,8 @@ const documents = [
         id: 24,
         title: 'nether forage mixes',
         key_words: 'crimson warped berry cindersnap berries frostbite',
-        description: 'Discover more about the crimson and warped forage mixes.',
+        description: 'Master Nether cooking! Discover how to craft crimson and warped forage mixes using ' +
+            'frostbite and cindersnap berries to unlock Fire Resistance. View all late-game food properties.',
         link: './nether_forage_mixes.html',
         img: crimsonForageMix,
     },
@@ -238,7 +256,8 @@ const documents = [
         id: 25,
         title: 'nether berry juices',
         key_words: 'crimson warped cindersnap frostbite berries',
-        description: 'Discover more about the cindersnap and frostbite berry juices.',
+        description: 'Quench your thirst and gain Fire Resistance! Learn how to craft frostbite and cindersnap ' +
+            'berry juices. View full food properties and crafting guides.',
         link: './nether_berry_juices.html',
         img: cindersnapBerryJuice,
     },
@@ -246,7 +265,8 @@ const documents = [
         id: 26,
         title: 'wooden walls',
         key_words: 'oak spruce birch jungle acacia dark mangrove cherry pale bamboo crimson warped',
-        description: 'Read all about the various wooden walls! These include oak, spruce, birch, etc.',
+        description: 'Transform your world and add depth to your structures! Learn how to craft ' +
+            'wooden walls in every wood type, and view full block properties.',
         link: './wooden_walls.html',
         img: oakWall,
     },
@@ -254,7 +274,8 @@ const documents = [
         id: 27,
         title: 'witch\'s cradle branch',
         key_words: '',
-        description: 'Read all about the witch\'s cradle and their branches.',
+        description: 'Conquer the dark and master the swamp! Learn how to harvest the witch\'s cradle bush ' +
+            'and craft its soup. View full recipes and mechanics.',
         link: './witchs_cradle_branch.html',
         img: witchsCradleBranch,
     },
@@ -262,7 +283,8 @@ const documents = [
         id: 28,
         title: 'witch\'s cradle soup',
         key_words: 'branch',
-        description: 'Read all about the witch\'s cradle soup. A food that gives night vision!',
+        description: 'Conquer the dark and master the swamp! Learn how to craft witch\'s cradle soup and gain ' +
+            'night vision. View full food properties and saturation stats.',
         link: './witchs_cradle_soup.html',
         img: witchsCradleSoup,
     },
@@ -270,7 +292,8 @@ const documents = [
         id: 29,
         title: 'dyed campfires',
         key_words: 'white light gray black brown red orange yellow lime green cyan blue purple magenta pink',
-        description: 'Read all about dyed campfires. These come in all vanilla dye colors!',
+        description: 'Illuminate your camps and color your world! Learn how to craft dyed campfires in all ' +
+            'sixteen colors. View full block variations and smoke signal guides.',
         link: './dyed_campfires.html',
         img: whiteCampfire,
     },
@@ -278,7 +301,8 @@ const documents = [
         id: 30,
         title: 'plushies',
         key_words: '',
-        description: 'Find out what all plushies have in common!',
+        description: 'Decorate your world and collect them all! Learn how to find and craft over ninety ' +
+            'unique plushies. View full block properties and common mechanics.',
         link: './plushies.html',
         img: endermanPlushie,
     },
@@ -286,7 +310,8 @@ const documents = [
         id: 31,
         title: 'dyed torches',
         key_words: 'white light gray black brown red orange yellow lime green cyan blue purple magenta pink',
-        description: 'Read all about dyed torches. These come in all vanilla dye colors!',
+        description: 'Illuminate your builds and color your world! Learn how to craft dyed torches in all ' +
+            'sixteen colors. View full block properties and light level stats.',
         link: './dyed_torches.html',
         img: whiteTorch,
     },
@@ -294,7 +319,8 @@ const documents = [
         id: 32,
         title: 'stripped wooden walls',
         key_words: 'oak spruce birch jungle acacia dark mangrove cherry pale bamboo crimson warped',
-        description: 'Read all about the various stripped wooden walls! These include oak, spruce, birch, etc.',
+        description: 'Transform your world and add depth to your structures! Learn how to obtain stripped wooden walls ' +
+            'in every wood type. View full block properties.',
         link: './stripped_wooden_walls.html',
         img: strippedOakWall,
     },

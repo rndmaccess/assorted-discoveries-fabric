@@ -18,6 +18,18 @@ html, body {
     font-size: 1.25rem;
 }
 
+.active-dev {
+    border: 1px solid #d39e00;
+    background-color: #1e1e1e;
+    color: #ffe082;
+    border-radius: 5px;
+    padding: 12px 15px;
+    margin: 15px 0;
+    font-family: sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
 .sub-title {
     display: flex;
     justify-content: center;

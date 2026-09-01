@@ -111,6 +111,8 @@ public final class ModItems {
             .food(ModFoods.NETHER_FORAGE).stacksTo(32)
             .setId(ModItemIds.CRIMSON_FORAGE_MIX_KEY)), ModItemIds.CRIMSON_FORAGE_MIX_KEY);
 
+    private ModItems() {}
+
     private static Item register(Item item, ResourceKey<Item> key) {
         return Registry.register(BuiltInRegistries.ITEM, key, item);
     }

@@ -34,6 +34,8 @@ public final class ModFoods {
     public static final FoodProperties NETHER_FORAGE = new FoodProperties.Builder()
             .nutrition(6).saturationModifier(1.0F).build();
 
+    private ModFoods() {}
+
     private static FoodProperties createBasicStew(int hunger) {
         return new FoodProperties.Builder().nutrition(hunger).saturationModifier(0.6F).build();
     }

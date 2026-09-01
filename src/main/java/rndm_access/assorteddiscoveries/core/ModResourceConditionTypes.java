@@ -14,6 +14,8 @@ public final class ModResourceConditionTypes {
     public static final ResourceConditionType<AnyInCategoryEnabledResourceCondition> ANY_IN_CATEGORY_ENABLED
             = create("any_in_category_enabled", AnyInCategoryEnabledResourceCondition.CODEC);
 
+    private ModResourceConditionTypes() {}
+
     private static <T extends ResourceCondition> ResourceConditionType<T> create(String name, MapCodec<T> codec) {
         return ResourceConditionType.create(AssortedDiscoveries.makeModId(name), codec);
     }

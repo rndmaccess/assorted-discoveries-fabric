@@ -44,6 +44,8 @@ public final class ModParticleTypes {
     public static final SimpleParticleType BOG_BLOSSOM_NECTAR = register("bog_blossom_nectar");
     public static final SimpleParticleType SOUL_EMBER = register("soul_ember");
 
+    private ModParticleTypes() {}
+
     private static SimpleParticleType register(String name) {
         SimpleParticleType particle = FabricParticleTypes.simple();
         return Registry.register(BuiltInRegistries.PARTICLE_TYPE, AssortedDiscoveries.makeModId(name), particle);

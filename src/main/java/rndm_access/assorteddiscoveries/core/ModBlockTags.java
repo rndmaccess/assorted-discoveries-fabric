@@ -21,6 +21,8 @@ public final class ModBlockTags {
     public static final TagKey<Block> SNOW_WALLS = of("snow_walls");
     public static final TagKey<Block> SOIL_SLABS = of("soil_slabs");
 
+    private ModBlockTags() {}
+
     private static TagKey<Block> of(String name) {
         return TagKey.create(Registries.BLOCK, AssortedDiscoveries.makeModId(name));
     }

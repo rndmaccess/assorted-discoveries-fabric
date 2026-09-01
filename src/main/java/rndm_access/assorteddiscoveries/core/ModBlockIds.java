@@ -445,6 +445,8 @@ public final class ModBlockIds {
     public static final ColorCollection<BlockItemId> DYED_LANTERN_KEYS = createSimpleColored("lantern");
     public static final ColorCollection<BlockItemId> DYED_SHEEP_KEYS = createSimpleColored("sheep_plushie");
 
+    private ModBlockIds() {}
+
     private static BlockItemId create(String name) {
         Identifier id = AssortedDiscoveries.makeModId(name);
         return BlockItemId.create(id, id);

@@ -20,4 +20,6 @@ public final class ModConsumables {
             .onConsume(new ApplyStatusEffectsConsumeEffect(
                     new MobEffectInstance(MobEffects.SPEED, 2400,
                             0, true, true))).build();
+
+    private ModConsumables() {}
 }

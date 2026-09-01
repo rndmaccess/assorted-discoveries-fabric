@@ -33,6 +33,8 @@ public final class ModPlacedFeatureKeys {
     public static final ResourceKey<PlacedFeature> PATCH_WILD_GREEN_ONIONS_RARE
             = of("patch_wild_green_onions_rare");
 
+    private ModPlacedFeatureKeys() {}
+
     public static ResourceKey<PlacedFeature> of(String path) {
         return ResourceKey.create(Registries.PLACED_FEATURE, AssortedDiscoveries.makeModId(path));
     }

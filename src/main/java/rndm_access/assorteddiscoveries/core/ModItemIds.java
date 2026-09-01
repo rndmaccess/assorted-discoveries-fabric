@@ -50,6 +50,8 @@ public final class ModItemIds {
     public static final ResourceKey<Item> WARPED_FORAGE_MIX_KEY = create("warped_forage_mix");
     public static final ResourceKey<Item> CRIMSON_FORAGE_MIX_KEY = create("crimson_forage_mix");
 
+    private ModItemIds() {}
+
     private static ResourceKey<Item> create(String name) {
         return ResourceKey.create(Registries.ITEM, AssortedDiscoveries.makeModId(name));
     }

@@ -20,6 +20,8 @@ public final class ModBiomeTags {
     public static final TagKey<Biome> PATCH_FROSTBITE_BERRY_BUSH = of("has_feature/patch_frostbite_berry_bush");
     public static final TagKey<Biome> PATCH_WILD_GREEN_ONIONS = of("has_feature/patch_wild_green_onions");
 
+    private ModBiomeTags() {}
+
     private static TagKey<Biome> of(String path) {
         return TagKey.create(Registries.BIOME, AssortedDiscoveries.makeModId(path));
     }

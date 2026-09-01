@@ -15,6 +15,8 @@ public final class ModEntityTypeTags {
     public static final TagKey<EntityType<?>> WITCHS_CRADLE_IMMUNE_ENTITY_TYPES
             = of("witchs_cradle_immune_entity_types");
 
+    private ModEntityTypeTags() {}
+
     private static TagKey<EntityType<?>> of(String path) {
         return TagKey.create(Registries.ENTITY_TYPE, AssortedDiscoveries.makeModId(path));
     }

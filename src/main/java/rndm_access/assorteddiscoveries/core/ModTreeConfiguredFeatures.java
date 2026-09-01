@@ -8,6 +8,8 @@ import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 public final class ModTreeConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?,?>> HUGE_PURPLE_MUSHROOM = of("huge_purple_mushroom");
 
+    private ModTreeConfiguredFeatures() {}
+
     public static ResourceKey<ConfiguredFeature<?,?>> of(String path) {
         return ResourceKey.create(Registries.CONFIGURED_FEATURE, AssortedDiscoveries.makeModId(path));
     }

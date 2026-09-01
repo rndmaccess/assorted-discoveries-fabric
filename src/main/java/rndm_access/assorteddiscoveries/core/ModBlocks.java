@@ -696,6 +696,8 @@ public final class ModBlocks {
     public static final Block CHESTNUT_WOLF_PLUSHIE = registerWolfPlushie(ModBlockIds.CHESTNUT_WOLF_PLUSHIE_KEY);
     public static final Block RUSTY_WOLF_PLUSHIE = registerWolfPlushie(ModBlockIds.RUSTY_WOLF_PLUSHIE_KEY);
 
+    private ModBlocks() {}
+
     private static BlockPos postProcessSelf(final BlockState state, final BlockGetter blockGetter, final BlockPos blockPos) {
         return blockPos;
     }

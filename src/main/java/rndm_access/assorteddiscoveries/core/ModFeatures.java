@@ -17,6 +17,8 @@ public final class ModFeatures {
     public static final Feature<NoneFeatureConfiguration> BLOOD_KELP
             = register("blood_kelp", new BloodKelpFeature(NoneFeatureConfiguration.CODEC));
 
+    private ModFeatures() {}
+
     private static <C extends FeatureConfiguration, F extends Feature<C>> F register(String name, F feature) {
         return Registry.register(BuiltInRegistries.FEATURE, AssortedDiscoveries.makeModId(name), feature);
     }

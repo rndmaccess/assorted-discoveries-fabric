@@ -18,6 +18,8 @@ public final class ModBlockEntityTypes {
             ModBlocks.PURPLE_CAMPFIRE, ModBlocks.BLUE_CAMPFIRE, ModBlocks.BROWN_CAMPFIRE,
             ModBlocks.GREEN_CAMPFIRE, ModBlocks.RED_CAMPFIRE, ModBlocks.BLACK_CAMPFIRE).build());
 
+    private ModBlockEntityTypes() {}
+
     private static <T extends BlockEntity> BlockEntityType<T> register(String name, BlockEntityType<T> type) {
         return Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, AssortedDiscoveries.makeModId(name), type);
     }

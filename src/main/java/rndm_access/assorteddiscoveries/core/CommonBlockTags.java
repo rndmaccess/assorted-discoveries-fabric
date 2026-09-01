@@ -9,6 +9,8 @@ public final class CommonBlockTags {
     public static final TagKey<Block> MYCELIUM = bind("mycelium");
     public static final TagKey<Block> PODZOL = bind("podzol");
 
+    private CommonBlockTags() {}
+
     private static TagKey<Block> bind(String name) {
         return TagKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath("c", name));
     }

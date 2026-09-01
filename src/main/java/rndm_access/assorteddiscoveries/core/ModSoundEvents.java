@@ -8,6 +8,8 @@ import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 public final class ModSoundEvents {
     public static final SoundEvent BLOCK_MUSHROOM_BOUNCE = register("block.mushroom_bounce");
 
+    private ModSoundEvents() {}
+
     private static SoundEvent register(String name) {
         SoundEvent sound = SoundEvent.createVariableRangeEvent(AssortedDiscoveries.makeModId(name));
         return Registry.register(BuiltInRegistries.SOUND_EVENT, sound.location(), sound);

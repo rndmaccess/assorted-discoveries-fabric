@@ -1321,6 +1321,8 @@ public final class ModBlocks {
     public static final ResourceKey<Block> RUSTY_WOLF_PLUSHIE_KEY = makeRegistryKey("rusty_wolf_plushie");
     public static final Block RUSTY_WOLF_PLUSHIE = registerWolfPlushie(RUSTY_WOLF_PLUSHIE_KEY);
 
+    private ModBlocks() {}
+
     private static ResourceKey<Block> makeRegistryKey(String name) {
         return ResourceKey.create(Registries.BLOCK, AssortedDiscoveries.makeModId(name));
     }

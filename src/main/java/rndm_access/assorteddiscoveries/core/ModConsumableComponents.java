@@ -19,4 +19,8 @@ public final class ModConsumableComponents {
             .onConsume(new ApplyStatusEffectsConsumeEffect(
                     new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 2400,
                             0, true, true))).build();
+    public static final Consumable CARAMEL_APPLE = Consumables.defaultFood()
+            .onConsume(new ApplyStatusEffectsConsumeEffect(
+                    new MobEffectInstance(MobEffects.SPEED, 2400,
+                            0, true, true))).build();
 }

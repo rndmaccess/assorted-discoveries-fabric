@@ -70,8 +70,8 @@ public final class ModItems {
     public static final Item SMOKY_QUARTZ = register(new Item(new Item.Properties().setId(ModItemIds.SMOKY_QUARTZ_KEY)),
             ModItemIds.SMOKY_QUARTZ_KEY);
     public static final Item CARAMEL_APPLE = register(new Item(new Item.Properties()
-            .food(ModFoods.CARAMEL_APPLE).stacksTo(1).usingConvertsTo(Items.STICK)
-            .setId(ModItemIds.CARAMEL_APPLE_KEY)), ModItemIds.CARAMEL_APPLE_KEY);
+            .food(ModFoods.CARAMEL_APPLE, ModConsumableComponents.CARAMEL_APPLE).stacksTo(16)
+            .usingConvertsTo(Items.STICK).setId(ModItemIds.CARAMEL_APPLE_KEY)), ModItemIds.CARAMEL_APPLE_KEY);
     public static final Item CARAMEL = register(new Item(new Item.Properties().food(ModFoods.CARAMEL)
             .setId(ModItemIds.CARAMEL_KEY)), ModItemIds.CARAMEL_KEY);
     public static final Item SPRUCE_CONE = register(new Item(new Item.Properties().food(ModFoods.SPRUCE_CONE)
@@ -99,10 +99,10 @@ public final class ModItems {
     public static final Item FROSTBITE_BERRIES = registerBlockItem(ModItemIds.FROSTBITE_BERRIES_KEY,
             ModBlocks.FROSTBITE_BERRY_BUSH, new Item.Properties().food(ModFoods.NETHER_BERRIES));
     public static final Item CINDERSNAP_BERRY_JUICE = register(new Item(new Item.Properties()
-                .food(ModFoods.JUICE, ModConsumableComponents.NETHER_DRINK).stacksTo(16)
+                .food(ModFoods.NETHER_JUICE, ModConsumableComponents.NETHER_DRINK).stacksTo(16)
                 .usingConvertsTo(Items.GLASS_BOTTLE).setId(ModItemIds.CINDERSNAP_BERRY_JUICE_KEY)), ModItemIds.CINDERSNAP_BERRY_JUICE_KEY);
     public static final Item FROSTBITE_BERRY_JUICE = register(new Item(new Item.Properties()
-            .food(ModFoods.JUICE, ModConsumableComponents.NETHER_DRINK).stacksTo(16)
+            .food(ModFoods.NETHER_JUICE, ModConsumableComponents.NETHER_DRINK).stacksTo(16)
             .usingConvertsTo(Items.GLASS_BOTTLE).setId(ModItemIds.FROSTBITE_BERRY_JUICE_KEY)), ModItemIds.FROSTBITE_BERRY_JUICE_KEY);
     public static final Item WARPED_FORAGE_MIX = register(new Item(new Item.Properties().stacksTo(32)
             .food(ModFoods.NETHER_FORAGE, ModConsumableComponents.NETHER_FOOD)

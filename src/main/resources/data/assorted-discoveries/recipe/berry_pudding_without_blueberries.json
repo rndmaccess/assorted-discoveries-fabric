@@ -2,6 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     "assorted-discoveries:pudding",
+    "minecraft:sweet_berries",
     "minecraft:sweet_berries"
   ],
   "result": {

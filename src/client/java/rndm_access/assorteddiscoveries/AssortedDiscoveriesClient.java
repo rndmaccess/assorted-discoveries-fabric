@@ -48,7 +48,7 @@ public class AssortedDiscoveriesClient implements ClientModInitializer {
         Component night_vision = Component.translatable("tooltip.assorted-discoveries.witchs_cradle_soup.effect").setStyle(blueText);
         Component speed = Component.translatable("tooltip.assorted-discoveries.caramel_apple.effect").setStyle(blueText);
         Component blank = Component.empty();
-        Component when_applied = Component.translatable("tooltip.assorted-discoveries.caramel_apple.when_applied").setStyle(purpleText);
+        Component when_applied = Component.translatable("tooltip.assorted-discoveries.caramel_apple.when_consumed").setStyle(purpleText);
         Component speed_inc = Component.translatable("tooltip.assorted-discoveries.caramel_apple.speed_amount").setStyle(blueText);
         Component shift = Component.translatable("tooltip.assorted-discoveries.caramel_apple.show").setStyle(grayText);
 

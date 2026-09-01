@@ -70,7 +70,7 @@ public final class ModItems {
     public static final Item SMOKY_QUARTZ = register(new Item(new Item.Properties().setId(ModItemIds.SMOKY_QUARTZ_KEY)),
             ModItemIds.SMOKY_QUARTZ_KEY);
     public static final Item CARAMEL_APPLE = register(new Item(new Item.Properties()
-            .food(ModFoods.CARAMEL_APPLE, ModConsumableComponents.CARAMEL_APPLE).stacksTo(16)
+            .food(ModFoods.CARAMEL_APPLE, ModConsumables.CARAMEL_APPLE).stacksTo(16)
             .usingConvertsTo(Items.STICK).setId(ModItemIds.CARAMEL_APPLE_KEY)), ModItemIds.CARAMEL_APPLE_KEY);
     public static final Item CARAMEL = register(new Item(new Item.Properties().food(ModFoods.CARAMEL)
             .setId(ModItemIds.CARAMEL_KEY)), ModItemIds.CARAMEL_KEY);
@@ -82,7 +82,7 @@ public final class ModItems {
     public static final Item WITCHS_CRADLE_BRANCH = registerBlockItem(ModItemIds.WITCHS_CRADLE_BRANCH_KEY, ModBlocks.WITCHS_CRADLE,
             new Item.Properties().food(ModFoods.WITCHS_CRADLE_BRANCH));
     public static final Item WITCHS_CRADLE_SOUP = register(new Item(new Item.Properties()
-            .food(ModFoods.WITCHS_CRADLE_SOUP, ModConsumableComponents.WITCHS_CRADLE_SOUP)
+            .food(ModFoods.WITCHS_CRADLE_SOUP, ModConsumables.WITCHS_CRADLE_SOUP)
             .stacksTo(1).usingConvertsTo(Items.BOWL).setId(ModItemIds.WITCHS_CRADLE_SOUP_KEY)), ModItemIds.WITCHS_CRADLE_SOUP_KEY);
     public static final Item FRIED_EGG = register(new Item(new Item.Properties()
             .food(ModFoods.FRIED_EGG).stacksTo(16).setId(ModItemIds.FRIED_EGG_KEY)), ModItemIds.FRIED_EGG_KEY);
@@ -90,7 +90,7 @@ public final class ModItems {
     public static final Item BLOOD_KELP = register(new Item(new Item.Properties()
             .setId(ModItemIds.BLOOD_KELP_KEY)), ModItemIds.BLOOD_KELP_KEY);
     public static final Item DRIED_BLOOD_KELP = register(new Item(new Item.Properties()
-            .food(Foods.DRIED_KELP).setId(ModItemIds.DRIED_BLOOD_KELP_KEY)), ModItemIds.DRIED_BLOOD_KELP_KEY);
+            .food(Foods.DRIED_KELP, Consumables.DRIED_KELP).setId(ModItemIds.DRIED_BLOOD_KELP_KEY)), ModItemIds.DRIED_BLOOD_KELP_KEY);
     public static final Item HOGLIN_STEW = register(new Item(new Item.Properties()
             .food(ModFoods.HOGLIN_STEW).stacksTo(1).usingConvertsTo(Items.BOWL)
             .setId(ModItemIds.HOGLIN_STEW_KEY)), ModItemIds.HOGLIN_STEW_KEY);
@@ -99,16 +99,16 @@ public final class ModItems {
     public static final Item FROSTBITE_BERRIES = registerBlockItem(ModItemIds.FROSTBITE_BERRIES_KEY,
             ModBlocks.FROSTBITE_BERRY_BUSH, new Item.Properties().food(ModFoods.NETHER_BERRIES));
     public static final Item CINDERSNAP_BERRY_JUICE = register(new Item(new Item.Properties()
-                .food(ModFoods.NETHER_JUICE, ModConsumableComponents.NETHER_DRINK).stacksTo(16)
+                .food(ModFoods.NETHER_JUICE, ModConsumables.NETHER_JUICE).stacksTo(16)
                 .usingConvertsTo(Items.GLASS_BOTTLE).setId(ModItemIds.CINDERSNAP_BERRY_JUICE_KEY)), ModItemIds.CINDERSNAP_BERRY_JUICE_KEY);
     public static final Item FROSTBITE_BERRY_JUICE = register(new Item(new Item.Properties()
-            .food(ModFoods.NETHER_JUICE, ModConsumableComponents.NETHER_DRINK).stacksTo(16)
+            .food(ModFoods.NETHER_JUICE, ModConsumables.NETHER_JUICE).stacksTo(16)
             .usingConvertsTo(Items.GLASS_BOTTLE).setId(ModItemIds.FROSTBITE_BERRY_JUICE_KEY)), ModItemIds.FROSTBITE_BERRY_JUICE_KEY);
     public static final Item WARPED_FORAGE_MIX = register(new Item(new Item.Properties().stacksTo(32)
-            .food(ModFoods.NETHER_FORAGE, ModConsumableComponents.NETHER_FOOD)
+            .food(ModFoods.NETHER_FORAGE)
             .setId(ModItemIds.WARPED_FORAGE_MIX_KEY)), ModItemIds.WARPED_FORAGE_MIX_KEY);
     public static final Item CRIMSON_FORAGE_MIX = register(new Item(new Item.Properties()
-            .food(ModFoods.NETHER_FORAGE, ModConsumableComponents.NETHER_FOOD).stacksTo(32)
+            .food(ModFoods.NETHER_FORAGE).stacksTo(32)
             .setId(ModItemIds.CRIMSON_FORAGE_MIX_KEY)), ModItemIds.CRIMSON_FORAGE_MIX_KEY);
 
     private static Item register(Item item, ResourceKey<Item> key) {

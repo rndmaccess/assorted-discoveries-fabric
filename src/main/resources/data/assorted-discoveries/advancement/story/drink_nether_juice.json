@@ -6,10 +6,10 @@
       "id": "assorted-discoveries:cindersnap_berry_juice"
     },
     "title": {
-      "translate": "advancements.assorted-discoveries.story.eat_nether_food.title"
+      "translate": "advancements.assorted-discoveries.story.drink_nether_juice.title"
     },
     "description": {
-      "translate": "advancements.assorted-discoveries.story.eat_nether_food.description"
+      "translate": "advancements.assorted-discoveries.story.drink_nether_juice.description"
     },
     "frame": "task",
     "show_toast": true,
@@ -17,18 +17,18 @@
     "hidden": false
   },
   "criteria": {
-    "eat_nether_food": {
+    "drink_nether_juice": {
       "trigger": "minecraft:consume_item",
       "conditions": {
         "item": {
-          "items": "#assorted-discoveries:nether_food"
+          "items": "#assorted-discoveries:nether_juices"
         }
       }
     }
   },
   "requirements": [
     [
-      "eat_nether_food"
+      "drink_nether_juice"
     ]
   ],
   "fabric:load_conditions": [
@@ -45,21 +45,7 @@
         {
           "condition": "assorted-discoveries:all_entries_enabled",
           "value": [
-            "enable_crimson_forage_mix",
-            "enable_cindersnap_berries"
-          ]
-        },
-        {
-          "condition": "assorted-discoveries:all_entries_enabled",
-          "value": [
             "enable_frostbite_berry_juice",
-            "enable_frostbite_berries"
-          ]
-        },
-        {
-          "condition": "assorted-discoveries:all_entries_enabled",
-          "value": [
-            "enable_warped_forage_mix",
             "enable_frostbite_berries"
           ]
         }

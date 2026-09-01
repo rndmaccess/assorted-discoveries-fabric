@@ -28,7 +28,7 @@ public final class ModFoods {
             .nutrition(2).saturationModifier(0.3F).build();
     public static final FoodProperties FORESTS_BOUNTY = createBasicStew(7);
     public static final FoodProperties HOGLIN_STEW = new FoodProperties.Builder()
-            .nutrition(11).saturationModifier(0.8F).build();
+            .nutrition(10).saturationModifier(0.8F).build();
     public static final FoodProperties NETHER_BERRIES = new FoodProperties.Builder()
             .nutrition(4).saturationModifier(0.1F).build();
     public static final FoodProperties NETHER_FORAGE = new FoodProperties.Builder()

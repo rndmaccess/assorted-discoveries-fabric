@@ -16,7 +16,7 @@ import rndm_access.assorteddiscoveries.core.ModBlockTags;
 import rndm_access.assorteddiscoveries.core.ModEntityTypeTags;
 import rndm_access.assorteddiscoveries.core.ModItems;
 
-public class CindersnapBerryBushBlock extends AbstractBerryBushBlock {
+public class CindersnapBerryBushBlock extends AbstractNetherBushBlock {
     public static final MapCodec<CindersnapBerryBushBlock> CODEC = simpleCodec(CindersnapBerryBushBlock::new);
 
     public CindersnapBerryBushBlock(Properties settings) {
@@ -32,16 +32,6 @@ public class CindersnapBerryBushBlock extends AbstractBerryBushBlock {
     @Override
     protected TagKey<EntityType<?>> mobsImmune() {
         return ModEntityTypeTags.CINDERSNAP_BERRY_BUSH_IMMUNE_ENTITY_TYPES;
-    }
-
-    @Override
-    protected boolean bushDamages() {
-        return true;
-    }
-
-    @Override
-    protected boolean needsLightToGrow() {
-        return false;
     }
 
     @Override

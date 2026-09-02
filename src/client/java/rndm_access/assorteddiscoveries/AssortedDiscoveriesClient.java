@@ -1,7 +1,5 @@
 package rndm_access.assorteddiscoveries;
 
-import com.mojang.blaze3d.platform.InputConstants;
-import com.mojang.blaze3d.platform.Window;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
@@ -23,7 +21,6 @@ import net.minecraft.network.chat.Style;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jspecify.annotations.NonNull;
-import org.lwjgl.glfw.GLFW;
 import rndm_access.assorteddiscoveries.block.SheepPlushieBlock;
 import rndm_access.assorteddiscoveries.block_entity.DyedCampfireBlockEntityRenderer;
 import rndm_access.assorteddiscoveries.config.BooleanEntriesS2CPayload;
@@ -48,14 +45,12 @@ public class AssortedDiscoveriesClient implements ClientModInitializer {
     private static void addTooltipCallback() {
         Style blueText = Style.EMPTY.withColor(ChatFormatting.BLUE);
         Style purpleText = Style.EMPTY.withColor(ChatFormatting.DARK_PURPLE);
-        Style grayText = Style.EMPTY.withColor(ChatFormatting.GRAY);
         Component fire_resist = Component.translatable("tooltip.assorted-discoveries.nether_berry_juice.effect").setStyle(blueText);
         Component night_vision = Component.translatable("tooltip.assorted-discoveries.witchs_cradle_soup.effect").setStyle(blueText);
         Component speed = Component.translatable("tooltip.assorted-discoveries.caramel_apple.effect").setStyle(blueText);
         Component blank = Component.empty();
         Component when_applied = Component.translatable("tooltip.assorted-discoveries.caramel_apple.when_consumed").setStyle(purpleText);
         Component speed_inc = Component.translatable("tooltip.assorted-discoveries.caramel_apple.speed_amount").setStyle(blueText);
-        Component shift = Component.translatable("tooltip.assorted-discoveries.caramel_apple.show").setStyle(grayText);
 
         ItemTooltipCallback.EVENT.register((itemStack, tooltipContext, tooltipType, lines) -> {
             if (itemStack.is(ModItems.CINDERSNAP_BERRY_JUICE) || itemStack.is(ModItems.FROSTBITE_BERRY_JUICE)) {
@@ -67,18 +62,10 @@ public class AssortedDiscoveriesClient implements ClientModInitializer {
             }
 
             if (itemStack.is(ModItems.CARAMEL_APPLE)) {
-                Window windowHandle = Minecraft.getInstance().getWindow();
-                boolean isShiftDown = InputConstants.isKeyDown(windowHandle, GLFW.GLFW_KEY_LEFT_SHIFT)
-                        || InputConstants.isKeyDown(windowHandle, GLFW.GLFW_KEY_RIGHT_SHIFT);
                 lines.add(speed);
-
-                if (isShiftDown) {
-                    lines.add(blank);
-                    lines.add(when_applied);
-                    lines.add(speed_inc);
-                } else {
-                    lines.add(shift);
-                }
+                lines.add(blank);
+                lines.add(when_applied);
+                lines.add(speed_inc);
             }
         });
     }

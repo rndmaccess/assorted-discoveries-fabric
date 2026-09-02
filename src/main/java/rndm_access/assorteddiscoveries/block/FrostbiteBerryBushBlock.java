@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import rndm_access.assorteddiscoveries.core.*;
 
-public class FrostbiteBerryBushBlock extends AbstractNetherBushBlock {
+public class FrostbiteBerryBushBlock extends AbstractNetherBerryBushBlock {
     public static final MapCodec<FrostbiteBerryBushBlock> CODEC = simpleCodec(FrostbiteBerryBushBlock::new);
 
     public FrostbiteBerryBushBlock(Properties settings) {

@@ -7,13 +7,13 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockState;
 
-public abstract class AbstractNetherBushBlock extends AbstractBerryBushBlock {
-    public AbstractNetherBushBlock(Properties settings) {
+public abstract class AbstractNetherBerryBushBlock extends AbstractBerryBushBlock {
+    public AbstractNetherBerryBushBlock(Properties settings) {
         super(settings);
     }
 
     @Override
-    protected abstract MapCodec<? extends AbstractNetherBushBlock> codec();
+    protected abstract MapCodec<? extends AbstractNetherBerryBushBlock> codec();
 
     @Override
     protected boolean bushDamages() {

@@ -16,7 +16,7 @@ import rndm_access.assorteddiscoveries.core.ModBlockTags;
 import rndm_access.assorteddiscoveries.core.ModEntityTypeTags;
 import rndm_access.assorteddiscoveries.core.ModItems;
 
-public class CindersnapBerryBushBlock extends AbstractNetherBushBlock {
+public class CindersnapBerryBushBlock extends AbstractNetherBerryBushBlock {
     public static final MapCodec<CindersnapBerryBushBlock> CODEC = simpleCodec(CindersnapBerryBushBlock::new);
 
     public CindersnapBerryBushBlock(Properties settings) {

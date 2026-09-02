@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import rndm_access.assorteddiscoveries.core.*;
 
-public class FrostbiteBerryBushBlock extends AbstractBerryBushBlock {
+public class FrostbiteBerryBushBlock extends AbstractNetherBerryBushBlock {
     public static final MapCodec<FrostbiteBerryBushBlock> CODEC = simpleCodec(FrostbiteBerryBushBlock::new);
 
     public FrostbiteBerryBushBlock(Properties settings) {
@@ -29,16 +29,6 @@ public class FrostbiteBerryBushBlock extends AbstractBerryBushBlock {
     @Override
     protected TagKey<EntityType<?>> mobsImmune() {
         return ModEntityTypeTags.FROSTBITE_BERRY_BUSH_IMMUNE_ENTITY_TYPES;
-    }
-
-    @Override
-    protected boolean bushDamages() {
-        return true;
-    }
-
-    @Override
-    protected boolean needsLightToGrow() {
-        return false;
     }
 
     @Override

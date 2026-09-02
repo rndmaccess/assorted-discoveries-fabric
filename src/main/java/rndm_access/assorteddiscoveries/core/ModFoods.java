@@ -31,7 +31,7 @@ public final class ModFoods {
             .saturationModifier(0.8F).build();
     public static final FoodProperties NETHER_BERRIES = new FoodProperties.Builder().nutrition(4)
             .saturationModifier(0.1F).build();
-    public static final FoodProperties NETHER_FORAGE = new FoodProperties.Builder().nutrition(6)
+    public static final FoodProperties NETHER_FORAGE = new FoodProperties.Builder().nutrition(8)
             .saturationModifier(1.0F).build();
 
     private ModFoods() {}

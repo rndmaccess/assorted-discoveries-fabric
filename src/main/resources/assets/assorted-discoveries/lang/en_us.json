@@ -840,7 +840,6 @@
   "tooltip.assorted-discoveries.nether_berry_juice.effect": "Fire Resistance (02:00)",
   "tooltip.assorted-discoveries.witchs_cradle_soup.effect": "Night Vision (02:00)",
   "tooltip.assorted-discoveries.caramel_apple.effect": "Speed (02:00)",
-  "tooltip.assorted-discoveries.caramel_apple.show": "Hold SHIFT for Details",
   "tooltip.assorted-discoveries.caramel_apple.when_consumed": "When Consumed:",
   "tooltip.assorted-discoveries.caramel_apple.speed_amount": "+20% Speed",
 

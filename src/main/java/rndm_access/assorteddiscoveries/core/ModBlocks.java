@@ -712,21 +712,23 @@ public final class ModBlocks {
     }
 
     public static Block registerRopeLadder(BlockItemId id) {
+        // Must register the block before the block item to prevent bugs.
         Block block = Registry.register(BuiltInRegistries.BLOCK, id.block(),
                 new RopeLadderBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LADDER).setId(id.block())));
         Item blockItem = Registry.register(BuiltInRegistries.ITEM, id.item(),
                 new RopeLadderBlockItem(block, new Item.Properties().useBlockDescriptionPrefix().setId(id.item())));
-        // Add our block item and block to this map so we can retrieve our block item from its block!
+        // Add our block item and block to this map so we can retrieve our block item from its block later!
         Item.BY_BLOCK.put(block, blockItem);
         return block;
     }
 
     public static Block register(final BlockItemId id, final Function<BlockBehaviour.Properties, Block> factory, final BlockBehaviour.Properties properties) {
+        // Must register the block before the block item to prevent bugs.
         Block block = Registry.register(BuiltInRegistries.BLOCK, id.block(),
                 factory.apply(properties.setId(id.block())));
         BlockItem blockItem = Registry.register(BuiltInRegistries.ITEM, id.item(),
                 new BlockItem(block, new Item.Properties().useBlockDescriptionPrefix().setId(id.item())));
-        // Add our block item and block to this map so we can retrieve our block item from its block!
+        // Add our block item and block to this map so we can retrieve our block item from its block later!
         Item.BY_BLOCK.put(block, blockItem);
         return block;
     }

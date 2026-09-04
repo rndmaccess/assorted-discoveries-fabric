@@ -1336,11 +1336,13 @@ public final class ModBlocks {
     }
 
     private static Block register(ResourceKey<Block> blockKey, Function<BlockBehaviour.Properties, Block> function, BlockBehaviour.Properties properties, boolean includeItem) {
+        // Must register the block before the block item to prevent bugs.
         Block block = Registry.register(BuiltInRegistries.BLOCK, blockKey, function.apply(properties.setId(blockKey)));
         if (includeItem) {
             ResourceKey<Item> itemKey = ResourceKey.create(Registries.ITEM, blockKey.identifier());
             BlockItem blockItem = Registry.register(BuiltInRegistries.ITEM, itemKey,
                     new BlockItem(block, new Item.Properties().setId(itemKey)));
+            // Add our block item and block to this map so we can retrieve our block item from its block later!
             Item.BY_BLOCK.put(block, blockItem);
         }
         return block;
@@ -1351,11 +1353,13 @@ public final class ModBlocks {
     }
 
     public static Block registerRopeLadder(ResourceKey<Block> blockKey) {
+        // Must register the block before the block item to prevent bugs.
         Block block = Registry.register(BuiltInRegistries.BLOCK, blockKey,
                 new RopeLadderBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LADDER).setId(blockKey)));
         ResourceKey<Item> itemKey = ResourceKey.create(Registries.ITEM, blockKey.identifier());
         BlockItem blockItem = Registry.register(BuiltInRegistries.ITEM, itemKey,
                 new RopeLadderBlockItem(block, new Item.Properties().setId(itemKey)));
+        // Add our block item and block to this map so we can retrieve our block item from its block later!
         Item.BY_BLOCK.put(block, blockItem);
         return block;
     }

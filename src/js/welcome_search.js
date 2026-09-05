@@ -8,7 +8,7 @@ searchInput.addEventListener('keydown', function (event) {
         const results = getSearchResults(query);
 
         if (results && results.length === 1) {
-            window.location.href = results[0].link;
+            window.location.href = "pages/" + results[0].link;
         } else {
             window.location.href = (`pages/search.html?q=${encodeURIComponent(query)}`);
         }

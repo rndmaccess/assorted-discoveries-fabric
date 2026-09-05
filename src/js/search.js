@@ -328,7 +328,7 @@ const documents = [
 
 miniSearch.addAll(documents);
 
-const getSearchResults = (query) => {
+export const getSearchResults = (query) => {
     const searchOptions = {
         prefix: true, // partial word matching
         combineWith: 'AND',
@@ -341,7 +341,7 @@ const getSearchResults = (query) => {
     return miniSearch.search(query, searchOptions);
 }
 
-const renderResults = (results) => {
+export const renderResults = (results) => {
     const searchList = document.getElementById('search-results');
 
     if (!searchList) {
@@ -356,6 +356,7 @@ const renderResults = (results) => {
 
     if (results.length === 1) {
         window.location.href = results[0].link;
+        return;
     }
 
     searchList.innerHTML = "";
@@ -377,7 +378,7 @@ const renderResults = (results) => {
     }).join('\n'));
 }
 
-function isValidQuery(query) {
+export function isValidQuery(query) {
     const searchList = document.getElementById('search-results');
     const test = query && query.trim().length >= 3;
 
@@ -386,40 +387,3 @@ function isValidQuery(query) {
     }
     return test;
 }
-
-const searchInput = document.getElementById('search');
-
-window.addEventListener('DOMContentLoaded', () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const query = urlParams.get('q');
-
-    if (query) {
-        if (searchInput) searchInput.value = query;
-
-        if (!isValidQuery(query)) {
-            return;
-        }
-
-        const results = getSearchResults(query);
-        renderResults(results);
-    }
-});
-
-searchInput.addEventListener('keydown', function (event) {
-    if (event.key === 'Enter') {
-        const query = event.target.value.toLowerCase().trim();
-
-        if (!isValidQuery(query)) {
-            event.preventDefault(); // Stops the page from submitting/navigating
-            return;
-        }
-
-        const urlParams = new URLSearchParams(window.location.search);
-        urlParams.set('q', query); // Update the url param if the user searches something new.
-
-        window.history.pushState({}, '', `${window.location.pathname}?${urlParams.toString()}`);
-
-        const results = getSearchResults(query);
-        renderResults(results);
-    }
-})

@@ -194,7 +194,7 @@ const documents = [
         title: 'grass slabs',
         keywords: 'podzol mycelium',
         description: 'Upgrade your landscapes with grass, podzol, and mycelium slabs! Discover how to craft ' +
-            'these custom building blocks and view all unique block behaviors.',
+            'these building blocks and view all unique block behaviors.',
         link: './grass_slabs.html',
         img: grassSlab,
     },
@@ -221,7 +221,7 @@ const documents = [
         title: 'nether berries',
         keywords: 'cindersnap frostbite berry',
         description: 'Forage the Nether for frostbite and cindersnap berries! ' +
-            'Learn where to find these custom bushes in warped and crimson forests, harvest them, and use them.',
+            'Learn where to find these bushes in warped and crimson forests, harvest them, and use them.',
         link: './nether_berries.html',
         img: cindersnapBerries,
     },
@@ -230,7 +230,7 @@ const documents = [
         title: 'spruce cone',
         keywords: 'cones forest\'s bounty forest',
         description: 'Forage for spruce cones and create the forest\'s bounty! ' +
-            'Learn how to collect this custom food item from spruce trees and check out all recipe data.',
+            'Learn how to collect this food item from spruce trees and check out all recipes.',
         link: './spruce_cone.html',
         img: spruceCone,
     },
@@ -239,7 +239,7 @@ const documents = [
         title: 'forest\'s bounty',
         keywords: 'spruce cone cones forest',
         description: 'Feast on forest\'s bounty! Learn how to combine spruce cones and other raw ' +
-            'ingredients to craft this custom food item. View all food properties.',
+            'ingredients to craft this food item. View all food properties.',
         link: './forests_bounty.html',
         img: forestsBounty,
     },

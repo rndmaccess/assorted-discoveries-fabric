@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="../js/nether_forage_mix.js" defer></script>
+    <script src="../js/nether_forage_mix_crafting.js" defer></script>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/crafting.css">
+    <meta charset="UTF-8">
+    <title>Nether Forage Mixes - Assorted Discoveries Wiki</title>
+    <meta name="description" content="Master Nether cooking! Discover how to craft crimson and warped forage mixes using
+    frostbite and cindersnap berries to unlock Fire Resistance. View all late-game food properties.">
+    <link rel="icon" href="../favicon.png" type="image/png">
+</head>
+<body>
+    <main class="main-container container">
+        <div class="top-content-wrapper">
+            <div class="content-left">
+                <h2>
+                    About
+                </h2>
+                <p>
+                    <b>Crimson forage mix</b> is a nether food item that is made
+                    from combining cindersnap berries and crimson forest plants.
+                </p>
+                <p>
+                    <b>Warped forage mix</b> is a nether food item that is made
+                    from combining frostbite berries and warped forest plants.
+                </p>
+                <p>
+                    When consumed, both forage mixes restore the highest amount of hunger
+                    and saturation of any stackable food item, surpassing the golden carrot.
+                </p>
+                <h2>
+                    Config
+                </h2>
+                <h3>Crimson Forage Mix</h3>
+                <ul>
+                    <li>In-Game Screen Name: Enable Crimson Forage Mix</li>
+                    <li>Config File Key: <code>enable_crimson_forage_mix</code></li>
+                    <li>Default: <code>true</code> / <code>Yes</code></li>
+                </ul>
+                <p>
+                    Determines whether crimson forage mix is available to be crafted and used.
+                </p>
+                <ul>
+                    <li><code>true</code> / <code>Yes</code>: Crimson forage mix is enabled.</li>
+                    <li><code>false</code> / <code>No</code>: Crimson forage mix is disabled.</li>
+                </ul>
+                <p>
+                    Dependency: If cindersnap berries are disabled, crimson forage mix will be automatically disabled as well.
+                    Visit the <a href="./nether_berries.html">nether berries</a> page to read more about these berries.
+                </p>
+
+                <h3>Warped Forage Mix</h3>
+                <ul>
+                    <li>In-Game Screen Name: Enable Warped Forage Mix</li>
+                    <li>Config File Key: <code>enable_warped_forage_mix</code></li>
+                    <li>Default: <code>true</code> / <code>Yes</code></li>
+                </ul>
+                <p>
+                    Determines whether warped forage mix is available to be crafted and used.
+                </p>
+                <ul>
+                    <li><code>true</code> / <code>Yes</code>: Warped forage mix is enabled.</li>
+                    <li><code>false</code> / <code>No</code>: Warped forage mix is disabled.</li>
+                </ul>
+                <p>
+                    Dependency: If frostbite berries are disabled, warped forage mix will be automatically disabled as well.
+                    Visit the <a href="./nether_berries.html">nether berries</a> page to read more about these berries.
+                </p>
+
+                <h2>
+                    Crafting Recipes
+                </h2>
+                <div id="crafting-anim">
+                    <h3>
+                        Crimson Forage Mix
+                    </h3>
+                    <div class="crafting-area" aria-hidden="true">
+                        <img class="back" src="../gui_img/crafting_table_display.webp" alt="">
+                        <div class="front">
+                            <div class="slot"><img class="crafting-item" loading="lazy" src="../item_img/cindersnap_berries.webp" alt=""></div>
+                            <div class="slot"><img class="crafting-item" loading="lazy" src="../item_img/cindersnap_berries.webp" alt=""></div>
+                            <div class="slot"><img class="crafting-item" loading="lazy" src="../item_img/cindersnap_berries.webp" alt=""></div>
+
+                            <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-type="crimson_vegetation" src="../item_img/weeping_vines_plant.webp" alt=""></div>
+                            <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-type="crimson_vegetation" src="../item_img/weeping_vines_plant.webp" alt=""></div>
+                            <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-type="crimson_vegetation" src="../item_img/weeping_vines_plant.webp" alt=""></div>
+
+                            <div class="slot"></div>
+                            <div class="slot"></div>
+                            <div class="slot"></div>
+                        </div>
+                        <div class="front-result">
+                            <div><img class="result-item" loading="lazy" src="../item_img/crimson_forage_mix.webp" alt=""></div>
+                        </div>
+                    </div>
+                    <p>
+                        Craft crimson forage mix by placing three cindersnap berries and
+                        three of any crimson vegetation in any arrangement.
+                    </p>
+
+                    <h3>
+                        Warped Forage Mix
+                    </h3>
+                    <div class="crafting-area" aria-hidden="true">
+                        <img class="back" src="../gui_img/crafting_table_display.webp" alt="">
+                        <div class="front">
+                            <div class="slot"><img class="crafting-item" loading="lazy" src="../item_img/frostbite_berries.webp" alt=""></div>
+                            <div class="slot"><img class="crafting-item" loading="lazy" src="../item_img/frostbite_berries.webp" alt=""></div>
+                            <div class="slot"><img class="crafting-item" loading="lazy" src="../item_img/frostbite_berries.webp" alt=""></div>
+
+                            <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-type="warped_vegetation" src="../item_img/twisting_vines_plant.webp" alt=""></div>
+                            <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-type="warped_vegetation" src="../item_img/twisting_vines_plant.webp" alt=""></div>
+                            <div class="slot"><img class="crafting-item cycle-item" loading="lazy" data-type="warped_vegetation" src="../item_img/twisting_vines_plant.webp" alt=""></div>
+
+                            <div class="slot"></div>
+                            <div class="slot"></div>
+                            <div class="slot"></div>
+                        </div>
+                        <div class="front-result">
+                            <div><img class="result-item" loading="lazy" src="../item_img/warped_forage_mix.webp" alt=""></div>
+                        </div>
+                    </div>
+                    <p>
+                        Craft warped forage mix by placing three frostbite berries and
+                        three of any warped vegetation in any arrangement.
+                    </p>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <h1 class="main-title">
+                    Nether Forage Mixes
+                </h1>
+
+                <div id="image-changer-panel">
+                    <div class="button-container">
+                        <button class="menu-btn selected" data-type="crimson">Crimson</button>
+                        <button class="menu-btn" data-type="warped">Warped</button>
+                    </div>
+
+                    <img class="main-img swappable-img" src="../item_img/crimson_forage_mix.webp" alt="Crimson Forage Mix">
+                </div>
+
+                <table>
+                    <tr>
+                        <td class="img-desc">Consumption Time</td>
+                        <td class="img-desc">32 game ticks (1.6 seconds)</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Renewable</td>
+                        <td class="img-desc">Yes (Crafting)</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Stackable</td>
+                        <td class="img-desc">Yes (32)</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Hunger</td>
+                        <td class="img-desc">4 drumsticks</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Saturation</td>
+                        <td class="img-desc">16</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Always consumable</td>
+                        <td class="img-desc">No</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="credits-container container">
+            <div>
+                Disclaimer: NOT AN OFFICIAL MINECRAFT SERVICE. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.
+                Minecraft and official game assets are trademarks and property of Mojang Studios / Microsoft Corporation.
+                All custom mod assets, code, and content are the intellectual property of rndm_access.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="../js/go_to_top_btn.js" defer></script>
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/crafting.css">
     <link rel="stylesheet" href="../css/welcome.css">
     <meta charset="UTF-8">
     <title>Plushies - Assorted Discoveries Wiki</title>
@@ -11,86 +13,438 @@
 </head>
 <body>
     <main class="main-container container">
-        <div class="left-container">
-            <h1 class="main-title">
-                Plushies
-            </h1>
-            <h2>
-                About
-            </h2>
-            <p>
-                <b>Plushies</b> are decorative blocks that are inspired by Minecraft's various mobs.
-            </p>
-            <h2>
-                Placement
-            </h2>
-            <p>
-                When placing a plushie, it will face the player.
-            </p>
-            <h2>
-                Breaking
-            </h2>
-            <p>
-                Plushies can be broken with any item or by hand!
-            </p>
-            <h2>
-                Plushie Pages
-            </h2>
-            <div class="recommendation-container">
-                <div class="recommendation-item">
-                    <img class="recommendation-img" src="../block_img/allay_plushie.webp" alt="">
-                    <a href="../pages/allay_plushie.html">Allay Plushie</a>
-                </div>
+        <div class="top-content-wrapper">
+            <div class="left-container">
+                <h2>
+                    Config
+                </h2>
+                <table class="info-table">
+                    <tr>
+                        <th class="info-header">In-Game Screen Name</th>
+                        <th class="info-header">Config File Key</th>
+                        <th class="info-header">Default</th>
+                        <th class="info-header">Plushies</th>
+                    </tr>
+                    <tr>
+                        <td class="table-item">Enable Allay Plushie</td>
+                        <td class="table-item"><code>enable_allay_plushie</code></td>
+                        <td class="table-item"><code>true</code> / <code>Yes</code></td>
+                        <td class="table-item">allay plushie</td>
+                    </tr>
+                    <tr>
+                        <td class="table-item">Enable Hoglin Plushies</td>
+                        <td class="table-item"><code>enable_hoglin_plushies</code></td>
+                        <td class="table-item"><code>true</code> / <code>Yes</code></td>
+                        <td class="table-item">hoglin & zoglin plushies</td>
+                    </tr>
+                    <tr>
+                        <td class="table-item">Enable Vex Plushie</td>
+                        <td class="table-item"><code>enable_vex_plushies</code></td>
+                        <td class="table-item"><code>true</code> / <code>Yes</code></td>
+                        <td class="table-item">vex plushie</td>
+                    </tr>
+                    <tr>
+                        <td class="table-item">Enable Zombie Plushie</td>
+                        <td class="table-item"><code>enable_zombie_plushie</code></td>
+                        <td class="table-item"><code>true</code> / <code>Yes</code></td>
+                        <td class="table-item">zombie plushie</td>
+                    </tr>
+                    <tr>
+                        <td class="table-item">Enable Cow Plushies</td>
+                        <td class="table-item"><code>enable_cow_plushie</code></td>
+                        <td class="table-item"><code>true</code> / <code>Yes</code></td>
+                        <td class="table-item">temperate cow plushie</td>
+                    </tr>
+                    <tr>
+                        <td class="table-item">Enable Mooshroom Plushies</td>
+                        <td class="table-item"><code>enable_mooshroom_plushies</code></td>
+                        <td class="table-item"><code>true</code> / <code>Yes</code></td>
+                        <td class="table-item">red and brown mooshroom plushies</td>
+                    </tr>
+                </table>
 
-                <div class="recommendation-item">
-                    <img class="recommendation-img" src="../block_img/ocelot_plushie_standing.webp" alt="">
-                    <a href="cat_plushies.html">Cat Plushies</a>
-                </div>
+                <p>
+                    Determines whether these plushies can be obtained.
+                </p>
+                <ul>
+                    <li><code>true</code> / <code>Yes</code>: Plushies are enabled.</li>
+                    <li><code>false</code> / <code>No</code>: Plushies are disabled and hidden.</li>
+                </ul>
 
-                <div class="recommendation-item">
-                    <img class="recommendation-img" src="../block_img/temperate_cow_plushie.webp" alt="">
-                    <a href="cow_plushies.html">Cow Plushies</a>
-                </div>
+                <h2>
+                    About
+                </h2>
+                <p>
+                    <b>Plushies</b> are decorative blocks that are inspired by Minecraft's various mobs.
+                </p>
+                <h2>
+                    Placement
+                </h2>
+                <p>
+                    When placing a plushie, it will face the player.
+                </p>
+                <h2>
+                    Breaking
+                </h2>
+                <p>
+                    Plushies can be broken with any item or by hand!
+                </p>
+                <details class="collapsed-container">
+                    <summary class="collapsed">Passive mob plushies</summary>
+                    <h2>Table Of Contents</h2>
+                    <div class="recommendation-container">
+                        <div class="recommendation-item">
+                            <img class="recommendation-img" src="../block_img/allay_plushie.webp" alt="">
+                            <div><a href="#allay-plushie">Allay Plushie</a></div>
+                        </div>
+                        <div class="recommendation-item">
+                            <img class="recommendation-img" src="../block_img/ocelot_plushie_standing.webp" alt="">
+                            <a href="cat_plushies.html">Cat Plushies</a>
+                        </div>
+                        <div class="recommendation-item">
+                            <img class="recommendation-img" src="../block_img/temperate_cow_plushie.webp" alt="">
+                            <a href="#cow-plushie">Cow Plushies</a>
+                        </div>
+                        <div class="recommendation-item">
+                            <img class="recommendation-img" src="../block_img/red_mooshroom_plushie.webp" alt="">
+                            <a href="#mooshroom-plushies">Mooshroom Plushies</a>
+                        </div>
+                        <div class="recommendation-item">
+                            <img class="recommendation-img" src="../block_img/sheep_plushie_white.webp" alt="">
+                            <a href="sheep_plushies.html">Sheep Plushies</a>
+                        </div>
+                        <div class="recommendation-item">
+                            <img class="recommendation-img" src="../block_img/strider_plushie.webp" alt="">
+                            <a href="strider_plushies.html">Strider Plushies</a>
+                        </div>
+                        <div class="recommendation-item">
+                            <img class="recommendation-img" src="../block_img/pale_wolf_plushie_standing.webp" alt="">
+                            <a href="wolf_plushies.html">Wolf Plushies</a>
+                        </div>
+                    </div>
 
-                <div class="recommendation-item">
-                    <img class="recommendation-img" src="../block_img/enderman_plushie.webp" alt="">
-                    <a href="../pages/enderman_plushie.html">Enderman Plushie</a>
-                </div>
+                    <div id="allay-plushie">
+                        <h2 class="plushie-title">Allay Plushie</h2>
+                        <p>
+                            The <b>allay plushie</b> is a plushie inspired by the
+                            <a href="https://minecraft.wiki/w/Allay">Allay</a> mob.
+                            The plushie emits a light level of 10 when placed.
+                        </p>
+                        <h3>Crafting Recipe</h3>
+                        <div class="crafting-area" aria-hidden="true">
+                            <img class="back" src="../gui_img/crafting_table_display.webp" alt="">
+                            <div class="front">
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/light_blue_wool.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/light_blue_wool.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/light_blue_wool.webp" alt=""></div>
 
-                <div class="recommendation-item">
-                    <img class="recommendation-img" src="../block_img/hoglin_plushie.webp" alt="">
-                    <a href="hoglin_plushies.html">Hoglin Plushies</a>
-                </div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/white_wool.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../item_img/amethyst_shard.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/white_wool.webp" alt=""></div>
 
-                <div class="recommendation-item">
-                    <img class="recommendation-img" src="../block_img/red_mooshroom_plushie.webp" alt="">
-                    <a href="mooshroom_plushies.html">Mooshroom Plushies</a>
-                </div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/light_blue_wool.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/light_blue_wool.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/light_blue_wool.webp" alt=""></div>
+                            </div>
+                            <div class="front-result">
+                                <div><img class="result-item" loading="lazy" src="../block_img/allay_plushie.webp" alt=""></div>
+                            </div>
+                        </div>
+                        <p>
+                            Craft the Allay plushie by filling the top and bottom rows with light blue wool
+                            and placing an amethyst shard between two white wool in the middle row.
+                        </p>
+                    </div>
 
-                <div class="recommendation-item">
-                    <img class="recommendation-img" src="../block_img/sheep_plushie_white.webp" alt="">
-                    <a href="sheep_plushies.html">Sheep Plushies</a>
-                </div>
+                    <div id="cow-plushie">
+                        <h2 class="plushie-title">Cow Plushie</h2>
+                        <p>
+                            The <b>cow plushie</b> is a decorative plushie inspired by the
+                            <a href="https://minecraft.wiki/w/Cow">cow</a> mob.
+                        </p>
+                        <h2>
+                            Crafting Recipe
+                        </h2>
+                        <div class="crafting-area" aria-hidden="true">
+                            <img class="back" src="../gui_img/crafting_table_display.webp" alt="">
+                            <div class="front">
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/brown_wool.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/brown_wool.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/brown_wool.webp" alt=""></div>
 
-                <div class="recommendation-item">
-                    <img class="recommendation-img" src="../block_img/strider_plushie.webp" alt="">
-                    <a href="strider_plushies.html">Strider Plushies</a>
-                </div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/black_wool.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../item_img/beef.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/black_wool.webp" alt=""></div>
 
-                <div class="recommendation-item">
-                    <img class="recommendation-img" src="../block_img/vex_plushie.webp" alt="">
-                    <a href="../pages/vex_plushie.html">Vex Plushie</a>
-                </div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/brown_wool.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/brown_wool.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/brown_wool.webp" alt=""></div>
+                            </div>
+                            <div class="front-result">
+                                <div><img class="result-item" loading="lazy" src="../block_img/temperate_cow_plushie.webp" alt=""></div>
+                            </div>
+                        </div>
+                        <p>
+                            Craft the temperate cow plushie by filling the top and bottom rows with brown wool,
+                            and placing beef between two black wool in the middle row.
+                        </p>
+                    </div>
 
-                <div class="recommendation-item">
-                    <img class="recommendation-img" src="../block_img/pale_wolf_plushie_standing.webp" alt="">
-                    <a href="wolf_plushies.html">Wolf Plushies</a>
-                </div>
+                    <div id="mooshroom-plushies">
+                        <h2 class="plushie-title">Mooshroom Plushies</h2>
+                        <p>
+                            The <b>mooshroom plushie</b> is a decorative plushie inspired by
+                            the <a href="https://minecraft.wiki/w/Red_Mooshroom">red mooshroom</a>
+                            and <a href="https://minecraft.wiki/w/Brown_Mooshroom">brown mooshroom</a> mobs!
+                        </p>
+                        <h3>Crafting Recipe</h3>
+                        <div class="crafting-area" aria-hidden="true">
+                            <img class="back" src="../gui_img/crafting_table_display.webp" alt="">
+                            <div class="front">
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/red_wool.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/red_wool.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/red_wool.webp" alt=""></div>
 
-                <div class="recommendation-item">
-                    <img class="recommendation-img" src="../block_img/zombie_plushie.webp" alt="">
-                    <a href="../pages/zombie_plushie.html">Zombie Plushie</a>
-                </div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/black_wool.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../item_img/red_mushroom.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/black_wool.webp" alt=""></div>
+
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/red_wool.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/red_wool.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/red_wool.webp" alt=""></div>
+                            </div>
+                            <div class="front-result">
+                                <div><img class="result-item" loading="lazy" src="../block_img/red_mooshroom_plushie.webp" alt=""></div>
+                            </div>
+                        </div>
+                        <p>
+                            Craft the red mooshroom plushie by filling the top and bottom rows with red wool,
+                            and placing a red mushroom between two black wool in the middle row.
+                        </p>
+
+                        <div class="crafting-area" aria-hidden="true">
+                            <img class="back" src="../gui_img/crafting_table_display.webp" alt="">
+                            <div class="front">
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/brown_wool.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/brown_wool.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/brown_wool.webp" alt=""></div>
+
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/black_wool.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../item_img/brown_mushroom.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/black_wool.webp" alt=""></div>
+
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/brown_wool.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/brown_wool.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/brown_wool.webp" alt=""></div>
+                            </div>
+                            <div class="front-result">
+                                <div><img class="result-item" loading="lazy" src="../block_img/brown_mooshroom_plushie.webp" alt=""></div>
+                            </div>
+                        </div>
+                        <p>
+                            Craft the brown mooshroom plushie by filling the top and bottom rows with brown wool,
+                            and placing a brown mushroom between two black wool in the middle row.
+                        </p>
+                    </div>
+                </details>
+
+                <details class="collapsed-container">
+                    <summary class="collapsed">Neutral mob plushies</summary>
+                    <h2>Table Of Contents</h2>
+                    <div class="recommendation-container">
+                        <div class="recommendation-item">
+                            <img class="recommendation-img" src="../block_img/enderman_plushie.webp" alt="">
+                            <a href="../pages/enderman_plushie.html">Enderman Plushie</a>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="collapsed-container">
+                    <summary class="collapsed">Hostile mob plushies</summary>
+                    <h2>Table Of Contents</h2>
+                    <div class="recommendation-container">
+                        <div class="recommendation-item">
+                            <img class="recommendation-img" src="../block_img/hoglin_plushie.webp" alt="">
+                            <a href="#hoglin-plushies">Hoglin Plushies</a>
+                        </div>
+                        <div class="recommendation-item">
+                            <img class="recommendation-img" src="../block_img/vex_plushie.webp" alt="">
+                            <a href="#vex-plushie">Vex Plushie</a>
+                        </div>
+                        <div class="recommendation-item">
+                            <img class="recommendation-img" src="../block_img/zombie_plushie.webp" alt="">
+                            <a href="#zombie-plushie">Zombie Plushie</a>
+                        </div>
+                    </div>
+
+                    <div id="hoglin-plushies">
+                        <h2 class="plushie-title">Hoglin Plushies</h2>
+                        <p>
+                            The <b>hoglin plushie</b> and <b>zoglin plushie</b> are decorative plushies
+                            inspired by the <a href="https://minecraft.wiki/w/Hoglin">hoglin</a>
+                            and <a href="https://minecraft.wiki/w/Zoglin">zoglin</a> mob.
+                        </p>
+                        <h3>
+                            Crafting Recipe
+                        </h3>
+                        <div class="crafting-area" aria-hidden="true">
+                            <img class="back" src="../gui_img/crafting_table_display.webp" alt="">
+                            <div class="front">
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/terracotta.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/terracotta.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/terracotta.webp" alt=""></div>
+
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/white_wool.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../item_img/porkchop.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/white_wool.webp" alt=""></div>
+
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/terracotta.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/terracotta.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/terracotta.webp" alt=""></div>
+                            </div>
+                            <div class="front-result">
+                                <div><img class="result-item" loading="lazy" src="../block_img/hoglin_plushie.webp" alt=""></div>
+                            </div>
+                        </div>
+                        <p>
+                            Craft the hoglin plushie by filling the top and bottom rows with terracotta,
+                            and placing a porkchop between two white wool in the middle row.
+                        </p>
+
+                        <div class="crafting-area" aria-hidden="true">
+                            <img class="back" src="../gui_img/crafting_table_display.webp" alt="">
+                            <div class="front">
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/white_wool.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/white_wool.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/white_wool.webp" alt=""></div>
+
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/black_wool.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../item_img/porkchop.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/black_wool.webp" alt=""></div>
+
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/pink_wool.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/pink_wool.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/pink_wool.webp" alt=""></div>
+                            </div>
+                            <div class="front-result">
+                                <div><img class="result-item" loading="lazy" src="../block_img/zoglin_plushie.webp" alt=""></div>
+                            </div>
+                        </div>
+                        <p>
+                            Craft the zoglin plushie by filling the top row with white wool,
+                            placing a porkchop between two black wool in the middle row,
+                            and filling the bottom row with pink wool.
+                        </p>
+                    </div>
+
+                    <div id="vex-plushie">
+                        <h2 class="plushie-title">Vex Plushie</h2>
+                        <p>
+                            The <b>vex plushie</b> is a decorative plushie inspired by the
+                            <a href="https://minecraft.wiki/w/Vex">vex</a> mob.
+                            The plushie emits a light level of 10 when placed.
+                        </p>
+                        <h3>
+                            Crafting Recipe
+                        </h3>
+                        <div class="crafting-area" aria-hidden="true">
+                            <img class="back" src="../gui_img/crafting_table_display.webp" alt="">
+                            <div class="front">
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/light_gray_wool.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/light_gray_wool.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/light_gray_wool.webp" alt=""></div>
+
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/white_wool.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../item_img/emerald.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/white_wool.webp" alt=""></div>
+
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/light_gray_wool.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/light_gray_wool.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/light_gray_wool.webp" alt=""></div>
+                            </div>
+                            <div class="front-result">
+                                <div><img class="result-item" loading="lazy" src="../block_img/vex_plushie.webp" alt=""></div>
+                            </div>
+                        </div>
+                        <p>
+                            Craft the vex plushie by filling the top and bottom rows with light gray wool,
+                            and placing an emerald between two white wool in the middle row.
+                        </p>
+                    </div>
+
+                    <div id="zombie-plushie">
+                        <h2 class="plushie-title">Zombie Plushie</h2>
+                        <p>
+                            The zombie plushie is a decorative plushie inspired by the
+                            <a href="https://minecraft.wiki/w/Zombie">zombie</a> mob!
+                        </p>
+                        <h3>Crafting Recipe</h3>
+                        <div class="crafting-area" aria-hidden="true">
+                            <img class="back" src="../gui_img/crafting_table_display.webp" alt="">
+                            <div class="front">
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/green_wool.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/green_wool.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/green_wool.webp" alt=""></div>
+
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/black_wool.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../item_img/rotten_flesh.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/black_wool.webp" alt=""></div>
+
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/green_wool.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/green_wool.webp" alt=""></div>
+                                <div class="slot"><img class="crafting-item" loading="lazy" src="../block_img/green_wool.webp" alt=""></div>
+                            </div>
+                            <div class="front-result">
+                                <div><img class="result-item" loading="lazy" src="../block_img/zombie_plushie.webp" alt=""></div>
+                            </div>
+                        </div>
+                        <p>
+                            Craft the zombie plushie by filling the top and bottom rows with green wool,
+                            and placing rotten flesh between two black wool in the middle row.
+                        </p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="sidebar">
+                <h1 class="main-title">
+                    Plushies
+                </h1>
+                <img class="main-img" src="../block_img/allay_plushie.webp" alt="Allay plushie">
+                <table>
+                    <tr>
+                        <td class="img-desc">Renewable</td>
+                        <td class="img-desc">Yes (Crafting)</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Stackable</td>
+                        <td class="img-desc">Yes (64)</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Tool</td>
+                        <td class="img-desc">Any tool</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Blast Resistance</td>
+                        <td class="img-desc">0.2</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Hardness</td>
+                        <td class="img-desc">0.2</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Transparent</td>
+                        <td class="img-desc">No</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Catches fire from lava</td>
+                        <td class="img-desc">Yes</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Note block instrument</td>
+                        <td class="img-desc">Default (Harp)</td>
+                    </tr>
+                </table>
             </div>
         </div>
     </main>
@@ -104,5 +458,6 @@
             </div>
         </div>
     </footer>
+    <button id="go-to-top-btn" title="Go to top">Return to Top ↑</button>
 </body>
 </html>

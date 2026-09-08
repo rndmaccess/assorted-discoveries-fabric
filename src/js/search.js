@@ -23,6 +23,7 @@ import witchsCradleBranch from '../item_img/witchs_cradle_branch.webp';
 import whiteCampfire from '../anim_block_img/white_campfire.webp';
 import whiteTorch from '../anim_block_img/white_torch.webp';
 import strippedOakWall from '../block_img/stripped_oak_wall.webp';
+import fourPlushies from '../block_img/4_plushies.webp';
 
 let miniSearch = new MiniSearch({
     fields: ['title', 'keywords'],
@@ -243,7 +244,7 @@ const documents = [
         description: 'Decorate your world and collect them all! Learn how to find and craft over ninety ' +
             'unique plushies. View full block properties and common mechanics.',
         link: './plushies.html',
-        img: endermanPlushie,
+        img: fourPlushies,
     },
     {
         id: 25,

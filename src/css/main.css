@@ -281,6 +281,17 @@ table {
     background-color: #555;
 }
 
+.inline-display {
+    display: flex;
+    flex-direction: row;
+}
+
+.inline-display-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 /* Desktop properties */
 @media (min-width: 1024px) {
     html, body {

@@ -1,4 +1,3 @@
-import striderPlushie from '../block_img/strider_plushie.webp';
 import endermanPlushie from '../block_img/enderman_plushie.webp';
 import oakPlanterBox from '../block_img/oak_planter_box.webp';
 import paleWolfPlushieStanding from '../block_img/pale_wolf_plushie_standing.webp';

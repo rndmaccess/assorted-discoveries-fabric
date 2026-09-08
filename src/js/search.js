@@ -77,15 +77,6 @@ const documents = [
     },
     {
         id: 6,
-        title: 'strider plushies',
-        keywords: '',
-        description: 'Bring the Nether to life with Strider plushies! Collect and craft adorable ' +
-            'variants inspired by every Strider form.',
-        link: './strider_plushies.html',
-        img: striderPlushie,
-    },
-    {
-        id: 7,
         title: 'cat plushies',
         keywords: '',
         description: 'Bring home your favorite feline! Discover how to craft cat and ocelot plushies ' +
@@ -94,7 +85,7 @@ const documents = [
         img: ocelotPlushieStanding,
     },
     {
-        id: 8,
+        id: 7,
         title: 'sheep plushies',
         keywords: 'white light gray black brown red orange yellow lime green cyan blue purple magenta pink',
         description: 'Create your perfect flock! Discover how to craft and collect cute sheep plushies in your world. ' +
@@ -103,7 +94,7 @@ const documents = [
         img: whiteSheepPlushie,
     },
     {
-        id: 9,
+        id: 8,
         title: 'wild green onions',
         keywords: 'plant seeds',
         description: 'Forage the wilderness for wild green onions! Discover where to find this useful plant, ' +
@@ -112,7 +103,7 @@ const documents = [
         img: wildGreenOnions,
     },
     {
-        id: 10,
+        id: 9,
         title: 'green onion seeds',
         keywords: 'plant',
         description: 'Grow your own custom crops! Discover how to plant green onion seeds, accelerate growth, ' +
@@ -121,7 +112,7 @@ const documents = [
         img: greenOnionSeeds,
     },
     {
-        id: 11,
+        id: 10,
         title: 'green onion',
         keywords: 'plant seeds food',
         description: 'Cook up something delicious with green onions! Discover hunger values, saturation levels, ' +
@@ -130,7 +121,7 @@ const documents = [
         img: greenOnion,
     },
     {
-        id: 12,
+        id: 11,
         title: 'grass slabs',
         keywords: 'podzol mycelium',
         description: 'Upgrade your landscapes with grass, podzol, and mycelium slabs! Discover how to craft ' +
@@ -139,7 +130,7 @@ const documents = [
         img: grassSlab,
     },
     {
-        id: 13,
+        id: 12,
         title: 'dirt slabs',
         keywords: 'coarse rooted',
         description: 'Perfect your natural builds with dirt, coarse dirt, and rooted dirt slabs! ' +
@@ -148,7 +139,7 @@ const documents = [
         img: dirtSlab,
     },
     {
-        id: 14,
+        id: 13,
         title: 'dirt path slab',
         keywords: 'grass mycelium coarse rooted podzol',
         description: 'Carve out beautiful trails! Right-click grass and dirt slabs with any shovel to transform them ' +
@@ -157,7 +148,7 @@ const documents = [
         img: dirtPathSlab,
     },
     {
-        id: 15,
+        id: 14,
         title: 'nether berries',
         keywords: 'cindersnap frostbite berry',
         description: 'Forage the Nether for frostbite and cindersnap berries! ' +
@@ -166,7 +157,7 @@ const documents = [
         img: cindersnapBerries,
     },
     {
-        id: 16,
+        id: 15,
         title: 'spruce cone',
         keywords: 'cones forest\'s bounty forest',
         description: 'Forage for spruce cones and create the forest\'s bounty! ' +
@@ -175,7 +166,7 @@ const documents = [
         img: spruceCone,
     },
     {
-        id: 17,
+        id: 16,
         title: 'forest\'s bounty',
         keywords: 'spruce cone cones forest',
         description: 'Feast on forest\'s bounty! Learn how to combine spruce cones and other raw ' +
@@ -184,7 +175,7 @@ const documents = [
         img: forestsBounty,
     },
     {
-        id: 18,
+        id: 17,
         title: 'nether forage mixes',
         keywords: 'crimson warped berry cindersnap berries frostbite',
         description: 'Master Nether cooking! Discover how to craft crimson and warped forage mixes using ' +
@@ -193,7 +184,7 @@ const documents = [
         img: crimsonForageMix,
     },
     {
-        id: 19,
+        id: 18,
         title: 'nether berry juices',
         keywords: 'crimson warped cindersnap frostbite berries',
         description: 'Quench your thirst and gain Fire Resistance! Learn how to craft frostbite and cindersnap ' +
@@ -202,7 +193,7 @@ const documents = [
         img: cindersnapBerryJuice,
     },
     {
-        id: 20,
+        id: 19,
         title: 'wooden walls',
         keywords: 'oak spruce birch jungle acacia dark mangrove cherry pale bamboo crimson warped',
         description: 'Transform your world and add depth to your structures! Learn how to craft ' +
@@ -211,7 +202,7 @@ const documents = [
         img: oakWall,
     },
     {
-        id: 21,
+        id: 20,
         title: 'witch\'s cradle branch',
         keywords: '',
         description: 'Conquer the dark and master the swamp! Learn how to harvest the witch\'s cradle bush ' +
@@ -220,7 +211,7 @@ const documents = [
         img: witchsCradleBranch,
     },
     {
-        id: 22,
+        id: 21,
         title: 'witch\'s cradle soup',
         keywords: 'branch',
         description: 'Conquer the dark and master the swamp! Learn how to craft witch\'s cradle soup and gain ' +
@@ -229,7 +220,7 @@ const documents = [
         img: witchsCradleSoup,
     },
     {
-        id: 23,
+        id: 22,
         title: 'dyed campfires',
         keywords: 'white light gray black brown red orange yellow lime green cyan blue purple magenta pink',
         description: 'Illuminate your camps and color your world! Learn how to craft dyed campfires in all ' +
@@ -238,7 +229,7 @@ const documents = [
         img: whiteCampfire,
     },
     {
-        id: 24,
+        id: 23,
         title: 'plushies',
         keywords: '',
         description: 'Decorate your world and collect them all! Learn how to find and craft over ninety ' +
@@ -247,7 +238,7 @@ const documents = [
         img: fourPlushies,
     },
     {
-        id: 25,
+        id: 24,
         title: 'dyed torches',
         keywords: 'white light gray black brown red orange yellow lime green cyan blue purple magenta pink',
         description: 'Illuminate your builds and color your world! Learn how to craft dyed torches in all ' +
@@ -256,7 +247,7 @@ const documents = [
         img: whiteTorch,
     },
     {
-        id: 26,
+        id: 25,
         title: 'stripped wooden walls',
         keywords: 'oak spruce birch jungle acacia dark mangrove cherry pale bamboo crimson warped',
         description: 'Transform your world and add depth to your structures! Learn how to obtain stripped wooden walls ' +

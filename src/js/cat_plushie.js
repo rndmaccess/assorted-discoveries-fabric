@@ -37,7 +37,7 @@ const optionList = {
         },
         {
             "src": ocelotPlushieSitting,
-            "alt": "An ocelot plushie with brown spots, brown nose, green eyes and a yellow body."
+            "alt": ""
         }
     ],
     "white": [
@@ -47,7 +47,7 @@ const optionList = {
         },
         {
             "src": whiteCatPlushieSitting,
-            "alt": "A white cat plushie with a pink nose, yellow left eye, and light blue right eye."
+            "alt": ""
         }
     ],
     "tabby": [
@@ -57,7 +57,7 @@ const optionList = {
         },
         {
             "src": tabbyCatPlushieSitting,
-            "alt": "A brown tabby cat plushie with yellow-orange eyes."
+            "alt": ""
         }
     ],
     "tuxedo": [
@@ -67,7 +67,7 @@ const optionList = {
         },
         {
             "src": tuxedoCatPlushieSitting,
-            "alt": "A tuxedo cat plushie with green eyes and a pink nose."
+            "alt": ""
         }
     ],
     "red": [
@@ -77,7 +77,7 @@ const optionList = {
         },
         {
             "src": redCatPlushieSitting,
-            "alt": "An orange cat with white paws and green eyes."
+            "alt": ""
         }
     ],
     "siamese": [
@@ -87,7 +87,7 @@ const optionList = {
         },
         {
             "src": siameseCatPlushieSitting,
-            "alt": "A siamese cat plushie with blue eyes."
+            "alt": ""
         }
     ],
     "british_shorthair": [
@@ -97,7 +97,7 @@ const optionList = {
         },
         {
             "src": britishShorthairCatPlushieSitting,
-            "alt": "A british shorthair cat plushie with light yellow eyes."
+            "alt": ""
         }
     ],
     "calico": [
@@ -107,7 +107,7 @@ const optionList = {
         },
         {
             "src": calicoCatPlushieSitting,
-            "alt": "A calico cat with a yellow left eye, and light blue right eye."
+            "alt": ""
         }
     ],
     "persian": [
@@ -117,7 +117,7 @@ const optionList = {
         },
         {
             "src": persianCatPlushieSitting,
-            "alt": "A persian cat plushie with light blue eyes."
+            "alt": ""
         }
     ],
     "ragdoll": [
@@ -127,7 +127,7 @@ const optionList = {
         },
         {
             "src": ragdollCatPlushieSitting,
-            "alt": "A ragdoll cat plushie with light blue eyes."
+            "alt": ""
         }
     ],
     "black": [
@@ -137,7 +137,7 @@ const optionList = {
         },
         {
             "src": blackCatPlushieSitting,
-            "alt": "A black cat plushie with orange eyes and a pink nose."
+            "alt": ""
         }
     ],
     "jellie": [
@@ -147,7 +147,7 @@ const optionList = {
         },
         {
             "src": jellieCatPlushieSitting,
-            "alt": "A Jellie cat plushie with light yellow-green eyes and a pink nose."
+            "alt": ""
         }
     ]
 }

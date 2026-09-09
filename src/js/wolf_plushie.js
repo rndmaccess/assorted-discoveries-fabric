@@ -20,7 +20,7 @@ const optionList = {
         },
         {
             "src": paleWolfPlushieSitting,
-            "alt": "A white wolf plushie with black eyes, and black ear tuffs."
+            "alt": ""
         }
     ],
     "ashen": [
@@ -30,7 +30,7 @@ const optionList = {
         },
         {
             "src": ashenWolfPlushieSitting,
-            "alt": "A wolf plushie with dark purplish-gray top fur, matching ear tuffs, a white belly, and black eyes."
+            "alt": ""
         }
     ],
     "black": [
@@ -40,7 +40,7 @@ const optionList = {
         },
         {
             "src": blackWolfPlushieSitting,
-            "alt": "A black wolf plushie with gray eyes."
+            "alt": ""
         }
     ],
     "chestnut": [
@@ -50,7 +50,7 @@ const optionList = {
         },
         {
             "src": chestnutWolfPlushieSitting,
-            "alt": "A light brown wolf plushie with dark brown feet, snout, and ear tuffs, along with black eyes."
+            "alt": ""
         }
     ],
     "rusty": [
@@ -60,7 +60,7 @@ const optionList = {
         },
         {
             "src": rustyWolfPlushieSitting,
-            "alt": "A brownish-red wolf plushie with white feet, and matching ear tuffs, along with black eyes."
+            "alt": ""
         }
     ]
 }

@@ -310,7 +310,7 @@ table {
 
 .inline-render img {
     display: block;
-    width: 50%;
+    width: 150px;
 
     filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.2));
 }
@@ -354,5 +354,9 @@ table {
     .sidebar {
         width: 35%;
         min-width: 35%;
+    }
+
+    .inline-render img {
+        width: 75px;
     }
 }

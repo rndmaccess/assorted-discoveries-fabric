@@ -244,6 +244,16 @@ const documents = [
         link: './stripped_wooden_walls.html',
         img: strippedOakWall,
     },
+
+    {
+        id: 25,
+        title: 'ender plants',
+        keywords: 'snapdragon short ender grass',
+        description: 'Discover new flora in the End! Learn how to find short ender grass and snapdragons on ' +
+            'outer end islands, cultivate them using bone meal, and decorate your builds.',
+        link: './ender_plants.html',
+        img: strippedOakWall,
+    },
 ];
 
 miniSearch.addAll(documents);

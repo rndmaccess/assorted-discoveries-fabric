@@ -22,6 +22,7 @@ import whiteCampfire from '../anim_block_img/white_campfire.webp';
 import whiteTorch from '../anim_block_img/white_torch.webp';
 import strippedOakWall from '../block_img/stripped_oak_wall.webp';
 import fourPlushies from '../block_img/4_plushies.webp';
+import snapdragon from '../anim_block_img/snapdragon.webp';
 
 let miniSearch = new MiniSearch({
     fields: ['title', 'keywords'],
@@ -244,7 +245,6 @@ const documents = [
         link: './stripped_wooden_walls.html',
         img: strippedOakWall,
     },
-
     {
         id: 25,
         title: 'ender plants',
@@ -252,7 +252,7 @@ const documents = [
         description: 'Discover new flora in the End! Learn how to find short ender grass and snapdragons on ' +
             'outer end islands, cultivate them using bone meal, and decorate your builds.',
         link: './ender_plants.html',
-        img: strippedOakWall,
+        img: snapdragon,
     },
 ];
 

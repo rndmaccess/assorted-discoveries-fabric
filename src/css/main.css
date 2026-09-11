@@ -164,8 +164,12 @@ a:hover {
     flex-shrink: 0;
 }
 
+.table-container {
+    padding-top: 1rem;
+}
+
 .info-table {
-    outline: 1px solid #3c2a68;
+    outline: 2px solid #3c2a68;
     border-collapse: collapse;
     table-layout: fixed;
     background-color: #202020;

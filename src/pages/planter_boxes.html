@@ -22,21 +22,6 @@
                     by placing more planter boxes next to each other!
                 </p>
                 <h2>
-                    Config
-                </h2>
-                <ul>
-                    <li>In-Game Screen Name: Enable Planter Boxes</li>
-                    <li>Config File Key: <code>enable_planter_boxes</code></li>
-                    <li>Default: <code>true</code> / <code>Yes</code></li>
-                </ul>
-                <p>
-                    Determines whether all planter boxes are obtainable, nether and overworld.
-                </p>
-                <ul>
-                    <li><code>true</code> / <code>Yes</code>: Planter boxes are enabled.</li>
-                    <li><code>false</code> / <code>No</code>: Planter boxes are disabled and hidden.</li>
-                </ul>
-                <h2>
                     Expansion
                 </h2>
                 <p>
@@ -59,91 +44,6 @@
                     <a href="https://minecraft.wiki/w/Farmland">wet farmland<span aria-hidden="true">↗</span></a>
                     or <a href="https://minecraft.wiki/w/Soul_Soil">soul soil<span aria-hidden="true">↗</span></a>!
                 </p>
-                <h2>
-                    Supported Plant Block Tags
-                </h2>
-                <p>
-                    Planter boxes support any plant that can normally grow on the soil types
-                    defined by the block tags below.
-                </p>
-                <p>
-                    Mod Compatibility: If another mod adds its plants to any of these tags,
-                    they will automatically be compatible with planter boxes.
-                </p>
-                <table class="info-table">
-                    <tr>
-                        <th colspan="2" scope="rowgroup" class="info-header">Overworld Boxes</th>
-                    </tr>
-                    <tr>
-                        <td class="table-item">Tags</td>
-                        <td class="table-item">
-                            <ul class="table-list">
-                                <li><code>minecraft:dirt</code></li>
-                                <li><code>minecraft:supports_crops</code></li>
-                                <li><code>c:dirt</code></li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="table-item">Default Plants</td>
-                        <td class="table-item">
-                            <ul class="table-list">
-                                <li><a href="https://minecraft.wiki/w/Wheat">Wheat<span aria-hidden="true">↗</span></a></li>
-                                <li><a href="https://minecraft.wiki/w/Carrot">Carrots<span aria-hidden="true">↗</span></a></li>
-                                <li><a href="https://minecraft.wiki/w/Potato">Potatoes<span aria-hidden="true">↗</span></a></li>
-                                <li><a href="https://minecraft.wiki/w/Beetroot">Beetroots<span aria-hidden="true">↗</span></a></li>
-                                <li><a href="https://minecraft.wiki/w/Sweet_Berries">Sweet Berries<span aria-hidden="true">↗</span></a></li>
-                                <li><a href="https://minecraft.wiki/w/Flowers">Flowers<span aria-hidden="true">↗</span></a></li>
-                                <li><a href="https://minecraft.wiki/w/Sugar_Cane">Sugar Cane<span aria-hidden="true">↗</span></a></li>
-                                <li><a href="https://minecraft.wiki/w/Saplings">Saplings<span aria-hidden="true">↗</span></a></li>
-                                <li><a href="./wild_green_onions.html">Wild Green Onions</a></li>
-                                <li><a href="./green_onion_seeds.html">Green Onions</a></li>
-                            </ul>
-                        </td>
-                    </tr>
-                </table>
-                <p class="table-note">
-                    <strong class="note-title">Note:</strong>
-                    <code class="note-text">c:dirt</code> (Common tag used by modded soils)
-                </p>
-                <table class="info-table">
-                    <tr>
-                        <th colspan="2" scope="rowgroup" class="info-header">Nether Boxes</th>
-                    </tr>
-                    <tr>
-                        <td class="table-item">Tags</td>
-                        <td class="table-item">
-                            <ul class="table-list">
-                                <li><code>minecraft:supports_warped_roots</code></li>
-                                <li><code>minecraft:supports_warped_fungus</code></li>
-                                <li><code>minecraft:supports_nether_wart</code></li>
-
-                                <li><code>minecraft:supports_nether_sprouts</code></li>
-                                <li><code>minecraft:supports_crimson_roots</code></li>
-                                <li><code>minecraft:supports_crimson_fungus</code></li>
-                                <li><code>c:soul_ground</code></li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="table-item">Default Plants</td>
-                        <td class="table-item">
-                            <ul class="table-list">
-                                <li><a href="https://minecraft.wiki/w/Nether_Wart">Nether Wart<span aria-hidden="true">↗</span></a></li>
-                                <li><a href="https://minecraft.wiki/w/Crimson_Roots">Crimson Roots<span aria-hidden="true">↗</span></a></li>
-                                <li><a href="https://minecraft.wiki/w/Warped_Roots">Warped Roots<span aria-hidden="true">↗</span></a></li>
-                                <li><a href="https://minecraft.wiki/w/Crimson_Fungus">Crimson Fungi<span aria-hidden="true">↗</span></a></li>
-                                <li><a href="https://minecraft.wiki/w/Warped_Fungus">Warped Fungi<span aria-hidden="true">↗</span></a></li>
-                                <li><a href="https://minecraft.wiki/w/Nether_Sprouts">Nether Sprouts<span aria-hidden="true">↗</span></a></li>
-                            </ul>
-                        </td>
-                    </tr>
-                </table>
-                <p class="table-note">
-                    <strong class="note-title">Note:</strong>
-                    <code class="note-text">c:soul_ground</code> (Common tag used for Soul Sand and Soul Soil plants)
-                </p>
-
                 <h2>
                     Crafting Recipe
                 </h2>
@@ -232,6 +132,110 @@
                 <p>
                     Craft three crimson planter boxes by placing seven crimson slabs in a U-shape around any central soul block.
                 </p>
+
+                <h2>Technical</h2>
+                <details class="collapsed-container">
+                    <summary class="collapsed">Configuration</summary>
+
+                    <ul>
+                        <li>In-Game Screen Name: Enable Planter Boxes</li>
+                        <li>Config File Key: <code>enable_planter_boxes</code></li>
+                        <li>Default: <code>true</code> / <code>Yes</code></li>
+                    </ul>
+                    <p>
+                        Determines whether all planter boxes are obtainable, nether and overworld.
+                    </p>
+                    <ul>
+                        <li><code>true</code> / <code>Yes</code>: Planter boxes are enabled.</li>
+                        <li><code>false</code> / <code>No</code>: Planter boxes are disabled and hidden.</li>
+                    </ul>
+                </details>
+
+                <details class="collapsed-container">
+                    <summary class="collapsed">Tags</summary>
+
+                    <p>
+                        Planter boxes support any plant that can normally grow on the soil types
+                        defined by the block tags below.
+                    </p>
+                    <p>
+                        Mod Compatibility: If another mod adds its plants to any of these tags,
+                        they will automatically be compatible with planter boxes.
+                    </p>
+                    <table class="info-table">
+                        <tr>
+                            <th colspan="2" scope="rowgroup" class="info-header">Overworld Boxes</th>
+                        </tr>
+                        <tr>
+                            <td class="table-item">Tags</td>
+                            <td class="table-item">
+                                <ul class="table-list">
+                                    <li><code>minecraft:dirt</code></li>
+                                    <li><code>minecraft:supports_crops</code></li>
+                                    <li><code>c:dirt</code></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table-item">Default Plants</td>
+                            <td class="table-item">
+                                <ul class="table-list">
+                                    <li><a href="https://minecraft.wiki/w/Wheat">Wheat<span aria-hidden="true">↗</span></a></li>
+                                    <li><a href="https://minecraft.wiki/w/Carrot">Carrots<span aria-hidden="true">↗</span></a></li>
+                                    <li><a href="https://minecraft.wiki/w/Potato">Potatoes<span aria-hidden="true">↗</span></a></li>
+                                    <li><a href="https://minecraft.wiki/w/Beetroot">Beetroots<span aria-hidden="true">↗</span></a></li>
+                                    <li><a href="https://minecraft.wiki/w/Sweet_Berries">Sweet Berries<span aria-hidden="true">↗</span></a></li>
+                                    <li><a href="https://minecraft.wiki/w/Flowers">Flowers<span aria-hidden="true">↗</span></a></li>
+                                    <li><a href="https://minecraft.wiki/w/Sugar_Cane">Sugar Cane<span aria-hidden="true">↗</span></a></li>
+                                    <li><a href="https://minecraft.wiki/w/Saplings">Saplings<span aria-hidden="true">↗</span></a></li>
+                                    <li><a href="./wild_green_onions.html">Wild Green Onions</a></li>
+                                    <li><a href="./green_onion_seeds.html">Green Onions</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+                    <p class="table-note">
+                        <strong class="note-title">Note:</strong>
+                        <code class="note-text">c:dirt</code> (Common tag used by modded soils)
+                    </p>
+                    <table class="info-table">
+                        <tr>
+                            <th colspan="2" scope="rowgroup" class="info-header">Nether Boxes</th>
+                        </tr>
+                        <tr>
+                            <td class="table-item">Tags</td>
+                            <td class="table-item">
+                                <ul class="table-list">
+                                    <li><code>minecraft:supports_warped_roots</code></li>
+                                    <li><code>minecraft:supports_warped_fungus</code></li>
+                                    <li><code>minecraft:supports_nether_wart</code></li>
+
+                                    <li><code>minecraft:supports_nether_sprouts</code></li>
+                                    <li><code>minecraft:supports_crimson_roots</code></li>
+                                    <li><code>minecraft:supports_crimson_fungus</code></li>
+                                    <li><code>c:soul_ground</code></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table-item">Default Plants</td>
+                            <td class="table-item">
+                                <ul class="table-list">
+                                    <li><a href="https://minecraft.wiki/w/Nether_Wart">Nether Wart<span aria-hidden="true">↗</span></a></li>
+                                    <li><a href="https://minecraft.wiki/w/Crimson_Roots">Crimson Roots<span aria-hidden="true">↗</span></a></li>
+                                    <li><a href="https://minecraft.wiki/w/Warped_Roots">Warped Roots<span aria-hidden="true">↗</span></a></li>
+                                    <li><a href="https://minecraft.wiki/w/Crimson_Fungus">Crimson Fungi<span aria-hidden="true">↗</span></a></li>
+                                    <li><a href="https://minecraft.wiki/w/Warped_Fungus">Warped Fungi<span aria-hidden="true">↗</span></a></li>
+                                    <li><a href="https://minecraft.wiki/w/Nether_Sprouts">Nether Sprouts<span aria-hidden="true">↗</span></a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+                    <p class="table-note">
+                        <strong class="note-title">Note:</strong>
+                        <code class="note-text">c:soul_ground</code> (Common tag used for Soul Sand and Soul Soil plants)
+                    </p>
+                </details>
             </div>
 
             <div class="sidebar">

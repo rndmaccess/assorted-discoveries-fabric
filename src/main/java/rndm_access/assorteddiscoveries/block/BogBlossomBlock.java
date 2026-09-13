@@ -113,15 +113,14 @@ public class BogBlossomBlock extends Block implements BonemealableBlock {
             int yOffset = random.nextInt(4) - random.nextInt(4);
             int zOffset = random.nextInt(4) - random.nextInt(4);
             mutablePos.move(xOffset, yOffset, zOffset);
-            BlockPos placePos = mutablePos.immutable();
-            BlockState worldState = world.getBlockState(placePos);
+            BlockState worldState = world.getBlockState(mutablePos);
 
-            if (this.canSurvive(null, world, placePos) && (worldState.isAir() || worldState.canBeReplaced())) {
-                world.setBlockAndUpdate(placePos, this.defaultBlockState());
+            if (this.canSurvive(worldState, world, mutablePos) && (worldState.isAir() || worldState.canBeReplaced())) {
+                world.setBlockAndUpdate(mutablePos, this.defaultBlockState());
                 placed = true;
             }
             tries++;
-            mutablePos = pos.mutable();
+            mutablePos.set(pos.getX(), pos.getY(), pos.getZ()); // Return to the center for the next try.
         } while (!placed && tries < 24); // Try to place a block 24 times before giving up!
     }
 }

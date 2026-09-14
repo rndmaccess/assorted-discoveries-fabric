@@ -23,6 +23,7 @@ import whiteTorch from '../anim_block_img/white_torch.webp';
 import strippedOakWall from '../block_img/stripped_oak_wall.webp';
 import fourPlushies from '../block_img/4_plushies.webp';
 import snapdragon from '../anim_block_img/snapdragon.webp';
+import bauxite from '../block_img/bauxite.webp';
 
 let miniSearch = new MiniSearch({
     fields: ['title', 'keywords'],
@@ -253,6 +254,15 @@ const documents = [
             'outer end islands, cultivate them using bone meal, and decorate your builds.',
         link: './ender_plants.html',
         img: snapdragon,
+    },
+    {
+        id: 26,
+        title: 'bauxite',
+        keywords: '',
+        description: 'Discover bauxite, a sedimentary block generating in badlands biomes. ' +
+            'Learn how to craft bauxite blocks, stairs, slabs, and walls.',
+        link: './bauxite.html',
+        img: bauxite,
     },
 ];
 

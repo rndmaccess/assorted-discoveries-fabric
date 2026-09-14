@@ -1,10 +1,31 @@
+.crafting-container {
+    display: flex;
+    flex-direction: column;
+
+    background-color: #363636;
+    border: 2px solid #303030;
+    padding: 1rem;
+    box-sizing: border-box;
+
+    align-self: flex-start;
+    width: 60%;
+}
+
+.crafting-container p {
+    letter-spacing: 0.02rem;
+    line-height: 1.5;
+}
+
+.crafting-area:not(.crafting-container *) {
+    width: 60%;
+}
+
 .crafting-area {
     display: grid;
     /* Elements in the document rely on the crafting area to position items on the website! */
     position: relative;
     /* Makes a rectangular grid to position the items in the crafting area! */
     aspect-ratio: 1 / 0.5;
-    width: 50%;
 }
 
 .back {

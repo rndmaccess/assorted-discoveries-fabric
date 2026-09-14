@@ -1,14 +1,15 @@
 .crafting-container {
     display: flex;
     flex-direction: column;
+    align-self: flex-start;
+    padding: 1rem 1rem 0;
+    width: 60%;
+}
 
+.crafting-box {
+    box-sizing: border-box;
     background-color: #363636;
     border: 2px solid #303030;
-    padding: 1rem;
-    box-sizing: border-box;
-
-    align-self: flex-start;
-    width: 60%;
 }
 
 .crafting-container p {

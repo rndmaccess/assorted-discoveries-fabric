@@ -20,7 +20,6 @@ import witchsCradleSoup from '../item_img/witchs_cradle_soup.webp';
 import witchsCradleBranch from '../item_img/witchs_cradle_branch.webp';
 import whiteCampfire from '../anim_block_img/white_campfire.webp';
 import whiteTorch from '../anim_block_img/white_torch.webp';
-import strippedOakWall from '../block_img/stripped_oak_wall.webp';
 import fourPlushies from '../block_img/4_plushies.webp';
 import snapdragon from '../anim_block_img/snapdragon.webp';
 import bauxite from '../block_img/bauxite.webp';
@@ -187,7 +186,7 @@ const documents = [
         id: 18,
         title: 'wooden walls',
         keywords: 'oak spruce birch jungle acacia dark mangrove cherry pale bamboo crimson warped',
-        description: 'Transform your world and add depth to your structures! Learn how to craft ' +
+        description: 'Transform your world and add depth to your structures! Learn how to craft and strip ' +
             'wooden walls in every wood type, and view full block properties.',
         link: './wooden_walls.html',
         img: oakWall,
@@ -239,15 +238,6 @@ const documents = [
     },
     {
         id: 24,
-        title: 'stripped wooden walls',
-        keywords: 'oak spruce birch jungle acacia dark mangrove cherry pale bamboo crimson warped',
-        description: 'Transform your world and add depth to your structures! Learn how to obtain stripped wooden walls ' +
-            'in every wood type. View full block properties.',
-        link: './stripped_wooden_walls.html',
-        img: strippedOakWall,
-    },
-    {
-        id: 25,
         title: 'ender plants',
         keywords: 'snapdragon short ender grass',
         description: 'Discover new flora in the End! Learn how to find short ender grass and snapdragons on ' +
@@ -256,7 +246,7 @@ const documents = [
         img: snapdragon,
     },
     {
-        id: 26,
+        id: 25,
         title: 'bauxite',
         keywords: '',
         description: 'Discover bauxite, a sedimentary block generating in badlands biomes. ' +

@@ -442,6 +442,11 @@ public final class ModBlockIds {
     public static final BlockItemId ASHEN_WOLF_PLUSHIE_KEY = create("ashen_wolf_plushie");
     public static final BlockItemId CHESTNUT_WOLF_PLUSHIE_KEY = create("chestnut_wolf_plushie");
     public static final BlockItemId RUSTY_WOLF_PLUSHIE_KEY = create("rusty_wolf_plushie");
+    public static final BlockItemId BLUEBERRY_CRATE_KEY = create("blueberry_crate");
+    public static final BlockItemId WITCHS_CRADLE_CRATE_KEY = create("witchs_cradle_crate");
+    public static final BlockItemId GREEN_ONION_CRATE_KEY = create("green_onion_crate");
+    public static final BlockItemId FROSTBITE_BERRY_CRATE_KEY = create("frostbite_berry_crate");
+    public static final BlockItemId GREEN_ONION_SEEDS_BAG_KEY = create("green_onion_seeds_bag");
     public static final ColorCollection<BlockItemId> DYED_LANTERN_KEYS = createSimpleColored("lantern");
     public static final ColorCollection<BlockItemId> DYED_SHEEP_KEYS = createSimpleColored("sheep_plushie");
 

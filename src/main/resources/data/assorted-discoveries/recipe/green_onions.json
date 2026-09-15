@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "assorted-discoveries:green_onion_crate"
+  ],
+  "result": {
+    "id": "assorted-discoveries:green_onion",
+    "count": 9
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:all_entries_enabled",
+      "value": "enable_green_onions"
+    }
+  ]
+}

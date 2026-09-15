@@ -841,7 +841,8 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModItems.DRIED_BLOOD_KELP);
             }
 
-            if (ModConfig.ENABLE_GREEN_ONIONS.getValue()) {
+            boolean enableGreenOnion = ModConfig.ENABLE_GREEN_ONIONS.getValue();
+            if (enableGreenOnion) {
                 entries.accept(ModBlocks.WILD_GREEN_ONIONS.asItem());
                 entries.accept(ModItems.GREEN_ONION_SEEDS);
                 entries.accept(ModItems.GREEN_ONION);
@@ -859,7 +860,8 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModItems.NOODLES);
             }
 
-            if (ModConfig.ENABLE_WITCHS_CRADLES.getValue()) {
+            boolean enableWitchsCradles = ModConfig.ENABLE_WITCHS_CRADLES.getValue();
+            if (enableWitchsCradles) {
                 entries.accept(ModItems.WITCHS_CRADLE_BRANCH);
             }
 
@@ -871,7 +873,8 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModItems.CINDERSNAP_BERRIES);
             }
 
-            if (ModConfig.ENABLE_FROSTBITE_BERRIES.getValue()) {
+            boolean enableFrostbiteBerries = ModConfig.ENABLE_FROSTBITE_BERRIES.getValue();
+            if (enableFrostbiteBerries) {
                 entries.accept(ModItems.FROSTBITE_BERRIES);
             }
 
@@ -912,7 +915,8 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModItems.CRIMSON_FORAGE_MIX);
             }
 
-            if (ModConfig.ENABLE_BLUEBERRIES.getValue() && ModConfig.ENABLE_BLUEBERRY_JUICE.getValue()) {
+            boolean enableBlueberries = ModConfig.ENABLE_BLUEBERRIES.getValue();
+            if (enableBlueberries && ModConfig.ENABLE_BLUEBERRY_JUICE.getValue()) {
                 entries.accept(ModItems.BLUEBERRY_JUICE);
             }
 
@@ -942,6 +946,23 @@ public class AssortedDiscoveries implements ModInitializer {
 
             if (ModConfig.ENABLE_RED_VELVET_CAKE.getValue()) {
                 entries.accept(ModBlocks.RED_VELVET_CAKE.asItem());
+            }
+
+            if (enableBlueberries) {
+                entries.accept(ModBlocks.BLUEBERRY_CRATE.asItem());
+            }
+
+            if (enableGreenOnion) {
+                entries.accept(ModBlocks.GREEN_ONION_CRATE.asItem());
+                entries.accept(ModBlocks.GREEN_ONION_SEEDS_BAG.asItem());
+            }
+
+            if (enableWitchsCradles) {
+                entries.accept(ModBlocks.WITCHS_CRADLE_CRATE.asItem());
+            }
+
+            if (enableFrostbiteBerries) {
+                entries.accept(ModBlocks.FROSTBITE_BERRY_CRATE.asItem());
             }
         });
     }

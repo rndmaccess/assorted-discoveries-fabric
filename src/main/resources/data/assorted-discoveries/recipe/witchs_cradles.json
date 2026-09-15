@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "assorted-discoveries:witchs_cradle_crate"
+  ],
+  "result": {
+    "id": "assorted-discoveries:witchs_cradle",
+    "count": 9
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:all_entries_enabled",
+      "value": "enable_witchs_cradles"
+    }
+  ]
+}

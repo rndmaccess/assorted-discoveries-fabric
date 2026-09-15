@@ -695,6 +695,16 @@ public final class ModBlocks {
     public static final Block ASHEN_WOLF_PLUSHIE = registerWolfPlushie(ModBlockIds.ASHEN_WOLF_PLUSHIE_KEY);
     public static final Block CHESTNUT_WOLF_PLUSHIE = registerWolfPlushie(ModBlockIds.CHESTNUT_WOLF_PLUSHIE_KEY);
     public static final Block RUSTY_WOLF_PLUSHIE = registerWolfPlushie(ModBlockIds.RUSTY_WOLF_PLUSHIE_KEY);
+    public static final Block BLUEBERRY_CRATE = registerSimple(ModBlockIds.BLUEBERRY_CRATE_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).mapColor(MapColor.WOOD));
+    public static final Block WITCHS_CRADLE_CRATE = registerSimple(ModBlockIds.WITCHS_CRADLE_CRATE_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).mapColor(MapColor.WOOD));
+    public static final Block GREEN_ONION_CRATE = registerSimple(ModBlockIds.GREEN_ONION_CRATE_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).mapColor(MapColor.WOOD));
+    public static final Block FROSTBITE_BERRY_CRATE = registerSimple(ModBlockIds.FROSTBITE_BERRY_CRATE_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).mapColor(MapColor.WOOD));
+    public static final Block GREEN_ONION_SEEDS_BAG = registerSimple(ModBlockIds.GREEN_ONION_SEEDS_BAG_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.WOOL.white()).mapColor(MapColor.WOOL));
 
     private ModBlocks() {}
 

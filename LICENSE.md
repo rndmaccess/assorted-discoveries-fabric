@@ -1,17 +1,9 @@
-## Assets License (All Rights Reserved)
+## Code and Asset License (MIT):
 
-© 2026 rndmaccess. All rights reserved. Components from Minecraft are property of Mojang.
-
-This License applies to any files under the following directories:
-
-[./src/main/resources/assets/assorted-discoveries](./src/main/resources/assets/assorted-discoveries)
-
-## Code License (MIT):
-
-All other files are licensed under the MIT License:
+All files are licensed under the MIT License:
 
 The MIT License (MIT)
-Copyright © 2022 rndm_access
+Copyright © 2021-2026 rndm_access
 
 Permission is hereby granted, free of charge, to any person obtaining a copy 
 of this software and associated documentation files (the “Software”), to deal 

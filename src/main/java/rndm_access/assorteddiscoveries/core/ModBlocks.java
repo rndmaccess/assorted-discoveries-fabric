@@ -701,10 +701,9 @@ public final class ModBlocks {
             BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).mapColor(MapColor.WOOD));
     public static final Block GREEN_ONION_CRATE = registerSimple(ModBlockIds.GREEN_ONION_CRATE_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).mapColor(MapColor.WOOD));
-    public static final Block FROSTBITE_BERRY_CRATE = registerSimple(ModBlockIds.FROSTBITE_BERRY_CRATE_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).mapColor(MapColor.WOOD));
     public static final Block GREEN_ONION_SEEDS_BAG = registerSimple(ModBlockIds.GREEN_ONION_SEEDS_BAG_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.WOOL.white()).mapColor(MapColor.WOOL));
+    public static final Block FROSTBITE_BERRY_CRATE = registerNetherCrate(ModBlockIds.FROSTBITE_BERRY_CRATE_KEY);
 
     private ModBlocks() {}
 
@@ -749,6 +748,12 @@ public final class ModBlocks {
 
     private static Block registerSimple(BlockItemId id, final BlockBehaviour.Properties properties) {
         return register(id, Block::new, properties);
+    }
+
+    private static Block registerNetherCrate(BlockItemId id) {
+        return registerSimple(id, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PURPLE)
+                .instrument(NoteBlockInstrument.BASS).sound(SoundType.SHELF)
+                .ignitedByLava().strength(2.0F, 3.0F));
     }
 
     private static Block registerPillar(BlockItemId id, final BlockBehaviour.Properties properties) {

@@ -713,6 +713,8 @@ public final class ModBlocks {
                     .instrument(NoteBlockInstrument.BASS).sound(SoundType.SHELF)
                     .ignitedByLava().strength(2.0F, 3.0F)
                     .lightLevel((state) -> 8));
+    public static final Block CARAMEL_BLOCK = registerSimple(ModBlockIds.CARAMEL_BLOCK,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.HONEYCOMB_BLOCK).sound(SoundType.NETHER_GOLD_ORE));
 
     private ModBlocks() {}
 

@@ -850,6 +850,7 @@ public class AssortedDiscoveries implements ModInitializer {
 
             if (ModConfig.ENABLE_CARAMEL_APPLE.getValue()) {
                 entries.accept(ModItems.CARAMEL);
+                entries.accept(ModBlocks.CARAMEL_BLOCK.asItem());
             }
 
             if (ModConfig.ENABLE_FORESTS_BOUNTY.getValue()) {

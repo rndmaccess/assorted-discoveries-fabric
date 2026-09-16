@@ -7,15 +7,15 @@
     "###"
   ],
   "key": {
-    "#": "assorted-discoveries:witchs_cradle_branch"
+    "#": "assorted-discoveries:cindersnap_berries"
   },
   "result": {
-    "id": "assorted-discoveries:witchs_cradle_crate"
+    "id": "assorted-discoveries:cindersnap_berry_crate"
   },
   "fabric:load_conditions": [
     {
       "condition": "assorted-discoveries:all_entries_enabled",
-      "value": "enable_witchs_cradles"
+      "value": "enable_cindersnap_berries"
     }
   ]
 }

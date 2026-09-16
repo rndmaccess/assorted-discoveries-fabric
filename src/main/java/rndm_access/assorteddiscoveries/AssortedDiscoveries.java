@@ -869,7 +869,8 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModItems.BLUEBERRIES);
             }
 
-            if (ModConfig.ENABLE_CINDERSNAP_BERRIES.getValue()) {
+            boolean enableCindersnapBerries = ModConfig.ENABLE_CINDERSNAP_BERRIES.getValue();
+            if (enableCindersnapBerries) {
                 entries.accept(ModItems.CINDERSNAP_BERRIES);
             }
 
@@ -911,7 +912,8 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModItems.WARPED_FORAGE_MIX);
             }
 
-            if (ModConfig.ENABLE_CINDERSNAP_BERRIES.getValue() && ModConfig.ENABLE_CRIMSON_FORAGE_MIX.getValue()) {
+
+            if (enableCindersnapBerries && ModConfig.ENABLE_CRIMSON_FORAGE_MIX.getValue()) {
                 entries.accept(ModItems.CRIMSON_FORAGE_MIX);
             }
 
@@ -963,6 +965,10 @@ public class AssortedDiscoveries implements ModInitializer {
 
             if (enableFrostbiteBerries) {
                 entries.accept(ModBlocks.FROSTBITE_BERRY_CRATE.asItem());
+            }
+
+            if (enableCindersnapBerries) {
+                entries.accept(ModBlocks.CINDERSNAP_BERRY_CRATE.asItem());
             }
         });
     }

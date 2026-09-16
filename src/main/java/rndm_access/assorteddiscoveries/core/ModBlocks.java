@@ -704,6 +704,7 @@ public final class ModBlocks {
     public static final Block GREEN_ONION_SEEDS_BAG = registerSimple(ModBlockIds.GREEN_ONION_SEEDS_BAG_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.WOOL.white()).mapColor(MapColor.WOOL));
     public static final Block FROSTBITE_BERRY_CRATE = registerNetherCrate(ModBlockIds.FROSTBITE_BERRY_CRATE_KEY);
+    public static final Block CINDERSNAP_BERRY_CRATE = registerNetherCrate(ModBlockIds.CINDERSNAP_BERRY_CRATE_KEY);
 
     private ModBlocks() {}
 

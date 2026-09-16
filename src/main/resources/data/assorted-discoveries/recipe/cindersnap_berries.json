@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "assorted-discoveries:cindersnap_berry_crate"
+  ],
+  "result": {
+    "id": "assorted-discoveries:cindersnap_berries",
+    "count": 9
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:all_entries_enabled",
+      "value": "enable_cindersnap_berries"
+    }
+  ]
+}

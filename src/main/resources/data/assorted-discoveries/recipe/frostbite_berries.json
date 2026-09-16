@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "assorted-discoveries:frostbite_berry_crate"
+  ],
+  "result": {
+    "id": "assorted-discoveries:frostbite_berries",
+    "count": 9
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:all_entries_enabled",
+      "value": "enable_frostbite_berries"
+    }
+  ]
+}

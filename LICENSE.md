@@ -49,6 +49,8 @@ The following assets are used under the MIT License (included below):
         * `assets/assorted-discoveries/textures/block/nether_crate_bottom.png`
         * `assets/assorted-discoveries/textures/block/frostbite_berry_crate_side.png`
         * `assets/assorted-discoveries/textures/block/frostbite_berry_crate_top.png`
+        * `assets/assorted-discoveries/textures/block/cindersnap_berry_crate_side.png`
+        * `assets/assorted-discoveries/textures/block/cindersnap_berry_crate_top.png`
     - Usage: Modified by rndm_access using base elements from Farmer's Delight for crates.
     - Copyright: Copyright (c) 2026 rndm_access
     - Portions Copyright: Copyright (c) 2020 vectorwing

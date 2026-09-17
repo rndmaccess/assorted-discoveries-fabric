@@ -285,6 +285,7 @@ public class ModConfig {
         ENABLE_FORESTS_BOUNTY = foodCategory.addEntry(new BooleanConfigEntry("enable_forests_bounty"));
         foodCategory.addComment(new CommentConfigEntry("Enable/disable pudding and berry pudding."));
         ENABLE_PUDDING = foodCategory.addEntry(new BooleanConfigEntry("enable_pudding"));
+        foodCategory.addComment(new CommentConfigEntry("Enable/disable caramel, caramel apples, and caramel blocks."));
         ENABLE_CARAMEL_APPLE = foodCategory.addEntry(new BooleanConfigEntry("enable_caramel_apple"));
         ENABLE_SWEET_BERRY_PIE = foodCategory.addEntry(new BooleanConfigEntry("enable_sweet_berry_pie"));
         ENABLE_SWEET_BERRY_JUICE = foodCategory.addEntry(new BooleanConfigEntry("enable_sweet_berry_juice"));

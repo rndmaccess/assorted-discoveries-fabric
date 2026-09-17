@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": "assorted-discoveries:blood_kelp_seed_cluster"
+  },
+  "result": {
+    "id": "assorted-discoveries:blood_kelp_seed_cluster_bag"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:all_entries_enabled",
+      "value": "enable_blood_kelp"
+    }
+  ]
+}

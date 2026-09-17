@@ -833,7 +833,8 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModBlocks.PURPLE_MUSHROOM.asItem());
             }
 
-            if (ModConfig.ENABLE_BLOOD_KELP.getValue()) {
+            boolean enableBloodKelp = ModConfig.ENABLE_BLOOD_KELP.getValue();
+            if (enableBloodKelp) {
                 entries.accept(ModBlocks.DRIED_BLOOD_KELP_BLOCK);
                 entries.accept(ModBlocks.BLOOD_KELP_LANTERN);
                 entries.accept(ModItems.BLOOD_KELP_SEED_CLUSTER);
@@ -913,7 +914,6 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModItems.WARPED_FORAGE_MIX);
             }
 
-
             if (enableCindersnapBerries && ModConfig.ENABLE_CRIMSON_FORAGE_MIX.getValue()) {
                 entries.accept(ModItems.CRIMSON_FORAGE_MIX);
             }
@@ -970,6 +970,10 @@ public class AssortedDiscoveries implements ModInitializer {
 
             if (enableCindersnapBerries) {
                 entries.accept(ModBlocks.CINDERSNAP_BERRY_CRATE.asItem());
+            }
+
+            if (enableBloodKelp) {
+                entries.accept(ModBlocks.BLOOD_KELP_SEED_CLUSTER_BAG.asItem());
             }
         });
     }

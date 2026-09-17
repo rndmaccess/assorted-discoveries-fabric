@@ -1,0 +1,8 @@
+{
+  "parent": "block/cube_bottom_top",
+  "textures": {
+    "top": "assorted-discoveries:block/blood_kelp_seed_cluster_bag_top",
+    "bottom": "assorted-discoveries:block/bag_bottom",
+    "side": "assorted-discoveries:block/bag_side_tied"
+  }
+}

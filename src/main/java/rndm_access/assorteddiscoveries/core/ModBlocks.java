@@ -715,6 +715,9 @@ public final class ModBlocks {
                     .lightLevel((state) -> 8));
     public static final Block CARAMEL_BLOCK = registerSimple(ModBlockIds.CARAMEL_BLOCK,
             BlockBehaviour.Properties.ofFullCopy(Blocks.HONEYCOMB_BLOCK).sound(SoundType.NETHER_GOLD_ORE));
+    public static final Block BLOOD_KELP_SEED_CLUSTER_BAG = registerSimple(ModBlockIds.BLOOD_KELP_SEED_CLUSTER_BAG_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.WOOL.white())
+                    .mapColor(MapColor.WOOL).lightLevel((state) -> 10));
 
     private ModBlocks() {}
 

@@ -449,6 +449,7 @@ public final class ModBlockIds {
     public static final BlockItemId FROSTBITE_BERRY_CRATE_KEY = create("frostbite_berry_crate");
     public static final BlockItemId CINDERSNAP_BERRY_CRATE_KEY = create("cindersnap_berry_crate");
     public static final BlockItemId CARAMEL_BLOCK = create("caramel_block");
+    public static final BlockItemId BLOOD_KELP_SEED_CLUSTER_BAG_KEY = create("blood_kelp_seed_cluster_bag");
     public static final ColorCollection<BlockItemId> DYED_LANTERN_KEYS = createSimpleColored("lantern");
     public static final ColorCollection<BlockItemId> DYED_SHEEP_KEYS = createSimpleColored("sheep_plushie");
 

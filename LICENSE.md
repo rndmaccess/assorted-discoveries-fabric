@@ -52,6 +52,15 @@ The following assets are used under the MIT License (included below):
         * `assets/assorted-discoveries/textures/block/cindersnap_berry_crate_side.png`
         * `assets/assorted-discoveries/textures/block/cindersnap_berry_crate_top.png`
         * `assets/assorted-discoveries/textures/block/blood_kelp_seed_cluster_bag_top.png`
+        * `assets/assorted-discoveries/textures/block/spruce_cone_crate_top.png`
+        * `assets/assorted-discoveries/textures/block/spruce_cone_crate_side.png`
+        * `assets/assorted-discoveries/textures/block/purple_mushroom_crate_top.png`
+        * `assets/assorted-discoveries/textures/block/purple_mushroom_crate_side.png`
+        * `assets/assorted-discoveries/textures/block/blood_kelp_crate_top.png`
+        * `assets/assorted-discoveries/textures/block/blood_kelp_crate_side.png`
+        * `assets/assorted-discoveries/textures/block/end_crate_bottom.png`
+        * `assets/assorted-discoveries/textures/block/snapdragon_crate_top.png`
+        * `assets/assorted-discoveries/textures/block/snapdragon_crate_side.png`
     - Usage: Modified by rndm_access using base elements from Farmer's Delight for crates.
     - Copyright: Copyright (c) 2026 rndm_access
     - Portions Copyright: Copyright (c) 2020 vectorwing

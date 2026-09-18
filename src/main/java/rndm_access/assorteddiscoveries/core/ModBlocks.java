@@ -722,6 +722,8 @@ public final class ModBlocks {
             BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).mapColor(MapColor.WOOD));
     public static final Block PURPLE_MUSHROOM_CRATE = registerSimple(ModBlockIds.PURPLE_MUSHROOM_CRATE_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).mapColor(MapColor.WOOD));
+    public static final Block BLOOD_KELP_CRATE = registerSimple(ModBlockIds.BLOOD_KELP_CRATE_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).mapColor(MapColor.WOOD));
 
     private ModBlocks() {}
 

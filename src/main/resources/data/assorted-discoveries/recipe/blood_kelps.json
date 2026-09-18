@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "assorted-discoveries:blood_kelp_crate"
+  ],
+  "result": {
+    "id": "assorted-discoveries:blood_kelp",
+    "count": 9
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:all_entries_enabled",
+      "value": "enable_blood_kelp"
+    }
+  ]
+}

@@ -451,6 +451,7 @@ public final class ModBlockIds {
     public static final BlockItemId CARAMEL_BLOCK = create("caramel_block");
     public static final BlockItemId SPRUCE_CONE_CRATE_KEY = create("spruce_cone_crate");
     public static final BlockItemId PURPLE_MUSHROOM_CRATE_KEY = create("purple_mushroom_crate");
+    public static final BlockItemId BLOOD_KELP_CRATE_KEY = create("blood_kelp_crate");
     public static final BlockItemId BLOOD_KELP_SEED_CLUSTER_BAG_KEY = create("blood_kelp_seed_cluster_bag");
     public static final ColorCollection<BlockItemId> DYED_LANTERN_KEYS = createSimpleColored("lantern");
     public static final ColorCollection<BlockItemId> DYED_SHEEP_KEYS = createSimpleColored("sheep_plushie");

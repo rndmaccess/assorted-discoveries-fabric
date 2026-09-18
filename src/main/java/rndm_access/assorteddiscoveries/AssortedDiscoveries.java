@@ -975,6 +975,7 @@ public class AssortedDiscoveries implements ModInitializer {
             }
 
             if (enableBloodKelp) {
+                entries.accept(ModBlocks.BLOOD_KELP_CRATE.asItem());
                 entries.accept(ModBlocks.BLOOD_KELP_SEED_CLUSTER_BAG.asItem());
             }
 

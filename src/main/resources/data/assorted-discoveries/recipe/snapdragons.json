@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "assorted-discoveries:snapdragon_crate"
+  ],
+  "result": {
+    "id": "assorted-discoveries:snapdragon",
+    "count": 9
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:all_entries_enabled",
+      "value": "enable_ender_plants"
+    }
+  ]
+}

@@ -724,6 +724,10 @@ public final class ModBlocks {
             BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).mapColor(MapColor.WOOD));
     public static final Block BLOOD_KELP_CRATE = registerSimple(ModBlockIds.BLOOD_KELP_CRATE_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).mapColor(MapColor.WOOD));
+    public static final Block SNAPDRAGON_CRATE = registerSimple(ModBlockIds.SNAPDRAGON_CRATE_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_PLANKS)
+                    .mapColor(MapColor.WOOL).mapColor(MapColor.WOOD)
+                    .lightLevel((state) -> 8));
 
     private ModBlocks() {}
 

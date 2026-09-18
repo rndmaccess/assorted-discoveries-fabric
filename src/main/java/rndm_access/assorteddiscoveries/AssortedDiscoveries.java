@@ -824,7 +824,8 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModBlocks.BOG_BLOSSOM.asItem());
             }
 
-            if (ModConfig.ENABLE_ENDER_PLANTS.getValue()) {
+            boolean enableEnderPlants = ModConfig.ENABLE_ENDER_PLANTS.getValue();
+            if (enableEnderPlants) {
                 entries.accept(ModBlocks.SNAPDRAGON.asItem());
                 entries.accept(ModBlocks.SHORT_ENDER_GRASS.asItem());
             }
@@ -985,6 +986,10 @@ public class AssortedDiscoveries implements ModInitializer {
 
             if (enablePurpleMushrooms) {
                 entries.accept(ModBlocks.PURPLE_MUSHROOM_CRATE.asItem());
+            }
+
+            if (enableEnderPlants) {
+                entries.accept(ModBlocks.SNAPDRAGON_CRATE.asItem());
             }
         });
     }

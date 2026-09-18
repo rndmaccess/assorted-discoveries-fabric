@@ -718,6 +718,8 @@ public final class ModBlocks {
     public static final Block BLOOD_KELP_SEED_CLUSTER_BAG = registerSimple(ModBlockIds.BLOOD_KELP_SEED_CLUSTER_BAG_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.WOOL.white())
                     .mapColor(MapColor.WOOL).lightLevel((state) -> 10));
+    public static final Block SPRUCE_CONE_CRATE = registerSimple(ModBlockIds.SPRUCE_CONE_CRATE_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).mapColor(MapColor.WOOD));
 
     private ModBlocks() {}
 

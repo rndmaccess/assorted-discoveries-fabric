@@ -854,7 +854,8 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModBlocks.CARAMEL_BLOCK.asItem());
             }
 
-            if (ModConfig.ENABLE_FORESTS_BOUNTY.getValue()) {
+            boolean enableForestsBounty = ModConfig.ENABLE_FORESTS_BOUNTY.getValue();
+            if (enableForestsBounty) {
                 entries.accept(ModItems.SPRUCE_CONE);
             }
 
@@ -974,6 +975,10 @@ public class AssortedDiscoveries implements ModInitializer {
 
             if (enableBloodKelp) {
                 entries.accept(ModBlocks.BLOOD_KELP_SEED_CLUSTER_BAG.asItem());
+            }
+
+            if (enableForestsBounty) {
+                entries.accept(ModBlocks.SPRUCE_CONE_CRATE.asItem());
             }
         });
     }

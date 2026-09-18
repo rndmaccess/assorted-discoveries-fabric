@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "assorted-discoveries:spruce_cone_crate"
+  ],
+  "result": {
+    "id": "assorted-discoveries:spruce_cone",
+    "count": 9
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:all_entries_enabled",
+      "value": "enable_forests_bounty"
+    }
+  ]
+}

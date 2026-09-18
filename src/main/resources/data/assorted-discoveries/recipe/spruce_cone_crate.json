@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": "assorted-discoveries:spruce_cone"
+  },
+  "result": {
+    "id": "assorted-discoveries:spruce_cone_crate"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:all_entries_enabled",
+      "value": "enable_forests_bounty"
+    }
+  ]
+}

@@ -829,7 +829,8 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModBlocks.SHORT_ENDER_GRASS.asItem());
             }
 
-            if (ModConfig.ENABLE_PURPLE_MUSHROOMS.getValue()) {
+            boolean enablePurpleMushrooms = ModConfig.ENABLE_PURPLE_MUSHROOMS.getValue();
+            if (enablePurpleMushrooms) {
                 entries.accept(ModBlocks.PURPLE_MUSHROOM.asItem());
             }
 
@@ -979,6 +980,10 @@ public class AssortedDiscoveries implements ModInitializer {
 
             if (enableForestsBounty) {
                 entries.accept(ModBlocks.SPRUCE_CONE_CRATE.asItem());
+            }
+
+            if (enablePurpleMushrooms) {
+                entries.accept(ModBlocks.PURPLE_MUSHROOM_CRATE.asItem());
             }
         });
     }

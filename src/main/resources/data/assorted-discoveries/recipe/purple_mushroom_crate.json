@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": "assorted-discoveries:purple_mushroom"
+  },
+  "result": {
+    "id": "assorted-discoveries:purple_mushroom_crate"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:all_entries_enabled",
+      "value": "enable_purple_mushrooms"
+    }
+  ]
+}

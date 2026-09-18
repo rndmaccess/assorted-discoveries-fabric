@@ -720,6 +720,8 @@ public final class ModBlocks {
                     .mapColor(MapColor.WOOL).lightLevel((state) -> 10));
     public static final Block SPRUCE_CONE_CRATE = registerSimple(ModBlockIds.SPRUCE_CONE_CRATE_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).mapColor(MapColor.WOOD));
+    public static final Block PURPLE_MUSHROOM_CRATE = registerSimple(ModBlockIds.PURPLE_MUSHROOM_CRATE_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).mapColor(MapColor.WOOD));
 
     private ModBlocks() {}
 

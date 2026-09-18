@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "assorted-discoveries:purple_mushroom_crate"
+  ],
+  "result": {
+    "id": "assorted-discoveries:purple_mushroom",
+    "count": 9
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:all_entries_enabled",
+      "value": "enable_purple_mushrooms"
+    }
+  ]
+}

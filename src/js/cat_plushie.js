@@ -23,8 +23,8 @@ import blackCatPlushieSitting from "../block_img/black_cat_plushie_sitting.webp"
 import jellieCatPlushieStanding from "../block_img/jellie_cat_plushie_standing.webp";
 import jellieCatPlushieSitting from "../block_img/jellie_cat_plushie_sitting.webp";
 
-import cod from "../item_img/cod.webp";
-import salmon from "../item_img/salmon.webp";
+import cod from "../crafting_img/cod.png";
+import salmon from "../crafting_img/salmon.png";
 
 // No module declaration needed; esbuild-loader handles imports.
 import {createButtonPanel, createRecipeCycle} from "./page_util";

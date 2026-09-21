@@ -144,7 +144,7 @@ a:hover {
 .main-img {
     display: block;
     margin: auto;
-    width: 300px;
+    width: 320px;
 
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;

@@ -35,22 +35,22 @@ import purpleTorchItem from "../item_img/purple_torch.webp";
 import magentaTorchItem from "../item_img/magenta_torch.webp";
 import pinkTorchItem from "../item_img/pink_torch.webp";
 
-import whiteDye from "../item_img/white_dye.webp";
-import lightGrayDye from "../item_img/light_gray_dye.webp";
-import grayDye from "../item_img/gray_dye.webp";
-import blackDye from "../item_img/black_dye.webp";
-import brownDye from "../item_img/brown_dye.webp";
-import redDye from "../item_img/red_dye.webp";
-import orangeDye from "../item_img/orange_dye.webp";
-import yellowDye from "../item_img/yellow_dye.webp";
-import limeDye from "../item_img/lime_dye.webp";
-import greenDye from "../item_img/green_dye.webp";
-import cyanDye from "../item_img/cyan_dye.webp";
-import lightBlueDye from "../item_img/light_blue_dye.webp";
-import blueDye from "../item_img/blue_dye.webp";
-import purpleDye from "../item_img/purple_dye.webp";
-import magentaDye from "../item_img/magenta_dye.webp";
-import pinkDye from "../item_img/pink_dye.webp";
+import whiteDye from "../crafting_img/white_dye.png";
+import lightGrayDye from "../crafting_img/light_gray_dye.png";
+import grayDye from "../crafting_img/gray_dye.png";
+import blackDye from "../crafting_img/black_dye.png";
+import brownDye from "../crafting_img/brown_dye.png";
+import redDye from "../crafting_img/red_dye.png";
+import orangeDye from "../crafting_img/orange_dye.png";
+import yellowDye from "../crafting_img/yellow_dye.png";
+import limeDye from "../crafting_img/lime_dye.png";
+import greenDye from "../crafting_img/green_dye.png";
+import cyanDye from "../crafting_img/cyan_dye.png";
+import lightBlueDye from "../crafting_img/light_blue_dye.png";
+import blueDye from "../crafting_img/blue_dye.png";
+import purpleDye from "../crafting_img/purple_dye.png";
+import magentaDye from "../crafting_img/magenta_dye.png";
+import pinkDye from "../crafting_img/pink_dye.png";
 
 const craftingLists = {
     "dyed_torch": [whiteTorchItem, lightGrayTorchItem, grayTorchItem, blackTorchItem, brownTorchItem,

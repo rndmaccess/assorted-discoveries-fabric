@@ -72,10 +72,7 @@
 
 .crafting-item {
     width: 90%;
-
     image-rendering: pixelated;
-    image-rendering: -moz-crisp-edges;
-    image-rendering: -webkit-optimize-contrast;
 }
 
 .front-result {
@@ -93,8 +90,10 @@
     left: 87%;
     top: 50%;
     width: 12%;
-    height: auto;
+
+    aspect-ratio: 1 / 1;
     transform: translate(-50%, -50%);
+    image-rendering: pixelated;
 }
 
 .result-count {

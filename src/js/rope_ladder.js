@@ -1,18 +1,18 @@
 // No module declaration needed; esbuild-loader handles imports.
 import { createRecipeCycle, createButtonPanel } from "./page_util";
 
-import oakRopeLadder from "../item_img/oak_rope_ladder.webp";
-import spruceRopeLadder from "../item_img/spruce_rope_ladder.webp";
-import birchRopeLadder from "../item_img/birch_rope_ladder.webp";
-import jungleRopeLadder from "../item_img/jungle_rope_ladder.webp";
-import acaciaRopeLadder from "../item_img/acacia_rope_ladder.webp";
-import darkOakRopeLadder from "../item_img/dark_oak_rope_ladder.webp";
-import mangroveRopeLadder from "../item_img/mangrove_rope_ladder.webp";
-import cherryRopeLadder from "../item_img/cherry_rope_ladder.webp";
-import paleOakRopeLadder from "../item_img/pale_oak_rope_ladder.webp";
-import bambooRopeLadder from "../item_img/bamboo_rope_ladder.webp";
-import warpedRopeLadder from "../item_img/warped_rope_ladder.webp";
-import crimsonRopeLadder from "../item_img/crimson_rope_ladder.webp";
+import oakRopeLadder from "../item_img/oak_rope_ladder.png";
+import spruceRopeLadder from "../item_img/spruce_rope_ladder.png";
+import birchRopeLadder from "../item_img/birch_rope_ladder.png";
+import jungleRopeLadder from "../item_img/jungle_rope_ladder.png";
+import acaciaRopeLadder from "../item_img/acacia_rope_ladder.png";
+import darkOakRopeLadder from "../item_img/dark_oak_rope_ladder.png";
+import mangroveRopeLadder from "../item_img/mangrove_rope_ladder.png";
+import cherryRopeLadder from "../item_img/cherry_rope_ladder.png";
+import paleOakRopeLadder from "../item_img/pale_oak_rope_ladder.png";
+import bambooRopeLadder from "../item_img/bamboo_rope_ladder.png";
+import warpedRopeLadder from "../item_img/warped_rope_ladder.png";
+import crimsonRopeLadder from "../item_img/crimson_rope_ladder.png";
 
 import oakPlanks from "../block_img/oak_planks.webp";
 import sprucePlanks from "../block_img/spruce_planks.webp";

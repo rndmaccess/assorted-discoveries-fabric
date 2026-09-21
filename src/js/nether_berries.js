@@ -1,5 +1,5 @@
-import cindersnapBerries from "../item_img/cindersnap_berries.webp";
-import frostbiteBerries from "../item_img/frostbite_berries.webp";
+import cindersnapBerries from "../item_img/cindersnap_berries.png";
+import frostbiteBerries from "../item_img/frostbite_berries.png";
 
 // No module declaration needed; esbuild-loader handles imports.
 import { createButtonPanel } from "./page_util";

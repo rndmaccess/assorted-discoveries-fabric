@@ -147,8 +147,6 @@ a:hover {
     width: 320px;
 
     image-rendering: pixelated;
-    image-rendering: -moz-crisp-edges;
-    image-rendering: -webkit-optimize-contrast;
     filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.2));
 }
 
@@ -343,7 +341,7 @@ table {
     }
 
     .main-img {
-        width: auto;
+        width: 160px;
     }
 
     body {

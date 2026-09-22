@@ -90,7 +90,7 @@ public class AssortedDiscoveriesClient implements ClientModInitializer {
         BlockColorRegistry.register(List.of(new BlockTintSource() {
             @Override
             public int color(@NonNull BlockState state) {
-                return -1;
+                return ((SheepPlushieBlock) state.getBlock()).getColor().getTextureDiffuseColor();
             }
 
             @Override

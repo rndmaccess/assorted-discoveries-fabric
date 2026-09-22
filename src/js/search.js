@@ -296,14 +296,12 @@ export const renderResults = (results) => {
         }
         return `<li class="result-item">
                 <div>
-                    <div>
-                        <a class="result-title" href="${link}">${title}</a>
-                        <p>
-                            ${description}
-                        </p>
-                    </div>
+                    <a class="result-title" href="${link}">${title}</a>
+                    <p>
+                        ${description}
+                    </p>
                 </div>
-                <img class="result-img" src="${img}" alt="${title}">
+                <img class="result-img" src="${img}" alt="">
             </li>`;
     }).join('\n'));
 }

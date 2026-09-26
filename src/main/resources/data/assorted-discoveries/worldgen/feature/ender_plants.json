@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:simple_block",
+  "to_place": {
+    "type": "minecraft:weighted",
+    "entries": [
+      {
+        "data": "assorted-discoveries:short_ender_grass",
+        "weight": 2
+      },
+      {
+        "data": "assorted-discoveries:snapdragon",
+        "weight": 1
+      }
+    ]
+  }
+}

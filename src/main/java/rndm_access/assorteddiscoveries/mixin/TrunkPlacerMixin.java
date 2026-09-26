@@ -1,6 +1,7 @@
 package rndm_access.assorteddiscoveries.mixin;
 
 import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.levelgen.feature.TreeFeature;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -12,15 +13,12 @@ import java.util.function.BiConsumer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer;
 
 @Mixin(TrunkPlacer.class)
 public abstract class TrunkPlacerMixin {
     @Inject(method = "placeBelowTrunkBlock", at = @At("HEAD"), cancellable = true)
-    private static void assorteddiscoveries$preventDirtReplacement(WorldGenLevel level, BiConsumer<BlockPos, BlockState> trunkSetter,
-                                                                   RandomSource random, BlockPos pos,
-                                                                   TreeConfiguration config, CallbackInfo ci) {
+    private static void assorteddiscoveries$preventDirtReplacement(WorldGenLevel level, BiConsumer<BlockPos, BlockState> trunkSetter, RandomSource random, BlockPos pos, TreeFeature tree, CallbackInfo ci) {
         if(assorteddiscoveries$isPlanterBox(level, pos)) {
             ci.cancel();
         }

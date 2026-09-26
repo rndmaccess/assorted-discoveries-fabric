@@ -1,6 +1,5 @@
 package rndm_access.assorteddiscoveries.block;
 
-import com.mojang.serialization.MapCodec;
 import rndm_access.assorteddiscoveries.util.ShapeHelper;
 
 import java.util.HashMap;
@@ -20,9 +19,6 @@ public abstract class AbstractSimplePlushieBlock extends AbstractPlushieBlock {
         super(settings);
         this.shapes = ShapeHelper.makeShapeRotMap(this.getNorthShape());
     }
-
-    @Override
-    protected abstract MapCodec<? extends AbstractSimplePlushieBlock> codec();
 
     @Override
     protected abstract void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder);

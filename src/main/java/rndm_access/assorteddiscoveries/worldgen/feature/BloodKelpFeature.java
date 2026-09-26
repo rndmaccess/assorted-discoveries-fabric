@@ -1,34 +1,35 @@
 package rndm_access.assorteddiscoveries.worldgen.feature;
 
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.material.Fluids;
 import rndm_access.assorteddiscoveries.block.BloodKelpBlock;
 import rndm_access.assorteddiscoveries.block.BloodKelpPlantBlock;
 import rndm_access.assorteddiscoveries.core.ModBlocks;
 
-public class BloodKelpFeature extends Feature<NoneFeatureConfiguration> {
-    public BloodKelpFeature(Codec<NoneFeatureConfiguration> configCodec) {
-        super(configCodec);
+public record BloodKelpFeature() implements Feature {
+    public static final MapCodec<BloodKelpFeature> CODEC = MapCodec.unit(BloodKelpFeature::new);
+
+    @Override
+    public MapCodec<? extends Feature> codec() {
+        return CODEC;
     }
 
     @Override
-    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
-        WorldGenLevel world = context.level();
-        BlockPos originPos = context.origin();
-        int x = originPos.getX();
-        int z = originPos.getZ();
-        int y = world.getHeight(Heightmap.Types.OCEAN_FLOOR, x, z);
+    public boolean place(final WorldGenLevel level, final ChunkGenerator chunkGenerator,
+                         final RandomSource random, final BlockPos origin) {
+        int x = origin.getX();
+        int z = origin.getZ();
+        int y = level.getHeight(Heightmap.Types.OCEAN_FLOOR, x, z);
         BlockPos.MutableBlockPos placePos = new BlockPos(x, y, z).mutable();
 
-        return placeBloodKelpStalk(world, context.random(), placePos);
+        return placeBloodKelpStalk(level, random, placePos);
     }
 
     private boolean placeBloodKelpStalk(WorldGenLevel world, RandomSource random, BlockPos.MutableBlockPos placePos) {

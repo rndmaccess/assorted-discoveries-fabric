@@ -2,11 +2,8 @@ package rndm_access.assorteddiscoveries.block;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
-import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -35,11 +32,6 @@ import rndm_access.assorteddiscoveries.util.BlockPair;
 import java.util.Map;
 
 public class ModdedCandleCakeBlock extends AbstractCandleBlock {
-    public static final MapCodec<ModdedCandleCakeBlock> CODEC
-            = RecordCodecBuilder.mapCodec((instance) -> instance.group(
-            BuiltInRegistries.BLOCK.byNameCodec().fieldOf("cake").forGetter((block) -> block.cake),
-            BuiltInRegistries.BLOCK.byNameCodec().fieldOf("candle").forGetter((item) -> item.candle),
-            propertiesCodec()).apply(instance, ModdedCandleCakeBlock::new));
     public static final BooleanProperty LIT = AbstractCandleBlock.LIT;
     private static final VoxelShape CAKE_SHAPE = Block.box(1.0D, 0.0D, 1.0D,
             15.0D, 8.0D, 15.0D);
@@ -48,13 +40,11 @@ public class ModdedCandleCakeBlock extends AbstractCandleBlock {
     private static final VoxelShape SHAPE = Shapes.or(CAKE_SHAPE, CANDLE_SHAPE);
     private static final Map<BlockPair, ModdedCandleCakeBlock> CANDLES_TO_CANDLE_CAKES = Maps.newHashMap();
     private final Block cake;
-    private final Block candle;
 
     public ModdedCandleCakeBlock(Block cake, Block candle, Properties settings) {
         super(settings);
         this.registerDefaultState(this.stateDefinition.any().setValue(LIT, false));
         this.cake = cake;
-        this.candle = candle;
         CANDLES_TO_CANDLE_CAKES.put(new BlockPair(cake, candle), this);
     }
 
@@ -96,11 +86,6 @@ public class ModdedCandleCakeBlock extends AbstractCandleBlock {
 
     public static boolean containsCandleCake(Block cake, Block candle) {
         return CANDLES_TO_CANDLE_CAKES.containsKey(new BlockPair(cake, candle));
-    }
-
-    @Override
-    protected MapCodec<? extends AbstractCandleBlock> codec() {
-        return CODEC;
     }
 
     @Override

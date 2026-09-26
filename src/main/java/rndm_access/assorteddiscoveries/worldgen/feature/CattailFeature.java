@@ -1,28 +1,33 @@
 package rndm_access.assorteddiscoveries.worldgen.feature;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
+import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import net.minecraft.world.level.levelgen.feature.configurations.ProbabilityFeatureConfiguration;
 import rndm_access.assorteddiscoveries.block.CattailBlock;
 import rndm_access.assorteddiscoveries.core.ModBlocks;
 
-public class CattailFeature extends Feature<ProbabilityFeatureConfiguration> {
-    public CattailFeature(Codec<ProbabilityFeatureConfiguration> codec) {
-        super(codec);
+public record CattailFeature(float probability) implements Feature {
+    public static final MapCodec<CattailFeature> CODEC = RecordCodecBuilder.mapCodec((i) ->
+            i.group(Codec.floatRange(0.0F, 1.0F).fieldOf("probability").forGetter(CattailFeature::probability))
+                    .apply(i, CattailFeature::new));
+
+    @Override
+    public MapCodec<CattailFeature> codec() {
+        return CODEC;
     }
 
     @Override
-    public boolean place(FeaturePlaceContext<ProbabilityFeatureConfiguration> context) {
-        BlockPos origin = context.origin();
-
-        return placeCattail(context.level(), context.random(), origin.getX(), origin.getZ());
+    public boolean place(final WorldGenLevel level, final ChunkGenerator chunkGenerator,
+                         final RandomSource random, final BlockPos origin) {
+        return placeCattail(level, random, origin.getX(), origin.getZ());
     }
 
     private boolean placeCattail(WorldGenLevel world, RandomSource random, int xOrigin, int zOrigin) {

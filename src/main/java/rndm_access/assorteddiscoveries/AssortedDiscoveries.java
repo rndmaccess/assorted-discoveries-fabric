@@ -25,17 +25,19 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyExplosionDecay;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
-import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
-import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+import net.minecraft.world.level.storage.loot.providers.number.ints.UniformGenerator;
+import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import rndm_access.assorteddiscoveries.block.UnstrippedWoodenWallBlock;
 import rndm_access.assorteddiscoveries.config.BooleanEntriesS2CPayload;
 import rndm_access.assorteddiscoveries.config.ModConfig;
 import rndm_access.assorteddiscoveries.core.*;
@@ -65,18 +67,37 @@ public class AssortedDiscoveries implements ModInitializer {
         AssortedDiscoveries.modifyCreativeTabs();
         ModBlockEntityTypes.register();
         ModSoundEvents.register();
-        AssortedDiscoveries.registerFuel();
-        AssortedDiscoveries.registerCompostables();
         AssortedDiscoveries.modifyLootTables();
         AssortedDiscoveries.registerVillagerInteractions();
+        AssortedDiscoveries.registerWoodenWallStrippingBlocks();
 
         // World Generation Registries
-        ModFeatures.register();
+        ModFeatureTypes.register();
         AssortedDiscoveries.addFeaturesToBiomes();
+
+        // Prevent entities from pathfinding through bushes!
+        LandPathTypeRegistry.register(ModBlocks.CINDERSNAP_BERRY_BUSH, PathType.DAMAGING, PathType.DAMAGING);
+        LandPathTypeRegistry.register(ModBlocks.FROSTBITE_BERRY_BUSH, PathType.DAMAGING, PathType.DAMAGING);
+        LandPathTypeRegistry.register(ModBlocks.WITCHS_CRADLE, PathType.DAMAGING, PathType.DAMAGING);
     }
 
     public static Identifier makeModId(String path) {
         return Identifier.fromNamespaceAndPath(MOD_ID, path);
+    }
+
+    private static void registerWoodenWallStrippingBlocks() {
+        UnstrippedWoodenWallBlock.registerStrippedWoodenWall(ModBlocks.OAK_WALL, ModBlocks.STRIPPED_OAK_WALL);
+        UnstrippedWoodenWallBlock.registerStrippedWoodenWall(ModBlocks.SPRUCE_WALL, ModBlocks.STRIPPED_SPRUCE_WALL);
+        UnstrippedWoodenWallBlock.registerStrippedWoodenWall(ModBlocks.BIRCH_WALL, ModBlocks.STRIPPED_BIRCH_WALL);
+        UnstrippedWoodenWallBlock.registerStrippedWoodenWall(ModBlocks.JUNGLE_WALL, ModBlocks.STRIPPED_JUNGLE_WALL);
+        UnstrippedWoodenWallBlock.registerStrippedWoodenWall(ModBlocks.ACACIA_WALL, ModBlocks.STRIPPED_ACACIA_WALL);
+        UnstrippedWoodenWallBlock.registerStrippedWoodenWall(ModBlocks.DARK_OAK_WALL, ModBlocks.STRIPPED_DARK_OAK_WALL);
+        UnstrippedWoodenWallBlock.registerStrippedWoodenWall(ModBlocks.MANGROVE_WALL, ModBlocks.STRIPPED_MANGROVE_WALL);
+        UnstrippedWoodenWallBlock.registerStrippedWoodenWall(ModBlocks.CRIMSON_WALL, ModBlocks.STRIPPED_CRIMSON_WALL);
+        UnstrippedWoodenWallBlock.registerStrippedWoodenWall(ModBlocks.WARPED_WALL, ModBlocks.STRIPPED_WARPED_WALL);
+        UnstrippedWoodenWallBlock.registerStrippedWoodenWall(ModBlocks.CHERRY_WALL, ModBlocks.STRIPPED_CHERRY_WALL);
+        UnstrippedWoodenWallBlock.registerStrippedWoodenWall(ModBlocks.BAMBOO_WALL, ModBlocks.STRIPPED_BAMBOO_WALL);
+        UnstrippedWoodenWallBlock.registerStrippedWoodenWall(ModBlocks.PALE_OAK_WALL, ModBlocks.STRIPPED_PALE_OAK_WALL);
     }
 
     private static void registerConfigEvents() {
@@ -105,7 +126,6 @@ public class AssortedDiscoveries implements ModInitializer {
 
     private static void registerVillagerInteractions() {
         VillagerInteractionRegistries.registerCompostable(ModItems.GREEN_ONION);
-        VillagerInteractionRegistries.registerFood(ModItems.GREEN_ONION, 1);
     }
 
     private static void addFeaturesToBiomes() {
@@ -185,29 +205,6 @@ public class AssortedDiscoveries implements ModInitializer {
         }
     }
 
-    private static void registerFuel() {
-        FuelValueEvents.BUILD.register((builder, context) ->
-                builder.add(ModBlocks.DRIED_BLOOD_KELP_BLOCK, 4000));
-    }
-
-    private static void registerCompostables() {
-        CompostableRegistry.INSTANCE.add(ModItems.BLUEBERRIES, 0.3F);
-        CompostableRegistry.INSTANCE.add(ModItems.CINDERSNAP_BERRIES, 0.3F);
-        CompostableRegistry.INSTANCE.add(ModItems.FROSTBITE_BERRIES, 0.3F);
-        CompostableRegistry.INSTANCE.add(ModItems.WITCHS_CRADLE_BRANCH, 0.3F);
-        CompostableRegistry.INSTANCE.add(ModItems.BLOOD_KELP_SEED_CLUSTER, 0.3F);
-        CompostableRegistry.INSTANCE.add(ModItems.BLOOD_KELP, 0.3F);
-        CompostableRegistry.INSTANCE.add(ModItems.DRIED_BLOOD_KELP, 0.3F);
-        CompostableRegistry.INSTANCE.add(ModBlocks.DRIED_BLOOD_KELP_BLOCK, 0.5F);
-        CompostableRegistry.INSTANCE.add(ModBlocks.SNAPDRAGON, 0.65F);
-        CompostableRegistry.INSTANCE.add(ModBlocks.SHORT_ENDER_GRASS, 0.3F);
-        CompostableRegistry.INSTANCE.add(ModBlocks.PURPLE_MUSHROOM_BLOCK, 0.85F);
-        CompostableRegistry.INSTANCE.add(ModBlocks.PURPLE_MUSHROOM, 0.65F);
-        CompostableRegistry.INSTANCE.add(ModBlocks.CATTAIL, 0.5F);
-        CompostableRegistry.INSTANCE.add(ModItems.GREEN_ONION, 0.65F);
-        CompostableRegistry.INSTANCE.add(ModItems.GREEN_ONION_SEEDS, 0.3F);
-    }
-
     private static void modifyLootTables() {
         Optional<ResourceKey<@NotNull LootTable>> spruceLeavesLootTableId = Blocks.SPRUCE_LEAVES.getLootTable();
 
@@ -226,11 +223,14 @@ public class AssortedDiscoveries implements ModInitializer {
             Holder<Enchantment> fortuneEnchant = Holder.direct(fortune.get().value());
 
             LootPool.Builder poolBuilder = LootPool.lootPool()
-                    .setRolls(ConstantValue.exactly(1))
+                    .setRolls(ContextIntProviders.exactly(1))
                     .add(LootItem.lootTableItem(ModItems.SPRUCE_CONE))
                     .when(BonusLevelTableCondition.bonusLevelFlatChance(fortuneEnchant, 0.02F, 0.023F,
                             0.025F, 0.035F, 0.1F))
-                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)))
+                    .apply(SetItemCountFunction.setCount(
+                            Holder.direct(new UniformGenerator(
+                                    ContextIntProviders.exactly(1),
+                                    ContextIntProviders.exactly(2)))))
                     .apply(ApplyExplosionDecay.explosionDecay());
 
             builder.withPool(poolBuilder);

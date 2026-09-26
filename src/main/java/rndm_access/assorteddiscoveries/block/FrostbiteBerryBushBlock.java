@@ -1,6 +1,5 @@
 package rndm_access.assorteddiscoveries.block;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
@@ -14,16 +13,9 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import rndm_access.assorteddiscoveries.core.*;
 
 public class FrostbiteBerryBushBlock extends AbstractNetherBerryBushBlock {
-    public static final MapCodec<FrostbiteBerryBushBlock> CODEC = simpleCodec(FrostbiteBerryBushBlock::new);
-
     public FrostbiteBerryBushBlock(Properties settings) {
         super(settings);
         this.registerDefaultState(this.getStateDefinition().any().setValue(AGE, 0));
-    }
-
-    @Override
-    protected MapCodec<FrostbiteBerryBushBlock> codec() {
-        return CODEC;
     }
 
     @Override

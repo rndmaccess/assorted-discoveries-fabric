@@ -22,7 +22,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jspecify.annotations.NonNull;
 import rndm_access.assorteddiscoveries.block.SheepPlushieBlock;
-import rndm_access.assorteddiscoveries.block_entity.DyedCampfireBlockEntityRenderer;
+import rndm_access.assorteddiscoveries.block_entity.DyedCampfireRenderer;
 import rndm_access.assorteddiscoveries.config.BooleanEntriesS2CPayload;
 import rndm_access.assorteddiscoveries.config.ModConfig;
 import rndm_access.assorteddiscoveries.core.*;
@@ -81,7 +81,7 @@ public class AssortedDiscoveriesClient implements ClientModInitializer {
     }
 
     private static void registerBlockEntityRenderers() {
-        BlockEntityRenderers.register(ModBlockEntityTypes.DYED_CAMPFIRE, DyedCampfireBlockEntityRenderer::new);
+        BlockEntityRenderers.register(ModBlockEntityTypes.DYED_CAMPFIRE, DyedCampfireRenderer::new);
     }
 
     private static void registerBlockColors() {

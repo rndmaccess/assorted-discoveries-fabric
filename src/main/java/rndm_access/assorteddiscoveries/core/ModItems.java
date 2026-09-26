@@ -11,6 +11,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.StandingAndWallBlockItem;
 import net.minecraft.world.item.component.Consumables;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 
 public final class ModItems {
@@ -46,12 +47,16 @@ public final class ModItems {
             ModBlocks.RED_TORCH, ModBlocks.RED_WALL_TORCH);
     public static final Item BLACK_TORCH = registerTorch(ModItemIds.BLACK_TORCH_KEY,
             ModBlocks.BLACK_TORCH, ModBlocks.BLACK_WALL_TORCH);
-    public static final Item GREEN_ONION_SEEDS = registerBlockItem(ModItemIds.GREEN_ONION_SEEDS_KEY, ModBlocks.GREEN_ONIONS);
+    public static final Item GREEN_ONION_SEEDS
+            = registerBlockItem(ModItemIds.GREEN_ONION_SEEDS_KEY, ModBlocks.GREEN_ONIONS,
+            new Item.Properties().compostable(ContextIntProviders.COMPOSTABLE_LOW));
     public static final Item GREEN_ONION
             = register(new Item(new Item.Properties().food(ModFoods.GREEN_ONION)
-            .setId(ModItemIds.GREEN_ONION_KEY)), ModItemIds.GREEN_ONION_KEY);
+            .setId(ModItemIds.GREEN_ONION_KEY)
+            .compostable(ContextIntProviders.COMPOSTABLE_MEDIUM)
+            .villagerFood(1)), ModItemIds.GREEN_ONION_KEY);
     public static final Item BLUEBERRIES = registerBlockItem(ModItemIds.BLUEBERRIES_KEY, ModBlocks.BLUEBERRY_BUSH,
-            new Item.Properties().food(ModFoods.BLUEBERRIES));
+            new Item.Properties().food(ModFoods.BLUEBERRIES).compostable(ContextIntProviders.COMPOSTABLE_LOW));
     public static final Item SWEET_BERRY_JUICE = register(new Item(new Item.Properties()
                 .food(ModFoods.JUICE, Consumables.DEFAULT_DRINK).stacksTo(16)
                 .usingConvertsTo(Items.GLASS_BOTTLE).setId(ModItemIds.SWEET_BERRY_JUICE_KEY)), ModItemIds.SWEET_BERRY_JUICE_KEY);
@@ -80,24 +85,30 @@ public final class ModItems {
             .food(ModFoods.FORESTS_BOUNTY).stacksTo(1).usingConvertsTo(Items.BOWL)
             .setId(ModItemIds.FORESTS_BOUNTY_KEY)), ModItemIds.FORESTS_BOUNTY_KEY);
     public static final Item WITCHS_CRADLE_BRANCH = registerBlockItem(ModItemIds.WITCHS_CRADLE_BRANCH_KEY, ModBlocks.WITCHS_CRADLE,
-            new Item.Properties().food(ModFoods.WITCHS_CRADLE_BRANCH));
+            new Item.Properties().food(ModFoods.WITCHS_CRADLE_BRANCH).compostable(ContextIntProviders.COMPOSTABLE_LOW));
     public static final Item WITCHS_CRADLE_SOUP = register(new Item(new Item.Properties()
             .food(ModFoods.WITCHS_CRADLE_SOUP, ModConsumables.WITCHS_CRADLE_SOUP)
             .stacksTo(1).usingConvertsTo(Items.BOWL).setId(ModItemIds.WITCHS_CRADLE_SOUP_KEY)), ModItemIds.WITCHS_CRADLE_SOUP_KEY);
     public static final Item FRIED_EGG = register(new Item(new Item.Properties()
             .food(ModFoods.FRIED_EGG).stacksTo(16).setId(ModItemIds.FRIED_EGG_KEY)), ModItemIds.FRIED_EGG_KEY);
-    public static final Item BLOOD_KELP_SEED_CLUSTER = registerBlockItem(ModItemIds.BLOOD_KELP_SEED_CLUSTER_KEY, ModBlocks.BLOOD_KELP);
+    public static final Item BLOOD_KELP_SEED_CLUSTER
+            = registerBlockItem(ModItemIds.BLOOD_KELP_SEED_CLUSTER_KEY, ModBlocks.BLOOD_KELP,
+            new Item.Properties().compostable(ContextIntProviders.COMPOSTABLE_LOW));
     public static final Item BLOOD_KELP = register(new Item(new Item.Properties()
-            .setId(ModItemIds.BLOOD_KELP_KEY)), ModItemIds.BLOOD_KELP_KEY);
+            .setId(ModItemIds.BLOOD_KELP_KEY)
+            .compostable(ContextIntProviders.COMPOSTABLE_LOW)), ModItemIds.BLOOD_KELP_KEY);
     public static final Item DRIED_BLOOD_KELP = register(new Item(new Item.Properties()
-            .food(Foods.DRIED_KELP, Consumables.DRIED_KELP).setId(ModItemIds.DRIED_BLOOD_KELP_KEY)), ModItemIds.DRIED_BLOOD_KELP_KEY);
+            .food(Foods.DRIED_KELP, Consumables.DRIED_KELP).setId(ModItemIds.DRIED_BLOOD_KELP_KEY)
+            .compostable(ContextIntProviders.COMPOSTABLE_LOW)), ModItemIds.DRIED_BLOOD_KELP_KEY);
     public static final Item HOGLIN_STEW = register(new Item(new Item.Properties()
             .food(ModFoods.HOGLIN_STEW).stacksTo(1).usingConvertsTo(Items.BOWL)
             .setId(ModItemIds.HOGLIN_STEW_KEY)), ModItemIds.HOGLIN_STEW_KEY);
     public static final Item CINDERSNAP_BERRIES = registerBlockItem(ModItemIds.CINDERSNAP_BERRIES_KEY,
-            ModBlocks.CINDERSNAP_BERRY_BUSH, new Item.Properties().food(ModFoods.NETHER_BERRIES));
+            ModBlocks.CINDERSNAP_BERRY_BUSH,
+            new Item.Properties().food(ModFoods.NETHER_BERRIES).compostable(ContextIntProviders.COMPOSTABLE_LOW));
     public static final Item FROSTBITE_BERRIES = registerBlockItem(ModItemIds.FROSTBITE_BERRIES_KEY,
-            ModBlocks.FROSTBITE_BERRY_BUSH, new Item.Properties().food(ModFoods.NETHER_BERRIES));
+            ModBlocks.FROSTBITE_BERRY_BUSH,
+            new Item.Properties().food(ModFoods.NETHER_BERRIES).compostable(ContextIntProviders.COMPOSTABLE_LOW));
     public static final Item CINDERSNAP_BERRY_JUICE = register(new Item(new Item.Properties()
                 .food(ModFoods.NETHER_JUICE, ModConsumables.NETHER_JUICE).stacksTo(16)
                 .usingConvertsTo(Items.GLASS_BOTTLE).setId(ModItemIds.CINDERSNAP_BERRY_JUICE_KEY)), ModItemIds.CINDERSNAP_BERRY_JUICE_KEY);
@@ -125,14 +136,8 @@ public final class ModItems {
         return blockItem;
     }
 
-    private static Item registerBlockItem(ResourceKey<Item> key, Block block) {
-        final Item blockItem = register(new BlockItem(block, new Item.Properties().setId(key)), key);
-        Item.BY_BLOCK.put(block, blockItem);
-        return blockItem;
-    }
-
-    private static Item registerBlockItem(ResourceKey<Item> key, Block block, Item.Properties settings) {
-        final Item blockItem = register(new BlockItem(block, settings.setId(key)), key);
+    private static Item registerBlockItem(ResourceKey<Item> key, Block block, Item.Properties properties) {
+        final Item blockItem = register(new BlockItem(block, properties.setId(key)), key);
         Item.BY_BLOCK.put(block, blockItem);
         return blockItem;
     }

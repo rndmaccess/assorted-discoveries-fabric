@@ -3,7 +3,6 @@
   "package": "rndm_access.assorteddiscoveries.mixin",
   "compatibilityLevel": "JAVA_25",
   "mixins": [
-    "AxeItemMixin",
     "BambooBlockMixin",
     "BoneMealItemMixin",
     "DispenserBlockMixin",
@@ -13,7 +12,6 @@
     "LivingEntityMixin",
     "MushroomBlockMixin",
     "PlantBlockMixin",
-    "ShovelItemMixin",
     "SnowyBlockMixin",
     "SpreadingSnowyBlockMixin",
     "TrunkPlacerMixin",

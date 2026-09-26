@@ -22,11 +22,11 @@ import org.jspecify.annotations.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DyedCampfireBlockEntityRenderer implements BlockEntityRenderer<DyedCampfireBlockEntity, CampfireRenderState> {
+public class DyedCampfireRenderer implements BlockEntityRenderer<DyedCampfireBlockEntity, CampfireRenderState> {
     private static final float SCALE = 0.375F;
     private final ItemModelResolver itemModelResolver;
 
-    public DyedCampfireBlockEntityRenderer(BlockEntityRendererProvider.Context ctx) {
+    public DyedCampfireRenderer(BlockEntityRendererProvider.Context ctx) {
         this.itemModelResolver = ctx.itemModelResolver();
     }
 
@@ -60,17 +60,17 @@ public class DyedCampfireBlockEntityRenderer implements BlockEntityRenderer<Dyed
         List<ItemStackRenderState> cookedItems = renderState.items;
 
         for (int i = 0; i < cookedItems.size(); ++i) {
-            ItemStackRenderState itemRenderState = cookedItems.get(i);
-            if (!itemRenderState.isEmpty()) {
+            ItemStackRenderState itemState = cookedItems.get(i);
+            if (!itemState.isEmpty()) {
                 poseStack.pushPose();
                 poseStack.translate(0.5F, 0.44921875F, 0.5F);
                 Direction direction2 = Direction.from2DDataValue((i + direction.get2DDataValue()) % 4);
-                float f = -direction2.toYRot();
-                poseStack.mulPose(Axis.YP.rotationDegrees(f));
-                poseStack.mulPose(Axis.XP.rotationDegrees(90.0F));
+                float angle = -direction2.toYRot();
+                poseStack.rotateDegrees(Axis.YP, angle);
+                poseStack.rotateDegrees(Axis.XP, 90.0F);
                 poseStack.translate(-0.3125F, -0.3125F, 0.0F);
                 poseStack.scale(SCALE, SCALE, SCALE);
-                itemRenderState.submit(poseStack, submitNodeCollector, renderState.lightCoords,
+                itemState.submit(poseStack, submitNodeCollector, renderState.lightCoords,
                         OverlayTexture.NO_OVERLAY, 0);
                 poseStack.popPose();
             }

@@ -1,6 +1,5 @@
 package rndm_access.assorteddiscoveries.block;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -21,6 +20,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.BonemealSource;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.VegetationBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -48,9 +48,6 @@ public abstract class AbstractBerryBushBlock extends VegetationBlock implements 
     public AbstractBerryBushBlock(BlockBehaviour.Properties settings) {
         super(settings);
     }
-
-    @Override
-    protected abstract MapCodec<? extends AbstractBerryBushBlock> codec();
 
     @Override
     protected abstract void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder);
@@ -139,19 +136,22 @@ public abstract class AbstractBerryBushBlock extends VegetationBlock implements 
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state) {
+    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos,
+                                         BlockState state, BonemealSource source) {
         return this.isBushYoung(state);
     }
 
     @Override
-    public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
+    public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos pos,
+                                     BlockState state, BonemealSource source) {
         return true;
     }
 
     @Override
-    public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
+    public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos,
+                                BlockState state, BonemealSource source) {
         int i = Math.min(this.getMaxAge(), state.getValue(AGE) + 1);
-        world.setBlock(pos, state.setValue(AGE, i), 2);
+        level.setBlock(pos, state.setValue(AGE, i), 2);
     }
 
     private boolean isMaxAge(int age) {

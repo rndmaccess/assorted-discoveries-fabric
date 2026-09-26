@@ -1,6 +1,5 @@
 package rndm_access.assorteddiscoveries.block;
 
-import com.mojang.serialization.MapCodec;
 import net.fabricmc.loader.api.FabricLoader;
 import rndm_access.assorteddiscoveries.core.ModBlocks;
 
@@ -20,16 +19,10 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class DirtPathSlabBlock extends SlabBlock {
-    public static final MapCodec<DirtPathSlabBlock> CODEC = simpleCodec(DirtPathSlabBlock::new);
     protected static final HashMap<SlabType, VoxelShape> SHAPE;
 
     public DirtPathSlabBlock(Properties settings) {
         super(settings);
-    }
-
-    @Override
-    public MapCodec<DirtPathSlabBlock> codec() {
-        return CODEC;
     }
 
     @Override

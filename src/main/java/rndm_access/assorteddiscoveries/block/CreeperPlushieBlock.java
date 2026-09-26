@@ -1,6 +1,5 @@
 package rndm_access.assorteddiscoveries.block;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -8,7 +7,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class CreeperPlushieBlock extends AbstractSimplePlushieBlock {
-    public static final MapCodec<CreeperPlushieBlock> CODEC = simpleCodec(CreeperPlushieBlock::new);
     private static final VoxelShape NORTH_SHAPE = Block.box(4.0D, 0.0D, 2.0D,
             12.0D, 12.0D, 14.0D);
 
@@ -16,11 +14,6 @@ public class CreeperPlushieBlock extends AbstractSimplePlushieBlock {
         super(settings);
         this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
                 .setValue(FACING, Direction.NORTH));
-    }
-
-    @Override
-    protected MapCodec<CreeperPlushieBlock> codec() {
-        return CODEC;
     }
 
     @Override

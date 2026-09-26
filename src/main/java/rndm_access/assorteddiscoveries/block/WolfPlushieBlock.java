@@ -1,6 +1,5 @@
 package rndm_access.assorteddiscoveries.block;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionResult;
@@ -18,7 +17,6 @@ import rndm_access.assorteddiscoveries.block.state.ModBlockStateProperties;
 
 public class WolfPlushieBlock extends AbstractSimplePlushieBlock {
     public static final BooleanProperty IS_SITTING = ModBlockStateProperties.IS_SITTING;
-    public static final MapCodec<WolfPlushieBlock> CODEC = simpleCodec(WolfPlushieBlock::new);
     private static final VoxelShape NORTH_SHAPE = Block.box(4.5D, 0.0D, 1.0D,
             11.5D, 11.5D, 14.5D);
 
@@ -34,11 +32,6 @@ public class WolfPlushieBlock extends AbstractSimplePlushieBlock {
 
         world.setBlockAndUpdate(pos, state.setValue(IS_SITTING, !value));
         return InteractionResult.SUCCESS;
-    }
-
-    @Override
-    protected @NonNull MapCodec<WolfPlushieBlock> codec() {
-        return CODEC;
     }
 
     @Override

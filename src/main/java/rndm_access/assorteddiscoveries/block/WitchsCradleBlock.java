@@ -1,6 +1,5 @@
 package rndm_access.assorteddiscoveries.block;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
@@ -19,7 +18,6 @@ import rndm_access.assorteddiscoveries.core.ModItems;
 import rndm_access.assorteddiscoveries.core.ModParticleTypes;
 
 public class WitchsCradleBlock extends AbstractBerryBushBlock {
-    public static final MapCodec<WitchsCradleBlock> CODEC = simpleCodec(WitchsCradleBlock::new);
     private static final VoxelShape SMALL_SHAPE = Block.box(3.0D, 0.0D, 3.0D,
             13.0D, 9.0D, 13.0D);
     private static final VoxelShape MEDIUM_SHAPE = Block.box(2.0D, 0.0D, 2.0D,
@@ -32,11 +30,6 @@ public class WitchsCradleBlock extends AbstractBerryBushBlock {
     public WitchsCradleBlock(Properties settings) {
         super(settings);
         this.registerDefaultState(this.getStateDefinition().any().setValue(AGE, 0));
-    }
-
-    @Override
-    protected MapCodec<WitchsCradleBlock> codec() {
-        return CODEC;
     }
 
     @Override

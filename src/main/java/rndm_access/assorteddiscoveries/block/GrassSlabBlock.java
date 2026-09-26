@@ -11,7 +11,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 import java.util.List;
@@ -23,17 +23,17 @@ public class GrassSlabBlock extends SnowySlabBlock implements BonemealableBlock 
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
+    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, BonemealSource source) {
         return canSupportGrass(state);
     }
 
     @Override
-    public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos pos, BlockState state) {
+    public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
         return true;
     }
 
     @Override
-    public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
+    public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
         BlockPos above = pos.above();
         BlockState grassState = Blocks.SHORT_GRASS.defaultBlockState();
         Block grassBlock = grassState.getBlock();
@@ -61,20 +61,21 @@ public class GrassSlabBlock extends SnowySlabBlock implements BonemealableBlock 
             if (testState.is(grassBlock) && random.nextInt(10) == 0) {
                 BonemealableBlock bonemealableBlock = (BonemealableBlock) grassBlock;
 
-                if (bonemealableBlock.isValidBonemealTarget(level, testPos, testState)) {
-                    bonemealableBlock.performBonemeal(level, random, testPos, testState);
+                if (bonemealableBlock.isValidBonemealTarget(level, testPos, testState, source)) {
+                    bonemealableBlock.performBonemeal(level, random, testPos, testState, source);
                 }
             }
 
             // Place a short grass or flower block (according to the biome)
             if (testState.isAir() && !level.isOutsideBuildHeight(testPos)) {
-                if (random.nextInt(8) == 0) {
-                    List<ConfiguredFeature<?, ?>> features = level.getBiome(testPos).value().getGenerationSettings().getBoneMealFeatures();
-
-                    if (!features.isEmpty()) {
-                        ConfiguredFeature<?, ?> placementFeature = Util.getRandom(features, random);
-                        placementFeature.place(level, level.getChunkSource().getGenerator(), random, testPos);
+                if (random.nextFloat() < 0.125F) {
+                    List<Feature> features = level.getBiome(testPos).value().getGenerationSettings().getBoneMealFeatures();
+                    if (features.isEmpty()) {
+                        return;
                     }
+
+                    Feature placementFeature = Util.getRandom(features, random);
+                    placementFeature.place(level, level.getChunkSource().getGenerator(), random, testPos);
                 } else {
                     grassFeature.ifPresent(placedFeatureRef -> (placedFeatureRef.value())
                             .place(level, level.getChunkSource().getGenerator(), random, testPos));

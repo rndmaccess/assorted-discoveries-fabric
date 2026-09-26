@@ -1,6 +1,4 @@
 {
   "type": "assorted-discoveries:cattail",
-  "config": {
-    "probability": 0.8
-  }
+  "probability": 0.8
 }

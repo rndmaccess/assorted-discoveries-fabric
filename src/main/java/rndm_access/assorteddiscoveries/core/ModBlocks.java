@@ -19,6 +19,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
+import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.block.*;
 import rndm_access.assorteddiscoveries.item.RopeLadderBlockItem;
@@ -192,25 +193,25 @@ public final class ModBlocks {
     public static final Block WARPED_PLANTER_BOX
             = registerNetherPlanterBox(ModBlockIds.WARPED_PLANTER_BOX_KEY, Blocks.WARPED_PLANKS.defaultMapColor());
     public static final Block OAK_WALL
-            = registerWall(ModBlockIds.OAK_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS));
+            = registerUnstrippedWoodenWall(ModBlockIds.OAK_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS));
     public static final Block SPRUCE_WALL
-            = registerWall(ModBlockIds.SPRUCE_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_PLANKS));
+            = registerUnstrippedWoodenWall(ModBlockIds.SPRUCE_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_PLANKS));
     public static final Block BIRCH_WALL
-            = registerWall(ModBlockIds.BIRCH_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.BIRCH_PLANKS));
+            = registerUnstrippedWoodenWall(ModBlockIds.BIRCH_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.BIRCH_PLANKS));
     public static final Block JUNGLE_WALL
-            = registerWall(ModBlockIds.JUNGLE_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_PLANKS));
+            = registerUnstrippedWoodenWall(ModBlockIds.JUNGLE_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_PLANKS));
     public static final Block ACACIA_WALL
-            = registerWall(ModBlockIds.ACACIA_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.ACACIA_PLANKS));
+            = registerUnstrippedWoodenWall(ModBlockIds.ACACIA_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.ACACIA_PLANKS));
     public static final Block DARK_OAK_WALL
-            = registerWall(ModBlockIds.DARK_OAK_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.DARK_OAK_PLANKS));
+            = registerUnstrippedWoodenWall(ModBlockIds.DARK_OAK_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.DARK_OAK_PLANKS));
     public static final Block MANGROVE_WALL
-            = registerWall(ModBlockIds.MANGROVE_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.MANGROVE_PLANKS));
+            = registerUnstrippedWoodenWall(ModBlockIds.MANGROVE_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.MANGROVE_PLANKS));
     public static final Block CRIMSON_WALL
-            = registerWall(ModBlockIds.CRIMSON_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_PLANKS));
+            = registerUnstrippedWoodenWall(ModBlockIds.CRIMSON_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_PLANKS));
     public static final Block WARPED_WALL
-            = registerWall(ModBlockIds.WARPED_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_PLANKS));
+            = registerUnstrippedWoodenWall(ModBlockIds.WARPED_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_PLANKS));
     public static final Block CHERRY_WALL
-            = registerWall(ModBlockIds.CHERRY_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.CHERRY_PLANKS));
+            = registerUnstrippedWoodenWall(ModBlockIds.CHERRY_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.CHERRY_PLANKS));
     public static final Block STRIPPED_OAK_WALL
             = registerWall(ModBlockIds.STRIPPED_OAK_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS));
     public static final Block STRIPPED_SPRUCE_WALL
@@ -260,15 +261,17 @@ public final class ModBlocks {
             = registerWall(ModBlockIds.PACKED_SNOW_WALL_KEY, makePackedSnowSettings());
     public static final Block PURPLE_MUSHROOM
             = register(ModBlockIds.PURPLE_MUSHROOM_KEY,
-            (props) -> new MushroomBlock(ModTreeConfiguredFeatures.HUGE_PURPLE_MUSHROOM, props),
+            (props) -> new MushroomBlock(ModTreeFeatures.HUGE_PURPLE_MUSHROOM, props),
             BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PURPLE)
-                    .pushReaction(PushReaction.DESTROY).noCollision().randomTicks().instabreak()
-                    .sound(SoundType.GRASS).postProcess(ModBlocks::postProcessSelf));
+                    .pushReaction(PushReaction.POPPED).noCollision().randomTicks().instabreak()
+                    .sound(SoundType.GRASS).postProcess(ModBlocks::postProcessSelf),
+            new Item.Properties().compostable(ContextIntProviders.COMPOSTABLE_MEDIUM));
     public static final Block PURPLE_MUSHROOM_BLOCK
             = register(ModBlockIds.PURPLE_MUSHROOM_BLOCK_KEY, PurpleMushroomBlock::new,
             BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PURPLE)
                     .instrument(NoteBlockInstrument.BASS).strength(0.2F)
-                    .sound(SoundType.WOOD).ignitedByLava());
+                    .sound(SoundType.WOOD).ignitedByLava(),
+            new Item.Properties().compostable(ContextIntProviders.COMPOSTABLE_MEDIUM_HIGH));
     public static final Block WHITE_CAMPFIRE
             = registerDyedCampfire(ModBlockIds.WHITE_CAMPFIRE_KEY, ModParticleTypes.WHITE_EMBER);
     public static final Block ORANGE_CAMPFIRE
@@ -409,17 +412,20 @@ public final class ModBlocks {
             BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERRACK));
     public static final Block SNAPDRAGON = register(ModBlockIds.SNAPDRAGON_KEY,
             (props) -> new SnapdragonBlock(MobEffects.LUCK, 8, props),
-            BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY).lightLevel((state) -> 8));
+            BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY).lightLevel((state) -> 8),
+            new Item.Properties().compostable(ContextIntProviders.COMPOSTABLE_MEDIUM));
     public static final Block POTTED_SNAPDRAGON = registerPottedSnapdragon();
     public static final Block POTTED_PURPLE_MUSHROOM = register(ModBlockIds.POTTED_PURPLE_MUSHROOM_KEY,
             (props) -> new FlowerPotBlock(ModBlocks.PURPLE_MUSHROOM, props),
             BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_RED_MUSHROOM));
     public static final Block SHORT_ENDER_GRASS
         = register(ModBlockIds.SHORT_ENDER_GRASS_KEY, ShortEnderGrassBlock::new,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS).lightLevel((state) -> 8));
+            BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS).lightLevel((state) -> 8),
+            new Item.Properties().compostable(ContextIntProviders.COMPOSTABLE_LOW));
     public static final Block CATTAIL = register(ModBlockIds.CATTAIL_KEY, CattailBlock::new,
             BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).noCollision()
-                    .noOcclusion().sound(SoundType.WET_GRASS));
+                    .noOcclusion().sound(SoundType.WET_GRASS),
+            new Item.Properties().compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM));
     public static final Block CHOCOLATE_CAKE = registerCake(ModBlockIds.CHOCOLATE_CAKE_KEY);
     public static final Block RED_VELVET_CAKE = registerCake(ModBlockIds.RED_VELVET_CAKE_KEY);
     public static final Block CANDLE_CHOCOLATE_CAKE = registerChocolateCandleCake();
@@ -596,22 +602,21 @@ public final class ModBlocks {
     public static final Block BLOOD_KELP_PLANT
             = registerWithoutItemBlock(ModBlockIds.BLOOD_KELP_PLANT_KEY, BloodKelpPlantBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.KELP_PLANT)
             .lightLevel(getLuminanceFromState()));
-    public static final Block DRIED_BLOOD_KELP_BLOCK = registerSimple(ModBlockIds.DRIED_BLOOD_KELP_BLOCK_KEY,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.DRIED_KELP_BLOCK));
+    public static final Block DRIED_BLOOD_KELP_BLOCK = registerDriedBloodKelpBlock();
     public static final Block BLOOD_KELP_LANTERN
             = registerPillar(ModBlockIds.BLOOD_KELP_LANTERN_KEY,
             BlockBehaviour.Properties.of().mapColor(MapColor.SAND).strength(0.3F)
                     .sound(SoundType.GLASS).lightLevel((state) -> 15));
     public static final Block BOG_BLOSSOM = register(ModBlockIds.BOG_BLOSSOM_KEY, BogBlossomBlock::new, BlockBehaviour.Properties.of()
             .mapColor(MapColor.PLANT).instabreak().noCollision().sound(SoundType.SPORE_BLOSSOM)
-            .pushReaction(PushReaction.DESTROY).lightLevel((state) -> 5));
+            .pushReaction(PushReaction.POPPED).lightLevel((state) -> 5));
     public static final Block CINDERSNAP_BERRY_BUSH
             = registerWithoutItemBlock(ModBlockIds.CINDERSNAP_BERRY_BUSH_KEY, CindersnapBerryBushBlock::new, BlockBehaviour.Properties.of().mapColor(MapColor.CRIMSON_HYPHAE)
-            .randomTicks().noCollision().sound(SoundType.NETHER_SPROUTS).pushReaction(PushReaction.DESTROY)
+            .randomTicks().noCollision().sound(SoundType.NETHER_SPROUTS).pushReaction(PushReaction.POPPED)
             .lightLevel((state) -> 8));
     public static final Block FROSTBITE_BERRY_BUSH
             = registerWithoutItemBlock(ModBlockIds.FROSTBITE_BERRY_BUSH_KEY, FrostbiteBerryBushBlock::new, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_CYAN)
-            .randomTicks().noCollision().sound(SoundType.NETHER_SPROUTS).pushReaction(PushReaction.DESTROY)
+            .randomTicks().noCollision().sound(SoundType.NETHER_SPROUTS).pushReaction(PushReaction.POPPED)
             .lightLevel((state) -> 5));
     public static final Block POLISHED_DRIPSTONE
             = registerSimple(ModBlockIds.POLISHED_DRIPSTONE_KEY, makeDripstoneSettings());
@@ -670,7 +675,7 @@ public final class ModBlocks {
             BlockBehaviour.Properties.ofFullCopy(Blocks.ROOTED_DIRT));
     public static final Block WILD_GREEN_ONIONS = register(ModBlockIds.WILD_GREEN_ONIONS_KEY, WildGreenOnionsBlock::new,
             BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollision().randomTicks()
-                    .instabreak().sound(SoundType.CROP).pushReaction(PushReaction.DESTROY));
+                    .instabreak().sound(SoundType.CROP).pushReaction(PushReaction.POPPED));
     public static final Block CREAKING_PLUSHIE
             = register(ModBlockIds.CREAKING_PLUSHIE_KEY, CreakingPlushieBlock::new, makePlushieSettings());
     public static final Block QUARTZ_BRICK_STAIRS = registerStairs(ModBlockIds.QUARTZ_BRICK_STAIRS_KEY,
@@ -684,12 +689,12 @@ public final class ModBlocks {
             = register(ModBlockIds.SNIFFER_PLUSHIE_KEY, SnifferPlushieBlock::new, makePlushieSettings());
     public static final Block STRIPPED_PALE_OAK_WALL = registerWall(ModBlockIds.STRIPPED_PALE_OAK_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.PALE_OAK_PLANKS));
-    public static final Block PALE_OAK_WALL = registerWall(ModBlockIds.PALE_OAK_WALL_KEY,
+    public static final Block PALE_OAK_WALL = registerUnstrippedWoodenWall(ModBlockIds.PALE_OAK_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.PALE_OAK_PLANKS));
     public static final Block BAMBOO_ROPE_LADDER = registerRopeLadder(ModBlockIds.BAMBOO_ROPE_LADDER_KEY);
     public static final Block STRIPPED_BAMBOO_WALL = registerWall(ModBlockIds.STRIPPED_BAMBOO_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.BAMBOO_PLANKS));
-    public static final Block BAMBOO_WALL = registerWall(ModBlockIds.BAMBOO_WALL_KEY,
+    public static final Block BAMBOO_WALL = registerUnstrippedWoodenWall(ModBlockIds.BAMBOO_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.BAMBOO_PLANKS));
     public static final Block BLACK_WOLF_PLUSHIE = registerWolfPlushie(ModBlockIds.BLACK_WOLF_PLUSHIE_KEY);
     public static final Block ASHEN_WOLF_PLUSHIE = registerWolfPlushie(ModBlockIds.ASHEN_WOLF_PLUSHIE_KEY);
@@ -755,12 +760,16 @@ public final class ModBlocks {
         return block;
     }
 
-    public static Block register(final BlockItemId id, final Function<BlockBehaviour.Properties, Block> factory, final BlockBehaviour.Properties properties) {
+    private static Block register(final BlockItemId id, final Function<BlockBehaviour.Properties, Block> factory, final BlockBehaviour.Properties properties) {
+        return register(id, factory, properties, new Item.Properties());
+    }
+
+    public static Block register(final BlockItemId id, final Function<BlockBehaviour.Properties, Block> factory, final BlockBehaviour.Properties properties, Item.Properties itemProperties) {
         // Must register the block before the block item to prevent bugs.
         Block block = Registry.register(BuiltInRegistries.BLOCK, id.block(),
                 factory.apply(properties.setId(id.block())));
         BlockItem blockItem = Registry.register(BuiltInRegistries.ITEM, id.item(),
-                new BlockItem(block, new Item.Properties().useBlockDescriptionPrefix().setId(id.item())));
+                new BlockItem(block, itemProperties.useBlockDescriptionPrefix().setId(id.item())));
         // Add our block item and block to this map so we can retrieve our block item from its block later!
         Item.BY_BLOCK.put(block, blockItem);
         return block;
@@ -768,6 +777,13 @@ public final class ModBlocks {
 
     private static Block registerWithoutItemBlock(final ResourceKey<Block> id, final Function<BlockBehaviour.Properties, Block> factory, final BlockBehaviour.Properties properties) {
         return Registry.register(BuiltInRegistries.BLOCK, id, factory.apply(properties.setId(id)));
+    }
+
+    private static Block registerDriedBloodKelpBlock() {
+        return register(ModBlockIds.DRIED_BLOOD_KELP_BLOCK_KEY, Block::new,
+                BlockBehaviour.Properties.ofFullCopy(Blocks.DRIED_KELP_BLOCK),
+                new Item.Properties().compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM)
+                        .cookingFuel(ContextIntProviders.COOKING_TIME_DRIED_KELP_BLOCK));
     }
 
     private static Block registerSimple(BlockItemId id, final BlockBehaviour.Properties properties) {
@@ -784,7 +800,7 @@ public final class ModBlocks {
 
     private static Block registerCubePlushie(BlockItemId id) {
         BlockBehaviour.Properties settings = BlockBehaviour.Properties.of().ignitedByLava().mapColor(MapColor.NONE)
-                .strength(0.2F).sound(SoundType.WOOL).pushReaction(PushReaction.DESTROY);
+                .strength(0.2F).sound(SoundType.WOOL).pushReaction(PushReaction.POPPED);
         return register(id, CubePlushieBlock::new, settings);
     }
 
@@ -851,7 +867,7 @@ public final class ModBlocks {
 
     private static Block registerWallTorch(final ResourceKey<Block> id, Block standingTorch, SimpleParticleType particle) {
         BlockBehaviour.Properties wallTorchSettings = wallVariant(standingTorch).noCollision().instabreak()
-                .lightLevel((blockState) -> 14).sound(SoundType.WOOD).pushReaction(PushReaction.DESTROY);
+                .lightLevel((blockState) -> 14).sound(SoundType.WOOD).pushReaction(PushReaction.POPPED);
         return registerWithoutItemBlock(id, (props) -> new WallTorchBlock(particle, props), wallTorchSettings);
     }
 
@@ -863,14 +879,14 @@ public final class ModBlocks {
     private static Block registerBlueberryBush() {
         BlockBehaviour.Properties settings = BlockBehaviour.Properties.of().mapColor(MapColor.GRASS)
                 .randomTicks().noCollision().sound(SoundType.SWEET_BERRY_BUSH)
-                .pushReaction(PushReaction.DESTROY);
+                .pushReaction(PushReaction.POPPED);
         return registerWithoutItemBlock(ModBlockIds.BLUEBERRY_BUSH_KEY, BlueberryBushBlock::new, settings);
     }
 
     private static Block registerGreenOnions() {
         BlockBehaviour.Properties settings = BlockBehaviour.Properties.of().mapColor(MapColor.PLANT)
                 .noCollision().randomTicks().instabreak().sound(SoundType.CROP)
-                .pushReaction(PushReaction.DESTROY);
+                .pushReaction(PushReaction.POPPED);
         return registerWithoutItemBlock(ModBlockIds.GREEN_ONIONS_KEY, GreenOnionsBlock::new, settings);
     }
 
@@ -887,6 +903,10 @@ public final class ModBlocks {
 
     private static Block registerSlab(BlockItemId id, BlockBehaviour.Properties settings) {
         return register(id, SlabBlock::new, settings);
+    }
+
+    private static Block registerUnstrippedWoodenWall(BlockItemId id, BlockBehaviour.Properties settings) {
+        return register(id, UnstrippedWoodenWallBlock::new, settings);
     }
 
     private static Block registerWall(BlockItemId id, BlockBehaviour.Properties settings) {

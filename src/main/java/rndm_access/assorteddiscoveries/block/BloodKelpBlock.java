@@ -1,6 +1,5 @@
 package rndm_access.assorteddiscoveries.block;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -15,10 +14,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.GrowingPlantHeadBlock;
-import net.minecraft.world.level.block.LiquidBlockContainer;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -31,7 +27,6 @@ import org.jetbrains.annotations.Nullable;
 import rndm_access.assorteddiscoveries.core.ModBlocks;
 
 public class BloodKelpBlock extends GrowingPlantHeadBlock implements LiquidBlockContainer, BloodKelp {
-    public static final MapCodec<BloodKelpBlock> CODEC = simpleCodec(BloodKelpBlock::new);
     private static final VoxelShape SHAPE = Block.box(0.0, 0.0, 0.0,
             16.0, 9.0, 16.0);
 
@@ -59,11 +54,6 @@ public class BloodKelpBlock extends GrowingPlantHeadBlock implements LiquidBlock
     }
 
     @Override
-    protected MapCodec<BloodKelpBlock> codec() {
-        return CODEC;
-    }
-
-    @Override
     public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
         BlockPos newStemPos = pos.relative(this.growthDirection);
         int age = state.getValue(AGE);
@@ -80,13 +70,13 @@ public class BloodKelpBlock extends GrowingPlantHeadBlock implements LiquidBlock
     }
 
     @Override
-    public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
+    public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
         BlockPos newStemPos = pos.mutable().relative(this.growthDirection);
         int age = Math.min(state.getValue(AGE) + 1, 25);
 
-        if(this.canGrowInto(world.getBlockState(newStemPos))) {
-            world.setBlock(pos, this.growStemToPlant(state), 2);
-            world.setBlockAndUpdate(newStemPos, this.getStemState(random, age));
+        if(this.canGrowInto(level.getBlockState(newStemPos))) {
+            level.setBlock(pos, this.growStemToPlant(state), 2);
+            level.setBlockAndUpdate(newStemPos, this.getStemState(random, age));
         }
     }
 
@@ -116,8 +106,8 @@ public class BloodKelpBlock extends GrowingPlantHeadBlock implements LiquidBlock
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state) {
-        return !state.getValue(LIT) && super.isValidBonemealTarget(world, pos, state);
+    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, BonemealSource source) {
+        return !state.getValue(LIT) && super.isValidBonemealTarget(level, pos, state, source);
     }
 
     @Override

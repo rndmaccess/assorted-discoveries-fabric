@@ -1,6 +1,5 @@
 package rndm_access.assorteddiscoveries.block;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.tags.TagKey;
@@ -17,16 +16,9 @@ import rndm_access.assorteddiscoveries.core.ModEntityTypeTags;
 import rndm_access.assorteddiscoveries.core.ModItems;
 
 public class CindersnapBerryBushBlock extends AbstractNetherBerryBushBlock {
-    public static final MapCodec<CindersnapBerryBushBlock> CODEC = simpleCodec(CindersnapBerryBushBlock::new);
-
     public CindersnapBerryBushBlock(Properties settings) {
         super(settings);
         this.registerDefaultState(this.getStateDefinition().any().setValue(AGE, 0));
-    }
-
-    @Override
-    protected MapCodec<CindersnapBerryBushBlock> codec() {
-        return CODEC;
     }
 
     @Override

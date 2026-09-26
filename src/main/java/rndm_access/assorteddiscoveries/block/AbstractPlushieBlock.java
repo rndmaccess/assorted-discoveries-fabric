@@ -1,6 +1,5 @@
 package rndm_access.assorteddiscoveries.block;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
@@ -25,9 +24,6 @@ public abstract class AbstractPlushieBlock extends HorizontalDirectionalBlock im
     protected AbstractPlushieBlock(BlockBehaviour.Properties settings) {
         super(settings);
     }
-
-    @Override
-    protected abstract MapCodec<? extends AbstractPlushieBlock> codec();
 
     @Override
     protected abstract void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder);

@@ -1,6 +1,5 @@
 package rndm_access.assorteddiscoveries.block;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -13,6 +12,7 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.BonemealSource;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -22,15 +22,9 @@ import rndm_access.assorteddiscoveries.core.ModParticleTypes;
 public class BogBlossomBlock extends Block implements BonemealableBlock {
     private static final VoxelShape SHAPE = Block.box(2.0, 0.0, 2.0,
             14.0, 3.0, 14.0);
-    public static final MapCodec<BogBlossomBlock> CODEC = simpleCodec(BogBlossomBlock::new);
 
     public BogBlossomBlock(Properties settings) {
         super(settings);
-    }
-
-    @Override
-    protected MapCodec<BogBlossomBlock> codec() {
-        return CODEC;
     }
 
     @Override
@@ -93,17 +87,17 @@ public class BogBlossomBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state) {
+    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, BonemealSource source) {
         return true;
     }
 
     @Override
-    public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
+    public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
         return true;
     }
 
     @Override
-    public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
+    public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
         BlockPos.MutableBlockPos mutablePos = pos.mutable();
         boolean placed = false;
         int tries = 0;
@@ -113,10 +107,10 @@ public class BogBlossomBlock extends Block implements BonemealableBlock {
             int yOffset = random.nextInt(4) - random.nextInt(4);
             int zOffset = random.nextInt(4) - random.nextInt(4);
             mutablePos.move(xOffset, yOffset, zOffset);
-            BlockState worldState = world.getBlockState(mutablePos);
+            BlockState worldState = level.getBlockState(mutablePos);
 
-            if (this.canSurvive(worldState, world, mutablePos) && (worldState.isAir() || worldState.canBeReplaced())) {
-                world.setBlockAndUpdate(mutablePos, this.defaultBlockState());
+            if (this.canSurvive(worldState, level, mutablePos) && (worldState.isAir() || worldState.canBeReplaced())) {
+                level.setBlockAndUpdate(mutablePos, this.defaultBlockState());
                 placed = true;
             }
             tries++;

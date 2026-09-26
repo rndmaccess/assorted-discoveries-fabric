@@ -1,6 +1,5 @@
 package rndm_access.assorteddiscoveries.block;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -8,43 +7,36 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.BonemealSource;
 import net.minecraft.world.level.block.BonemealableBlock;
-import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import rndm_access.assorteddiscoveries.core.CommonBlockTags;
 import rndm_access.assorteddiscoveries.core.ModBlocks;
 
-public class DirtSlabBlock extends SlabBlock implements BonemealableBlock {
-    public static final MapCodec<DirtSlabBlock> CODEC = simpleCodec(DirtSlabBlock::new);
-
+public class DirtSlabBlock extends SoilSlabBlock implements BonemealableBlock {
     public DirtSlabBlock(Properties settings) {
         super(settings);
     }
 
     @Override
-    public MapCodec<DirtSlabBlock> codec() {
-        return CODEC;
+    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, BonemealSource source) {
+        return SnowySlabBlock.canGrowGrass(state, level, pos);
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state) {
-        return SnowySlabBlock.canGrowGrass(state, world, pos);
-    }
-
-    @Override
-    public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
+    public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
         return true;
     }
 
     @Override
-    public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
+    public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
         BlockPos neighborPos = pos.above();
-        BlockState neighborState = world.getBlockState(neighborPos);
-        Block result = getSlabResult(world, pos);
+        BlockState neighborState = level.getBlockState(neighborPos);
+        Block result = getSlabResult(level, pos);
 
-        world.setBlock(pos, result.defaultBlockState().setValue(TYPE, state.getValue(TYPE))
+        level.setBlock(pos, result.defaultBlockState().setValue(TYPE, state.getValue(TYPE))
                 .setValue(WATERLOGGED, state.getValue(WATERLOGGED))
-                .setValue(SnowySlabBlock.SNOWY, SnowySlabBlock.isSnowCovered(world, neighborPos, state, neighborState)), 3);
+                .setValue(SnowySlabBlock.SNOWY, SnowySlabBlock.isSnowCovered(level, neighborPos, state, neighborState)), 3);
     }
 
     private Block getSlabResult(ServerLevel world, BlockPos originPos) {

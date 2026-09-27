@@ -45,21 +45,23 @@ public class UnstrippedWoodenWallBlock extends WallBlock {
             return super.useItemOn(itemStack, state, level, pos, player, hand, hitResult);
         }
 
+        Block unstrippedBlock = state.getBlock();
+        Block strippedBlock = STRIPPING_MAP.get(unstrippedBlock);
+
+        if (strippedBlock == null) {
+            return InteractionResult.CONSUME;
+        }
+
+        level.playSound(player, pos, SoundEvents.AXE_STRIP.value(), SoundSource.BLOCKS);
         if (!level.isClientSide()) {
-            Block unstrippedBlock = state.getBlock();
             ItemStack stack = player.getItemInHand(hand);
-            Block strippedBlock = STRIPPING_MAP.get(unstrippedBlock);
+            EquipmentSlot handSlot = hand == InteractionHand.MAIN_HAND
+                    ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND;
+            // This call will automatically broadcast the breaking animation to the client!
+            stack.hurtAndBreak(1, player, handSlot);
 
-            if (strippedBlock != null) {
-                level.playSound(player, pos, SoundEvents.AXE_STRIP.value(), SoundSource.BLOCKS);
-
-                EquipmentSlot handSlot = hand == InteractionHand.MAIN_HAND
-                        ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND;
-                stack.hurtAndBreak(1, player, handSlot);
-
-                BlockState strippedState = getStrippedState(state, strippedBlock);
-                level.setBlockAndUpdate(pos, strippedState);
-            }
+            BlockState strippedState = getStrippedState(state, strippedBlock);
+            level.setBlockAndUpdate(pos, strippedState);
         }
         return level.isClientSide() ? InteractionResult.SUCCESS : InteractionResult.CONSUME;
     }

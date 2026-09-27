@@ -1,5 +1,6 @@
 package rndm_access.assorteddiscoveries.block;
 
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
@@ -23,38 +24,25 @@ public class SoilSlabBlock  extends SlabBlock {
 
     @Override
     protected InteractionResult useItemOn(ItemStack itemStack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-        if (!itemStack.is(ItemTags.SHOVELS)) {
+        BlockState coveringState = level.getBlockState(pos.above());
+        boolean isCovered = coveringState.isFaceSturdy(level, pos.above(), Direction.DOWN);
+        boolean hasProperties = state.hasProperty(SlabBlock.TYPE) && state.hasProperty(SlabBlock.WATERLOGGED);
+        boolean isSlabbedInstalled = FabricLoader.getInstance().isModLoaded("slabbed");
+        boolean canConvertBottomSlab = state.getValue(SlabBlock.TYPE) == SlabType.BOTTOM && !isSlabbedInstalled;
+
+        if (!itemStack.is(ItemTags.SHOVELS) || !hasProperties || (!canConvertBottomSlab && isCovered)) {
             return super.useItemOn(itemStack, state, level, pos, player, hand, hitResult);
         }
 
+        level.playSound(player, pos, SoundEvents.SHOVEL_FLATTEN.value(), SoundSource.BLOCKS);
+
         if (!level.isClientSide()) {
-            return tryConvertSlabToPath(level, state, pos, player, itemStack, hand);
-        }
-        return InteractionResult.SUCCESS;
-    }
-
-    private InteractionResult tryConvertSlabToPath(Level level, BlockState state, BlockPos pos, Player player, ItemStack stack, InteractionHand hand) {
-        BlockState coveringState = level.getBlockState(pos.above());
-
-        if (!state.hasProperty(SlabBlock.TYPE) || !state.hasProperty(SlabBlock.WATERLOGGED)) {
-            return InteractionResult.FAIL;
-        } else if (state.getValue(SlabBlock.TYPE) == SlabType.BOTTOM) {
-            this.convertSlabToPath(level, pos, player, stack, state, hand);
-            return InteractionResult.CONSUME;
-        } else if(!coveringState.isFaceSturdy(level, pos.above(), Direction.DOWN)) {
-            this.convertSlabToPath(level, pos, player, stack, state, hand);
-            return InteractionResult.CONSUME;
-        }
-        return InteractionResult.CONSUME;
-    }
-
-    private void convertSlabToPath(Level level, BlockPos pos, Player player, ItemStack stack, BlockState state, InteractionHand hand) {
-        if (player != null) {
-            level.playSound(player, pos, SoundEvents.SHOVEL_FLATTEN.value(), SoundSource.BLOCKS);
-            stack.hurtAndBreak(1, player, hand);
+            // This call will automatically broadcast the breaking animation to the client!
+            itemStack.hurtAndBreak(1, player, hand);
             level.setBlockAndUpdate(pos, ModBlocks.DIRT_PATH_SLAB.defaultBlockState()
                     .setValue(SlabBlock.WATERLOGGED, state.getValue(SlabBlock.WATERLOGGED))
                     .setValue(SlabBlock.TYPE, state.getValue(SlabBlock.TYPE)));
         }
+        return level.isClientSide() ? InteractionResult.SUCCESS : InteractionResult.CONSUME;
     }
 }

@@ -669,9 +669,9 @@ public final class ModBlocks {
             BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT_PATH));
     public static final Block DIRT_SLAB
             = register(ModBlockIds.DIRT_SLAB_KEY, DirtSlabBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT));
-    public static final Block COARSE_DIRT_SLAB = registerSlab(ModBlockIds.COARSE_DIRT_SLAB_KEY,
+    public static final Block COARSE_DIRT_SLAB = register(ModBlockIds.COARSE_DIRT_SLAB_KEY, SoilSlabBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.COARSE_DIRT));
-    public static final Block ROOTED_DIRT_SLAB = registerSlab(ModBlockIds.ROOTED_DIRT_SLAB_KEY,
+    public static final Block ROOTED_DIRT_SLAB = register(ModBlockIds.ROOTED_DIRT_SLAB_KEY, SoilSlabBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.ROOTED_DIRT));
     public static final Block WILD_GREEN_ONIONS = register(ModBlockIds.WILD_GREEN_ONIONS_KEY, WildGreenOnionsBlock::new,
             BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollision().randomTicks()

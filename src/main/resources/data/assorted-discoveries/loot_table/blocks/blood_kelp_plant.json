@@ -1,31 +1,40 @@
 {
   "type": "minecraft:block",
+  "modifier": {
+    "type": "minecraft:explosion_decay"
+  },
   "pools": [
     {
-      "rolls": 1.0,
       "entries": [
         {
           "type": "minecraft:item",
           "name": "assorted-discoveries:blood_kelp"
         }
-      ]
+      ],
+      "rolls": 1
     },
     {
-      "rolls": 1.0,
+      "condition": {
+        "type": "minecraft:match_block",
+        "blocks": "assorted-discoveries:blood_kelp_plant",
+        "state": {
+          "lit": "true"
+        }
+      },
       "entries": [
         {
           "type": "minecraft:item",
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
-                "min": 2.0,
-                "max": 3.0,
-                "type": "minecraft:uniform"
+                "type": "minecraft:uniform",
+                "min": 2,
+                "max": 3
               }
             },
             {
-              "function": "minecraft:apply_bonus",
+              "type": "minecraft:apply_bonus",
               "enchantment": "minecraft:fortune",
               "formula": "minecraft:uniform_bonus_count",
               "parameters": {
@@ -33,23 +42,10 @@
               }
             }
           ],
-          "conditions": [
-            {
-              "condition": "minecraft:block_state_property",
-              "block": "assorted-discoveries:blood_kelp_plant",
-              "properties": {
-                "lit": "true"
-              }
-            }
-          ],
           "name": "assorted-discoveries:blood_kelp_seed_cluster"
         }
-      ]
-    }
-  ],
-  "conditions": [
-    {
-      "condition": "minecraft:survives_explosion"
+      ],
+      "rolls": 1
     }
   ],
   "random_sequence": "assorted-discoveries:blocks/blood_kelp_plant"

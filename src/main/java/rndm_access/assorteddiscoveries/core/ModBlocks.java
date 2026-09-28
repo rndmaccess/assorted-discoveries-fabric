@@ -733,6 +733,9 @@ public final class ModBlocks {
             BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_PLANKS)
                     .mapColor(MapColor.WOOL).mapColor(MapColor.WOOD)
                     .lightLevel((state) -> 8));
+    public static final Block POPLAR_PLANTER_BOX
+            = registerPlanterBox(ModBlockIds.POPLAR_PLANTER_BOX_KEY, Blocks.POPLAR_PLANKS.defaultMapColor(),
+            SoundType.WOOD);
 
     private ModBlocks() {}
 

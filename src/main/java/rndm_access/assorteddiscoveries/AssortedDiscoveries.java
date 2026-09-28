@@ -442,6 +442,7 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModBlocks.CHERRY_PLANTER_BOX.asItem());
                 entries.accept(ModBlocks.BAMBOO_PLANTER_BOX.asItem());
                 entries.accept(ModBlocks.PALE_OAK_PLANTER_BOX.asItem());
+                entries.accept(ModBlocks.POPLAR_PLANTER_BOX.asItem());
                 entries.accept(ModBlocks.CRIMSON_PLANTER_BOX.asItem());
                 entries.accept(ModBlocks.WARPED_PLANTER_BOX.asItem());
             }

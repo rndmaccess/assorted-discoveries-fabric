@@ -454,6 +454,7 @@ public final class ModBlockIds {
     public static final BlockItemId BLOOD_KELP_CRATE_KEY = create("blood_kelp_crate");
     public static final BlockItemId BLOOD_KELP_SEED_CLUSTER_BAG_KEY = create("blood_kelp_seed_cluster_bag");
     public static final BlockItemId SNAPDRAGON_CRATE_KEY = create("snapdragon_crate");
+    public static final BlockItemId POPLAR_PLANTER_BOX_KEY = create("poplar_planter_box");
     public static final ColorCollection<BlockItemId> DYED_LANTERN_KEYS = createSimpleColored("lantern");
     public static final ColorCollection<BlockItemId> DYED_SHEEP_KEYS = createSimpleColored("sheep_plushie");
 

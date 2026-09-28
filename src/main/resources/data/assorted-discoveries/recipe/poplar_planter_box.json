@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "planter_boxes",
+  "key": {
+    "#": "minecraft:poplar_slab",
+    "D": "minecraft:dirt"
+  },
+  "pattern": [
+    "# #",
+    "#D#",
+    "###"
+  ],
+  "result": {
+    "count": 3,
+    "id": "assorted-discoveries:poplar_planter_box"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:all_entries_enabled",
+      "value": "enable_planter_boxes"
+    }
+  ]
+}

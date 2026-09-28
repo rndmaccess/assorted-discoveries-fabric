@@ -1,82 +1,76 @@
 {
   "type": "minecraft:block",
+  "modifier": {
+    "type": "minecraft:explosion_decay"
+  },
   "pools": [
     {
-      "rolls": 1.0,
+      "condition": {
+        "type": "minecraft:match_block",
+        "blocks": "assorted-discoveries:witchs_cradle",
+        "state": {
+          "age": "3"
+        }
+      },
       "entries": [
         {
           "type": "minecraft:item",
           "name": "assorted-discoveries:witchs_cradle_branch"
         }
       ],
-      "conditions": [
+      "modifier": [
         {
-          "condition": "minecraft:block_state_property",
-          "block": "assorted-discoveries:witchs_cradle",
-          "properties": {
-            "age": "3"
-          }
-        }
-      ],
-      "functions": [
-        {
-          "function": "minecraft:set_count",
+          "type": "minecraft:set_count",
           "count": {
-            "min": 2.0,
-            "max": 3.0,
-            "type": "minecraft:uniform"
+            "type": "minecraft:uniform",
+            "min": 2,
+            "max": 3
           }
         },
         {
-          "function": "minecraft:apply_bonus",
+          "type": "minecraft:apply_bonus",
           "enchantment": "minecraft:fortune",
           "formula": "minecraft:uniform_bonus_count",
           "parameters": {
             "bonusMultiplier": 1
           }
         }
-      ]
+      ],
+      "rolls": 1
     },
     {
-      "rolls": 1.0,
+      "condition": {
+        "type": "minecraft:match_block",
+        "blocks": "assorted-discoveries:witchs_cradle",
+        "state": {
+          "age": "2"
+        }
+      },
       "entries": [
         {
           "type": "minecraft:item",
           "name": "assorted-discoveries:witchs_cradle_branch"
         }
       ],
-      "conditions": [
+      "modifier": [
         {
-          "condition": "minecraft:block_state_property",
-          "block": "assorted-discoveries:witchs_cradle",
-          "properties": {
-            "age": "2"
-          }
-        }
-      ],
-      "functions": [
-        {
-          "function": "minecraft:set_count",
+          "type": "minecraft:set_count",
           "count": {
-            "min": 1.0,
-            "max": 2.0,
-            "type": "minecraft:uniform"
+            "type": "minecraft:uniform",
+            "min": 1,
+            "max": 2
           }
         },
         {
-          "function": "minecraft:apply_bonus",
+          "type": "minecraft:apply_bonus",
           "enchantment": "minecraft:fortune",
           "formula": "minecraft:uniform_bonus_count",
           "parameters": {
             "bonusMultiplier": 1
           }
         }
-      ]
-    }
-  ],
-  "functions": [
-    {
-      "function": "minecraft:explosion_decay"
+      ],
+      "rolls": 1
     }
   ],
   "random_sequence": "assorted-discoveries:blocks/witchs_cradle"

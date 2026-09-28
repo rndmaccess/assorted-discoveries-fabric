@@ -10,7 +10,7 @@
               "type": "minecraft:set_count",
               "condition": {
                 "type": "minecraft:match_block",
-                "blocks": "assorted-discoveries:bauxite_brick_slab",
+                "blocks": "assorted-discoveries:bauxite_slab",
                 "state": {
                   "type": "double"
                 }

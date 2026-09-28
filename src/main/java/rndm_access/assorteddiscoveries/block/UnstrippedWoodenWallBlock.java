@@ -30,7 +30,7 @@ public class UnstrippedWoodenWallBlock extends WallBlock {
     /**
      * Register unstripped walls to stripped variants!
      */
-    public static void registerStrippedWoodenWall(Block unstrippedWall, Block strippedWall) {
+    public static void registerStrippableWall(Block unstrippedWall, Block strippedWall) {
         if (unstrippedWall instanceof UnstrippedWoodenWallBlock && strippedWall instanceof WallBlock) {
             STRIPPING_MAP.put(unstrippedWall, strippedWall);
             return;

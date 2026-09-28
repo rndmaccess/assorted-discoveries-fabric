@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "stripped_wooden_walls",
+  "key": {
+    "#": "#c:stripped_poplar_logs"
+  },
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "result": {
+    "id": "assorted-discoveries:stripped_poplar_wall",
+    "count": 6
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:all_entries_enabled",
+      "value": "enable_stripped_wooden_walls"
+    }
+  ]
+}

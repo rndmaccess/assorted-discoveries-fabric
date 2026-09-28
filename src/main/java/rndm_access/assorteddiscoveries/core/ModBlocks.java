@@ -736,6 +736,11 @@ public final class ModBlocks {
     public static final Block POPLAR_PLANTER_BOX
             = registerPlanterBox(ModBlockIds.POPLAR_PLANTER_BOX_KEY, Blocks.POPLAR_PLANKS.defaultMapColor(),
             SoundType.WOOD);
+    public static final Block POPLAR_ROPE_LADDER = registerRopeLadder(ModBlockIds.POPLAR_ROPE_LADDER_KEY);
+    public static final Block POPLAR_WALL = registerUnstrippedWoodenWall(ModBlockIds.POPLAR_WALL_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS));
+    public static final Block STRIPPED_POPLAR_WALL = registerWall(ModBlockIds.STRIPPED_POPLAR_WALL_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.POPLAR_PLANKS));
 
     private ModBlocks() {}
 

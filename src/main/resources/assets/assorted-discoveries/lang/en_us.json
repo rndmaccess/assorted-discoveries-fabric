@@ -418,6 +418,9 @@
   "block.assorted-discoveries.blood_kelp_crate": "Blood Kelp Crate",
   "block.assorted-discoveries.snapdragon_crate": "Snapdragon Crate",
   "block.assorted-discoveries.poplar_planter_box": "Poplar Planter Box",
+  "block.assorted-discoveries.poplar_rope_ladder": "Poplar Rope Ladder",
+  "block.assorted-discoveries.poplar_wall": "Poplar Wall",
+  "block.assorted-discoveries.stripped_poplar_wall": "Stripped Poplar Wall",
 
   "item.assorted-discoveries.green_onion_seeds": "Green Onion Seeds",
   "item.assorted-discoveries.green_onion": "Green Onion",

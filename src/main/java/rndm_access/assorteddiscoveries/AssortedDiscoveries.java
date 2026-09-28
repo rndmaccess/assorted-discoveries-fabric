@@ -86,18 +86,19 @@ public class AssortedDiscoveries implements ModInitializer {
     }
 
     private static void registerWoodenWallStrippingBlocks() {
-        UnstrippedWoodenWallBlock.registerStrippedWoodenWall(ModBlocks.OAK_WALL, ModBlocks.STRIPPED_OAK_WALL);
-        UnstrippedWoodenWallBlock.registerStrippedWoodenWall(ModBlocks.SPRUCE_WALL, ModBlocks.STRIPPED_SPRUCE_WALL);
-        UnstrippedWoodenWallBlock.registerStrippedWoodenWall(ModBlocks.BIRCH_WALL, ModBlocks.STRIPPED_BIRCH_WALL);
-        UnstrippedWoodenWallBlock.registerStrippedWoodenWall(ModBlocks.JUNGLE_WALL, ModBlocks.STRIPPED_JUNGLE_WALL);
-        UnstrippedWoodenWallBlock.registerStrippedWoodenWall(ModBlocks.ACACIA_WALL, ModBlocks.STRIPPED_ACACIA_WALL);
-        UnstrippedWoodenWallBlock.registerStrippedWoodenWall(ModBlocks.DARK_OAK_WALL, ModBlocks.STRIPPED_DARK_OAK_WALL);
-        UnstrippedWoodenWallBlock.registerStrippedWoodenWall(ModBlocks.MANGROVE_WALL, ModBlocks.STRIPPED_MANGROVE_WALL);
-        UnstrippedWoodenWallBlock.registerStrippedWoodenWall(ModBlocks.CRIMSON_WALL, ModBlocks.STRIPPED_CRIMSON_WALL);
-        UnstrippedWoodenWallBlock.registerStrippedWoodenWall(ModBlocks.WARPED_WALL, ModBlocks.STRIPPED_WARPED_WALL);
-        UnstrippedWoodenWallBlock.registerStrippedWoodenWall(ModBlocks.CHERRY_WALL, ModBlocks.STRIPPED_CHERRY_WALL);
-        UnstrippedWoodenWallBlock.registerStrippedWoodenWall(ModBlocks.BAMBOO_WALL, ModBlocks.STRIPPED_BAMBOO_WALL);
-        UnstrippedWoodenWallBlock.registerStrippedWoodenWall(ModBlocks.PALE_OAK_WALL, ModBlocks.STRIPPED_PALE_OAK_WALL);
+        UnstrippedWoodenWallBlock.registerStrippableWall(ModBlocks.OAK_WALL, ModBlocks.STRIPPED_OAK_WALL);
+        UnstrippedWoodenWallBlock.registerStrippableWall(ModBlocks.SPRUCE_WALL, ModBlocks.STRIPPED_SPRUCE_WALL);
+        UnstrippedWoodenWallBlock.registerStrippableWall(ModBlocks.BIRCH_WALL, ModBlocks.STRIPPED_BIRCH_WALL);
+        UnstrippedWoodenWallBlock.registerStrippableWall(ModBlocks.JUNGLE_WALL, ModBlocks.STRIPPED_JUNGLE_WALL);
+        UnstrippedWoodenWallBlock.registerStrippableWall(ModBlocks.ACACIA_WALL, ModBlocks.STRIPPED_ACACIA_WALL);
+        UnstrippedWoodenWallBlock.registerStrippableWall(ModBlocks.DARK_OAK_WALL, ModBlocks.STRIPPED_DARK_OAK_WALL);
+        UnstrippedWoodenWallBlock.registerStrippableWall(ModBlocks.MANGROVE_WALL, ModBlocks.STRIPPED_MANGROVE_WALL);
+        UnstrippedWoodenWallBlock.registerStrippableWall(ModBlocks.CRIMSON_WALL, ModBlocks.STRIPPED_CRIMSON_WALL);
+        UnstrippedWoodenWallBlock.registerStrippableWall(ModBlocks.WARPED_WALL, ModBlocks.STRIPPED_WARPED_WALL);
+        UnstrippedWoodenWallBlock.registerStrippableWall(ModBlocks.CHERRY_WALL, ModBlocks.STRIPPED_CHERRY_WALL);
+        UnstrippedWoodenWallBlock.registerStrippableWall(ModBlocks.BAMBOO_WALL, ModBlocks.STRIPPED_BAMBOO_WALL);
+        UnstrippedWoodenWallBlock.registerStrippableWall(ModBlocks.PALE_OAK_WALL, ModBlocks.STRIPPED_PALE_OAK_WALL);
+        UnstrippedWoodenWallBlock.registerStrippableWall(ModBlocks.POPLAR_WALL, ModBlocks.STRIPPED_POPLAR_WALL);
     }
 
     private static void registerConfigEvents() {
@@ -458,6 +459,7 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModBlocks.CHERRY_WALL.asItem());
                 entries.accept(ModBlocks.BAMBOO_WALL.asItem());
                 entries.accept(ModBlocks.PALE_OAK_WALL.asItem());
+                entries.accept(ModBlocks.POPLAR_WALL.asItem());
                 entries.accept(ModBlocks.CRIMSON_WALL.asItem());
                 entries.accept(ModBlocks.WARPED_WALL.asItem());
             }
@@ -473,6 +475,7 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModBlocks.STRIPPED_CHERRY_WALL.asItem());
                 entries.accept(ModBlocks.STRIPPED_BAMBOO_WALL.asItem());
                 entries.accept(ModBlocks.STRIPPED_PALE_OAK_WALL.asItem());
+                entries.accept(ModBlocks.STRIPPED_POPLAR_WALL.asItem());
                 entries.accept(ModBlocks.STRIPPED_CRIMSON_WALL.asItem());
                 entries.accept(ModBlocks.STRIPPED_WARPED_WALL.asItem());
             }
@@ -488,6 +491,7 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModBlocks.CHERRY_ROPE_LADDER.asItem());
                 entries.accept(ModBlocks.BAMBOO_ROPE_LADDER.asItem());
                 entries.accept(ModBlocks.PALE_OAK_ROPE_LADDER.asItem());
+                entries.accept(ModBlocks.POPLAR_ROPE_LADDER.asItem());
                 entries.accept(ModBlocks.CRIMSON_ROPE_LADDER.asItem());
                 entries.accept(ModBlocks.WARPED_ROPE_LADDER.asItem());
             }

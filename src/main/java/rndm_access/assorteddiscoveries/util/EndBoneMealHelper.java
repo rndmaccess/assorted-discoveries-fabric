@@ -5,6 +5,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import rndm_access.assorteddiscoveries.core.ModBlockTags;
 import rndm_access.assorteddiscoveries.core.ModBlocks;
 
@@ -27,6 +28,11 @@ public final class EndBoneMealHelper {
         RandomSource random = level.getRandom();
         BlockPos.MutableBlockPos plantPos = centerPos.mutable();
         BlockPos.MutableBlockPos soilPos = centerPos.below().mutable();
+
+        // If this is called on the client side cancel it. Because it only handles placing blocks.
+        if (level.isClientSide()) {
+            return;
+        }
 
         for (int i = 0; i < 256; ++i) {
             plantPos.set(centerPos);
@@ -61,9 +67,9 @@ public final class EndBoneMealHelper {
         boolean placeSnapdragon = random.nextFloat() <= 0.4F; // 40% chance
 
         if(placeSnapdragon) {
-            level.setBlockAndUpdate(pos, ModBlocks.SNAPDRAGON.defaultBlockState());
+            level.setBlock(pos, ModBlocks.SNAPDRAGON.defaultBlockState(), Block.UPDATE_CLIENTS);
         } else {
-            level.setBlockAndUpdate(pos, ModBlocks.SHORT_ENDER_GRASS.defaultBlockState());
+            level.setBlock(pos, ModBlocks.SHORT_ENDER_GRASS.defaultBlockState(), Block.UPDATE_CLIENTS);
         }
     }
 }

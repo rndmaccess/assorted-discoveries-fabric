@@ -36,6 +36,7 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import rndm_access.assorteddiscoveries.block.UnstrippedWoodenWallBlock;
 import rndm_access.assorteddiscoveries.config.BooleanEntriesS2CPayload;
 import rndm_access.assorteddiscoveries.config.ModConfig;
 import rndm_access.assorteddiscoveries.core.*;
@@ -69,6 +70,7 @@ public class AssortedDiscoveries implements ModInitializer {
         AssortedDiscoveries.registerCompostables();
         AssortedDiscoveries.modifyLootTables();
         AssortedDiscoveries.registerVillagerInteractions();
+        AssortedDiscoveries.registerStrippableWoodenWalls();
 
         // World Generation Registries
         ModFeatures.register();
@@ -81,7 +83,6 @@ public class AssortedDiscoveries implements ModInitializer {
 
     private static void registerConfigEvents() {
         PayloadTypeRegistry.clientboundPlay().register(BooleanEntriesS2CPayload.ID, BooleanEntriesS2CPayload.CODEC);
-
         ServerPlayerEvents.JOIN.register(AssortedDiscoveries::sendConfigData);
     }
 
@@ -101,6 +102,21 @@ public class AssortedDiscoveries implements ModInitializer {
             ServerPlayNetworking.send(player, payload);
             LOGGER.info("Sent config data to {}!", playerName);
         }
+    }
+
+    private static void registerStrippableWoodenWalls() {
+        UnstrippedWoodenWallBlock.registerStrippableWall(ModBlocks.OAK_WALL, ModBlocks.STRIPPED_OAK_WALL);
+        UnstrippedWoodenWallBlock.registerStrippableWall(ModBlocks.SPRUCE_WALL, ModBlocks.STRIPPED_SPRUCE_WALL);
+        UnstrippedWoodenWallBlock.registerStrippableWall(ModBlocks.BIRCH_WALL, ModBlocks.STRIPPED_BIRCH_WALL);
+        UnstrippedWoodenWallBlock.registerStrippableWall(ModBlocks.JUNGLE_WALL, ModBlocks.STRIPPED_JUNGLE_WALL);
+        UnstrippedWoodenWallBlock.registerStrippableWall(ModBlocks.ACACIA_WALL, ModBlocks.STRIPPED_ACACIA_WALL);
+        UnstrippedWoodenWallBlock.registerStrippableWall(ModBlocks.DARK_OAK_WALL, ModBlocks.STRIPPED_DARK_OAK_WALL);
+        UnstrippedWoodenWallBlock.registerStrippableWall(ModBlocks.MANGROVE_WALL, ModBlocks.STRIPPED_MANGROVE_WALL);
+        UnstrippedWoodenWallBlock.registerStrippableWall(ModBlocks.CRIMSON_WALL, ModBlocks.STRIPPED_CRIMSON_WALL);
+        UnstrippedWoodenWallBlock.registerStrippableWall(ModBlocks.WARPED_WALL, ModBlocks.STRIPPED_WARPED_WALL);
+        UnstrippedWoodenWallBlock.registerStrippableWall(ModBlocks.CHERRY_WALL, ModBlocks.STRIPPED_CHERRY_WALL);
+        UnstrippedWoodenWallBlock.registerStrippableWall(ModBlocks.BAMBOO_WALL, ModBlocks.STRIPPED_BAMBOO_WALL);
+        UnstrippedWoodenWallBlock.registerStrippableWall(ModBlocks.PALE_OAK_WALL, ModBlocks.STRIPPED_PALE_OAK_WALL);
     }
 
     private static void registerVillagerInteractions() {

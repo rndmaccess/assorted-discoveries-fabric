@@ -192,25 +192,25 @@ public final class ModBlocks {
     public static final Block WARPED_PLANTER_BOX
             = registerNetherPlanterBox(ModBlockIds.WARPED_PLANTER_BOX_KEY, Blocks.WARPED_PLANKS.defaultMapColor());
     public static final Block OAK_WALL
-            = registerWall(ModBlockIds.OAK_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS));
+            = registerUnstrippedWoodenWall(ModBlockIds.OAK_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS));
     public static final Block SPRUCE_WALL
-            = registerWall(ModBlockIds.SPRUCE_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_PLANKS));
+            = registerUnstrippedWoodenWall(ModBlockIds.SPRUCE_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_PLANKS));
     public static final Block BIRCH_WALL
-            = registerWall(ModBlockIds.BIRCH_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.BIRCH_PLANKS));
+            = registerUnstrippedWoodenWall(ModBlockIds.BIRCH_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.BIRCH_PLANKS));
     public static final Block JUNGLE_WALL
-            = registerWall(ModBlockIds.JUNGLE_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_PLANKS));
+            = registerUnstrippedWoodenWall(ModBlockIds.JUNGLE_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_PLANKS));
     public static final Block ACACIA_WALL
-            = registerWall(ModBlockIds.ACACIA_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.ACACIA_PLANKS));
+            = registerUnstrippedWoodenWall(ModBlockIds.ACACIA_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.ACACIA_PLANKS));
     public static final Block DARK_OAK_WALL
-            = registerWall(ModBlockIds.DARK_OAK_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.DARK_OAK_PLANKS));
+            = registerUnstrippedWoodenWall(ModBlockIds.DARK_OAK_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.DARK_OAK_PLANKS));
     public static final Block MANGROVE_WALL
-            = registerWall(ModBlockIds.MANGROVE_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.MANGROVE_PLANKS));
+            = registerUnstrippedWoodenWall(ModBlockIds.MANGROVE_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.MANGROVE_PLANKS));
     public static final Block CRIMSON_WALL
-            = registerWall(ModBlockIds.CRIMSON_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_PLANKS));
+            = registerUnstrippedWoodenWall(ModBlockIds.CRIMSON_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_PLANKS));
     public static final Block WARPED_WALL
-            = registerWall(ModBlockIds.WARPED_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_PLANKS));
+            = registerUnstrippedWoodenWall(ModBlockIds.WARPED_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_PLANKS));
     public static final Block CHERRY_WALL
-            = registerWall(ModBlockIds.CHERRY_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.CHERRY_PLANKS));
+            = registerUnstrippedWoodenWall(ModBlockIds.CHERRY_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.CHERRY_PLANKS));
     public static final Block STRIPPED_OAK_WALL
             = registerWall(ModBlockIds.STRIPPED_OAK_WALL_KEY, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS));
     public static final Block STRIPPED_SPRUCE_WALL
@@ -664,9 +664,9 @@ public final class ModBlocks {
             BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT_PATH));
     public static final Block DIRT_SLAB
             = register(ModBlockIds.DIRT_SLAB_KEY, DirtSlabBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT));
-    public static final Block COARSE_DIRT_SLAB = registerSlab(ModBlockIds.COARSE_DIRT_SLAB_KEY,
+    public static final Block COARSE_DIRT_SLAB = registerSoilSlab(ModBlockIds.COARSE_DIRT_SLAB_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.COARSE_DIRT));
-    public static final Block ROOTED_DIRT_SLAB = registerSlab(ModBlockIds.ROOTED_DIRT_SLAB_KEY,
+    public static final Block ROOTED_DIRT_SLAB = registerSoilSlab(ModBlockIds.ROOTED_DIRT_SLAB_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.ROOTED_DIRT));
     public static final Block WILD_GREEN_ONIONS = register(ModBlockIds.WILD_GREEN_ONIONS_KEY, WildGreenOnionsBlock::new,
             BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollision().randomTicks()
@@ -684,12 +684,12 @@ public final class ModBlocks {
             = register(ModBlockIds.SNIFFER_PLUSHIE_KEY, SnifferPlushieBlock::new, makePlushieSettings());
     public static final Block STRIPPED_PALE_OAK_WALL = registerWall(ModBlockIds.STRIPPED_PALE_OAK_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.PALE_OAK_PLANKS));
-    public static final Block PALE_OAK_WALL = registerWall(ModBlockIds.PALE_OAK_WALL_KEY,
+    public static final Block PALE_OAK_WALL = registerUnstrippedWoodenWall(ModBlockIds.PALE_OAK_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.PALE_OAK_PLANKS));
     public static final Block BAMBOO_ROPE_LADDER = registerRopeLadder(ModBlockIds.BAMBOO_ROPE_LADDER_KEY);
     public static final Block STRIPPED_BAMBOO_WALL = registerWall(ModBlockIds.STRIPPED_BAMBOO_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.BAMBOO_PLANKS));
-    public static final Block BAMBOO_WALL = registerWall(ModBlockIds.BAMBOO_WALL_KEY,
+    public static final Block BAMBOO_WALL = registerUnstrippedWoodenWall(ModBlockIds.BAMBOO_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.BAMBOO_PLANKS));
     public static final Block BLACK_WOLF_PLUSHIE = registerWolfPlushie(ModBlockIds.BLACK_WOLF_PLUSHIE_KEY);
     public static final Block ASHEN_WOLF_PLUSHIE = registerWolfPlushie(ModBlockIds.ASHEN_WOLF_PLUSHIE_KEY);
@@ -885,12 +885,20 @@ public final class ModBlocks {
         return register(id, (props) -> new StairBlock(baseBlock.defaultBlockState(), props), settings);
     }
 
+    private static Block registerSoilSlab(BlockItemId id, BlockBehaviour.Properties settings) {
+        return register(id, SoilSlabBlock::new, settings);
+    }
+
     private static Block registerSlab(BlockItemId id, BlockBehaviour.Properties settings) {
         return register(id, SlabBlock::new, settings);
     }
 
     private static Block registerWall(BlockItemId id, BlockBehaviour.Properties settings) {
         return register(id, WallBlock::new, settings);
+    }
+
+    private static Block registerUnstrippedWoodenWall(BlockItemId id, BlockBehaviour.Properties settings) {
+        return register(id, UnstrippedWoodenWallBlock::new, settings);
     }
 
     private static Block registerDyedCampfire(BlockItemId id, ParticleOptions emberParticle) {

@@ -12,7 +12,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -22,7 +21,7 @@ import org.jspecify.annotations.NonNull;
 import rndm_access.assorteddiscoveries.core.ModBlockTags;
 import rndm_access.assorteddiscoveries.core.ModBlocks;
 
-public class SnowySlabBlock extends SlabBlock {
+public class SnowySlabBlock extends SoilSlabBlock {
     public static final MapCodec<SnowySlabBlock> CODEC = simpleCodec(SnowySlabBlock::new);
     public static final BooleanProperty SNOWY = BlockStateProperties.SNOWY;
 

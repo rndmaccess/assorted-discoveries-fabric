@@ -9,12 +9,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BonemealableBlock;
-import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import rndm_access.assorteddiscoveries.core.CommonBlockTags;
 import rndm_access.assorteddiscoveries.core.ModBlocks;
 
-public class DirtSlabBlock extends SlabBlock implements BonemealableBlock {
+public class DirtSlabBlock extends SoilSlabBlock implements BonemealableBlock {
     public static final MapCodec<DirtSlabBlock> CODEC = simpleCodec(DirtSlabBlock::new);
 
     public DirtSlabBlock(Properties settings) {

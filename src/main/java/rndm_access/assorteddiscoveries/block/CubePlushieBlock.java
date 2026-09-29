@@ -120,7 +120,7 @@ public class CubePlushieBlock extends AbstractPlushieBlock {
                         : Blocks.AIR.defaultBlockState();
 
                 // Replace the cube plush's lower half with either air or water.
-                world.setBlock(belowPos, newState, 3);
+                world.setBlock(belowPos, newState, Block.UPDATE_CLIENTS);
                 world.levelEvent(player, 2001, belowPos, Block.getId(belowState));
             }
         }

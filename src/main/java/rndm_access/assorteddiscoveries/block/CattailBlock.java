@@ -69,7 +69,7 @@ public class CattailBlock extends DoublePlantBlock implements BonemealableBlock 
                     : Blocks.AIR.defaultBlockState();
 
             dropResources(bottomState, level, bottomHalfPos, null, player, player.getMainHandItem());
-            level.setBlock(bottomHalfPos, newState, 3);
+            level.setBlock(bottomHalfPos, newState, Block.UPDATE_CLIENTS);
             level.levelEvent(player, 2001, bottomHalfPos, Block.getId(bottomState));
         }
         return super.playerWillDestroy(level, pos, state, player);

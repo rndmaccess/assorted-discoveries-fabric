@@ -89,7 +89,7 @@ public abstract class AbstractBerryBushBlock extends VegetationBlock implements 
 
         if(!this.needsLightToGrow() || random.nextInt(5) == 0 && this.hasLight(serverLevel, pos)) {
             BlockState blockState = state.setValue(AGE, age + 1);
-            serverLevel.setBlock(pos, blockState, 2);
+            serverLevel.setBlock(pos, blockState, Block.UPDATE_CLIENTS);
             serverLevel.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(blockState));
         }
     }

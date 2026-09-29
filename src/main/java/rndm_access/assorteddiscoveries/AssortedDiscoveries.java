@@ -69,7 +69,7 @@ public class AssortedDiscoveries implements ModInitializer {
         ModSoundEvents.register();
         AssortedDiscoveries.modifyLootTables();
         AssortedDiscoveries.registerVillagerInteractions();
-        AssortedDiscoveries.registerWoodenWallStrippingBlocks();
+        AssortedDiscoveries.registerStrippableWoodenWalls();
 
         // World Generation Registries
         ModFeatureTypes.register();
@@ -85,7 +85,7 @@ public class AssortedDiscoveries implements ModInitializer {
         return Identifier.fromNamespaceAndPath(MOD_ID, path);
     }
 
-    private static void registerWoodenWallStrippingBlocks() {
+    private static void registerStrippableWoodenWalls() {
         UnstrippedWoodenWallBlock.registerStrippableWall(ModBlocks.OAK_WALL, ModBlocks.STRIPPED_OAK_WALL);
         UnstrippedWoodenWallBlock.registerStrippableWall(ModBlocks.SPRUCE_WALL, ModBlocks.STRIPPED_SPRUCE_WALL);
         UnstrippedWoodenWallBlock.registerStrippableWall(ModBlocks.BIRCH_WALL, ModBlocks.STRIPPED_BIRCH_WALL);

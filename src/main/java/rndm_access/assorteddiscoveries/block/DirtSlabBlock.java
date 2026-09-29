@@ -14,8 +14,8 @@ import rndm_access.assorteddiscoveries.core.CommonBlockTags;
 import rndm_access.assorteddiscoveries.core.ModBlocks;
 
 public class DirtSlabBlock extends SoilSlabBlock implements BonemealableBlock {
-    public DirtSlabBlock(Properties settings) {
-        super(settings);
+    public DirtSlabBlock(Properties properties) {
+        super(properties);
     }
 
     @Override
@@ -29,14 +29,14 @@ public class DirtSlabBlock extends SoilSlabBlock implements BonemealableBlock {
     }
 
     @Override
-    public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
+    public void performBonemeal(ServerLevel serverLevel, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
         BlockPos neighborPos = pos.above();
-        BlockState neighborState = level.getBlockState(neighborPos);
-        Block result = getSlabResult(level, pos);
+        BlockState neighborState = serverLevel.getBlockState(neighborPos);
+        Block result = getSlabResult(serverLevel, pos);
 
-        level.setBlock(pos, result.defaultBlockState().setValue(TYPE, state.getValue(TYPE))
+        serverLevel.setBlock(pos, result.defaultBlockState().setValue(TYPE, state.getValue(TYPE))
                 .setValue(WATERLOGGED, state.getValue(WATERLOGGED))
-                .setValue(SnowySlabBlock.SNOWY, SnowySlabBlock.isSnowCovered(level, neighborPos, state, neighborState)),
+                .setValue(SnowySlabBlock.SNOWY, SnowySlabBlock.isSnowCovered(serverLevel, neighborPos, state, neighborState)),
                 Block.UPDATE_CLIENTS);
     }
 

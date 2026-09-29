@@ -37,17 +37,17 @@ public class ModdedCakeBlock extends Block {
                     15.0F
             ));
 
-    public ModdedCakeBlock(Properties settings) {
-        super(settings);
+    public ModdedCakeBlock(Properties properties) {
+        super(properties);
     }
 
-    protected VoxelShape getShape(final BlockState state, final BlockGetter level, final BlockPos pos, final CollisionContext context) {
+    protected VoxelShape getShape(final BlockState state, final BlockGetter blockGetter, final BlockPos pos, final CollisionContext context) {
         return SHAPES[state.getValue(BITES)];
     }
 
     @Override
-    protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos,
-                                         Player player, InteractionHand hand, BlockHitResult hit) {
+    protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos,
+                                          Player player, InteractionHand hand, BlockHitResult hit) {
         if (state.getValue(BITES) != 0) {
             return InteractionResult.TRY_WITH_EMPTY_HAND;
         }
@@ -57,7 +57,7 @@ public class ModdedCakeBlock extends Block {
         Block block = Block.byItem(item);
 
         if (ModdedCandleCakeBlock.containsCandleCake(this, block)) {
-            return this.placeCandleCake(world, player, pos, heldStack, block, item);
+            return this.placeCandleCake(level, player, pos, heldStack, block, item);
         }
         return InteractionResult.TRY_WITH_EMPTY_HAND;
     }
@@ -76,28 +76,34 @@ public class ModdedCakeBlock extends Block {
         return eatCake(level, pos, state, player);
     }
 
-    private InteractionResult placeCandleCake(Level world, Player player, BlockPos pos, ItemStack itemStack,
-                                         Block block, Item item) {
-        world.playSound(null, pos, SoundEvents.CAKE_ADD_CANDLE, SoundSource.BLOCKS,
+    private InteractionResult placeCandleCake(Level level, Player player, BlockPos pos, ItemStack itemStack,
+                                              Block block, Item item) {
+        level.playSound(null, pos, SoundEvents.CAKE_ADD_CANDLE, SoundSource.BLOCKS,
                 1.0F, 1.0F);
-
-        if (!world.isClientSide()) {
-            itemStack.consume(1, player);
-            world.setBlock(pos, ModdedCandleCakeBlock.getCandleCake(this, block), Block.UPDATE_CLIENTS);
-            world.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
-            player.awardStat(Stats.ITEM_USED.get(item));
+        if (level.isClientSide()) {
+            return InteractionResult.SUCCESS;
         }
-        return InteractionResult.SUCCESS;
+        itemStack.consume(1, player);
+        level.setBlock(pos, ModdedCandleCakeBlock.getCandleCake(this, block), Block.UPDATE_CLIENTS);
+        level.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
+        player.awardStat(Stats.ITEM_USED.get(item));
+        return InteractionResult.CONSUME;
     }
 
-    public static InteractionResult eatCake(final LevelAccessor level, BlockPos pos, BlockState state, Player player) {
+    public static InteractionResult eatCake(final Level level, BlockPos pos, BlockState state, Player player) {
         return eat(level, pos, state, player, 2, 0.1F);
     }
 
-    protected static InteractionResult eat(final LevelAccessor level, BlockPos pos, BlockState state, Player player,
+    protected static InteractionResult eat(final Level level, BlockPos pos, BlockState state, Player player,
                                            int food, float saturationModifier) {
         if (!player.canEat(false)) {
             return InteractionResult.PASS;
+        }
+
+        // We only need to run the eating code on the server.
+        // So we can safely return early here if we are on the client.
+        if (level.isClientSide()) {
+            return InteractionResult.SUCCESS;
         }
         int bites = state.getValue(BITES);
 
@@ -106,7 +112,7 @@ public class ModdedCakeBlock extends Block {
         level.gameEvent(player, GameEvent.EAT, pos);
 
         if (bites < 6) {
-            level.setBlock(pos, state.setValue(BITES, bites + 1), 3);
+            level.setBlock(pos, state.setValue(BITES, bites + 1), Block.UPDATE_ALL);
         } else {
             level.removeBlock(pos, false);
             level.gameEvent(player, GameEvent.BLOCK_DESTROY, pos);

@@ -11,8 +11,8 @@ public class ChickenPlushieBlock extends AbstractSimplePlushieBlock {
     private static final VoxelShape NORTH_SHAPE = Block.box(4.0D, 0.0D, 3.0D,
             12.0D, 11.0D, 13.0D);
 
-    public ChickenPlushieBlock(BlockBehaviour.Properties settings) {
-        super(settings);
+    public ChickenPlushieBlock(BlockBehaviour.Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
                 .setValue(FACING, Direction.NORTH));
     }

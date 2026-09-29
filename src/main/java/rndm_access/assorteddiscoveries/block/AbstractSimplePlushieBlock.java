@@ -15,8 +15,8 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public abstract class AbstractSimplePlushieBlock extends AbstractPlushieBlock {
     private final HashMap<Direction, VoxelShape> shapes;
 
-    public AbstractSimplePlushieBlock(Properties settings) {
-        super(settings);
+    public AbstractSimplePlushieBlock(Properties properties) {
+        super(properties);
         this.shapes = ShapeHelper.makeShapeRotMap(this.getNorthShape());
     }
 
@@ -26,7 +26,7 @@ public abstract class AbstractSimplePlushieBlock extends AbstractPlushieBlock {
     protected abstract VoxelShape getNorthShape();
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext context) {
         return shapes.get(state.getValue(FACING));
     }
 }

@@ -11,8 +11,8 @@ public class SkeletonPlushieBlock extends AbstractSimplePlushieBlock {
     private static final VoxelShape NORTH_SHAPE = Block.box(3.5D, 0.0D, 3.5D,
             12.5D, 12.5D, 12.5D);
 
-    public SkeletonPlushieBlock(BlockBehaviour.Properties settings) {
-        super(settings);
+    public SkeletonPlushieBlock(BlockBehaviour.Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
                 .setValue(FACING, Direction.NORTH));
     }

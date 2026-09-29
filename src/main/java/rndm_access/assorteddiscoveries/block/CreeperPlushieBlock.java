@@ -10,8 +10,8 @@ public class CreeperPlushieBlock extends AbstractSimplePlushieBlock {
     private static final VoxelShape NORTH_SHAPE = Block.box(4.0D, 0.0D, 2.0D,
             12.0D, 12.0D, 14.0D);
 
-    public CreeperPlushieBlock(Properties settings) {
-        super(settings);
+    public CreeperPlushieBlock(Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
                 .setValue(FACING, Direction.NORTH));
     }

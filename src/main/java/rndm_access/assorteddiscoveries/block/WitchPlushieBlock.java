@@ -11,8 +11,8 @@ public class WitchPlushieBlock extends AbstractSimplePlushieBlock {
     private static final VoxelShape NORTH_SHAPE = Block.box(3.5D, 0.0D, 3.5D,
             13.0D, 16.0D, 13.0D);
 
-    public WitchPlushieBlock(BlockBehaviour.Properties settings) {
-        super(settings);
+    public WitchPlushieBlock(BlockBehaviour.Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
                 .setValue(FACING, Direction.NORTH));
     }

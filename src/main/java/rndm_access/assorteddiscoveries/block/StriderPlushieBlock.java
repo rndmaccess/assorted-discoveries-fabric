@@ -11,8 +11,8 @@ public class StriderPlushieBlock extends AbstractSimplePlushieBlock {
     private static final VoxelShape NORTH_SHAPE = Block.box(2.0, 0.0, 3.0,
             14.0, 11.0, 13.0);
 
-    public StriderPlushieBlock(BlockBehaviour.Properties settings) {
-        super(settings);
+    public StriderPlushieBlock(BlockBehaviour.Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
                 .setValue(FACING, Direction.NORTH));
     }

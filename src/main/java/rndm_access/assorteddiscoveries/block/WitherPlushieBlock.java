@@ -11,8 +11,8 @@ public class WitherPlushieBlock extends AbstractSimplePlushieBlock {
     private static final VoxelShape NORTH_SHAPE = Block.box(2.5, 0.0, 3.5,
             13.5, 13.5, 12.5);
 
-    public WitherPlushieBlock(BlockBehaviour.Properties settings) {
-        super(settings);
+    public WitherPlushieBlock(BlockBehaviour.Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
                 .setValue(FACING, Direction.NORTH));
     }

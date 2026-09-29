@@ -20,12 +20,12 @@ public class GreenOnionsBlock extends BeetrootBlock {
             Block.box(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D)
     };
 
-    public GreenOnionsBlock(BlockBehaviour.Properties settings) {
-        super(settings);
+    public GreenOnionsBlock(BlockBehaviour.Properties properties) {
+        super(properties);
     }
 
     @Override
-    public @NonNull VoxelShape getShape(BlockState state, @NonNull BlockGetter world, @NonNull BlockPos pos,
+    public @NonNull VoxelShape getShape(BlockState state, @NonNull BlockGetter blockGetter, @NonNull BlockPos pos,
                                         @NonNull CollisionContext context) {
         return ONION_SHAPE_BY_AGE[state.getValue(this.getAgeProperty())];
     }

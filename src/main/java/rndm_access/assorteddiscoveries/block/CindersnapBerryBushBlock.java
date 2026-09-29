@@ -16,8 +16,8 @@ import rndm_access.assorteddiscoveries.core.ModEntityTypeTags;
 import rndm_access.assorteddiscoveries.core.ModItems;
 
 public class CindersnapBerryBushBlock extends AbstractNetherBerryBushBlock {
-    public CindersnapBerryBushBlock(Properties settings) {
-        super(settings);
+    public CindersnapBerryBushBlock(Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(AGE, 0));
     }
 
@@ -32,19 +32,19 @@ public class CindersnapBerryBushBlock extends AbstractNetherBerryBushBlock {
     }
 
     @Override
-    public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
         double x = pos.getX() + random.nextDouble();
         double y = pos.getY() + random.nextDouble();
         double z = pos.getZ() + random.nextDouble();
         double randNum = random.nextDouble();
 
         if(randNum < 0.3) {
-            world.addParticle(ParticleTypes.LAVA, x, y, z, 0.0D, 0.0D, 0.0D);
+            level.addParticle(ParticleTypes.LAVA, x, y, z, 0.0D, 0.0D, 0.0D);
         }
     }
 
     @Override
-    public boolean mayPlaceOn(BlockState floor, BlockGetter world, BlockPos pos) {
+    public boolean mayPlaceOn(BlockState floor, BlockGetter blockGetter, BlockPos pos) {
         return floor.is(ModBlockTags.CINDERSNAP_BERRY_BUSH_PLANTABLE_ON);
     }
 

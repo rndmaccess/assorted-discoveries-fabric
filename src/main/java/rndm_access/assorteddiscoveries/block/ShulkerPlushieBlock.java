@@ -10,8 +10,8 @@ public class ShulkerPlushieBlock extends AbstractSimplePlushieBlock {
     private static final VoxelShape NORTH_SHAPE = Block.box(2.0D, 0.0D, 2.0D,
             14.0D, 12.0D, 14.0D);
 
-    public ShulkerPlushieBlock(Properties settings) {
-        super(settings);
+    public ShulkerPlushieBlock(Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
                 .setValue(FACING, Direction.NORTH));
     }

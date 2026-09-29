@@ -8,8 +8,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.SlabType;
 
 public class MyceliumSlabBlock extends SnowySlabBlock {
-    public MyceliumSlabBlock(Properties settings) {
-        super(settings);
+    public MyceliumSlabBlock(Properties properties) {
+        super(properties);
     }
 
     public void animateTick(final BlockState state, final Level level, final BlockPos pos, final RandomSource random) {

@@ -10,8 +10,8 @@ public class DesertVillagerPlushieBlock extends AbstractSimplePlushieBlock {
     private static final VoxelShape NORTH_SHAPE = Block.box(3.5D, 0.0D, 3.5D,
             13.0D, 14.5D, 13.0D);
 
-    public DesertVillagerPlushieBlock(Properties settings) {
-        super(settings);
+    public DesertVillagerPlushieBlock(Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
                 .setValue(FACING, Direction.NORTH));
     }

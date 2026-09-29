@@ -11,8 +11,8 @@ public class BlazePlushieBlock extends AbstractSimplePlushieBlock {
     private static final VoxelShape NORTH_SHAPE = Block.box(2.0D, 0.0D, 3.0D,
             13.5D, 15.5D, 12.0D);
 
-    public BlazePlushieBlock(BlockBehaviour.Properties settings) {
-        super(settings);
+    public BlazePlushieBlock(BlockBehaviour.Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
                 .setValue(FACING, Direction.NORTH));
     }

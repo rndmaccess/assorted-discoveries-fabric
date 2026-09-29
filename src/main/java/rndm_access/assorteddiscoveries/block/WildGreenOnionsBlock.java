@@ -12,8 +12,8 @@ public class WildGreenOnionsBlock extends VegetationBlock {
     private static final VoxelShape SHAPE = Block.box(1.0D, 0.0D, 1.0D,
             15.0D, 16.0D, 15.0D);
 
-    public WildGreenOnionsBlock(Properties settings) {
-        super(settings);
+    public WildGreenOnionsBlock(Properties properties) {
+        super(properties);
     }
 
     @Override

@@ -21,6 +21,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.Shapes;
 import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
 import rndm_access.assorteddiscoveries.core.ModBlocks;
 
 public class BloodKelpPlantBlock extends GrowingPlantBodyBlock implements LiquidBlockContainer, BloodKelp {
@@ -30,7 +31,7 @@ public class BloodKelpPlantBlock extends GrowingPlantBodyBlock implements Liquid
     }
 
     @Override
-    protected GrowingPlantHeadBlock getHeadBlock() {
+    protected @NonNull GrowingPlantHeadBlock getHeadBlock() {
         return (GrowingPlantHeadBlock) ModBlocks.BLOOD_KELP;
     }
 
@@ -39,26 +40,26 @@ public class BloodKelpPlantBlock extends GrowingPlantBodyBlock implements Liquid
     }
 
     @Override
-    public BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess tickView,
-                                                BlockPos pos, Direction direction, BlockPos neighborPos,
-                                                BlockState neighborState, RandomSource random) {
-        return super.updateShape(state, world, tickView, pos, direction, neighborPos,
+    public BlockState updateShape(BlockState state, LevelReader levelReader, ScheduledTickAccess tickView,
+                                  BlockPos pos, Direction direction, BlockPos neighborPos,
+                                  BlockState neighborState, RandomSource random) {
+        return super.updateShape(state, levelReader, tickView, pos, direction, neighborPos,
                         neighborState, random).setValue(LIT, state.getValue(LIT));
     }
 
     @Override
-    public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
-        BloodKelp.playParticles(world, state, pos, random);
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+        BloodKelp.playParticles(level, state, pos, random);
     }
 
     @Override
-    public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
-        return BloodKelp.pickSeedCluster(world, player, state, pos);
+    public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
+        return BloodKelp.pickSeedCluster(level, player, state, pos);
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, BonemealSource source) {
-        return !state.getValue(LIT) && super.isValidBonemealTarget(level, pos, state, source);
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos pos, BlockState state, BonemealSource source) {
+        return !state.getValue(LIT) && super.isValidBonemealTarget(levelReader, pos, state, source);
     }
 
     @Override
@@ -71,8 +72,8 @@ public class BloodKelpPlantBlock extends GrowingPlantBodyBlock implements Liquid
         builder.add(LIT);
     }
 
-    public boolean canPlaceLiquid(@Nullable LivingEntity filler, BlockGetter world, BlockPos pos, BlockState state,
-                                    Fluid fluid) {
+    public boolean canPlaceLiquid(@Nullable LivingEntity filler, BlockGetter blockGetter, BlockPos pos, BlockState state,
+                                  Fluid fluid) {
         return false;
     }
 

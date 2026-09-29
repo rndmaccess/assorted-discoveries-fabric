@@ -17,12 +17,12 @@ public class ShortEnderGrassBlock extends VegetationBlock {
     private static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D,
             16.0D, 10.0D, 16.0D);
 
-    public ShortEnderGrassBlock(BlockBehaviour.Properties settings) {
-        super(settings);
+    public ShortEnderGrassBlock(BlockBehaviour.Properties properties) {
+        super(properties);
     }
 
     @Override
-    public boolean mayPlaceOn(BlockState floor, BlockGetter world, BlockPos pos) {
+    public boolean mayPlaceOn(BlockState floor, BlockGetter blockGetter, BlockPos pos) {
         return floor.is(ModBlockTags.ENDER_GRASS_PLANTABLE_ON);
     }
 
@@ -36,8 +36,8 @@ public class ShortEnderGrassBlock extends VegetationBlock {
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos,
-                                      CollisionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos,
+                               CollisionContext context) {
         return SHAPE;
     }
 }

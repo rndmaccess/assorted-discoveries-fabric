@@ -10,8 +10,8 @@ public class PigPlushieBlock extends AbstractSimplePlushieBlock {
     private static final VoxelShape NORTH_SHAPE = Block.box(4.0D, 0.0D, 1.0D,
             12.0D, 12.0D, 15.0D);
 
-    public PigPlushieBlock(Properties settings) {
-        super(settings);
+    public PigPlushieBlock(Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
                 .setValue(FACING, Direction.NORTH));
     }

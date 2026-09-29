@@ -11,8 +11,8 @@ public class EndermanPlushieBlock extends AbstractSimplePlushieBlock {
     private static final VoxelShape NORTH_SHAPE = Block.box(2.0D, 0.0D, 2.0D,
             13.0D, 12.5D, 14.0D);
 
-    public EndermanPlushieBlock(BlockBehaviour.Properties settings) {
-        super(settings);
+    public EndermanPlushieBlock(BlockBehaviour.Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
                 .setValue(FACING, Direction.NORTH));
     }

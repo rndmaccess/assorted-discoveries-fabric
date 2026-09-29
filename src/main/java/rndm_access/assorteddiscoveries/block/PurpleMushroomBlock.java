@@ -13,23 +13,23 @@ import org.jspecify.annotations.NonNull;
 import rndm_access.assorteddiscoveries.core.ModSoundEvents;
 
 public class PurpleMushroomBlock extends HugeMushroomBlock {
-    public PurpleMushroomBlock(BlockBehaviour.Properties settings) {
-        super(settings);
+    public PurpleMushroomBlock(BlockBehaviour.Properties properties) {
+        super(properties);
     }
 
     @Override
-    public void fallOn(Level world, @NonNull BlockState state, BlockPos pos, Entity entity, double fallDistance) {
+    public void fallOn(Level level, @NonNull BlockState state, BlockPos pos, Entity entity, double fallDistance) {
         SoundEvent sound = ModSoundEvents.BLOCK_MUSHROOM_BOUNCE;
-        RandomSource random = world.getRandom();
+        RandomSource random = level.getRandom();
         int x = pos.getX();
         int y = pos.getY();
         int z = pos.getZ();
 
         if(entity.isShiftKeyDown()) {
-            world.playLocalSound(x, y, z, sound, SoundSource.BLOCKS,
+            level.playLocalSound(x, y, z, sound, SoundSource.BLOCKS,
                     1.0F, 0.8F + random.nextFloat() / 0.4F, true);
         } else {
-            world.playLocalSound(x, y, z, sound, SoundSource.BLOCKS, 1.0F,
+            level.playLocalSound(x, y, z, sound, SoundSource.BLOCKS, 1.0F,
                     0.8F + random.nextFloat() * 0.4F, true);
         }
     }

@@ -11,8 +11,8 @@ public class SpiderPlushieBlock extends AbstractSimplePlushieBlock {
     private static final VoxelShape NORTH_SHAPE = Block.box(2.0D, 0.0D, 2.0D,
             14.0D, 7.0D, 14.5D);
 
-    public SpiderPlushieBlock(BlockBehaviour.Properties settings) {
-        super(settings);
+    public SpiderPlushieBlock(BlockBehaviour.Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
                 .setValue(FACING, Direction.NORTH));
     }

@@ -10,8 +10,8 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class PufferfishPlushieBlock extends AbstractSimplePlushieBlock {
     private static final VoxelShape SHAPE = Block.box(1.5D, 0.0D, 2.5D, 14.5D, 8.5D, 11.5D);
 
-    public PufferfishPlushieBlock(BlockBehaviour.Properties settings) {
-        super(settings);
+    public PufferfishPlushieBlock(BlockBehaviour.Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
                 .setValue(FACING, Direction.NORTH));
     }

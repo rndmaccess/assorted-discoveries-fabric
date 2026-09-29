@@ -18,12 +18,12 @@ import java.util.List;
 import java.util.Optional;
 
 public class GrassSlabBlock extends SnowySlabBlock implements BonemealableBlock {
-    public GrassSlabBlock(Properties settings) {
-        super(settings);
+    public GrassSlabBlock(Properties properties) {
+        super(properties);
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, BonemealSource source) {
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos pos, BlockState state, BonemealSource source) {
         return canSupportGrass(state);
     }
 
@@ -33,11 +33,11 @@ public class GrassSlabBlock extends SnowySlabBlock implements BonemealableBlock 
     }
 
     @Override
-    public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
+    public void performBonemeal(ServerLevel serverLevel, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
         BlockPos above = pos.above();
         BlockState grassState = Blocks.SHORT_GRASS.defaultBlockState();
         Block grassBlock = grassState.getBlock();
-        Optional<Holder.Reference<PlacedFeature>> grassFeature = level.registryAccess()
+        Optional<Holder.Reference<PlacedFeature>> grassFeature = serverLevel.registryAccess()
                 .lookupOrThrow(Registries.PLACED_FEATURE).get(VegetationPlacements.GRASS_BONEMEAL);
         BlockPos.MutableBlockPos testPos = above.mutable();
 
@@ -51,34 +51,34 @@ public class GrassSlabBlock extends SnowySlabBlock implements BonemealableBlock 
                 int zOffset = random.nextInt(3) - 1;
                 testPos.move(xOffset, yOffset, zOffset);
 
-                if (!(level.getBlockState(testPos.below()).getBlock() instanceof BonemealableBlock)
-                        || level.getBlockState(testPos).isCollisionShapeFullBlock(level, testPos)) {
+                if (!(serverLevel.getBlockState(testPos.below()).getBlock() instanceof BonemealableBlock)
+                        || serverLevel.getBlockState(testPos).isCollisionShapeFullBlock(serverLevel, testPos)) {
                     continue label48;
                 }
             }
 
-            BlockState testState = level.getBlockState(testPos);
+            BlockState testState = serverLevel.getBlockState(testPos);
             if (testState.is(grassBlock) && random.nextInt(10) == 0) {
                 BonemealableBlock bonemealableBlock = (BonemealableBlock) grassBlock;
 
-                if (bonemealableBlock.isValidBonemealTarget(level, testPos, testState, source)) {
-                    bonemealableBlock.performBonemeal(level, random, testPos, testState, source);
+                if (bonemealableBlock.isValidBonemealTarget(serverLevel, testPos, testState, source)) {
+                    bonemealableBlock.performBonemeal(serverLevel, random, testPos, testState, source);
                 }
             }
 
             // Place a short grass or flower block (according to the biome)
-            if (testState.isAir() && !level.isOutsideBuildHeight(testPos)) {
+            if (testState.isAir() && !serverLevel.isOutsideBuildHeight(testPos)) {
                 if (random.nextFloat() < 0.125F) {
-                    List<Feature> features = level.getBiome(testPos).value().getGenerationSettings().getBoneMealFeatures();
+                    List<Feature> features = serverLevel.getBiome(testPos).value().getGenerationSettings().getBoneMealFeatures();
                     if (features.isEmpty()) {
                         return;
                     }
 
                     Feature placementFeature = Util.getRandom(features, random);
-                    placementFeature.place(level, level.getChunkSource().getGenerator(), random, testPos);
+                    placementFeature.place(serverLevel, serverLevel.getChunkSource().getGenerator(), random, testPos);
                 } else {
                     grassFeature.ifPresent(placedFeatureRef -> (placedFeatureRef.value())
-                            .place(level, level.getChunkSource().getGenerator(), random, testPos));
+                            .place(serverLevel, serverLevel.getChunkSource().getGenerator(), random, testPos));
                 }
             }
         }

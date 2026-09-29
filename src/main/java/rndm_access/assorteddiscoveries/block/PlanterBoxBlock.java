@@ -32,8 +32,8 @@ public class PlanterBoxBlock extends Block {
     public static final BooleanProperty EAST = BlockStateProperties.EAST;
     private static final HashMap<List<Boolean>, VoxelShape> SHAPES = collectStateShapes();
 
-    public PlanterBoxBlock(BlockBehaviour.Properties settings) {
-        super(settings);
+    public PlanterBoxBlock(BlockBehaviour.Properties properties) {
+        super(properties);
         this.registerDefaultState(this.defaultBlockState().setValue(NORTH, false).setValue(SOUTH, false)
                 .setValue(WEST, false).setValue(EAST, false));
     }
@@ -72,7 +72,7 @@ public class PlanterBoxBlock extends Block {
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext context) {
         List<Boolean> stateProperties = ImmutableList.of(state.getValue(SOUTH), state.getValue(NORTH), state.getValue(EAST),
                 state.getValue(WEST));
 
@@ -86,10 +86,10 @@ public class PlanterBoxBlock extends Block {
     }
 
     @Override
-    public BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess tickView,
-                                                BlockPos pos, Direction direction, BlockPos neighborPos,
-                                                BlockState neighborState, RandomSource random) {
-        return this.getPlanterBoxState(state, world, pos);
+    public BlockState updateShape(BlockState state, LevelReader levelReader, ScheduledTickAccess tickView,
+                                  BlockPos pos, Direction direction, BlockPos neighborPos,
+                                  BlockState neighborState, RandomSource random) {
+        return this.getPlanterBoxState(state, levelReader, pos);
     }
 
     private BlockState getPlanterBoxState(BlockState state, LevelReader world, BlockPos pos) {

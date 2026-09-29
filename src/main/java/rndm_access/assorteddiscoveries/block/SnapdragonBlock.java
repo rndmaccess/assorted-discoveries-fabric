@@ -14,22 +14,22 @@ import rndm_access.assorteddiscoveries.core.ModBlockTags;
 
 public class SnapdragonBlock extends FlowerBlock {
     public SnapdragonBlock(Holder<MobEffect> stewEffect, int effectDuration,
-                           BlockBehaviour.Properties settings) {
-        super(stewEffect, effectDuration, settings);
+                           BlockBehaviour.Properties properties) {
+        super(stewEffect, effectDuration, properties);
     }
 
     @Override
-    protected boolean mayPlaceOn(BlockState floor, BlockGetter world, BlockPos pos) {
+    protected boolean mayPlaceOn(BlockState floor, BlockGetter blockGetter, BlockPos pos) {
         return floor.is(ModBlockTags.SNAPDRAGON_PLANTABLE_ON);
     }
 
     @Override
-    public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
         double x = (double) pos.getX() + random.nextFloat();
         double y = (double) pos.getY() + random.nextFloat();
         double z = (double) pos.getZ() + random.nextFloat();
 
-        world.addParticle(ParticleTypes.PORTAL, x, y, z, 0.0D,
+        level.addParticle(ParticleTypes.PORTAL, x, y, z, 0.0D,
                 0.0D, 0.0D);
     }
 }

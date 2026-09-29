@@ -11,8 +11,8 @@ public class BatPlushieBlock extends AbstractSimplePlushieBlock {
     private static final VoxelShape NORTH_SHAPE = Block.box(1.0D, 0.0D, 4.0D,
             15.0D, 12.0D, 12.0D);
 
-    public BatPlushieBlock(BlockBehaviour.Properties settings) {
-        super(settings);
+    public BatPlushieBlock(BlockBehaviour.Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
                 .setValue(FACING, Direction.NORTH));
     }

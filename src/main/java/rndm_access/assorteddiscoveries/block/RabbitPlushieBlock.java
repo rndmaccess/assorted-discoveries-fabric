@@ -11,8 +11,8 @@ public class RabbitPlushieBlock extends AbstractSimplePlushieBlock {
     private static final VoxelShape NORTH_SHAPE = Block.box(2.5D, 0.0D, 2.5D,
             13.5D, 10.5D, 13.0D);
 
-    public RabbitPlushieBlock(BlockBehaviour.Properties settings) {
-        super(settings);
+    public RabbitPlushieBlock(BlockBehaviour.Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
                 .setValue(FACING, Direction.NORTH));
     }

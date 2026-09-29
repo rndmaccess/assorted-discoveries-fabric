@@ -11,8 +11,8 @@ public class HoglinPlushieBlock extends AbstractSimplePlushieBlock {
     private static final VoxelShape NORTH_SHAPE = Block.box(3.0, 0.0, 1.0,
             12.0, 9.0, 15.0);
 
-    public HoglinPlushieBlock(BlockBehaviour.Properties settings) {
-        super(settings);
+    public HoglinPlushieBlock(BlockBehaviour.Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(WATERLOGGED, false).setValue(FACING, Direction.NORTH));
     }

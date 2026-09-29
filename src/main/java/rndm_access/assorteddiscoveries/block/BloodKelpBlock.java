@@ -24,27 +24,28 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
 import rndm_access.assorteddiscoveries.core.ModBlocks;
 
 public class BloodKelpBlock extends GrowingPlantHeadBlock implements LiquidBlockContainer, BloodKelp {
     private static final VoxelShape SHAPE = Block.box(0.0, 0.0, 0.0,
             16.0, 9.0, 16.0);
 
-    public BloodKelpBlock(BlockBehaviour.Properties settings) {
-        super(settings, Direction.UP, SHAPE, true, 0.14);
+    public BloodKelpBlock(BlockBehaviour.Properties properties) {
+        super(properties, Direction.UP, SHAPE, true, 0.14);
         this.registerDefaultState(this.defaultBlockState().setValue(LIT, false));
     }
 
     @Override
-    protected Block getBodyBlock() {
+    protected @NonNull Block getBodyBlock() {
         return ModBlocks.BLOOD_KELP_PLANT;
     }
 
     @Override
-    public BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess tickView,
-                                                BlockPos pos, Direction direction, BlockPos neighborPos,
-                                                BlockState neighborState, RandomSource random) {
-        return super.updateShape(state, world, tickView, pos, direction, neighborPos,
+    public BlockState updateShape(BlockState state, LevelReader levelReader, ScheduledTickAccess tickView,
+                                  BlockPos pos, Direction direction, BlockPos neighborPos,
+                                  BlockState neighborState, RandomSource random) {
+        return super.updateShape(state, levelReader, tickView, pos, direction, neighborPos,
                         neighborState, random).setValue(LIT, state.getValue(LIT));
     }
 
@@ -54,13 +55,13 @@ public class BloodKelpBlock extends GrowingPlantHeadBlock implements LiquidBlock
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+    public void randomTick(BlockState state, ServerLevel serverLevel, BlockPos pos, RandomSource random) {
         BlockPos newStemPos = pos.relative(this.growthDirection);
         int age = state.getValue(AGE);
 
-        if (age < 25 && this.canGrowInto(world.getBlockState(newStemPos))) {
-            world.setBlock(pos, this.growStemToPlant(state), 2);
-            world.setBlockAndUpdate(newStemPos, this.getStemState(random, age).cycle(AGE));
+        if (age < 25 && this.canGrowInto(serverLevel.getBlockState(newStemPos))) {
+            serverLevel.setBlock(pos, this.growStemToPlant(state), Block.UPDATE_CLIENTS);
+            serverLevel.setBlock(newStemPos, this.getStemState(random, age).cycle(AGE), Block.UPDATE_CLIENTS);
         }
     }
 
@@ -70,13 +71,13 @@ public class BloodKelpBlock extends GrowingPlantHeadBlock implements LiquidBlock
     }
 
     @Override
-    public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
+    public void performBonemeal(ServerLevel serverLevel, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
         BlockPos newStemPos = pos.mutable().relative(this.growthDirection);
         int age = Math.min(state.getValue(AGE) + 1, 25);
 
-        if(this.canGrowInto(level.getBlockState(newStemPos))) {
-            level.setBlock(pos, this.growStemToPlant(state), 2);
-            level.setBlockAndUpdate(newStemPos, this.getStemState(random, age));
+        if(this.canGrowInto(serverLevel.getBlockState(newStemPos))) {
+            serverLevel.setBlock(pos, this.growStemToPlant(state), Block.UPDATE_CLIENTS);
+            serverLevel.setBlock(newStemPos, this.getStemState(random, age), Block.UPDATE_CLIENTS);
         }
     }
 
@@ -91,8 +92,8 @@ public class BloodKelpBlock extends GrowingPlantHeadBlock implements LiquidBlock
     }
 
     @Override
-    public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
-        BloodKelp.playParticles(world, state, pos, random);
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+        BloodKelp.playParticles(level, state, pos, random);
     }
 
     @Override
@@ -101,8 +102,8 @@ public class BloodKelpBlock extends GrowingPlantHeadBlock implements LiquidBlock
     }
 
     @Override
-    public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
-        return BloodKelp.pickSeedCluster(world, player, state, pos);
+    public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
+        return BloodKelp.pickSeedCluster(level, player, state, pos);
     }
 
     @Override
@@ -116,13 +117,13 @@ public class BloodKelpBlock extends GrowingPlantHeadBlock implements LiquidBlock
     }
 
     @Override
-    public boolean canPlaceLiquid(@Nullable LivingEntity filler, BlockGetter world, BlockPos pos, BlockState state,
-                                    Fluid fluid) {
+    public boolean canPlaceLiquid(@Nullable LivingEntity filler, BlockGetter blockGetter, BlockPos pos, BlockState state,
+                                  Fluid fluid) {
         return false;
     }
 
     @Override
-    public boolean placeLiquid(LevelAccessor world, BlockPos pos, BlockState state, FluidState fluidState) {
+    public boolean placeLiquid(LevelAccessor levelAccessor, BlockPos pos, BlockState state, FluidState fluidState) {
         return false;
     }
 

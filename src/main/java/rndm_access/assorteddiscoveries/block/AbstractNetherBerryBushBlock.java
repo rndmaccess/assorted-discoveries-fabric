@@ -8,8 +8,8 @@ import net.minecraft.world.level.block.BonemealSource;
 import net.minecraft.world.level.block.state.BlockState;
 
 public abstract class AbstractNetherBerryBushBlock extends AbstractBerryBushBlock {
-    public AbstractNetherBerryBushBlock(Properties settings) {
-        super(settings);
+    public AbstractNetherBerryBushBlock(Properties properties) {
+        super(properties);
     }
 
     @Override
@@ -23,7 +23,7 @@ public abstract class AbstractNetherBerryBushBlock extends AbstractBerryBushBloc
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, BonemealSource source) {
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos pos, BlockState state, BonemealSource source) {
         return false;
     }
 

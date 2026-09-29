@@ -5,7 +5,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.*;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
@@ -17,22 +16,23 @@ import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jspecify.annotations.NonNull;
 import rndm_access.assorteddiscoveries.core.ModParticleTypes;
 
 public class BogBlossomBlock extends Block implements BonemealableBlock {
     private static final VoxelShape SHAPE = Block.box(2.0, 0.0, 2.0,
             14.0, 3.0, 14.0);
 
-    public BogBlossomBlock(Properties settings) {
-        super(settings);
+    public BogBlossomBlock(Properties properties) {
+        super(properties);
     }
 
     @Override
-    public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
-        this.playAirNectarParticles(world, random, pos.getX(), pos.getY(), pos.getZ());
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+        this.playAirNectarParticles(level, random, pos.getX(), pos.getY(), pos.getZ());
     }
 
-    private void playAirNectarParticles(Level world, RandomSource random, int x, int y, int z) {
+    private void playAirNectarParticles(Level level, RandomSource random, int x, int y, int z) {
         BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
         int floatingCount = 10;
         int floatingArea = random.nextInt(4) + 10;
@@ -44,7 +44,7 @@ public class BogBlossomBlock extends Block implements BonemealableBlock {
             double risingY = y + random.nextDouble();
             double risingZ = z + random.nextDouble();
 
-            world.addParticle(ModParticleTypes.BOG_BLOSSOM_NECTAR, risingX, risingY, risingZ,
+            level.addParticle(ModParticleTypes.BOG_BLOSSOM_NECTAR, risingX, risingY, risingZ,
                     random.nextDouble(), 2 + random.nextDouble(), random.nextDouble());
         }
 
@@ -55,39 +55,39 @@ public class BogBlossomBlock extends Block implements BonemealableBlock {
             int floatingZOrigin = z + Mth.nextInt(random, -floatingArea, floatingArea);
 
             mutable.set(floatingXOrigin, floatingYOrigin, floatingZOrigin);
-            BlockState blockState = world.getBlockState(mutable);
+            BlockState blockState = level.getBlockState(mutable);
 
-            if (!blockState.isCollisionShapeFullBlock(world, mutable)) {
+            if (!blockState.isCollisionShapeFullBlock(level, mutable)) {
                 double floatingX = mutable.getX() + random.nextDouble();
                 double floatingY = mutable.getY() + random.nextDouble();
                 double floatingZ = mutable.getZ() + random.nextDouble();
 
-                world.addParticle(ModParticleTypes.BOG_BLOSSOM_NECTAR, floatingX, floatingY, floatingZ,
+                level.addParticle(ModParticleTypes.BOG_BLOSSOM_NECTAR, floatingX, floatingY, floatingZ,
                         0.0D, 0.0D, 0.0D);
             }
         }
     }
 
     @Override
-    public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
-        return Block.canSupportCenter(world, pos.below(), Direction.DOWN) && !world.isWaterAt(pos);
+    public boolean canSurvive(@NonNull BlockState state, @NonNull LevelReader levelReader, BlockPos pos) {
+        return Block.canSupportCenter(levelReader, pos.below(), Direction.DOWN) && !levelReader.isWaterAt(pos);
     }
 
     @Override
-    public BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess tickView,
-                                                BlockPos pos, Direction direction, BlockPos neighborPos,
-                                                BlockState neighborState, RandomSource random) {
-        return direction == Direction.DOWN && !this.canSurvive(state, world, pos) ? Blocks.AIR.defaultBlockState()
+    public BlockState updateShape(BlockState state, LevelReader levelReader, ScheduledTickAccess tickView,
+                                  BlockPos pos, Direction direction, BlockPos neighborPos,
+                                  BlockState neighborState, RandomSource random) {
+        return direction == Direction.DOWN && !this.canSurvive(state, levelReader, pos) ? Blocks.AIR.defaultBlockState()
                 : state;
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext context) {
         return SHAPE;
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, BonemealSource source) {
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos pos, BlockState state, BonemealSource source) {
         return true;
     }
 
@@ -97,7 +97,7 @@ public class BogBlossomBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
+    public void performBonemeal(ServerLevel serverLevel, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
         BlockPos.MutableBlockPos mutablePos = pos.mutable();
         boolean placed = false;
         int tries = 0;
@@ -107,10 +107,10 @@ public class BogBlossomBlock extends Block implements BonemealableBlock {
             int yOffset = random.nextInt(4) - random.nextInt(4);
             int zOffset = random.nextInt(4) - random.nextInt(4);
             mutablePos.move(xOffset, yOffset, zOffset);
-            BlockState worldState = level.getBlockState(mutablePos);
+            BlockState worldState = serverLevel.getBlockState(mutablePos);
 
-            if (this.canSurvive(worldState, level, mutablePos) && (worldState.isAir() || worldState.canBeReplaced())) {
-                level.setBlockAndUpdate(mutablePos, this.defaultBlockState());
+            if (this.canSurvive(worldState, serverLevel, mutablePos) && (worldState.isAir() || worldState.canBeReplaced())) {
+                serverLevel.setBlock(mutablePos, this.defaultBlockState(), Block.UPDATE_CLIENTS);
                 placed = true;
             }
             tries++;

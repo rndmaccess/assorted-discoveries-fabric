@@ -72,11 +72,11 @@ public class CubePlushieBlock extends AbstractPlushieBlock {
         FluidState fluidState = world.getFluidState(abovePos);
 
         // Top off the stack with the final cube plush.
-        if (this.isTripleStacked(state)) {
+        if (!world.isClientSide() && this.isTripleStacked(state)) {
             BlockState placedState = state.setValue(HALF, DoubleBlockHalf.UPPER).setValue(STACK_SIZE, 3)
                     .setValue(WATERLOGGED, fluidState.is(Fluids.WATER));
 
-            world.setBlock(abovePos, placedState, 3);
+            world.setBlock(abovePos, placedState, Block.UPDATE_CLIENTS);
         }
     }
 

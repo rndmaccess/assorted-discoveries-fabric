@@ -5,6 +5,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -48,7 +49,7 @@ public record BloodKelpFeature() implements Feature {
             boolean isEmptyAbove = world.getFluidState(placePos.above()).isEmpty();
 
             if (isEmptyAbove || length == maxLength) {
-                world.setBlock(placePos, stemBlock.getStemState(random, random.nextInt(4) + 20), 2);
+                world.setBlock(placePos, stemBlock.getStemState(random, random.nextInt(4) + 20), Block.UPDATE_CLIENTS);
                 return true;
             } else {
                 world.setBlock(placePos, plantBlock.getPlantState(random), 2);

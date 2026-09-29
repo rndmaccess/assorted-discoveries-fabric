@@ -29,6 +29,7 @@ public final class EndBoneMealHelper {
         BlockPos.MutableBlockPos plantPos = centerPos.mutable();
         BlockPos.MutableBlockPos soilPos = centerPos.below().mutable();
 
+        // If this is called on the client side cancel it. Because it only handles placing blocks.
         if (level.isClientSide()) {
             return;
         }

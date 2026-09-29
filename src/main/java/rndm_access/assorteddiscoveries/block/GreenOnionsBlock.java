@@ -9,6 +9,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jspecify.annotations.NonNull;
 import rndm_access.assorteddiscoveries.core.ModItems;
 
 public class GreenOnionsBlock extends BeetrootBlock {
@@ -24,10 +25,11 @@ public class GreenOnionsBlock extends BeetrootBlock {
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    public @NonNull VoxelShape getShape(BlockState state, @NonNull BlockGetter world, @NonNull BlockPos pos,
+                                        @NonNull CollisionContext context) {
         return ONION_SHAPE_BY_AGE[state.getValue(this.getAgeProperty())];
     }
 
     @Override
-    protected ItemLike getBaseSeedId() { return ModItems.GREEN_ONION_SEEDS; }
+    protected @NonNull ItemLike getBaseSeedId() { return ModItems.GREEN_ONION_SEEDS; }
 }

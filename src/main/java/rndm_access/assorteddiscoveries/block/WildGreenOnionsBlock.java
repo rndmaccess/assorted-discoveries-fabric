@@ -17,8 +17,7 @@ public class WildGreenOnionsBlock extends VegetationBlock {
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos,
-                                      CollisionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return SHAPE;
     }
 }

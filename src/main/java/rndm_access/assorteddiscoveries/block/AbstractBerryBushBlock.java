@@ -151,7 +151,7 @@ public abstract class AbstractBerryBushBlock extends VegetationBlock implements 
     public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos,
                                 BlockState state, BonemealSource source) {
         int i = Math.min(this.getMaxAge(), state.getValue(AGE) + 1);
-        level.setBlock(pos, state.setValue(AGE, i), 2);
+        level.setBlock(pos, state.setValue(AGE, i), Block.UPDATE_CLIENTS);
     }
 
     private boolean isMaxAge(int age) {

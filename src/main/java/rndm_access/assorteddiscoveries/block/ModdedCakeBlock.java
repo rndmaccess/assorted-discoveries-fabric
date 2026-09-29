@@ -78,12 +78,15 @@ public class ModdedCakeBlock extends Block {
 
     private InteractionResult placeCandleCake(Level world, Player player, BlockPos pos, ItemStack itemStack,
                                          Block block, Item item) {
-        itemStack.consume(1, player);
         world.playSound(null, pos, SoundEvents.CAKE_ADD_CANDLE, SoundSource.BLOCKS,
                 1.0F, 1.0F);
-        world.setBlockAndUpdate(pos, ModdedCandleCakeBlock.getCandleCake(this, block));
-        world.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
-        player.awardStat(Stats.ITEM_USED.get(item));
+
+        if (!world.isClientSide()) {
+            itemStack.consume(1, player);
+            world.setBlock(pos, ModdedCandleCakeBlock.getCandleCake(this, block), Block.UPDATE_CLIENTS);
+            world.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
+            player.awardStat(Stats.ITEM_USED.get(item));
+        }
         return InteractionResult.SUCCESS;
     }
 

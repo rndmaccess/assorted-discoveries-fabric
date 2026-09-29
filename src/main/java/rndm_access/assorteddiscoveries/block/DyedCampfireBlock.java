@@ -60,7 +60,7 @@ public class DyedCampfireBlock extends CampfireBlock {
                         = RecipeManager.createCheck(RecipeType.CAMPFIRE_COOKING);
 
                 return createTickerHelper(type, ModBlockEntityTypes.DYED_CAMPFIRE,
-                        (worldx, pos, statex, blockEntity) ->
+                        (level, pos, statex, blockEntity) ->
                                 DyedCampfireBlockEntity.cookTick(serverWorld, pos, statex, blockEntity, matchGetter));
             }
             return createTickerHelper(type, ModBlockEntityTypes.DYED_CAMPFIRE, DyedCampfireBlockEntity::cooldownTick);

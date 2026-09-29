@@ -39,9 +39,10 @@ public class SoilSlabBlock  extends SlabBlock {
         if (!level.isClientSide()) {
             // This call will automatically broadcast the breaking animation to the client!
             itemStack.hurtAndBreak(1, player, hand);
-            level.setBlockAndUpdate(pos, ModBlocks.DIRT_PATH_SLAB.defaultBlockState()
+            // We don't need to trigger a full world update here, so we just update clients. This improves performance!
+            level.setBlock(pos, ModBlocks.DIRT_PATH_SLAB.defaultBlockState()
                     .setValue(SlabBlock.WATERLOGGED, state.getValue(SlabBlock.WATERLOGGED))
-                    .setValue(SlabBlock.TYPE, state.getValue(SlabBlock.TYPE)));
+                    .setValue(SlabBlock.TYPE, state.getValue(SlabBlock.TYPE)), SoilSlabBlock.UPDATE_CLIENTS);
         }
         return level.isClientSide() ? InteractionResult.SUCCESS : InteractionResult.CONSUME;
     }

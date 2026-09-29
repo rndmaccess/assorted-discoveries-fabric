@@ -61,7 +61,7 @@ public class UnstrippedWoodenWallBlock extends WallBlock {
             stack.hurtAndBreak(1, player, handSlot);
 
             BlockState strippedState = getStrippedState(state, strippedBlock);
-            level.setBlockAndUpdate(pos, strippedState);
+            level.setBlock(pos, strippedState, Block.UPDATE_CLIENTS);
         }
         return level.isClientSide() ? InteractionResult.SUCCESS : InteractionResult.CONSUME;
     }

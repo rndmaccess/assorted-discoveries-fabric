@@ -13,8 +13,8 @@ public class CaveSpiderPlushieBlock extends AbstractSimplePlushieBlock {
     private static final VoxelShape NORTH_SHAPE = Block.box(2.0D, 0.0D, 2.0D,
             13.5D, 6.0D, 14.0D);
 
-    public CaveSpiderPlushieBlock(BlockBehaviour.Properties settings) {
-        super(settings);
+    public CaveSpiderPlushieBlock(BlockBehaviour.Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
                 .setValue(FACING, Direction.NORTH));
     }

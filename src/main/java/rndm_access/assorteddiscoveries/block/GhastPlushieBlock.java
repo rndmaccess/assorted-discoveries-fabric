@@ -13,8 +13,8 @@ public class GhastPlushieBlock extends AbstractSimplePlushieBlock {
     private static final VoxelShape NORTH_SHAPE = Block.box(4.0D, 0.0D, 3.5D,
             12.5D, 10.0D, 12.5D);
 
-    public GhastPlushieBlock(BlockBehaviour.Properties settings) {
-        super(settings);
+    public GhastPlushieBlock(BlockBehaviour.Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
                 .setValue(FACING, Direction.NORTH));
     }

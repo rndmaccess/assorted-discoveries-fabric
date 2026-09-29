@@ -13,8 +13,8 @@ public class MooshroomPlushieBlock extends AbstractSimplePlushieBlock {
     private static final VoxelShape NORTH_SHAPE = Block.box(3.5D, 0.0D, 1.0D,
             12.5D, 14.0D, 15.0D);
 
-    public MooshroomPlushieBlock(BlockBehaviour.Properties settings) {
-        super(settings);
+    public MooshroomPlushieBlock(BlockBehaviour.Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
                 .setValue(FACING, Direction.NORTH));
     }

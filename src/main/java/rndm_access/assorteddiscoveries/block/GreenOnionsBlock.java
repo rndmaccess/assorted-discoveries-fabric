@@ -19,8 +19,8 @@ public class GreenOnionsBlock extends BeetrootBlock {
             Block.box(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D)
     };
 
-    public GreenOnionsBlock(BlockBehaviour.Properties settings) {
-        super(settings);
+    public GreenOnionsBlock(BlockBehaviour.Properties properties) {
+        super(properties);
     }
 
     @Override

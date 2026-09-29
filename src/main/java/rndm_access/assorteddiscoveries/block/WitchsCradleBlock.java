@@ -29,8 +29,8 @@ public class WitchsCradleBlock extends AbstractBerryBushBlock {
     private static final VoxelShape GIANT_SHAPE = Block.box(0.0D, 0.0D, 0.0D,
             16.0D, 12.0D, 16.0D);
 
-    public WitchsCradleBlock(Properties settings) {
-        super(settings);
+    public WitchsCradleBlock(Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(AGE, 0));
     }
 
@@ -75,7 +75,7 @@ public class WitchsCradleBlock extends AbstractBerryBushBlock {
     }
 
     @Override
-    public @NonNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos,
+    public @NonNull VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos,
                                         CollisionContext context) {
         return switch (state.getValue(AGE)) {
             case 0 -> SMALL_SHAPE;

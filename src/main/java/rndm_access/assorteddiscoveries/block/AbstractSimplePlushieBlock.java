@@ -16,8 +16,8 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public abstract class AbstractSimplePlushieBlock extends AbstractPlushieBlock {
     private final HashMap<Direction, VoxelShape> shapes;
 
-    public AbstractSimplePlushieBlock(Properties settings) {
-        super(settings);
+    public AbstractSimplePlushieBlock(Properties properties) {
+        super(properties);
         this.shapes = ShapeHelper.makeShapeRotMap(this.getNorthShape());
     }
 

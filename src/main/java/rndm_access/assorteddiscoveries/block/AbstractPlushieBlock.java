@@ -22,8 +22,8 @@ import net.minecraft.world.level.material.Fluids;
 public abstract class AbstractPlushieBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    protected AbstractPlushieBlock(BlockBehaviour.Properties settings) {
-        super(settings);
+    protected AbstractPlushieBlock(BlockBehaviour.Properties properties) {
+        super(properties);
     }
 
     @Override
@@ -48,11 +48,11 @@ public abstract class AbstractPlushieBlock extends HorizontalDirectionalBlock im
     }
 
     @Override
-    public BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess tickView,
-                                                BlockPos pos, Direction direction, BlockPos neighborPos,
-                                                BlockState neighborState, RandomSource random) {
+    public BlockState updateShape(BlockState state, LevelReader levelReader, ScheduledTickAccess tickView,
+                                  BlockPos pos, Direction direction, BlockPos neighborPos,
+                                  BlockState neighborState, RandomSource random) {
         if (state.getValue(WATERLOGGED)) {
-            tickView.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
+            tickView.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(levelReader));
         }
         return direction.getAxis().isHorizontal() ? state.setValue(FACING, state.getValue(FACING)) : state;
     }

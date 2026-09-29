@@ -13,8 +13,8 @@ public class BeePlushieBlock extends AbstractSimplePlushieBlock {
     private static final VoxelShape NORTH_SHAPE = Block.box(3.0D, 0.0D, 2.5D,
             13.5D, 7.0D, 14.5D);
 
-    public BeePlushieBlock(BlockBehaviour.Properties settings) {
-        super(settings);
+    public BeePlushieBlock(BlockBehaviour.Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
                 .setValue(FACING, Direction.NORTH));
     }

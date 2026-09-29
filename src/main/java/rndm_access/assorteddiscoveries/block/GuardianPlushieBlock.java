@@ -13,8 +13,8 @@ public class GuardianPlushieBlock extends AbstractSimplePlushieBlock {
     private static final VoxelShape NORTH_SHAPE = Block.box(3.5D, 0.0D, 2.5D,
             12.5D, 8.5D, 12.5D);
 
-    public GuardianPlushieBlock(BlockBehaviour.Properties settings) {
-        super(settings);
+    public GuardianPlushieBlock(BlockBehaviour.Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
                 .setValue(FACING, Direction.NORTH));
     }

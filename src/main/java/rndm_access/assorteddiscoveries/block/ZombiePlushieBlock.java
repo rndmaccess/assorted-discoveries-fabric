@@ -14,8 +14,8 @@ public class ZombiePlushieBlock extends AbstractSimplePlushieBlock {
     private static final VoxelShape NORTH_SHAPE = Block.box(2.5D, 0.0D, 3.5D,
             13.0D, 12.5D, 12.5D);
 
-    public ZombiePlushieBlock(BlockBehaviour.Properties settings) {
-        super(settings);
+    public ZombiePlushieBlock(BlockBehaviour.Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
                 .setValue(FACING, Direction.NORTH));
     }

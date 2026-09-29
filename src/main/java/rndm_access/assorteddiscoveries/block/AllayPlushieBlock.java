@@ -12,8 +12,8 @@ public class AllayPlushieBlock extends AbstractSimplePlushieBlock {
     private static final VoxelShape NORTH_SHAPE = Block.box(3.0D, 0.0D, 3.0D,
             13.0D, 10.0D, 13.0D);
 
-    public AllayPlushieBlock(Properties settings) {
-        super(settings);
+    public AllayPlushieBlock(Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
                 .setValue(FACING, Direction.NORTH));
     }

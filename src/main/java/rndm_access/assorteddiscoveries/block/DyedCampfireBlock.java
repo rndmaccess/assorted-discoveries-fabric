@@ -24,16 +24,16 @@ import rndm_access.assorteddiscoveries.core.ModBlockEntityTypes;
 public class DyedCampfireBlock extends CampfireBlock {
     private final ParticleOptions emberParticle;
 
-    public DyedCampfireBlock(BlockBehaviour.Properties settings, ParticleOptions sparkParticle) {
-        super(false, 1, settings);
+    public DyedCampfireBlock(BlockBehaviour.Properties properties, ParticleOptions sparkParticle) {
+        super(false, 1, properties);
         this.emberParticle = sparkParticle;
     }
 
     @Override
-    public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
         if (state.getValue(LIT)) {
             if (random.nextInt(10) == 0) {
-                world.playLocalSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D,
+                level.playLocalSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D,
                         SoundEvents.CAMPFIRE_CRACKLE, SoundSource.BLOCKS, 0.5F + random.nextFloat(),
                         random.nextFloat() * 0.7F + 0.6F, false);
             }
@@ -41,7 +41,7 @@ public class DyedCampfireBlock extends CampfireBlock {
             // Spawn the spark particle randomly.
             if (random.nextInt(5) == 0) {
                 for (int i = 0; i < random.nextInt(1) + 1; ++i) {
-                    world.addParticle(emberParticle, pos.getX() + 0.5D, pos.getY() + 0.5D,
+                    level.addParticle(emberParticle, pos.getX() + 0.5D, pos.getY() + 0.5D,
                             pos.getZ() + 0.5D, random.nextFloat() / 2.0F, 5.0E-5D,
                             random.nextFloat() / 2.0F);
                 }
@@ -51,17 +51,17 @@ public class DyedCampfireBlock extends CampfireBlock {
 
     @Override
     @Nullable
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
         boolean isLit = state.getValue(LIT);
 
-        if (world instanceof ServerLevel serverWorld) {
+        if (level instanceof ServerLevel serverLevel) {
             if (isLit) {
                 RecipeManager.CachedCheck<SingleRecipeInput, CampfireCookingRecipe> matchGetter
                         = RecipeManager.createCheck(RecipeType.CAMPFIRE_COOKING);
 
                 return createTickerHelper(type, ModBlockEntityTypes.DYED_CAMPFIRE,
-                        (worldx, pos, statex, blockEntity) ->
-                                DyedCampfireBlockEntity.cookTick(serverWorld, pos, statex, blockEntity, matchGetter));
+                        (levelx, pos, statex, blockEntity) ->
+                                DyedCampfireBlockEntity.cookTick(serverLevel, pos, statex, blockEntity, matchGetter));
             }
             return createTickerHelper(type, ModBlockEntityTypes.DYED_CAMPFIRE, DyedCampfireBlockEntity::cooldownTick);
         }

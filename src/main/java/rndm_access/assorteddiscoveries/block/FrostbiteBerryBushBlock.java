@@ -16,8 +16,8 @@ import rndm_access.assorteddiscoveries.core.*;
 public class FrostbiteBerryBushBlock extends AbstractNetherBerryBushBlock {
     public static final MapCodec<FrostbiteBerryBushBlock> CODEC = simpleCodec(FrostbiteBerryBushBlock::new);
 
-    public FrostbiteBerryBushBlock(Properties settings) {
-        super(settings);
+    public FrostbiteBerryBushBlock(Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(AGE, 0));
     }
 
@@ -32,14 +32,14 @@ public class FrostbiteBerryBushBlock extends AbstractNetherBerryBushBlock {
     }
 
     @Override
-    public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
         double x = pos.getX() + random.nextDouble();
         double y = pos.getY() + random.nextDouble();
         double z = pos.getZ() + random.nextDouble();
         double randNum = random.nextDouble();
 
         if(randNum < 0.2) {
-            world.addParticle(ModParticleTypes.SOUL_EMBER, x, y, z, 0.0D,
+            level.addParticle(ModParticleTypes.SOUL_EMBER, x, y, z, 0.0D,
                     0.0D, 0.0D);
         }
     }
@@ -50,7 +50,7 @@ public class FrostbiteBerryBushBlock extends AbstractNetherBerryBushBlock {
     }
 
     @Override
-    public boolean mayPlaceOn(BlockState floor, BlockGetter world, BlockPos pos) {
+    public boolean mayPlaceOn(BlockState floor, BlockGetter blockGetter, BlockPos pos) {
         return floor.is(ModBlockTags.FROSTBITE_BERRY_BUSH_PLANTABLE_ON);
     }
 

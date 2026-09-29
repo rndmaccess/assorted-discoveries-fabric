@@ -13,9 +13,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import rndm_access.assorteddiscoveries.core.ModBlockTags;
 
 public class SnapdragonBlock extends FlowerBlock {
-    public SnapdragonBlock(Holder<MobEffect> stewEffect, int effectDuration,
-                           BlockBehaviour.Properties settings) {
-        super(stewEffect, effectDuration, settings);
+    public SnapdragonBlock(Holder<MobEffect> stewEffect, int effectDuration, BlockBehaviour.Properties properties) {
+        super(stewEffect, effectDuration, properties);
     }
 
     @Override
@@ -24,12 +23,12 @@ public class SnapdragonBlock extends FlowerBlock {
     }
 
     @Override
-    public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
         double x = (double) pos.getX() + random.nextFloat();
         double y = (double) pos.getY() + random.nextFloat();
         double z = (double) pos.getZ() + random.nextFloat();
 
-        world.addParticle(ParticleTypes.PORTAL, x, y, z, 0.0D,
+        level.addParticle(ParticleTypes.PORTAL, x, y, z, 0.0D,
                 0.0D, 0.0D);
     }
 }

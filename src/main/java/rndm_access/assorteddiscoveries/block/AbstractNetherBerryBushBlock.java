@@ -6,10 +6,11 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jspecify.annotations.NonNull;
 
 public abstract class AbstractNetherBerryBushBlock extends AbstractBerryBushBlock {
-    public AbstractNetherBerryBushBlock(Properties settings) {
-        super(settings);
+    public AbstractNetherBerryBushBlock(Properties properties) {
+        super(properties);
     }
 
     @Override
@@ -26,12 +27,13 @@ public abstract class AbstractNetherBerryBushBlock extends AbstractBerryBushBloc
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state) {
+    public boolean isValidBonemealTarget(@NonNull LevelReader levelReader, @NonNull BlockPos pos, @NonNull BlockState state) {
         return false;
     }
 
     @Override
-    public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
+    public boolean isBonemealSuccess(@NonNull Level level, @NonNull RandomSource random,
+                                     @NonNull BlockPos pos, @NonNull BlockState state) {
         return false;
     }
 }

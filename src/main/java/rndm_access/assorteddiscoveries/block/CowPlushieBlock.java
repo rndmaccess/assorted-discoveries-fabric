@@ -13,8 +13,8 @@ public class CowPlushieBlock extends AbstractSimplePlushieBlock {
     private static final VoxelShape NORTH_SHAPE = Block.box(3.5D, 0.0D, 1.0D,
             12.5D, 12.0D, 15.0D);
 
-    public CowPlushieBlock(BlockBehaviour.Properties settings) {
-        super(settings);
+    public CowPlushieBlock(BlockBehaviour.Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
                 .setValue(FACING, Direction.NORTH));
     }

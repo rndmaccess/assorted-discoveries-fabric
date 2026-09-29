@@ -23,8 +23,8 @@ public class DirtPathSlabBlock extends SlabBlock {
     public static final MapCodec<DirtPathSlabBlock> CODEC = simpleCodec(DirtPathSlabBlock::new);
     protected static final HashMap<SlabType, VoxelShape> SHAPE;
 
-    public DirtPathSlabBlock(Properties settings) {
-        super(settings);
+    public DirtPathSlabBlock(Properties properties) {
+        super(properties);
     }
 
     @Override
@@ -33,11 +33,11 @@ public class DirtPathSlabBlock extends SlabBlock {
     }
 
     @Override
-    public BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess tickView,
-                                                BlockPos pos, Direction direction, BlockPos neighborPos,
-                                                BlockState neighborState, RandomSource random) {
+    public BlockState updateShape(BlockState state, LevelReader levelReader, ScheduledTickAccess tickView,
+                                  BlockPos pos, Direction direction, BlockPos neighborPos,
+                                  BlockState neighborState, RandomSource random) {
         if (state.getValue(WATERLOGGED)) {
-            tickView.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
+            tickView.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(levelReader));
         }
 
         if(direction.equals(Direction.UP)) {

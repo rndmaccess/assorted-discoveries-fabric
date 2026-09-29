@@ -14,8 +14,8 @@ import rndm_access.assorteddiscoveries.core.ModItems;
 public class BlueberryBushBlock extends AbstractBerryBushBlock {
     public static final MapCodec<BlueberryBushBlock> CODEC = simpleCodec(BlueberryBushBlock::new);
 
-    public BlueberryBushBlock(BlockBehaviour.Properties settings) {
-        super(settings);
+    public BlueberryBushBlock(BlockBehaviour.Properties properties) {
+        super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0));
     }
 

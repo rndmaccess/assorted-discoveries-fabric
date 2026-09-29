@@ -12,8 +12,8 @@ public class CreakingPlushieBlock extends AbstractSimplePlushieBlock {
     private static final VoxelShape NORTH_SHAPE = Block.box(1.5D, 0.0D, 1.5D,
             14.5D, 14.5D, 14.5D);
 
-    public CreakingPlushieBlock(Properties settings) {
-        super(settings);
+    public CreakingPlushieBlock(Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
                 .setValue(FACING, Direction.NORTH));
     }

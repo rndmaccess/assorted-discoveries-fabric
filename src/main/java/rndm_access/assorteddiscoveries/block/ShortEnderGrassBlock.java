@@ -19,8 +19,8 @@ public class ShortEnderGrassBlock extends VegetationBlock {
     private static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D,
             16.0D, 10.0D, 16.0D);
 
-    public ShortEnderGrassBlock(BlockBehaviour.Properties settings) {
-        super(settings);
+    public ShortEnderGrassBlock(BlockBehaviour.Properties properties) {
+        super(properties);
     }
 
     @Override
@@ -34,17 +34,16 @@ public class ShortEnderGrassBlock extends VegetationBlock {
     }
 
     @Override
-    public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
         double x = pos.getX() + random.nextDouble();
         double y = pos.getY() + random.nextDouble();
         double z = pos.getZ() + random.nextDouble();
 
-        world.addParticle(ParticleTypes.PORTAL, x, y, z, 0.0D, 0.0D, 0.0D);
+        level.addParticle(ParticleTypes.PORTAL, x, y, z, 0.0D, 0.0D, 0.0D);
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos,
-                                      CollisionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext context) {
         return SHAPE;
     }
 }

@@ -5,7 +5,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -52,54 +51,54 @@ public class CattailBlock extends DoublePlantBlock implements BonemealableBlock 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext ctx) {
         BlockPos blockPos = ctx.getClickedPos();
-        Level world = ctx.getLevel();
-        return world.getBlockState(blockPos.above()).canBeReplaced(ctx)
-                ? this.defaultBlockState().setValue(WATERLOGGED, world.isWaterAt(blockPos))
+        Level level = ctx.getLevel();
+        return level.getBlockState(blockPos.above()).canBeReplaced(ctx)
+                ? this.defaultBlockState().setValue(WATERLOGGED, level.isWaterAt(blockPos))
                 : null;
     }
 
     @Override
-    public BlockState playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
+    public BlockState playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
         boolean isUpperHalf = state.getValue(HALF) == DoubleBlockHalf.UPPER;
 
         // Break the other half when the top is broken and drop an item.
-        if(!world.isClientSide() && isUpperHalf && !player.isCreative()) {
+        if(!level.isClientSide() && isUpperHalf && !player.isCreative()) {
             BlockPos bottomHalfPos = pos.below();
-            BlockState bottomState = world.getBlockState(bottomHalfPos);
+            BlockState bottomState = level.getBlockState(bottomHalfPos);
             BlockState newState = bottomState.getFluidState().is(Fluids.WATER) ? Blocks.WATER.defaultBlockState()
                     : Blocks.AIR.defaultBlockState();
 
-            dropResources(bottomState, world, bottomHalfPos, null, player, player.getMainHandItem());
-            world.setBlock(bottomHalfPos, newState, 3);
-            world.levelEvent(player, 2001, bottomHalfPos, Block.getId(bottomState));
+            dropResources(bottomState, level, bottomHalfPos, null, player, player.getMainHandItem());
+            level.setBlock(bottomHalfPos, newState, 3);
+            level.levelEvent(player, 2001, bottomHalfPos, Block.getId(bottomState));
         }
-        return super.playerWillDestroy(world, pos, state, player);
+        return super.playerWillDestroy(level, pos, state, player);
     }
 
     @Override
-    public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
+    public boolean canSurvive(BlockState state, LevelReader levelReader, BlockPos pos) {
         BlockPos upperPos = pos.above();
         BlockPos floorPos = pos.below();
-        BlockState upperState = world.getBlockState(upperPos);
-        FluidState upperFluidState = world.getFluidState(upperPos);
-        boolean hasRootsInWater = world.isWaterAt(pos);
+        BlockState upperState = levelReader.getBlockState(upperPos);
+        FluidState upperFluidState = levelReader.getFluidState(upperPos);
+        boolean hasRootsInWater = levelReader.isWaterAt(pos);
         boolean isUpperHalf = state.getValue(HALF) == DoubleBlockHalf.UPPER;
 
         if (isUpperHalf) {
-            return state.canBeReplaced() && super.canSurvive(state, world, pos);
+            return state.canBeReplaced() && super.canSurvive(state, levelReader, pos);
         }
 
-        return ((this.isWaterAdjacent(world, floorPos) && upperState.canBeReplaced() && upperFluidState.isEmpty())
+        return ((this.isWaterAdjacent(levelReader, floorPos) && upperState.canBeReplaced() && upperFluidState.isEmpty())
                 || (hasRootsInWater && upperState.canBeReplaced() && upperFluidState.isEmpty())
-                && super.canSurvive(state, world, pos));
+                && super.canSurvive(state, levelReader, pos));
     }
 
-    private boolean isWaterAdjacent(LevelReader world, BlockPos floorPos) {
+    private boolean isWaterAdjacent(LevelReader levelReader, BlockPos floorPos) {
         for(Direction direction : Direction.values()) {
             if(direction.getAxis().isHorizontal()) {
                 BlockPos adjacentPos = floorPos.relative(direction);
 
-                if(world.isWaterAt(adjacentPos)) {
+                if(levelReader.isWaterAt(adjacentPos)) {
                     return true;
                 }
             }
@@ -108,24 +107,24 @@ public class CattailBlock extends DoublePlantBlock implements BonemealableBlock 
     }
 
     @Override
-    public BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess tickView,
-                                                BlockPos pos, Direction direction, BlockPos neighborPos,
-                                                BlockState neighborState, RandomSource random) {
+    public BlockState updateShape(BlockState state, LevelReader levelReader, ScheduledTickAccess tickView,
+                                  BlockPos pos, Direction direction, BlockPos neighborPos,
+                                  BlockState neighborState, RandomSource random) {
         if (state.getValue(WATERLOGGED)) {
-            tickView.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
+            tickView.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(levelReader));
         }
 
-        if(this.canStay(state, neighborState, direction, world, pos)) {
+        if(this.canStay(state, neighborState, direction, levelReader, pos)) {
             return state;
         }
         return Blocks.AIR.defaultBlockState();
     }
 
     private boolean canStay(BlockState state, BlockState neighborState, Direction direction,
-                            LevelReader world, BlockPos pos) {
+                            LevelReader levelReader, BlockPos pos) {
         boolean isUpperHalf = state.getValue(HALF) == DoubleBlockHalf.UPPER;
         boolean isLowerHalf = state.getValue(HALF) == DoubleBlockHalf.LOWER;
-        boolean hasRootsInWater = world.isWaterAt(pos);
+        boolean hasRootsInWater = levelReader.isWaterAt(pos);
 
         // Break the other half when the bottom is broken.
         // We don't check the top here so tall plants can be replaced!
@@ -133,11 +132,11 @@ public class CattailBlock extends DoublePlantBlock implements BonemealableBlock 
             return neighborState.is(state.getBlock());
         } else {
             BlockPos soilPos = pos.below();
-            BlockState soilState = world.getBlockState(soilPos);
+            BlockState soilState = levelReader.getBlockState(soilPos);
 
             if(isLowerHalf) {
-                return mayPlaceOn(soilState, world, soilPos) && isWaterAdjacent(world, soilPos)
-                        || mayPlaceOn(soilState, world, soilPos) && hasRootsInWater;
+                return mayPlaceOn(soilState, levelReader, soilPos) && isWaterAdjacent(levelReader, soilPos)
+                        || mayPlaceOn(soilState, levelReader, soilPos) && hasRootsInWater;
             }
             return true;
         }
@@ -154,17 +153,17 @@ public class CattailBlock extends DoublePlantBlock implements BonemealableBlock 
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state) {
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos pos, BlockState state) {
         return true;
     }
 
     @Override
-    public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
+    public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos pos, BlockState state) {
         return true;
     }
 
     @Override
-    public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
-        popResource(world, pos, new ItemStack(this));
+    public void performBonemeal(ServerLevel serverLevel, RandomSource random, BlockPos pos, BlockState state) {
+        popResource(serverLevel, pos, new ItemStack(this));
     }
 }

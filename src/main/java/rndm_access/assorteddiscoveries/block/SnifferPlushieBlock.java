@@ -12,8 +12,8 @@ public class SnifferPlushieBlock extends AbstractSimplePlushieBlock {
     private static final VoxelShape NORTH_SHAPE = Block.box(2.0D, 0.0D, 1.0D,
             14.0D, 9.5D, 15.0D);
 
-    public SnifferPlushieBlock(Properties settings) {
-        super(settings);
+    public SnifferPlushieBlock(Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
                 .setValue(FACING, Direction.NORTH));
     }

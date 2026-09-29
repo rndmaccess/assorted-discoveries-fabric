@@ -50,8 +50,8 @@ public class ModdedCandleCakeBlock extends AbstractCandleBlock {
     private final Block cake;
     private final Block candle;
 
-    public ModdedCandleCakeBlock(Block cake, Block candle, Properties settings) {
-        super(settings);
+    public ModdedCandleCakeBlock(Block cake, Block candle, Properties properties) {
+        super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(LIT, false));
         this.cake = cake;
         this.candle = candle;
@@ -59,7 +59,7 @@ public class ModdedCandleCakeBlock extends AbstractCandleBlock {
     }
 
     @Override
-    public ItemStack getCloneItemStack(LevelReader world, BlockPos pos, BlockState state, boolean includeData) {
+    public ItemStack getCloneItemStack(LevelReader levelReader, BlockPos pos, BlockState state, boolean includeData) {
         return new ItemStack(cake);
     }
 
@@ -109,24 +109,24 @@ public class ModdedCandleCakeBlock extends AbstractCandleBlock {
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext context) {
         return SHAPE;
     }
 
     @Override
-    public BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess tickView,
-                                                BlockPos pos, Direction direction, BlockPos neighborPos,
-                                                BlockState neighborState, RandomSource random) {
-        return direction == Direction.DOWN && !state.canSurvive(world, pos) ? Blocks.AIR.defaultBlockState() : state;
+    public BlockState updateShape(BlockState state, LevelReader levelReader, ScheduledTickAccess tickView,
+                                  BlockPos pos, Direction direction, BlockPos neighborPos,
+                                  BlockState neighborState, RandomSource random) {
+        return direction == Direction.DOWN && !state.canSurvive(levelReader, pos) ? Blocks.AIR.defaultBlockState() : state;
     }
 
     @Override
-    public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
-        return world.getBlockState(pos.below()).isRedstoneConductor(world, pos);
+    public boolean canSurvive(BlockState state, LevelReader levelReader, BlockPos pos) {
+        return levelReader.getBlockState(pos.below()).isRedstoneConductor(levelReader, pos);
     }
 
     @Override
-    public int getAnalogOutputSignal(BlockState state, Level world, BlockPos pos, Direction direction) {
+    public int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos, Direction direction) {
         return CakeBlock.FULL_CAKE_SIGNAL;
     }
 

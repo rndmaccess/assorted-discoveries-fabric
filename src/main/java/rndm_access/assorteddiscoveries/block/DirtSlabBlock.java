@@ -16,8 +16,8 @@ import rndm_access.assorteddiscoveries.core.ModBlocks;
 public class DirtSlabBlock extends SoilSlabBlock implements BonemealableBlock {
     public static final MapCodec<DirtSlabBlock> CODEC = simpleCodec(DirtSlabBlock::new);
 
-    public DirtSlabBlock(Properties settings) {
-        super(settings);
+    public DirtSlabBlock(Properties properties) {
+        super(properties);
     }
 
     @Override
@@ -26,33 +26,33 @@ public class DirtSlabBlock extends SoilSlabBlock implements BonemealableBlock {
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state) {
-        return SnowySlabBlock.canGrowGrass(state, world, pos);
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos pos, BlockState state) {
+        return SnowySlabBlock.canGrowGrass(state, levelReader, pos);
     }
 
     @Override
-    public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
+    public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos pos, BlockState state) {
         return true;
     }
 
     @Override
-    public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
+    public void performBonemeal(ServerLevel serverLevel, RandomSource random, BlockPos pos, BlockState state) {
         BlockPos neighborPos = pos.above();
-        BlockState neighborState = world.getBlockState(neighborPos);
-        Block result = getSlabResult(world, pos);
+        BlockState neighborState = serverLevel.getBlockState(neighborPos);
+        Block result = getSlabResult(serverLevel, pos);
 
-        world.setBlock(pos, result.defaultBlockState().setValue(TYPE, state.getValue(TYPE))
+        serverLevel.setBlock(pos, result.defaultBlockState().setValue(TYPE, state.getValue(TYPE))
                 .setValue(WATERLOGGED, state.getValue(WATERLOGGED))
-                .setValue(SnowySlabBlock.SNOWY, SnowySlabBlock.isSnowCovered(world, neighborPos, state, neighborState)), 3);
+                .setValue(SnowySlabBlock.SNOWY, SnowySlabBlock.isSnowCovered(serverLevel, neighborPos, state, neighborState)), 3);
     }
 
-    private Block getSlabResult(ServerLevel world, BlockPos originPos) {
+    private Block getSlabResult(ServerLevel serverLevel, BlockPos originPos) {
         BlockPos[] poses = {originPos.below(), originPos, originPos.above()};
 
         for (BlockPos pose : poses) {
             for (Direction dir : Direction.Plane.HORIZONTAL) {
                 BlockPos neighborPos = pose.relative(dir);
-                BlockState neighborState = world.getBlockState(neighborPos);
+                BlockState neighborState = serverLevel.getBlockState(neighborPos);
 
                 if (neighborState.is(CommonBlockTags.MYCELIUM)) {
                     return ModBlocks.MYCELIUM_SLAB;

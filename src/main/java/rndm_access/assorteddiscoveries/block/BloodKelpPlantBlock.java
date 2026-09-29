@@ -50,26 +50,26 @@ public class BloodKelpPlantBlock extends GrowingPlantBodyBlock implements Liquid
     }
 
     @Override
-    public BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess tickView,
-                                                BlockPos pos, Direction direction, BlockPos neighborPos,
-                                                BlockState neighborState, RandomSource random) {
-        return super.updateShape(state, world, tickView, pos, direction, neighborPos,
+    public BlockState updateShape(BlockState state, LevelReader levelReader, ScheduledTickAccess tickView,
+                                  BlockPos pos, Direction direction, BlockPos neighborPos,
+                                  BlockState neighborState, RandomSource random) {
+        return super.updateShape(state, levelReader, tickView, pos, direction, neighborPos,
                         neighborState, random).setValue(LIT, state.getValue(LIT));
     }
 
     @Override
-    public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
-        BloodKelp.playParticles(world, state, pos, random);
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+        BloodKelp.playParticles(level, state, pos, random);
     }
 
     @Override
-    public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
-        return BloodKelp.pickSeedCluster(world, player, state, pos);
+    public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
+        return BloodKelp.pickSeedCluster(level, player, state, pos);
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state) {
-        return !state.getValue(LIT) && super.isValidBonemealTarget(world, pos, state);
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos pos, BlockState state) {
+        return !state.getValue(LIT) && super.isValidBonemealTarget(levelReader, pos, state);
     }
 
     @Override
@@ -82,12 +82,12 @@ public class BloodKelpPlantBlock extends GrowingPlantBodyBlock implements Liquid
         builder.add(LIT);
     }
 
-    public boolean canPlaceLiquid(@Nullable LivingEntity filler, BlockGetter world, BlockPos pos, BlockState state,
-                                    Fluid fluid) {
+    public boolean canPlaceLiquid(@Nullable LivingEntity filler, BlockGetter blockGetter, BlockPos pos, BlockState state,
+                                  Fluid fluid) {
         return false;
     }
 
-    public boolean placeLiquid(LevelAccessor world, BlockPos pos, BlockState state, FluidState fluidState) {
+    public boolean placeLiquid(LevelAccessor levelAccessor, BlockPos pos, BlockState state, FluidState fluidState) {
         return false;
     }
 }

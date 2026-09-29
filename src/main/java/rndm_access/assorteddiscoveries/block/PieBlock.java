@@ -10,7 +10,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
@@ -36,8 +35,8 @@ public class PieBlock extends ModdedCakeBlock {
     private final int nutrition;
     private final float saturationMod;
 
-    public PieBlock(BlockBehaviour.Properties settings, int nutrition, float saturationMod) {
-        super(settings);
+    public PieBlock(BlockBehaviour.Properties properties, int nutrition, float saturationMod) {
+        super(properties);
         this.nutrition = nutrition;
         this.saturationMod = saturationMod;
     }
@@ -48,28 +47,25 @@ public class PieBlock extends ModdedCakeBlock {
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext context) {
         return SHAPE_BY_BITE[state.getValue(BITES)];
     }
 
     @Override
-    protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos,
+    protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos,
                                           Player player, InteractionHand hand, BlockHitResult hit) {
         return InteractionResult.TRY_WITH_EMPTY_HAND;
     }
 
     @Override
-    public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
-        if (world.isClientSide() && this.eatPie(world, pos, state, player).consumesAction()) {
+    public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
+        if (level.isClientSide() && this.eatPie(level, pos, state, player).consumesAction()) {
             return InteractionResult.SUCCESS;
         }
-        return this.eatPie(world, pos, state, player);
+        return this.eatPie(level, pos, state, player);
     }
 
-    private InteractionResult eatPie(LevelAccessor world, BlockPos pos, BlockState state, Player player) {
-        if (player.canEat(false)) {
-            return eat(world, pos, state, player, this.nutrition, this.saturationMod);
-        }
-        return InteractionResult.PASS;
+    private InteractionResult eatPie(Level level, BlockPos pos, BlockState state, Player player) {
+        return eat(level, pos, state, player, this.nutrition, this.saturationMod);
     }
 }

@@ -9,6 +9,7 @@ import mangrovePlanterBox from '../block_img/mangrove_planter_box.webp';
 import cherryPlanterBox from '../block_img/cherry_planter_box.webp';
 import paleOakPlanterBox from '../block_img/pale_oak_planter_box.webp';
 import bambooPlanterBox from '../block_img/bamboo_planter_box.webp';
+import poplarPlanterBox from '../block_img/poplar_planter_box.webp';
 import warpedPlanterBox from '../block_img/warped_planter_box.webp';
 import crimsonPlanterBox from '../block_img/crimson_planter_box.webp';
 
@@ -88,6 +89,12 @@ const optionList = {
         {
             "src": bambooPlanterBox,
             "alt": "Bamboo Planter Box"
+        }
+    ],
+    "poplar": [
+        {
+            "src": poplarPlanterBox,
+            "alt": "Poplar Planter Box"
         }
     ],
     "warped": [

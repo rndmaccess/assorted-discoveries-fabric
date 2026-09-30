@@ -23,6 +23,7 @@ import mangrovePlanterBoxItem from '../crafting_block_img/mangrove_planter_box.w
 import cherryPlanterBoxItem from '../crafting_block_img/cherry_planter_box.webp';
 import paleOakPlanterBoxItem from '../crafting_block_img/pale_oak_planter_box.webp';
 import bambooPlanterBoxItem from '../crafting_block_img/bamboo_planter_box.webp';
+import poplarPlanterBoxItem from '../crafting_block_img/poplar_planter_box.webp';
 
 import oakSlab from '../crafting_block_img/oak_slab.webp';
 import spruceSlab from '../crafting_block_img/spruce_slab.webp';
@@ -34,6 +35,7 @@ import mangroveSlab from '../crafting_block_img/mangrove_slab.webp';
 import cherrySlab from '../crafting_block_img/cherry_slab.webp';
 import paleOakSlab from '../crafting_block_img/pale_oak_slab.webp';
 import bambooSlab from '../crafting_block_img/bamboo_slab.webp';
+import poplarSlab from '../crafting_block_img/poplar_slab.webp';
 
 import soulSoil from '../crafting_block_img/soul_soil.webp';
 import soulSand from '../crafting_block_img/soul_sand.webp';
@@ -125,9 +127,9 @@ const optionList = {
 const craftingLists = {
     "planter_box": [oakPlanterBoxItem, sprucePlanterBoxItem, birchPlanterBoxItem, junglePlanterBoxItem,
         acaciaPlanterBoxItem, darkOakPlanterBoxItem, mangrovePlanterBoxItem, cherryPlanterBoxItem,
-        paleOakPlanterBoxItem, bambooPlanterBoxItem],
+        paleOakPlanterBoxItem, bambooPlanterBoxItem, poplarPlanterBoxItem],
     "slab": [oakSlab, spruceSlab, birchSlab, jungleSlab, acaciaSlab, darkOakSlab, mangroveSlab,
-        cherrySlab, paleOakSlab, bambooSlab],
+        cherrySlab, paleOakSlab, bambooSlab, poplarSlab],
     "soul_soil": [soulSoil, soulSand]
 }
 

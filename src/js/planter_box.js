@@ -24,19 +24,19 @@ import cherryPlanterBoxItem from '../crafting_block_img/cherry_planter_box.webp'
 import paleOakPlanterBoxItem from '../crafting_block_img/pale_oak_planter_box.webp';
 import bambooPlanterBoxItem from '../crafting_block_img/bamboo_planter_box.webp';
 
-import oakSlab from '../block_img/oak_slab.webp';
-import spruceSlab from '../block_img/spruce_slab.webp';
-import birchSlab from '../block_img/birch_slab.webp';
-import jungleSlab from '../block_img/jungle_slab.webp';
-import acaciaSlab from '../block_img/acacia_slab.webp';
-import darkOakSlab from '../block_img/dark_oak_slab.webp';
-import mangroveSlab from '../block_img/mangrove_slab.webp';
-import cherrySlab from '../block_img/cherry_slab.webp';
-import paleOakSlab from '../block_img/pale_oak_slab.webp';
-import bambooSlab from '../block_img/bamboo_slab.webp';
+import oakSlab from '../crafting_block_img/oak_slab.webp';
+import spruceSlab from '../crafting_block_img/spruce_slab.webp';
+import birchSlab from '../crafting_block_img/birch_slab.webp';
+import jungleSlab from '../crafting_block_img/jungle_slab.webp';
+import acaciaSlab from '../crafting_block_img/acacia_slab.webp';
+import darkOakSlab from '../crafting_block_img/dark_oak_slab.webp';
+import mangroveSlab from '../crafting_block_img/mangrove_slab.webp';
+import cherrySlab from '../crafting_block_img/cherry_slab.webp';
+import paleOakSlab from '../crafting_block_img/pale_oak_slab.webp';
+import bambooSlab from '../crafting_block_img/bamboo_slab.webp';
 
-import soulSoil from '../block_img/soul_soil.webp';
-import soulSand from '../block_img/soul_sand.webp';
+import soulSoil from '../crafting_block_img/soul_soil.webp';
+import soulSand from '../crafting_block_img/soul_sand.webp';
 
 // No module declaration needed; esbuild-loader handles imports.
 import { createRecipeCycle, createButtonPanel } from "./page_util";

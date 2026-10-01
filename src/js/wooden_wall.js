@@ -8,6 +8,7 @@ import mangroveWall from "../block_img/mangrove_wall.webp";
 import cherryWall from "../block_img/cherry_wall.webp";
 import paleOakWall from "../block_img/pale_oak_wall.webp";
 import bambooWall from "../block_img/bamboo_wall.webp";
+import poplarWall from "../block_img/poplar_wall.webp";
 import crimsonWall from "../block_img/crimson_wall.webp";
 import warpedWall from "../block_img/warped_wall.webp";
 
@@ -20,6 +21,7 @@ import darkOakLog from "../crafting_block_img/dark_oak_log.webp";
 import mangroveLog from "../crafting_block_img/mangrove_log.webp";
 import cherryLog from "../crafting_block_img/cherry_log.webp";
 import paleOakLog from "../crafting_block_img/pale_oak_log.webp";
+import poplarLog from "../crafting_block_img/poplar_log.webp";
 import crimsonStem from "../crafting_block_img/crimson_stem.webp";
 import warpedStem from "../crafting_block_img/warped_stem.webp";
 
@@ -32,6 +34,7 @@ import darkOakWood from "../crafting_block_img/dark_oak_wood.webp";
 import mangroveWood from "../crafting_block_img/mangrove_wood.webp";
 import cherryWood from "../crafting_block_img/cherry_wood.webp";
 import paleOakWood from "../crafting_block_img/pale_oak_wood.webp";
+import poplarWood from "../crafting_block_img/poplar_wood.webp";
 import crimsonHyphae from "../crafting_block_img/crimson_hyphae.webp";
 import warpedHyphae from "../crafting_block_img/warped_hyphae.webp";
 
@@ -45,6 +48,7 @@ import strippedMangroveWall from "../block_img/stripped_mangrove_wall.webp";
 import strippedCherryWall from "../block_img/stripped_cherry_wall.webp";
 import strippedPaleOakWall from "../block_img/stripped_pale_oak_wall.webp";
 import strippedBambooWall from "../block_img/stripped_bamboo_wall.webp";
+import strippedPoplarWall from "../block_img/stripped_poplar_wall.webp";
 import strippedCrimsonWall from "../block_img/stripped_crimson_wall.webp";
 import strippedWarpedWall from "../block_img/stripped_warped_wall.webp";
 
@@ -57,6 +61,7 @@ import strippedDarkOakLog from "../crafting_block_img/stripped_dark_oak_log.webp
 import strippedMangroveLog from "../crafting_block_img/stripped_mangrove_log.webp";
 import strippedCherryLog from "../crafting_block_img/stripped_cherry_log.webp";
 import strippedPaleOakLog from "../crafting_block_img/stripped_pale_oak_log.webp";
+import strippedPoplarLog from "../crafting_block_img/stripped_poplar_log.webp";
 import strippedCrimsonStem from "../crafting_block_img/stripped_crimson_stem.webp";
 import strippedWarpedStem from "../crafting_block_img/stripped_warped_stem.webp";
 
@@ -69,6 +74,7 @@ import strippedDarkOakWood from "../crafting_block_img/stripped_dark_oak_wood.we
 import strippedMangroveWood from "../crafting_block_img/stripped_mangrove_wood.webp";
 import strippedCherryWood from "../crafting_block_img/stripped_cherry_wood.webp";
 import strippedPaleOakWood from "../crafting_block_img/stripped_pale_oak_wood.webp";
+import strippedPoplarWood from "../crafting_block_img/stripped_poplar_wood.webp";
 import strippedCrimsonHyphae from "../crafting_block_img/stripped_crimson_hyphae.webp";
 import strippedWarpedHyphae from "../crafting_block_img/stripped_warped_hyphae.webp";
 
@@ -176,6 +182,16 @@ const optionList = {
             "alt": ""
         }
     ],
+    "poplar": [
+        {
+            "src": poplarWall,
+            "alt": "Poplar Wall"
+        },
+        {
+            "src": strippedPoplarWall,
+            "alt": ""
+        }
+    ],
     "crimson": [
         {
             "src": crimsonWall,
@@ -208,6 +224,7 @@ const craftingLists = {
     "mangrove": [mangroveLog, mangroveWood],
     "cherry": [cherryLog, cherryWood],
     "pale_oak": [paleOakLog, paleOakWood],
+    "poplar": [poplarLog, poplarWood],
     "crimson": [crimsonStem, crimsonHyphae],
     "warped": [warpedStem, warpedHyphae],
 
@@ -220,6 +237,7 @@ const craftingLists = {
     "stripped_mangrove": [strippedMangroveLog, strippedMangroveWood],
     "stripped_cherry": [strippedCherryLog, strippedCherryWood],
     "stripped_pale_oak": [strippedPaleOakLog, strippedPaleOakWood],
+    "stripped_poplar": [strippedPoplarLog, strippedPoplarWood],
     "stripped_crimson": [strippedCrimsonStem, strippedCrimsonHyphae],
     "stripped_warped": [strippedWarpedStem, strippedWarpedHyphae]
 };

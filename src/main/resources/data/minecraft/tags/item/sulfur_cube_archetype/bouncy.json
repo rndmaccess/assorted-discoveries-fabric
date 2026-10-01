@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "assorted-discoveries:purple_mushroom_block"
+    "assorted-discoveries:purple_mushroom_block",
+    "#assorted-discoveries:crates"
   ]
 }

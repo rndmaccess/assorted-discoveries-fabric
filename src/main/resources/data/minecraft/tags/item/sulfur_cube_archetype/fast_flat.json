@@ -2,6 +2,8 @@
   "replace": false,
   "values": [
     "assorted-discoveries:dried_blood_kelp_block",
-    "assorted-discoveries:blood_kelp_lantern"
+    "assorted-discoveries:blood_kelp_lantern",
+    "#assorted-discoveries:crates",
+    "#assorted-discoveries:bags"
   ]
 }

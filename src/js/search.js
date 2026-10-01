@@ -105,8 +105,8 @@ const documents = [
         id: 9,
         title: 'green onion',
         keywords: 'plant seeds food',
-        description: 'Cook up something delicious with green onions! Discover hunger values, saturation levels, ' +
-            'and all crafting recipes for this versatile food item.',
+        description: 'Cook up something delicious with green onions! Discover hunger values, ' +
+            'saturation levels, and crafting recipes, including green onion crates, for this versatile food item.',
         link: './green_onion.html',
         img: greenOnion,
     },

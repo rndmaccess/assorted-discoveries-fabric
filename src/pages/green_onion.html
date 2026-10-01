@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>Green Onion - Assorted Discoveries Wiki</title>
     <meta name="description" content="Cook up something delicious with green onions! Discover hunger values,
-    saturation levels, and all crafting recipes for this versatile food item.">
+    saturation levels, and crafting recipes, including green onion crates, for this versatile food item.">
     <link rel="icon" href="../favicon.png" type="image/png">
 </head>
 <body>
@@ -16,6 +16,9 @@
                 <h2>About</h2>
                 <p>
                     <b>Green onions</b> are a food item that can be eaten as is or used in crafting recipes.
+                </p>
+                <p>
+                    The <b>green onion crate</b> is a decorative block that can be used to store green onions.
                 </p>
                 <h2>Obtaining</h2>
                 <p>
@@ -51,9 +54,53 @@
                     </div>
                     <p>
                         Craft noodle soup by placing a bowl, noodles, and a green onion in any arrangement.
+                        If green onions are disabled, this crafting recipe excludes them.
                     </p>
+
+                    <div class="crafting-area" aria-hidden="true">
+                        <img class="back" src="../gui_img/crafting_table_display.webp" alt="">
+                        <div class="front">
+                            <div class="slot"><img class="crafting-item" src="../item_img/green_onion.png" alt=""></div>
+                            <div class="slot"><img class="crafting-item" src="../item_img/green_onion.png" alt=""></div>
+                            <div class="slot"><img class="crafting-item" src="../item_img/green_onion.png" alt=""></div>
+
+                            <div class="slot"><img class="crafting-item" src="../item_img/green_onion.png" alt=""></div>
+                            <div class="slot"><img class="crafting-item" src="../item_img/green_onion.png" alt=""></div>
+                            <div class="slot"><img class="crafting-item" src="../item_img/green_onion.png" alt=""></div>
+
+                            <div class="slot"><img class="crafting-item" src="../item_img/green_onion.png" alt=""></div>
+                            <div class="slot"><img class="crafting-item" src="../item_img/green_onion.png" alt=""></div>
+                            <div class="slot"><img class="crafting-item" src="../item_img/green_onion.png" alt=""></div>
+                        </div>
+                        <div class="front-result">
+                            <div><img class="result-item" src="../crafting_block_img/green_onion_crate.webp" alt=""></div>
+                        </div>
+                    </div>
                     <p>
-                        Note: If green onions are disabled, the crafting recipe excludes them.
+                        Craft a green onion crate by filling the crafting table with nine green onions.
+                    </p>
+
+                    <div class="crafting-area" aria-hidden="true">
+                        <img class="back" src="../gui_img/crafting_table_display.webp" alt="">
+                        <div class="front">
+                            <div class="slot"><img class="crafting-item" src="../crafting_block_img/green_onion_crate.webp" alt=""></div>
+                            <div class="slot"><div class="crafting-item"></div></div>
+                            <div class="slot"><div class="crafting-item"></div></div>
+
+                            <div class="slot"><div class="crafting-item"></div></div>
+                            <div class="slot"><div class="crafting-item"></div></div>
+                            <div class="slot"><div class="crafting-item"></div></div>
+
+                            <div class="slot"><div class="crafting-item"></div></div>
+                            <div class="slot"><div class="crafting-item"></div></div>
+                            <div class="slot"><div class="crafting-item"></div></div>
+                        </div>
+                        <div class="front-result">
+                            <div><img class="result-item" src="../item_img/green_onion.png" alt=""></div>
+                        </div>
+                    </div>
+                    <p>
+                        Craft nine green onions from a green onion crate by placing it in any arrangement.
                     </p>
                 </div>
 
@@ -62,7 +109,7 @@
                     <summary class="collapsed">Configuration</summary>
 
                     <p>
-                        Green onion items are enabled/disabled indirectly with the <b>green onions</b> config setting.
+                        Green onions and green onion crates are enabled/disabled indirectly with the <b>green onions</b> config setting.
                     </p>
                     <ul>
                         <li>In-Game Screen Name: Enable Green Onions</li>
@@ -79,6 +126,7 @@
                     Green Onion
                 </h1>
                 <img class="main-img" src="../item_img/green_onion.png" alt="">
+                <div class="sub-title">Food</div>
                 <table>
                     <tr>
                         <td class="img-desc">Renewable</td>
@@ -100,6 +148,43 @@
                     <tr>
                         <td class="img-desc">Always consumable</td>
                         <td class="img-desc">No</td>
+                    </tr>
+                </table>
+
+                <img class="main-img" src="../block_img/green_onion_crate.webp" alt="">
+                <div class="sub-title">Crate</div>
+                <table>
+                    <tr>
+                        <td class="img-desc">Renewable</td>
+                        <td class="img-desc">Yes (Green Onions)</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Stackable</td>
+                        <td class="img-desc">Yes (64)</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Blast resistance</td>
+                        <td class="img-desc">3</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Luminous</td>
+                        <td class="img-desc">No</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Flammable</td>
+                        <td class="img-desc">Yes</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Catches fire from lava</td>
+                        <td class="img-desc">Yes</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Note block instrument</td>
+                        <td class="img-desc">Bass</td>
+                    </tr>
+                    <tr>
+                        <td class="img-desc">Sulfur cube archetype</td>
+                        <td class="img-desc">Bouncy</td>
                     </tr>
                 </table>
             </div>

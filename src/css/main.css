@@ -256,6 +256,8 @@ table {
 }
 
 .collapsed-container {
+    width: 90%;
+
     background-color: #363636;
     border: 2px solid #303030;
     padding: 1rem;

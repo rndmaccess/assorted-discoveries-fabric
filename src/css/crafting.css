@@ -3,8 +3,13 @@
     flex-direction: column;
     align-self: flex-start;
     padding: 1rem 1rem 0;
-    width: 60%;
+    width: 90%;
     flex-shrink: 0;
+}
+
+.crafting-container ul {
+    padding: 0 1rem 1.5rem 1rem;
+    margin: 0;
 }
 
 .crafting-box {
@@ -16,6 +21,8 @@
 .crafting-container p {
     letter-spacing: 0.02rem;
     line-height: 1.5;
+    margin: 0;
+    padding: 0.5rem 1rem 1rem 0.5rem;
 }
 
 .crafting-area:not(.crafting-container *) {
@@ -28,6 +35,8 @@
     position: relative;
     /* Makes a rectangular grid to position the items in the crafting area! */
     aspect-ratio: 1 / 0.5;
+
+    width: 60%;
 }
 
 .back {

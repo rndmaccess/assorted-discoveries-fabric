@@ -687,6 +687,8 @@
   "tag.block.assorted-discoveries.snow_walls": "Snow Walls",
   "tag.block.assorted-discoveries.soil_slabs": "Soil Slabs",
   "tag.block.assorted-discoveries.wooden_walls": "Wooden Walls",
+  "tag.block.assorted-discoveries.crates": "Crates",
+  "tag.block.assorted-discoveries.bags": "Bags",
 
   "tag.entity_type.assorted-discoveries.blueberry_bush_immune_entity_types": "Blueberry Bush Immune Entity Types",
   "tag.entity_type.assorted-discoveries.cindersnap_berry_bush_immune_entity_types": "Cindersnap Berry Bush Immune Entity Types",
@@ -696,6 +698,8 @@
   "tag.item.assorted-discoveries.juices": "Juices",
   "tag.item.assorted-discoveries.nether_juices": "Nether Juices",
   "tag.item.assorted-discoveries.plushies": "Plushies",
+  "tag.item.assorted-discoveries.crates": "Crates",
+  "tag.item.assorted-discoveries.bags": "Bags",
 
   "tag.item.c.crimson_vegetation": "Crimson Vegetation",
   "tag.item.c.natural_acacia_logs": "Natural Acacia Logs",

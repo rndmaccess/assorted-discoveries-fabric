@@ -3,8 +3,9 @@
     flex-direction: column;
     align-self: flex-start;
     padding: 1rem 1rem 0;
-    width: 90%;
     flex-shrink: 0;
+
+    width: 90%;
 }
 
 .crafting-container ul {
@@ -25,18 +26,13 @@
     padding: 0.5rem 1rem 1rem 0.5rem;
 }
 
-.crafting-area:not(.crafting-container *) {
-    width: 60%;
-}
-
 .crafting-area {
     display: grid;
     /* Elements in the document rely on the crafting area to position items on the website! */
     position: relative;
     /* Makes a rectangular grid to position the items in the crafting area! */
     aspect-ratio: 1 / 0.5;
-
-    width: 60%;
+    width: 416px;
 }
 
 .back {

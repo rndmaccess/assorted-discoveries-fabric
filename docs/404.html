@@ -9,7 +9,12 @@
 
     // 2. Safely match the repository name with an optional trailing slash
     // This matches both "/assorted-discoveries-fabric/" and "/assorted-discoveries-fabric"
-    const newPath = currentPath.replace(/\/assorted-discoveries-fabric\/?/, '/assorted-discoveries-wiki/');
+    let newPath = currentPath.replace(/\/assorted-discoveries-fabric\/?/, '/assorted-discoveries-wiki/');
+
+    // Catch the renamed page and rewrite the path destination explicitly
+    if (newPath.endsWith('/pages/grass_slabs.html')) {
+        newPath = newPath.replace('/grass_slabs.html', '/organic_slabs.html');
+    }
 
     // 3. Reconstruct the full destination URL, preserving query parameters and hash anchors
     const destinationURL = window.location.origin + newPath + window.location.search + window.location.hash;

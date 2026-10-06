@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Moving to New Wiki...</title>
+<script>
+    // 1. Get the current URL path
+    const currentPath = window.location.pathname;
+
+    // 2. Safely match the repository name with an optional trailing slash
+    // This matches both "/assorted-discoveries-fabric/" and "/assorted-discoveries-fabric"
+    const newPath = currentPath.replace(/\/assorted-discoveries-fabric\/?/, '/assorted-discoveries-wiki/');
+
+    // 3. Reconstruct the full destination URL, preserving query parameters and hash anchors
+    const destinationURL = window.location.origin + newPath + window.location.search + window.location.hash;
+
+    // 4. Redirect instantly without breaking browser history
+    window.location.replace(destinationURL);
+</script>
+<!-- Fallback to the new home page if the user has JavaScript disabled -->
+<noscript>
+    <meta http-equiv="refresh" content="0; url=https://rndmaccess.github.io/assorted-discoveries-wiki/">
+</noscript>
+</head>
+<body>
+<p>The wiki has moved! Redirecting you to the new page... If you are not redirected automatically, <a href="https://rndmaccess.github.io/assorted-discoveries-wiki/">click here</a>.</p>
+</body>
+</html>

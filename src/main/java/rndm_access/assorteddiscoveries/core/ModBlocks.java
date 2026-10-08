@@ -601,7 +601,7 @@ public final class ModBlocks {
     public static final Block BLOOD_KELP_LANTERN
             = registerPillar(ModBlockIds.BLOOD_KELP_LANTERN_KEY,
             BlockBehaviour.Properties.of().mapColor(MapColor.SAND).strength(0.3F)
-                    .sound(SoundType.GLASS).lightLevel((state) -> 15));
+                    .sound(SoundType.GLASS).lightLevel((state) -> 15).instrument(NoteBlockInstrument.HAT));
     public static final Block BOG_BLOSSOM = register(ModBlockIds.BOG_BLOSSOM_KEY, BogBlossomBlock::new, BlockBehaviour.Properties.of()
             .mapColor(MapColor.PLANT).instabreak().noCollision().sound(SoundType.SPORE_BLOSSOM)
             .pushReaction(PushReaction.DESTROY).lightLevel((state) -> 5));

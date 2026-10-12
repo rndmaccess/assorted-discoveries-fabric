@@ -37,9 +37,9 @@ public record CattailFeature(float probability) implements Feature {
         BlockState lowerHalf = ModBlocks.CATTAIL.defaultBlockState();
         BlockState upperHalf = lowerHalf.setValue(CattailBlock.HALF, DoubleBlockHalf.UPPER);
         boolean canPlace = lowerHalf.canSurvive(world, lowerPos) && world.getBlockState(upperPos).isAir();
-        boolean isCold = world.getBiome(lowerPos).value().coldEnoughToSnow(lowerPos, world.getSeaLevel());
+        boolean isWarm = world.getBiome(lowerPos).value().warmEnoughToRain(lowerPos, world.getSeaLevel());
 
-        if (canPlace && !isCold) {
+        if (canPlace && isWarm) {
             world.setBlock(lowerPos, lowerHalf.setValue(CattailBlock.WATERLOGGED, world.isWaterAt(lowerPos)), Block.UPDATE_CLIENTS);
             world.setBlock(upperPos, upperHalf, 2);
             return true;

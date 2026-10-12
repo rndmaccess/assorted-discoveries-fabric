@@ -423,7 +423,7 @@ public final class ModBlocks {
             BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS).lightLevel((state) -> 8),
             new Item.Properties().compostable(ContextIntProviders.COMPOSTABLE_LOW));
     public static final Block CATTAIL = register(ModBlockIds.CATTAIL_KEY, CattailBlock::new,
-            BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).noCollision()
+            BlockBehaviour.Properties.of().instabreak().mapColor(MapColor.COLOR_BROWN).noCollision()
                     .noOcclusion().sound(SoundType.WET_GRASS),
             new Item.Properties().compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM));
     public static final Block CHOCOLATE_CAKE = registerCake(ModBlockIds.CHOCOLATE_CAKE_KEY);

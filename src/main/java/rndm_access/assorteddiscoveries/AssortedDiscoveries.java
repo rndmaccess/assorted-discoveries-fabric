@@ -25,6 +25,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
@@ -75,6 +76,11 @@ public class AssortedDiscoveries implements ModInitializer {
         // World Generation Registries
         ModFeatures.register();
         AssortedDiscoveries.addFeaturesToBiomes();
+
+        // Prevent entities from pathfinding through bushes!
+        LandPathTypeRegistry.register(ModBlocks.CINDERSNAP_BERRY_BUSH, PathType.DAMAGING, PathType.DAMAGING);
+        LandPathTypeRegistry.register(ModBlocks.FROSTBITE_BERRY_BUSH, PathType.DAMAGING, PathType.DAMAGING);
+        LandPathTypeRegistry.register(ModBlocks.WITCHS_CRADLE, PathType.DAMAGING, PathType.DAMAGING);
     }
 
     public static Identifier makeModId(String path) {

@@ -418,7 +418,7 @@ public final class ModBlocks {
         = register(ModBlockIds.SHORT_ENDER_GRASS_KEY, ShortEnderGrassBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS).lightLevel((state) -> 8));
     public static final Block CATTAIL = register(ModBlockIds.CATTAIL_KEY, CattailBlock::new,
-            BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).noCollision()
+            BlockBehaviour.Properties.of().instabreak().mapColor(MapColor.COLOR_BROWN).noCollision()
                     .noOcclusion().sound(SoundType.WET_GRASS));
     public static final Block CHOCOLATE_CAKE = registerCake(ModBlockIds.CHOCOLATE_CAKE_KEY);
     public static final Block RED_VELVET_CAKE = registerCake(ModBlockIds.RED_VELVET_CAKE_KEY);

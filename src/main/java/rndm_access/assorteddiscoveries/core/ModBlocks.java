@@ -1004,12 +1004,12 @@ public final class ModBlocks {
 
     private static BlockBehaviour.Properties makeSnowBrickSettings() {
         return BlockBehaviour.Properties.of().mapColor(MapColor.SNOW)
-                .strength(0.4F).requiresCorrectToolForDrops().sound(SoundType.SNOW);
+                .strength(0.4F).sound(SoundType.SNOW);
     }
 
     private static BlockBehaviour.Properties makePackedSnowSettings() {
         return BlockBehaviour.Properties.of().mapColor(MapColor.SNOW)
-                .strength(0.6F).requiresCorrectToolForDrops().sound(SoundType.SNOW);
+                .strength(0.6F).sound(SoundType.SNOW);
     }
 
     private static BlockBehaviour.Properties makeCalciteSettings() {

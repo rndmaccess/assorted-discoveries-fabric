@@ -44,6 +44,11 @@ public class ConfigDeserializer {
         try (LineIterator iterator = FileUtils.lineIterator(file)) {
             consumeChar(iterator); // Bump the char pointer to the first character
 
+            // Consume global comments first.
+            while (curChar == '/') {
+                consumeComment(iterator);
+            }
+
             require(iterator, '{');
             while (curChar != '\0') {
                 this.deserializeLine(config, iterator);

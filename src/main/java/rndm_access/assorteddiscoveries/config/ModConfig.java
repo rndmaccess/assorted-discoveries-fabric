@@ -302,10 +302,13 @@ public class ModConfig {
                 "requires a game restart!");
         CommentConfigEntry enableDisableComment = new CommentConfigEntry("- Enable or disable any config option by toggling " +
                 "the setting between true and false.");
-        CommentConfigEntry buildingBlocksComment = new CommentConfigEntry("All options toggle both the base blocks " +
-                "and their variants in creative menus and recipes.");
         CommentConfigEntry wikiComment = new CommentConfigEntry("- Wiki & Documentation: " +
                 "https://rndmaccess.github.io/assorted-discoveries-wiki/");
+        CommentConfigEntry buildingBlocksComment = new CommentConfigEntry("All options toggle both the base blocks " +
+                "and their variants in creative menus and recipes.");
+        CommentConfigEntry plushiesComment = new CommentConfigEntry("All options toggle the plushies in creative menus and recipes.");
+        CommentConfigEntry foodsComment = new CommentConfigEntry("All options toggle the foods and blocks in creative menus, recipes, and world generation.");
+        CommentConfigEntry plantsComment = new CommentConfigEntry("All options toggle the blocks in creative menus, recipes, and world generation.");
 
         Config.Builder configBuilder = new Config.Builder(AssortedDiscoveries.MOD_ID)
                 .addGlobalComment(line)
@@ -316,8 +319,11 @@ public class ModConfig {
                 .addGlobalComment(line)
                 .addComment(buildingBlocksComment)
                 .addCategory(buildingBlocksCategory.build())
+                .addComment(plushiesComment)
                 .addCategory(plushiesCategory.build())
+                .addComment(foodsComment)
                 .addCategory(foodCategory.build())
+                .addComment(plantsComment)
                 .addCategory(plantsCategory.build());
         CONFIG = configBuilder.build();
         updateFromFile();

@@ -23,12 +23,18 @@ public class Config {
     private final Path path;
     private final String name;
     private String configError;
+    private final List<CommentConfigEntry> globalComments;
 
     public Config(Config.Builder builder) {
+        this.globalComments = builder.globalComments;
         this.objects = builder.objects;
         this.categories = builder.categories;
         this.path = FabricLoader.getInstance().getConfigDir().resolve(builder.name + ".json5");
         this.name = builder.name;
+    }
+
+    public List<CommentConfigEntry> getGlobalComments() {
+        return globalComments;
     }
 
     public void loadFromList(List<JsonConfigCategory> configList) {
@@ -177,10 +183,6 @@ public class Config {
         return configError != null;
     }
 
-    public Path getPath() {
-        return path;
-    }
-
     public String getName() {
         return name;
     }
@@ -275,11 +277,17 @@ public class Config {
 
     public static class Builder {
         public String name;
+        private final List<CommentConfigEntry> globalComments = new ArrayList<>();
         private final List<ConfigObject> objects = new ArrayList<>();
         private final List<JsonConfigCategory> categories = new ArrayList<>();
 
         public Builder(String name) {
             this.name = name;
+        }
+
+        public Config.Builder addGlobalComment(CommentConfigEntry comment) {
+            globalComments.add(comment);
+            return this;
         }
 
         public Config.Builder addComment(CommentConfigEntry comment) {

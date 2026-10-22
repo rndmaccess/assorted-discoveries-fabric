@@ -1,6 +1,7 @@
 package rndm_access.assorteddiscoveries.config.json;
 
 import org.jetbrains.annotations.Nullable;
+import rndm_access.assorteddiscoveries.config.json.json_objects.CommentConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.json_objects.JsonConfigCategory;
 import rndm_access.assorteddiscoveries.config.json.json_objects.ConfigObject;
 import rndm_access.assorteddiscoveries.config.json.json_objects.AbstractConfigEntry;
@@ -53,6 +54,11 @@ public class ConfigSerializer {
         List<ConfigObject> objects = config.getObjects();
 
         if (!objects.isEmpty()) {
+            for (CommentConfigEntry comment : this.config.getGlobalComments()) {
+                this.writeComment(newContent, comment.getKey());
+            }
+            this.writeText("\n", newContent);
+
             this.writeText("{", newContent);
             depth++;
             line++;

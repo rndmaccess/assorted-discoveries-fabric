@@ -25,7 +25,7 @@ This license can be found here: [LICENSE](./LICENSE.md).
 
 ## Official Wiki
 
-- Wiki link: [https://rndmaccess.github.io/assorted-discoveries-fabric/](https://rndmaccess.github.io/assorted-discoveries-fabric/)
+- Wiki link: [https://rndmaccess.github.io/assorted-discoveries-wiki/](https://rndmaccess.github.io/assorted-discoveries-wiki/)
 
 ## Official Download Links
 

@@ -14,7 +14,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import org.jspecify.annotations.NonNull;
@@ -36,7 +35,7 @@ public class GrassSlabBlock extends SnowySlabBlock implements BonemealableBlock 
         if (FabricLoader.getInstance().isModLoaded("slabbed")) {
             return true;
         }
-        return state.hasProperty(TYPE) && state.getValue(TYPE) != SlabType.BOTTOM;
+        return !isBottom(state);
     }
 
     @Override

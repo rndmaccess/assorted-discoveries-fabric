@@ -1181,7 +1181,7 @@ public final class ModBlocks {
     public static final Block BLOOD_KELP_LANTERN
             = register(BLOOD_KELP_LANTERN_KEY, RotatedPillarBlock::new,
             BlockBehaviour.Properties.of().mapColor(MapColor.SAND).strength(0.3F)
-                    .sound(SoundType.GLASS).lightLevel((state) -> 15));
+                    .sound(SoundType.FROGLIGHT).lightLevel((state) -> 15));
     public static final ResourceKey<Block> BOG_BLOSSOM_KEY = makeRegistryKey("bog_blossom");
     public static final Block BOG_BLOSSOM = register(BOG_BLOSSOM_KEY, BogBlossomBlock::new,
             BlockBehaviour.Properties.of()

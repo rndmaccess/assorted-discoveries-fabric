@@ -83,7 +83,7 @@ public class SoilSlabBlock  extends SlabBlock {
         return false;
     }
 
-    private boolean isBottom(BlockState state) {
+    protected boolean isBottom(BlockState state) {
         boolean hasTypeProperty = state.hasProperty(TYPE);
 
         if (hasTypeProperty) {

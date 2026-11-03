@@ -33,7 +33,7 @@ public class GrassSlabBlock extends SnowySlabBlock implements BonemealableBlock 
         if (FabricLoader.getInstance().isModLoaded("slabbed")) {
             return true;
         }
-        return state.hasProperty(TYPE) && state.getValue(TYPE) != SlabType.BOTTOM;
+        return !isBottom(state);
     }
 
     @Override

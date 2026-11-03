@@ -1,5 +1,6 @@
 package rndm_access.assorteddiscoveries.block;
 
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
@@ -11,6 +12,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
@@ -25,6 +27,13 @@ public class GrassSlabBlock extends SnowySlabBlock implements BonemealableBlock 
     @Override
     public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos pos, BlockState state, BonemealSource source) {
         return canSupportGrass(state);
+    }
+
+    private boolean canSupportGrass(BlockState state) {
+        if (FabricLoader.getInstance().isModLoaded("slabbed")) {
+            return true;
+        }
+        return state.hasProperty(TYPE) && state.getValue(TYPE) != SlabType.BOTTOM;
     }
 
     @Override

@@ -1,6 +1,5 @@
 package rndm_access.assorteddiscoveries.block;
 
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -57,13 +56,6 @@ public class SnowySlabBlock extends SoilSlabBlock {
             serverLevel.setBlock(pos, ModBlocks.DIRT_SLAB.defaultBlockState().setValue(TYPE, state.getValue(TYPE))
                     .setValue(WATERLOGGED, state.getValue(WATERLOGGED)), Block.UPDATE_CLIENTS);
         }
-    }
-
-    public static boolean canSupportGrass(BlockState state) {
-        if (FabricLoader.getInstance().isModLoaded("slabbed")) {
-            return true;
-        }
-        return state.hasProperty(TYPE) && state.getValue(TYPE) != SlabType.BOTTOM;
     }
 
     @Override

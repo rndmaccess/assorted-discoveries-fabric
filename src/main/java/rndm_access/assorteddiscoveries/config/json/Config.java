@@ -74,6 +74,12 @@ public class Config {
     public Config copy() {
         Builder configCopybuilder = new Builder(this.name);
 
+        // Copy the global comments from this config instance.
+        for (CommentConfigEntry globalComment : this.getGlobalComments()) {
+            configCopybuilder.addGlobalComment(globalComment);
+        }
+
+        // Copy the comments and config entries from this config instance.
         for (ConfigObject configObject : this.getObjects()) {
             if (configObject.isComment()) {
                 configCopybuilder.addComment(new CommentConfigEntry(configObject.getKey()));

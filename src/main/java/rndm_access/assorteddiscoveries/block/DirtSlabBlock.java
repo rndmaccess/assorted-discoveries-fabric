@@ -9,12 +9,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BonemealableBlock;
-import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import rndm_access.assorteddiscoveries.core.CommonBlockTags;
 import rndm_access.assorteddiscoveries.core.ModBlocks;
 
-public class DirtSlabBlock extends SlabBlock implements BonemealableBlock {
+public class DirtSlabBlock extends SoilSlabBlock implements BonemealableBlock {
     public static final MapCodec<DirtSlabBlock> CODEC = simpleCodec(DirtSlabBlock::new);
 
     public DirtSlabBlock(Properties settings) {
@@ -28,7 +27,7 @@ public class DirtSlabBlock extends SlabBlock implements BonemealableBlock {
 
     @Override
     public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state) {
-        return SnowySlabBlock.canGrowGrass(state, world, pos);
+        return canGrowGrass(state, world, pos);
     }
 
     @Override
@@ -44,7 +43,7 @@ public class DirtSlabBlock extends SlabBlock implements BonemealableBlock {
 
         world.setBlock(pos, result.defaultBlockState().setValue(TYPE, state.getValue(TYPE))
                 .setValue(WATERLOGGED, state.getValue(WATERLOGGED))
-                .setValue(SnowySlabBlock.SNOWY, SnowySlabBlock.isSnowCovered(world, neighborPos, state, neighborState)), 3);
+                .setValue(SnowySlabBlock.SNOWY, isSnowCovered(state, neighborState)), 3);
     }
 
     private Block getSlabResult(ServerLevel world, BlockPos originPos) {

@@ -16,8 +16,6 @@
     "NetherWartBlockMixin",
     "PlantBlockMixin",
     "RootsBlockMixin",
-    "ShovelItemMixin",
-    "SnowyBlockMixin",
     "SpreadableBlockMixin",
     "SproutsBlockMixin",
     "TrunkPlacerMixin",

@@ -12,7 +12,6 @@
     "LivingEntityMixin",
     "MushroomBlockMixin",
     "PlantBlockMixin",
-    "SnowyBlockMixin",
     "SpreadingSnowyBlockMixin",
     "TrunkPlacerMixin",
     "WallBlockMixin"

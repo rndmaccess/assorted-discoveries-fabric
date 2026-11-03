@@ -20,7 +20,7 @@ public class DirtSlabBlock extends SoilSlabBlock implements BonemealableBlock {
 
     @Override
     public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, BonemealSource source) {
-        return SnowySlabBlock.canGrowGrass(state, level, pos);
+        return canGrowGrass(state, level, pos);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class DirtSlabBlock extends SoilSlabBlock implements BonemealableBlock {
 
         serverLevel.setBlock(pos, result.defaultBlockState().setValue(TYPE, state.getValue(TYPE))
                 .setValue(WATERLOGGED, state.getValue(WATERLOGGED))
-                .setValue(SnowySlabBlock.SNOWY, SnowySlabBlock.isSnowCovered(serverLevel, neighborPos, state, neighborState)),
+                .setValue(SnowySlabBlock.SNOWY, this.isSnowCovered(state, neighborState)),
                 Block.UPDATE_CLIENTS);
     }
 

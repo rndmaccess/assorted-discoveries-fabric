@@ -4,7 +4,6 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
@@ -17,7 +16,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.SlabType;
 import org.jspecify.annotations.NonNull;
-import rndm_access.assorteddiscoveries.core.ModBlockTags;
 import rndm_access.assorteddiscoveries.core.ModBlocks;
 
 public class SnowySlabBlock extends SoilSlabBlock {
@@ -35,7 +33,7 @@ public class SnowySlabBlock extends SoilSlabBlock {
                                               @NonNull Direction direction, @NonNull BlockPos neighborPos,
                                               @NonNull BlockState neighborState, @NonNull RandomSource random) {
         if (direction == Direction.UP) {
-            boolean isSnowy = isSnowCovered(levelReader, neighborPos, state, neighborState);
+            boolean isSnowy = isSnowCovered(state, neighborState);
             return state.setValue(SNOWY, isSnowy);
         } else {
             return state;
@@ -49,44 +47,7 @@ public class SnowySlabBlock extends SoilSlabBlock {
         BlockState neighborState = level.getBlockState(neighborPos);
         BlockState state = super.getStateForPlacement(ctx);
 
-        return state != null ? state.setValue(SNOWY, isSnowCovered(level, neighborPos, state, neighborState)) : null;
-    }
-
-    public static boolean canGrowGrass(BlockState state, LevelReader levelReader, BlockPos pos) {
-        BlockPos neighborPos = pos.above();
-        BlockState neighborState = levelReader.getBlockState(neighborPos);
-
-        if (isSnowCovered(levelReader, neighborPos, state, neighborState)) {
-            return true;
-        } else if (neighborState.getFluidState().getAmount() == 8 || state.getValue(WATERLOGGED)) {
-            return false;
-        } else {
-            return !isCovered(levelReader, neighborPos, neighborState) || !neighborState.canOcclude();// || isBottom(state);
-        }
-    }
-
-    public static boolean isSnowCovered(LevelReader levelReader, BlockPos neighborPos, BlockState state, BlockState neighborState) {
-        boolean isSnowBlock = neighborState.is(BlockTags.SNOW);
-        boolean isSnowyStairs = neighborState.is(ModBlockTags.SNOW_STAIRS)
-                && isCovered(levelReader, neighborPos, neighborState);
-        boolean isSnowySlab = neighborState.is(ModBlockTags.SNOW_SLABS)
-                && isNotBottom(state)
-                && neighborState.hasProperty(TYPE)
-                && !neighborState.getValue(TYPE).equals(SlabType.TOP)
-                && isCovered(levelReader, neighborPos, neighborState);
-
-        if (FabricLoader.getInstance().isModLoaded("slabbed")) {
-            return isSnowBlock || isSnowyStairs || isSnowySlab;
-        }
-        return (isSnowBlock && isNotBottom(state)) || (isSnowyStairs && isNotBottom(state)) || isSnowySlab;
-    }
-
-    private static boolean isNotBottom(BlockState state) {
-        return state.hasProperty(TYPE) && state.getValue(TYPE) != SlabType.BOTTOM;
-    }
-
-    private static boolean isCovered(LevelReader levelReader, BlockPos neighborPos, BlockState neighborState) {
-        return neighborState.isFaceSturdy(levelReader, neighborPos, Direction.DOWN);
+        return state != null ? state.setValue(SNOWY, isSnowCovered(state, neighborState)) : null;
     }
 
     @Override

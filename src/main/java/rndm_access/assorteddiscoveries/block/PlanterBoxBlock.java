@@ -35,8 +35,17 @@ public class PlanterBoxBlock extends Block {
                 .setValue(WEST, false).setValue(EAST, false));
     }
 
+    /**
+     * @param north The north property value.
+     * @param south The south property value.
+     * @param west The west property value.
+     * @param east The east property value.
+     * @return The index for the planter box voxel shape.
+     */
     private static int getIndex(boolean north, boolean south, boolean west, boolean east) {
         int index = 0;
+
+        // Bits mapped to N, S, E, W (in order) for this state.
         if (north) index |= 1;
         if (south) index |= 2;
         if (west) index |= 4;
@@ -44,6 +53,11 @@ public class PlanterBoxBlock extends Block {
         return index;
     }
 
+    /**
+     * @return An array of voxel shapes for each block state. The shapes are indexed by integers, with the first 4 bits
+     * representing the state's shape. Use {@link #getIndex(boolean north, boolean south, boolean east, boolean west)}
+     * to get the correct index for this array.
+     */
     private static VoxelShape[] collectStateShapes() {
         VoxelShape bottomShape = Block.box(0.0, 0.0, 0.0, 16.0, 15.0, 16.0);
         VoxelShape northBorderShape = Block.box(0.0, 15.0, 13.0, 16.0, 16.0, 16.0);
@@ -55,11 +69,13 @@ public class PlanterBoxBlock extends Block {
         for (int i = 0; i < stateNum; i++) {
             VoxelShape tempBorderShape = Shapes.empty();
 
+            // Resolve the booleans from each bit for this state.
             boolean north = (i & 1) == 0;
             boolean south = (i & 2) == 0;
             boolean west =  (i & 4) == 0;
             boolean east =  (i & 8) == 0;
 
+            // Add the borders for this state.
             if (south) tempBorderShape = Shapes.or(tempBorderShape, borderShapes.get(0)); // South border
             if (north) tempBorderShape = Shapes.or(tempBorderShape, borderShapes.get(1)); // North border
             if (east)  tempBorderShape = Shapes.or(tempBorderShape, borderShapes.get(2)); // East border

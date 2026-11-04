@@ -93,7 +93,8 @@ public class SoilSlabBlock  extends SlabBlock {
     }
 
     @Override
-    protected InteractionResult useItemOn(ItemStack itemStack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+    protected InteractionResult useItemOn(ItemStack itemStack, BlockState state, Level level, BlockPos pos,
+                                          Player player, InteractionHand hand, BlockHitResult hitResult) {
         BlockState aboveState = level.getBlockState(pos.above());
         boolean isSubmergedDouble = aboveState.getFluidState().getAmount() == 8 && isDouble(state);
         boolean cannotConvertSlab = isCovered(level, pos.above(), aboveState, state) || isSubmergedDouble;

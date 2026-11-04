@@ -19,7 +19,7 @@ public class SnifferPlushieBlock extends AbstractSimplePlushieBlock {
     }
 
     @Override
-    protected MapCodec<? extends AbstractSimplePlushieBlock> codec() {
+    protected MapCodec<SnifferPlushieBlock> codec() {
         return CODEC;
     }
 

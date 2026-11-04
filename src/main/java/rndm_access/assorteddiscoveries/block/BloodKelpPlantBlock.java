@@ -82,8 +82,8 @@ public class BloodKelpPlantBlock extends GrowingPlantBodyBlock implements Liquid
         builder.add(LIT);
     }
 
-    public boolean canPlaceLiquid(@Nullable LivingEntity filler, BlockGetter world, BlockPos pos, BlockState state,
-                                    Fluid fluid) {
+    public boolean canPlaceLiquid(@Nullable LivingEntity filler, BlockGetter world, BlockPos pos,
+                                  BlockState state, Fluid fluid) {
         return false;
     }
 

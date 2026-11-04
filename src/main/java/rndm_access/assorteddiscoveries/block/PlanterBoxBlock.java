@@ -31,7 +31,8 @@ public class PlanterBoxBlock extends Block {
 
     public PlanterBoxBlock(BlockBehaviour.Properties settings) {
         super(settings);
-        this.registerDefaultState(this.defaultBlockState().setValue(NORTH, false).setValue(SOUTH, false)
+        this.registerDefaultState(this.defaultBlockState()
+                .setValue(NORTH, false).setValue(SOUTH, false)
                 .setValue(WEST, false).setValue(EAST, false));
     }
 
@@ -103,8 +104,8 @@ public class PlanterBoxBlock extends Block {
 
     @Override
     public BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess tickView,
-                                                BlockPos pos, Direction direction, BlockPos neighborPos,
-                                                BlockState neighborState, RandomSource random) {
+                                  BlockPos pos, Direction direction, BlockPos neighborPos,
+                                  BlockState neighborState, RandomSource random) {
         return this.getPlanterBoxState(state, world, pos);
     }
 

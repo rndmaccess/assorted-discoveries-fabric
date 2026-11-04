@@ -16,8 +16,6 @@ public final class ModBlockTags {
     public static final TagKey<Block> OVERWORLD_PLANTER_BOXES = of("overworld_planter_boxes");
     public static final TagKey<Block> NETHER_PLANTER_BOXES = of("nether_planter_boxes");
     public static final TagKey<Block> WOODEN_WALLS = of("wooden_walls");
-    public static final TagKey<Block> SNOW_SLABS = of("snow_slabs");
-    public static final TagKey<Block> SNOW_STAIRS = of("snow_stairs");
     public static final TagKey<Block> SNOW_WALLS = of("snow_walls");
     public static final TagKey<Block> SOIL_SLABS = of("soil_slabs");
 

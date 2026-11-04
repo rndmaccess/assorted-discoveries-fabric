@@ -44,7 +44,7 @@ public class ShortEnderGrassBlock extends VegetationBlock {
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos,
-                                      CollisionContext context) {
+                               CollisionContext context) {
         return SHAPE;
     }
 }

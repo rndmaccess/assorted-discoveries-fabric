@@ -7,7 +7,6 @@ import net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition;
 import net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditionType;
 import net.minecraft.resources.RegistryOps;
 import org.jetbrains.annotations.Nullable;
-import org.jspecify.annotations.NonNull;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.ModConfig;
 import rndm_access.assorteddiscoveries.config.json.json_objects.AbstractConfigEntry;
@@ -30,12 +29,12 @@ public record ConfigEntryEnabledResourceCondition(String configKey) implements R
     }
 
     @Override
-    public @NonNull ResourceConditionType<?> getType() {
+    public ResourceConditionType<?> getType() {
         return ModResourceConditionTypes.CONFIG_ENTRY_ENABLED;
     }
 
     @Override
-    public boolean test(@Nullable RegistryOps.@Nullable RegistryInfoLookup registryInfo) {
+    public boolean test(@Nullable RegistryOps.RegistryInfoLookup registryInfo) {
         AbstractConfigEntry<?> entry = ModConfig.CONFIG.getEntry(configKey);
         if (entry == null) {
             AssortedDiscoveries.LOGGER.error("{} is not a known config entry!", this.configKey);

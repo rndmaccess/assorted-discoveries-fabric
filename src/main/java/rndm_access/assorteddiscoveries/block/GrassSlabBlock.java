@@ -62,7 +62,8 @@ public class GrassSlabBlock extends SnowySlabBlock implements BonemealableBlock 
                 int zOffset = random.nextInt(3) - 1;
                 testPos.move(xOffset, yOffset, zOffset);
 
-                if (!(level.getBlockState(testPos.below()).getBlock() instanceof BonemealableBlock) || level.getBlockState(testPos).isCollisionShapeFullBlock(level, testPos)) {
+                if (!(level.getBlockState(testPos.below()).getBlock() instanceof BonemealableBlock)
+                        || level.getBlockState(testPos).isCollisionShapeFullBlock(level, testPos)) {
                     continue label48;
                 }
             }
@@ -79,7 +80,8 @@ public class GrassSlabBlock extends SnowySlabBlock implements BonemealableBlock 
             // Place a short grass or flower block (according to the biome)
             if (testState.isAir() && !level.isOutsideBuildHeight(testPos)) {
                 if (random.nextInt(8) == 0) {
-                    List<ConfiguredFeature<?, ?>> features = level.getBiome(testPos).value().getGenerationSettings().getFlowerFeatures();
+                    List<ConfiguredFeature<?, ?>> features = level.getBiome(testPos).value()
+                            .getGenerationSettings().getFlowerFeatures();
 
                     if (!features.isEmpty()) {
                         ConfiguredFeature<?, ?> placementFeature = Util.getRandom(features, random);

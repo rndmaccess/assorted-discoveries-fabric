@@ -73,8 +73,8 @@ public class CubePlushieBlock extends AbstractPlushieBlock {
     }
 
     @Override
-    public void setPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer,
-                         ItemStack itemStack) {
+    public void setPlacedBy(Level world, BlockPos pos, BlockState state,
+                            @Nullable LivingEntity placer, ItemStack itemStack) {
         BlockPos abovePos = pos.above();
         FluidState fluidState = world.getFluidState(abovePos);
 
@@ -98,8 +98,8 @@ public class CubePlushieBlock extends AbstractPlushieBlock {
 
     @Override
     public BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess tickView,
-                                                BlockPos pos, Direction direction, BlockPos neighborPos,
-                                                BlockState neighborState, RandomSource random) {
+                                  BlockPos pos, Direction direction, BlockPos neighborPos,
+                                  BlockState neighborState, RandomSource random) {
         if(this.canStay(state, neighborState, direction)) {
             return state;
         } else {

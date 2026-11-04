@@ -1,7 +1,6 @@
 package rndm_access.assorteddiscoveries.config;
 
 import io.netty.buffer.ByteBuf;
-import org.jspecify.annotations.NonNull;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 
 import java.util.ArrayList;
@@ -20,7 +19,8 @@ public record BooleanEntriesS2CPayload(List<JsonConfigCategory> configList) impl
     public static final Identifier CONFIG_PAYLOAD_ID = AssortedDiscoveries.makeModId("config");
     public static final CustomPacketPayload.Type<BooleanEntriesS2CPayload> ID = new CustomPacketPayload.Type<>(CONFIG_PAYLOAD_ID);
     public static final StreamCodec<ByteBuf, List<JsonConfigCategory>> PACKET_CODEC = new StreamCodec<>() {
-        public @NonNull List<JsonConfigCategory> decode(ByteBuf byteBuf) {
+        @Override
+        public List<JsonConfigCategory> decode(ByteBuf byteBuf) {
             int listSize = byteBuf.readInt();
             List<JsonConfigCategory> list = new ArrayList<>(listSize);
 
@@ -39,6 +39,7 @@ public record BooleanEntriesS2CPayload(List<JsonConfigCategory> configList) impl
             return list;
         }
 
+        @Override
         public void encode(ByteBuf byteBuf, List<JsonConfigCategory> list) {
             byteBuf.writeInt(list.size());
 
@@ -61,7 +62,7 @@ public record BooleanEntriesS2CPayload(List<JsonConfigCategory> configList) impl
             = StreamCodec.composite(PACKET_CODEC, BooleanEntriesS2CPayload::configList, BooleanEntriesS2CPayload::new);
 
     @Override
-    public @NonNull Type<? extends CustomPacketPayload> type() {
+    public Type<? extends CustomPacketPayload> type() {
         return ID;
     }
 }

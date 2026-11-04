@@ -19,7 +19,8 @@ public class MyceliumSlabBlock extends SnowySlabBlock {
         return CODEC;
     }
 
-    public void animateTick(final BlockState state, final Level level, final BlockPos pos, final RandomSource random) {
+    public void animateTick(final BlockState state, final Level level,
+                            final BlockPos pos, final RandomSource random) {
         if (random.nextInt(10) == 0) {
             double particleOffset = state.getValue(TYPE) == SlabType.BOTTOM ? 0.6 : 1.1;
 

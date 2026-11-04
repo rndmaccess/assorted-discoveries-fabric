@@ -65,7 +65,8 @@ public class ModdedCandleCakeBlock extends AbstractCandleBlock {
     }
 
     @Override
-    public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
+    public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos,
+                                            Player player, BlockHitResult hit) {
         InteractionHand hand = player.getUsedItemHand();
         ItemStack handStack = player.getItemInHand(hand);
 
@@ -116,8 +117,8 @@ public class ModdedCandleCakeBlock extends AbstractCandleBlock {
 
     @Override
     public BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess tickView,
-                                                BlockPos pos, Direction direction, BlockPos neighborPos,
-                                                BlockState neighborState, RandomSource random) {
+                                  BlockPos pos, Direction direction, BlockPos neighborPos,
+                                  BlockState neighborState, RandomSource random) {
         return direction == Direction.DOWN && !state.canSurvive(world, pos) ? Blocks.AIR.defaultBlockState() : state;
     }
 

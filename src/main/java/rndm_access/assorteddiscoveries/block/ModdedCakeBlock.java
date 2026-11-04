@@ -26,7 +26,7 @@ public class ModdedCakeBlock extends CakeBlock {
 
     @Override
     protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos,
-                                         Player player, InteractionHand hand, BlockHitResult hit) {
+                                          Player player, InteractionHand hand, BlockHitResult hit) {
         ItemStack heldStack = player.getItemInHand(hand);
 
         if (state.getValue(BITES) == 0) {
@@ -41,7 +41,7 @@ public class ModdedCakeBlock extends CakeBlock {
     }
 
     private InteractionResult placeCandleCake(Level world, Player player, BlockPos pos, ItemStack itemStack,
-                                         Block block, Item item) {
+                                              Block block, Item item) {
         itemStack.consume(1, player);
         world.playSound(null, pos, SoundEvents.CAKE_ADD_CANDLE, SoundSource.BLOCKS,
                 1.0F, 1.0F);
@@ -66,7 +66,7 @@ public class ModdedCakeBlock extends CakeBlock {
 
     @NotNull
     public static InteractionResult eat(LevelAccessor world, BlockPos pos, BlockState state, Player player,
-                                   int bitesTaken, IntegerProperty property) {
+                                        int bitesTaken, IntegerProperty property) {
         world.gameEvent(player, GameEvent.EAT, pos);
 
         if (bitesTaken < 6) {

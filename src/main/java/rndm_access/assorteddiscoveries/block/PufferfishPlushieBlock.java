@@ -7,7 +7,6 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.jspecify.annotations.NonNull;
 
 public class PufferfishPlushieBlock extends AbstractSimplePlushieBlock {
     public static final MapCodec<PufferfishPlushieBlock> CODEC = simpleCodec(PufferfishPlushieBlock::new);
@@ -20,7 +19,7 @@ public class PufferfishPlushieBlock extends AbstractSimplePlushieBlock {
     }
 
     @Override
-    protected @NonNull MapCodec<PufferfishPlushieBlock> codec() {
+    protected MapCodec<PufferfishPlushieBlock> codec() {
         return CODEC;
     }
 

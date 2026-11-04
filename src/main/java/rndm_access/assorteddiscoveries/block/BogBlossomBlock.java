@@ -6,7 +6,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.*;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
@@ -83,7 +82,8 @@ public class BogBlossomBlock extends Block implements BonemealableBlock {
     public BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess tickView,
                                                 BlockPos pos, Direction direction, BlockPos neighborPos,
                                                 BlockState neighborState, RandomSource random) {
-        return direction == Direction.DOWN && !this.canSurvive(state, world, pos) ? Blocks.AIR.defaultBlockState()
+        return direction == Direction.DOWN && !this.canSurvive(state, world, pos)
+                ? Blocks.AIR.defaultBlockState()
                 : state;
     }
 
@@ -103,7 +103,7 @@ public class BogBlossomBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
+    public void performBonemeal(ServerLevel serverLevel, RandomSource random, BlockPos pos, BlockState state) {
         BlockPos.MutableBlockPos mutablePos = pos.mutable();
         boolean placed = false;
         int tries = 0;
@@ -113,15 +113,14 @@ public class BogBlossomBlock extends Block implements BonemealableBlock {
             int yOffset = random.nextInt(4) - random.nextInt(4);
             int zOffset = random.nextInt(4) - random.nextInt(4);
             mutablePos.move(xOffset, yOffset, zOffset);
-            BlockPos placePos = mutablePos.immutable();
-            BlockState worldState = world.getBlockState(placePos);
+            BlockState levelState = serverLevel.getBlockState(mutablePos);
 
-            if (this.canSurvive(null, world, placePos) && (worldState.isAir() || worldState.canBeReplaced())) {
-                world.setBlockAndUpdate(placePos, this.defaultBlockState());
+            if (this.canSurvive(levelState, serverLevel, mutablePos) && (levelState.isAir() || levelState.canBeReplaced())) {
+                serverLevel.setBlock(mutablePos, this.defaultBlockState(), Block.UPDATE_CLIENTS);
                 placed = true;
             }
             tries++;
-            mutablePos = pos.mutable();
+            mutablePos.set(pos.getX(), pos.getY(), pos.getZ()); // Return to the center for the next try.
         } while (!placed && tries < 24); // Try to place a block 24 times before giving up!
     }
 }

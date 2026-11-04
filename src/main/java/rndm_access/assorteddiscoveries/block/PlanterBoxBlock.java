@@ -1,11 +1,8 @@
 package rndm_access.assorteddiscoveries.block;
 
-import com.google.common.collect.ImmutableList;
 import org.jetbrains.annotations.Nullable;
 import rndm_access.assorteddiscoveries.util.ShapeHelper;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -30,7 +27,7 @@ public class PlanterBoxBlock extends Block {
     public static final BooleanProperty SOUTH = BlockStateProperties.SOUTH;
     public static final BooleanProperty WEST = BlockStateProperties.WEST;
     public static final BooleanProperty EAST = BlockStateProperties.EAST;
-    private static final HashMap<List<Boolean>, VoxelShape> SHAPES = collectStateShapes();
+    private static final VoxelShape[] SHAPES = collectStateShapes();
 
     public PlanterBoxBlock(BlockBehaviour.Properties properties) {
         super(properties);
@@ -38,45 +35,48 @@ public class PlanterBoxBlock extends Block {
                 .setValue(WEST, false).setValue(EAST, false));
     }
 
-    /**
-     * Makes a map of all shapes that the planter box can take according to its state.
-     */
-    private static HashMap<List<Boolean>, VoxelShape> collectStateShapes() {
-        VoxelShape bottomShape = Block.box(0.0, 0.0, 0.0, 16.0,
-                15.0, 16.0);
-        VoxelShape northBorderShape = Block.box(0.0, 15.0, 13.0, 16.0,
-                16.0, 16.0);
+    private static int getIndex(boolean north, boolean south, boolean west, boolean east) {
+        int index = 0;
+        if (north) index |= 1;
+        if (south) index |= (1 << 1);
+        if (west) index |= (1 << 2);
+        if (east) index |= (1 << 3);
+        return index;
+    }
+
+    private static VoxelShape[] collectStateShapes() {
+        VoxelShape bottomShape = Block.box(0.0, 0.0, 0.0, 16.0, 15.0, 16.0);
+        VoxelShape northBorderShape = Block.box(0.0, 15.0, 13.0, 16.0, 16.0, 16.0);
         List<VoxelShape> borderShapes = ShapeHelper.makeShapeRotList(northBorderShape);
-        HashMap<List<Boolean>, VoxelShape> shapes = new HashMap<>();
+        VoxelShape[] shapes = new VoxelShape[16]; // 2 to the power of 4 states.
         int borderNum = 4;
-        int stateNum = (int) Math.pow(2, borderNum);
+        int stateNum = 1 << borderNum;
 
         for (int i = 0; i < stateNum; i++) {
-            ArrayList<Boolean> borders = new ArrayList<>(4);
             VoxelShape tempBorderShape = Shapes.empty();
 
-            for (int j = 0; j < borderNum; j++) {
-                int bit = (i >> j) & 0x01;
+            boolean north = (i & 1) == 0;
+            boolean south = ((i >> 1) & 1) == 0;
+            boolean west = ((i >> 2) & 1) == 0;
+            boolean east = ((i >> 3) & 1) == 0;
 
-                // When the bit is 1 there is a planter box edge here.
-                if (bit == 1) {
-                    borders.add(false);
-                    tempBorderShape = Shapes.or(tempBorderShape, borderShapes.get(j));
-                } else {
-                    borders.add(true);
-                }
-            }
-            shapes.put(borders, Shapes.or(tempBorderShape, bottomShape));
+            if (!south) tempBorderShape = Shapes.or(tempBorderShape, borderShapes.get(0)); // South border
+            if (!north) tempBorderShape = Shapes.or(tempBorderShape, borderShapes.get(1)); // North border
+            if (!east)  tempBorderShape = Shapes.or(tempBorderShape, borderShapes.get(2)); // East border
+            if (!west)  tempBorderShape = Shapes.or(tempBorderShape, borderShapes.get(3)); // West border
+
+            int index = getIndex(north, south, west, east);
+            shapes[index] = Shapes.or(tempBorderShape, bottomShape);
         }
         return shapes;
     }
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext context) {
-        List<Boolean> stateProperties = ImmutableList.of(state.getValue(SOUTH), state.getValue(NORTH), state.getValue(EAST),
-                state.getValue(WEST));
+        int index = getIndex(state.getValue(NORTH), state.getValue(SOUTH),
+                state.getValue(WEST), state.getValue(EAST));
 
-        return SHAPES.get(stateProperties);
+        return SHAPES[index];
     }
 
     @Nullable

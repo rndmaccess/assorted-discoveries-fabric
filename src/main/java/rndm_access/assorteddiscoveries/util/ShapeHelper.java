@@ -23,6 +23,10 @@ public final class ShapeHelper {
         return shapes;
     }
 
+    /**
+     * @param northShapes The north shape to rotate.
+     * @return A list of rotated shapes using the order: north, south, west, east.
+     */
     public static List<VoxelShape> makeShapeRotList(VoxelShape... northShapes) {
         ImmutableList.Builder<VoxelShape> builder = ImmutableList.builder();
         VoxelShape northShape = combineShapes(northShapes);

@@ -38,9 +38,9 @@ public class PlanterBoxBlock extends Block {
     private static int getIndex(boolean north, boolean south, boolean west, boolean east) {
         int index = 0;
         if (north) index |= 1;
-        if (south) index |= (1 << 1);
-        if (west) index |= (1 << 2);
-        if (east) index |= (1 << 3);
+        if (south) index |= 2;
+        if (west) index |= 4;
+        if (east) index |= 8;
         return index;
     }
 
@@ -56,26 +56,26 @@ public class PlanterBoxBlock extends Block {
             VoxelShape tempBorderShape = Shapes.empty();
 
             boolean north = (i & 1) == 0;
-            boolean south = ((i >> 1) & 1) == 0;
-            boolean west = ((i >> 2) & 1) == 0;
-            boolean east = ((i >> 3) & 1) == 0;
+            boolean south = (i & 2) == 0;
+            boolean west =  (i & 4) == 0;
+            boolean east =  (i & 8) == 0;
 
-            if (!south) tempBorderShape = Shapes.or(tempBorderShape, borderShapes.get(0)); // South border
-            if (!north) tempBorderShape = Shapes.or(tempBorderShape, borderShapes.get(1)); // North border
-            if (!east)  tempBorderShape = Shapes.or(tempBorderShape, borderShapes.get(2)); // East border
-            if (!west)  tempBorderShape = Shapes.or(tempBorderShape, borderShapes.get(3)); // West border
+            if (south) tempBorderShape = Shapes.or(tempBorderShape, borderShapes.get(0)); // South border
+            if (north) tempBorderShape = Shapes.or(tempBorderShape, borderShapes.get(1)); // North border
+            if (east)  tempBorderShape = Shapes.or(tempBorderShape, borderShapes.get(2)); // East border
+            if (west)  tempBorderShape = Shapes.or(tempBorderShape, borderShapes.get(3)); // West border
 
-            int index = getIndex(north, south, west, east);
-            shapes[index] = Shapes.or(tempBorderShape, bottomShape);
+            shapes[i] = Shapes.or(tempBorderShape, bottomShape);
         }
         return shapes;
     }
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext context) {
-        int index = getIndex(state.getValue(NORTH), state.getValue(SOUTH),
-                state.getValue(WEST), state.getValue(EAST));
-
+        int index = getIndex(
+                state.getValue(NORTH), state.getValue(SOUTH),
+                state.getValue(WEST), state.getValue(EAST)
+        );
         return SHAPES[index];
     }
 

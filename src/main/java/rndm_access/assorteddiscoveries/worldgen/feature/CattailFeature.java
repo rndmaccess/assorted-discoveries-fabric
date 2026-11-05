@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.levelgen.Heightmap;
@@ -34,8 +35,9 @@ public class CattailFeature extends Feature<ProbabilityFeatureConfiguration> {
         boolean isWarm = world.getBiome(lowerPos).value().warmEnoughToRain(lowerPos, world.getSeaLevel());
 
         if (canPlace && isWarm) {
-            world.setBlock(lowerPos, lowerHalf.setValue(CattailBlock.WATERLOGGED, world.isWaterAt(lowerPos)), 2);
-            world.setBlock(upperPos, upperHalf, 2);
+            world.setBlock(lowerPos, lowerHalf.setValue(CattailBlock.WATERLOGGED,
+                    world.isWaterAt(lowerPos)), Block.UPDATE_CLIENTS);
+            world.setBlock(upperPos, upperHalf, Block.UPDATE_CLIENTS);
             return true;
         }
         return false;

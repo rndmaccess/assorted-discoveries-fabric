@@ -13,8 +13,8 @@ public class ShortHatVillagerPlushieBlock extends AbstractSimplePlushieBlock {
     private static final VoxelShape NORTH_SHAPE = Block.box(3.5D, 0.0D, 3.5D,
             13.0D, 13.5D, 13.0D);
 
-    public ShortHatVillagerPlushieBlock(BlockBehaviour.Properties settings) {
-        super(settings);
+    public ShortHatVillagerPlushieBlock(BlockBehaviour.Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
                 .setValue(FACING, Direction.NORTH));
     }

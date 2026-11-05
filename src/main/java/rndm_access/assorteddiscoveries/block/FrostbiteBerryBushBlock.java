@@ -16,8 +16,8 @@ import rndm_access.assorteddiscoveries.core.*;
 public class FrostbiteBerryBushBlock extends AbstractNetherBerryBushBlock {
     public static final MapCodec<FrostbiteBerryBushBlock> CODEC = simpleCodec(FrostbiteBerryBushBlock::new);
 
-    public FrostbiteBerryBushBlock(Properties settings) {
-        super(settings);
+    public FrostbiteBerryBushBlock(Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(AGE, 0));
     }
 
@@ -39,8 +39,7 @@ public class FrostbiteBerryBushBlock extends AbstractNetherBerryBushBlock {
         double randNum = random.nextDouble();
 
         if(randNum < 0.2) {
-            world.addParticle(ModParticleTypes.SOUL_EMBER, x, y, z, 0.0D,
-                    0.0D, 0.0D);
+            world.addParticle(ModParticleTypes.SOUL_EMBER, x, y, z, 0.0D, 0.0D, 0.0D);
         }
     }
 

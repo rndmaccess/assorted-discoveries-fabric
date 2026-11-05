@@ -13,8 +13,8 @@ public class HorsePlushieBlock extends AbstractSimplePlushieBlock {
     private static final VoxelShape NORTH_SHAPE = Block.box(4.5D, 0.0D, 0.5D,
             11.5D, 12.5, 15.5D);
 
-    public HorsePlushieBlock(BlockBehaviour.Properties settings) {
-        super(settings);
+    public HorsePlushieBlock(BlockBehaviour.Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(WATERLOGGED, false).setValue(FACING, Direction.NORTH));
     }

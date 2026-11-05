@@ -11,8 +11,8 @@ public class WolfPlushieBlock extends AbstractSittingPlushieBlock {
     private static final VoxelShape NORTH_SHAPE = Block.box(4.5D, 0.0D, 1.0D,
             11.5D, 11.5D, 14.5D);
 
-    public WolfPlushieBlock(BlockBehaviour.Properties settings) {
-        super(settings);
+    public WolfPlushieBlock(BlockBehaviour.Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
                 .setValue(FACING, Direction.NORTH).setValue(IS_SITTING, false));
     }

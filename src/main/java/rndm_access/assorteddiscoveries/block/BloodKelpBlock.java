@@ -85,7 +85,7 @@ public class BloodKelpBlock extends GrowingPlantHeadBlock implements LiquidBlock
         int age = Math.min(state.getValue(AGE) + 1, 25);
 
         if(this.canGrowInto(serverLevel.getBlockState(newStemPos))) {
-            serverLevel.setBlock(pos, this.growStemToPlant(state), 2);
+            serverLevel.setBlock(pos, this.growStemToPlant(state), Block.UPDATE_CLIENTS);
             serverLevel.setBlockAndUpdate(newStemPos, this.getStemState(random, age));
         }
     }

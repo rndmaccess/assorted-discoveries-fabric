@@ -21,8 +21,8 @@ public class SnowySlabBlock extends SoilSlabBlock {
     public static final MapCodec<SnowySlabBlock> CODEC = simpleCodec(SnowySlabBlock::new);
     public static final BooleanProperty SNOWY = BlockStateProperties.SNOWY;
 
-    public SnowySlabBlock(Properties settings) {
-        super(settings);
+    public SnowySlabBlock(Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(SNOWY, false)
                 .setValue(WATERLOGGED, false).setValue(TYPE, SlabType.BOTTOM));
     }

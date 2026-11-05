@@ -12,8 +12,8 @@ public class PhantomPlushieBlock extends AbstractSimplePlushieBlock {
     private static final VoxelShape NORTH_SHAPE = Block.box(2.5, 0.0, 0.0,
             13.5, 5.0, 14.0);
 
-    public PhantomPlushieBlock(Properties settings) {
-        super(settings);
+    public PhantomPlushieBlock(Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
                 .setValue(FACING, Direction.NORTH));
     }

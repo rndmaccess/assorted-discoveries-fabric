@@ -83,7 +83,7 @@ public class CubePlushieBlock extends AbstractPlushieBlock {
             BlockState placedState = state.setValue(HALF, DoubleBlockHalf.UPPER).setValue(STACK_SIZE, 3)
                     .setValue(WATERLOGGED, fluidState.is(Fluids.WATER));
 
-            level.setBlock(abovePos, placedState, 3);
+            level.setBlock(abovePos, placedState, Block.UPDATE_CLIENTS);
         }
     }
 
@@ -127,7 +127,7 @@ public class CubePlushieBlock extends AbstractPlushieBlock {
                         : Blocks.AIR.defaultBlockState();
 
                 // Replace the cube plush's lower half with either air or water.
-                level.setBlock(belowPos, newState, 3);
+                level.setBlock(belowPos, newState, Block.UPDATE_CLIENTS);
                 level.levelEvent(player, 2001, belowPos, Block.getId(belowState));
             }
         }

@@ -11,8 +11,8 @@ import net.minecraft.world.level.block.state.properties.SlabType;
 public class MyceliumSlabBlock extends SnowySlabBlock {
     public static final MapCodec<MyceliumSlabBlock> CODEC = simpleCodec(MyceliumSlabBlock::new);
 
-    public MyceliumSlabBlock(Properties settings) {
-        super(settings);
+    public MyceliumSlabBlock(Properties properties) {
+        super(properties);
     }
 
     public MapCodec<MyceliumSlabBlock> codec() {

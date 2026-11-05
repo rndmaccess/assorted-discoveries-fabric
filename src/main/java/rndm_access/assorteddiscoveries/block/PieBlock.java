@@ -30,8 +30,8 @@ public class PieBlock extends ModdedCakeBlock {
     private final int nutrition;
     private final float saturationMod;
 
-    public PieBlock(BlockBehaviour.Properties settings, int nutrition, float saturationMod) {
-        super(settings);
+    public PieBlock(BlockBehaviour.Properties properties, int nutrition, float saturationMod) {
+        super(properties);
         this.nutrition = nutrition;
         this.saturationMod = saturationMod;
     }

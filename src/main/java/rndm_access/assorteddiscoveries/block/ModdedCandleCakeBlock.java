@@ -50,8 +50,8 @@ public class ModdedCandleCakeBlock extends AbstractCandleBlock {
     private final Block cake;
     private final Block candle;
 
-    public ModdedCandleCakeBlock(Block cake, Block candle, Properties settings) {
-        super(settings);
+    public ModdedCandleCakeBlock(Block cake, Block candle, Properties properties) {
+        super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(LIT, false));
         this.cake = cake;
         this.candle = candle;

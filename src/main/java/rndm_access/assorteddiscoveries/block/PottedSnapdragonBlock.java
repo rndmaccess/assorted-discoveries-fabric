@@ -10,8 +10,8 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class PottedSnapdragonBlock extends FlowerPotBlock {
-    public PottedSnapdragonBlock(Block content, BlockBehaviour.Properties settings) {
-        super(content, settings);
+    public PottedSnapdragonBlock(Block content, BlockBehaviour.Properties properties) {
+        super(content, properties);
     }
 
     @Override

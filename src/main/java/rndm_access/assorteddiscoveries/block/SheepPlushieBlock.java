@@ -20,8 +20,8 @@ public class SheepPlushieBlock extends AbstractSimplePlushieBlock {
             12.0D, 12.0D, 14.0D);
     private final DyeColor color;
 
-    public SheepPlushieBlock(DyeColor color, BlockBehaviour.Properties settings) {
-        super(settings);
+    public SheepPlushieBlock(DyeColor color, BlockBehaviour.Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
                 .setValue(FACING, Direction.NORTH));
         this.color = color;

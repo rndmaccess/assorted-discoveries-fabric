@@ -22,8 +22,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class GrassSlabBlock extends SnowySlabBlock implements BonemealableBlock {
-    public GrassSlabBlock(Properties settings) {
-        super(settings);
+    public GrassSlabBlock(Properties properties) {
+        super(properties);
     }
 
     @Override

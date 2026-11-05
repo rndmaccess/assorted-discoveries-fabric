@@ -13,8 +13,8 @@ public class PiglinPlushieBlock extends AbstractSimplePlushieBlock {
     private static final VoxelShape NORTH_SHAPE = Block.box(2.0D, 0.0D, 3.5D,
             13.5D, 12.5D, 12.5D);
 
-    public PiglinPlushieBlock(BlockBehaviour.Properties settings) {
-        super(settings);
+    public PiglinPlushieBlock(BlockBehaviour.Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
                 .setValue(FACING, Direction.NORTH));
     }

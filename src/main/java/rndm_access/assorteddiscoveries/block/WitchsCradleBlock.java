@@ -28,8 +28,8 @@ public class WitchsCradleBlock extends AbstractBerryBushBlock {
     private static final VoxelShape GIANT_SHAPE = Block.box(0.0D, 0.0D, 0.0D,
             16.0D, 12.0D, 16.0D);
 
-    public WitchsCradleBlock(Properties settings) {
-        super(settings);
+    public WitchsCradleBlock(Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(AGE, 0));
     }
 
@@ -69,8 +69,7 @@ public class WitchsCradleBlock extends AbstractBerryBushBlock {
         double y = pos.getY() + random.nextDouble();
         double z = pos.getZ() + random.nextDouble();
 
-        world.addParticle(ModParticleTypes.WITCHS_CRADLE_SPORE, x, y, z, 0.0D,
-                0.0D, 0.0D);
+        world.addParticle(ModParticleTypes.WITCHS_CRADLE_SPORE, x, y, z, 0.0D, 0.0D, 0.0D);
     }
 
     @Override

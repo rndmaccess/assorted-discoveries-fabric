@@ -14,8 +14,8 @@ import net.minecraft.world.phys.Vec3;
 import rndm_access.assorteddiscoveries.core.ModSoundEvents;
 
 public class PurpleMushroomBlock extends HugeMushroomBlock {
-    public PurpleMushroomBlock(BlockBehaviour.Properties settings) {
-        super(settings);
+    public PurpleMushroomBlock(BlockBehaviour.Properties properties) {
+        super(properties);
     }
 
     @Override

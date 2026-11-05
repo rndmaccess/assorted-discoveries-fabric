@@ -29,8 +29,8 @@ public class PlanterBoxBlock extends Block {
     public static final BooleanProperty EAST = BlockStateProperties.EAST;
     private static final VoxelShape[] SHAPES = collectStateShapes();
 
-    public PlanterBoxBlock(BlockBehaviour.Properties settings) {
-        super(settings);
+    public PlanterBoxBlock(BlockBehaviour.Properties properties) {
+        super(properties);
         this.registerDefaultState(this.defaultBlockState()
                 .setValue(NORTH, false).setValue(SOUTH, false)
                 .setValue(WEST, false).setValue(EAST, false));

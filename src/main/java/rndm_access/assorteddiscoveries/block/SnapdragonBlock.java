@@ -14,8 +14,8 @@ import rndm_access.assorteddiscoveries.core.ModBlockTags;
 
 public class SnapdragonBlock extends FlowerBlock {
     public SnapdragonBlock(Holder<MobEffect> stewEffect, int effectDuration,
-                           BlockBehaviour.Properties settings) {
-        super(stewEffect, effectDuration, settings);
+                           BlockBehaviour.Properties properties) {
+        super(stewEffect, effectDuration, properties);
     }
 
     @Override

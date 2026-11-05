@@ -51,8 +51,8 @@ public class BloodKelpPlantBlock extends GrowingPlantBodyBlock implements Liquid
 
     @Override
     public BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess tickView,
-                                                BlockPos pos, Direction direction, BlockPos neighborPos,
-                                                BlockState neighborState, RandomSource random) {
+                                  BlockPos pos, Direction direction, BlockPos neighborPos,
+                                  BlockState neighborState, RandomSource random) {
         return super.updateShape(state, world, tickView, pos, direction, neighborPos,
                         neighborState, random).setValue(LIT, state.getValue(LIT));
     }

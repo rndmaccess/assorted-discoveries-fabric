@@ -25,8 +25,8 @@ public class RopeLadderBlock extends LadderBlock {
     public static final IntegerProperty LENGTH = ModBlockStateProperties.LENGTH;
     public static final BooleanProperty DOWN = BlockStateProperties.DOWN;
 
-    public RopeLadderBlock(BlockBehaviour.Properties settings) {
-        super(settings);
+    public RopeLadderBlock(BlockBehaviour.Properties properties) {
+        super(properties);
         this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH)
                 .setValue(WATERLOGGED, false).setValue(LENGTH, 0).setValue(DOWN, false));
     }

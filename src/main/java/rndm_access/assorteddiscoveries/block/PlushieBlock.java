@@ -19,18 +19,21 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 
-public abstract class AbstractPlushieBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
+public class PlushieBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
+    public static final MapCodec<PlushieBlock> CODEC = simpleCodec(PlushieBlock::new);
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    protected AbstractPlushieBlock(BlockBehaviour.Properties properties) {
+    protected PlushieBlock(BlockBehaviour.Properties properties) {
         super(properties);
     }
 
+    /**
+     * For custom constructors override this method and register the new block type.
+     */
     @Override
-    protected abstract MapCodec<? extends AbstractPlushieBlock> codec();
-
-    @Override
-    protected abstract void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder);
+    protected MapCodec<? extends PlushieBlock> codec() {
+        return CODEC;
+    }
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
@@ -60,5 +63,10 @@ public abstract class AbstractPlushieBlock extends HorizontalDirectionalBlock im
     @Override
     public FluidState getFluidState(BlockState state) {
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : Fluids.EMPTY.defaultFluidState();
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(WATERLOGGED, FACING);
     }
 }

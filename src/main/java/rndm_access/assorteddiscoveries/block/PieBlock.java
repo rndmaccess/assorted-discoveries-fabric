@@ -1,5 +1,8 @@
 package rndm_access.assorteddiscoveries.block;
 
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -17,6 +20,11 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class PieBlock extends ModdedCakeBlock {
+    public static final MapCodec<PieBlock> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
+            propertiesCodec(),
+            Codec.INT.fieldOf("nutrition").forGetter((block) -> block.nutrition),
+            Codec.FLOAT.fieldOf("saturation_mod").forGetter((block) -> block.saturationMod)
+    ).apply(instance, PieBlock::new));
     public static final IntegerProperty BITES = BlockStateProperties.BITES;
     private static final VoxelShape[] SHAPE_BY_BITE = new VoxelShape[] {
             Block.box(1.0D, 0.0D, 1.0D, 15.0D, 6.0D, 15.0D),
@@ -34,6 +42,11 @@ public class PieBlock extends ModdedCakeBlock {
         super(properties);
         this.nutrition = nutrition;
         this.saturationMod = saturationMod;
+    }
+
+    @Override
+    protected MapCodec<PieBlock> codec() {
+        return CODEC;
     }
 
     @Override

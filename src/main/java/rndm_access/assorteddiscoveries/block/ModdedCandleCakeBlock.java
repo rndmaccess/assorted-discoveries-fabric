@@ -39,7 +39,8 @@ public class ModdedCandleCakeBlock extends AbstractCandleBlock {
             = RecordCodecBuilder.mapCodec((instance) -> instance.group(
             BuiltInRegistries.BLOCK.byNameCodec().fieldOf("cake").forGetter((block) -> block.cake),
             BuiltInRegistries.BLOCK.byNameCodec().fieldOf("candle").forGetter((item) -> item.candle),
-            propertiesCodec()).apply(instance, ModdedCandleCakeBlock::new));
+            propertiesCodec()
+    ).apply(instance, ModdedCandleCakeBlock::new));
     public static final BooleanProperty LIT = AbstractCandleBlock.LIT;
     private static final VoxelShape CAKE_SHAPE = Block.box(1.0D, 0.0D, 1.0D,
             15.0D, 8.0D, 15.0D);
@@ -56,6 +57,11 @@ public class ModdedCandleCakeBlock extends AbstractCandleBlock {
         this.cake = cake;
         this.candle = candle;
         CANDLES_TO_CANDLE_CAKES.put(new BlockPair(cake, candle), this);
+    }
+
+    @Override
+    protected MapCodec<ModdedCandleCakeBlock> codec() {
+        return CODEC;
     }
 
     @Override
@@ -96,11 +102,6 @@ public class ModdedCandleCakeBlock extends AbstractCandleBlock {
 
     public static boolean containsCandleCake(Block cake, Block candle) {
         return CANDLES_TO_CANDLE_CAKES.containsKey(new BlockPair(cake, candle));
-    }
-
-    @Override
-    protected MapCodec<? extends AbstractCandleBlock> codec() {
-        return CODEC;
     }
 
     @Override

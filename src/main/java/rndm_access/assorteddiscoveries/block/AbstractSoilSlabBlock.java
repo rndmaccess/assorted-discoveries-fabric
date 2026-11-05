@@ -1,5 +1,6 @@
 package rndm_access.assorteddiscoveries.block;
 
+import com.mojang.serialization.MapCodec;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -20,10 +21,13 @@ import net.minecraft.world.level.lighting.LightEngine;
 import net.minecraft.world.phys.BlockHitResult;
 import rndm_access.assorteddiscoveries.core.ModBlocks;
 
-public class SoilSlabBlock  extends SlabBlock {
-    public SoilSlabBlock(Properties properties) {
+public abstract class AbstractSoilSlabBlock extends SlabBlock {
+    public AbstractSoilSlabBlock(Properties properties) {
         super(properties);
     }
+
+    @Override
+    public abstract MapCodec<? extends AbstractSoilSlabBlock> codec();
 
     public boolean isSnowCovered(BlockState state, BlockState neighborState) {
         boolean isSnowBlock = neighborState.is(BlockTags.SNOW);
@@ -111,7 +115,7 @@ public class SoilSlabBlock  extends SlabBlock {
             // We don't need to trigger a full world update here, so we just update clients. This improves performance!
             level.setBlock(pos, ModBlocks.DIRT_PATH_SLAB.defaultBlockState()
                     .setValue(SlabBlock.WATERLOGGED, state.getValue(SlabBlock.WATERLOGGED))
-                    .setValue(SlabBlock.TYPE, state.getValue(SlabBlock.TYPE)), SoilSlabBlock.UPDATE_CLIENTS);
+                    .setValue(SlabBlock.TYPE, state.getValue(SlabBlock.TYPE)), AbstractSoilSlabBlock.UPDATE_CLIENTS);
         }
         return level.isClientSide() ? InteractionResult.SUCCESS : InteractionResult.CONSUME;
     }

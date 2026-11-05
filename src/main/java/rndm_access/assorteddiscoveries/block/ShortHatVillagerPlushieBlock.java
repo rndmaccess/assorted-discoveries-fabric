@@ -1,15 +1,11 @@
 package rndm_access.assorteddiscoveries.block;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class ShortHatVillagerPlushieBlock extends AbstractSimplePlushieBlock {
-    public static final MapCodec<ShortHatVillagerPlushieBlock> CODEC = simpleCodec(ShortHatVillagerPlushieBlock::new);
+public class ShortHatVillagerPlushieBlock extends SimplePlushieBlock {
     private static final VoxelShape NORTH_SHAPE = Block.box(3.5D, 0.0D, 3.5D,
             13.0D, 13.5D, 13.0D);
 
@@ -20,17 +16,7 @@ public class ShortHatVillagerPlushieBlock extends AbstractSimplePlushieBlock {
     }
 
     @Override
-    protected MapCodec<ShortHatVillagerPlushieBlock> codec() {
-        return CODEC;
-    }
-
-    @Override
     protected VoxelShape getNorthShape() {
         return NORTH_SHAPE;
-    }
-
-    @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(WATERLOGGED, FACING);
     }
 }

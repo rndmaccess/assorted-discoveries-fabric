@@ -1,6 +1,5 @@
 package rndm_access.assorteddiscoveries.block;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -12,10 +11,10 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import rndm_access.assorteddiscoveries.block.state.ModBlockStateProperties;
 
-public abstract class AbstractSittingPlushieBlock extends AbstractSimplePlushieBlock {
+public abstract class SittingPlushieBlock extends SimplePlushieBlock {
     public static final BooleanProperty IS_SITTING = ModBlockStateProperties.IS_SITTING;
 
-    public AbstractSittingPlushieBlock(Properties properties) {
+    public SittingPlushieBlock(Properties properties) {
         super(properties);
     }
 
@@ -29,9 +28,6 @@ public abstract class AbstractSittingPlushieBlock extends AbstractSimplePlushieB
         }
         return level.isClientSide() ? InteractionResult.SUCCESS : InteractionResult.CONSUME;
     }
-
-    @Override
-    protected abstract MapCodec<? extends AbstractSittingPlushieBlock> codec();
 
     /**
      * To add additional states please call super.createBlockStateDefinition(builder) in the inheriting class

@@ -1,5 +1,6 @@
 package rndm_access.assorteddiscoveries.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
@@ -26,6 +27,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class ModdedCakeBlock extends Block {
+    public static final MapCodec<ModdedCakeBlock> CODEC = simpleCodec(ModdedCakeBlock::new);
     public static final IntegerProperty BITES = BlockStateProperties.BITES;
     private static final VoxelShape[] SHAPES = Block.boxes(6,
             (bite) -> Block.box(
@@ -39,6 +41,11 @@ public class ModdedCakeBlock extends Block {
 
     public ModdedCakeBlock(Properties properties) {
         super(properties);
+    }
+
+    @Override
+    protected MapCodec<? extends ModdedCakeBlock> codec() {
+        return CODEC;
     }
 
     @Override

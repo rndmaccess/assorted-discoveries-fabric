@@ -11,6 +11,7 @@ import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
+import net.fabricmc.fabric.api.registry.LandPathNodeTypesRegistry;
 import net.fabricmc.fabric.api.registry.VillagerInteractionRegistries;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
@@ -28,6 +29,7 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
@@ -39,6 +41,7 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import rndm_access.assorteddiscoveries.block.UnstrippedWoodenWallBlock;
 import rndm_access.assorteddiscoveries.config.BooleanEntriesS2CPayload;
 import rndm_access.assorteddiscoveries.config.ModConfig;
 import rndm_access.assorteddiscoveries.core.*;
@@ -64,6 +67,7 @@ public class AssortedDiscoveries implements ModInitializer {
         // General Registries
         ModParticleTypes.register();
         ModBlocks.register();
+        ModBlockTypes.register();
         ModItems.register();
         AssortedDiscoveries.addItemGroups();
         ModBlockEntityTypes.register();
@@ -72,6 +76,8 @@ public class AssortedDiscoveries implements ModInitializer {
         AssortedDiscoveries.registerCompostables();
         AssortedDiscoveries.modifyLootTables();
         AssortedDiscoveries.registerVillagerInteractions();
+        AssortedDiscoveries.registerStrippableWoodenWalls();
+        AssortedDiscoveries.registerLandPathNodeTypes();
 
         // World Generation Registries
         ModFeatures.register();
@@ -80,6 +86,28 @@ public class AssortedDiscoveries implements ModInitializer {
 
     public static Identifier makeModId(String path) {
         return Identifier.fromNamespaceAndPath(MOD_ID, path);
+    }
+
+    private static void registerLandPathNodeTypes() {
+        // Prevent entities from pathfinding through bushes!
+        LandPathNodeTypesRegistry.register(ModBlocks.CINDERSNAP_BERRY_BUSH, PathType.DAMAGE_CAUTIOUS, PathType.DAMAGE_CAUTIOUS);
+        LandPathNodeTypesRegistry.register(ModBlocks.FROSTBITE_BERRY_BUSH, PathType.DAMAGE_CAUTIOUS, PathType.DAMAGE_CAUTIOUS);
+        LandPathNodeTypesRegistry.register(ModBlocks.WITCHS_CRADLE, PathType.DAMAGE_CAUTIOUS, PathType.DAMAGE_CAUTIOUS);
+    }
+
+    private static void registerStrippableWoodenWalls() {
+        UnstrippedWoodenWallBlock.registerStrippableWall(ModBlocks.OAK_WALL, ModBlocks.STRIPPED_OAK_WALL);
+        UnstrippedWoodenWallBlock.registerStrippableWall(ModBlocks.SPRUCE_WALL, ModBlocks.STRIPPED_SPRUCE_WALL);
+        UnstrippedWoodenWallBlock.registerStrippableWall(ModBlocks.BIRCH_WALL, ModBlocks.STRIPPED_BIRCH_WALL);
+        UnstrippedWoodenWallBlock.registerStrippableWall(ModBlocks.JUNGLE_WALL, ModBlocks.STRIPPED_JUNGLE_WALL);
+        UnstrippedWoodenWallBlock.registerStrippableWall(ModBlocks.ACACIA_WALL, ModBlocks.STRIPPED_ACACIA_WALL);
+        UnstrippedWoodenWallBlock.registerStrippableWall(ModBlocks.DARK_OAK_WALL, ModBlocks.STRIPPED_DARK_OAK_WALL);
+        UnstrippedWoodenWallBlock.registerStrippableWall(ModBlocks.MANGROVE_WALL, ModBlocks.STRIPPED_MANGROVE_WALL);
+        UnstrippedWoodenWallBlock.registerStrippableWall(ModBlocks.CRIMSON_WALL, ModBlocks.STRIPPED_CRIMSON_WALL);
+        UnstrippedWoodenWallBlock.registerStrippableWall(ModBlocks.WARPED_WALL, ModBlocks.STRIPPED_WARPED_WALL);
+        UnstrippedWoodenWallBlock.registerStrippableWall(ModBlocks.CHERRY_WALL, ModBlocks.STRIPPED_CHERRY_WALL);
+        UnstrippedWoodenWallBlock.registerStrippableWall(ModBlocks.BAMBOO_WALL, ModBlocks.STRIPPED_BAMBOO_WALL);
+        UnstrippedWoodenWallBlock.registerStrippableWall(ModBlocks.PALE_OAK_WALL, ModBlocks.STRIPPED_PALE_OAK_WALL);
     }
 
     private static void registerConfigEvents() {

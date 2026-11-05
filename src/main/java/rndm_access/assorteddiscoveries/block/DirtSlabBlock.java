@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import rndm_access.assorteddiscoveries.core.CommonBlockTags;
 import rndm_access.assorteddiscoveries.core.ModBlocks;
 
-public class DirtSlabBlock extends SoilSlabBlock implements BonemealableBlock {
+public class DirtSlabBlock extends AbstractSoilSlabBlock implements BonemealableBlock {
     public static final MapCodec<DirtSlabBlock> CODEC = simpleCodec(DirtSlabBlock::new);
 
     public DirtSlabBlock(Properties settings) {

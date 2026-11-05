@@ -1,12 +1,10 @@
 package rndm_access.assorteddiscoveries.block;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class CatPlushieBlock extends AbstractSittingPlushieBlock {
-    public static final MapCodec<CatPlushieBlock> CODEC = simpleCodec(CatPlushieBlock::new);
+public class CatPlushieBlock extends SittingPlushieBlock {
     private static final VoxelShape NORTH_SHAPE = Block.box(4.5D, 0.0D, 1.0D,
             11.5D, 9.5D, 14.5D);
 
@@ -14,11 +12,6 @@ public class CatPlushieBlock extends AbstractSittingPlushieBlock {
         super(settings);
         this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
                 .setValue(FACING, Direction.NORTH).setValue(IS_SITTING, false));
-    }
-
-    @Override
-    protected MapCodec<CatPlushieBlock> codec() {
-        return CODEC;
     }
 
     @Override

@@ -2,7 +2,6 @@ package rndm_access.assorteddiscoveries.core;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
-import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -1491,7 +1490,7 @@ public final class ModBlocks {
         return register(id, Block::new, settings);
     }
 
-    private static Block registerDyedCampfire(final ResourceKey<Block> id, ParticleOptions emberParticle) {
+    private static Block registerDyedCampfire(final ResourceKey<Block> id, SimpleParticleType emberParticle) {
         return register(id, (props) -> new DyedCampfireBlock(props, emberParticle),
                 BlockBehaviour.Properties.ofFullCopy(Blocks.CAMPFIRE));
     }

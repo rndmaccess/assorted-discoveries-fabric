@@ -1,5 +1,6 @@
 package rndm_access.assorteddiscoveries.block;
 
+import com.mojang.serialization.MapCodec;
 import org.jetbrains.annotations.Nullable;
 import rndm_access.assorteddiscoveries.util.ShapeHelper;
 
@@ -23,6 +24,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class PlanterBoxBlock extends Block {
+    public static final MapCodec<PlanterBoxBlock> CODEC = simpleCodec(PlanterBoxBlock::new);
     public static final BooleanProperty NORTH = BlockStateProperties.NORTH;
     public static final BooleanProperty SOUTH = BlockStateProperties.SOUTH;
     public static final BooleanProperty WEST = BlockStateProperties.WEST;
@@ -34,6 +36,11 @@ public class PlanterBoxBlock extends Block {
         this.registerDefaultState(this.defaultBlockState()
                 .setValue(NORTH, false).setValue(SOUTH, false)
                 .setValue(WEST, false).setValue(EAST, false));
+    }
+
+    @Override
+    protected MapCodec<PlanterBoxBlock> codec() {
+        return CODEC;
     }
 
     /**

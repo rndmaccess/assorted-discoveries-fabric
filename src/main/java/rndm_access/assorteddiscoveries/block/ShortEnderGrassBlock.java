@@ -24,7 +24,7 @@ public class ShortEnderGrassBlock extends VegetationBlock {
     }
 
     @Override
-    protected MapCodec<? extends VegetationBlock> codec() {
+    protected MapCodec<ShortEnderGrassBlock> codec() {
         return CODEC;
     }
 

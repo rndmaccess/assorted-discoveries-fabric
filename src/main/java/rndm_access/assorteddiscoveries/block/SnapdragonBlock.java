@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import rndm_access.assorteddiscoveries.core.ModBlockTags;
 
 public class SnapdragonBlock extends FlowerBlock {
-    public SnapdragonBlock(Holder<MobEffect> stewEffect, int effectDuration,
+    public SnapdragonBlock(Holder<MobEffect> stewEffect, float effectDuration,
                            BlockBehaviour.Properties properties) {
         super(stewEffect, effectDuration, properties);
     }

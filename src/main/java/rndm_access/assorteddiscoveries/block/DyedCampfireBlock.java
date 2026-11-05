@@ -1,7 +1,7 @@
 package rndm_access.assorteddiscoveries.block;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -22,9 +22,9 @@ import rndm_access.assorteddiscoveries.block_entity.DyedCampfireBlockEntity;
 import rndm_access.assorteddiscoveries.core.ModBlockEntityTypes;
 
 public class DyedCampfireBlock extends CampfireBlock {
-    private final ParticleOptions emberParticle;
+    private final SimpleParticleType emberParticle;
 
-    public DyedCampfireBlock(BlockBehaviour.Properties settings, ParticleOptions sparkParticle) {
+    public DyedCampfireBlock(BlockBehaviour.Properties settings, SimpleParticleType sparkParticle) {
         super(false, 1, settings);
         this.emberParticle = sparkParticle;
     }

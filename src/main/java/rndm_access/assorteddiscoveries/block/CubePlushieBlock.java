@@ -1,6 +1,5 @@
 package rndm_access.assorteddiscoveries.block;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
@@ -32,8 +31,7 @@ import rndm_access.assorteddiscoveries.util.ShapeHelper;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class CubePlushieBlock extends AbstractPlushieBlock {
-    public static final MapCodec<CubePlushieBlock> CODEC = simpleCodec(CubePlushieBlock::new);
+public class CubePlushieBlock extends PlushieBlock {
     public static final IntegerProperty STACK_SIZE = ModBlockStateProperties.STACK_SIZE;
     public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
     private static final VoxelShape NORTH_BOTTOM_SHAPE = Block.box(2.5D, 0.0D, 2.5D,
@@ -52,11 +50,6 @@ public class CubePlushieBlock extends AbstractPlushieBlock {
         super(settings);
         this.registerDefaultState(this.getStateDefinition().any().setValue(HALF, DoubleBlockHalf.LOWER)
                 .setValue(STACK_SIZE, 1).setValue(WATERLOGGED, false).setValue(FACING, Direction.NORTH));
-    }
-
-    @Override
-    protected MapCodec<CubePlushieBlock> codec() {
-        return CODEC;
     }
 
     @Override
@@ -148,11 +141,6 @@ public class CubePlushieBlock extends AbstractPlushieBlock {
         };
     }
 
-    @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(STACK_SIZE, HALF, WATERLOGGED, FACING);
-    }
-
     private boolean isCubePlush(BlockPlaceContext context) {
         return context.getItemInHand().is(this.asItem());
     }
@@ -183,5 +171,10 @@ public class CubePlushieBlock extends AbstractPlushieBlock {
 
     private int getNextStackSize(BlockState state) {
         return Math.min(3, state.getValue(STACK_SIZE) + 1);
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(STACK_SIZE, HALF, WATERLOGGED, FACING);
     }
 }

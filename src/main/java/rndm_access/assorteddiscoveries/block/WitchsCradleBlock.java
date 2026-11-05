@@ -74,8 +74,8 @@ public class WitchsCradleBlock extends AbstractBerryBushBlock {
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos,
-                                      CollisionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos,
+                               CollisionContext context) {
         return switch (state.getValue(AGE)) {
             case 0 -> SMALL_SHAPE;
             case 1 -> MEDIUM_SHAPE;

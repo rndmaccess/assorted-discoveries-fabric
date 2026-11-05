@@ -64,12 +64,12 @@ public abstract class AbstractBerryBushBlock extends VegetationBlock implements 
     protected abstract boolean needsLightToGrow();
 
     @Override
-    public ItemStack getCloneItemStack(LevelReader world, BlockPos pos, BlockState state, boolean includeData) {
+    public ItemStack getCloneItemStack(LevelReader levelReader, BlockPos pos, BlockState state, boolean includeData) {
         return new ItemStack(this.berryItem());
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext context) {
         if (state.getValue(AGE) == 0) {
             return SMALL_SHAPE;
         } else {
@@ -83,13 +83,13 @@ public abstract class AbstractBerryBushBlock extends VegetationBlock implements 
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+    public void randomTick(BlockState state, ServerLevel serverLevel, BlockPos pos, RandomSource random) {
         int age = state.getValue(AGE);
 
-        if(!this.needsLightToGrow() || random.nextInt(5) == 0 && this.hasLight(world, pos)) {
+        if(!this.needsLightToGrow() || random.nextInt(5) == 0 && this.hasLight(serverLevel, pos)) {
             BlockState blockState = state.setValue(AGE, age + 1);
-            world.setBlock(pos, blockState, 2);
-            world.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(blockState));
+            serverLevel.setBlock(pos, blockState, 2);
+            serverLevel.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(blockState));
         }
     }
 
@@ -102,7 +102,7 @@ public abstract class AbstractBerryBushBlock extends VegetationBlock implements 
 
         entity.makeStuckInBlock(state, new Vec3(0.8D, 0.75D, 0.8D));
 
-        if (this.bushDamages() && level instanceof ServerLevel serverWorld && state.getValue(AGE) > 0) {
+        if (this.bushDamages() && level instanceof ServerLevel serverLevel && state.getValue(AGE) > 0) {
             Vec3 vec3d = entity.isClientAuthoritative() ? entity.getKnownMovement() : entity.oldPosition().subtract(entity.position());
 
             if (vec3d.horizontalDistanceSqr() > 0.0) {
@@ -113,25 +113,25 @@ public abstract class AbstractBerryBushBlock extends VegetationBlock implements 
                 if (d >= minMovementForDamage || e >= minMovementForDamage) {
                     DamageSource sweet_berry_damage_source = level.damageSources().sweetBerryBush();
 
-                    entity.hurtServer(serverWorld, sweet_berry_damage_source, 1.0F);
+                    entity.hurtServer(serverLevel, sweet_berry_damage_source, 1.0F);
                 }
             }
         }
     }
 
     @Override
-    protected InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
         InteractionHand hand = player.getUsedItemHand();
         boolean isHoldingBoneMeal = player.getItemInHand(hand).is(Items.BONE_MEAL);
         int age = state.getValue(AGE);
 
         if (this.isMaxAge(age) || age > 1 && !isHoldingBoneMeal) {
-            ItemStack berryStack = new ItemStack(this.berryItem(), this.getBushBerryAmount(world, age));
+            ItemStack berryStack = new ItemStack(this.berryItem(), this.getBushBerryAmount(level, age));
 
-            popResource(world, pos, berryStack);
-            world.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS,
-                    1.0F, 0.8F + world.random.nextFloat() * 0.4F);
-            world.setBlock(pos, state.setValue(AGE, 1), 2);
+            popResource(level, pos, berryStack);
+            level.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS,
+                    1.0F, 0.8F + level.random.nextFloat() * 0.4F);
+            level.setBlock(pos, state.setValue(AGE, 1), Block.UPDATE_CLIENTS);
             return InteractionResult.SUCCESS;
         }
         return InteractionResult.PASS;
@@ -149,7 +149,7 @@ public abstract class AbstractBerryBushBlock extends VegetationBlock implements 
 
     public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
         int i = Math.min(this.getMaxAge(), state.getValue(AGE) + 1);
-        world.setBlock(pos, state.setValue(AGE, i), 2);
+        world.setBlock(pos, state.setValue(AGE, i), Block.UPDATE_CLIENTS);
     }
 
     private boolean isMaxAge(int age) {

@@ -59,11 +59,8 @@ public class DirtPathSlabBlock extends SlabBlock {
 
     static {
         SHAPE = new HashMap<>();
-        SHAPE.put(SlabType.DOUBLE, Block.box(0.0, 0.0, 0.0, 16.0, 15.0,
-                16.0));
-        SHAPE.put(SlabType.BOTTOM, Block.box(0.0, 0.0, 0.0, 16.0, 7.0,
-                16.0));
-        SHAPE.put(SlabType.TOP, Block.box(0.0, 8.0, 0.0, 16.0, 15.0,
-                16.0));
+        SHAPE.put(SlabType.DOUBLE, Block.box(0.0, 0.0, 0.0, 16.0, 15.0, 16.0));
+        SHAPE.put(SlabType.BOTTOM, Block.box(0.0, 0.0, 0.0, 16.0, 7.0, 16.0));
+        SHAPE.put(SlabType.TOP, Block.box(0.0, 8.0, 0.0, 16.0, 15.0, 16.0));
     }
 }

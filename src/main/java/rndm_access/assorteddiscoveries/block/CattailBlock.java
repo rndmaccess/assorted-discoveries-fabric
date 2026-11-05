@@ -5,7 +5,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -70,7 +69,7 @@ public class CattailBlock extends DoublePlantBlock implements BonemealableBlock 
                     : Blocks.AIR.defaultBlockState();
 
             dropResources(bottomState, world, bottomHalfPos, null, player, player.getMainHandItem());
-            world.setBlock(bottomHalfPos, newState, 3);
+            world.setBlock(bottomHalfPos, newState, Block.UPDATE_CLIENTS);
             world.levelEvent(player, 2001, bottomHalfPos, Block.getId(bottomState));
         }
         return super.playerWillDestroy(world, pos, state, player);
@@ -108,24 +107,24 @@ public class CattailBlock extends DoublePlantBlock implements BonemealableBlock 
     }
 
     @Override
-    public BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess tickView,
-                                                BlockPos pos, Direction direction, BlockPos neighborPos,
-                                                BlockState neighborState, RandomSource random) {
+    public BlockState updateShape(BlockState state, LevelReader levelReader, ScheduledTickAccess tickView,
+                                  BlockPos pos, Direction direction, BlockPos neighborPos,
+                                  BlockState neighborState, RandomSource random) {
         if (state.getValue(WATERLOGGED)) {
-            tickView.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
+            tickView.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(levelReader));
         }
 
-        if(this.canStay(state, neighborState, direction, world, pos)) {
+        if(this.canStay(state, neighborState, direction, levelReader, pos)) {
             return state;
         }
         return Blocks.AIR.defaultBlockState();
     }
 
     private boolean canStay(BlockState state, BlockState neighborState, Direction direction,
-                            LevelReader world, BlockPos pos) {
+                            LevelReader levelReader, BlockPos pos) {
         boolean isUpperHalf = state.getValue(HALF) == DoubleBlockHalf.UPPER;
         boolean isLowerHalf = state.getValue(HALF) == DoubleBlockHalf.LOWER;
-        boolean hasRootsInWater = world.isWaterAt(pos);
+        boolean hasRootsInWater = levelReader.isWaterAt(pos);
 
         // Break the other half when the bottom is broken.
         // We don't check the top here so tall plants can be replaced!
@@ -133,11 +132,11 @@ public class CattailBlock extends DoublePlantBlock implements BonemealableBlock 
             return neighborState.is(state.getBlock());
         } else {
             BlockPos soilPos = pos.below();
-            BlockState soilState = world.getBlockState(soilPos);
+            BlockState soilState = levelReader.getBlockState(soilPos);
 
             if(isLowerHalf) {
-                return mayPlaceOn(soilState, world, soilPos) && isWaterAdjacent(world, soilPos)
-                        || mayPlaceOn(soilState, world, soilPos) && hasRootsInWater;
+                return mayPlaceOn(soilState, levelReader, soilPos) && isWaterAdjacent(levelReader, soilPos)
+                        || mayPlaceOn(soilState, levelReader, soilPos) && hasRootsInWater;
             }
             return true;
         }

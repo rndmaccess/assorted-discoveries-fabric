@@ -47,8 +47,8 @@ public class BloodKelpBlock extends GrowingPlantHeadBlock implements LiquidBlock
 
     @Override
     public BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess tickView,
-                                                BlockPos pos, Direction direction, BlockPos neighborPos,
-                                                BlockState neighborState, RandomSource random) {
+                                  BlockPos pos, Direction direction, BlockPos neighborPos,
+                                  BlockState neighborState, RandomSource random) {
         return super.updateShape(state, world, tickView, pos, direction, neighborPos,
                         neighborState, random).setValue(LIT, state.getValue(LIT));
     }
@@ -69,8 +69,8 @@ public class BloodKelpBlock extends GrowingPlantHeadBlock implements LiquidBlock
         int age = state.getValue(AGE);
 
         if (age < 25 && this.canGrowInto(world.getBlockState(newStemPos))) {
-            world.setBlock(pos, this.growStemToPlant(state), 2);
-            world.setBlockAndUpdate(newStemPos, this.getStemState(random, age).cycle(AGE));
+            world.setBlock(pos, this.growStemToPlant(state), Block.UPDATE_CLIENTS);
+            world.setBlock(newStemPos, this.getStemState(random, age).cycle(AGE), Block.UPDATE_CLIENTS);
         }
     }
 
@@ -80,13 +80,13 @@ public class BloodKelpBlock extends GrowingPlantHeadBlock implements LiquidBlock
     }
 
     @Override
-    public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
+    public void performBonemeal(ServerLevel serverLevel, RandomSource random, BlockPos pos, BlockState state) {
         BlockPos newStemPos = pos.mutable().relative(this.growthDirection);
         int age = Math.min(state.getValue(AGE) + 1, 25);
 
-        if(this.canGrowInto(world.getBlockState(newStemPos))) {
-            world.setBlock(pos, this.growStemToPlant(state), 2);
-            world.setBlockAndUpdate(newStemPos, this.getStemState(random, age));
+        if(this.canGrowInto(serverLevel.getBlockState(newStemPos))) {
+            serverLevel.setBlock(pos, this.growStemToPlant(state), 2);
+            serverLevel.setBlockAndUpdate(newStemPos, this.getStemState(random, age));
         }
     }
 

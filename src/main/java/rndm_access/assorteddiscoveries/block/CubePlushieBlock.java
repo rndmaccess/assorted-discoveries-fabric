@@ -63,8 +63,8 @@ public class CubePlushieBlock extends AbstractPlushieBlock {
     @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         BlockPos pos = context.getClickedPos();
-        Level world = context.getLevel();
-        BlockState state = world.getBlockState(pos);
+        Level level = context.getLevel();
+        BlockState state = level.getBlockState(pos);
 
         if (this.isCubePlush(state)) {
             return state.setValue(STACK_SIZE, this.getNextStackSize(state));
@@ -73,17 +73,17 @@ public class CubePlushieBlock extends AbstractPlushieBlock {
     }
 
     @Override
-    public void setPlacedBy(Level world, BlockPos pos, BlockState state,
+    public void setPlacedBy(Level level, BlockPos pos, BlockState state,
                             @Nullable LivingEntity placer, ItemStack itemStack) {
         BlockPos abovePos = pos.above();
-        FluidState fluidState = world.getFluidState(abovePos);
+        FluidState fluidState = level.getFluidState(abovePos);
 
         // Top off the stack with the final cube plush.
-        if (this.isTripleStacked(state)) {
+        if (!level.isClientSide() && this.isTripleStacked(state)) {
             BlockState placedState = state.setValue(HALF, DoubleBlockHalf.UPPER).setValue(STACK_SIZE, 3)
                     .setValue(WATERLOGGED, fluidState.is(Fluids.WATER));
 
-            world.setBlock(abovePos, placedState, 3);
+            level.setBlock(abovePos, placedState, 3);
         }
     }
 
@@ -116,22 +116,22 @@ public class CubePlushieBlock extends AbstractPlushieBlock {
         }
     }
 
-    public BlockState playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
+    public BlockState playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
         // Prevents items from being dropped when breaking a 3-tier plush in creative.
-        if ((!world.isClientSide() && (player.isCreative() || !player.hasCorrectToolForDrops(state)))
+        if ((!level.isClientSide() && (player.isCreative() || !player.hasCorrectToolForDrops(state)))
                 && this.isUpperHalf(state)) {
             BlockPos belowPos = pos.below();
-            BlockState belowState = world.getBlockState(belowPos);
+            BlockState belowState = level.getBlockState(belowPos);
             if (this.isCubePlush(belowState) && this.isLowerHalf(belowState)) {
                 BlockState newState = belowState.getValue(WATERLOGGED) ? Blocks.WATER.defaultBlockState()
                         : Blocks.AIR.defaultBlockState();
 
                 // Replace the cube plush's lower half with either air or water.
-                world.setBlock(belowPos, newState, 3);
-                world.levelEvent(player, 2001, belowPos, Block.getId(belowState));
+                level.setBlock(belowPos, newState, 3);
+                level.levelEvent(player, 2001, belowPos, Block.getId(belowState));
             }
         }
-        return super.playerWillDestroy(world, pos, state, player);
+        return super.playerWillDestroy(level, pos, state, player);
     }
 
     @Override

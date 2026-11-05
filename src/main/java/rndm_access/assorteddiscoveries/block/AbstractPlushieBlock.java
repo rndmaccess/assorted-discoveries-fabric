@@ -22,8 +22,8 @@ import net.minecraft.world.level.material.Fluids;
 public abstract class AbstractPlushieBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    protected AbstractPlushieBlock(BlockBehaviour.Properties settings) {
-        super(settings);
+    protected AbstractPlushieBlock(BlockBehaviour.Properties properties) {
+        super(properties);
     }
 
     @Override

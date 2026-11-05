@@ -33,14 +33,14 @@ public class RopeLadderBlock extends LadderBlock {
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        Level world = context.getLevel();
+        Level level = context.getLevel();
         BlockPos pos = context.getClickedPos();
-        FluidState fluidState = world.getFluidState(pos);
+        FluidState fluidState = level.getFluidState(pos);
         BlockState placedState = this.defaultBlockState().setValue(WATERLOGGED, this.isWaterSource(fluidState))
-                .setValue(DOWN, this.isEnd(world, pos));
+                .setValue(DOWN, this.isEnd(level, pos));
 
-        if (this.hasSupport(world, pos)) {
-            return this.placeHangingLadder(world, pos, placedState);
+        if (this.hasSupport(level, pos)) {
+            return this.placeHangingLadder(level, pos, placedState);
         } else {
             return this.placeLadder(context, placedState);
         }
@@ -71,8 +71,8 @@ public class RopeLadderBlock extends LadderBlock {
 
     @Override
     public BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess tickView,
-                                                BlockPos pos, Direction direction, BlockPos neighborPos,
-                                                BlockState neighborState, RandomSource random) {
+                                  BlockPos pos, Direction direction, BlockPos neighborPos,
+                                  BlockState neighborState, RandomSource random) {
         Direction facing = state.getValue(FACING);
         BlockState stateAbove = world.getBlockState(pos.above());
 

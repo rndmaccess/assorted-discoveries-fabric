@@ -8,29 +8,24 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 
-public abstract class AbstractPlushieBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
+public abstract class PlushieBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    protected AbstractPlushieBlock(BlockBehaviour.Properties properties) {
+    protected PlushieBlock(BlockBehaviour.Properties properties) {
         super(properties);
     }
 
     @Override
-    protected abstract MapCodec<? extends AbstractPlushieBlock> codec();
-
-    @Override
-    protected abstract void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder);
+    protected abstract MapCodec<? extends PlushieBlock> codec();
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {

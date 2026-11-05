@@ -32,7 +32,7 @@ import rndm_access.assorteddiscoveries.util.ShapeHelper;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class CubePlushieBlock extends AbstractPlushieBlock {
+public class CubePlushieBlock extends PlushieBlock {
     public static final MapCodec<CubePlushieBlock> CODEC = simpleCodec(CubePlushieBlock::new);
     public static final IntegerProperty STACK_SIZE = ModBlockStateProperties.STACK_SIZE;
     public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
@@ -116,6 +116,7 @@ public class CubePlushieBlock extends AbstractPlushieBlock {
         }
     }
 
+    @Override
     public BlockState playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
         // Prevents items from being dropped when breaking a 3-tier plush in creative.
         if ((!level.isClientSide() && (player.isCreative() || !player.hasCorrectToolForDrops(state)))
@@ -148,11 +149,6 @@ public class CubePlushieBlock extends AbstractPlushieBlock {
         };
     }
 
-    @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(STACK_SIZE, HALF, WATERLOGGED, FACING);
-    }
-
     private boolean isCubePlush(BlockPlaceContext context) {
         return context.getItemInHand().is(this.asItem());
     }
@@ -183,5 +179,10 @@ public class CubePlushieBlock extends AbstractPlushieBlock {
 
     private int getNextStackSize(BlockState state) {
         return Math.min(3, state.getValue(STACK_SIZE) + 1);
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(STACK_SIZE, HALF, WATERLOGGED, FACING);
     }
 }

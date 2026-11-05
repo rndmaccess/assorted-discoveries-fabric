@@ -63,6 +63,7 @@ public class AssortedDiscoveries implements ModInitializer {
         // General Registries
         ModParticleTypes.register();
         ModBlocks.register();
+        ModBlockTypes.register();
         ModItems.register();
         AssortedDiscoveries.modifyCreativeTabs();
         ModBlockEntityTypes.register();

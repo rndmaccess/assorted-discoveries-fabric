@@ -1,6 +1,5 @@
 package rndm_access.assorteddiscoveries.block;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -19,18 +18,12 @@ import org.jspecify.annotations.NonNull;
 import rndm_access.assorteddiscoveries.core.ModBlocks;
 
 public class SnowySlabBlock extends SoilSlabBlock {
-    public static final MapCodec<SnowySlabBlock> CODEC = simpleCodec(SnowySlabBlock::new);
     public static final BooleanProperty SNOWY = BlockStateProperties.SNOWY;
 
     public SnowySlabBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(SNOWY, false)
                 .setValue(WATERLOGGED, false).setValue(TYPE, SlabType.BOTTOM));
-    }
-
-    @Override
-    public MapCodec<? extends SnowySlabBlock> codec() {
-        return CODEC;
     }
 
     @Override

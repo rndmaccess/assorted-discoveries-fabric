@@ -3,7 +3,8 @@ package rndm_access.assorteddiscoveries.block;
 import org.jetbrains.annotations.Nullable;
 import rndm_access.assorteddiscoveries.util.ShapeHelper;
 
-import java.util.List;
+import java.util.EnumMap;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
@@ -61,7 +62,7 @@ public class PlanterBoxBlock extends Block {
     private static VoxelShape[] collectStateShapes() {
         VoxelShape bottomShape = Block.box(0.0, 0.0, 0.0, 16.0, 15.0, 16.0);
         VoxelShape northBorderShape = Block.box(0.0, 15.0, 13.0, 16.0, 16.0, 16.0);
-        List<VoxelShape> borderShapes = ShapeHelper.makeShapeRotList(northBorderShape);
+        EnumMap<Direction, VoxelShape> borderShapes = ShapeHelper.makeShapeRotMap(northBorderShape);
         VoxelShape[] shapes = new VoxelShape[16]; // 2 to the power of 4 states.
         int borderNum = 4;
         int stateNum = 1 << borderNum;
@@ -75,11 +76,11 @@ public class PlanterBoxBlock extends Block {
             boolean west =  (i & 4) == 0;
             boolean east =  (i & 8) == 0;
 
-            // Add the borders for this state.
-            if (south) tempBorderShape = Shapes.or(tempBorderShape, borderShapes.get(0)); // South border
-            if (north) tempBorderShape = Shapes.or(tempBorderShape, borderShapes.get(1)); // North border
-            if (east)  tempBorderShape = Shapes.or(tempBorderShape, borderShapes.get(2)); // East border
-            if (west)  tempBorderShape = Shapes.or(tempBorderShape, borderShapes.get(3)); // West border
+            // Add the borders for this state. The directions are reversed on purpose. Because that's how the borders line up.
+            if (south) tempBorderShape = Shapes.or(tempBorderShape, borderShapes.get(Direction.NORTH)); // South border
+            if (north) tempBorderShape = Shapes.or(tempBorderShape, borderShapes.get(Direction.SOUTH)); // North border
+            if (east)  tempBorderShape = Shapes.or(tempBorderShape, borderShapes.get(Direction.WEST)); // East border
+            if (west)  tempBorderShape = Shapes.or(tempBorderShape, borderShapes.get(Direction.EAST)); // West border
 
             shapes[i] = Shapes.or(tempBorderShape, bottomShape);
         }

@@ -7,8 +7,8 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.BonemealSource;
 import net.minecraft.world.level.block.state.BlockState;
 
-public abstract class AbstractNetherBerryBushBlock extends AbstractBerryBushBlock {
-    public AbstractNetherBerryBushBlock(Properties properties) {
+public abstract class NetherBerryBushBlock extends BerryBushBlock {
+    protected NetherBerryBushBlock(Properties properties) {
         super(properties);
     }
 

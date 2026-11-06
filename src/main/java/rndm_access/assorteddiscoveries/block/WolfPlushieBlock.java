@@ -5,7 +5,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class WolfPlushieBlock extends AbstractSittingPlushieBlock {
+public class WolfPlushieBlock extends SittingPlushieBlock {
     private static final VoxelShape NORTH_SHAPE = Block.box(4.5D, 0.0D, 1.0D,
             11.5D, 11.5D, 14.5D);
 

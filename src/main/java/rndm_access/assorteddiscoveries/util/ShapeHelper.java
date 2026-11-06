@@ -1,8 +1,7 @@
 package rndm_access.assorteddiscoveries.util;
 
-import com.google.common.collect.ImmutableList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.EnumMap;
+
 import net.minecraft.core.Direction;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -11,32 +10,20 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public final class ShapeHelper {
     private ShapeHelper() {}
 
-    public static HashMap<Direction, VoxelShape> makeShapeRotMap(VoxelShape... northShapes) {
-        HashMap<Direction, VoxelShape> shapes = new HashMap<>();
-        VoxelShape northShape = combineShapes(northShapes);
-
-        for(Direction direction : Direction.values()) {
-            if(direction.getAxis().isHorizontal()) {
-                shapes.put(direction, rotate(northShape, direction));
-            }
-        }
-        return shapes;
-    }
-
     /**
      * @param northShapes The north shape to rotate.
      * @return A list of rotated shapes using the order: north, south, west, east.
      */
-    public static List<VoxelShape> makeShapeRotList(VoxelShape... northShapes) {
-        ImmutableList.Builder<VoxelShape> builder = ImmutableList.builder();
+    public static EnumMap<Direction, VoxelShape> makeShapeRotMap(VoxelShape... northShapes) {
+        EnumMap<Direction, VoxelShape> map = new EnumMap<>(Direction.class);
         VoxelShape northShape = combineShapes(northShapes);
 
         for(Direction direction : Direction.values()) {
             if(direction.getAxis().isHorizontal()) {
-                builder.add(rotate(northShape, direction));
+                map.put(direction, rotate(northShape, direction));
             }
         }
-        return builder.build();
+        return map;
     }
 
     private static VoxelShape combineShapes(VoxelShape... northShapes) {

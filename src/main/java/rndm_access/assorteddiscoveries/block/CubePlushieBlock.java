@@ -28,10 +28,10 @@ import org.jetbrains.annotations.Nullable;
 import rndm_access.assorteddiscoveries.block.state.ModBlockStateProperties;
 import rndm_access.assorteddiscoveries.util.ShapeHelper;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Objects;
 
-public class CubePlushieBlock extends AbstractPlushieBlock {
+public class CubePlushieBlock extends PlushieBlock {
     public static final IntegerProperty STACK_SIZE = ModBlockStateProperties.STACK_SIZE;
     public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
     private static final VoxelShape NORTH_BOTTOM_SHAPE = Block.box(2.5D, 0.0D, 2.5D,
@@ -40,11 +40,11 @@ public class CubePlushieBlock extends AbstractPlushieBlock {
             12.5D, 16.5D, 12.5D);
     private static final VoxelShape NORTH_TOP_SHAPE = Block.box(5.5D, 0.0D, 5.5D,
             10.5D, 4.5D, 10.5D);
-    private static final HashMap<Direction, VoxelShape> BOTTOM_SHAPES
+    private static final EnumMap<Direction, VoxelShape> BOTTOM_SHAPES
             = ShapeHelper.makeShapeRotMap(NORTH_BOTTOM_SHAPE);
-    private static final HashMap<Direction, VoxelShape> MIDDLE_SHAPES
+    private static final EnumMap<Direction, VoxelShape> MIDDLE_SHAPES
             = ShapeHelper.makeShapeRotMap(NORTH_BOTTOM_SHAPE, NORTH_MIDDLE_SHAPE);
-    private static final HashMap<Direction, VoxelShape> TOP_SHAPES = ShapeHelper.makeShapeRotMap(NORTH_TOP_SHAPE);
+    private static final EnumMap<Direction, VoxelShape> TOP_SHAPES = ShapeHelper.makeShapeRotMap(NORTH_TOP_SHAPE);
 
     public CubePlushieBlock(BlockBehaviour.Properties properties) {
         super(properties);
@@ -109,6 +109,7 @@ public class CubePlushieBlock extends AbstractPlushieBlock {
         }
     }
 
+    @Override
     public BlockState playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
         // Prevents items from being dropped when breaking a 3-tier plush in creative.
         if ((!level.isClientSide() && (player.isCreative() || !player.hasCorrectToolForDrops(state)))
@@ -141,11 +142,6 @@ public class CubePlushieBlock extends AbstractPlushieBlock {
         };
     }
 
-    @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(STACK_SIZE, HALF, WATERLOGGED, FACING);
-    }
-
     private boolean isCubePlush(BlockPlaceContext context) {
         return context.getItemInHand().is(this.asItem());
     }
@@ -176,5 +172,10 @@ public class CubePlushieBlock extends AbstractPlushieBlock {
 
     private int getNextStackSize(BlockState state) {
         return Math.min(3, state.getValue(STACK_SIZE) + 1);
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(STACK_SIZE, HALF, WATERLOGGED, FACING);
     }
 }

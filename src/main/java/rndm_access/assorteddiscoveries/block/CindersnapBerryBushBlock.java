@@ -15,7 +15,7 @@ import rndm_access.assorteddiscoveries.core.ModBlockTags;
 import rndm_access.assorteddiscoveries.core.ModEntityTypeTags;
 import rndm_access.assorteddiscoveries.core.ModItems;
 
-public class CindersnapBerryBushBlock extends AbstractNetherBerryBushBlock {
+public class CindersnapBerryBushBlock extends NetherBerryBushBlock {
     public CindersnapBerryBushBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(AGE, 0));

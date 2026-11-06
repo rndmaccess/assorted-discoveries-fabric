@@ -4,11 +4,9 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class SheepPlushieBlock extends AbstractSimplePlushieBlock {
+public class SheepPlushieBlock extends SimplePlushieBlock {
     private static final VoxelShape NORTH_SHAPE = Block.box(4.0D, 0.0D, 2.0D,
             12.0D, 12.0D, 14.0D);
     private final DyeColor color;
@@ -27,10 +25,5 @@ public class SheepPlushieBlock extends AbstractSimplePlushieBlock {
     @Override
     protected VoxelShape getNorthShape() {
         return NORTH_SHAPE;
-    }
-
-    @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(WATERLOGGED, FACING);
     }
 }

@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import rndm_access.assorteddiscoveries.core.*;
 
-public class FrostbiteBerryBushBlock extends AbstractNetherBerryBushBlock {
+public class FrostbiteBerryBushBlock extends NetherBerryBushBlock {
     public FrostbiteBerryBushBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(AGE, 0));

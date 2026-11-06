@@ -2,26 +2,22 @@ package rndm_access.assorteddiscoveries.block;
 
 import rndm_access.assorteddiscoveries.util.ShapeHelper;
 
-import java.util.HashMap;
+import java.util.EnumMap;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public abstract class AbstractSimplePlushieBlock extends AbstractPlushieBlock {
-    private final HashMap<Direction, VoxelShape> shapes;
+public abstract class SimplePlushieBlock extends PlushieBlock {
+    private final EnumMap<Direction, VoxelShape> shapes;
 
-    public AbstractSimplePlushieBlock(Properties properties) {
+    protected SimplePlushieBlock(Properties properties) {
         super(properties);
         this.shapes = ShapeHelper.makeShapeRotMap(this.getNorthShape());
     }
-
-    @Override
-    protected abstract void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder);
 
     protected abstract VoxelShape getNorthShape();
 

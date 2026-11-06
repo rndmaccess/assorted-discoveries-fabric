@@ -86,7 +86,7 @@ public class BloodKelpBlock extends GrowingPlantHeadBlock implements LiquidBlock
 
         if(this.canGrowInto(serverLevel.getBlockState(newStemPos))) {
             serverLevel.setBlock(pos, this.growStemToPlant(state), Block.UPDATE_CLIENTS);
-            serverLevel.setBlockAndUpdate(newStemPos, this.getStemState(random, age));
+            serverLevel.setBlock(newStemPos, this.getStemState(random, age), Block.UPDATE_CLIENTS);
         }
     }
 

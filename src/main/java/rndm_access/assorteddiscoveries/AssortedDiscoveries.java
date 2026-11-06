@@ -90,9 +90,9 @@ public class AssortedDiscoveries implements ModInitializer {
 
     private static void registerLandPathNodeTypes() {
         // Prevent entities from pathfinding through bushes!
-        LandPathNodeTypesRegistry.register(ModBlocks.CINDERSNAP_BERRY_BUSH, PathType.DAMAGE_CAUTIOUS, PathType.DAMAGE_CAUTIOUS);
-        LandPathNodeTypesRegistry.register(ModBlocks.FROSTBITE_BERRY_BUSH, PathType.DAMAGE_CAUTIOUS, PathType.DAMAGE_CAUTIOUS);
-        LandPathNodeTypesRegistry.register(ModBlocks.WITCHS_CRADLE, PathType.DAMAGE_CAUTIOUS, PathType.DAMAGE_CAUTIOUS);
+        LandPathNodeTypesRegistry.register(ModBlocks.CINDERSNAP_BERRY_BUSH, PathType.DAMAGE_OTHER, PathType.DAMAGE_OTHER);
+        LandPathNodeTypesRegistry.register(ModBlocks.FROSTBITE_BERRY_BUSH, PathType.DAMAGE_OTHER, PathType.DAMAGE_OTHER);
+        LandPathNodeTypesRegistry.register(ModBlocks.WITCHS_CRADLE, PathType.DAMAGE_OTHER, PathType.DAMAGE_OTHER);
     }
 
     private static void registerStrippableWoodenWalls() {

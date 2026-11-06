@@ -38,19 +38,19 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.Objects;
 
-public abstract class AbstractBerryBushBlock extends VegetationBlock implements BonemealableBlock {
+public abstract class BerryBushBlock extends VegetationBlock implements BonemealableBlock {
     public static IntegerProperty AGE = BlockStateProperties.AGE_3;
     public static VoxelShape SMALL_SHAPE = Block.box(3.0, 0.0, 3.0,
             13.0, 8.0, 13.0);
     public static VoxelShape LARGE_SHAPE = Block.box(1.0, 0.0, 1.0,
             15.0, 16.0, 15.0);
 
-    public AbstractBerryBushBlock(BlockBehaviour.Properties settings) {
+    protected BerryBushBlock(BlockBehaviour.Properties settings) {
         super(settings);
     }
 
     @Override
-    protected abstract MapCodec<? extends AbstractBerryBushBlock> codec();
+    protected abstract MapCodec<? extends BerryBushBlock> codec();
 
     @Override
     protected abstract void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder);

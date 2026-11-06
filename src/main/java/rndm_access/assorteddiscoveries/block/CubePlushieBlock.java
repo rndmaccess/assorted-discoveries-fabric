@@ -28,7 +28,7 @@ import org.jetbrains.annotations.Nullable;
 import rndm_access.assorteddiscoveries.block.state.ModBlockStateProperties;
 import rndm_access.assorteddiscoveries.util.ShapeHelper;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Objects;
 
 public class CubePlushieBlock extends PlushieBlock {
@@ -40,11 +40,11 @@ public class CubePlushieBlock extends PlushieBlock {
             12.5D, 16.5D, 12.5D);
     private static final VoxelShape NORTH_TOP_SHAPE = Block.box(5.5D, 0.0D, 5.5D,
             10.5D, 4.5D, 10.5D);
-    private static final HashMap<Direction, VoxelShape> BOTTOM_SHAPES
+    private static final EnumMap<Direction, VoxelShape> BOTTOM_SHAPES
             = ShapeHelper.makeShapeRotMap(NORTH_BOTTOM_SHAPE);
-    private static final HashMap<Direction, VoxelShape> MIDDLE_SHAPES
+    private static final EnumMap<Direction, VoxelShape> MIDDLE_SHAPES
             = ShapeHelper.makeShapeRotMap(NORTH_BOTTOM_SHAPE, NORTH_MIDDLE_SHAPE);
-    private static final HashMap<Direction, VoxelShape> TOP_SHAPES = ShapeHelper.makeShapeRotMap(NORTH_TOP_SHAPE);
+    private static final EnumMap<Direction, VoxelShape> TOP_SHAPES = ShapeHelper.makeShapeRotMap(NORTH_TOP_SHAPE);
 
     public CubePlushieBlock(BlockBehaviour.Properties settings) {
         super(settings);

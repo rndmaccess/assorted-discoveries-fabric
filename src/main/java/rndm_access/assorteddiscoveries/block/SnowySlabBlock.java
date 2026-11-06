@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.SlabType;
 import rndm_access.assorteddiscoveries.core.ModBlocks;
 
-public class SnowySlabBlock extends AbstractSoilSlabBlock {
+public class SnowySlabBlock extends SoilSlabBlock {
     public static final MapCodec<SnowySlabBlock> CODEC = simpleCodec(SnowySlabBlock::new);
     public static final BooleanProperty SNOWY = BlockStateProperties.SNOWY;
 

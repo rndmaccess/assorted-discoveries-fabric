@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import rndm_access.assorteddiscoveries.core.ModEntityTypeTags;
 import rndm_access.assorteddiscoveries.core.ModItems;
 
-public class BlueberryBushBlock extends AbstractBerryBushBlock {
+public class BlueberryBushBlock extends BerryBushBlock {
     public static final MapCodec<BlueberryBushBlock> CODEC = simpleCodec(BlueberryBushBlock::new);
 
     public BlueberryBushBlock(BlockBehaviour.Properties settings) {

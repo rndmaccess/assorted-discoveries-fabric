@@ -17,7 +17,7 @@ import rndm_access.assorteddiscoveries.core.ModEntityTypeTags;
 import rndm_access.assorteddiscoveries.core.ModItems;
 import rndm_access.assorteddiscoveries.core.ModParticleTypes;
 
-public class WitchsCradleBlock extends AbstractBerryBushBlock {
+public class WitchsCradleBlock extends BerryBushBlock {
     public static final MapCodec<WitchsCradleBlock> CODEC = simpleCodec(WitchsCradleBlock::new);
     private static final VoxelShape SMALL_SHAPE = Block.box(3.0D, 0.0D, 3.0D,
             13.0D, 9.0D, 13.0D);

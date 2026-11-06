@@ -29,10 +29,6 @@ public abstract class SittingPlushieBlock extends SimplePlushieBlock {
         return level.isClientSide() ? InteractionResult.SUCCESS : InteractionResult.CONSUME;
     }
 
-    /**
-     * To add additional states please call super.createBlockStateDefinition(builder) in the inheriting class
-     * before adding them with builder.add(property).
-     */
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(WATERLOGGED, FACING, IS_SITTING);

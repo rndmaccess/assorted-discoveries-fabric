@@ -1,8 +1,7 @@
 package rndm_access.assorteddiscoveries.util;
 
-import com.google.common.collect.ImmutableList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.EnumMap;
+
 import net.minecraft.core.Direction;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -11,8 +10,8 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public final class ShapeHelper {
     private ShapeHelper() {}
 
-    public static HashMap<Direction, VoxelShape> makeShapeRotMap(VoxelShape... northShapes) {
-        HashMap<Direction, VoxelShape> shapes = new HashMap<>();
+    public static EnumMap<Direction, VoxelShape> makeShapeRotMap(VoxelShape... northShapes) {
+        EnumMap<Direction, VoxelShape> shapes = new EnumMap<>(Direction.class);
         VoxelShape northShape = combineShapes(northShapes);
 
         for(Direction direction : Direction.values()) {
@@ -21,18 +20,6 @@ public final class ShapeHelper {
             }
         }
         return shapes;
-    }
-
-    public static List<VoxelShape> makeShapeRotList(VoxelShape... northShapes) {
-        ImmutableList.Builder<VoxelShape> builder = ImmutableList.builder();
-        VoxelShape northShape = combineShapes(northShapes);
-
-        for(Direction direction : Direction.values()) {
-            if(direction.getAxis().isHorizontal()) {
-                builder.add(rotate(northShape, direction));
-            }
-        }
-        return builder.build();
     }
 
     private static VoxelShape combineShapes(VoxelShape... northShapes) {

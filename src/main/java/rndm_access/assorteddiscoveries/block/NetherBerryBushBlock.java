@@ -8,13 +8,13 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jspecify.annotations.NonNull;
 
-public abstract class AbstractNetherBerryBushBlock extends AbstractBerryBushBlock {
-    public AbstractNetherBerryBushBlock(Properties settings) {
+public abstract class NetherBerryBushBlock extends BerryBushBlock {
+    protected NetherBerryBushBlock(Properties settings) {
         super(settings);
     }
 
     @Override
-    protected abstract MapCodec<? extends AbstractNetherBerryBushBlock> codec();
+    protected abstract MapCodec<? extends NetherBerryBushBlock> codec();
 
     @Override
     protected boolean bushDamages() {

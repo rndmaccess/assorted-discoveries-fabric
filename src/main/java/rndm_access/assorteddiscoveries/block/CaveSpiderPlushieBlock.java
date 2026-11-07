@@ -1,6 +1,5 @@
 package rndm_access.assorteddiscoveries.block;
 
-import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -10,13 +9,6 @@ public class CaveSpiderPlushieBlock extends SimplePlushieBlock {
             13.5D, 6.0D, 14.0D);
 
     public CaveSpiderPlushieBlock(BlockBehaviour.Properties settings) {
-        super(settings);
-        this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
-                .setValue(FACING, Direction.NORTH));
-    }
-
-    @Override
-    protected VoxelShape getNorthShape() {
-        return NORTH_SHAPE;
+        super(settings, NORTH_SHAPE);
     }
 }

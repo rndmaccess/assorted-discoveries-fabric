@@ -48,8 +48,11 @@ public class CubePlushieBlock extends PlushieBlock {
 
     public CubePlushieBlock(BlockBehaviour.Properties settings) {
         super(settings);
-        this.registerDefaultState(this.getStateDefinition().any().setValue(HALF, DoubleBlockHalf.LOWER)
-                .setValue(STACK_SIZE, 1).setValue(WATERLOGGED, false).setValue(FACING, Direction.NORTH));
+        this.registerDefaultState(this.getStateDefinition().any()
+                .setValue(WATERLOGGED, false)
+                .setValue(FACING, Direction.NORTH)
+                .setValue(HALF, DoubleBlockHalf.LOWER)
+                .setValue(STACK_SIZE, 1));
     }
 
     @Override
@@ -175,6 +178,7 @@ public class CubePlushieBlock extends PlushieBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(STACK_SIZE, HALF, WATERLOGGED, FACING);
+        super.createBlockStateDefinition(builder);
+        builder.add(STACK_SIZE, HALF);
     }
 }

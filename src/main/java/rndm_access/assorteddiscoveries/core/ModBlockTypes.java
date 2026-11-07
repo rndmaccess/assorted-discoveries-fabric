@@ -23,9 +23,6 @@ public final class ModBlockTypes {
         registerCodec(makeRegistryKey("sheep_plushie"), SheepPlushieBlock.CODEC);
         registerCodec(makeRegistryKey("blood_kelp"), BloodKelpBlock.CODEC);
         registerCodec(makeRegistryKey("blood_kelp_plant"), BloodKelpPlantBlock.CODEC);
-        registerCodec(makeRegistryKey("dirt_path_slab"), DirtPathSlabBlock.CODEC);
-        registerCodec(makeRegistryKey("dirt_slab"), DirtSlabBlock.CODEC);
-        registerCodec(makeRegistryKey("snowy_slab"), SnowySlabBlock.CODEC);
         registerCodec(makeRegistryKey("blueberry_bush"), BlueberryBushBlock.CODEC);
         registerCodec(makeRegistryKey("frostbite_berry_bush"), FrostbiteBerryBushBlock.CODEC);
         registerCodec(makeRegistryKey("cindersnap_berry_bush"), CindersnapBerryBushBlock.CODEC);

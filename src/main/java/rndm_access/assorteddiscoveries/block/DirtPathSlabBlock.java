@@ -1,6 +1,5 @@
 package rndm_access.assorteddiscoveries.block;
 
-import com.mojang.serialization.MapCodec;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.util.Util;
 import rndm_access.assorteddiscoveries.core.ModBlocks;
@@ -22,7 +21,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class DirtPathSlabBlock extends SlabBlock {
-    public static final MapCodec<DirtPathSlabBlock> CODEC = simpleCodec(DirtPathSlabBlock::new);
     protected static final EnumMap<SlabType, VoxelShape> SHAPES = Util.make(new EnumMap<>(SlabType.class), map -> {
         map.put(SlabType.DOUBLE, Block.box(0.0, 0.0, 0.0, 16.0, 15.0, 16.0));
         map.put(SlabType.BOTTOM, Block.box(0.0, 0.0, 0.0, 16.0, 7.0, 16.0));
@@ -31,11 +29,6 @@ public class DirtPathSlabBlock extends SlabBlock {
 
     public DirtPathSlabBlock(Properties settings) {
         super(settings);
-    }
-
-    @Override
-    public MapCodec<DirtPathSlabBlock> codec() {
-        return CODEC;
     }
 
     @Override

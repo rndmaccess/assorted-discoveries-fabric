@@ -11,15 +11,13 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public abstract class SimplePlushieBlock extends PlushieBlock {
+public class SimplePlushieBlock extends PlushieBlock {
     private final EnumMap<Direction, VoxelShape> shapes;
 
-    public SimplePlushieBlock(Properties settings) {
+    public SimplePlushieBlock(Properties settings, VoxelShape northShape) {
         super(settings);
-        this.shapes = ShapeHelper.makeShapeRotMap(this.getNorthShape());
+        this.shapes = ShapeHelper.makeShapeRotMap(northShape);
     }
-
-    protected abstract VoxelShape getNorthShape();
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {

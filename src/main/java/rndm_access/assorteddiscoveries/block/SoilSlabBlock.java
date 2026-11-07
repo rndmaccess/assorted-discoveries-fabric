@@ -1,6 +1,5 @@
 package rndm_access.assorteddiscoveries.block;
 
-import com.mojang.serialization.MapCodec;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -21,13 +20,10 @@ import net.minecraft.world.level.lighting.LightEngine;
 import net.minecraft.world.phys.BlockHitResult;
 import rndm_access.assorteddiscoveries.core.ModBlocks;
 
-public abstract class SoilSlabBlock extends SlabBlock {
+public class SoilSlabBlock extends SlabBlock {
     protected SoilSlabBlock(Properties properties) {
         super(properties);
     }
-
-    @Override
-    public abstract MapCodec<? extends SoilSlabBlock> codec();
 
     public boolean isSnowCovered(BlockState state, BlockState neighborState) {
         boolean isSnowBlock = neighborState.is(BlockTags.SNOW);

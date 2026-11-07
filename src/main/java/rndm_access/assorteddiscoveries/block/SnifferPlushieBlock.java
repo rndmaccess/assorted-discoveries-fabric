@@ -1,6 +1,5 @@
 package rndm_access.assorteddiscoveries.block;
 
-import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
@@ -9,13 +8,6 @@ public class SnifferPlushieBlock extends SimplePlushieBlock {
             14.0D, 9.5D, 15.0D);
 
     public SnifferPlushieBlock(Properties properties) {
-        super(properties);
-        this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
-                .setValue(FACING, Direction.NORTH));
-    }
-
-    @Override
-    protected VoxelShape getNorthShape() {
-        return NORTH_SHAPE;
+        super(properties, NORTH_SHAPE);
     }
 }

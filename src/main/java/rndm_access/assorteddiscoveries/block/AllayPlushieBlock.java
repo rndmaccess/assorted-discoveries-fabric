@@ -1,6 +1,5 @@
 package rndm_access.assorteddiscoveries.block;
 
-import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
@@ -9,13 +8,6 @@ public class AllayPlushieBlock extends SimplePlushieBlock {
             13.0D, 10.0D, 13.0D);
 
     public AllayPlushieBlock(Properties settings) {
-        super(settings);
-        this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
-                .setValue(FACING, Direction.NORTH));
-    }
-
-    @Override
-    protected VoxelShape getNorthShape() {
-        return NORTH_SHAPE;
+        super(settings, NORTH_SHAPE);
     }
 }

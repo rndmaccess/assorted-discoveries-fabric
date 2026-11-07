@@ -1,6 +1,5 @@
 package rndm_access.assorteddiscoveries.block;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -14,15 +13,8 @@ import rndm_access.assorteddiscoveries.core.CommonBlockTags;
 import rndm_access.assorteddiscoveries.core.ModBlocks;
 
 public class DirtSlabBlock extends SoilSlabBlock implements BonemealableBlock {
-    public static final MapCodec<DirtSlabBlock> CODEC = simpleCodec(DirtSlabBlock::new);
-
     public DirtSlabBlock(Properties settings) {
         super(settings);
-    }
-
-    @Override
-    public MapCodec<DirtSlabBlock> codec() {
-        return CODEC;
     }
 
     @Override

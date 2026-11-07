@@ -1,6 +1,5 @@
 package rndm_access.assorteddiscoveries.block;
 
-import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -10,13 +9,6 @@ public class StriderPlushieBlock extends SimplePlushieBlock {
             14.0, 11.0, 13.0);
 
     public StriderPlushieBlock(BlockBehaviour.Properties properties) {
-        super(properties);
-        this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
-                .setValue(FACING, Direction.NORTH));
-    }
-
-    @Override
-    protected VoxelShape getNorthShape() {
-        return NORTH_SHAPE;
+        super(properties, NORTH_SHAPE);
     }
 }

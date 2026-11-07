@@ -9,13 +9,8 @@ public class PhantomPlushieBlock extends SimplePlushieBlock {
             13.5, 5.0, 14.0);
 
     public PhantomPlushieBlock(Properties properties) {
-        super(properties);
+        super(properties, NORTH_SHAPE);
         this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
                 .setValue(FACING, Direction.NORTH));
-    }
-
-    @Override
-    protected VoxelShape getNorthShape() {
-        return NORTH_SHAPE;
     }
 }

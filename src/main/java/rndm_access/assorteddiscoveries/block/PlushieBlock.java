@@ -23,6 +23,9 @@ public class PlushieBlock extends HorizontalDirectionalBlock implements SimpleWa
 
     protected PlushieBlock(BlockBehaviour.Properties properties) {
         super(properties);
+        this.registerDefaultState(this.getStateDefinition().any()
+                .setValue(WATERLOGGED, false)
+                .setValue(FACING, Direction.NORTH));
     }
 
     @Override

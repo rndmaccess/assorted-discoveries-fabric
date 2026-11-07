@@ -32,12 +32,12 @@ public class DirtSlabBlock extends SoilSlabBlock implements BonemealableBlock {
     public void performBonemeal(ServerLevel serverLevel, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
         BlockPos neighborPos = pos.above();
         BlockState neighborState = serverLevel.getBlockState(neighborPos);
-        Block result = getSlabResult(serverLevel, pos);
-
-        serverLevel.setBlock(pos, result.defaultBlockState().setValue(TYPE, state.getValue(TYPE))
+        BlockState result = getSlabResult(serverLevel, pos).defaultBlockState()
+                .setValue(TYPE, state.getValue(TYPE))
                 .setValue(WATERLOGGED, state.getValue(WATERLOGGED))
-                .setValue(SnowySlabBlock.SNOWY, this.isSnowCovered(state, neighborState)),
-                Block.UPDATE_CLIENTS);
+                .setValue(SnowySlabBlock.SNOWY, this.isSnowCovered(state, neighborState));
+
+        serverLevel.setBlock(pos, result, Block.UPDATE_CLIENTS);
     }
 
     private Block getSlabResult(ServerLevel world, BlockPos originPos) {

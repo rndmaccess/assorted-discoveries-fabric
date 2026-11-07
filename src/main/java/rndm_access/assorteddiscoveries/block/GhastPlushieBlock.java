@@ -1,6 +1,5 @@
 package rndm_access.assorteddiscoveries.block;
 
-import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -10,13 +9,6 @@ public class GhastPlushieBlock extends SimplePlushieBlock {
             12.5D, 10.0D, 12.5D);
 
     public GhastPlushieBlock(BlockBehaviour.Properties properties) {
-        super(properties);
-        this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
-                .setValue(FACING, Direction.NORTH));
-    }
-
-    @Override
-    protected VoxelShape getNorthShape() {
-        return NORTH_SHAPE;
+        super(properties, NORTH_SHAPE);
     }
 }

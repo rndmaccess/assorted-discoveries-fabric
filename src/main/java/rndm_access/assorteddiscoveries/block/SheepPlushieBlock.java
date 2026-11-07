@@ -1,6 +1,5 @@
 package rndm_access.assorteddiscoveries.block;
 
-import net.minecraft.core.Direction;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -12,18 +11,11 @@ public class SheepPlushieBlock extends SimplePlushieBlock {
     private final DyeColor color;
 
     public SheepPlushieBlock(DyeColor color, BlockBehaviour.Properties properties) {
-        super(properties);
-        this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false)
-                .setValue(FACING, Direction.NORTH));
+        super(properties, NORTH_SHAPE);
         this.color = color;
     }
 
     public DyeColor getColor() {
         return color;
-    }
-
-    @Override
-    protected VoxelShape getNorthShape() {
-        return NORTH_SHAPE;
     }
 }

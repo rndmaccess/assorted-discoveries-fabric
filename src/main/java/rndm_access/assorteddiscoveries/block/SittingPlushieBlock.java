@@ -1,6 +1,7 @@
 package rndm_access.assorteddiscoveries.block;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -17,7 +18,10 @@ public class SittingPlushieBlock extends SimplePlushieBlock {
 
     public SittingPlushieBlock(Properties properties, VoxelShape shape) {
         super(properties, shape);
-        this.registerDefaultState(this.defaultBlockState().setValue(IS_SITTING, false));
+        this.registerDefaultState(this.getStateDefinition().any()
+                .setValue(FACING, Direction.NORTH)
+                .setValue(WATERLOGGED, false)
+                .setValue(IS_SITTING, false));
     }
 
     @Override

@@ -8,7 +8,7 @@ food, and much, much more with Assorted Discoveries!
 ## Support Concluded for Minecraft 26.2
 
 Development and support for Minecraft 26.2 have officially ended. 
-We recommend upgrading to 26.3 yp ensure continued compatibility and stability.
+We recommend upgrading to 26.3 to ensure continued compatibility and stability.
 
 ## Features
 

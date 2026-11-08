@@ -134,14 +134,13 @@ public class CubePlushieBlock extends PlushieBlock {
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext context) {
         Direction direction = state.getValue(FACING);
-        VoxelShape bottomShape = BOTTOM_SHAPES.get(direction);
-        VoxelShape middleShape = MIDDLE_SHAPES.get(direction);
-        VoxelShape topShape = TOP_SHAPES.get(direction);
 
         return switch (state.getValue(STACK_SIZE)) {
-            case 1 -> bottomShape;
-            case 2 -> middleShape;
-            default -> (this.isUpperHalf(state) ? topShape : middleShape);
+            case 1 -> BOTTOM_SHAPES.get(direction);
+            case 2 -> MIDDLE_SHAPES.get(direction);
+            default -> (this.isUpperHalf(state)
+                    ? TOP_SHAPES.get(direction)
+                    : MIDDLE_SHAPES.get(direction));
         };
     }
 

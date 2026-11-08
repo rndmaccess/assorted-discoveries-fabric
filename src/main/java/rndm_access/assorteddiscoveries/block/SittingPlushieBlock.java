@@ -10,14 +10,13 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.shapes.VoxelShape;
 import rndm_access.assorteddiscoveries.block.state.ModBlockStateProperties;
 
-public abstract class SittingPlushieBlock extends SimplePlushieBlock {
+public abstract class SittingPlushieBlock extends PlushieBlock {
     protected static final BooleanProperty IS_SITTING = ModBlockStateProperties.IS_SITTING;
 
-    protected SittingPlushieBlock(Properties properties, VoxelShape northShape) {
-        super(properties, northShape);
+    protected SittingPlushieBlock(Properties properties) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(WATERLOGGED, false)
                 .setValue(FACING, Direction.NORTH)

@@ -29,7 +29,6 @@ import rndm_access.assorteddiscoveries.block.state.ModBlockStateProperties;
 import rndm_access.assorteddiscoveries.util.ShapeHelper;
 
 import java.util.EnumMap;
-import java.util.Objects;
 
 public class CubePlushieBlock extends PlushieBlock {
     public static final IntegerProperty STACK_SIZE = ModBlockStateProperties.STACK_SIZE;
@@ -133,14 +132,13 @@ public class CubePlushieBlock extends PlushieBlock {
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         Direction direction = state.getValue(FACING);
-        VoxelShape bottomShape = BOTTOM_SHAPES.get(direction);
-        VoxelShape middleShape = MIDDLE_SHAPES.get(direction);
-        VoxelShape topShape = TOP_SHAPES.get(direction);
 
         return switch (state.getValue(STACK_SIZE)) {
-            case 1 -> bottomShape;
-            case 2 -> middleShape;
-            default -> (this.isUpperHalf(state) ? topShape : middleShape);
+            case 1 -> BOTTOM_SHAPES.get(direction);
+            case 2 -> MIDDLE_SHAPES.get(direction);
+            default -> (this.isUpperHalf(state)
+                    ? TOP_SHAPES.get(direction)
+                    : MIDDLE_SHAPES.get(direction));
         };
     }
 
@@ -153,23 +151,23 @@ public class CubePlushieBlock extends PlushieBlock {
     }
 
     private boolean isStackWithinOneBlock(BlockState state) {
-        return state.getValue(STACK_SIZE) < 2;
+        return state.hasProperty(STACK_SIZE) && state.getValue(STACK_SIZE) < 2;
     }
 
     private boolean isDoubleStacked(BlockState state) {
-        return Objects.equals(state.getValue(STACK_SIZE), 2);
+        return state.hasProperty(STACK_SIZE) && state.getValue(STACK_SIZE) == 2;
     }
 
     private boolean isTripleStacked(BlockState state) {
-        return Objects.equals(state.getValue(STACK_SIZE), 3);
+        return state.hasProperty(STACK_SIZE) && state.getValue(STACK_SIZE) == 3;
     }
 
     private boolean isUpperHalf(BlockState state) {
-        return Objects.equals(state.getValue(HALF), DoubleBlockHalf.UPPER);
+        return state.hasProperty(HALF) && state.getValue(HALF) == DoubleBlockHalf.UPPER;
     }
 
     private boolean isLowerHalf(BlockState state) {
-        return Objects.equals(state.getValue(HALF), DoubleBlockHalf.LOWER);
+        return state.hasProperty(HALF) && state.getValue(HALF) == DoubleBlockHalf.LOWER;
     }
 
     private int getNextStackSize(BlockState state) {

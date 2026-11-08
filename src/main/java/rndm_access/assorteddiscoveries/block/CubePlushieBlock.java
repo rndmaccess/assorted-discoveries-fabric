@@ -29,7 +29,6 @@ import rndm_access.assorteddiscoveries.block.state.ModBlockStateProperties;
 import rndm_access.assorteddiscoveries.util.ShapeHelper;
 
 import java.util.EnumMap;
-import java.util.Objects;
 
 public class CubePlushieBlock extends PlushieBlock {
     public static final IntegerProperty STACK_SIZE = ModBlockStateProperties.STACK_SIZE;
@@ -73,9 +72,10 @@ public class CubePlushieBlock extends PlushieBlock {
                             ItemStack itemStack) {
         BlockPos abovePos = pos.above();
         FluidState fluidState = level.getFluidState(abovePos);
+        boolean isTripleStacked = state.hasProperty(STACK_SIZE) && state.getValue(STACK_SIZE) == 3;
 
         // Top off the stack with the final cube plush.
-        if (!level.isClientSide() && this.isTripleStacked(state)) {
+        if (!level.isClientSide() && isTripleStacked) {
             BlockState placedState = state.setValue(HALF, DoubleBlockHalf.UPPER).setValue(STACK_SIZE, 3)
                     .setValue(WATERLOGGED, fluidState.is(Fluids.WATER));
 
@@ -87,9 +87,11 @@ public class CubePlushieBlock extends PlushieBlock {
     public boolean canBeReplaced(BlockState state, BlockPlaceContext context) {
         BlockPos abovePos = context.getClickedPos().above();
         BlockState aboveState = context.getLevel().getBlockState(abovePos);
+        boolean isDoubleStacked = state.hasProperty(STACK_SIZE) && state.getValue(STACK_SIZE) == 2;
+        boolean isStackWithinOneBlock = state.hasProperty(STACK_SIZE) && state.getValue(STACK_SIZE) < 2;
 
-        return (this.isCubePlush(context) && this.isStackWithinOneBlock(state))
-                || (this.isCubePlush(context) && aboveState.canBeReplaced() && this.isDoubleStacked(state));
+        return (this.isCubePlush(context) && isStackWithinOneBlock)
+                || (this.isCubePlush(context) && aboveState.canBeReplaced() && isDoubleStacked);
     }
 
     @Override
@@ -104,8 +106,13 @@ public class CubePlushieBlock extends PlushieBlock {
     }
 
     private boolean canStay(BlockState state, BlockState neighborState, Direction direction) {
-        if(this.isTripleStacked(state) && (direction == Direction.DOWN && isUpperHalf(state)
-                || direction == Direction.UP && isLowerHalf(state))) {
+        boolean isUpperHalf = state.hasProperty(HALF) && state.getValue(HALF) == DoubleBlockHalf.UPPER;
+        boolean isLowerHalf = state.hasProperty(HALF) && state.getValue(HALF) == DoubleBlockHalf.LOWER;
+        boolean isTripleStacked = state.hasProperty(STACK_SIZE) && state.getValue(STACK_SIZE) == 3;
+
+        if(isTripleStacked
+                && (direction == Direction.DOWN && isUpperHalf
+                || direction == Direction.UP && isLowerHalf)) {
             return this.isCubePlush(neighborState);
         } else {
             return true;
@@ -114,12 +121,20 @@ public class CubePlushieBlock extends PlushieBlock {
 
     @Override
     public BlockState playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
+        // Return early if we are on the client side. Since items are not dropped on the client.
+        if (level.isClientSide()) {
+            return super.playerWillDestroy(level, pos, state, player);
+        }
+
+        boolean isUpperHalf = state.hasProperty(HALF) && state.getValue(HALF) == DoubleBlockHalf.UPPER;
+
         // Prevents items from being dropped when breaking a 3-tier plush in creative.
-        if ((!level.isClientSide() && (player.isCreative() || !player.hasCorrectToolForDrops(state)))
-                && this.isUpperHalf(state)) {
+        if ((player.isCreative() || !player.hasCorrectToolForDrops(state)) && isUpperHalf) {
             BlockPos belowPos = pos.below();
             BlockState belowState = level.getBlockState(belowPos);
-            if (this.isCubePlush(belowState) && this.isLowerHalf(belowState)) {
+            boolean isLowerHalf = state.hasProperty(HALF) && state.getValue(HALF) == DoubleBlockHalf.LOWER;
+
+            if (this.isCubePlush(belowState) && isLowerHalf) {
                 BlockState newState = belowState.getValue(WATERLOGGED) ? Blocks.WATER.defaultBlockState()
                         : Blocks.AIR.defaultBlockState();
 
@@ -134,11 +149,12 @@ public class CubePlushieBlock extends PlushieBlock {
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext context) {
         Direction direction = state.getValue(FACING);
+        boolean isUpperHalf = state.hasProperty(HALF) && state.getValue(HALF) == DoubleBlockHalf.UPPER;
 
         return switch (state.getValue(STACK_SIZE)) {
             case 1 -> BOTTOM_SHAPES.get(direction);
             case 2 -> MIDDLE_SHAPES.get(direction);
-            default -> (this.isUpperHalf(state)
+            default -> (isUpperHalf
                     ? TOP_SHAPES.get(direction)
                     : MIDDLE_SHAPES.get(direction));
         };
@@ -150,26 +166,6 @@ public class CubePlushieBlock extends PlushieBlock {
 
     private boolean isCubePlush(BlockState state) {
         return state.is(this);
-    }
-
-    private boolean isStackWithinOneBlock(BlockState state) {
-        return state.getValue(STACK_SIZE) < 2;
-    }
-
-    private boolean isDoubleStacked(BlockState state) {
-        return Objects.equals(state.getValue(STACK_SIZE), 2);
-    }
-
-    private boolean isTripleStacked(BlockState state) {
-        return Objects.equals(state.getValue(STACK_SIZE), 3);
-    }
-
-    private boolean isUpperHalf(BlockState state) {
-        return Objects.equals(state.getValue(HALF), DoubleBlockHalf.UPPER);
-    }
-
-    private boolean isLowerHalf(BlockState state) {
-        return Objects.equals(state.getValue(HALF), DoubleBlockHalf.LOWER);
     }
 
     private int getNextStackSize(BlockState state) {

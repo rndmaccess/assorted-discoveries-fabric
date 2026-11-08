@@ -132,7 +132,7 @@ public class CubePlushieBlock extends PlushieBlock {
         if ((player.isCreative() || !player.hasCorrectToolForDrops(state)) && isUpperHalf) {
             BlockPos belowPos = pos.below();
             BlockState belowState = level.getBlockState(belowPos);
-            boolean isLowerHalf = state.hasProperty(HALF) && state.getValue(HALF) == DoubleBlockHalf.LOWER;
+            boolean isLowerHalf = belowState.hasProperty(HALF) && belowState.getValue(HALF) == DoubleBlockHalf.LOWER;
 
             if (this.isCubePlush(belowState) && isLowerHalf) {
                 BlockState newState = belowState.getValue(WATERLOGGED) ? Blocks.WATER.defaultBlockState()

@@ -1,4 +1,4 @@
-# Assorted Discoveries For Minecraft 26.2
+# Assorted Discoveries For Minecraft 26.3
 
 ## About
 
@@ -19,8 +19,7 @@ food, and much, much more with Assorted Discoveries!
 
 ## License
 
-Assets for this project are licensed under All Rights Reserved. The code for this project 
-is licensed under the MIT license.
+Assets and code for this project are licensed under the MIT license.
 This license can be found here: [LICENSE](./LICENSE.md).
 
 ## Official Wiki

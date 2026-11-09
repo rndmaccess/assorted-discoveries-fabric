@@ -3,7 +3,6 @@
   "package": "rndm_access.assorteddiscoveries.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "AxeItemMixin",
     "BambooBlockMixin",
     "BoneMealItemMixin",
     "CropBlockMixin",

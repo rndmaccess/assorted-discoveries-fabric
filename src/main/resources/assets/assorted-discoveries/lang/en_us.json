@@ -837,6 +837,18 @@
   "item.assorted-discoveries.warped_forage_mix": "Warped Forage Mix",
   "item.assorted-discoveries.crimson_forage_mix": "Crimson Forage Mix",
 
+  "item.assorted-discoveries.spruce_cone_crate": "Spruce Cone Crate",
+  "item.assorted-discoveries.purple_mushroom_crate": "Purple Mushroom Crate",
+  "item.assorted-discoveries.snapdragon_crate": "Snapdragon Crate",
+  "item.assorted-discoveries.blueberry_crate": "Blueberry Crate",
+  "item.assorted-discoveries.green_onion_crate": "Green Onion Crate",
+  "item.assorted-discoveries.green_onion_seeds_bag": "Green Onion Seeds Bag",
+  "item.assorted-discoveries.witchs_cradle_crate": "Witch's Cradle Crate",
+  "item.assorted-discoveries.frostbite_berry_crate": "Frostbite Berry Crate",
+  "item.assorted-discoveries.cindersnap_berry_crate": "Cindersnap Berry Crate",
+  "item.assorted-discoveries.blood_kelp_crate": "Blood Kelp Crate",
+  "item.assorted-discoveries.blood_kelp_seed_cluster_bag": "Blood Kelp Seed Cluster Bag",
+
   "tooltip.assorted-discoveries.nether_berry_juice.effect": "Fire Resistance (02:00)",
   "tooltip.assorted-discoveries.witchs_cradle_soup.effect": "Night Vision (02:00)",
   "tooltip.assorted-discoveries.caramel_apple.effect": "Speed (02:00)",

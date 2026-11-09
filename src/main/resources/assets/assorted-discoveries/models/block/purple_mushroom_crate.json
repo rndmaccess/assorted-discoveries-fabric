@@ -1,0 +1,8 @@
+{
+  "parent": "block/cube_bottom_top",
+  "textures": {
+    "top": "assorted-discoveries:block/purple_mushroom_crate_top",
+    "bottom": "assorted-discoveries:block/crate_bottom",
+    "side": "assorted-discoveries:block/purple_mushroom_crate_side"
+  }
+}

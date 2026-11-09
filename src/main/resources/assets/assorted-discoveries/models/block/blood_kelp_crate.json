@@ -1,0 +1,8 @@
+{
+  "parent": "block/cube_bottom_top",
+  "textures": {
+    "top": "assorted-discoveries:block/blood_kelp_crate_top",
+    "bottom": "assorted-discoveries:block/crate_bottom",
+    "side": "assorted-discoveries:block/blood_kelp_crate_side"
+  }
+}

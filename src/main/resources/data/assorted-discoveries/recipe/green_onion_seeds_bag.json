@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": "assorted-discoveries:green_onion_seeds"
+  },
+  "result": {
+    "id": "assorted-discoveries:green_onion_seeds_bag"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:config_entry_enabled",
+      "value": "enable_green_onions"
+    }
+  ]
+}

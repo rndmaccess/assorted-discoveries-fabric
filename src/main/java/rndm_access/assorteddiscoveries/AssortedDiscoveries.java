@@ -875,7 +875,8 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModBlocks.COARSE_DIRT_SLAB.asItem());
             }
 
-            if (ModConfig.ENABLE_PURPLE_MUSHROOMS.getValue()) {
+            boolean enablePurpleMushrooms = ModConfig.ENABLE_PURPLE_MUSHROOMS.getValue();
+            if (enablePurpleMushrooms) {
                 entries.accept(ModBlocks.PURPLE_MUSHROOM_BLOCK.asItem());
             }
 
@@ -887,16 +888,18 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModBlocks.BOG_BLOSSOM.asItem());
             }
 
-            if (ModConfig.ENABLE_ENDER_PLANTS.getValue()) {
+            boolean enableEnderPlants = ModConfig.ENABLE_ENDER_PLANTS.getValue();
+            if (enableEnderPlants) {
                 entries.accept(ModBlocks.SNAPDRAGON.asItem());
                 entries.accept(ModBlocks.SHORT_ENDER_GRASS.asItem());
             }
 
-            if (ModConfig.ENABLE_PURPLE_MUSHROOMS.getValue()) {
+            if (enablePurpleMushrooms) {
                 entries.accept(ModBlocks.PURPLE_MUSHROOM.asItem());
             }
 
-            if (ModConfig.ENABLE_BLOOD_KELP.getValue()) {
+            boolean enableBloodKelp = ModConfig.ENABLE_BLOOD_KELP.getValue();
+            if (enableBloodKelp) {
                 entries.accept(ModBlocks.DRIED_BLOOD_KELP_BLOCK);
                 entries.accept(ModBlocks.BLOOD_KELP_LANTERN);
                 entries.accept(ModItems.BLOOD_KELP_SEED_CLUSTER);
@@ -904,7 +907,8 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModItems.DRIED_BLOOD_KELP);
             }
 
-            if (ModConfig.ENABLE_GREEN_ONIONS.getValue()) {
+            boolean enableGreenOnions = ModConfig.ENABLE_GREEN_ONIONS.getValue();
+            if (enableGreenOnions) {
                 entries.accept(ModBlocks.WILD_GREEN_ONIONS.asItem());
                 entries.accept(ModItems.GREEN_ONION_SEEDS);
                 entries.accept(ModItems.GREEN_ONION);
@@ -914,7 +918,8 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModItems.CARAMEL);
             }
 
-            if (ModConfig.ENABLE_FORESTS_BOUNTY.getValue()) {
+            boolean enableForestsBounty = ModConfig.ENABLE_FORESTS_BOUNTY.getValue();
+            if (enableForestsBounty) {
                 entries.accept(ModItems.SPRUCE_CONE);
             }
 
@@ -922,19 +927,23 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModItems.NOODLES);
             }
 
-            if (ModConfig.ENABLE_WITCHS_CRADLES.getValue()) {
+            boolean enableWitchsCradles = ModConfig.ENABLE_WITCHS_CRADLES.getValue();
+            if (enableWitchsCradles) {
                 entries.accept(ModItems.WITCHS_CRADLE_BRANCH);
             }
 
-            if (ModConfig.ENABLE_BLUEBERRIES.getValue()) {
+            boolean enableBlueberries = ModConfig.ENABLE_BLUEBERRIES.getValue();
+            if (enableBlueberries) {
                 entries.accept(ModItems.BLUEBERRIES);
             }
 
-            if (ModConfig.ENABLE_CINDERSNAP_BERRIES.getValue()) {
+            boolean enableCindersnapBerries = ModConfig.ENABLE_CINDERSNAP_BERRIES.getValue();
+            if (enableCindersnapBerries) {
                 entries.accept(ModItems.CINDERSNAP_BERRIES);
             }
 
-            if (ModConfig.ENABLE_FROSTBITE_BERRIES.getValue()) {
+            boolean enableFrostbiteBerries = ModConfig.ENABLE_FROSTBITE_BERRIES.getValue();
+            if (enableFrostbiteBerries) {
                 entries.accept(ModItems.FROSTBITE_BERRIES);
             }
 
@@ -946,7 +955,7 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModItems.CARAMEL_APPLE);
             }
 
-            if (ModConfig.ENABLE_FORESTS_BOUNTY.getValue()) {
+            if (enableForestsBounty) {
                 entries.accept(ModItems.FORESTS_BOUNTY);
             }
 
@@ -958,7 +967,7 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModItems.HOGLIN_STEW);
             }
 
-            if (ModConfig.ENABLE_WITCHS_CRADLES.getValue()) {
+            if (enableWitchsCradles) {
                 entries.accept(ModItems.WITCHS_CRADLE_SOUP);
             }
 
@@ -967,15 +976,15 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModItems.PUDDING);
             }
 
-            if (ModConfig.ENABLE_FROSTBITE_BERRIES.getValue() && ModConfig.ENABLE_WARPED_FORAGE_MIX.getValue()) {
+            if (enableFrostbiteBerries && ModConfig.ENABLE_WARPED_FORAGE_MIX.getValue()) {
                 entries.accept(ModItems.WARPED_FORAGE_MIX);
             }
 
-            if (ModConfig.ENABLE_CINDERSNAP_BERRIES.getValue() && ModConfig.ENABLE_CRIMSON_FORAGE_MIX.getValue()) {
+            if (enableCindersnapBerries && ModConfig.ENABLE_CRIMSON_FORAGE_MIX.getValue()) {
                 entries.accept(ModItems.CRIMSON_FORAGE_MIX);
             }
 
-            if (ModConfig.ENABLE_BLUEBERRIES.getValue() && ModConfig.ENABLE_BLUEBERRY_JUICE.getValue()) {
+            if (enableBlueberries && ModConfig.ENABLE_BLUEBERRY_JUICE.getValue()) {
                 entries.accept(ModItems.BLUEBERRY_JUICE);
             }
 
@@ -983,15 +992,15 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModItems.SWEET_BERRY_JUICE);
             }
 
-            if (ModConfig.ENABLE_CINDERSNAP_BERRY_JUICE.getValue() && ModConfig.ENABLE_CINDERSNAP_BERRIES.getValue()) {
+            if (enableCindersnapBerries && ModConfig.ENABLE_CINDERSNAP_BERRY_JUICE.getValue()) {
                 entries.accept(ModItems.CINDERSNAP_BERRY_JUICE);
             }
 
-            if (ModConfig.ENABLE_FROSTBITE_BERRY_JUICE.getValue() && ModConfig.ENABLE_FROSTBITE_BERRIES.getValue()) {
+            if (enableFrostbiteBerries && ModConfig.ENABLE_FROSTBITE_BERRY_JUICE.getValue()) {
                 entries.accept(ModItems.FROSTBITE_BERRY_JUICE);
             }
 
-            if (ModConfig.ENABLE_BLUEBERRIES.getValue() && ModConfig.ENABLE_BLUEBERRY_PIE.getValue()) {
+            if (enableBlueberries && ModConfig.ENABLE_BLUEBERRY_PIE.getValue()) {
                 entries.accept(ModBlocks.BLUEBERRY_PIE.asItem());
             }
 
@@ -1005,6 +1014,44 @@ public class AssortedDiscoveries implements ModInitializer {
 
             if (ModConfig.ENABLE_RED_VELVET_CAKE.getValue()) {
                 entries.accept(ModBlocks.RED_VELVET_CAKE.asItem());
+            }
+
+            if (enableBlueberries) {
+                entries.accept(ModBlocks.BLUEBERRY_CRATE.asItem());
+            }
+
+            if (enableGreenOnions) {
+                entries.accept(ModBlocks.GREEN_ONION_CRATE.asItem());
+                entries.accept(ModBlocks.GREEN_ONION_SEEDS_BAG.asItem());
+            }
+
+            if (enableWitchsCradles) {
+                entries.accept(ModBlocks.WITCHS_CRADLE_CRATE.asItem());
+            }
+
+            if (enableFrostbiteBerries) {
+                entries.accept(ModBlocks.FROSTBITE_BERRY_CRATE.asItem());
+            }
+
+            if (enableCindersnapBerries) {
+                entries.accept(ModBlocks.CINDERSNAP_BERRY_CRATE.asItem());
+            }
+
+            if (enableBloodKelp) {
+                entries.accept(ModBlocks.BLOOD_KELP_CRATE.asItem());
+                entries.accept(ModBlocks.BLOOD_KELP_SEED_CLUSTER_BAG.asItem());
+            }
+
+            if (enableForestsBounty) {
+                entries.accept(ModBlocks.SPRUCE_CONE_CRATE.asItem());
+            }
+
+            if (enablePurpleMushrooms) {
+                entries.accept(ModBlocks.PURPLE_MUSHROOM_CRATE.asItem());
+            }
+
+            if (enableEnderPlants) {
+                entries.accept(ModBlocks.SNAPDRAGON_CRATE.asItem());
             }
         });
     }

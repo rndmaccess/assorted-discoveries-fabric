@@ -36,7 +36,7 @@ public class UnstrippedWoodenWallBlock extends WallBlock {
             return;
         }
         AssortedDiscoveries.LOGGER.warn("Failed to map wall stripping: {} -> {}",
-                strippedWall, unstrippedWall);
+                unstrippedWall, strippedWall);
     }
 
     @Override

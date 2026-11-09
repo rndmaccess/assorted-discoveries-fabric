@@ -365,34 +365,34 @@ public final class ModBlocks {
     public static final Block WARPED_PLANTER_BOX
             = registerNetherPlanterBox(WARPED_PLANTER_BOX_KEY, Blocks.WARPED_PLANKS.defaultMapColor());
     public static final ResourceKey<Block> OAK_WALL_KEY = makeRegistryKey("oak_wall");
-    public static final Block OAK_WALL = registerWall(OAK_WALL_KEY,
+    public static final Block OAK_WALL = registerUnstrippedWoodenWall(OAK_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).setId(OAK_WALL_KEY));
     public static final ResourceKey<Block> SPRUCE_WALL_KEY = makeRegistryKey("spruce_wall");
-    public static final Block SPRUCE_WALL = registerWall(SPRUCE_WALL_KEY,
+    public static final Block SPRUCE_WALL = registerUnstrippedWoodenWall(SPRUCE_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_PLANKS).setId(SPRUCE_WALL_KEY));
     public static final ResourceKey<Block> BIRCH_WALL_KEY = makeRegistryKey("birch_wall");
-    public static final Block BIRCH_WALL = registerWall(BIRCH_WALL_KEY,
+    public static final Block BIRCH_WALL = registerUnstrippedWoodenWall(BIRCH_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.BIRCH_PLANKS).setId(BIRCH_WALL_KEY));
     public static final ResourceKey<Block> JUNGLE_WALL_KEY = makeRegistryKey("jungle_wall");
-    public static final Block JUNGLE_WALL = registerWall(JUNGLE_WALL_KEY,
+    public static final Block JUNGLE_WALL = registerUnstrippedWoodenWall(JUNGLE_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_PLANKS).setId(JUNGLE_WALL_KEY));
     public static final ResourceKey<Block> ACACIA_WALL_KEY = makeRegistryKey("acacia_wall");
-    public static final Block ACACIA_WALL = registerWall(ACACIA_WALL_KEY,
+    public static final Block ACACIA_WALL = registerUnstrippedWoodenWall(ACACIA_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.ACACIA_PLANKS).setId(ACACIA_WALL_KEY));
     public static final ResourceKey<Block> DARK_OAK_WALL_KEY = makeRegistryKey("dark_oak_wall");
-    public static final Block DARK_OAK_WALL = registerWall(DARK_OAK_WALL_KEY,
+    public static final Block DARK_OAK_WALL = registerUnstrippedWoodenWall(DARK_OAK_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.DARK_OAK_PLANKS).setId(DARK_OAK_WALL_KEY));
     public static final ResourceKey<Block> MANGROVE_WALL_KEY = makeRegistryKey("mangrove_wall");
-    public static final Block MANGROVE_WALL = registerWall(MANGROVE_WALL_KEY,
+    public static final Block MANGROVE_WALL = registerUnstrippedWoodenWall(MANGROVE_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.MANGROVE_PLANKS).setId(MANGROVE_WALL_KEY));
     public static final ResourceKey<Block> CRIMSON_WALL_KEY = makeRegistryKey("crimson_wall");
-    public static final Block CRIMSON_WALL = registerWall(CRIMSON_WALL_KEY,
+    public static final Block CRIMSON_WALL = registerUnstrippedWoodenWall(CRIMSON_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_PLANKS).setId(CRIMSON_WALL_KEY));
     public static final ResourceKey<Block> WARPED_WALL_KEY = makeRegistryKey("warped_wall");
-    public static final Block WARPED_WALL = registerWall(WARPED_WALL_KEY,
+    public static final Block WARPED_WALL = registerUnstrippedWoodenWall(WARPED_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_PLANKS).setId(WARPED_WALL_KEY));
     public static final ResourceKey<Block> CHERRY_WALL_KEY = makeRegistryKey("cherry_wall");
-    public static final Block CHERRY_WALL = registerWall(CHERRY_WALL_KEY,
+    public static final Block CHERRY_WALL = registerUnstrippedWoodenWall(CHERRY_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.CHERRY_PLANKS).setId(CHERRY_WALL_KEY));
     public static final ResourceKey<Block> STRIPPED_OAK_WALL_KEY = makeRegistryKey("stripped_oak_wall");
     public static final Block STRIPPED_OAK_WALL = registerWall(STRIPPED_OAK_WALL_KEY,
@@ -1301,7 +1301,7 @@ public final class ModBlocks {
     public static final Block STRIPPED_PALE_OAK_WALL = registerWall(STRIPPED_PALE_OAK_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.PALE_OAK_PLANKS).setId(STRIPPED_PALE_OAK_WALL_KEY));
     public static final ResourceKey<Block> PALE_OAK_WALL_KEY = makeRegistryKey("pale_oak_wall");
-    public static final Block PALE_OAK_WALL = registerWall(PALE_OAK_WALL_KEY,
+    public static final Block PALE_OAK_WALL = registerUnstrippedWoodenWall(PALE_OAK_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.PALE_OAK_PLANKS).setId(PALE_OAK_WALL_KEY));
     public static final ResourceKey<Block> BAMBOO_ROPE_LADDER_KEY = makeRegistryKey("bamboo_rope_ladder");
     public static final Block BAMBOO_ROPE_LADDER = registerRopeLadder(BAMBOO_ROPE_LADDER_KEY);
@@ -1309,7 +1309,7 @@ public final class ModBlocks {
     public static final Block STRIPPED_BAMBOO_WALL = registerWall(STRIPPED_BAMBOO_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.BAMBOO_PLANKS).setId(STRIPPED_BAMBOO_WALL_KEY));
     public static final ResourceKey<Block> BAMBOO_WALL_KEY = makeRegistryKey("bamboo_wall");
-    public static final Block BAMBOO_WALL = registerWall(BAMBOO_WALL_KEY,
+    public static final Block BAMBOO_WALL = registerUnstrippedWoodenWall(BAMBOO_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.BAMBOO_PLANKS).setId(BAMBOO_WALL_KEY));
     public static final ResourceKey<Block> BLACK_WOLF_PLUSHIE_KEY = makeRegistryKey("black_wolf_plushie");
     public static final Block BLACK_WOLF_PLUSHIE = registerWolfPlushie(BLACK_WOLF_PLUSHIE_KEY);
@@ -1319,6 +1319,51 @@ public final class ModBlocks {
     public static final Block CHESTNUT_WOLF_PLUSHIE = registerWolfPlushie(CHESTNUT_WOLF_PLUSHIE_KEY);
     public static final ResourceKey<Block> RUSTY_WOLF_PLUSHIE_KEY = makeRegistryKey("rusty_wolf_plushie");
     public static final Block RUSTY_WOLF_PLUSHIE = registerWolfPlushie(RUSTY_WOLF_PLUSHIE_KEY);
+    public static final ResourceKey<Block> BLUEBERRY_CRATE_KEY = makeRegistryKey("blueberry_crate");
+    public static final Block BLUEBERRY_CRATE = registerSimple(BLUEBERRY_CRATE_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).mapColor(MapColor.WOOD));
+    public static final ResourceKey<Block> WITCHS_CRADLE_CRATE_KEY = makeRegistryKey("witchs_cradle_crate");
+    public static final Block WITCHS_CRADLE_CRATE = registerSimple(WITCHS_CRADLE_CRATE_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).mapColor(MapColor.WOOD));
+    public static final ResourceKey<Block> GREEN_ONION_CRATE_KEY = makeRegistryKey("green_onion_crate");
+    public static final Block GREEN_ONION_CRATE = registerSimple(GREEN_ONION_CRATE_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).mapColor(MapColor.WOOD));
+    public static final ResourceKey<Block> GREEN_ONION_SEEDS_BAG_KEY = makeRegistryKey("green_onion_seeds_bag");
+    public static final Block GREEN_ONION_SEEDS_BAG = registerSimple(GREEN_ONION_SEEDS_BAG_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_WOOL).mapColor(MapColor.WOOL));
+    public static final ResourceKey<Block> FROSTBITE_BERRY_CRATE_KEY = makeRegistryKey("frostbite_berry_crate");
+    public static final Block FROSTBITE_BERRY_CRATE = registerSimple(FROSTBITE_BERRY_CRATE_KEY,
+            BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PURPLE)
+                    .instrument(NoteBlockInstrument.BASS).sound(SoundType.SHELF)
+                    .ignitedByLava().strength(2.0F, 3.0F)
+                    .lightLevel((state) -> 5));
+    public static final ResourceKey<Block> CINDERSNAP_BERRY_CRATE_KEY = makeRegistryKey("cindersnap_berry_crate");
+    public static final Block CINDERSNAP_BERRY_CRATE = registerSimple(CINDERSNAP_BERRY_CRATE_KEY,
+            BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PURPLE)
+                    .instrument(NoteBlockInstrument.BASS).sound(SoundType.SHELF)
+                    .ignitedByLava().strength(2.0F, 3.0F)
+                    .lightLevel((state) -> 8));
+    public static final ResourceKey<Block> CARAMEL_BLOCK_KEY = makeRegistryKey("caramel_block");
+    public static final Block CARAMEL_BLOCK = registerSimple(CARAMEL_BLOCK_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.HONEYCOMB_BLOCK).sound(SoundType.NETHER_GOLD_ORE));
+    public static final ResourceKey<Block> BLOOD_KELP_SEED_CLUSTER_BAG_KEY = makeRegistryKey("blood_kelp_seed_cluster_bag");
+    public static final Block BLOOD_KELP_SEED_CLUSTER_BAG = registerSimple(BLOOD_KELP_SEED_CLUSTER_BAG_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_WOOL)
+                    .mapColor(MapColor.WOOL).lightLevel((state) -> 10));
+    public static final ResourceKey<Block> SPRUCE_CONE_CRATE_KEY = makeRegistryKey("spruce_cone_crate");
+    public static final Block SPRUCE_CONE_CRATE = registerSimple(SPRUCE_CONE_CRATE_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).mapColor(MapColor.WOOD));
+    public static final ResourceKey<Block> PURPLE_MUSHROOM_CRATE_KEY = makeRegistryKey("purple_mushroom_crate");
+    public static final Block PURPLE_MUSHROOM_CRATE = registerSimple(PURPLE_MUSHROOM_CRATE_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).mapColor(MapColor.WOOD));
+    public static final ResourceKey<Block> BLOOD_KELP_CRATE_KEY = makeRegistryKey("blood_kelp_crate");
+    public static final Block BLOOD_KELP_CRATE = registerSimple(BLOOD_KELP_CRATE_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).mapColor(MapColor.WOOD));
+    public static final ResourceKey<Block> SNAPDRAGON_CRATE_KEY = makeRegistryKey("snapdragon_crate");
+    public static final Block SNAPDRAGON_CRATE = registerSimple(SNAPDRAGON_CRATE_KEY,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_PLANKS)
+                    .mapColor(MapColor.WOOL).mapColor(MapColor.WOOD)
+                    .lightLevel((state) -> 8));
 
     private ModBlocks() {}
 
@@ -1484,6 +1529,10 @@ public final class ModBlocks {
 
     private static Block registerWall(final ResourceKey<Block> id, BlockBehaviour.Properties settings) {
         return register(id, WallBlock::new, settings);
+    }
+
+    private static Block registerUnstrippedWoodenWall(final ResourceKey<Block> id, BlockBehaviour.Properties settings) {
+        return register(id, UnstrippedWoodenWallBlock::new, settings);
     }
 
     private static Block registerSimple(final ResourceKey<Block> id, BlockBehaviour.Properties settings) {

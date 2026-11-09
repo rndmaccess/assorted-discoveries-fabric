@@ -24,8 +24,7 @@ We recommend upgrading to 26.3 to ensure continued compatibility and stability.
 
 ## License
 
-Assets for this project are licensed under All Rights Reserved. The code for this project 
-is licensed under the MIT license.
+Assets and code for this project are licensed under the MIT license.
 This license can be found here: [LICENSE](./LICENSE.md).
 
 ## Official Wiki

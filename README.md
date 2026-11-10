@@ -5,11 +5,6 @@
 Experience Minecraft like never before with over 90 new plushies! As well as many other new vanilla style blocks, 
 food, and much, much more with Assorted Discoveries!
 
-## Support Concluded for Minecraft 26.2
-
-Development and support for Minecraft 26.2 have officially ended. 
-We recommend upgrading to 26.3 to ensure continued compatibility and stability.
-
 ## Features
 
 - New crops and dynamic planter boxes. 

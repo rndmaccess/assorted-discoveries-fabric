@@ -13,7 +13,7 @@ import java.util.EnumMap;
 
 public class DesertVillagerPlushieBlock extends PlushieBlock {
     private static final EnumMap<Direction, VoxelShape> SHAPES = ShapeHelper.makeShapeRotMap(
-            Block.box(3.5D, 0.0D, 3.5D, 13.0D, 14.5D, 13.0D)
+            Block.box(3.0D, 0.0D, 3.0D, 14.0D, 14.0D, 13.0D)
     );
 
     public DesertVillagerPlushieBlock(Properties properties) {

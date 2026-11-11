@@ -14,7 +14,7 @@ import java.util.EnumMap;
 
 public class RabbitPlushieBlock extends PlushieBlock {
     private static final EnumMap<Direction, VoxelShape> SHAPES = ShapeHelper.makeShapeRotMap(
-            Block.box(2.5D, 0.0D, 2.5D, 13.5D, 10.5D, 13.0D)
+            Block.box(2.0D, 0.0D, 2.0D, 14.0D, 11.0D, 13.0D)
     );
 
     public RabbitPlushieBlock(BlockBehaviour.Properties properties) {

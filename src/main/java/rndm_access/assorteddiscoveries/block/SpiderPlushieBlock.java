@@ -14,7 +14,7 @@ import java.util.EnumMap;
 
 public class SpiderPlushieBlock extends PlushieBlock {
     private static final EnumMap<Direction, VoxelShape> SHAPES = ShapeHelper.makeShapeRotMap(
-            Block.box(2.0D, 0.0D, 2.0D, 14.0D, 7.0D, 14.5D)
+            Block.box(2.0D, 0.0D, 2.0D, 14.0D, 7.0D, 15.0D)
     );
 
     public SpiderPlushieBlock(BlockBehaviour.Properties properties) {

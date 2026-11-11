@@ -34,7 +34,6 @@ import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
-import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import rndm_access.assorteddiscoveries.block.UnstrippedWoodenWallBlock;
@@ -47,7 +46,7 @@ import java.util.Optional;
 public class AssortedDiscoveries implements ModInitializer {
     public static final String MOD_ID = "assorted-discoveries";
     public static final Logger LOGGER = LoggerFactory.getLogger("AssortedDiscoveries");
-    private static final ResourceKey<@NotNull CreativeModeTab> MOD_CREATIVE_TAB_KEY = ResourceKey.create(
+    private static final ResourceKey<CreativeModeTab> MOD_CREATIVE_TAB_KEY = ResourceKey.create(
             Registries.CREATIVE_MODE_TAB, makeModId("item_group"));
     public static final CreativeModeTab MOD_CREATIVE_TAB = FabricCreativeModeTab.builder()
             .icon(() -> new ItemStack(ModBlocks.ENDERMAN_PLUSHIE.asItem()))
@@ -232,7 +231,7 @@ public class AssortedDiscoveries implements ModInitializer {
     }
 
     private static void modifyLootTables() {
-        Optional<ResourceKey<@NotNull LootTable>> spruceLeavesLootTableId = Blocks.SPRUCE_LEAVES.getLootTable();
+        Optional<ResourceKey<LootTable>> spruceLeavesLootTableId = Blocks.SPRUCE_LEAVES.getLootTable();
 
         LootTableEvents.MODIFY.register((key, tableBuilder, source,
                                          registries) -> {

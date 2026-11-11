@@ -742,6 +742,31 @@ public final class ModBlocks {
     public static final Block STRIPPED_POPLAR_WALL = registerWall(ModBlockIds.STRIPPED_POPLAR_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.POPLAR_PLANKS));
 
+    public static final Block DRIPSTONE_TILES
+            = registerSimple(ModBlockIds.DRIPSTONE_TILES_KEY, makeStoneTileSettings());
+    public static final Block DRIPSTONE_TILE_SLAB
+            = registerSlab(ModBlockIds.DRIPSTONE_TILE_SLAB_KEY, makeStoneTileSettings());
+    public static final Block DRIPSTONE_TILE_STAIRS
+            = registerStairs(ModBlockIds.DRIPSTONE_TILE_STAIRS_KEY, makeStoneTileSettings(), STONE_TILES);
+    public static final Block DRIPSTONE_TILE_WALL
+            = registerWall(ModBlockIds.DRIPSTONE_TILE_WALL_KEY, makeStoneTileSettings());
+    public static final Block MOSSY_DRIPSTONE_TILES
+            = registerSimple(ModBlockIds.MOSSY_DRIPSTONE_TILES_KEY, makeStoneTileSettings());
+    public static final Block MOSSY_DRIPSTONE_TILE_SLAB
+            = registerSlab(ModBlockIds.MOSSY_DRIPSTONE_TILE_SLAB_KEY, makeStoneTileSettings());
+    public static final Block MOSSY_DRIPSTONE_TILE_STAIRS
+            = registerStairs(ModBlockIds.MOSSY_DRIPSTONE_TILE_STAIRS_KEY, makeStoneTileSettings(), MOSSY_STONE_TILES);
+    public static final Block MOSSY_DRIPSTONE_TILE_WALL
+            = registerWall(ModBlockIds.MOSSY_DRIPSTONE_TILE_WALL_KEY, makeStoneTileSettings());
+    public static final Block CRACKED_DRIPSTONE_TILES
+            = registerSimple(ModBlockIds.CRACKED_DRIPSTONE_TILES_KEY, makeStoneTileSettings());
+    public static final Block CRACKED_DRIPSTONE_TILE_SLAB
+            = registerSlab(ModBlockIds.CRACKED_DRIPSTONE_TILE_SLAB_KEY, makeStoneTileSettings());
+    public static final Block CRACKED_DRIPSTONE_TILE_STAIRS
+            = registerStairs(ModBlockIds.CRACKED_DRIPSTONE_TILE_STAIRS_KEY, makeStoneTileSettings(), CRACKED_STONE_TILES);
+    public static final Block CRACKED_DRIPSTONE_TILE_WALL
+            = registerWall(ModBlockIds.CRACKED_DRIPSTONE_TILE_WALL_KEY, makeStoneTileSettings());
+
     private ModBlocks() {}
 
     private static BlockPos postProcessSelf(final BlockState state, final BlockGetter blockGetter, final BlockPos blockPos) {

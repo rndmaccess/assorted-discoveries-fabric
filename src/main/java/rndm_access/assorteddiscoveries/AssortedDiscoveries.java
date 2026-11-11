@@ -777,6 +777,11 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModBlocks.DRIPSTONE_BRICK_SLAB.asItem());
                 entries.accept(ModBlocks.DRIPSTONE_BRICK_WALL.asItem());
                 entries.accept(ModBlocks.CHISELED_DRIPSTONE_BRICKS.asItem());
+
+                entries.accept(ModBlocks.DRIPSTONE_TILES.asItem());
+                entries.accept(ModBlocks.DRIPSTONE_TILE_STAIRS.asItem());
+                entries.accept(ModBlocks.DRIPSTONE_TILE_SLAB.asItem());
+                entries.accept(ModBlocks.DRIPSTONE_TILE_WALL.asItem());
             }
 
             if (ModConfig.ENABLE_CRACKED_DRIPSTONE_BRICKS.getValue() && ModConfig.ENABLE_DRIPSTONE_BRICKS.getValue()) {

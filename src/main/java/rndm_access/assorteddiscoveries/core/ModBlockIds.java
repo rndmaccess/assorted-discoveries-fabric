@@ -460,6 +460,21 @@ public final class ModBlockIds {
     public static final BlockItemId STRIPPED_POPLAR_WALL_KEY = create("stripped_poplar_wall");
     public static final ColorCollection<BlockItemId> DYED_LANTERN_KEYS = createSimpleColored("lantern");
     public static final ColorCollection<BlockItemId> DYED_SHEEP_KEYS = createSimpleColored("sheep_plushie");
+    public static final BlockItemId DRIPSTONE_TILES_KEY = create("dripstone_tiles");
+    public static final BlockItemId DRIPSTONE_TILE_SLAB_KEY = create("dripstone_tile_slab");
+    public static final BlockItemId DRIPSTONE_TILE_STAIRS_KEY = create("dripstone_tile_stairs");
+    public static final BlockItemId DRIPSTONE_TILE_WALL_KEY = create("dripstone_tile_wall");
+    public static final BlockItemId MOSSY_DRIPSTONE_TILES_KEY = create("mossy_dripstone_tiles");
+    public static final BlockItemId MOSSY_DRIPSTONE_TILE_SLAB_KEY = create("mossy_dripstone_tile_slab");
+    public static final BlockItemId MOSSY_DRIPSTONE_TILE_STAIRS_KEY = create("mossy_dripstone_tile_stairs");
+    public static final BlockItemId MOSSY_DRIPSTONE_TILE_WALL_KEY = create("mossy_dripstone_tile_wall");
+    public static final BlockItemId CRACKED_DRIPSTONE_TILES_KEY = create("cracked_dripstone_tiles");
+    public static final BlockItemId CRACKED_DRIPSTONE_TILE_SLAB_KEY
+            = create("cracked_dripstone_tile_slab");
+    public static final BlockItemId CRACKED_DRIPSTONE_TILE_STAIRS_KEY
+            = create("cracked_dripstone_tile_stairs");
+    public static final BlockItemId CRACKED_DRIPSTONE_TILE_WALL_KEY
+            = create("cracked_dripstone_tile_wall");
 
     private ModBlockIds() {}
 

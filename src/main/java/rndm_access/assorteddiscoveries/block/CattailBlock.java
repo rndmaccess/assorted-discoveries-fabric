@@ -148,11 +148,6 @@ public class CattailBlock extends DoublePlantBlock implements BonemealableBlock 
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(WATERLOGGED, HALF);
-    }
-
-    @Override
     public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos pos, BlockState state) {
         return true;
     }
@@ -165,5 +160,10 @@ public class CattailBlock extends DoublePlantBlock implements BonemealableBlock 
     @Override
     public void performBonemeal(ServerLevel serverLevel, RandomSource random, BlockPos pos, BlockState state) {
         popResource(serverLevel, pos, new ItemStack(this));
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(WATERLOGGED, HALF);
     }
 }

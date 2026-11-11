@@ -14,7 +14,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.SlabType;
-import org.jspecify.annotations.NonNull;
 import rndm_access.assorteddiscoveries.core.ModBlocks;
 
 public class SnowySlabBlock extends SoilSlabBlock {
@@ -27,10 +26,9 @@ public class SnowySlabBlock extends SoilSlabBlock {
     }
 
     @Override
-    protected @NonNull BlockState updateShape(@NonNull BlockState state, @NonNull LevelReader levelReader,
-                                              @NonNull ScheduledTickAccess tickView, @NonNull BlockPos pos,
-                                              @NonNull Direction direction, @NonNull BlockPos neighborPos,
-                                              @NonNull BlockState neighborState, @NonNull RandomSource random) {
+    protected BlockState updateShape(BlockState state, LevelReader levelReader, ScheduledTickAccess tickView,
+                                     BlockPos pos, Direction direction, BlockPos neighborPos,
+                                     BlockState neighborState, RandomSource random) {
         if (direction == Direction.UP) {
             boolean isSnowy = isSnowCovered(state, neighborState);
             return state.setValue(SNOWY, isSnowy);
@@ -50,8 +48,7 @@ public class SnowySlabBlock extends SoilSlabBlock {
     }
 
     @Override
-    public void randomTick(@NonNull BlockState state, @NonNull ServerLevel world,
-                           @NonNull BlockPos pos, @NonNull RandomSource random) {
+    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
         if(!canGrowGrass(state, world, pos)) {
             world.setBlock(pos, ModBlocks.DIRT_SLAB.defaultBlockState().setValue(TYPE, state.getValue(TYPE))
                     .setValue(WATERLOGGED, state.getValue(WATERLOGGED)), Block.UPDATE_CLIENTS);

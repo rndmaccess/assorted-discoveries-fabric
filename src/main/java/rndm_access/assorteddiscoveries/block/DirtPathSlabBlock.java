@@ -1,9 +1,11 @@
 package rndm_access.assorteddiscoveries.block;
 
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.util.Util;
 import rndm_access.assorteddiscoveries.core.ModBlocks;
 
-import java.util.HashMap;
+import java.util.EnumMap;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
@@ -19,7 +21,11 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class DirtPathSlabBlock extends SlabBlock {
-    protected static final HashMap<SlabType, VoxelShape> SHAPE;
+    private static final EnumMap<SlabType, VoxelShape> SHAPES = Util.make(new EnumMap<>(SlabType.class), map -> {
+        map.put(SlabType.DOUBLE, Block.box(0.0, 0.0, 0.0, 16.0, 15.0, 16.0));
+        map.put(SlabType.BOTTOM, Block.box(0.0, 0.0, 0.0, 16.0, 7.0, 16.0));
+        map.put(SlabType.TOP, Block.box(0.0, 8.0, 0.0, 16.0, 15.0, 16.0));
+    });
 
     public DirtPathSlabBlock(Properties properties) {
         super(properties);
@@ -47,16 +53,6 @@ public class DirtPathSlabBlock extends SlabBlock {
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         SlabType slabType = state.getValue(TYPE);
-        return SHAPE.get(slabType);
-    }
-
-    static {
-        SHAPE = new HashMap<>();
-        SHAPE.put(SlabType.DOUBLE, Block.box(0.0, 0.0, 0.0, 16.0, 15.0,
-                16.0));
-        SHAPE.put(SlabType.BOTTOM, Block.box(0.0, 0.0, 0.0, 16.0, 7.0,
-                16.0));
-        SHAPE.put(SlabType.TOP, Block.box(0.0, 8.0, 0.0, 16.0, 15.0,
-                16.0));
+        return SHAPES.get(slabType);
     }
 }

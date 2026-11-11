@@ -2,23 +2,32 @@ package rndm_access.assorteddiscoveries.block;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import rndm_access.assorteddiscoveries.util.ShapeHelper;
 
-public class SheepPlushieBlock extends SimplePlushieBlock {
+import java.util.EnumMap;
+
+public class SheepPlushieBlock extends PlushieBlock {
     public static final MapCodec<SheepPlushieBlock> CODEC
             = RecordCodecBuilder.mapCodec((instance) ->
             instance.group(DyeColor.CODEC.fieldOf("color")
                             .forGetter(SheepPlushieBlock::getColor), propertiesCodec())
                     .apply(instance, SheepPlushieBlock::new));
-    private static final VoxelShape NORTH_SHAPE = Block.box(4.0D, 0.0D, 2.0D,
-            12.0D, 12.0D, 14.0D);
+    private static final EnumMap<Direction, VoxelShape> SHAPES = ShapeHelper.makeShapeRotMap(
+            Block.box(4.0D, 0.0D, 2.0D, 12.0D, 12.0D, 14.0D)
+    );
     private final DyeColor color;
 
     public SheepPlushieBlock(DyeColor color, BlockBehaviour.Properties properties) {
-        super(properties, NORTH_SHAPE);
+        super(properties);
         this.color = color;
     }
 
@@ -29,5 +38,10 @@ public class SheepPlushieBlock extends SimplePlushieBlock {
     @Override
     protected MapCodec<SheepPlushieBlock> codec() {
         return CODEC;
+    }
+
+    @Override
+    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+        return SHAPES.get(state.getValue(FACING));
     }
 }

@@ -19,7 +19,7 @@ public final class ModBlockTypes {
     }
 
     public static void register() {
-        registerCodec(makeRegistryKey("simple_plushie"), SimplePlushieBlock.CODEC);
+        registerCodec(makeRegistryKey("simple_plushie"), PlushieBlock.CODEC);
         registerCodec(makeRegistryKey("sheep_plushie"), SheepPlushieBlock.CODEC);
         registerCodec(makeRegistryKey("blood_kelp"), BloodKelpBlock.CODEC);
         registerCodec(makeRegistryKey("blood_kelp_plant"), BloodKelpPlantBlock.CODEC);

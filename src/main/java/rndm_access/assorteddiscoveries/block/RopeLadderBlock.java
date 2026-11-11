@@ -71,8 +71,8 @@ public class RopeLadderBlock extends LadderBlock {
 
     @Override
     public BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess tickView,
-                                                BlockPos pos, Direction direction, BlockPos neighborPos,
-                                                BlockState neighborState, RandomSource random) {
+                                  BlockPos pos, Direction direction, BlockPos neighborPos,
+                                  BlockState neighborState, RandomSource random) {
         Direction facing = state.getValue(FACING);
         BlockState stateAbove = world.getBlockState(pos.above());
 
@@ -104,11 +104,6 @@ public class RopeLadderBlock extends LadderBlock {
             return length <= this.getMaxLength();
         }
         return this.hasSupportingBlock(world, facing, pos);
-    }
-
-    @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(LENGTH, DOWN, FACING, WATERLOGGED);
     }
 
     private boolean hasSupportingBlock(LevelReader world, Direction facing, BlockPos pos) {
@@ -144,5 +139,10 @@ public class RopeLadderBlock extends LadderBlock {
 
     private boolean isWaterSource(FluidState fluidState) {
         return fluidState.is(FluidTags.WATER) && fluidState.isSource();
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(LENGTH, DOWN, FACING, WATERLOGGED);
     }
 }

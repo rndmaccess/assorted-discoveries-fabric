@@ -16,7 +16,6 @@ import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.phys.BlockHitResult;
-import org.jspecify.annotations.NonNull;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 
 import java.util.HashMap;
@@ -43,9 +42,8 @@ public class UnstrippedWoodenWallBlock extends WallBlock {
     }
 
     @Override
-    public @NonNull InteractionResult useItemOn(ItemStack itemStack, @NonNull BlockState state, @NonNull Level level,
-                                                @NonNull BlockPos pos, @NonNull Player player,
-                                                @NonNull InteractionHand hand, @NonNull BlockHitResult hitResult) {
+    public InteractionResult useItemOn(ItemStack itemStack, BlockState state, Level level, BlockPos pos,
+                                       Player player, InteractionHand hand, BlockHitResult hitResult) {
         if (!itemStack.is(ItemTags.AXES)) {
             return super.useItemOn(itemStack, state, level, pos, player, hand, hitResult);
         }

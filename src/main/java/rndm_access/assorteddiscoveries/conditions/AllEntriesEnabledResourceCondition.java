@@ -7,7 +7,6 @@ import net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition;
 import net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditionType;
 import net.minecraft.resources.RegistryOps;
 import org.jetbrains.annotations.Nullable;
-import org.jspecify.annotations.NonNull;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.ModConfig;
 import rndm_access.assorteddiscoveries.config.json.json_objects.AbstractConfigEntry;
@@ -25,12 +24,12 @@ public record AllEntriesEnabledResourceCondition(List<String> configKeys) implem
             ).apply(instance, AllEntriesEnabledResourceCondition::new));
 
     @Override
-    public @NonNull ResourceConditionType<?> getType() {
+    public ResourceConditionType<?> getType() {
         return ModResourceConditionTypes.ALL_ENTRIES_ENABLED;
     }
 
     @Override
-    public boolean test(@Nullable RegistryOps.@Nullable RegistryInfoLookup registryInfo) {
+    public boolean test(@Nullable RegistryOps.RegistryInfoLookup registryInfo) {
         // Just load the resource like normal if there are no config keys listed!
         if (this.configKeys.isEmpty()) {
             return true;

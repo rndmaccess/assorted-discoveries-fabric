@@ -27,11 +27,12 @@ public class SoilSlabBlock extends SlabBlock {
 
     public boolean isSnowCovered(BlockState state, BlockState neighborState) {
         boolean isSnowBlock = neighborState.is(BlockTags.SNOW);
+        boolean isNotBottom = state.hasProperty(TYPE) && state.getValue(TYPE) != SlabType.BOTTOM;
 
         if (FabricLoader.getInstance().isModLoaded("slabbed")) {
             return isSnowBlock;
         }
-        return !isBottom(state) && isSnowBlock;
+        return isNotBottom && isSnowBlock;
     }
 
     protected boolean canGrowGrass(BlockState state, LevelReader levelReader, BlockPos pos) {
@@ -45,47 +46,30 @@ public class SoilSlabBlock extends SlabBlock {
         }
     }
 
-    private boolean isCovered(LevelReader levelReader, BlockPos neighborPos, BlockState neighborState, BlockState state) {
-        boolean isBottomCovered = !FabricLoader.getInstance().isModLoaded("slabbed") && isBottom(state);
-        boolean isWaterlogged = state.hasProperty(WATERLOGGED) && state.getValue(WATERLOGGED);
+    private boolean isCovered(LevelReader levelReader, BlockPos abovePos, BlockState aboveState, BlockState state) {
+        boolean isBottom = state.hasProperty(TYPE) && state.getValue(TYPE) == SlabType.BOTTOM;
+        boolean isBottomCovered = isBottom && !FabricLoader.getInstance().isModLoaded("slabbed");
+        boolean isAboveTopSlab = aboveState.hasProperty(TYPE) && aboveState.getValue(TYPE) == SlabType.TOP;
 
-        if (isWaterlogged) {
-            return true;
-        } else if (isBottomCovered || isTop(neighborState)) {
+        if (isBottomCovered || isAboveTopSlab) {
             return false; // Prevent coverage when there is a gap between slabs.
-        } else if (neighborState.isFaceSturdy(levelReader, neighborPos, Direction.DOWN)) {
+        } else if (aboveState.isFaceSturdy(levelReader, abovePos, Direction.DOWN)) {
             return true; // True if a solid block covers the slab.
         } else {
             // Fallback to light calc for special blocks like leaves and tinted glass.
-            int lightDampeningValue = neighborState.getLightDampening();
-            int lightDampeningTopFace = LightEngine.getLightDampeningInto(state, neighborState,
+            int lightDampeningValue = aboveState.getLightDampening();
+            int lightDampeningTopFace = LightEngine.getLightDampeningInto(state, aboveState,
                     Direction.DOWN, lightDampeningValue);
             return lightDampeningTopFace >= 15;
         }
     }
 
-    private boolean isTop(BlockState state) {
-        boolean hasTypeProperty = state.hasProperty(TYPE);
-
-        if (hasTypeProperty) {
-            return state.getValue(TYPE) == SlabType.TOP;
-        }
-        return false;
-    }
-
-    protected boolean isBottom(BlockState state) {
-        boolean hasTypeProperty = state.hasProperty(TYPE);
-
-        if (hasTypeProperty) {
-            return state.getValue(TYPE) == SlabType.BOTTOM;
-        }
-        return false;
-    }
-
     @Override
     protected InteractionResult useItemOn(ItemStack itemStack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-        BlockState coveringState = level.getBlockState(pos.above());
-        boolean cannotConvertSlab = isCovered(level, pos.above(), coveringState, state);
+        BlockState aboveState = level.getBlockState(pos.above());
+        boolean isDouble = state.hasProperty(TYPE) && state.getValue(TYPE) == SlabType.DOUBLE;
+        boolean isSubmergedDouble = isDouble && aboveState.getFluidState().getAmount() == 8;
+        boolean cannotConvertSlab = isCovered(level, pos.above(), aboveState, state) || isSubmergedDouble;
 
         if (!itemStack.is(ItemTags.SHOVELS) || cannotConvertSlab) {
             return super.useItemOn(itemStack, state, level, pos, player, hand, hitResult);

@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "assorted-discoveries:white_lantern",
+    "assorted-discoveries:orange_lantern",
+    "assorted-discoveries:magenta_lantern",
+    "assorted-discoveries:light_blue_lantern",
+    "assorted-discoveries:yellow_lantern",
+    "assorted-discoveries:lime_lantern",
+    "assorted-discoveries:pink_lantern",
+    "assorted-discoveries:gray_lantern",
+    "assorted-discoveries:light_gray_lantern",
+    "assorted-discoveries:cyan_lantern",
+    "assorted-discoveries:purple_lantern",
+    "assorted-discoveries:blue_lantern",
+    "assorted-discoveries:brown_lantern",
+    "assorted-discoveries:green_lantern",
+    "assorted-discoveries:red_lantern",
+    "assorted-discoveries:black_lantern"
+  ]
+}

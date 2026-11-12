@@ -743,29 +743,29 @@ public final class ModBlocks {
             BlockBehaviour.Properties.ofFullCopy(Blocks.POPLAR_PLANKS));
 
     public static final Block DRIPSTONE_TILES
-            = registerSimple(ModBlockIds.DRIPSTONE_TILES_KEY, makeStoneTileSettings());
+            = registerSimple(ModBlockIds.DRIPSTONE_TILES_KEY, makeDripstoneTileSettings());
     public static final Block DRIPSTONE_TILE_SLAB
-            = registerSlab(ModBlockIds.DRIPSTONE_TILE_SLAB_KEY, makeStoneTileSettings());
+            = registerSlab(ModBlockIds.DRIPSTONE_TILE_SLAB_KEY, makeDripstoneTileSettings());
     public static final Block DRIPSTONE_TILE_STAIRS
-            = registerStairs(ModBlockIds.DRIPSTONE_TILE_STAIRS_KEY, makeStoneTileSettings(), STONE_TILES);
+            = registerStairs(ModBlockIds.DRIPSTONE_TILE_STAIRS_KEY, makeDripstoneTileSettings(), STONE_TILES);
     public static final Block DRIPSTONE_TILE_WALL
-            = registerWall(ModBlockIds.DRIPSTONE_TILE_WALL_KEY, makeStoneTileSettings());
+            = registerWall(ModBlockIds.DRIPSTONE_TILE_WALL_KEY, makeDripstoneTileSettings());
     public static final Block MOSSY_DRIPSTONE_TILES
-            = registerSimple(ModBlockIds.MOSSY_DRIPSTONE_TILES_KEY, makeStoneTileSettings());
+            = registerSimple(ModBlockIds.MOSSY_DRIPSTONE_TILES_KEY, makeDripstoneTileSettings());
     public static final Block MOSSY_DRIPSTONE_TILE_SLAB
-            = registerSlab(ModBlockIds.MOSSY_DRIPSTONE_TILE_SLAB_KEY, makeStoneTileSettings());
+            = registerSlab(ModBlockIds.MOSSY_DRIPSTONE_TILE_SLAB_KEY, makeDripstoneTileSettings());
     public static final Block MOSSY_DRIPSTONE_TILE_STAIRS
-            = registerStairs(ModBlockIds.MOSSY_DRIPSTONE_TILE_STAIRS_KEY, makeStoneTileSettings(), MOSSY_STONE_TILES);
+            = registerStairs(ModBlockIds.MOSSY_DRIPSTONE_TILE_STAIRS_KEY, makeDripstoneTileSettings(), MOSSY_STONE_TILES);
     public static final Block MOSSY_DRIPSTONE_TILE_WALL
-            = registerWall(ModBlockIds.MOSSY_DRIPSTONE_TILE_WALL_KEY, makeStoneTileSettings());
+            = registerWall(ModBlockIds.MOSSY_DRIPSTONE_TILE_WALL_KEY, makeDripstoneTileSettings());
     public static final Block CRACKED_DRIPSTONE_TILES
-            = registerSimple(ModBlockIds.CRACKED_DRIPSTONE_TILES_KEY, makeStoneTileSettings());
+            = registerSimple(ModBlockIds.CRACKED_DRIPSTONE_TILES_KEY, makeDripstoneTileSettings());
     public static final Block CRACKED_DRIPSTONE_TILE_SLAB
-            = registerSlab(ModBlockIds.CRACKED_DRIPSTONE_TILE_SLAB_KEY, makeStoneTileSettings());
+            = registerSlab(ModBlockIds.CRACKED_DRIPSTONE_TILE_SLAB_KEY, makeDripstoneTileSettings());
     public static final Block CRACKED_DRIPSTONE_TILE_STAIRS
-            = registerStairs(ModBlockIds.CRACKED_DRIPSTONE_TILE_STAIRS_KEY, makeStoneTileSettings(), CRACKED_STONE_TILES);
+            = registerStairs(ModBlockIds.CRACKED_DRIPSTONE_TILE_STAIRS_KEY, makeDripstoneTileSettings(), CRACKED_STONE_TILES);
     public static final Block CRACKED_DRIPSTONE_TILE_WALL
-            = registerWall(ModBlockIds.CRACKED_DRIPSTONE_TILE_WALL_KEY, makeStoneTileSettings());
+            = registerWall(ModBlockIds.CRACKED_DRIPSTONE_TILE_WALL_KEY, makeDripstoneTileSettings());
 
     private ModBlocks() {}
 
@@ -1043,6 +1043,12 @@ public final class ModBlocks {
 
     private static BlockBehaviour.Properties makeDripstoneSettings() {
         return BlockBehaviour.Properties.ofFullCopy(Blocks.DRIPSTONE_BLOCK);
+    }
+
+    private static BlockBehaviour.Properties makeDripstoneTileSettings() {
+        return BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_BROWN)
+                .instrument(NoteBlockInstrument.BASEDRUM).sound(SoundType.DEEPSLATE_TILES)
+                .requiresCorrectToolForDrops().strength(1.5F, 1.0F);
     }
 
     /**

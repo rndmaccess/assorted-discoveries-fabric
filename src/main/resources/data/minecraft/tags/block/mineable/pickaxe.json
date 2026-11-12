@@ -155,6 +155,18 @@
     "assorted-discoveries:stone_wall",
     "assorted-discoveries:quartz_brick_stairs",
     "assorted-discoveries:quartz_brick_slab",
-    "assorted-discoveries:quartz_brick_wall"
+    "assorted-discoveries:quartz_brick_wall",
+    "assorted-discoveries:dripstone_tiles",
+    "assorted-discoveries:dripstone_tile_slab",
+    "assorted-discoveries:dripstone_tile_stairs",
+    "assorted-discoveries:dripstone_tile_wall",
+    "assorted-discoveries:cracked_dripstone_tiles",
+    "assorted-discoveries:cracked_dripstone_tile_slab",
+    "assorted-discoveries:cracked_dripstone_tile_stairs",
+    "assorted-discoveries:cracked_dripstone_tile_wall",
+    "assorted-discoveries:mossy_dripstone_tiles",
+    "assorted-discoveries:mossy_dripstone_tile_slab",
+    "assorted-discoveries:mossy_dripstone_tile_stairs",
+    "assorted-discoveries:mossy_dripstone_tile_wall"
   ]
 }

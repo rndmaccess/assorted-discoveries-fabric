@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "#assorted-discoveries:dripstone_blocks",
     "assorted-discoveries:twisted_netherrack",
     "assorted-discoveries:weeping_netherrack",
     "assorted-discoveries:twisted_nether_bricks",
@@ -29,11 +30,6 @@
     "assorted-discoveries:chiseled_calcite_bricks",
     "assorted-discoveries:cracked_calcite_bricks",
     "assorted-discoveries:mossy_calcite_bricks",
-    "assorted-discoveries:polished_dripstone",
-    "assorted-discoveries:dripstone_bricks",
-    "assorted-discoveries:chiseled_dripstone_bricks",
-    "assorted-discoveries:cracked_dripstone_bricks",
-    "assorted-discoveries:mossy_dripstone_bricks",
     "assorted-discoveries:blood_kelp_lantern"
   ]
 }

@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "assorted-discoveries:dripstone_bricks",
+    "assorted-discoveries:mossy_dripstone_bricks",
+    "assorted-discoveries:cracked_dripstone_bricks",
+    "assorted-discoveries:chiseled_dripstone_bricks",
+    "assorted-discoveries:polished_dripstone",
+    "assorted-discoveries:dripstone_tiles",
+    "assorted-discoveries:cracked_dripstone_tiles",
+    "assorted-discoveries:mossy_dripstone_tiles"
+  ]
+}

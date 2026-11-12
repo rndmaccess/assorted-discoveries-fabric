@@ -29,6 +29,13 @@ repositories {
 }
 
 loom {
+    // Only for development. This is not included in the final jar.
+    runs {
+        configureEach {
+            systemProperties.put("fabric-tag-conventions-v2.missingTagTranslationWarning", "VERBOSE")
+        }
+    }
+
     splitEnvironmentSourceSets()
 
 	mods {

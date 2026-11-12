@@ -4,6 +4,7 @@
     "#assorted-discoveries:stone_slabs",
     "#assorted-discoveries:stone_stairs",
     "#assorted-discoveries:stone_walls",
+    "#assorted-discoveries:dripstone_blocks",
     "#assorted-discoveries:dyed_lanterns",
     "assorted-discoveries:nether_smoky_quartz_ore",
     "assorted-discoveries:smoky_quartz_block",
@@ -35,14 +36,6 @@
     "assorted-discoveries:mossy_calcite_bricks",
     "assorted-discoveries:cracked_calcite_bricks",
     "assorted-discoveries:chiseled_calcite_bricks",
-	"assorted-discoveries:dripstone_bricks",
-    "assorted-discoveries:mossy_dripstone_bricks",
-    "assorted-discoveries:cracked_dripstone_bricks",
-	"assorted-discoveries:chiseled_dripstone_bricks",
-    "assorted-discoveries:polished_dripstone",
-    "assorted-discoveries:polished_calcite",
-    "assorted-discoveries:dripstone_tiles",
-    "assorted-discoveries:cracked_dripstone_tiles",
-    "assorted-discoveries:mossy_dripstone_tiles"
+    "assorted-discoveries:polished_calcite"
   ]
 }

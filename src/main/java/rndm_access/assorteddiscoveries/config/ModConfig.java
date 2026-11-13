@@ -274,7 +274,7 @@ public class ModConfig {
         ENABLE_CARAMEL_APPLE = foodCategory.addEntry(new BooleanConfigEntry("enable_caramel_apple"));
         ENABLE_SWEET_BERRY_PIE = foodCategory.addEntry(new BooleanConfigEntry("enable_sweet_berry_pie"));
         ENABLE_SWEET_BERRY_JUICE = foodCategory.addEntry(new BooleanConfigEntry("enable_sweet_berry_juice"));
-        foodCategory.addComment(new CommentConfigEntry("Toggles blueberries, blueberry pie, and juice. When disabled, berry pudding uses an extra sweet berry."));
+        foodCategory.addComment(new CommentConfigEntry("Toggle blueberries, blueberry pie, and juice. When disabled, berry pudding uses an extra sweet berry."));
         ENABLE_BLUEBERRIES = foodCategory.addEntry(new BooleanConfigEntry("enable_blueberries"));
         ENABLE_BLUEBERRY_PIE = foodCategory.addEntry(new BooleanConfigEntry("enable_blueberry_pie"));
         ENABLE_BLUEBERRY_JUICE = foodCategory.addEntry(new BooleanConfigEntry("enable_blueberry_juice"));

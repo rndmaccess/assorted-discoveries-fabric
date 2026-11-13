@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "end": "assorted-discoveries:block/polished_dripstone",
+    "side": "assorted-discoveries:block/polished_dripstone_slab_side"
+  }
+}

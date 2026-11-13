@@ -3,6 +3,6 @@
   "textures": {
     "bottom": "assorted-discoveries:block/polished_dripstone",
     "top": "assorted-discoveries:block/polished_dripstone",
-    "side": "assorted-discoveries:block/polished_dripstone"
+    "side": "assorted-discoveries:block/polished_dripstone_slab_side"
   }
 }

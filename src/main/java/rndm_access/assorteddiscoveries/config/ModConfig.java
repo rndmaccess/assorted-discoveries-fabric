@@ -62,6 +62,11 @@ public class ModConfig {
     public static final BooleanConfigEntry ENABLE_DRIPSTONE_BRICKS;
     public static final BooleanConfigEntry ENABLE_CRACKED_DRIPSTONE_BRICKS;
     public static final BooleanConfigEntry ENABLE_MOSSY_DRIPSTONE_BRICKS;
+
+    public static final BooleanConfigEntry ENABLE_DRIPSTONE_TILES;
+    public static final BooleanConfigEntry ENABLE_CRACKED_DRIPSTONE_TILES;
+    public static final BooleanConfigEntry ENABLE_MOSSY_DRIPSTONE_TILES;
+
     public static final BooleanConfigEntry ENABLE_QUARTZ_BRICK_BLOCKS;
     public static final BooleanConfigEntry ENABLE_SNOW_BRICKS;
     public static final BooleanConfigEntry ENABLE_PACKED_SNOW;
@@ -168,9 +173,7 @@ public class ModConfig {
         ENABLE_WEEPING_BLACKSTONE_TILES = buildingBlocksCategory.addEntry(new BooleanConfigEntry("enable_weeping_blackstone_tiles"));
         buildingBlocksCategory.addComment(new CommentConfigEntry("Toggle all smoky quartz block types (normal, bricks, smooth.)"));
         ENABLE_SMOKY_QUARTZ_BLOCKS = buildingBlocksCategory.addEntry(new BooleanConfigEntry("enable_smoky_quartz_blocks"));
-        buildingBlocksCategory.addComment(new CommentConfigEntry("Only toggle smoky quartz brick blocks."));
         ENABLE_SMOKY_QUARTZ_BRICKS = buildingBlocksCategory.addEntry(new BooleanConfigEntry("enable_smoky_quartz_bricks"));
-        buildingBlocksCategory.addComment(new CommentConfigEntry("Only toggle smooth smoky quartz blocks."));
         ENABLE_SMOOTH_SMOKY_QUARTZ = buildingBlocksCategory.addEntry(new BooleanConfigEntry("enable_smooth_smoky_quartz"));
         buildingBlocksCategory.addComment(new CommentConfigEntry("Toggle quartz brick stairs, slabs, and walls."));
         ENABLE_QUARTZ_BRICK_BLOCKS = buildingBlocksCategory.addEntry(new BooleanConfigEntry("enable_quartz_brick_blocks"));
@@ -181,38 +184,35 @@ public class ModConfig {
         ENABLE_BAUXITE = buildingBlocksCategory.addEntry(new BooleanConfigEntry("enable_bauxite"));
         buildingBlocksCategory.addComment(new CommentConfigEntry("Toggle all bauxite brick types (normal, mossy, cracked)."));
         ENABLE_BAUXITE_BRICKS = buildingBlocksCategory.addEntry(new BooleanConfigEntry("enable_bauxite_bricks"));
-        buildingBlocksCategory.addComment(new CommentConfigEntry("Only toggle cracked bauxite bricks."));
         ENABLE_CRACKED_BAUXITE_BRICKS = buildingBlocksCategory.addEntry(new BooleanConfigEntry("enable_cracked_bauxite_bricks"));
-        buildingBlocksCategory.addComment(new CommentConfigEntry("Only toggle mossy bauxite bricks."));
         ENABLE_MOSSY_BAUXITE_BRICKS = buildingBlocksCategory.addEntry(new BooleanConfigEntry("enable_mossy_bauxite_bricks"));
         buildingBlocksCategory.addComment(new CommentConfigEntry("Toggle all stone tiles (normal, cracked, mossy, etc.)"));
         ENABLE_STONE_TILES = buildingBlocksCategory.addEntry(new BooleanConfigEntry("enable_stone_tiles"));
-        buildingBlocksCategory.addComment(new CommentConfigEntry("Only toggle cracked stone tile blocks."));
         ENABLE_CRACKED_STONE_TILES = buildingBlocksCategory.addEntry(new BooleanConfigEntry("enable_cracked_stone_tiles"));
-        buildingBlocksCategory.addComment(new CommentConfigEntry("Only toggle mossy stone tile blocks."));
         ENABLE_MOSSY_STONE_TILES = buildingBlocksCategory.addEntry(new BooleanConfigEntry("enable_mossy_stone_tiles"));
         buildingBlocksCategory.addComment(new CommentConfigEntry("Toggle cracked stone brick stairs, slabs, and walls."));
         ENABLE_CRACKED_STONE_BRICK_BLOCKS = buildingBlocksCategory.addEntry(new BooleanConfigEntry("enable_cracked_stone_brick_blocks"));
         ENABLE_STONE_WALLS = buildingBlocksCategory.addEntry(new BooleanConfigEntry("enable_stone_walls"));
         buildingBlocksCategory.addComment(new CommentConfigEntry("Toggle calcite stairs, slabs, and walls."));
         ENABLE_CALCITE_BLOCKS = buildingBlocksCategory.addEntry(new BooleanConfigEntry("enable_calcite_blocks"));
-        buildingBlocksCategory.addComment(new CommentConfigEntry("Toggle polished calcite blocks and their variants."));
         ENABLE_POLISHED_CALCITE = buildingBlocksCategory.addEntry(new BooleanConfigEntry("enable_polished_calcite"));
         buildingBlocksCategory.addComment(new CommentConfigEntry("Toggle all calcite bricks (normal, cracked, mossy)."));
         ENABLE_CALCITE_BRICKS = buildingBlocksCategory.addEntry(new BooleanConfigEntry("enable_calcite_bricks"));
-        buildingBlocksCategory.addComment(new CommentConfigEntry("Toggle cracked calcite brick blocks."));
         ENABLE_CRACKED_CALCITE_BRICKS = buildingBlocksCategory.addEntry(new BooleanConfigEntry("enable_cracked_calcite_bricks"));
-        buildingBlocksCategory.addComment(new CommentConfigEntry("Toggle mossy calcite brick blocks."));
         ENABLE_MOSSY_CALCITE_BRICKS = buildingBlocksCategory.addEntry(new BooleanConfigEntry("enable_mossy_calcite_bricks"));
         buildingBlocksCategory.addComment(new CommentConfigEntry("Toggle dripstone stairs, slabs, and walls."));
         ENABLE_DRIPSTONE_BLOCKS = buildingBlocksCategory.addEntry(new BooleanConfigEntry("enable_dripstone_blocks"));
         ENABLE_POLISHED_DRIPSTONE = buildingBlocksCategory.addEntry(new BooleanConfigEntry("enable_polished_dripstone"));
         buildingBlocksCategory.addComment(new CommentConfigEntry("Toggle all dripstone bricks (normal, cracked, mossy)."));
         ENABLE_DRIPSTONE_BRICKS = buildingBlocksCategory.addEntry(new BooleanConfigEntry("enable_dripstone_bricks"));
-        buildingBlocksCategory.addComment(new CommentConfigEntry("Toggle cracked dripstone brick blocks."));
         ENABLE_CRACKED_DRIPSTONE_BRICKS = buildingBlocksCategory.addEntry(new BooleanConfigEntry("enable_cracked_dripstone_bricks"));
-        buildingBlocksCategory.addComment(new CommentConfigEntry("Toggle mossy dripstone brick blocks."));
         ENABLE_MOSSY_DRIPSTONE_BRICKS = buildingBlocksCategory.addEntry(new BooleanConfigEntry("enable_mossy_dripstone_bricks"));
+
+        buildingBlocksCategory.addComment(new CommentConfigEntry("Toggle all dripstone tiles (normal, cracked, mossy)."));
+        ENABLE_DRIPSTONE_TILES = buildingBlocksCategory.addEntry(new BooleanConfigEntry("enable_dripstone_tiles"));
+        ENABLE_CRACKED_DRIPSTONE_TILES = buildingBlocksCategory.addEntry(new BooleanConfigEntry("enable_cracked_dripstone_tiles"));
+        ENABLE_MOSSY_DRIPSTONE_TILES = buildingBlocksCategory.addEntry(new BooleanConfigEntry("enable_mossy_dripstone_tiles"));
+
         ENABLE_SNOW_BRICKS = buildingBlocksCategory.addEntry(new BooleanConfigEntry("enable_snow_bricks"));
         ENABLE_PACKED_SNOW = buildingBlocksCategory.addEntry(new BooleanConfigEntry("enable_packed_snow"));
         buildingBlocksCategory.addComment(new CommentConfigEntry("Toggle all dirt slabs (coarse, grass, podzol, etc.)"));
@@ -274,7 +274,7 @@ public class ModConfig {
         ENABLE_CARAMEL_APPLE = foodCategory.addEntry(new BooleanConfigEntry("enable_caramel_apple"));
         ENABLE_SWEET_BERRY_PIE = foodCategory.addEntry(new BooleanConfigEntry("enable_sweet_berry_pie"));
         ENABLE_SWEET_BERRY_JUICE = foodCategory.addEntry(new BooleanConfigEntry("enable_sweet_berry_juice"));
-        foodCategory.addComment(new CommentConfigEntry("When disabled, blueberry pie and juice are disabled, and berry pudding's recipe swaps a blueberry for an extra sweet berry."));
+        foodCategory.addComment(new CommentConfigEntry("Toggles blueberries, blueberry pie, and juice. When disabled, berry pudding uses an extra sweet berry."));
         ENABLE_BLUEBERRIES = foodCategory.addEntry(new BooleanConfigEntry("enable_blueberries"));
         ENABLE_BLUEBERRY_PIE = foodCategory.addEntry(new BooleanConfigEntry("enable_blueberry_pie"));
         ENABLE_BLUEBERRY_JUICE = foodCategory.addEntry(new BooleanConfigEntry("enable_blueberry_juice"));

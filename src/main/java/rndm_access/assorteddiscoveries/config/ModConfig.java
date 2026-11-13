@@ -278,9 +278,9 @@ public class ModConfig {
         ENABLE_BLUEBERRIES = foodCategory.addEntry(new BooleanConfigEntry("enable_blueberries"));
         ENABLE_BLUEBERRY_PIE = foodCategory.addEntry(new BooleanConfigEntry("enable_blueberry_pie"));
         ENABLE_BLUEBERRY_JUICE = foodCategory.addEntry(new BooleanConfigEntry("enable_blueberry_juice"));
-        foodCategory.addComment(new CommentConfigEntry("When disabled cindersnap berry juice and cindersnap forage mix are disabled."));
+        foodCategory.addComment(new CommentConfigEntry("Toggle cindersnap berry juice, cindersnap berry juice, and crimson forage mix."));
         ENABLE_CINDERSNAP_BERRIES = foodCategory.addEntry(new BooleanConfigEntry("enable_cindersnap_berries"));
-        foodCategory.addComment(new CommentConfigEntry("When disabled frostbite berry juice and frostbite forage mix are disabled."));
+        foodCategory.addComment(new CommentConfigEntry("Toggle frostbite berries, frostbite berry juice, and warped forage mix."));
         ENABLE_FROSTBITE_BERRIES = foodCategory.addEntry(new BooleanConfigEntry("enable_frostbite_berries"));
         ENABLE_CINDERSNAP_BERRY_JUICE = foodCategory.addEntry(new BooleanConfigEntry("enable_cindersnap_berry_juice"));
         ENABLE_CRIMSON_FORAGE_MIX = foodCategory.addEntry(new BooleanConfigEntry("enable_crimson_forage_mix"));

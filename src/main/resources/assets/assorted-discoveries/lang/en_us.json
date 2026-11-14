@@ -548,6 +548,9 @@
   "config.entry.assorted-discoveries.building_blocks.enable_dripstone_bricks": "Enable Dripstone Bricks",
   "config.entry.assorted-discoveries.building_blocks.enable_cracked_dripstone_bricks": "Enable Cracked Dripstone Bricks",
   "config.entry.assorted-discoveries.building_blocks.enable_mossy_dripstone_bricks": "Enable Mossy Dripstone Bricks",
+  "config.entry.assorted-discoveries.building_blocks.enable_dripstone_tiles": "Enable Dripstone Tiles",
+  "config.entry.assorted-discoveries.building_blocks.enable_cracked_dripstone_tiles": "Enable Cracked Dripstone Tiles",
+  "config.entry.assorted-discoveries.building_blocks.enable_mossy_dripstone_tiles": "Enable Mossy Dripstone Tiles",
   "config.entry.assorted-discoveries.building_blocks.enable_snow_bricks": "Enable Snow Bricks",
   "config.entry.assorted-discoveries.building_blocks.enable_packed_snow": "Enable Packed Snow",
   "config.entry.assorted-discoveries.building_blocks.enable_dirt_slabs": "Enable Soil Slabs",
@@ -563,6 +566,7 @@
   "config.tooltip.assorted-discoveries.building_blocks.enable_calcite_bricks": "Toggle all calcite bricks (normal, cracked, mossy)",
   "config.tooltip.assorted-discoveries.building_blocks.enable_dripstone_blocks": "Toggle dripstone stairs, slabs, and walls",
   "config.tooltip.assorted-discoveries.building_blocks.enable_dripstone_bricks": "Toggle all dripstone bricks (normal, cracked, mossy)",
+  "config.tooltip.assorted-discoveries.building_blocks.enable_dripstone_tiles": "Toggle all dripstone tiles (normal, cracked, mossy)",
   "config.tooltip.assorted-discoveries.building_blocks.enable_dirt_slabs": "Toggle all soil slabs (dirt, grass, podzol, etc.)",
 
   "config.requirement.assorted-discoveries.building_blocks.enable_bauxite_bricks": "Disabled by bauxite option",

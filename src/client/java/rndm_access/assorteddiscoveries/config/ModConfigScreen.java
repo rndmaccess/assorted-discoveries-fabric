@@ -173,6 +173,15 @@ public class ModConfigScreen {
         configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_MOSSY_DRIPSTONE_BRICKS,
                 categoryKey, enableDripstoneBricksEntry);
         screenCategory.addEntry(configEntry);
+        BooleanListEntry enableDripstoneTilesEntry = makeBoolEntry(true, category, entryBuilder,
+                ModConfig.ENABLE_DRIPSTONE_TILES, categoryKey, enableDripstoneBricksEntry);
+        screenCategory.addEntry(enableDripstoneTilesEntry);
+        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_CRACKED_DRIPSTONE_TILES,
+                categoryKey, enableDripstoneTilesEntry, enableDripstoneBricksEntry);
+        screenCategory.addEntry(configEntry);
+        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_MOSSY_DRIPSTONE_TILES,
+                categoryKey, enableDripstoneTilesEntry, enableDripstoneBricksEntry);
+        screenCategory.addEntry(configEntry);
         configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_SNOW_BRICKS, categoryKey);
         screenCategory.addEntry(configEntry);
         configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_PACKED_SNOW, categoryKey);

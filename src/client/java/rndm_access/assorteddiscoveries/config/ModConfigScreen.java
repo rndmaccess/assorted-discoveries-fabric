@@ -61,33 +61,33 @@ public class ModConfigScreen {
         screenCategory.addEntry(configEntry);
 
         // Netherrack and Nether Bricks
-        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_TWISTED_NETHERRACK, categoryKey, true);
+        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_TWISTED_NETHERRACK, categoryKey);
         screenCategory.addEntry(configEntry);
-        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_WEEPING_NETHERRACK, categoryKey, true);
+        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_WEEPING_NETHERRACK, categoryKey);
         screenCategory.addEntry(configEntry);
-        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_TWISTED_NETHER_BRICKS, categoryKey, true);
+        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_TWISTED_NETHER_BRICKS, categoryKey);
         screenCategory.addEntry(configEntry);
-        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_WEEPING_NETHER_BRICKS, categoryKey, true);
+        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_WEEPING_NETHER_BRICKS, categoryKey);
         screenCategory.addEntry(configEntry);
 
         // Blackstone Entries
-        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_TWISTED_BLACKSTONE, categoryKey, true);
+        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_TWISTED_BLACKSTONE, categoryKey);
         screenCategory.addEntry(configEntry);
-        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_WEEPING_BLACKSTONE, categoryKey, true);
+        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_WEEPING_BLACKSTONE, categoryKey);
         screenCategory.addEntry(configEntry);
-        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_TWISTED_POLISHED_BLACKSTONE_BRICKS,
-                categoryKey, true);
+        configEntry = makeBoolEntry(category, entryBuilder,
+                ModConfig.ENABLE_TWISTED_POLISHED_BLACKSTONE_BRICKS, categoryKey);
         screenCategory.addEntry(configEntry);
-        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_WEEPING_POLISHED_BLACKSTONE_BRICKS,
-                categoryKey, true);
+        configEntry = makeBoolEntry(category, entryBuilder,
+                ModConfig.ENABLE_WEEPING_POLISHED_BLACKSTONE_BRICKS, categoryKey);
         screenCategory.addEntry(configEntry);
         BooleanListEntry enableBlackstoneTiles = makeBoolEntry(category, entryBuilder,
-                ModConfig.ENABLE_BLACKSTONE_TILES, categoryKey, true);
+                ModConfig.ENABLE_BLACKSTONE_TILES, categoryKey);
         screenCategory.addEntry(enableBlackstoneTiles);
-        configEntry = makeBoolEntry(true, category, entryBuilder, ModConfig.ENABLE_TWISTED_BLACKSTONE_TILES,
+        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_TWISTED_BLACKSTONE_TILES,
                 categoryKey, enableBlackstoneTiles);
         screenCategory.addEntry(configEntry);
-        configEntry = makeBoolEntry(true, category, entryBuilder, ModConfig.ENABLE_WEEPING_BLACKSTONE_TILES,
+        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_WEEPING_BLACKSTONE_TILES,
                 categoryKey, enableBlackstoneTiles);
         screenCategory.addEntry(configEntry);
 
@@ -99,35 +99,35 @@ public class ModConfigScreen {
         screenCategory.addEntry(configEntry);
         configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_IRON_LADDERS, categoryKey);
         screenCategory.addEntry(configEntry);
-        BooleanListEntry enableSmokyQuartzBlocks = makeBoolEntry(category, entryBuilder,
-                ModConfig.ENABLE_SMOKY_QUARTZ_BLOCKS, categoryKey, true);
+        BooleanListEntry enableSmokyQuartzBlocks = makeBoolEntry(true, category,
+                entryBuilder, ModConfig.ENABLE_SMOKY_QUARTZ_BLOCKS, categoryKey);
         screenCategory.addEntry(enableSmokyQuartzBlocks);
-        configEntry = makeBoolEntry(true, category, entryBuilder, ModConfig.ENABLE_SMOKY_QUARTZ_BRICKS,
-                categoryKey, enableSmokyQuartzBlocks);
+        configEntry = makeBoolEntry(category, entryBuilder,
+                ModConfig.ENABLE_SMOKY_QUARTZ_BRICKS, categoryKey, enableSmokyQuartzBlocks);
         screenCategory.addEntry(configEntry);
-        configEntry = makeBoolEntry(true, category, entryBuilder, ModConfig.ENABLE_SMOOTH_SMOKY_QUARTZ,
-                categoryKey, enableSmokyQuartzBlocks);
+        configEntry = makeBoolEntry(category, entryBuilder,
+                ModConfig.ENABLE_SMOOTH_SMOKY_QUARTZ, categoryKey, enableSmokyQuartzBlocks);
         screenCategory.addEntry(configEntry);
-        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_QUARTZ_BRICK_BLOCKS,
-                categoryKey, true);
+        configEntry = makeBoolEntry(true, category, entryBuilder,
+                ModConfig.ENABLE_QUARTZ_BRICK_BLOCKS, categoryKey);
         screenCategory.addEntry(configEntry);
-        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_QUARTZ_TILES, categoryKey, true);
+        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_QUARTZ_TILES, categoryKey);
         screenCategory.addEntry(configEntry);
-        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_QUARTZ_WALLS,
-                categoryKey, true);
+        configEntry = makeBoolEntry(true, category, entryBuilder,
+                ModConfig.ENABLE_QUARTZ_WALLS, categoryKey);
         screenCategory.addEntry(configEntry);
 
-        BooleanListEntry enableBauxite = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_BAUXITE,
-                categoryKey, true);
+        BooleanListEntry enableBauxite = makeBoolEntry(true, category, entryBuilder,
+                ModConfig.ENABLE_BAUXITE, categoryKey);
         BooleanListEntry enableBauxiteBricks = makeBoolEntry(true, category, entryBuilder,
                 ModConfig.ENABLE_BAUXITE_BRICKS, categoryKey, enableBauxite);
 
         screenCategory.addEntry(enableBauxite);
         screenCategory.addEntry(enableBauxiteBricks);
-        configEntry = makeBoolEntry(true, category, entryBuilder,
+        configEntry = makeBoolEntry(category, entryBuilder,
                 ModConfig.ENABLE_CRACKED_BAUXITE_BRICKS, categoryKey, enableBauxite, enableBauxiteBricks);
         screenCategory.addEntry(configEntry);
-        configEntry = makeBoolEntry(true, category, entryBuilder,
+        configEntry = makeBoolEntry(category, entryBuilder,
                 ModConfig.ENABLE_MOSSY_BAUXITE_BRICKS, categoryKey, enableBauxite, enableBauxiteBricks);
         screenCategory.addEntry(configEntry);
 
@@ -135,49 +135,49 @@ public class ModConfigScreen {
                 ModConfig.ENABLE_STONE_TILES, categoryKey);
 
         screenCategory.addEntry(enableStoneTiles);
-        configEntry = makeBoolEntry(true, category, entryBuilder, ModConfig.ENABLE_CRACKED_STONE_TILES,
+        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_CRACKED_STONE_TILES,
                 categoryKey, enableStoneTiles);
         screenCategory.addEntry(configEntry);
-        configEntry = makeBoolEntry(true, category, entryBuilder, ModConfig.ENABLE_MOSSY_STONE_TILES,
+        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_MOSSY_STONE_TILES,
                 categoryKey, enableStoneTiles);
         screenCategory.addEntry(configEntry);
-        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_CRACKED_STONE_BRICK_BLOCKS,
-                categoryKey, true);
+        configEntry = makeBoolEntry(true, category, entryBuilder,
+                ModConfig.ENABLE_CRACKED_STONE_BRICK_BLOCKS, categoryKey);
         screenCategory.addEntry(configEntry);
         configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_STONE_WALLS, categoryKey);
         screenCategory.addEntry(configEntry);
         configEntry = makeBoolEntry(true, category, entryBuilder, ModConfig.ENABLE_CALCITE_BLOCKS, categoryKey);
         screenCategory.addEntry(configEntry);
-        configEntry = makeBoolEntry(true, category, entryBuilder, ModConfig.ENABLE_POLISHED_CALCITE, categoryKey);
+        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_POLISHED_CALCITE, categoryKey);
         screenCategory.addEntry(configEntry);
 
         BooleanListEntry enableCalciteBricksEntry = makeBoolEntry(true, category, entryBuilder,
                 ModConfig.ENABLE_CALCITE_BRICKS, categoryKey);
         screenCategory.addEntry(enableCalciteBricksEntry);
-        configEntry = makeBoolEntry(true, category, entryBuilder, ModConfig.ENABLE_CRACKED_CALCITE_BRICKS, categoryKey,
+        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_CRACKED_CALCITE_BRICKS, categoryKey,
                 enableCalciteBricksEntry);
         screenCategory.addEntry(configEntry);
-        configEntry = makeBoolEntry(true, category, entryBuilder, ModConfig.ENABLE_MOSSY_CALCITE_BRICKS, categoryKey,
+        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_MOSSY_CALCITE_BRICKS, categoryKey,
                 enableCalciteBricksEntry);
         screenCategory.addEntry(configEntry);
         configEntry = makeBoolEntry(true, category, entryBuilder, ModConfig.ENABLE_DRIPSTONE_BLOCKS, categoryKey);
         screenCategory.addEntry(configEntry);
-        configEntry = makeBoolEntry(true, category, entryBuilder, ModConfig.ENABLE_POLISHED_DRIPSTONE, categoryKey);
+        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_POLISHED_DRIPSTONE, categoryKey);
         screenCategory.addEntry(configEntry);
         BooleanListEntry enableDripstoneBricksEntry = makeBoolEntry(true, category, entryBuilder,
                 ModConfig.ENABLE_DRIPSTONE_BRICKS, categoryKey);
         screenCategory.addEntry(enableDripstoneBricksEntry);
-        configEntry = makeBoolEntry(true, category, entryBuilder, ModConfig.ENABLE_CRACKED_DRIPSTONE_BRICKS,
+        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_CRACKED_DRIPSTONE_BRICKS,
                 categoryKey, enableDripstoneBricksEntry);
         screenCategory.addEntry(configEntry);
-        configEntry = makeBoolEntry(true, category, entryBuilder, ModConfig.ENABLE_MOSSY_DRIPSTONE_BRICKS,
+        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_MOSSY_DRIPSTONE_BRICKS,
                 categoryKey, enableDripstoneBricksEntry);
         screenCategory.addEntry(configEntry);
-        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_SNOW_BRICKS, categoryKey, true);
+        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_SNOW_BRICKS, categoryKey);
         screenCategory.addEntry(configEntry);
-        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_PACKED_SNOW, categoryKey, true);
+        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_PACKED_SNOW, categoryKey);
         screenCategory.addEntry(configEntry);
-        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_DIRT_SLABS, categoryKey, true);
+        configEntry = makeBoolEntry(true, category, entryBuilder, ModConfig.ENABLE_DIRT_SLABS, categoryKey);
         screenCategory.addEntry(configEntry);
     }
 
@@ -239,7 +239,7 @@ public class ModConfigScreen {
         screenCategory.addEntry(configEntry);
         configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_GUARDIAN_PLUSHIE, categoryKey);
         screenCategory.addEntry(configEntry);
-        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_HOGLIN_PLUSHIES, categoryKey, true);
+        configEntry = makeBoolEntry(true, category, entryBuilder, ModConfig.ENABLE_HOGLIN_PLUSHIES, categoryKey);
         screenCategory.addEntry(configEntry);
         configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_ILLAGER_PLUSHIES, categoryKey);
         screenCategory.addEntry(configEntry);
@@ -271,7 +271,7 @@ public class ModConfigScreen {
         ConfigCategory screenCategory = makeCategory(configBuilder, categoryKey);
         BooleanListEntry configEntry;
 
-        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_GREEN_ONIONS, categoryKey, true);
+        configEntry = makeBoolEntry(true, category, entryBuilder, ModConfig.ENABLE_GREEN_ONIONS, categoryKey);
         screenCategory.addEntry(configEntry);
         configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_NOODLE_SOUP, categoryKey);
         screenCategory.addEntry(configEntry);
@@ -285,16 +285,16 @@ public class ModConfigScreen {
         screenCategory.addEntry(configEntry);
         configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_FORESTS_BOUNTY, categoryKey);
         screenCategory.addEntry(configEntry);
-        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_PUDDING, categoryKey, true);
+        configEntry = makeBoolEntry(true, category, entryBuilder, ModConfig.ENABLE_PUDDING, categoryKey);
         screenCategory.addEntry(configEntry);
-        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_CARAMEL_APPLE, categoryKey);
+        configEntry = makeBoolEntry(true, category, entryBuilder, ModConfig.ENABLE_CARAMEL_APPLE, categoryKey);
         screenCategory.addEntry(configEntry);
         configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_SWEET_BERRY_PIE, categoryKey);
         screenCategory.addEntry(configEntry);
         configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_SWEET_BERRY_JUICE, categoryKey);
         screenCategory.addEntry(configEntry);
-        BooleanListEntry enableBlueberries = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_BLUEBERRIES,
-                categoryKey, true);
+        BooleanListEntry enableBlueberries = makeBoolEntry(true, category, entryBuilder,
+                ModConfig.ENABLE_BLUEBERRIES, categoryKey);
         screenCategory.addEntry(enableBlueberries);
         configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_BLUEBERRY_PIE, categoryKey,
                 enableBlueberries);
@@ -303,7 +303,7 @@ public class ModConfigScreen {
                 enableBlueberries);
         screenCategory.addEntry(configEntry);
 
-        BooleanListEntry enableCindersnapBerries = makeBoolEntry(category, entryBuilder,
+        BooleanListEntry enableCindersnapBerries = makeBoolEntry(true, category, entryBuilder,
                 ModConfig.ENABLE_CINDERSNAP_BERRIES, categoryKey);
         screenCategory.addEntry(enableCindersnapBerries);
         configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_CINDERSNAP_BERRY_JUICE, categoryKey,
@@ -313,7 +313,7 @@ public class ModConfigScreen {
                 enableCindersnapBerries);
         screenCategory.addEntry(configEntry);
 
-        BooleanListEntry enableFrostbiteBerries = makeBoolEntry(category, entryBuilder,
+        BooleanListEntry enableFrostbiteBerries = makeBoolEntry(true, category, entryBuilder,
                 ModConfig.ENABLE_FROSTBITE_BERRIES, categoryKey);
         screenCategory.addEntry(enableFrostbiteBerries);
         configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_FROSTBITE_BERRY_JUICE, categoryKey,
@@ -338,7 +338,7 @@ public class ModConfigScreen {
         screenCategory.addEntry(configEntry);
         configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_BOG_BLOSSOMS, categoryKey);
         screenCategory.addEntry(configEntry);
-        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_ENDER_PLANTS, categoryKey, true);
+        configEntry = makeBoolEntry(true, category, entryBuilder, ModConfig.ENABLE_ENDER_PLANTS, categoryKey);
         screenCategory.addEntry(configEntry);
         configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_WITCHS_CRADLES, categoryKey);
         screenCategory.addEntry(configEntry);
@@ -349,13 +349,14 @@ public class ModConfigScreen {
         return builder.getOrCreateCategory(categoryText);
     }
 
-    private static BooleanListEntry makeBoolEntry(JsonConfigCategory category, ConfigEntryBuilder entryBuilder, BooleanConfigEntry entry,
-                                                  String categoryName) {
-        return makeBoolEntry(category, entryBuilder, entry, categoryName, false);
+    private static BooleanListEntry makeBoolEntry(JsonConfigCategory category, ConfigEntryBuilder entryBuilder,
+                                                  BooleanConfigEntry entry, String categoryName) {
+        return makeBoolEntry(false, category, entryBuilder, entry, categoryName);
     }
 
-    private static BooleanListEntry makeBoolEntry(JsonConfigCategory category, ConfigEntryBuilder entryBuilder, BooleanConfigEntry entry,
-                                                  String categoryName, boolean hasTooltip) {
+    private static BooleanListEntry makeBoolEntry(boolean hasTooltip, JsonConfigCategory category,
+                                                  ConfigEntryBuilder entryBuilder, BooleanConfigEntry entry,
+                                                  String categoryName) {
         BooleanConfigEntry localEntry = (BooleanConfigEntry) category.getEntry(entry.getKey());
         final String entryName = localEntry.getKey();
         final boolean entryValue = localEntry.getValue();
@@ -374,13 +375,15 @@ public class ModConfigScreen {
         return toggle.build();
     }
 
-    private static BooleanListEntry makeBoolEntry(JsonConfigCategory category, ConfigEntryBuilder entryBuilder, BooleanConfigEntry entry,
-                                                  String categoryName, BooleanListEntry... dependencies) {
+    private static BooleanListEntry makeBoolEntry(JsonConfigCategory category, ConfigEntryBuilder entryBuilder,
+                                                  BooleanConfigEntry entry, String categoryName,
+                                                  BooleanListEntry... dependencies) {
         return makeBoolEntry(false, category, entryBuilder, entry, categoryName, dependencies);
     }
 
     @SuppressWarnings("UnstableApiUsage")
-    private static BooleanListEntry makeBoolEntry(boolean hasTooltip, JsonConfigCategory category, ConfigEntryBuilder entryBuilder, BooleanConfigEntry entry,
+    private static BooleanListEntry makeBoolEntry(boolean hasTooltip, JsonConfigCategory category,
+                                                  ConfigEntryBuilder entryBuilder, BooleanConfigEntry entry,
                                                   String categoryName, BooleanListEntry... dependencies) {
         BooleanConfigEntry localEntry = (BooleanConfigEntry) category.getEntry(entry.getKey());
         final String entryName = localEntry.getKey();
@@ -405,8 +408,9 @@ public class ModConfigScreen {
      * @return If the requirement is met the tooltip to show otherwise nothing.
      */
     @SuppressWarnings("UnstableApiUsage")
-    private static Supplier<Optional<Component[]>> getRequirementToolTip(boolean hasTooltip, String categoryName, String entryName,
-                                                                         Component requirementText, BooleanListEntry... dependencies) {
+    private static Supplier<Optional<Component[]>> getRequirementToolTip(boolean hasTooltip, String categoryName,
+                                                                         String entryName, Component requirementText,
+                                                                         BooleanListEntry... dependencies) {
         return () -> {
             Requirement[] requirements = getFalseRequirements(dependencies);
             Component[] requirementTextArray = new Component[]{requirementText};

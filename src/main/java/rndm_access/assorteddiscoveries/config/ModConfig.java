@@ -260,7 +260,7 @@ public class ModConfig {
         ENABLE_CREAKING_PLUSHIE = plushiesCategory.addEntry(new BooleanConfigEntry("enable_creaking_plushie"));
 
         JsonConfigCategory.Builder foodCategory = new JsonConfigCategory.Builder("foods");
-        foodCategory.addComment(new CommentConfigEntry("When disabled, noodle soup can be crafted without green onions"));
+        foodCategory.addComment(new CommentConfigEntry("When off, noodle soup can be crafted without green onions"));
         ENABLE_GREEN_ONIONS = foodCategory.addEntry(new BooleanConfigEntry("enable_green_onions"));
         ENABLE_NOODLE_SOUP = foodCategory.addEntry(new BooleanConfigEntry("enable_noodle_soup"));
         ENABLE_CHOCOLATE_CAKE = foodCategory.addEntry(new BooleanConfigEntry("enable_chocolate_cake"));
@@ -274,7 +274,7 @@ public class ModConfig {
         ENABLE_CARAMEL_APPLE = foodCategory.addEntry(new BooleanConfigEntry("enable_caramel_apple"));
         ENABLE_SWEET_BERRY_PIE = foodCategory.addEntry(new BooleanConfigEntry("enable_sweet_berry_pie"));
         ENABLE_SWEET_BERRY_JUICE = foodCategory.addEntry(new BooleanConfigEntry("enable_sweet_berry_juice"));
-        foodCategory.addComment(new CommentConfigEntry("Toggle blueberries, pie, and juice (when disabled, berry pudding takes an extra sweet berry instead)"));
+        foodCategory.addComment(new CommentConfigEntry("Toggle blueberries, pie, and juice (when off, berry pudding takes an extra sweet berry instead)"));
         ENABLE_BLUEBERRIES = foodCategory.addEntry(new BooleanConfigEntry("enable_blueberries"));
         ENABLE_BLUEBERRY_PIE = foodCategory.addEntry(new BooleanConfigEntry("enable_blueberry_pie"));
         ENABLE_BLUEBERRY_JUICE = foodCategory.addEntry(new BooleanConfigEntry("enable_blueberry_juice"));

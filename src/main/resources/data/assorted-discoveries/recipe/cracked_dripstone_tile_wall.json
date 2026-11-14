@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": "assorted-discoveries:cracked_dripstone_tiles"
+  },
+  "result": {
+    "id": "assorted-discoveries:cracked_dripstone_tile_wall",
+    "count": 6
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:all_entries_enabled",
+      "value": [
+        "enable_dripstone_tiles",
+        "enable_cracked_dripstone_tiles"
+      ]
+    }
+  ]
+}

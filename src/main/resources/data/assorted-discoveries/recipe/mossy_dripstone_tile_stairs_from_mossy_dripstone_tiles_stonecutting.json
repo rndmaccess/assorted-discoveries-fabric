@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "assorted-discoveries:mossy_dripstone_tiles",
+  "result": {
+    "id": "assorted-discoveries:mossy_dripstone_tile_stairs",
+    "count": 1
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:all_entries_enabled",
+      "value": [
+        "enable_dripstone_tiles",
+        "enable_mossy_dripstone_tiles"
+      ]
+    }
+  ]
+}

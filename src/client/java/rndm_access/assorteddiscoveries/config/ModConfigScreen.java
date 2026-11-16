@@ -29,7 +29,10 @@ public class ModConfigScreen {
         addFoodsCategory(config, configBuilder, entryBuilder);
         addPlantsCategory(config, configBuilder, entryBuilder);
 
-        configBuilder.setSavingRunnable(() -> config.save(ENTRY_VALUE_CHANGES));
+        configBuilder.setSavingRunnable(() -> {
+            config.save(ENTRY_VALUE_CHANGES);
+            ENTRY_VALUE_CHANGES.clear();
+        });
         return configBuilder;
     }
 
@@ -173,6 +176,7 @@ public class ModConfigScreen {
         configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_MOSSY_DRIPSTONE_BRICKS,
                 categoryKey, enableDripstoneBricksEntry);
         screenCategory.addEntry(configEntry);
+
         BooleanListEntry enableDripstoneTilesEntry = makeBoolEntry(true, category, entryBuilder,
                 ModConfig.ENABLE_DRIPSTONE_TILES, categoryKey, enableDripstoneBricksEntry);
         screenCategory.addEntry(enableDripstoneTilesEntry);

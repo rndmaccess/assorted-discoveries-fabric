@@ -165,27 +165,31 @@ public class ModConfigScreen {
         screenCategory.addEntry(configEntry);
         configEntry = makeBoolEntry(true, category, entryBuilder, ModConfig.ENABLE_DRIPSTONE_BLOCKS, categoryKey);
         screenCategory.addEntry(configEntry);
-        configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_POLISHED_DRIPSTONE, categoryKey);
-        screenCategory.addEntry(configEntry);
+
+        BooleanListEntry enablePolishedDripstoneEntry = makeBoolEntry(true, category, entryBuilder,
+                ModConfig.ENABLE_POLISHED_DRIPSTONE, categoryKey);
+        screenCategory.addEntry(enablePolishedDripstoneEntry);
+
         BooleanListEntry enableDripstoneBricksEntry = makeBoolEntry(true, category, entryBuilder,
-                ModConfig.ENABLE_DRIPSTONE_BRICKS, categoryKey);
+                ModConfig.ENABLE_DRIPSTONE_BRICKS, categoryKey, enablePolishedDripstoneEntry);
         screenCategory.addEntry(enableDripstoneBricksEntry);
         configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_CRACKED_DRIPSTONE_BRICKS,
-                categoryKey, enableDripstoneBricksEntry);
+                categoryKey, enablePolishedDripstoneEntry, enableDripstoneBricksEntry);
         screenCategory.addEntry(configEntry);
         configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_MOSSY_DRIPSTONE_BRICKS,
-                categoryKey, enableDripstoneBricksEntry);
+                categoryKey, enablePolishedDripstoneEntry, enableDripstoneBricksEntry);
         screenCategory.addEntry(configEntry);
 
         BooleanListEntry enableDripstoneTilesEntry = makeBoolEntry(true, category, entryBuilder,
-                ModConfig.ENABLE_DRIPSTONE_TILES, categoryKey, enableDripstoneBricksEntry);
+                ModConfig.ENABLE_DRIPSTONE_TILES, categoryKey, enablePolishedDripstoneEntry, enableDripstoneBricksEntry);
         screenCategory.addEntry(enableDripstoneTilesEntry);
         configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_CRACKED_DRIPSTONE_TILES,
-                categoryKey, enableDripstoneTilesEntry, enableDripstoneBricksEntry);
+                categoryKey, enablePolishedDripstoneEntry, enableDripstoneTilesEntry, enableDripstoneBricksEntry);
         screenCategory.addEntry(configEntry);
         configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_MOSSY_DRIPSTONE_TILES,
-                categoryKey, enableDripstoneTilesEntry, enableDripstoneBricksEntry);
+                categoryKey, enablePolishedDripstoneEntry, enableDripstoneTilesEntry, enableDripstoneBricksEntry);
         screenCategory.addEntry(configEntry);
+
         configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_SNOW_BRICKS, categoryKey);
         screenCategory.addEntry(configEntry);
         configEntry = makeBoolEntry(category, entryBuilder, ModConfig.ENABLE_PACKED_SNOW, categoryKey);

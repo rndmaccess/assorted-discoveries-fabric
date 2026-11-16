@@ -29,7 +29,10 @@ public class ModConfigScreen {
         addFoodsCategory(config, configBuilder, entryBuilder);
         addPlantsCategory(config, configBuilder, entryBuilder);
 
-        configBuilder.setSavingRunnable(() -> config.save(ENTRY_VALUE_CHANGES));
+        configBuilder.setSavingRunnable(() -> {
+            config.save(ENTRY_VALUE_CHANGES);
+            ENTRY_VALUE_CHANGES.clear();
+        });
         return configBuilder;
     }
 

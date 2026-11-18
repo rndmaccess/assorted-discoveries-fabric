@@ -4,16 +4,17 @@ import net.fabricmc.loader.api.FabricLoader;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
+import rndm_access.assorteddiscoveries.config.ModConfig;
+import rndm_access.assorteddiscoveries.config.ModConfigCategory;
 import rndm_access.assorteddiscoveries.config.json.exceptions.JsonConfigException;
 import rndm_access.assorteddiscoveries.config.json.exceptions.JsonSyntaxException;
-import rndm_access.assorteddiscoveries.config.json.json_objects.BooleanConfigEntry;
-import rndm_access.assorteddiscoveries.config.json.json_objects.JsonConfigCategory;
+import rndm_access.assorteddiscoveries.config.json.json_objects.JsonConfigEntry;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.StringJoiner;
+import java.util.*;
 
 public class ConfigDeserializer {
     private int lineNum;
@@ -21,25 +22,27 @@ public class ConfigDeserializer {
     private Character curChar;
     private final Path path;
     private String line;
-    private final String configName;
     private int invalidTypeNum;
+    private boolean shouldMigrate;
 
     public ConfigDeserializer(String configName) {
         this.lineNum = 0;
         this.pos = 0;
         this.path = FabricLoader.getInstance().getConfigDir().resolve(configName + ".json5");
-        this.configName = configName;
         this.invalidTypeNum = 0;
+        this.shouldMigrate = false;
     }
 
-    public Config deserialize() throws JsonSyntaxException {
+    public boolean shouldMigrate() {
+        return shouldMigrate;
+    }
+
+    public void deserialize() throws JsonSyntaxException {
         File file = new File(String.valueOf(path));
 
         if (path == null || !Files.exists(path)) {
             throw new JsonConfigException("Couldn't load config at " + path + " because it does not exist!");
         }
-
-        Config.Builder config = new Config.Builder(configName);
 
         try (LineIterator iterator = FileUtils.lineIterator(file)) {
             consumeChar(iterator); // Bump the char pointer to the first character
@@ -51,7 +54,7 @@ public class ConfigDeserializer {
 
             require(iterator, '{');
             while (curChar != '\0') {
-                this.deserializeLine(config, iterator);
+                this.deserializeLine(iterator);
             }
 
             if (this.invalidTypeNum > 0) {
@@ -60,10 +63,9 @@ public class ConfigDeserializer {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return config.build();
     }
 
-    private void deserializeLine(Config.Builder config, LineIterator iter) throws JsonSyntaxException {
+    private void deserializeLine(LineIterator iter) throws JsonSyntaxException {
         if(consumeComment(iter)) {
             return;
         }
@@ -72,8 +74,7 @@ public class ConfigDeserializer {
         require(iter, key, ':');
 
         if (this.curChar == '{') {
-            JsonConfigCategory category = parseCategory(key, iter);
-            config.addCategory(category);
+            parseCategory(key, iter);
             require(iter, '}', ',');
         } else {
             int reportedLine = this.lineNum + 1;
@@ -117,14 +118,16 @@ public class ConfigDeserializer {
         this.curChar = line.charAt(pos);
     }
 
-    private JsonConfigCategory parseCategory(String key, LineIterator iter) {
+    private void parseCategory(String key, LineIterator iter) {
         require(iter, '{');
-        JsonConfigCategory.Builder categoryBuilder = new JsonConfigCategory.Builder(key);
-        parseEntries(categoryBuilder, iter);
-        return categoryBuilder.build();
+        ModConfigCategory category = ModConfig.CONFIG.getCategory(key);
+        Set<String> seenKeys = parseEntries(category, iter);
+        checkCategoryMigration(key, seenKeys);
     }
 
-    private void parseEntries(JsonConfigCategory.Builder category, LineIterator iter) throws JsonSyntaxException {
+    private Set<String> parseEntries(ModConfigCategory category, LineIterator iter) throws JsonSyntaxException {
+        Set<String> seenKeys = new HashSet<>();
+
         while (curChar != '\0' && curChar != '}') {
             if(consumeComment(iter)) {
                 continue;
@@ -140,7 +143,14 @@ public class ConfigDeserializer {
                 String value = parseValue(iter);
 
                 if (value.equals("true") || value.equals("false")) {
-                    category.addEntry(new BooleanConfigEntry(key, Boolean.parseBoolean(value)));
+                    if (category.hasEntry(key)) {
+                        category.getBoolEntry(key).setLocalValue(Boolean.parseBoolean(value));
+                        // At this point we know it's a known config key-value pair
+                        // so we can add it to seenKeys for a sanity check later.
+                        seenKeys.add(key);
+                    } else {
+                        AssortedDiscoveries.LOGGER.warn("Skipping unknown entry: {}", key);
+                    }
                 } else {
                     invalidTypeNum += 1;
                 }
@@ -151,6 +161,21 @@ public class ConfigDeserializer {
             }
         }
         require(iter, '}'); // Consume and require the left curly after each category!
+        return seenKeys;
+    }
+
+    private void checkCategoryMigration(String categoryName, Set<String> seenEntries) {
+        if (this.shouldMigrate) {
+            return;
+        }
+        ModConfigCategory category = ModConfig.CONFIG.getCategory(categoryName);
+
+        for (JsonConfigEntry<?> entry : category.getEntries()) {
+            if (!seenEntries.contains(entry.getKey())) {
+                this.shouldMigrate = true;
+                return;
+            }
+        }
     }
 
     private String parseValue(LineIterator iter) throws JsonSyntaxException {

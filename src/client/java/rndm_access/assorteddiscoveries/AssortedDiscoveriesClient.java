@@ -24,7 +24,7 @@ import org.jspecify.annotations.NonNull;
 import rndm_access.assorteddiscoveries.block.SheepPlushieBlock;
 import rndm_access.assorteddiscoveries.block_entity.DyedCampfireBlockEntityRenderer;
 import rndm_access.assorteddiscoveries.config.BooleanEntriesS2CPayload;
-import rndm_access.assorteddiscoveries.config.ModConfig;
+import rndm_access.assorteddiscoveries.config.ConfigSyncManager;
 import rndm_access.assorteddiscoveries.core.*;
 import rndm_access.assorteddiscoveries.particle.BogBlossomNectarParticle;
 import rndm_access.assorteddiscoveries.particle.SporeParticle;
@@ -71,12 +71,12 @@ public class AssortedDiscoveriesClient implements ClientModInitializer {
     }
 
     private static void receiveServerConfig(BooleanEntriesS2CPayload payload, ClientPlayNetworking.Context context) {
-        ModConfig.updateFromList(payload.configList());
+        ConfigSyncManager.syncWithServer(payload.configList());
         AssortedDiscoveries.LOGGER.info("{} received the config data!", context.player().getName().getString());
     }
 
     private static void reloadLocalConfig(ClientPacketListener listener, Minecraft minecraft) {
-        ModConfig.updateFromFile();
+        ConfigSyncManager.reset();
         AssortedDiscoveries.LOGGER.info("Local config data reloaded!");
     }
 

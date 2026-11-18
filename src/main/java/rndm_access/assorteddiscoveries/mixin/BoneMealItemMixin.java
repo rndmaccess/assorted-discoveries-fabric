@@ -24,7 +24,7 @@ public abstract class BoneMealItemMixin {
 
     @ModifyReturnValue(method = "useOn", at = @At("RETURN"))
     private InteractionResult assorteddiscoveries$useOnEndstone(InteractionResult original, UseOnContext context) {
-        if (!ModConfig.ENABLE_ENDER_PLANTS.getValue() || original.consumesAction()) {
+        if (!ModConfig.ENABLE_ENDER_PLANTS.getActiveValue() || original.consumesAction()) {
             return original;
         }
 

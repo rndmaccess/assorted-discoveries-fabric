@@ -9,8 +9,8 @@ import net.minecraft.resources.RegistryOps;
 import org.jetbrains.annotations.Nullable;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.ModConfig;
-import rndm_access.assorteddiscoveries.config.json.json_objects.AbstractConfigEntry;
-import rndm_access.assorteddiscoveries.config.json.json_objects.BooleanConfigEntry;
+import rndm_access.assorteddiscoveries.config.json.json_objects.BooleanJsonConfigEntry;
+import rndm_access.assorteddiscoveries.config.json.json_objects.JsonConfigEntry;
 import rndm_access.assorteddiscoveries.core.ModResourceConditionTypes;
 
 import java.util.List;
@@ -36,9 +36,9 @@ public record AllEntriesEnabledResourceCondition(List<String> configKeys) implem
         }
 
         for (String configKey : this.configKeys) {
-            AbstractConfigEntry<?> entry = ModConfig.CONFIG.getEntry(configKey);
-            if (entry instanceof BooleanConfigEntry boolEntry) {
-                if (!boolEntry.getValue()) {
+            JsonConfigEntry<?> entry = ModConfig.CONFIG.getEntry(configKey);
+            if (entry instanceof BooleanJsonConfigEntry boolEntry) {
+                if (!boolEntry.getActiveValue()) {
                     return false;
                 }
             } else {

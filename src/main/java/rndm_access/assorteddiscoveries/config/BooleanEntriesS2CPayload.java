@@ -1,5 +1,6 @@
 package rndm_access.assorteddiscoveries.config;
 
+import com.mojang.datafixers.util.Pair;
 import io.netty.buffer.ByteBuf;
 import org.jspecify.annotations.NonNull;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
@@ -12,48 +13,32 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.Identifier;
-import rndm_access.assorteddiscoveries.config.json.json_objects.JsonConfigCategory;
-import rndm_access.assorteddiscoveries.config.json.json_objects.ConfigObject;
-import rndm_access.assorteddiscoveries.config.json.json_objects.BooleanConfigEntry;
 
-public record BooleanEntriesS2CPayload(List<JsonConfigCategory> configList) implements CustomPacketPayload {
+public record BooleanEntriesS2CPayload(List<Pair<String, Boolean>> configList) implements CustomPacketPayload {
     public static final Identifier CONFIG_PAYLOAD_ID = AssortedDiscoveries.makeModId("config");
-    public static final CustomPacketPayload.Type<BooleanEntriesS2CPayload> ID = new CustomPacketPayload.Type<>(CONFIG_PAYLOAD_ID);
-    public static final StreamCodec<ByteBuf, List<JsonConfigCategory>> PACKET_CODEC = new StreamCodec<>() {
-        public @NonNull List<JsonConfigCategory> decode(ByteBuf byteBuf) {
+    public static final Type<BooleanEntriesS2CPayload> ID = new Type<>(CONFIG_PAYLOAD_ID);
+    public static final StreamCodec<ByteBuf, List<Pair<String, Boolean>>> PACKET_CODEC = new StreamCodec<>() {
+        public @NonNull List<Pair<String, Boolean>> decode(ByteBuf byteBuf) {
             int listSize = byteBuf.readInt();
-            List<JsonConfigCategory> list = new ArrayList<>(listSize);
+            List<Pair<String, Boolean>> list = new ArrayList<>(listSize);
 
             for (int i = 0; i < listSize; i++) {
-                int categorySize = byteBuf.readInt();
-                String categoryKey = ((FriendlyByteBuf) byteBuf).readUtf();
-                JsonConfigCategory.Builder categoryBuilder = new JsonConfigCategory.Builder(categoryKey);
-
-                for (int j = 0; j < categorySize; j++) {
-                    String key = ((FriendlyByteBuf) byteBuf).readUtf();
-                    boolean bool = byteBuf.readBoolean();
-                    categoryBuilder.addEntry(new BooleanConfigEntry(key, bool));
-                }
-                list.add(categoryBuilder.build());
+                String key = ((FriendlyByteBuf) byteBuf).readUtf();
+                boolean bool = byteBuf.readBoolean();
+                list.add(new Pair<>(key, bool));
             }
             return list;
         }
 
-        public void encode(ByteBuf byteBuf, List<JsonConfigCategory> list) {
+        public void encode(ByteBuf byteBuf, List<Pair<String, Boolean>> list) {
             byteBuf.writeInt(list.size());
 
-            for (JsonConfigCategory category : list) {
-                String key = category.getKey();
-                byteBuf.writeInt(category.getSize());
+            for (Pair<String, Boolean> entry : list) {
+                String key = entry.getFirst();
+                boolean value = entry.getSecond();
+
                 ((FriendlyByteBuf) byteBuf).writeUtf(key);
-
-                for (ConfigObject object : category.getConfigObjects()) {
-                    key = object.getKey();
-                    boolean value = ((BooleanConfigEntry) object).getValue();
-
-                    ((FriendlyByteBuf) byteBuf).writeUtf(key);
-                    byteBuf.writeBoolean(value);
-                }
+                byteBuf.writeBoolean(value);
             }
         }
     };

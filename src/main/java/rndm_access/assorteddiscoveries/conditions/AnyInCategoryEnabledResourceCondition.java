@@ -10,9 +10,9 @@ import org.jetbrains.annotations.Nullable;
 import org.jspecify.annotations.NonNull;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.ModConfig;
-import rndm_access.assorteddiscoveries.config.json.json_objects.BooleanConfigEntry;
-import rndm_access.assorteddiscoveries.config.json.json_objects.ConfigObject;
-import rndm_access.assorteddiscoveries.config.json.json_objects.JsonConfigCategory;
+import rndm_access.assorteddiscoveries.config.ModConfigCategory;
+import rndm_access.assorteddiscoveries.config.json.json_objects.BooleanJsonConfigEntry;
+import rndm_access.assorteddiscoveries.config.json.json_objects.JsonConfigEntry;
 import rndm_access.assorteddiscoveries.core.ModResourceConditionTypes;
 
 import java.util.List;
@@ -31,15 +31,15 @@ public record AnyInCategoryEnabledResourceCondition(String configKey) implements
 
     @Override
     public boolean test(@Nullable RegistryOps.@Nullable RegistryInfoLookup registryInfo) {
-        JsonConfigCategory category = ModConfig.CONFIG.getCategory(configKey);
+        ModConfigCategory category = ModConfig.CONFIG.getCategory(configKey);
         if (category == null) {
             AssortedDiscoveries.LOGGER.error("{} is not a known config category!", this.configKey);
             return false; // Don't load the resource if we encounter an unknown config key!
         }
-        List<ConfigObject> objects = category.getConfigObjects();
+        List<JsonConfigEntry<?>> entries = category.getEntries();
 
-        for (ConfigObject object : objects) {
-            if (object instanceof BooleanConfigEntry entry && entry.getValue()) {
+        for (JsonConfigEntry<?> entry : entries) {
+            if (entry instanceof BooleanJsonConfigEntry booleanEntry && booleanEntry.getActiveValue()) {
                 return true;
             }
         }

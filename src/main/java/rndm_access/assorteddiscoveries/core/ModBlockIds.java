@@ -475,6 +475,7 @@ public final class ModBlockIds {
             = create("cracked_dripstone_tile_stairs");
     public static final BlockItemId CRACKED_DRIPSTONE_TILE_WALL_KEY
             = create("cracked_dripstone_tile_wall");
+    public static final BlockItemId SMOKY_QUARTZ_TILES_KEY = create("smoky_quartz_tiles");
 
     private ModBlockIds() {}
 

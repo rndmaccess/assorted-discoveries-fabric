@@ -741,7 +741,6 @@ public final class ModBlocks {
             BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS));
     public static final Block STRIPPED_POPLAR_WALL = registerWall(ModBlockIds.STRIPPED_POPLAR_WALL_KEY,
             BlockBehaviour.Properties.ofFullCopy(Blocks.POPLAR_PLANKS));
-
     public static final Block DRIPSTONE_TILES
             = registerSimple(ModBlockIds.DRIPSTONE_TILES_KEY, makeDripstoneTileSettings());
     public static final Block DRIPSTONE_TILE_SLAB
@@ -766,6 +765,8 @@ public final class ModBlocks {
             = registerStairs(ModBlockIds.CRACKED_DRIPSTONE_TILE_STAIRS_KEY, makeDripstoneTileSettings(), CRACKED_STONE_TILES);
     public static final Block CRACKED_DRIPSTONE_TILE_WALL
             = registerWall(ModBlockIds.CRACKED_DRIPSTONE_TILE_WALL_KEY, makeDripstoneTileSettings());
+    public static final Block SMOKY_QUARTZ_TILES
+            = registerSimple(ModBlockIds.SMOKY_QUARTZ_TILES_KEY, makeSmokyQuartzSettings());
 
     private ModBlocks() {}
 

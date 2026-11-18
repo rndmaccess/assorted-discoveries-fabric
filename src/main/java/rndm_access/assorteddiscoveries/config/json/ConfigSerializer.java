@@ -1,10 +1,9 @@
 package rndm_access.assorteddiscoveries.config.json;
 
 import org.jetbrains.annotations.Nullable;
-import rndm_access.assorteddiscoveries.config.json.json_objects.CommentConfigEntry;
-import rndm_access.assorteddiscoveries.config.json.json_objects.JsonConfigCategory;
-import rndm_access.assorteddiscoveries.config.json.json_objects.ConfigObject;
-import rndm_access.assorteddiscoveries.config.json.json_objects.AbstractConfigEntry;
+import rndm_access.assorteddiscoveries.config.ModConfigCategory;
+import rndm_access.assorteddiscoveries.config.ModConfig;
+import rndm_access.assorteddiscoveries.config.json.json_objects.JsonConfigEntry;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -16,13 +15,11 @@ public class ConfigSerializer {
     private int line;
     private int depth;
     private final Path configPath;
-    private final Config config;
 
-    public ConfigSerializer(Config config, Path configPath) {
+    public ConfigSerializer(Path configPath) {
         line = 0;
         depth = 0;
         this.configPath = configPath;
-        this.config = config;
     }
 
     /**
@@ -51,63 +48,50 @@ public class ConfigSerializer {
 
     private List<String> getContent(@Nullable Map<String, Object> changeList) {
         List<String> newContent = new ArrayList<>();
-        List<ConfigObject> objects = config.getObjects();
 
-        if (!objects.isEmpty()) {
-            for (CommentConfigEntry comment : this.config.getGlobalComments()) {
-                this.writeComment(newContent, comment.getKey());
-            }
-            this.writeText("\n", newContent);
-
-            this.writeText("{", newContent);
-            depth++;
-            line++;
-
-            int size = objects.size();
-            for (int i = 0; i < size; i++) {
-                ConfigObject object = objects.get(i);
-
-                if (object.isComment()) {
-                    String comment = object.getKey();
-                    this.writeComment(newContent, comment);
-                    continue;
-                }
-
-                JsonConfigCategory category = (JsonConfigCategory) object;
-                this.writeCategory(newContent, category, changeList);
-
-                if(i + 1 < size) {
-                    this.writeText(",", newContent);
-                }
-                line++;
-            }
-            line++;
-            depth--;
-            this.writeText("}", newContent);
+        for (String comment : ModConfig.CONFIG.getGlobalComments()) {
+            this.writeComment(newContent, comment);
         }
-        return newContent;
-    }
+        this.writeText("\n", newContent);
 
-    private void writeCategory(List<String> newContent, JsonConfigCategory category, Map<String, Object> changeList) {
-        List<ConfigObject> objects = category.getConfigObjects();
-        int size = objects.size();
-        this.writeText("\"" + category.getKey() + "\": {", newContent);
+        this.writeText("{", newContent);
         depth++;
         line++;
 
+        List<ModConfigCategory> categories = ModConfig.CONFIG.getCategories();
+        int size = categories.size();
         for (int i = 0; i < size; i++) {
-            ConfigObject component = objects.get(i);
-            String key = component.getKey();
+            ModConfigCategory category = categories.get(i);
+            String comment = category.getCategoryComment();
+            this.writeComment(newContent, comment);
+            this.writeCategory(newContent, category, changeList);
 
-            if (component.isComment()) {
-                this.writeComment(newContent, key);
-                continue;
+            if(i + 1 < size) {
+                this.writeText(",", newContent);
+            }
+            line++;
+        }
+        line++;
+        depth--;
+        this.writeText("}", newContent);
+        return newContent;
+    }
+
+    private void writeCategory(List<String> newContent, ModConfigCategory category, Map<String, Object> changeList) {
+        this.writeText("\"" + category.getCategoryName() + "\": {", newContent);
+        depth++;
+        line++;
+
+        List<JsonConfigEntry<?>> entries = category.getEntries();
+        int size = entries.size();
+        for (int i = 0; i < size; i++) {
+            JsonConfigEntry<?> entry = entries.get(i);
+
+            if (entry.hasComment()) {
+                this.writeComment(newContent, entry.getComment());
             }
 
-            AbstractConfigEntry<?> entry = category.getEntry(key);
-            if (entry != null) {
-                this.writeEntry(newContent, entry, changeList);
-            }
+            this.writeEntry(newContent, entry, changeList);
 
             if (i + 1 < size) {
                 this.writeText(",", newContent);
@@ -120,11 +104,11 @@ public class ConfigSerializer {
         }
     }
 
-    private void writeEntry(List<String> newContent, AbstractConfigEntry<?> entry,
+    private void writeEntry(List<String> newContent, JsonConfigEntry<?> entry,
                             Map<String, Object> changeList) {
         StringBuilder entryLine = new StringBuilder();
         String key = entry.getKey();
-        Object value = entry.getValue();
+        Object value = entry.getLocalValue();
         entryLine.append("\"").append(key).append("\": ");
 
         if (changeList != null && changeList.containsKey(key)) {

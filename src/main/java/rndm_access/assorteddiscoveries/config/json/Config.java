@@ -89,6 +89,32 @@ public class Config {
         }
     }
 
+    public void refreshConfigInMemory(Map<String, Object> changeMap) {
+        for (ModConfigCategory category : this.categories) {
+            for (JsonConfigEntry<?> entry : category.getEntries()) {
+                if (changeMap.containsKey(entry.getKey())) {
+                    updateLocalValue(entry, changeMap);
+                }
+            }
+        }
+    }
+
+    private void updateLocalValue(JsonConfigEntry<?> entry, Map<String, Object> configMap) {
+        if (entry instanceof BooleanJsonConfigEntry booleanEntry) {
+            String entryKey = entry.getKey();
+            if (entryKey == null) {
+                AssortedDiscoveries.LOGGER.error("Config entry of type Boolean is missing a key " +
+                        "(key is null)! Skipping local value update.");
+                return;
+            }
+            Object value = configMap.get(entryKey);
+
+            if (value instanceof Boolean booleanVal) {
+                booleanEntry.setLocalValue(booleanVal);
+            }
+        }
+    }
+
     public void loadFromFile() {
         try {
             ConfigDeserializer deserializer = new ConfigDeserializer(AssortedDiscoveries.MOD_ID);

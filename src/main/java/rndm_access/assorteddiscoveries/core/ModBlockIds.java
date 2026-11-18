@@ -476,6 +476,9 @@ public final class ModBlockIds {
     public static final BlockItemId CRACKED_DRIPSTONE_TILE_WALL_KEY
             = create("cracked_dripstone_tile_wall");
     public static final BlockItemId SMOKY_QUARTZ_TILES_KEY = create("smoky_quartz_tiles");
+    public static final BlockItemId SMOKY_QUARTZ_TILE_SLAB_KEY = create("smoky_quartz_tile_slab");
+    public static final BlockItemId SMOKY_QUARTZ_TILE_STAIRS_KEY = create("smoky_quartz_tile_stairs");
+    public static final BlockItemId SMOKY_QUARTZ_TILE_WALL_KEY = create("smoky_quartz_tile_wall");
 
     private ModBlockIds() {}
 

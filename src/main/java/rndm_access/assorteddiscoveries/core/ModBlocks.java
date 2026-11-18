@@ -767,6 +767,12 @@ public final class ModBlocks {
             = registerWall(ModBlockIds.CRACKED_DRIPSTONE_TILE_WALL_KEY, makeDripstoneTileSettings());
     public static final Block SMOKY_QUARTZ_TILES
             = registerSimple(ModBlockIds.SMOKY_QUARTZ_TILES_KEY, makeSmokyQuartzSettings());
+    public static final Block SMOKY_QUARTZ_TILE_SLAB
+            = registerSlab(ModBlockIds.SMOKY_QUARTZ_TILE_SLAB_KEY, makeSmokyQuartzSettings());
+    public static final Block SMOKY_QUARTZ_TILE_STAIRS
+            = registerStairs(ModBlockIds.SMOKY_QUARTZ_TILE_STAIRS_KEY, makeSmokyQuartzSettings(), SMOKY_QUARTZ_TILES);
+    public static final Block SMOKY_QUARTZ_TILE_WALL
+            = registerWall(ModBlockIds.SMOKY_QUARTZ_TILE_WALL_KEY, makeSmokyQuartzSettings());
 
     private ModBlocks() {}
 

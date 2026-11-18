@@ -619,7 +619,8 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModBlocks.WEEPING_BLACKSTONE_TILE_WALL.asItem());
             }
 
-            if (ModConfig.ENABLE_SMOKY_QUARTZ_BLOCKS.getActiveValue()) {
+            boolean enableSmokyQuartzBlocks = ModConfig.ENABLE_SMOKY_QUARTZ_BLOCKS.getActiveValue();
+            if (enableSmokyQuartzBlocks) {
                 entries.accept(ModBlocks.NETHER_SMOKY_QUARTZ_ORE.asItem());
                 entries.accept(ModItems.SMOKY_QUARTZ);
                 entries.accept(ModBlocks.SMOKY_QUARTZ_BLOCK.asItem());
@@ -630,18 +631,26 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModBlocks.SMOKY_QUARTZ_PILLAR.asItem());
             }
 
-            if (ModConfig.ENABLE_SMOKY_QUARTZ_BLOCKS.getActiveValue() && ModConfig.ENABLE_SMOKY_QUARTZ_BRICKS.getActiveValue()) {
+            boolean enableSmokyQuartzBricks = ModConfig.ENABLE_SMOKY_QUARTZ_BRICKS.getActiveValue();
+            if (enableSmokyQuartzBlocks && enableSmokyQuartzBricks) {
                 entries.accept(ModBlocks.SMOKY_QUARTZ_BRICKS.asItem());
                 entries.accept(ModBlocks.SMOKY_QUARTZ_BRICK_STAIRS.asItem());
                 entries.accept(ModBlocks.SMOKY_QUARTZ_BRICK_SLAB.asItem());
                 entries.accept(ModBlocks.SMOKY_QUARTZ_BRICK_WALL.asItem());
             }
 
-            if (ModConfig.ENABLE_SMOKY_QUARTZ_BLOCKS.getActiveValue() && ModConfig.ENABLE_SMOOTH_SMOKY_QUARTZ.getActiveValue()) {
+            if (enableSmokyQuartzBlocks && ModConfig.ENABLE_SMOOTH_SMOKY_QUARTZ.getActiveValue()) {
                 entries.accept(ModBlocks.SMOOTH_SMOKY_QUARTZ.asItem());
                 entries.accept(ModBlocks.SMOOTH_SMOKY_QUARTZ_STAIRS.asItem());
                 entries.accept(ModBlocks.SMOOTH_SMOKY_QUARTZ_SLAB.asItem());
                 entries.accept(ModBlocks.SMOOTH_SMOKY_QUARTZ_WALL.asItem());
+            }
+
+            if (enableSmokyQuartzBlocks && enableSmokyQuartzBricks) {
+                entries.accept(ModBlocks.SMOKY_QUARTZ_TILES);
+                entries.accept(ModBlocks.SMOKY_QUARTZ_TILE_STAIRS.asItem());
+                entries.accept(ModBlocks.SMOKY_QUARTZ_TILE_SLAB.asItem());
+                entries.accept(ModBlocks.SMOKY_QUARTZ_TILE_WALL.asItem());
             }
 
             if (ModConfig.ENABLE_QUARTZ_BRICK_BLOCKS.getActiveValue()) {

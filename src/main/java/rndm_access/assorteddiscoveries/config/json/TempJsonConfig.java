@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class TempConfig implements AutoCloseable {
+public class TempJsonConfig implements AutoCloseable {
     private final Path file;
 
-    public TempConfig(Path configPath) throws IOException {
+    public TempJsonConfig(Path configPath) throws IOException {
         file = Files.createTempFile(configPath.getFileName().toString(), null);
     }
 

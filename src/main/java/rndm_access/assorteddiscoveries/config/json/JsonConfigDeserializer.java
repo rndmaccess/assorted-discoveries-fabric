@@ -1,45 +1,40 @@
 package rndm_access.assorteddiscoveries.config.json;
 
-import net.fabricmc.loader.api.FabricLoader;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.json.exceptions.JsonConfigException;
 import rndm_access.assorteddiscoveries.config.json.exceptions.JsonSyntaxException;
-import rndm_access.assorteddiscoveries.config.json.json_objects.BooleanConfigEntry;
-import rndm_access.assorteddiscoveries.config.json.json_objects.JsonConfigCategory;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.StringJoiner;
+import java.util.*;
 
-public class ConfigDeserializer {
+public class JsonConfigDeserializer {
     private int lineNum;
     private int pos;
     private Character curChar;
     private final Path path;
     private String line;
-    private final String configName;
     private int invalidTypeNum;
+    private final Map<String, Map<String, Boolean>> categories;
 
-    public ConfigDeserializer(String configName) {
+    public JsonConfigDeserializer(Path path) {
         this.lineNum = 0;
         this.pos = 0;
-        this.path = FabricLoader.getInstance().getConfigDir().resolve(configName + ".json5");
-        this.configName = configName;
+        this.path = path;
         this.invalidTypeNum = 0;
+        this.categories = new HashMap<>();
     }
 
-    public Config deserialize() throws JsonSyntaxException {
+    public Map<String, Map<String, Boolean>> deserialize() throws JsonSyntaxException {
         File file = new File(String.valueOf(path));
 
         if (path == null || !Files.exists(path)) {
             throw new JsonConfigException("Couldn't load config at " + path + " because it does not exist!");
         }
-
-        Config.Builder config = new Config.Builder(configName);
 
         try (LineIterator iterator = FileUtils.lineIterator(file)) {
             consumeChar(iterator); // Bump the char pointer to the first character
@@ -51,19 +46,19 @@ public class ConfigDeserializer {
 
             require(iterator, '{');
             while (curChar != '\0') {
-                this.deserializeLine(config, iterator);
+                this.deserializeLine(iterator);
             }
 
             if (this.invalidTypeNum > 0) {
                 AssortedDiscoveries.LOGGER.warn("Config: The type for {} entry(s) is not supported using the default values for each!",  invalidTypeNum);
             }
+            return categories;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return config.build();
     }
 
-    private void deserializeLine(Config.Builder config, LineIterator iter) throws JsonSyntaxException {
+    private void deserializeLine(LineIterator iter) throws JsonSyntaxException {
         if(consumeComment(iter)) {
             return;
         }
@@ -72,8 +67,7 @@ public class ConfigDeserializer {
         require(iter, key, ':');
 
         if (this.curChar == '{') {
-            JsonConfigCategory category = parseCategory(key, iter);
-            config.addCategory(category);
+            parseCategory(key, iter);
             require(iter, '}', ',');
         } else {
             int reportedLine = this.lineNum + 1;
@@ -117,14 +111,15 @@ public class ConfigDeserializer {
         this.curChar = line.charAt(pos);
     }
 
-    private JsonConfigCategory parseCategory(String key, LineIterator iter) {
+    private void parseCategory(String key, LineIterator iter) {
         require(iter, '{');
-        JsonConfigCategory.Builder categoryBuilder = new JsonConfigCategory.Builder(key);
-        parseEntries(categoryBuilder, iter);
-        return categoryBuilder.build();
+        Map<String, Boolean> entries = parseEntries(iter);
+        categories.put(key, entries);
     }
 
-    private void parseEntries(JsonConfigCategory.Builder category, LineIterator iter) throws JsonSyntaxException {
+    private Map<String, Boolean> parseEntries(LineIterator iter) throws JsonSyntaxException {
+        Map<String, Boolean> entries = new HashMap<>();
+
         while (curChar != '\0' && curChar != '}') {
             if(consumeComment(iter)) {
                 continue;
@@ -140,7 +135,8 @@ public class ConfigDeserializer {
                 String value = parseValue(iter);
 
                 if (value.equals("true") || value.equals("false")) {
-                    category.addEntry(new BooleanConfigEntry(key, Boolean.parseBoolean(value)));
+                    boolean boolVal = Boolean.parseBoolean(value);
+                    entries.put(key, boolVal);
                 } else {
                     invalidTypeNum += 1;
                 }
@@ -151,6 +147,7 @@ public class ConfigDeserializer {
             }
         }
         require(iter, '}'); // Consume and require the left curly after each category!
+        return entries;
     }
 
     private String parseValue(LineIterator iter) throws JsonSyntaxException {

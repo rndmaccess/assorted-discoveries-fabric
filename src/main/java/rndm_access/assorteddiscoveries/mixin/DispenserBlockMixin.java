@@ -23,7 +23,7 @@ public class DispenserBlockMixin {
     private void assorteddiscoveries$dispenseFromEndStone(ServerLevel level, BlockState state, BlockPos pos, CallbackInfo ci) {
         DispenserBlockEntity blockEntity = level.getBlockEntity(pos, BlockEntityType.DISPENSER).orElse(null);
 
-        if (blockEntity != null && ModConfig.ENABLE_ENDER_PLANTS.getValue()) {
+        if (blockEntity != null && ModConfig.ENABLE_ENDER_PLANTS.getActiveValue()) {
             assorteddiscoveries$dispenseBoneMeal(blockEntity, level, state, pos);
         }
     }

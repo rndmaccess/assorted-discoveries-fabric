@@ -15,14 +15,14 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.*;
 
-public class JsonConfig {
+public class JsonConfigManager {
     private final List<String> globalComments = new ArrayList<>();
     private final List<ModConfigCategory> categories;
     private final Path path;
     private final String name;
     private boolean hasError;
 
-    public JsonConfig(String name) {
+    public JsonConfigManager(String name) {
         this.name = name;
         this.path = FabricLoader.getInstance().getConfigDir().resolve(name + ".json5");
         this.hasError = false;

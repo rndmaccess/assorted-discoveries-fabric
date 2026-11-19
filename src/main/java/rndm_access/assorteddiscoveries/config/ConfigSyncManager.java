@@ -27,7 +27,7 @@ public final class ConfigSyncManager {
         for (Pair<String, Boolean> configValue : configList) {
             configMap.put(configValue.getFirst(), configValue.getSecond());
         }
-        ModConfig.CONFIG.applyServerSync(configMap);
+        ModConfig.CONFIG_MANAGER.applyServerSync(configMap);
     }
 
     /**
@@ -35,6 +35,6 @@ public final class ConfigSyncManager {
      */
     public static void reset() {
         syncedWithServer = false;
-        ModConfig.CONFIG.restoreLocalValues();
+        ModConfig.CONFIG_MANAGER.restoreLocalValues();
     }
 }

@@ -31,7 +31,7 @@ public record AnyInCategoryEnabledResourceCondition(String configKey) implements
 
     @Override
     public boolean test(@Nullable RegistryOps.@Nullable RegistryInfoLookup registryInfo) {
-        ModConfigCategory category = ModConfig.CONFIG.getCategory(configKey);
+        ModConfigCategory category = ModConfig.CONFIG_MANAGER.getCategory(configKey);
         if (category == null) {
             AssortedDiscoveries.LOGGER.error("{} is not a known config category!", this.configKey);
             return false; // Don't load the resource if we encounter an unknown config key!

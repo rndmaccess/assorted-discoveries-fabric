@@ -27,8 +27,8 @@ public class ModConfigScreen {
         addPlantsCategory(configBuilder, entryBuilder);
 
         configBuilder.setSavingRunnable(() -> {
-            ModConfig.CONFIG.save(ENTRY_VALUE_CHANGES);
-            ModConfig.CONFIG.refreshConfigInMemory(ENTRY_VALUE_CHANGES);
+            ModConfig.CONFIG_MANAGER.save(ENTRY_VALUE_CHANGES);
+            ModConfig.CONFIG_MANAGER.refreshConfigInMemory(ENTRY_VALUE_CHANGES);
             ENTRY_VALUE_CHANGES.clear();
         });
         return configBuilder;

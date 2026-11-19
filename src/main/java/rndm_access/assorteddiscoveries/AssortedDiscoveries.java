@@ -116,7 +116,7 @@ public class AssortedDiscoveries implements ModInitializer {
     }
 
     private static void sendConfigToPlayer(ServerPlayer player) {
-        BooleanEntriesS2CPayload payload = new BooleanEntriesS2CPayload(ModConfig.CONFIG.getBooleanEntries());
+        BooleanEntriesS2CPayload payload = new BooleanEntriesS2CPayload(ModConfig.CONFIG_MANAGER.getBooleanEntries());
         String playerName = player.getName().getString();
 
         if (ServerPlayNetworking.canSend(player, payload.type())) {

@@ -37,7 +37,7 @@ public record AllEntriesEnabledResourceCondition(List<String> configKeys) implem
         }
 
         for (String configKey : this.configKeys) {
-            JsonConfigEntry<?> entry = ModConfig.CONFIG.getEntry(configKey);
+            JsonConfigEntry<?> entry = ModConfig.CONFIG_MANAGER.getEntry(configKey);
             if (entry instanceof BooleanJsonConfigEntry boolEntry) {
                 if (!boolEntry.getActiveValue()) {
                     return false;

@@ -17,7 +17,7 @@ import java.nio.file.Path;
  * If there is a problem loading then the config will use default values.
  */
 public class ModConfig {
-    public static final JsonConfig CONFIG;
+    public static final JsonConfigManager CONFIG_MANAGER;
     public static final BooleanJsonConfigEntry ENABLE_PLANTER_BOXES;
     public static final BooleanJsonConfigEntry ENABLE_DYED_CAMPFIRES;
     public static final BooleanJsonConfigEntry ENABLE_DYED_LANTERNS;
@@ -138,10 +138,10 @@ public class ModConfig {
         Path configPath = FabricLoader.getInstance().getConfigDir().resolve(AssortedDiscoveries.MOD_ID + ".json5");
 
         if (!Files.exists(configPath)) {
-            CONFIG.create();
+            CONFIG_MANAGER.create();
             return;
         }
-        CONFIG.loadFromFile();
+        CONFIG_MANAGER.loadFromFile();
     }
 
     static {
@@ -337,13 +337,13 @@ public class ModConfig {
         ENABLE_WITCHS_CRADLES = plantsCategory.addEntry(new BooleanJsonConfigEntry("enable_witchs_cradles"));
 
         String line = "======================================================";
-        CONFIG = new JsonConfig(AssortedDiscoveries.MOD_ID);
-        CONFIG.addGlobalComment(line);
-        CONFIG.addGlobalComment("Assorted Discoveries Config Notes:");
-        CONFIG.addGlobalComment("- Each option in the config requires a game restart!");
-        CONFIG.addGlobalComment("- Enable or disable any config option by toggling the setting between true and false.");
-        CONFIG.addGlobalComment("- Wiki & Documentation: https://rndmaccess.github.io/assorted-discoveries-wiki/");
-        CONFIG.addGlobalComment(line);
+        CONFIG_MANAGER = new JsonConfigManager(AssortedDiscoveries.MOD_ID);
+        CONFIG_MANAGER.addGlobalComment(line);
+        CONFIG_MANAGER.addGlobalComment("Assorted Discoveries Config Notes:");
+        CONFIG_MANAGER.addGlobalComment("- Each option in the config requires a game restart!");
+        CONFIG_MANAGER.addGlobalComment("- Enable or disable any config option by toggling the setting between true and false.");
+        CONFIG_MANAGER.addGlobalComment("- Wiki & Documentation: https://rndmaccess.github.io/assorted-discoveries-wiki/");
+        CONFIG_MANAGER.addGlobalComment(line);
 
         updateFromFile();
     }

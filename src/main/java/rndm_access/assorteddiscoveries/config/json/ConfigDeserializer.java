@@ -4,11 +4,8 @@ import net.fabricmc.loader.api.FabricLoader;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
-import rndm_access.assorteddiscoveries.config.ModConfig;
-import rndm_access.assorteddiscoveries.config.ModConfigCategory;
 import rndm_access.assorteddiscoveries.config.json.exceptions.JsonConfigException;
 import rndm_access.assorteddiscoveries.config.json.exceptions.JsonSyntaxException;
-import rndm_access.assorteddiscoveries.config.json.json_objects.JsonConfigEntry;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,21 +20,17 @@ public class ConfigDeserializer {
     private final Path path;
     private String line;
     private int invalidTypeNum;
-    private boolean shouldMigrate;
+    private final Map<String, Map<String, Boolean>> categories;
 
     public ConfigDeserializer(String configName) {
         this.lineNum = 0;
         this.pos = 0;
         this.path = FabricLoader.getInstance().getConfigDir().resolve(configName + ".json5");
         this.invalidTypeNum = 0;
-        this.shouldMigrate = false;
+        this.categories = new HashMap<>();
     }
 
-    public boolean shouldMigrate() {
-        return shouldMigrate;
-    }
-
-    public void deserialize() throws JsonSyntaxException {
+    public Map<String, Map<String, Boolean>> deserialize() throws JsonSyntaxException {
         File file = new File(String.valueOf(path));
 
         if (path == null || !Files.exists(path)) {
@@ -60,6 +53,7 @@ public class ConfigDeserializer {
             if (this.invalidTypeNum > 0) {
                 AssortedDiscoveries.LOGGER.warn("Config: The type for {} entry(s) is not supported using the default values for each!",  invalidTypeNum);
             }
+            return categories;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -120,13 +114,12 @@ public class ConfigDeserializer {
 
     private void parseCategory(String key, LineIterator iter) {
         require(iter, '{');
-        ModConfigCategory category = ModConfig.CONFIG.getCategory(key);
-        Set<String> seenKeys = parseEntries(category, iter);
-        checkCategoryMigration(key, seenKeys);
+        Map<String, Boolean> entries = parseEntries(iter);
+        categories.put(key, entries);
     }
 
-    private Set<String> parseEntries(ModConfigCategory category, LineIterator iter) throws JsonSyntaxException {
-        Set<String> seenKeys = new HashSet<>();
+    private Map<String, Boolean> parseEntries(LineIterator iter) throws JsonSyntaxException {
+        Map<String, Boolean> entries = new HashMap<>();
 
         while (curChar != '\0' && curChar != '}') {
             if(consumeComment(iter)) {
@@ -143,14 +136,8 @@ public class ConfigDeserializer {
                 String value = parseValue(iter);
 
                 if (value.equals("true") || value.equals("false")) {
-                    if (category.hasEntry(key)) {
-                        category.getBoolEntry(key).setLocalValue(Boolean.parseBoolean(value));
-                        // At this point we know it's a known config key-value pair
-                        // so we can add it to seenKeys for a sanity check later.
-                        seenKeys.add(key);
-                    } else {
-                        AssortedDiscoveries.LOGGER.warn("Skipping unknown entry: {}", key);
-                    }
+                    boolean boolVal = Boolean.parseBoolean(value);
+                    entries.put(key, boolVal);
                 } else {
                     invalidTypeNum += 1;
                 }
@@ -161,21 +148,7 @@ public class ConfigDeserializer {
             }
         }
         require(iter, '}'); // Consume and require the left curly after each category!
-        return seenKeys;
-    }
-
-    private void checkCategoryMigration(String categoryName, Set<String> seenEntries) {
-        if (this.shouldMigrate) {
-            return;
-        }
-        ModConfigCategory category = ModConfig.CONFIG.getCategory(categoryName);
-
-        for (JsonConfigEntry<?> entry : category.getEntries()) {
-            if (!seenEntries.contains(entry.getKey())) {
-                this.shouldMigrate = true;
-                return;
-            }
-        }
+        return entries;
     }
 
     private String parseValue(LineIterator iter) throws JsonSyntaxException {

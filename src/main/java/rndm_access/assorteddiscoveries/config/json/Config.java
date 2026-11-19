@@ -118,22 +118,83 @@ public class Config {
     public void loadFromFile() {
         try {
             ConfigDeserializer deserializer = new ConfigDeserializer(AssortedDiscoveries.MOD_ID);
-            deserializer.deserialize();
+            Map<String, Map<String, Boolean>> categories = deserializer.deserialize();
 
-            if (deserializer.shouldMigrate()) {
-                this.backupAndSave(this);
+            this.loadFileContents(categories);
+
+            // If there are missing categories or entries we
+            // re-save the file and add the missing entries/categories.
+            if (needsMigration(categories)) {
+                this.backupAndSave();
             }
         } catch (JsonSyntaxException e) {
             String errorMessage = e.getMessage();
             AssortedDiscoveries.LOGGER.error("Config load error: falling back to default configuration!");
             AssortedDiscoveries.LOGGER.error(errorMessage);
             hasError = true;
-            // If there is an error loading the file we fall back to the config in memory. Which at this point the default config is this!
-            this.backupAndSave(this);
+            // If there is an error loading the file we fall back to
+            // default values and backup our old config.
+            this.backupAndSave();
         }
     }
 
-    private void backupAndSave(Config config) {
+    private boolean needsMigration(Map<String, Map<String, Boolean>> loadedCategories) {
+        if (loadedCategories == null || loadedCategories.size() != categories.size()) {
+            return true;
+        }
+
+        for (ModConfigCategory category : categories) {
+            Map<String, Boolean> loadedEntries = loadedCategories.get(category.getCategoryName());
+            List<JsonConfigEntry<?>> entries = category.getEntries();
+
+            if (loadedEntries == null || loadedEntries.size() != entries.size()) {
+                return true;
+            }
+
+            for (JsonConfigEntry<?> entry : entries) {
+                if (loadedEntries.get(entry.getKey()) == null) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private void loadFileContents(Map<String, Map<String, Boolean>> loadedCategories) {
+        for (Map.Entry<String, Map<String, Boolean>> loadedCategory : loadedCategories.entrySet()) {
+            String loadedCategoryKey = loadedCategory.getKey();
+            ModConfigCategory category = getCategory(loadedCategoryKey);
+
+            if (category == null) {
+                AssortedDiscoveries.LOGGER.warn("Skipping unknown category: {}", loadedCategoryKey);
+                continue;
+            }
+
+            Map<String, Boolean> loadedEntries = loadedCategories.get(loadedCategoryKey);
+            if (loadedEntries == null) {
+                continue;
+            }
+
+            for (Map.Entry<String, Boolean> loadedEntry : loadedEntries.entrySet()) {
+                String entryKey = loadedEntry.getKey();
+                JsonConfigEntry<?> entry = category.getEntry(entryKey);
+                Boolean value = loadedEntries.get(entryKey);
+
+                // Protect against null values when updating the entries.
+                if (value == null) {
+                    continue;
+                }
+
+                if (entry instanceof BooleanJsonConfigEntry booleanEntry) {
+                    booleanEntry.setLocalValue(value);
+                } else {
+                    AssortedDiscoveries.LOGGER.warn("Skipping unknown entry: {}", entryKey);
+                }
+            }
+        }
+    }
+
+    private void backupAndSave() {
         Path configPath = Paths.get("./config");
 
         try {
@@ -149,7 +210,7 @@ public class Config {
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
-        config.save();
+        this.save();
     }
 
     public boolean hasError() {

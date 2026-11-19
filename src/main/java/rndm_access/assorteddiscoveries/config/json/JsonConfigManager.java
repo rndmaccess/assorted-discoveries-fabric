@@ -195,26 +195,28 @@ public class JsonConfigManager {
 
     private void backupAndSave() {
         Path configPath = this.path.getParent();
-
-        if (!Files.exists(this.path)) {
-            this.save();
-            return;
-        }
+        Path tempPath = configPath.resolve(this.name + ".json5.tmp");
 
         try {
-            int i = 1;
-            Path targetConfigPath = configPath.resolve(this.name + "-" + i + ".json5.bak");
+            this.save(tempPath);
 
-            while (Files.exists(targetConfigPath)) {
-                i++;
-                targetConfigPath = configPath.resolve( this.name + "-" + i + ".json5.bak");
+            if (Files.exists(this.path)) {
+                int i = 1;
+                Path backupPath = configPath.resolve(this.name + "-" + i + ".json5.bak");
+                while (Files.exists(backupPath)) {
+                    i++;
+                    backupPath = configPath.resolve( this.name + "-" + i + ".json5.bak");
+                }
+                Files.move(this.path, backupPath, StandardCopyOption.REPLACE_EXISTING);
             }
-
-            Files.move(path, targetConfigPath, StandardCopyOption.REPLACE_EXISTING);
+            Files.move(tempPath, this.path, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.ATOMIC_MOVE);
         } catch (IOException ex) {
-            throw new RuntimeException(ex);
+            // Clean up the assorted-discoveries.tmp file if something failed
+            try {
+                Files.deleteIfExists(tempPath);
+            } catch (IOException ignored) {}
+            throw new RuntimeException("Failed to safely save config", ex);
         }
-        this.save();
     }
 
     public boolean hasError() {
@@ -255,11 +257,7 @@ public class JsonConfigManager {
         }
     }
 
-    public void save() {
-        if (path == null) {
-            throw new JsonConfigException("The config path has not been set!");
-        }
-
+    public void save(Path path) {
         JsonConfigSerializer serializer = new JsonConfigSerializer(path);
         serializer.serialize();
     }

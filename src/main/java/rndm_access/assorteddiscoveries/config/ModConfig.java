@@ -17,7 +17,7 @@ import java.nio.file.Path;
  * If there is a problem loading then the config will use default values.
  */
 public class ModConfig {
-    public static final Config CONFIG;
+    public static final JsonConfig CONFIG;
     public static final BooleanJsonConfigEntry ENABLE_PLANTER_BOXES;
     public static final BooleanJsonConfigEntry ENABLE_DYED_CAMPFIRES;
     public static final BooleanJsonConfigEntry ENABLE_DYED_LANTERNS;
@@ -337,7 +337,7 @@ public class ModConfig {
         ENABLE_WITCHS_CRADLES = plantsCategory.addEntry(new BooleanJsonConfigEntry("enable_witchs_cradles"));
 
         String line = "======================================================";
-        CONFIG = new Config(AssortedDiscoveries.MOD_ID);
+        CONFIG = new JsonConfig(AssortedDiscoveries.MOD_ID);
         CONFIG.addGlobalComment(line);
         CONFIG.addGlobalComment("Assorted Discoveries Config Notes:");
         CONFIG.addGlobalComment("- Each option in the config requires a game restart!");

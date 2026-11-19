@@ -11,12 +11,12 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.*;
 
-public class ConfigSerializer {
+public class JsonConfigSerializer {
     private int line;
     private int depth;
     private final Path configPath;
 
-    public ConfigSerializer(Path configPath) {
+    public JsonConfigSerializer(Path configPath) {
         line = 0;
         depth = 0;
         this.configPath = configPath;
@@ -38,7 +38,7 @@ public class ConfigSerializer {
         List<String> newContent = this.getContent(changeList);
 
         // To prevent partial files we first save it to a temporary file, then replace the config file!
-        try (TempConfig tempFile = new TempConfig(configPath)) {
+        try (TempJsonConfig tempFile = new TempJsonConfig(configPath)) {
             Files.write(tempFile.getFile(), newContent);
             Files.move(tempFile.getFile(), configPath, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {

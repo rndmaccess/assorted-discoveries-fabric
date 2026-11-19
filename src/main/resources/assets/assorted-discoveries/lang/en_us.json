@@ -554,6 +554,7 @@
   "config.entry.assorted-discoveries.building_blocks.enable_snow_bricks": "Enable Snow Bricks",
   "config.entry.assorted-discoveries.building_blocks.enable_packed_snow": "Enable Packed Snow",
   "config.entry.assorted-discoveries.building_blocks.enable_dirt_slabs": "Enable Soil Slabs",
+  "config.entry.assorted-discoveries.building_blocks.enable_smoky_quartz_tiles": "Enable Smoky Quartz Tiles",
 
   "config.tooltip.assorted-discoveries.building_blocks.enable_smoky_quartz_blocks": "Toggle all smoky quartz block types (normal, bricks, smooth)",
   "config.tooltip.assorted-discoveries.building_blocks.enable_quartz_brick_blocks": "Toggle quartz brick stairs, slabs, and walls",
@@ -566,9 +567,10 @@
   "config.tooltip.assorted-discoveries.building_blocks.enable_calcite_bricks": "Toggle all calcite bricks (normal, cracked, mossy)",
   "config.tooltip.assorted-discoveries.building_blocks.enable_dripstone_blocks": "Toggle dripstone stairs, slabs, and walls",
   "config.tooltip.assorted-discoveries.building_blocks.enable_polished_dripstone": "Toggle all dripstone types (polished, bricks, tiles, etc.)",
-  "config.tooltip.assorted-discoveries.building_blocks.enable_dripstone_bricks": "Toggle all dripstone bricks (normal, cracked, mossy)",
+  "config.tooltip.assorted-discoveries.building_blocks.enable_dripstone_bricks": "Toggle all dripstone bricks and tiles (normal, cracked, mossy)",
   "config.tooltip.assorted-discoveries.building_blocks.enable_dripstone_tiles": "Toggle all dripstone tiles (normal, cracked, mossy)",
   "config.tooltip.assorted-discoveries.building_blocks.enable_dirt_slabs": "Toggle all soil slabs (dirt, grass, podzol, etc.)",
+  "config.tooltip.assorted-discoveries.building_blocks.enable_smoky_quartz_bricks":  "Toggle smoky quartz bricks and tiles",
 
   "config.requirement.assorted-discoveries.building_blocks.enable_bauxite_bricks": "Disabled by bauxite option",
   "config.requirement.assorted-discoveries.building_blocks.enable_mossy_bauxite_bricks": "Disabled by bauxite bricks option",
@@ -587,6 +589,7 @@
   "config.requirement.assorted-discoveries.building_blocks.enable_dripstone_tiles": "Disabled by dripstone bricks option",
   "config.requirement.assorted-discoveries.building_blocks.enable_cracked_dripstone_tiles": "Disabled by dripstone tiles option",
   "config.requirement.assorted-discoveries.building_blocks.enable_mossy_dripstone_tiles": "Disabled by dripstone tiles option",
+  "config.requirement.assorted-discoveries.building_blocks.enable_smoky_quartz_tiles": "Disabled by smoky quartz bricks option",
 
   "config.category.assorted-discoveries.plushies": "Plushies",
   "config.entry.assorted-discoveries.plushies.enable_allay_plushie": "Enable Allay Plushie",

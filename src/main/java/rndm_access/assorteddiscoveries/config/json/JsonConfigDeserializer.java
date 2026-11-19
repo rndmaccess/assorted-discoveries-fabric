@@ -1,6 +1,5 @@
 package rndm_access.assorteddiscoveries.config.json;
 
-import net.fabricmc.loader.api.FabricLoader;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
@@ -13,7 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 
-public class ConfigDeserializer {
+public class JsonConfigDeserializer {
     private int lineNum;
     private int pos;
     private Character curChar;
@@ -22,10 +21,10 @@ public class ConfigDeserializer {
     private int invalidTypeNum;
     private final Map<String, Map<String, Boolean>> categories;
 
-    public ConfigDeserializer(String configName) {
+    public JsonConfigDeserializer(Path path) {
         this.lineNum = 0;
         this.pos = 0;
-        this.path = FabricLoader.getInstance().getConfigDir().resolve(configName + ".json5");
+        this.path = path;
         this.invalidTypeNum = 0;
         this.categories = new HashMap<>();
     }

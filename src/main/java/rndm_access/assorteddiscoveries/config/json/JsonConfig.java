@@ -12,7 +12,6 @@ import rndm_access.assorteddiscoveries.config.json.exceptions.JsonSyntaxExceptio
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.*;
 
@@ -117,7 +116,7 @@ public class JsonConfig {
 
     public void loadFromFile() {
         try {
-            ConfigDeserializer deserializer = new ConfigDeserializer(AssortedDiscoveries.MOD_ID);
+            JsonConfigDeserializer deserializer = new JsonConfigDeserializer(path);
             Map<String, Map<String, Boolean>> categories = deserializer.deserialize();
 
             this.loadFileContents(categories);
@@ -195,7 +194,12 @@ public class JsonConfig {
     }
 
     private void backupAndSave() {
-        Path configPath = Paths.get("./config");
+        Path configPath = this.path.getParent();
+
+        if (!Files.exists(this.path)) {
+            this.save();
+            return;
+        }
 
         try {
             int i = 1;
@@ -244,7 +248,7 @@ public class JsonConfig {
         }
 
         if (!Files.exists(path)) {
-            ConfigSerializer serializer = new ConfigSerializer(path);
+            JsonConfigSerializer serializer = new JsonConfigSerializer(path);
             serializer.serialize();
         } else {
             AssortedDiscoveries.LOGGER.error("The config file already exists!");
@@ -256,7 +260,7 @@ public class JsonConfig {
             throw new JsonConfigException("The config path has not been set!");
         }
 
-        ConfigSerializer serializer = new ConfigSerializer(path);
+        JsonConfigSerializer serializer = new JsonConfigSerializer(path);
         serializer.serialize();
     }
 
@@ -266,7 +270,7 @@ public class JsonConfig {
         }
 
         if (Files.exists(path)) {
-            ConfigSerializer serializer = new ConfigSerializer(path);
+            JsonConfigSerializer serializer = new JsonConfigSerializer(path);
             serializer.serialize(entryChangeList);
         }
     }

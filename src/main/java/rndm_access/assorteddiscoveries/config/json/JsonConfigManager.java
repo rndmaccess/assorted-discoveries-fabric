@@ -5,11 +5,11 @@ import net.fabricmc.loader.api.FabricLoader;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.ModConfigCategory;
 import rndm_access.assorteddiscoveries.config.json.json_objects.BooleanJsonConfigEntry;
-import rndm_access.assorteddiscoveries.config.json.exceptions.JsonConfigException;
 import rndm_access.assorteddiscoveries.config.json.json_objects.JsonConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.exceptions.JsonSyntaxException;
 
 import java.io.IOException;
+import java.nio.file.AtomicMoveNotSupportedException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
@@ -119,10 +119,11 @@ public class JsonConfigManager {
             JsonConfigDeserializer deserializer = new JsonConfigDeserializer(path);
             Map<String, Map<String, Boolean>> categories = deserializer.deserialize();
 
+            // Load the file contents into memory in one atomic load operation.
             this.loadFileContents(categories);
 
             // If there are missing categories or entries we
-            // re-save the file and add the missing entries/categories.
+            // back up the config and add the missing entries/categories.
             if (needsMigration(categories)) {
                 this.backupAndSave();
             }
@@ -194,22 +195,27 @@ public class JsonConfigManager {
     }
 
     private void backupAndSave() {
-        Path configPath = this.path.getParent();
-        Path tempPath = configPath.resolve(this.name + ".json5.tmp");
+        Path tempPath = this.path.resolveSibling(this.name + ".json5.tmp");
 
         try {
             this.save(tempPath);
 
             if (Files.exists(this.path)) {
                 int i = 1;
-                Path backupPath = configPath.resolve(this.name + "-" + i + ".json5.bak");
+                Path backupPath = this.path.resolveSibling(this.name + "-" + i + ".json5.bak");
                 while (Files.exists(backupPath)) {
                     i++;
-                    backupPath = configPath.resolve( this.name + "-" + i + ".json5.bak");
+                    backupPath = this.path.resolveSibling(this.name + "-" + i + ".json5.bak");
                 }
+                // Replace existing is used here to prevent potential race conditions.
                 Files.move(this.path, backupPath, StandardCopyOption.REPLACE_EXISTING);
             }
-            Files.move(tempPath, this.path, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.ATOMIC_MOVE);
+
+            try {
+                Files.move(tempPath, this.path, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.ATOMIC_MOVE);
+            } catch (AtomicMoveNotSupportedException e) {
+                Files.move(tempPath, this.path, StandardCopyOption.REPLACE_EXISTING);
+            }
         } catch (IOException ex) {
             // Clean up the assorted-discoveries.tmp file if something failed
             try {
@@ -245,10 +251,6 @@ public class JsonConfigManager {
     }
 
     public void create() {
-        if (path == null) {
-            throw new JsonConfigException("The config path has not been set!");
-        }
-
         if (!Files.exists(path)) {
             JsonConfigSerializer serializer = new JsonConfigSerializer(path);
             serializer.serialize();
@@ -257,19 +259,30 @@ public class JsonConfigManager {
         }
     }
 
-    public void save(Path path) {
+    private void save(Path path) {
         JsonConfigSerializer serializer = new JsonConfigSerializer(path);
         serializer.serialize();
     }
 
     public void save(Map<String, Object> entryChangeList) {
-        if (path == null) {
-            throw new JsonConfigException("The config path has not been set!");
-        }
+        Path tempPath = path.resolveSibling(this.name + ".json5.tmp");
 
-        if (Files.exists(path)) {
-            JsonConfigSerializer serializer = new JsonConfigSerializer(path);
+        try {
+            JsonConfigSerializer serializer = new JsonConfigSerializer(tempPath);
             serializer.serialize(entryChangeList);
+
+            // Atomically move the new file to the old file's path replacing the old config.
+            try {
+                Files.move(tempPath, path, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.ATOMIC_MOVE);
+            } catch (AtomicMoveNotSupportedException e) {
+                Files.move(tempPath, path, StandardCopyOption.REPLACE_EXISTING);
+            }
+        } catch (IOException ex) {
+            // Clean up the assorted-discoveries.tmp file if something failed
+            try {
+                Files.deleteIfExists(tempPath);
+            } catch (IOException ignored) {}
+            throw new RuntimeException("Failed to safely save config", ex);
         }
     }
 }

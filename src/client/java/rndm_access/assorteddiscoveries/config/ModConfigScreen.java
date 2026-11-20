@@ -28,7 +28,7 @@ public class ModConfigScreen {
 
         configBuilder.setSavingRunnable(() -> {
             ModConfig.CONFIG_MANAGER.save(ENTRY_VALUE_CHANGES);
-            ModConfig.CONFIG_MANAGER.refreshConfigInMemory(ENTRY_VALUE_CHANGES);
+            ModConfig.CONFIG_MANAGER.updateLocalValues(ENTRY_VALUE_CHANGES);
             ENTRY_VALUE_CHANGES.clear();
         });
         return configBuilder;

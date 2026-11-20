@@ -7,10 +7,12 @@ import net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition;
 import net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditionType;
 import net.minecraft.resources.RegistryOps;
 import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.ModConfig;
-import rndm_access.assorteddiscoveries.config.json.json_objects.BooleanJsonConfigEntry;
+import rndm_access.assorteddiscoveries.config.json.JsonConfig;
 import rndm_access.assorteddiscoveries.config.json.json_objects.JsonConfigEntry;
+import rndm_access.assorteddiscoveries.config.json.json_objects.BooleanJsonConfigEntry;
 import rndm_access.assorteddiscoveries.core.ModResourceConditionTypes;
 
 import java.util.List;
@@ -24,19 +26,20 @@ public record AllEntriesEnabledResourceCondition(List<String> configKeys) implem
             ).apply(instance, AllEntriesEnabledResourceCondition::new));
 
     @Override
-    public ResourceConditionType<?> getType() {
+    public @NonNull ResourceConditionType<?> getType() {
         return ModResourceConditionTypes.ALL_ENTRIES_ENABLED;
     }
 
     @Override
-    public boolean test(@Nullable RegistryOps.RegistryInfoLookup registryInfo) {
+    public boolean test(@Nullable RegistryOps.@Nullable RegistryInfoLookup registryInfo) {
         // Just load the resource like normal if there are no config keys listed!
         if (this.configKeys.isEmpty()) {
             return true;
         }
 
+        JsonConfig config = ModConfig.CONFIG_MANAGER.getConfig();
         for (String configKey : this.configKeys) {
-            JsonConfigEntry<?> entry = ModConfig.CONFIG_MANAGER.getEntry(configKey);
+            JsonConfigEntry<?> entry = config.getEntry(configKey);
             if (entry instanceof BooleanJsonConfigEntry boolEntry) {
                 if (!boolEntry.getActiveValue()) {
                     return false;

@@ -11,6 +11,7 @@ import org.jspecify.annotations.NonNull;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.ModConfig;
 import rndm_access.assorteddiscoveries.config.ModConfigCategory;
+import rndm_access.assorteddiscoveries.config.json.JsonConfig;
 import rndm_access.assorteddiscoveries.config.json.json_objects.BooleanJsonConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.json_objects.JsonConfigEntry;
 import rndm_access.assorteddiscoveries.core.ModResourceConditionTypes;
@@ -31,7 +32,8 @@ public record AnyInCategoryEnabledResourceCondition(String configKey) implements
 
     @Override
     public boolean test(@Nullable RegistryOps.@Nullable RegistryInfoLookup registryInfo) {
-        ModConfigCategory category = ModConfig.CONFIG_MANAGER.getCategory(configKey);
+        JsonConfig config = ModConfig.CONFIG_MANAGER.getConfig();
+        ModConfigCategory category = config.getCategory(configKey);
         if (category == null) {
             AssortedDiscoveries.LOGGER.error("{} is not a known config category!", this.configKey);
             return false; // Don't load the resource if we encounter an unknown config key!

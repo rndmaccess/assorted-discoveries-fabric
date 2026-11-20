@@ -38,7 +38,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import rndm_access.assorteddiscoveries.block.UnstrippedWoodenWallBlock;
 import rndm_access.assorteddiscoveries.config.BooleanEntriesS2CPayload;
+import rndm_access.assorteddiscoveries.config.ConfigSyncManager;
 import rndm_access.assorteddiscoveries.config.ModConfig;
+import rndm_access.assorteddiscoveries.config.json.JsonConfig;
 import rndm_access.assorteddiscoveries.core.*;
 
 import java.util.Optional;
@@ -101,7 +103,8 @@ public class AssortedDiscoveries implements ModInitializer {
     }
 
     private static void sendConfigToPlayer(ServerPlayer player) {
-        BooleanEntriesS2CPayload payload = new BooleanEntriesS2CPayload(ModConfig.CONFIG_MANAGER.getBooleanEntries());
+        JsonConfig config = ModConfig.CONFIG_MANAGER.getConfig();
+        BooleanEntriesS2CPayload payload = new BooleanEntriesS2CPayload(ConfigSyncManager.collectBooleanSyncEntries(config));
         String playerName = player.getName().getString();
 
         if (ServerPlayNetworking.canSend(player, payload.type())) {

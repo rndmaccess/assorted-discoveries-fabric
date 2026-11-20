@@ -15,7 +15,7 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.Identifier;
 
 public record BooleanEntriesS2CPayload(List<Pair<String, Boolean>> configList) implements CustomPacketPayload {
-    public static final Identifier CONFIG_PAYLOAD_ID = AssortedDiscoveries.makeModId("config");
+    public static final Identifier CONFIG_PAYLOAD_ID = AssortedDiscoveries.makeModId("boolean_config_sync");
     public static final CustomPacketPayload.Type<BooleanEntriesS2CPayload> ID = new CustomPacketPayload.Type<>(CONFIG_PAYLOAD_ID);
     public static final StreamCodec<ByteBuf, List<Pair<String, Boolean>>> PACKET_CODEC = new StreamCodec<>() {
         public @NonNull List<Pair<String, Boolean>> decode(ByteBuf byteBuf) {

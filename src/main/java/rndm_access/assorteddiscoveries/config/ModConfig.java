@@ -338,12 +338,13 @@ public class ModConfig {
 
         String line = "======================================================";
         CONFIG_MANAGER = new JsonConfigManager(AssortedDiscoveries.MOD_ID);
-        CONFIG_MANAGER.addGlobalComment(line);
-        CONFIG_MANAGER.addGlobalComment("Assorted Discoveries Config Notes:");
-        CONFIG_MANAGER.addGlobalComment("- Each option in the config requires a game restart!");
-        CONFIG_MANAGER.addGlobalComment("- Enable or disable any config option by toggling the setting between true and false.");
-        CONFIG_MANAGER.addGlobalComment("- Wiki & Documentation: https://rndmaccess.github.io/assorted-discoveries-wiki/");
-        CONFIG_MANAGER.addGlobalComment(line);
+        JsonConfig modConfig = CONFIG_MANAGER.getConfig();
+        modConfig.addGlobalComment(line);
+        modConfig.addGlobalComment("Assorted Discoveries Config Notes:");
+        modConfig.addGlobalComment("- Each option in the config requires a game restart!");
+        modConfig.addGlobalComment("- Enable or disable any config option by toggling the setting between true and false.");
+        modConfig.addGlobalComment("- Wiki & Documentation: https://rndmaccess.github.io/assorted-discoveries-wiki/");
+        modConfig.addGlobalComment(line);
 
         updateFromFile();
     }

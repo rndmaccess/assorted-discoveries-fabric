@@ -1,7 +1,5 @@
 package rndm_access.assorteddiscoveries.config.json;
 
-import com.mojang.datafixers.util.Pair;
-import net.fabricmc.loader.api.FabricLoader;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.ModConfigCategory;
 import rndm_access.assorteddiscoveries.config.json.json_objects.BooleanJsonConfigEntry;
@@ -16,51 +14,20 @@ import java.nio.file.StandardCopyOption;
 import java.util.*;
 
 public class JsonConfigManager {
-    private final List<String> globalComments = new ArrayList<>();
-    private final List<ModConfigCategory> categories;
-    private final Path path;
-    private final String name;
+    private final JsonConfig config;
     private boolean hasError;
 
     public JsonConfigManager(String name) {
-        this.name = name;
-        this.path = FabricLoader.getInstance().getConfigDir().resolve(name + ".json5");
+        this.config = new JsonConfig(name);
         this.hasError = false;
-        this.categories = List.of(ModConfigCategory.values());
     }
 
-    public void addGlobalComment(String comment) {
-        globalComments.add(comment);
-    }
-
-    public List<String> getGlobalComments() {
-        return globalComments;
-    }
-
-    public List<ModConfigCategory> getCategories() {
-        return categories;
-    }
-
-    public ModConfigCategory getCategory(String key) {
-        for (ModConfigCategory category : categories) {
-            if (category.getCategoryName().equals(key)) {
-                return category;
-            }
-        }
-        return null;
-    }
-
-    public JsonConfigEntry<?> getEntry(String key) {
-        for (ModConfigCategory category : categories) {
-            if (category.hasEntry(key)) {
-                return category.getEntry(key);
-            }
-        }
-        return null;
+    public JsonConfig getConfig() {
+        return this.config;
     }
 
     public void restoreLocalValues() {
-        for (ModConfigCategory category : categories) {
+        for (ModConfigCategory category : this.config.getCategories()) {
             for (JsonConfigEntry<?> entry : category.getEntries()) {
                 entry.restoreLocalValue();
             }
@@ -68,7 +35,7 @@ public class JsonConfigManager {
     }
 
     public void applyServerSync(Map<String, Boolean> configMap) {
-        for (ModConfigCategory category : categories) {
+        for (ModConfigCategory category : this.config.getCategories()) {
             for (JsonConfigEntry<?> entry : category.getEntries()) {
                 updateActiveValue(entry, configMap);
             }
@@ -88,8 +55,8 @@ public class JsonConfigManager {
         }
     }
 
-    public void refreshConfigInMemory(Map<String, Object> changeMap) {
-        for (ModConfigCategory category : this.categories) {
+    public void updateLocalValues(Map<String, Object> changeMap) {
+        for (ModConfigCategory category : this.config.getCategories()) {
             for (JsonConfigEntry<?> entry : category.getEntries()) {
                 if (changeMap.containsKey(entry.getKey())) {
                     updateLocalValue(entry, changeMap);
@@ -116,7 +83,7 @@ public class JsonConfigManager {
 
     public void loadFromFile() {
         try {
-            JsonConfigDeserializer deserializer = new JsonConfigDeserializer(path);
+            JsonConfigDeserializer deserializer = new JsonConfigDeserializer(this.config.getPath());
             Map<String, Map<String, Boolean>> categories = deserializer.deserialize();
 
             // Load the file contents into memory in one atomic load operation.
@@ -139,6 +106,8 @@ public class JsonConfigManager {
     }
 
     private boolean needsMigration(Map<String, Map<String, Boolean>> loadedCategories) {
+        List<ModConfigCategory> categories = this.config.getCategories();
+
         if (loadedCategories == null || loadedCategories.size() != categories.size()) {
             return true;
         }
@@ -163,7 +132,7 @@ public class JsonConfigManager {
     private void loadFileContents(Map<String, Map<String, Boolean>> loadedCategories) {
         for (Map.Entry<String, Map<String, Boolean>> loadedCategory : loadedCategories.entrySet()) {
             String loadedCategoryKey = loadedCategory.getKey();
-            ModConfigCategory category = getCategory(loadedCategoryKey);
+            ModConfigCategory category = this.config.getCategory(loadedCategoryKey);
 
             if (category == null) {
                 AssortedDiscoveries.LOGGER.warn("Skipping unknown category: {}", loadedCategoryKey);
@@ -195,26 +164,28 @@ public class JsonConfigManager {
     }
 
     private void backupAndSave() {
-        Path tempPath = this.path.resolveSibling(this.name + ".json5.tmp");
+        String configName = this.config.getName();
+        Path baseConfigPath = this.config.getPath();
+        Path tempPath = baseConfigPath.resolveSibling(configName + ".json5.tmp");
 
         try {
             this.save(tempPath);
 
-            if (Files.exists(this.path)) {
+            if (Files.exists(baseConfigPath)) {
                 int i = 1;
-                Path backupPath = this.path.resolveSibling(this.name + "-" + i + ".json5.bak");
+                Path backupPath = baseConfigPath.resolveSibling(configName + "-" + i + ".json5.bak");
                 while (Files.exists(backupPath)) {
                     i++;
-                    backupPath = this.path.resolveSibling(this.name + "-" + i + ".json5.bak");
+                    backupPath = baseConfigPath.resolveSibling(configName + "-" + i + ".json5.bak");
                 }
                 // Replace existing is used here to prevent potential race conditions.
-                Files.move(this.path, backupPath, StandardCopyOption.REPLACE_EXISTING);
+                Files.move(baseConfigPath, backupPath, StandardCopyOption.REPLACE_EXISTING);
             }
 
             try {
-                Files.move(tempPath, this.path, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.ATOMIC_MOVE);
+                Files.move(tempPath, baseConfigPath, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.ATOMIC_MOVE);
             } catch (AtomicMoveNotSupportedException e) {
-                Files.move(tempPath, this.path, StandardCopyOption.REPLACE_EXISTING);
+                Files.move(tempPath, baseConfigPath, StandardCopyOption.REPLACE_EXISTING);
             }
         } catch (IOException ex) {
             // Clean up the assorted-discoveries.tmp file if something failed
@@ -229,30 +200,11 @@ public class JsonConfigManager {
         return hasError;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * @return A flattened view of boolean config entries that can be used when sending packets.
-     */
-    public List<Pair<String, Boolean>> getBooleanEntries() {
-        List<Pair<String, Boolean>> flatEntries = new ArrayList<>();
-
-        for (ModConfigCategory category : categories) {
-            for (JsonConfigEntry<?> entry : category.getEntries()) {
-                if (entry instanceof BooleanJsonConfigEntry boolEntry) {
-                    flatEntries.add(new Pair<>(boolEntry.getKey(), boolEntry.getLocalValue()));
-                }
-            }
-        }
-        // Flatten the entry list for sending it to the server in a packet.
-        return flatEntries;
-    }
-
     public void create() {
-        if (!Files.exists(path)) {
-            JsonConfigSerializer serializer = new JsonConfigSerializer(path);
+        Path baseConfigPath = this.config.getPath();
+
+        if (!Files.exists(baseConfigPath)) {
+            JsonConfigSerializer serializer = new JsonConfigSerializer(baseConfigPath);
             serializer.serialize();
         } else {
             AssortedDiscoveries.LOGGER.error("The config file already exists!");
@@ -265,7 +217,9 @@ public class JsonConfigManager {
     }
 
     public void save(Map<String, Object> entryChangeList) {
-        Path tempPath = path.resolveSibling(this.name + ".json5.tmp");
+        String configName = this.config.getName();
+        Path baseConfigPath = this.config.getPath();
+        Path tempPath = baseConfigPath.resolveSibling(configName + ".json5.tmp");
 
         try {
             JsonConfigSerializer serializer = new JsonConfigSerializer(tempPath);
@@ -273,9 +227,9 @@ public class JsonConfigManager {
 
             // Atomically move the new file to the old file's path replacing the old config.
             try {
-                Files.move(tempPath, path, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.ATOMIC_MOVE);
+                Files.move(tempPath, baseConfigPath, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.ATOMIC_MOVE);
             } catch (AtomicMoveNotSupportedException e) {
-                Files.move(tempPath, path, StandardCopyOption.REPLACE_EXISTING);
+                Files.move(tempPath, baseConfigPath, StandardCopyOption.REPLACE_EXISTING);
             }
         } catch (IOException ex) {
             // Clean up the assorted-discoveries.tmp file if something failed

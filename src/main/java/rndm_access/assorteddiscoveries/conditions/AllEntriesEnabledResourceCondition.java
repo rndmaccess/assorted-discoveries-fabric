@@ -10,6 +10,7 @@ import org.jetbrains.annotations.Nullable;
 import org.jspecify.annotations.NonNull;
 import rndm_access.assorteddiscoveries.AssortedDiscoveries;
 import rndm_access.assorteddiscoveries.config.ModConfig;
+import rndm_access.assorteddiscoveries.config.json.JsonConfig;
 import rndm_access.assorteddiscoveries.config.json.json_objects.JsonConfigEntry;
 import rndm_access.assorteddiscoveries.config.json.json_objects.BooleanJsonConfigEntry;
 import rndm_access.assorteddiscoveries.core.ModResourceConditionTypes;
@@ -36,8 +37,9 @@ public record AllEntriesEnabledResourceCondition(List<String> configKeys) implem
             return true;
         }
 
+        JsonConfig config = ModConfig.CONFIG_MANAGER.getConfig();
         for (String configKey : this.configKeys) {
-            JsonConfigEntry<?> entry = ModConfig.CONFIG_MANAGER.getEntry(configKey);
+            JsonConfigEntry<?> entry = config.getEntry(configKey);
             if (entry instanceof BooleanJsonConfigEntry boolEntry) {
                 if (!boolEntry.getActiveValue()) {
                     return false;

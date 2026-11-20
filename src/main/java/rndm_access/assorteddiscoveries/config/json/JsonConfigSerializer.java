@@ -48,8 +48,9 @@ public class JsonConfigSerializer {
 
     private List<String> getContent(@Nullable Map<String, Object> changeList) {
         List<String> newContent = new ArrayList<>();
+        JsonConfig config = ModConfig.CONFIG_MANAGER.getConfig();
 
-        for (String comment : ModConfig.CONFIG_MANAGER.getGlobalComments()) {
+        for (String comment : config.getGlobalComments()) {
             this.writeComment(newContent, comment);
         }
         this.writeText("\n", newContent);
@@ -58,7 +59,7 @@ public class JsonConfigSerializer {
         depth++;
         line++;
 
-        List<ModConfigCategory> categories = ModConfig.CONFIG_MANAGER.getCategories();
+        List<ModConfigCategory> categories = config.getCategories();
         int size = categories.size();
         for (int i = 0; i < size; i++) {
             ModConfigCategory category = categories.get(i);

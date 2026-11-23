@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "assorted-discoveries:dripstone_bricks",
+  "result": {
+    "id": "assorted-discoveries:dripstone_tile_stairs",
+    "count": 1
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:all_entries_enabled",
+      "value": [
+        "enable_polished_dripstone",
+        "enable_dripstone_bricks",
+        "enable_dripstone_tiles"
+      ]
+    }
+  ]
+}

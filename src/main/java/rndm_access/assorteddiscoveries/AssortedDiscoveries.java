@@ -638,7 +638,8 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModBlocks.WEEPING_BLACKSTONE_TILE_WALL.asItem());
             }
 
-            if (ModConfig.ENABLE_SMOKY_QUARTZ_BLOCKS.getActiveValue()) {
+            boolean enableSmokyQuartzBlocks = ModConfig.ENABLE_SMOKY_QUARTZ_BLOCKS.getActiveValue();
+            if (enableSmokyQuartzBlocks) {
                 entries.accept(ModBlocks.NETHER_SMOKY_QUARTZ_ORE.asItem());
                 entries.accept(ModItems.SMOKY_QUARTZ);
                 entries.accept(ModBlocks.SMOKY_QUARTZ_BLOCK.asItem());
@@ -649,19 +650,32 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModBlocks.SMOKY_QUARTZ_PILLAR.asItem());
             }
 
-            if (ModConfig.ENABLE_SMOKY_QUARTZ_BLOCKS.getActiveValue() && ModConfig.ENABLE_SMOKY_QUARTZ_BRICKS.getActiveValue()) {
+            boolean enableSmokyQuartzBricks = ModConfig.ENABLE_SMOKY_QUARTZ_BRICKS.getActiveValue();
+            if (enableSmokyQuartzBlocks && enableSmokyQuartzBricks) {
                 entries.accept(ModBlocks.SMOKY_QUARTZ_BRICKS.asItem());
                 entries.accept(ModBlocks.SMOKY_QUARTZ_BRICK_STAIRS.asItem());
                 entries.accept(ModBlocks.SMOKY_QUARTZ_BRICK_SLAB.asItem());
                 entries.accept(ModBlocks.SMOKY_QUARTZ_BRICK_WALL.asItem());
             }
 
-            if (ModConfig.ENABLE_SMOKY_QUARTZ_BLOCKS.getActiveValue() && ModConfig.ENABLE_SMOOTH_SMOKY_QUARTZ.getActiveValue()) {
+            if (enableSmokyQuartzBlocks && ModConfig.ENABLE_SMOOTH_SMOKY_QUARTZ.getActiveValue()) {
                 entries.accept(ModBlocks.SMOOTH_SMOKY_QUARTZ.asItem());
                 entries.accept(ModBlocks.SMOOTH_SMOKY_QUARTZ_STAIRS.asItem());
                 entries.accept(ModBlocks.SMOOTH_SMOKY_QUARTZ_SLAB.asItem());
                 entries.accept(ModBlocks.SMOOTH_SMOKY_QUARTZ_WALL.asItem());
             }
+
+            /*
+            if (enableSmokyQuartzBlocks && enableSmokyQuartzBricks
+                    && ModConfig.ENABLE_SMOKY_QUARTZ_TILES.getActiveValue()) {
+
+            }
+            */
+
+            entries.accept(ModBlocks.SMOKY_QUARTZ_TILES);
+            entries.accept(ModBlocks.SMOKY_QUARTZ_TILE_STAIRS.asItem());
+            entries.accept(ModBlocks.SMOKY_QUARTZ_TILE_SLAB.asItem());
+            entries.accept(ModBlocks.SMOKY_QUARTZ_TILE_WALL.asItem());
 
             if (ModConfig.ENABLE_QUARTZ_BRICK_BLOCKS.getActiveValue()) {
                 entries.accept(ModBlocks.QUARTZ_BRICK_STAIRS.asItem());
@@ -681,34 +695,67 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModBlocks.SMOOTH_QUARTZ_WALL.asItem());
             }
 
-            if (ModConfig.ENABLE_BAUXITE.getActiveValue()) {
-                entries.accept(ModBlocks.BAUXITE.asItem());
-                entries.accept(ModBlocks.BAUXITE_SLAB.asItem());
-                entries.accept(ModBlocks.BAUXITE_STAIRS.asItem());
-                entries.accept(ModBlocks.BAUXITE_WALL.asItem());
+            if (ModConfig.ENABLE_DRIPSTONE_BLOCKS.getActiveValue()) {
+                entries.accept(ModBlocks.DRIPSTONE_STAIRS.asItem());
+                entries.accept(ModBlocks.DRIPSTONE_SLAB.asItem());
+                entries.accept(ModBlocks.DRIPSTONE_WALL.asItem());
             }
 
-            if (ModConfig.ENABLE_BAUXITE.getActiveValue() && ModConfig.ENABLE_BAUXITE_BRICKS.getActiveValue()) {
-                entries.accept(ModBlocks.BAUXITE_BRICKS.asItem());
-                entries.accept(ModBlocks.BAUXITE_BRICK_STAIRS.asItem());
-                entries.accept(ModBlocks.BAUXITE_BRICK_SLAB.asItem());
-                entries.accept(ModBlocks.BAUXITE_BRICK_WALL.asItem());
+            boolean enablePolishedDripstone = ModConfig.ENABLE_POLISHED_DRIPSTONE.getActiveValue();
+            if (enablePolishedDripstone) {
+                entries.accept(ModBlocks.POLISHED_DRIPSTONE.asItem());
+                entries.accept(ModBlocks.POLISHED_DRIPSTONE_STAIRS.asItem());
+                entries.accept(ModBlocks.POLISHED_DRIPSTONE_SLAB.asItem());
+                entries.accept(ModBlocks.POLISHED_DRIPSTONE_WALL.asItem());
             }
 
-            if (ModConfig.ENABLE_BAUXITE.getActiveValue() && ModConfig.ENABLE_BAUXITE_BRICKS.getActiveValue()
-                    && ModConfig.ENABLE_CRACKED_BAUXITE_BRICKS.getActiveValue()) {
-                entries.accept(ModBlocks.CRACKED_BAUXITE_BRICKS.asItem());
-                entries.accept(ModBlocks.CRACKED_BAUXITE_BRICK_STAIRS.asItem());
-                entries.accept(ModBlocks.CRACKED_BAUXITE_BRICK_SLAB.asItem());
-                entries.accept(ModBlocks.CRACKED_BAUXITE_BRICK_WALL.asItem());
+            boolean enableDripstoneBricks = ModConfig.ENABLE_DRIPSTONE_BRICKS.getActiveValue();
+            if (enablePolishedDripstone && enableDripstoneBricks) {
+                entries.accept(ModBlocks.DRIPSTONE_BRICKS.asItem());
+                entries.accept(ModBlocks.DRIPSTONE_BRICK_STAIRS.asItem());
+                entries.accept(ModBlocks.DRIPSTONE_BRICK_SLAB.asItem());
+                entries.accept(ModBlocks.DRIPSTONE_BRICK_WALL.asItem());
+                entries.accept(ModBlocks.CHISELED_DRIPSTONE_BRICKS.asItem());
             }
 
-            if (ModConfig.ENABLE_BAUXITE.getActiveValue() && ModConfig.ENABLE_BAUXITE_BRICKS.getActiveValue()
-                    && ModConfig.ENABLE_MOSSY_BAUXITE_BRICKS.getActiveValue()) {
-                entries.accept(ModBlocks.MOSSY_BAUXITE_BRICKS.asItem());
-                entries.accept(ModBlocks.MOSSY_BAUXITE_BRICK_STAIRS.asItem());
-                entries.accept(ModBlocks.MOSSY_BAUXITE_BRICK_SLAB.asItem());
-                entries.accept(ModBlocks.MOSSY_BAUXITE_BRICK_WALL.asItem());
+            if (enablePolishedDripstone && enableDripstoneBricks
+                    && ModConfig.ENABLE_CRACKED_DRIPSTONE_BRICKS.getActiveValue()) {
+                entries.accept(ModBlocks.CRACKED_DRIPSTONE_BRICKS.asItem());
+                entries.accept(ModBlocks.CRACKED_DRIPSTONE_BRICK_STAIRS.asItem());
+                entries.accept(ModBlocks.CRACKED_DRIPSTONE_BRICK_SLAB.asItem());
+                entries.accept(ModBlocks.CRACKED_DRIPSTONE_BRICK_WALL.asItem());
+            }
+
+            if (enablePolishedDripstone && enableDripstoneBricks
+                    && ModConfig.ENABLE_MOSSY_DRIPSTONE_BRICKS.getActiveValue()) {
+                entries.accept(ModBlocks.MOSSY_DRIPSTONE_BRICKS.asItem());
+                entries.accept(ModBlocks.MOSSY_DRIPSTONE_BRICK_STAIRS.asItem());
+                entries.accept(ModBlocks.MOSSY_DRIPSTONE_BRICK_SLAB.asItem());
+                entries.accept(ModBlocks.MOSSY_DRIPSTONE_BRICK_WALL.asItem());
+            }
+
+            boolean enableDripstoneTiles = ModConfig.ENABLE_MOSSY_DRIPSTONE_BRICKS.getActiveValue();
+            if (enablePolishedDripstone && enableDripstoneBricks && enableDripstoneTiles) {
+                entries.accept(ModBlocks.DRIPSTONE_TILES.asItem());
+                entries.accept(ModBlocks.DRIPSTONE_TILE_STAIRS.asItem());
+                entries.accept(ModBlocks.DRIPSTONE_TILE_SLAB.asItem());
+                entries.accept(ModBlocks.DRIPSTONE_TILE_WALL.asItem());
+            }
+
+            if (enablePolishedDripstone && enableDripstoneBricks && enableDripstoneTiles
+                    && ModConfig.ENABLE_CRACKED_DRIPSTONE_TILES.getActiveValue()) {
+                entries.accept(ModBlocks.CRACKED_DRIPSTONE_TILES.asItem());
+                entries.accept(ModBlocks.CRACKED_DRIPSTONE_TILE_STAIRS.asItem());
+                entries.accept(ModBlocks.CRACKED_DRIPSTONE_TILE_SLAB.asItem());
+                entries.accept(ModBlocks.CRACKED_DRIPSTONE_TILE_WALL.asItem());
+            }
+
+            if (enablePolishedDripstone && enableDripstoneBricks && enableDripstoneTiles
+                    && ModConfig.ENABLE_MOSSY_DRIPSTONE_TILES.getActiveValue()) {
+                entries.accept(ModBlocks.MOSSY_DRIPSTONE_TILES.asItem());
+                entries.accept(ModBlocks.MOSSY_DRIPSTONE_TILE_STAIRS.asItem());
+                entries.accept(ModBlocks.MOSSY_DRIPSTONE_TILE_SLAB.asItem());
+                entries.accept(ModBlocks.MOSSY_DRIPSTONE_TILE_WALL.asItem());
             }
 
             if (ModConfig.ENABLE_STONE_TILES.getActiveValue()) {

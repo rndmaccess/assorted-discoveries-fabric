@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "assorted-discoveries:smoky_quartz_bricks",
+  "result": {
+    "id": "assorted-discoveries:smoky_quartz_tile_wall",
+    "count": 1
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:all_entries_enabled",
+      "value": [
+        "enable_smoky_quartz_blocks",
+        "enable_smoky_quartz_bricks",
+        "enable_smoky_quartz_tiles"
+      ]
+    }
+  ]
+}

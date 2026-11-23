@@ -9,8 +9,8 @@
     {
       "condition": "assorted-discoveries:all_entries_enabled",
       "value": [
-        "enable_dripstone_bricks",
-        "enable_polished_dripstone"
+        "enable_polished_dripstone",
+        "enable_dripstone_bricks"
       ]
     }
   ]

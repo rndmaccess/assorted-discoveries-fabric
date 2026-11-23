@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": "assorted-discoveries:smoky_quartz_bricks"
+  },
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "result": {
+    "id": "assorted-discoveries:smoky_quartz_tiles",
+    "count": 4
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "assorted-discoveries:all_entries_enabled",
+      "value": [
+        "enable_smoky_quartz_blocks",
+        "enable_smoky_quartz_bricks",
+        "enable_smoky_quartz_tiles"
+      ]
+    }
+  ]
+}

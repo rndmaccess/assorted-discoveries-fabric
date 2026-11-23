@@ -1,12 +1,12 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "blocks",
+  "category": "building",
   "pattern": [
     "##",
     "##"
   ],
   "key": {
-    "#": "minecraft:dripstone_block"
+    "#": "assorted-discoveries:polished_dripstone"
   },
   "result": {
     "id": "assorted-discoveries:dripstone_bricks",
@@ -15,14 +15,10 @@
   "fabric:load_conditions": [
     {
       "condition": "assorted-discoveries:all_entries_enabled",
-      "value": "enable_dripstone_bricks"
-    },
-    {
-      "condition": "fabric:not",
-      "value": {
-        "condition": "assorted-discoveries:all_entries_enabled",
-        "value": "enable_polished_dripstone"
-      }
+      "value": [
+        "enable_polished_dripstone",
+        "enable_dripstone_bricks"
+      ]
     }
   ]
 }

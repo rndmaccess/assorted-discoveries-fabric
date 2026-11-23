@@ -92,11 +92,14 @@ public class ModConfigScreen {
         BooleanListEntry enableSmokyQuartzBlocks = makeBoolEntry(true, entryBuilder,
                 ModConfig.ENABLE_SMOKY_QUARTZ_BLOCKS, categoryKey);
         screenCategory.addEntry(enableSmokyQuartzBlocks);
-        configEntry = makeBoolEntry(entryBuilder,
+        BooleanListEntry enableSmokyQuartzBricks = makeBoolEntry(true, entryBuilder,
                 ModConfig.ENABLE_SMOKY_QUARTZ_BRICKS, categoryKey, enableSmokyQuartzBlocks);
-        screenCategory.addEntry(configEntry);
+        screenCategory.addEntry(enableSmokyQuartzBricks);
         configEntry = makeBoolEntry(entryBuilder,
                 ModConfig.ENABLE_SMOOTH_SMOKY_QUARTZ, categoryKey, enableSmokyQuartzBlocks);
+        screenCategory.addEntry(configEntry);
+        configEntry = makeBoolEntry(entryBuilder, ModConfig.ENABLE_SMOKY_QUARTZ_TILES, categoryKey,
+                enableSmokyQuartzBlocks, enableSmokyQuartzBricks);
         screenCategory.addEntry(configEntry);
         configEntry = makeBoolEntry(true, entryBuilder,
                 ModConfig.ENABLE_QUARTZ_BRICK_BLOCKS, categoryKey);

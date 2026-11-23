@@ -40,6 +40,7 @@ public class ModConfig {
     public static final BooleanJsonConfigEntry ENABLE_SMOKY_QUARTZ_BLOCKS;
     public static final BooleanJsonConfigEntry ENABLE_SMOKY_QUARTZ_BRICKS;
     public static final BooleanJsonConfigEntry ENABLE_SMOOTH_SMOKY_QUARTZ;
+    public static final BooleanJsonConfigEntry ENABLE_SMOKY_QUARTZ_TILES;
     public static final BooleanJsonConfigEntry ENABLE_QUARTZ_TILES;
     public static final BooleanJsonConfigEntry ENABLE_QUARTZ_WALLS;
     public static final BooleanJsonConfigEntry ENABLE_BAUXITE;
@@ -61,11 +62,9 @@ public class ModConfig {
     public static final BooleanJsonConfigEntry ENABLE_DRIPSTONE_BRICKS;
     public static final BooleanJsonConfigEntry ENABLE_CRACKED_DRIPSTONE_BRICKS;
     public static final BooleanJsonConfigEntry ENABLE_MOSSY_DRIPSTONE_BRICKS;
-
     public static final BooleanJsonConfigEntry ENABLE_DRIPSTONE_TILES;
     public static final BooleanJsonConfigEntry ENABLE_CRACKED_DRIPSTONE_TILES;
     public static final BooleanJsonConfigEntry ENABLE_MOSSY_DRIPSTONE_TILES;
-
     public static final BooleanJsonConfigEntry ENABLE_QUARTZ_BRICK_BLOCKS;
     public static final BooleanJsonConfigEntry ENABLE_SNOW_BRICKS;
     public static final BooleanJsonConfigEntry ENABLE_PACKED_SNOW;
@@ -168,10 +167,14 @@ public class ModConfig {
         ENABLE_WEEPING_BLACKSTONE_TILES = buildingBlocksCategory.addEntry(new BooleanJsonConfigEntry("enable_weeping_blackstone_tiles"));
         ENABLE_SMOKY_QUARTZ_BLOCKS = buildingBlocksCategory.addEntry(new BooleanJsonConfigEntry(
                 "enable_smoky_quartz_blocks",
-                "Toggle all smoky quartz block types (normal, bricks, smooth)")
-        );
-        ENABLE_SMOKY_QUARTZ_BRICKS = buildingBlocksCategory.addEntry(new BooleanJsonConfigEntry("enable_smoky_quartz_bricks"));
+                "Toggle all smoky quartz block types (normal, bricks, smooth, etc.)"
+        ));
+        ENABLE_SMOKY_QUARTZ_BRICKS = buildingBlocksCategory.addEntry(new BooleanJsonConfigEntry(
+                "enable_smoky_quartz_bricks",
+                "Toggle smoky quartz bricks and tiles"
+        ));
         ENABLE_SMOOTH_SMOKY_QUARTZ = buildingBlocksCategory.addEntry(new BooleanJsonConfigEntry("enable_smooth_smoky_quartz"));
+        ENABLE_SMOKY_QUARTZ_TILES = buildingBlocksCategory.addEntry(new BooleanJsonConfigEntry("enable_smoky_quartz_tiles"));
         ENABLE_QUARTZ_BRICK_BLOCKS = buildingBlocksCategory.addEntry(new BooleanJsonConfigEntry(
                 "enable_quartz_brick_blocks",
                 "Toggle quartz brick stairs, slabs, and walls")
@@ -187,7 +190,7 @@ public class ModConfig {
         ));
         ENABLE_BAUXITE_BRICKS = buildingBlocksCategory.addEntry(new BooleanJsonConfigEntry(
                 "enable_bauxite_bricks",
-                "Toggle all bauxite brick types (normal, mossy, cracked)"
+                "Toggle all bauxite bricks (normal, mossy, cracked)"
         ));
         ENABLE_CRACKED_BAUXITE_BRICKS = buildingBlocksCategory.addEntry(new BooleanJsonConfigEntry("enable_cracked_bauxite_bricks"));
         ENABLE_MOSSY_BAUXITE_BRICKS = buildingBlocksCategory.addEntry(new BooleanJsonConfigEntry("enable_mossy_bauxite_bricks"));
@@ -220,7 +223,7 @@ public class ModConfig {
         ENABLE_POLISHED_DRIPSTONE = buildingBlocksCategory.addEntry(new BooleanJsonConfigEntry("enable_polished_dripstone"));
         ENABLE_DRIPSTONE_BRICKS = buildingBlocksCategory.addEntry(new BooleanJsonConfigEntry(
                 "enable_dripstone_bricks",
-                "Toggle all dripstone bricks (normal, cracked, mossy)"
+                "Toggle all dripstone bricks and tiles (normal, cracked, mossy)"
         ));
         ENABLE_CRACKED_DRIPSTONE_BRICKS = buildingBlocksCategory.addEntry(new BooleanJsonConfigEntry("enable_cracked_dripstone_bricks"));
         ENABLE_MOSSY_DRIPSTONE_BRICKS = buildingBlocksCategory.addEntry(new BooleanJsonConfigEntry("enable_mossy_dripstone_bricks"));

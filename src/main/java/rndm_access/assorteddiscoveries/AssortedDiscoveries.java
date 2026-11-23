@@ -665,17 +665,13 @@ public class AssortedDiscoveries implements ModInitializer {
                 entries.accept(ModBlocks.SMOOTH_SMOKY_QUARTZ_WALL.asItem());
             }
 
-            /*
             if (enableSmokyQuartzBlocks && enableSmokyQuartzBricks
                     && ModConfig.ENABLE_SMOKY_QUARTZ_TILES.getActiveValue()) {
-
+                entries.accept(ModBlocks.SMOKY_QUARTZ_TILES);
+                entries.accept(ModBlocks.SMOKY_QUARTZ_TILE_STAIRS.asItem());
+                entries.accept(ModBlocks.SMOKY_QUARTZ_TILE_SLAB.asItem());
+                entries.accept(ModBlocks.SMOKY_QUARTZ_TILE_WALL.asItem());
             }
-            */
-
-            entries.accept(ModBlocks.SMOKY_QUARTZ_TILES);
-            entries.accept(ModBlocks.SMOKY_QUARTZ_TILE_STAIRS.asItem());
-            entries.accept(ModBlocks.SMOKY_QUARTZ_TILE_SLAB.asItem());
-            entries.accept(ModBlocks.SMOKY_QUARTZ_TILE_WALL.asItem());
 
             if (ModConfig.ENABLE_QUARTZ_BRICK_BLOCKS.getActiveValue()) {
                 entries.accept(ModBlocks.QUARTZ_BRICK_STAIRS.asItem());

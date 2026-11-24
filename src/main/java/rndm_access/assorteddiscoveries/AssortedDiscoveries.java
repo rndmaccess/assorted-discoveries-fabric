@@ -91,15 +91,7 @@ public class AssortedDiscoveries implements ModInitializer {
 
     private static void registerConfigEvents() {
         PayloadTypeRegistry.clientboundPlay().register(BooleanEntriesS2CPayload.ID, BooleanEntriesS2CPayload.CODEC);
-        ServerPlayerEvents.JOIN.register(AssortedDiscoveries::sendConfigData);
-    }
-
-    @SuppressWarnings("resource")
-    private static void sendConfigData(ServerPlayer player) {
-        // If I use the auto-closable on level it closes the world too early and breaks loading!
-        if (!player.level().isClientSide()) {
-            sendConfigToPlayer(player);
-        }
+        ServerPlayerEvents.JOIN.register(AssortedDiscoveries::sendConfigToPlayer);
     }
 
     private static void sendConfigToPlayer(ServerPlayer player) {

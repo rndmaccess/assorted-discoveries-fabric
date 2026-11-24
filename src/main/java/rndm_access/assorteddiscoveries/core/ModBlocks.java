@@ -746,7 +746,7 @@ public final class ModBlocks {
     public static final Block DRIPSTONE_TILE_SLAB
             = registerSlab(ModBlockIds.DRIPSTONE_TILE_SLAB_KEY, makeDripstoneTileSettings());
     public static final Block DRIPSTONE_TILE_STAIRS
-            = registerStairs(ModBlockIds.DRIPSTONE_TILE_STAIRS_KEY, makeDripstoneTileSettings(), STONE_TILES);
+            = registerStairs(ModBlockIds.DRIPSTONE_TILE_STAIRS_KEY, makeDripstoneTileSettings(), DRIPSTONE_TILES);
     public static final Block DRIPSTONE_TILE_WALL
             = registerWall(ModBlockIds.DRIPSTONE_TILE_WALL_KEY, makeDripstoneTileSettings());
     public static final Block MOSSY_DRIPSTONE_TILES
@@ -754,7 +754,7 @@ public final class ModBlocks {
     public static final Block MOSSY_DRIPSTONE_TILE_SLAB
             = registerSlab(ModBlockIds.MOSSY_DRIPSTONE_TILE_SLAB_KEY, makeDripstoneTileSettings());
     public static final Block MOSSY_DRIPSTONE_TILE_STAIRS
-            = registerStairs(ModBlockIds.MOSSY_DRIPSTONE_TILE_STAIRS_KEY, makeDripstoneTileSettings(), MOSSY_STONE_TILES);
+            = registerStairs(ModBlockIds.MOSSY_DRIPSTONE_TILE_STAIRS_KEY, makeDripstoneTileSettings(), MOSSY_DRIPSTONE_TILES);
     public static final Block MOSSY_DRIPSTONE_TILE_WALL
             = registerWall(ModBlockIds.MOSSY_DRIPSTONE_TILE_WALL_KEY, makeDripstoneTileSettings());
     public static final Block CRACKED_DRIPSTONE_TILES
@@ -762,7 +762,7 @@ public final class ModBlocks {
     public static final Block CRACKED_DRIPSTONE_TILE_SLAB
             = registerSlab(ModBlockIds.CRACKED_DRIPSTONE_TILE_SLAB_KEY, makeDripstoneTileSettings());
     public static final Block CRACKED_DRIPSTONE_TILE_STAIRS
-            = registerStairs(ModBlockIds.CRACKED_DRIPSTONE_TILE_STAIRS_KEY, makeDripstoneTileSettings(), CRACKED_STONE_TILES);
+            = registerStairs(ModBlockIds.CRACKED_DRIPSTONE_TILE_STAIRS_KEY, makeDripstoneTileSettings(), CRACKED_DRIPSTONE_TILES);
     public static final Block CRACKED_DRIPSTONE_TILE_WALL
             = registerWall(ModBlockIds.CRACKED_DRIPSTONE_TILE_WALL_KEY, makeDripstoneTileSettings());
     public static final Block SMOKY_QUARTZ_TILES

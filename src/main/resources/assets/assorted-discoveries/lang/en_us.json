@@ -663,7 +663,7 @@
   "config.tooltip.assorted-discoveries.foods.enable_green_onions": "When off, noodle soup can be crafted without green onions",
   "config.tooltip.assorted-discoveries.foods.enable_pudding": "Toggle pudding and berry pudding",
   "config.tooltip.assorted-discoveries.foods.enable_caramel_apple": "Toggle caramel, caramel apples, and caramel blocks",
-  "config.tooltip.assorted-discoveries.foods.enable_blueberries": "When off, berry pudding takes an extra sweet berry instead",
+  "config.tooltip.assorted-discoveries.foods.enable_blueberries": "Toggle blueberries, pie, and juice",
   "config.tooltip.assorted-discoveries.foods.enable_cindersnap_berries": "Toggle cindersnap berries and related items",
   "config.tooltip.assorted-discoveries.foods.enable_frostbite_berries": "Toggle frostbite berries and related items",
 

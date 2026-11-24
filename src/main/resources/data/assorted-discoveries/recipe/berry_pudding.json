@@ -2,8 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     "assorted-discoveries:pudding",
-    "assorted-discoveries:blueberries",
-    "minecraft:sweet_berries"
+    "#c:foods/berry",
+    "#c:foods/berry"
   ],
   "result": {
     "id": "assorted-discoveries:berry_pudding"
@@ -11,10 +11,7 @@
   "fabric:load_conditions": [
     {
       "condition": "assorted-discoveries:all_entries_enabled",
-      "value": [
-        "enable_blueberries",
-        "enable_pudding"
-      ]
+      "value": "enable_pudding"
     }
   ]
 }

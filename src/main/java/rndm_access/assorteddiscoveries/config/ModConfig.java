@@ -308,7 +308,7 @@ public class ModConfig {
         ENABLE_SWEET_BERRY_JUICE = foodCategory.addEntry(new BooleanJsonConfigEntry("enable_sweet_berry_juice"));
         ENABLE_BLUEBERRIES = foodCategory.addEntry(new BooleanJsonConfigEntry(
                 "enable_blueberries",
-                "Toggle blueberries, pie, and juice (when off, berry pudding takes an extra sweet berry instead)"
+                "Toggle blueberries, pie, and juice"
         ));
         ENABLE_BLUEBERRY_PIE = foodCategory.addEntry(new BooleanJsonConfigEntry("enable_blueberry_pie"));
         ENABLE_BLUEBERRY_JUICE = foodCategory.addEntry(new BooleanJsonConfigEntry("enable_blueberry_juice"));

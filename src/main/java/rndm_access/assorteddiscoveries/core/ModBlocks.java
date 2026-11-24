@@ -1364,6 +1364,54 @@ public final class ModBlocks {
             BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_PLANKS)
                     .mapColor(MapColor.WOOL).mapColor(MapColor.WOOD)
                     .lightLevel((state) -> 8));
+    public static final ResourceKey<Block> DRIPSTONE_TILES_KEY = makeRegistryKey("dripstone_tiles");
+    public static final Block DRIPSTONE_TILES
+            = registerSimple(DRIPSTONE_TILES_KEY, makeDripstoneTileSettings());
+    public static final ResourceKey<Block> DRIPSTONE_TILE_SLAB_KEY = makeRegistryKey("dripstone_tile_slab");
+    public static final Block DRIPSTONE_TILE_SLAB
+            = registerSlab(DRIPSTONE_TILE_SLAB_KEY, makeDripstoneTileSettings());
+    public static final ResourceKey<Block> DRIPSTONE_TILE_STAIRS_KEY = makeRegistryKey("dripstone_tile_stairs");
+    public static final Block DRIPSTONE_TILE_STAIRS
+            = registerStairs(DRIPSTONE_TILE_STAIRS_KEY, makeDripstoneTileSettings(), STONE_TILES);
+    public static final ResourceKey<Block> DRIPSTONE_TILE_WALL_KEY = makeRegistryKey("dripstone_tile_wall");
+    public static final Block DRIPSTONE_TILE_WALL
+            = registerWall(DRIPSTONE_TILE_WALL_KEY, makeDripstoneTileSettings());
+    public static final ResourceKey<Block> MOSSY_DRIPSTONE_TILES_KEY = makeRegistryKey("mossy_dripstone_tiles");
+    public static final Block MOSSY_DRIPSTONE_TILES
+            = registerSimple(MOSSY_DRIPSTONE_TILES_KEY, makeDripstoneTileSettings());
+    public static final ResourceKey<Block> MOSSY_DRIPSTONE_TILE_SLAB_KEY = makeRegistryKey("mossy_dripstone_tile_slab");
+    public static final Block MOSSY_DRIPSTONE_TILE_SLAB
+            = registerSlab(MOSSY_DRIPSTONE_TILE_SLAB_KEY, makeDripstoneTileSettings());
+    public static final ResourceKey<Block> MOSSY_DRIPSTONE_TILE_STAIRS_KEY = makeRegistryKey("mossy_dripstone_tile_stairs");
+    public static final Block MOSSY_DRIPSTONE_TILE_STAIRS
+            = registerStairs(MOSSY_DRIPSTONE_TILE_STAIRS_KEY, makeDripstoneTileSettings(), MOSSY_STONE_TILES);
+    public static final ResourceKey<Block> MOSSY_DRIPSTONE_TILE_WALL_KEY = makeRegistryKey("mossy_dripstone_tile_wall");
+    public static final Block MOSSY_DRIPSTONE_TILE_WALL
+            = registerWall(MOSSY_DRIPSTONE_TILE_WALL_KEY, makeDripstoneTileSettings());
+    public static final ResourceKey<Block> CRACKED_DRIPSTONE_TILES_KEY = makeRegistryKey("cracked_dripstone_tiles");
+    public static final Block CRACKED_DRIPSTONE_TILES
+            = registerSimple(CRACKED_DRIPSTONE_TILES_KEY, makeDripstoneTileSettings());
+    public static final ResourceKey<Block> CRACKED_DRIPSTONE_TILE_SLAB_KEY = makeRegistryKey("cracked_dripstone_tile_slab");
+    public static final Block CRACKED_DRIPSTONE_TILE_SLAB
+            = registerSlab(CRACKED_DRIPSTONE_TILE_SLAB_KEY, makeDripstoneTileSettings());
+    public static final ResourceKey<Block> CRACKED_DRIPSTONE_TILE_STAIRS_KEY = makeRegistryKey("cracked_dripstone_tile_stairs");
+    public static final Block CRACKED_DRIPSTONE_TILE_STAIRS
+            = registerStairs(CRACKED_DRIPSTONE_TILE_STAIRS_KEY, makeDripstoneTileSettings(), CRACKED_DRIPSTONE_TILES);
+    public static final ResourceKey<Block> CRACKED_DRIPSTONE_TILE_WALL_KEY = makeRegistryKey("cracked_dripstone_tile_wall");
+    public static final Block CRACKED_DRIPSTONE_TILE_WALL
+            = registerWall(CRACKED_DRIPSTONE_TILE_WALL_KEY, makeDripstoneTileSettings());
+    public static final ResourceKey<Block> SMOKY_QUARTZ_TILES_KEY = makeRegistryKey("smoky_quartz_tiles");
+    public static final Block SMOKY_QUARTZ_TILES
+            = registerSimple(SMOKY_QUARTZ_TILES_KEY, makeSmokyQuartzSettings());
+    public static final ResourceKey<Block> SMOKY_QUARTZ_TILE_SLAB_KEY = makeRegistryKey("smoky_quartz_tile_slab");
+    public static final Block SMOKY_QUARTZ_TILE_SLAB
+            = registerSlab(SMOKY_QUARTZ_TILE_SLAB_KEY, makeSmokyQuartzSettings());
+    public static final ResourceKey<Block> SMOKY_QUARTZ_TILE_STAIRS_KEY = makeRegistryKey("smoky_quartz_tile_stairs");
+    public static final Block SMOKY_QUARTZ_TILE_STAIRS
+            = registerStairs(SMOKY_QUARTZ_TILE_STAIRS_KEY, makeSmokyQuartzSettings(), SMOKY_QUARTZ_TILES);
+    public static final ResourceKey<Block> SMOKY_QUARTZ_TILE_WALL_KEY = makeRegistryKey("smoky_quartz_tile_wall");
+    public static final Block SMOKY_QUARTZ_TILE_WALL
+            = registerWall(SMOKY_QUARTZ_TILE_WALL_KEY, makeSmokyQuartzSettings());
 
     private ModBlocks() {}
 
@@ -1636,6 +1684,12 @@ public final class ModBlocks {
 
     private static BlockBehaviour.Properties makeDripstoneSettings() {
         return BlockBehaviour.Properties.ofFullCopy(Blocks.DRIPSTONE_BLOCK);
+    }
+
+    private static BlockBehaviour.Properties makeDripstoneTileSettings() {
+        return BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_BROWN)
+                .instrument(NoteBlockInstrument.BASEDRUM).sound(SoundType.DEEPSLATE_TILES)
+                .requiresCorrectToolForDrops().strength(1.5F, 1.0F);
     }
 
     /**

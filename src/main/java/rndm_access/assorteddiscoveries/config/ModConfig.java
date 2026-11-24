@@ -336,6 +336,7 @@ public class ModConfig {
         ));
         ENABLE_WITCHS_CRADLES = plantsCategory.addEntry(new BooleanJsonConfigEntry("enable_witchs_cradles"));
 
+        // Set up the config manager here. The config file is parsed when the onInitialize method starts.
         String line = "======================================================";
         CONFIG_MANAGER = new JsonConfigManager(AssortedDiscoveries.MOD_ID);
         JsonConfig modConfig = CONFIG_MANAGER.getConfig();
@@ -345,7 +346,5 @@ public class ModConfig {
         modConfig.addGlobalComment("- Enable or disable any config option by toggling the setting between true and false.");
         modConfig.addGlobalComment("- Wiki & Documentation: https://rndmaccess.github.io/assorted-discoveries-wiki/");
         modConfig.addGlobalComment(line);
-
-        updateFromFile();
     }
 }

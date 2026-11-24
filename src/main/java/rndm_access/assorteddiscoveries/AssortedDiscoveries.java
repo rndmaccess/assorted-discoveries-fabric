@@ -63,6 +63,9 @@ public class AssortedDiscoveries implements ModInitializer {
     @Override
     public void onInitialize() {
         // Config
+        // We start parsing the config file here so we don't accidentally
+        // create backups if there is a dependency problem
+        ModConfig.updateFromFile();
         AssortedDiscoveries.registerConfigEvents();
         ModResourceConditionTypes.register();
 

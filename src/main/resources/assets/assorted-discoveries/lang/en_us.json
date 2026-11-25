@@ -746,6 +746,10 @@
   "tag.item.c.warped_vegetation": "Warped Vegetation",
   "tag.item.c.stripped_poplar_logs": "Stripped Poplar Logs",
   "tag.item.c.natural_poplar_logs": "Natural Poplar Logs",
+  "tag.item.c.foods.pudding": "Pudding Foods",
+  "tag.item.c.foods.cooked_egg": "Cooked Egg Foods",
+  "tag.item.c.ores.smoky_quartz": "Smoky Quartz Ores",
+  "tag.item.c.crops.green_onion": "Green Onion Crops",
 
   "tag.worldgen.biome.assorted-discoveries.has_feature.blood_kelp": "Has Blood Kelp",
   "tag.worldgen.biome.assorted-discoveries.has_feature.bog_blossom": "Has Bog Blossom",

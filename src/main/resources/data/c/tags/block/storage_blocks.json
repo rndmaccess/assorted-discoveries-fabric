@@ -1,7 +1,17 @@
 {
   "replace": false,
   "values": [
-    "#assorted-discoveries:crates",
-    "#assorted-discoveries:bags"
+    "#c:storage_blocks/blood_kelp",
+    "#c:storage_blocks/blood_kelp_seed_cluster",
+    "#c:storage_blocks/blueberries",
+    "#c:storage_blocks/caramel",
+    "#c:storage_blocks/cindersnap_berries",
+    "#c:storage_blocks/frostbite_berries",
+    "#c:storage_blocks/green_onion",
+    "#c:storage_blocks/green_onion_seeds",
+    "#c:storage_blocks/purple_mushroom",
+    "#c:storage_blocks/snapdragon",
+    "#c:storage_blocks/spruce_cone",
+    "#c:storage_blocks/witchs_cradle_branch"
   ]
 }

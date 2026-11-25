@@ -1,9 +1,8 @@
 {
   "replace": false,
   "values": [
-    "assorted-discoveries:pudding",
-    "assorted-discoveries:berry_pudding",
-    "assorted-discoveries:fried_egg",
+    "#c:foods/pudding",
+    "#c:foods/cooked_egg",
     "assorted-discoveries:warped_forage_mix",
     "assorted-discoveries:crimson_forage_mix",
     "assorted-discoveries:forests_bounty",
